@@ -20,6 +20,8 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+Note: This is the README from score2. I am revising score2 to make it a React.js application. So far, the react version performs mathematical computations on random dice rolls. It also displays all possible solutions but it looks bad because the HTML code is not being seen as HTML by the browser. This is Rect.js default behavior which I am still trying to override.  -- David Schalk
+
 # The Game of Score
 _An extension of github.com/jaspervdj/websockets as implemented by yesodweb/wai/wai-websockets_ Running on a $5/month Digital Ocean droplet.[Digital Ocean](www.digitalocean.com/?refcode=1d035c466e8d)
 
