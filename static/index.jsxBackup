@@ -1,0 +1,20 @@
+'use strict'
+
+var React = require('react');
+var $ = require('jquery');
+require ('jquery-ui');
+var App = require('./App')
+
+React.render(<App />, document.getElementById('mainDiv'));
+
+/*
+var Login = require('./Login')
+var Start = require('./Start');
+var Ready = require('./Ready');
+var Dom = require('./Dom');
+
+React.render(<Login />, document.getElementById('mainDiv'));
+React.render(<Start />, document.getElementById('mainDiv'));
+React.render(<Ready />, document.getElementById('mainDiv'));
+React.render(<Dom />, document.getElementById('mainDiv'));
+*/
