@@ -1,8 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Fm where
-import           Data.List
+import Data.List
 import qualified Data.Text     as T
-import           System.Random
+import System.Random
+import Data.Aeson
 
 toDouble :: Int -> Double
 toDouble x = (read (show x)) :: Double
@@ -143,30 +144,30 @@ calc7 a b c d e = [(f a', g op1, f b', g op3, f c', g op2, f d', show e) |
                             op3 d' (op2 c' (op1 a' b')) == e]
 
 h :: (String, String, String, String, String, String) -> String
-h (a',b',c',d',e',goal) = "(" ++ a' ++ b' ++ c' ++ ")" ++ d' ++ e' ++ " = " ++ goal ++ "<br>"
+h (a',b',c',d',e',goal) = "(" ++ a' ++ b' ++ c' ++ ")" ++ d' ++ e' ++ " = " ++ goal ++ "<br />  "
 
 h2 :: (String, String, String, String, String, String) -> String
-h2 (a',b',c',d',e', goal) = a' ++ d' ++  "(" ++ c' ++ b' ++ e'++ ") = " ++ goal ++ "<br>  "
+h2 (a',b',c',d',e', goal) = a' ++ d' ++  "(" ++ c' ++ b' ++ e'++ ") = " ++ goal ++ "<br />  "
 
 h3 :: (String, String, String, String, String, String, String, String) -> String
 h3 (a',b',c',d',e',f',g', goal) = "(" ++ a' ++ b' ++ c' ++ ")"  ++ d' ++ "(" ++ e' ++ f' ++
-                            g' ++ ") = " ++ goal ++ "<br>  "
+                            g' ++ ") = " ++ goal ++ "<br />  "
 
 h4 :: (String, String, String, String, String, String, String, String) -> String
 h4 (a',b',c',d',e',f',g', goal) = "((" ++ a' ++ b' ++ c' ++ ")" ++
-    f' ++ e' ++ ")" ++ d' ++ g' ++ ") = " ++ goal ++ "<br>  "
+    f' ++ e' ++ ")" ++ d' ++ g' ++ ") = " ++ goal ++ "<br />  "
 
 h5 :: (String, String, String, String, String, String, String, String) -> String
 h5 (a',b',c',d',e',f',g', goal) = "(" ++ e' ++ f' ++ "(" ++ a' ++
-  b' ++ c' ++ "))" ++ d' ++ g' ++ ") = " ++ goal ++ "<br>  "
+  b' ++ c' ++ "))" ++ d' ++ g' ++ ") = " ++ goal ++ "<br />  "
 
 h6:: (String, String, String, String, String, String, String, String) -> String
 h6 (a',b',c',d',e',f',g', goal) = g' ++ d' ++ "((" ++ a' ++ b' ++
-  c' ++ ")" ++ f' ++ e' ++ ") = " ++ goal ++ "<br>  "
+  c' ++ ")" ++ f' ++ e' ++ ") = " ++ goal ++ "<br />  "
 
 h7 :: (String, String, String, String, String, String, String, String) -> String
 h7 (a',b',c',d',e',f',g', goal) = g' ++ d' ++ "(" ++ e' ++ f' ++
-  "(" ++ a' ++ b' ++ c' ++ ")) = " ++ goal ++ "<br>  "
+  "(" ++ a' ++ b' ++ c' ++ ")) = " ++ goal ++ "<br />  "
 
 pim ::  [(String, String, String, String, String, String, String, String)] -> [String]
 pim x  | null x  = [" -- There are no solutions in this category"]
@@ -178,25 +179,25 @@ pim' x  | null x  = [" -- There are no solutions in this category"]
        | otherwise  = [" "]
 
 ca :: [Double] -> [String]
-ca [a, b, c, d, e] = ["Using the result from two numbers left of a third.<br>"] ++
+ca [a, b, c, d, e] = ["Using the result from two numbers left of a third.<br />"] ++
     map h (calc a b c d e) ++
     pim' (calc a b c d e) ++
-    ["<br><br>Using a number left of the result obtained from two other numbers.<br>"] ++
+    ["<br /><br />Using a number left of the result obtained from two other numbers.<br />"] ++
     map h2 (calc2 a b c d e) ++
     pim' (calc2 a b c d e) ++
-    ["<br><br>Using two numbers and then the remaining two numbers - then using those results.<br>"] ++
+    ["<br /><br />Using two numbers and then the remaining two numbers - then using those results.<br />"] ++
     map h3 (calc3 a b c d e) ++
     pim (calc3 a b c d e) ++
-    ["<br><br>Using the result from two numbers left of a third - then that result left of the remaining number.<br>"] ++
+    ["<br /><br />Using the result from two numbers left of a third - then that result left of the remaining number.<br />"] ++
     map h4 (calc4 a b c d e) ++
     pim (calc4 a b c d e) ++
-    ["<br><br>Using the third number left of the result obtained from the first two - then that result left of the fourth number.<br>"] ++
+    ["<br /><br />Using the third number left of the result obtained from the first two - then that result left of the fourth number.<br />"] ++
     map h5 (calc5 a b c d e) ++
     pim (calc5 a b c d e) ++
-    ["<br><br>Using the the remaining number to the left of the result of using the result of two numbers' left of another.<br>"] ++
+    ["<br /><br />Using the the remaining number to the left of the result of using the result of two numbers' left of another.<br />"] ++
     map h6 (calc6 a b c d e) ++
     pim (calc6 a b c d e) ++
-    ["<br><br>Using the remaining number to the left of the result from using the a number left of the result from two others.<br>"] ++
+    ["<br /><br />Using the remaining number to the left of the result from using the a number left of the result from two others.<br />"] ++
     map h7 (calc7 a b c d e) ++
     pim (calc7 a b c d e)
 ca _ = ["What?"]
@@ -211,8 +212,8 @@ tru x = map read (map T.unpack (T.split (==',') x))
 truck :: [Double] -> IO String
 truck x = do
     let y = map round x
-    let z = show (y !! 0) ++ " " ++ show (y !! 1) ++ " " ++ show (y !! 2) ++ " " ++  show (y !! 3) ++ "<br><br>"
-    let a = (" " ++ z ++ (cars x) ++ "<br>") :: String
+    let z = show (y !! 0) ++ " " ++ show (y !! 1) ++ " " ++ show (y !! 2) ++ " " ++  show (y !! 3) ++ "<br /><br />"
+    let a = (" " ++ z ++ (cars x) ++ "<br />") :: String
     return a
 
 arg :: [Double]
@@ -224,5 +225,10 @@ rText [a,b,c,d] = do
     return $ rollFunc $ map show $ map round x
 rText _ = return $ T.pack "String"
 
+xyz :: [Double]
+xyz = [1, 1, 1, 1, 20]
 main :: IO ()
-main = rText [111,111,111,111] >>= print
+
+bus [a,b,c,d,e] = encode $ ca [a,b,c,d,e]
+
+main = print $ bus [1,1,1,1,20]

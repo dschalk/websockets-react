@@ -6,7 +6,7 @@ var mes0 = 'Number';
 var mes1 = 'Operator';
 var mes2 = 'Number';
 var temp = 'temp';
-var sol = 'solutions';
+var sol = [];
 var message1 = 0;
 var message2 = 0;
 var message3 = 0;
@@ -75,7 +75,7 @@ ws.onmessage = function(event) {
           break;
 
           case "CZ#$42":
-              sol = extra;
+              sol = extra.split("<br />")
             //  $("#show").prepend("<br>" + extra);
             //  $("#a2").html(sender + " clicked SOLUTIONS.<br><br>");
           break;
@@ -560,17 +560,23 @@ class B40 extends React.Component {
   class Solutions extends React.Component {
     constructor(props) {
       super(props);
+      var formatted;
   }
   clickHandler () {
-      this.props.solFunc();
+    this.props.solFunc();
   }
+
   render () {
+    var formatted = this.props.sol.map(function(line) {
+      return (<p>{line}</p>);
+    });
+    console.log(formatted);
     console.log(this);
     return (
         <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-            textAlign: "center", padding: 20, float: "left"}} onClick={this.clickHandler.bind(this)} >
+            padding: 20, float: "left"}} onClick={this.clickHandler.bind(this)} >
             Solutions <br /> <br />
-          {this.props.sol}
+            {formatted}
         </div>
     )}
   };
@@ -614,37 +620,16 @@ class B4 extends React.Component {
       }
   }
 
-
   delay(ms) {
     return new Promise(function (resolve, reject) {
         setTimeout(resolve, ms);
     });
   }
 
-
     /*
 
-    // Using delay():
-    delay(5000).then(function () { // (B)
-        console.log('5 seconds have passed!')
-    });
-
-
-
-
-
-      );
-    }
-    else {
-      reject(Error("It broke"));
-    }
-  });
-
-promise.then(ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`))
-
-
-  doThis () {
-var promise = new Promise(function(resolve, reject) {
+doThis () {
+var promise = new Promise( function(resolve, reject) {
     // do a thing, possibly async, then…
     if ( 2 === 2 ) {
       resolve(
@@ -653,70 +638,16 @@ var promise = new Promise(function(resolve, reject) {
         var b = this.state.message2;
         var c = this.state.message3;
         var d = this.state.message4;
-      ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`);
-
-      );
-    }
-    else {
+        ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`);
+    }));
+    } else {
       reject(Error("It broke"));
     }
   });
-
+}
 promise.then(ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`))
 
-
-  doThis () {
-  var promise = new Promise(function(resolve, reject) {
-      // do a thing, possibly async, then…
-
-      if ( everything turned out fine ) {
-        resolve("Stuff worked!");
-      }
-      else {
-        reject(Error("It broke"));
-      }
-    });
-        //return promise; //Give This To Someone
-    }
-  ********************************************
-    var promise = new Promise(function(resolve, reject){
-      //Do Something
-      if(somthingWorked()){
-        resolve("Stuff worked!");
-      } else {
-        reject("It broke");
-      }
-    });
-
-    promise.then(function(result) {
-      console.log(result); // "Stuff worked!"
-    }, function(err) {
-      console.log(err); // Error: "It broke"
-    });
-  ********************************************
-  var LocationsFetcher = {
-  fetch: function () {
-    // returning a Promise because that is what fetch does.
-    return new Promise(function (resolve, reject) {
-      // simulate an asynchronous action where data is fetched on
-      // a remote server somewhere.
-      setTimeout(function () {
-
-        // resolve with some mock data
-        resolve(mockData);
-    });
-  }
-};
-
-
-
-
-
   */
-
-
-
-
 
   displayHandler () {
       var a = this.state.mes0;
@@ -762,55 +693,6 @@ promise.then(ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`))
     } else this.delay(1000).then( function () {
       this2.rollDice()
     })
-  }
-
-
-  rollDice4 () {
-      this.setState({sol: sol});
-      this.setState({message1: message1});
-      this.setState({message2: message2});
-      this.setState({message3: message3});
-      this.setState({message4: message4});
-      this.setState({mes0: 'Number'});
-      this.setState({mes1: 'Operator'});
-      this.setState({mes2: 'Number'});
-      this.setState({res: 'result'});
-      this.setState({str1: ''})
-      this.setState({str2: ''})
-      this.setState({str3: ''})
-      this.setState({str4: ''})
-  }
-
-
-
-
-
-  rollDice2 () {
-      this.setState({message1: message1});
-      this.setState({message2: message2});
-      this.setState({message3: message3});
-      this.setState({message4: message4});
-      this.setState({sol: sol});
-  }
-
-  rollDice3 () {
-    this.setState({sol: sol});
-  }
-
-  adjunct () {
-      this.setState({message1: message1});
-      this.setState({message2: message2});
-      this.setState({message3: message3});
-      this.setState({message4: message4});
-      this.setState({mes0: 'Number'});
-      this.setState({mes1: 'Operator'});
-      this.setState({mes2: 'Number'});
-      this.setState({res: 'result'});
-      this.setState({sol: sol});
-      this.setState({str1: ''})
-      this.setState({str2: ''})
-      this.setState({str3: ''})
-      this.setState({str4: ''})
   }
 
   getSolutions () {
@@ -866,10 +748,6 @@ promise.then(ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`))
     this.setState(x)
   }
 
-  getResult () {
-    this.setState({sol: this.props.sol})
-  }
-
   calc () {
     var m0 = this.state.mes0;
     var m1 = this.state.mes1;
@@ -888,10 +766,16 @@ promise.then(ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`))
         default : 'operator not selected';
     }
   }
+  // var json = safeStringify(this.props)
+
+  safeStringify(obj) {
+    return JSON.stringify(obj).replace(/<\/script/g, '<\\/script').replace(/<!--/g, '<\\!--')
+}
 
   createMarkup () {
-    return { __html: sol };
-  };
+      // return { __html: this.safeStringify(this.state.sol) };
+      return { __html: "<div><h1>This</h1><br /><h2>That</h2></div>" };
+    };
 
   render () {
     console.log(this);
@@ -926,14 +810,18 @@ promise.then(ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`))
         <B33 />
         <B34 res={this.state.res} />
         <div style={{width: 8000, float: "left", padding: 20}} />
-        <Roll roll={this.rollDice.bind(this)} />
+        <Roll roll={ this.rollDice.bind(this) } />
         <div style={{width: 8000, float: "left", padding: 20}} />
-        <Solutions sol={this.state.sol} solFunc={this.getSolutions.bind(this)} result={this.getResult.bind(this)}
-          dangerouslySetInnerHTML={this.createMarkup} />
+        <Solutions solFunc={this.getSolutions.bind(this)} sol={this.state.sol} />
       </div>
     )}
   };
-/*
+
+  /*
+  B4.defaultProps = {
+      sol: sol
+    }
+
   B4.defaultProps = {
       mes0: mes0,
       mes1: mes1,
