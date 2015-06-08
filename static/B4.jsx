@@ -847,26 +847,27 @@ class B4 extends React.Component {
           mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
           next={this.nextRound.bind(this)} />
         <div style={{width: 8000, float: "left", padding: 20}} />
-        <Op0 change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} next={this.nextRound.bind(this)} />
-        <Op1 change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} next={this.nextRound.bind(this)} />
-        <Op2 change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} next={this.nextRound.bind(this)} />
-        <Op3 change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} next={this.nextRound.bind(this)} />
-        <Op4 change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} next={this.nextRound.bind(this)} />
         <div style={{width: 8000, float: "left", padding: 20}} />
-        <B30 mes0={this.state.mes0} />
-        <B31 mes1={this.state.mes1} />
-        <B32 mes2={this.state.mes2} />
-        <B33 />
-        <B34 res={this.state.res} />
+        <Op0 key='Op0' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+          mes1={this.state.mes1} calc={this.calc.bind(this)}  />
+        <Op1 key='Op1' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+          mes1={this.state.mes1} calc={this.calc.bind(this)}  />
+        <Op2 key='Op2' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+          mes1={this.state.mes1} calc={this.calc.bind(this)}  />
+        <Op3 key='Op3' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+          mes1={this.state.mes1} calc={this.calc.bind(this)}  />
+        <Op4 key='Op4' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+          mes1={this.state.mes1} calc={this.calc.bind(this)}  />
         <div style={{width: 8000, float: "left", padding: 20}} />
-        <Roll roll={ this.rollDice.bind(this) } />
+        <B30 key='B30' mes0={this.state.mes0} />
+        <B31 key='B31' mes1={this.state.mes1} />
+        <B32 key='B32' mes2={this.state.mes2} />
+        <B33 key='B33' />
+        <B34 key='B34' res={this.state.res} />
         <div style={{width: 8000, float: "left", padding: 20}} />
-        <Solutions solFunc={this.getSolutions.bind(this)} sol={this.state.sol} />
+        <Roll key='Roll' roll={ this.rollDice.bind(this) } />
+        <div style={{width: 8000, float: "left", padding: 20}} />
+        <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol} />
       </div>
     )}
   };
