@@ -1,0 +1,36 @@
+{
+  "name": "score-react",
+  "version": "1.0.0",
+  "description": "React.js version of score. ",
+  "main": "index.jsx",
+  "dependencies": {
+    "babel-core": "^5.4.7",
+    "babel-runtime": "^5.4.7",
+    "babel-loader": "^5.1.3",
+    "es6": "^0.0.7",
+    "harmony": "^0.0.1",
+    "jsx-loader": "^0.13.2",
+    "node-libs-browser": "^0.5.2",
+    "path": "^0.11.14",
+    "react": "^0.13.3",
+    "react-tools": "^0.13.3",
+    "socket.io": "^1.3.5",
+    "socket.io-client": "^1.3.5",
+    "webpack": "^1.9.9",
+    "webpack-dev-server": "^1.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dschalk/score-react.git"
+  },
+  "author": "David Schalk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dschalk/score-react/issues"
+  },
+  "homepage": "https://github.com/dschalk/score-react#readme"
+}

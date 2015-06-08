@@ -30,7 +30,7 @@ var str4 = "";
 function createWebSocket(path) {
     var host = window.location.hostname;
     if(host == '') host = 'localhost';
-    var uri = 'ws://' + host + ':3000' + path;
+    var uri = 'ws://' + host + ':3015' + path;
 
     var Socket = "MozWebSocket" in window ? MozWebSocket : WebSocket;
     return new Socket(uri);
@@ -40,16 +40,10 @@ var ws = createWebSocket('/');
 
 ws.onopen = function() {
     ws.send('CC#$42David');
-    /*
-    console.log("readyState is: " + ws.readyState);
     setTimeout ( function () {
-      ws.send("CZ#$42,pass,Michelle,1,1,1,1,20");
-    },1000 );
-    ws.send("CA#$42,pass,Jim,6,6,12,20");
-    */
-}
-
-
+      ws.send("CA#$42,pass,Betty,6,6,12,20");
+    },300 );
+  }
 
 ws.onmessage = function(event) {
   console.log(event.data);
@@ -407,97 +401,195 @@ class B40 extends React.Component {
     }
   }
 
-    render () {
-      console.log(this);
-      return (
+  render () {
+    console.log(this);
+    return (
+      <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
+        fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+        {this.props.message4}
+      </div>
+    )}
+};
+
+class Op0 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  click () { 
+      var cal = this.props.calc;
+      var nex = this.props.next;
+      var m0 = this.props.mes0;
+      var m1 = this.props.mes1;
+      var m2 = this.props.mes2;
+      var del = this.props.delay;
+      var ch = this.props.change;
+      var dH = this.props.display;
+      this.props.change({mes1: '+' });
+      var cal = this.props.calc;
+      if ((m0 !== 'Number') && (m2 !== 'Number')) {
+         del(20)
+        .then( function () {
+          cal();
+        }).then( function () {
+          del(50);
+        }).then( function () {
+          dH();
+        }).then( function () {
+          del(50);
+        }).then( function () { 
+              nex();
+              ch({mes0: 'Number'});
+              ch({mes2: 'Number'});
+              ch({mes1: 'Operator'});
+              ch({res: 'result'});
+        })
+       
+      }
+    }
+
+  render () {
+    console.log(this);
+    return (
         <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
           fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
-          {this.props.message4}
+          +
         </div>
-      )}
-    };
+    )}
+};
 
-  class Op0 extends React.Component {
-    constructor(props) {
-      super(props);
+class Op1 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  click () { 
+    var cal = this.props.calc;
+    var nex = this.props.next;
+    var m0 = this.props.mes0;
+    var m1 = this.props.mes1;
+    var m2 = this.props.mes2;
+    var del = this.props.delay;
+    var ch = this.props.change;
+    var dH = this.props.display;
+    this.props.change({mes1: '-' });
+    var cal = this.props.calc;
+    if ((m0 !== 'Number') && (m2 !== 'Number')) {
+       del(20)
+      .then( function () {
+        cal();
+      }).then( function () {
+        del(50);
+      }).then( function () {
+        dH();
+      }).then( function () {
+        del(50);
+      }).then( function () { 
+            nex();
+            ch({mes0: 'Number'});
+            ch({mes2: 'Number'});
+            ch({mes1: 'Operator'});
+            ch({res: 'result'});
+      })
+     
     }
+  }
 
-    click () {
-        this.props.change({mes1: '+' });
-        var cal = this.props.calc;
-        setTimeout( function () {
-          cal();
-        },50 );
-      }
+  render () {
+    console.log(this);
+    return (
+        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
+          fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+          -
+        </div>
+    )}
+};
 
-    render () {
-      console.log(this);
-      return (
-          <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-            fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
-            +
-          </div>
-      )}
-    };
+class Op2 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  class Op1 extends React.Component {
-    constructor(props) {
-      super(props);
+  click () {
+    var cal = this.props.calc;
+    var nex = this.props.next;
+    var m0 = this.props.mes0;
+    var m1 = this.props.mes1;
+    var m2 = this.props.mes2;
+    var del = this.props.delay;
+    var ch = this.props.change;
+    var dH = this.props.display;
+    this.props.change({mes1: '*' });
+    var cal = this.props.calc;
+    if ((m0 !== 'Number') && (m2 !== 'Number')) {
+       del(20)
+      .then( function () {
+        cal();
+      }).then( function () {
+        del(50);
+      }).then( function () {
+        dH();
+      }).then( function () {
+        del(50);
+      }).then( function () { 
+            nex();
+            ch({mes0: 'Number'});
+            ch({mes2: 'Number'});
+            ch({mes1: 'Operator'});
+            ch({res: 'result'});
+      })
+     
     }
+  }
 
-    click () {
-        this.props.change({mes1: '-' });
-        var cal = this.props.calc;
-        setTimeout( function () {
-          cal();
-        },50 );
-      }
 
-    render () {
-      console.log(this);
-      return (
-          <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-            fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
-            -
-          </div>
-      )}
-    };
-
-  class Op2 extends React.Component {
-    constructor(props) {
-      super(props);
-    }
-
-    click () {
-        this.props.change({mes1: '*' });
-        var cal = this.props.calc;
-        setTimeout( function () {
-          cal();
-        },50 );
-      }
-
-    render () {
-      console.log(this);
-      return (
-          <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-            fontSize: "38", Align: "center", padding: "20", float: "left" }} >
-            *
-          </div>
-      )}
-    };
+  render () {
+    console.log(this);
+    return (
+        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
+          fontSize: "38", Align: "center", padding: "20", float: "left" }} >
+          *
+        </div>
+    )}
+};
 
   class Op3 extends React.Component {
     constructor(props) {
       super(props);
     }
 
-    click () {
-        this.props.change({mes1: '/' });
-        var cal = this.props.calc;
-        setTimeout( function () {
-          cal();
-        },50 );
-      }
+  click () {
+    var cal = this.props.calc;
+    var nex = this.props.next;
+    var m0 = this.props.mes0;
+    var m1 = this.props.mes1;
+    var m2 = this.props.mes2;
+    var del = this.props.delay;
+    var ch = this.props.change;
+    var dH = this.props.display;
+    this.props.change({mes1: '/' });
+    var cal = this.props.calc;
+    if ((m0 !== 'Number') && (m2 !== 'Number')) {
+       del(20)
+      .then( function () {
+        cal();
+      }).then( function () {
+        del(50);
+      }).then( function () {
+        dH();
+      }).then( function () {
+        del(50);
+      }).then( function () { 
+            nex();
+            ch({mes0: 'Number'});
+            ch({mes2: 'Number'});
+            ch({mes1: 'Operator'});
+            ch({res: 'result'});
+      })
+     
+    }
+  }
+
 
     render () {
       console.log(this);
@@ -509,28 +601,52 @@ class B40 extends React.Component {
       )}
     };
 
-  class Op4 extends React.Component {
-    constructor(props) {
-      super(props);
+class Op4 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  click () {
+    var cal = this.props.calc;
+    var nex = this.props.next;
+    var m0 = this.props.mes0;
+    var m1 = this.props.mes1;
+    var m2 = this.props.mes2;
+    var del = this.props.delay;
+    var ch = this.props.change;
+    var dH = this.props.display;
+    this.props.change({mes1: 'Concat' });
+    var cal = this.props.calc;
+    if ((m0 !== 'Number') && (m2 !== 'Number')) {
+       del(20)
+      .then( function () {
+        cal();
+      }).then( function () {
+        del(50);
+      }).then( function () {
+        dH();
+      }).then( function () {
+        del(50);
+      }).then( function () { 
+            nex();
+            ch({mes0: 'Number'});
+            ch({mes2: 'Number'});
+            ch({mes1: 'Operator'});
+            ch({res: 'result'});
+      })
+     
     }
+  }
 
-    click () {
-        this.props.change({mes1: 'Concat' });
-        var cal = this.props.calc;
-        setTimeout( function () {
-          cal();
-        },50 );
-      }
-
-    render () {
-      console.log(this);
-      return (
-          <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-            fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
-            Concat
-          </div>
-      )}
-    };
+  render () {
+    console.log(this);
+    return (
+        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
+          fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+          Concat
+        </div>
+    )}
+};
 
   class B30 extends React.Component {
     constructor(props) {
@@ -746,18 +862,20 @@ class B4 extends React.Component {
   }
 
   getSolutions () {
-    var that = this;
-    var setSol = function () {
-      that.setState({sol: sol});
-    };
-    var a = this.state.message1;
-    var b = this.state.message2;
-    var c = this.state.message3;
-    var d = this.state.message4;
-    ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`);
-    this.delay(500).then( function () {
-      setSol();
-    })
+    if (this.state.message4 !== '') {  
+      var that = this;
+      var setSol = function () {
+        that.setState({sol: sol});
+      };
+      var a = this.state.message1;
+      var b = this.state.message2;
+      var c = this.state.message3;
+      var d = this.state.message4;
+      ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`);
+      this.delay(500).then( function () {
+        setSol();
+      })
+    }
   }
 
   nextRound () {
@@ -849,15 +967,20 @@ class B4 extends React.Component {
         <div style={{width: 8000, float: "left", padding: 20}} />
         <div style={{width: 8000, float: "left", padding: 20}} />
         <Op0 key='Op0' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)}  />
+          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+          next={this.nextRound.bind(this)} />
         <Op1 key='Op1' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)}  />
+          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+          next={this.nextRound.bind(this)}  />
         <Op2 key='Op2' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)}  />
+          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+          next={this.nextRound.bind(this)}  />
         <Op3 key='Op3' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)}  />
+          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+          next={this.nextRound.bind(this)}  />
         <Op4 key='Op4' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)}  />
+          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+          next={this.nextRound.bind(this)}  />
         <div style={{width: 8000, float: "left", padding: 20}} />
         <B30 key='B30' mes0={this.state.mes0} />
         <B31 key='B31' mes1={this.state.mes1} />
