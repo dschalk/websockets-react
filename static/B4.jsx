@@ -198,7 +198,6 @@ ws.onmessage = function(event) {
           break;
       }
   }
-
 class B40 extends React.Component {
   constructor(props) {
     super(props);
@@ -207,28 +206,41 @@ class B40 extends React.Component {
   click () {
     var cal = this.props.calc;
     var nex = this.props.next;
-    var t = this.props.message1;
+    var m = this.props.message1;
     var m0 = this.props.mes0;
     var m1 = this.props.mes1;
     var m2 = this.props.mes2;
+    var del = this.props.delay;
+    var ch = this.props.change;
+    var dH = this.props.display;
 
     if (m0 === 'Number') {
-      this.props.change({mes0: t });
+      this.props.change({mes0: m });
       this.props.change({message1: ""});
     }
     else if (m2 === 'Number') {
-      this.props.change({mes2: t });
+      this.props.change({mes2: m });
       this.props.change({message1: ""});
       if (m1 !== 'Operator') {
-        setTimeout( function () {
+        del(20)
+        .then( function () {
           cal();
-        },50 );
-        setTimeout( function () {
-          nex();
-        },100 );
-      }
+        }).then( function () {
+          del(50);
+        }).then( function () {
+          dH();
+        }).then( function () {
+          del(50);
+        }).then( function () {
+              nex();
+              ch({mes0: 'Number'});
+              ch({mes2: 'Number'});
+              ch({mes1: 'Operator'});
+              ch({res: 'result'});
+        })
     }
   }
+}
 
   render () {
     console.log(this);
@@ -247,22 +259,43 @@ class B40 extends React.Component {
     }
 
     click () {
-      var calcu = this.props.calc;
-      var t = this.props.message2;
+      var cal = this.props.calc;
+      var nex = this.props.next;
+      var m = this.props.message2;
       var m0 = this.props.mes0;
+      var m1 = this.props.mes1;
       var m2 = this.props.mes2;
+      var del = this.props.delay;
+      var ch = this.props.change;
+      var dH = this.props.display;
+
       if (m0 === 'Number') {
-        this.props.change({mes0: t });
+        this.props.change({mes0: m });
         this.props.change({message2: ""});
       }
       else if (m2 === 'Number') {
-        this.props.change({mes2: t });
+        this.props.change({mes2: m });
         this.props.change({message2: ""});
-        setTimeout( function () {
-          calcu();
-        },50 );
+        if (m1 !== 'Operator') {
+          del(20)
+          .then( function () {
+            cal();
+          }).then( function () {
+            del(50);
+          }).then( function () {
+            dH();
+          }).then( function () {
+            del(50);
+          }).then( function () {
+                nex();
+                ch({mes0: 'Number'});
+                ch({mes2: 'Number'});
+                ch({mes1: 'Operator'});
+                ch({res: 'result'});
+          })
       }
     }
+  }
 
     render () {
       console.log(this);
@@ -281,23 +314,43 @@ class B40 extends React.Component {
     }
 
     click () {
-      var calcu = this.props.calc;
-      var t = this.props.message3;
+      var cal = this.props.calc;
+      var nex = this.props.next;
+      var m = this.props.message3;
       var m0 = this.props.mes0;
+      var m1 = this.props.mes1;
       var m2 = this.props.mes2;
+      var del = this.props.delay;
+      var ch = this.props.change;
+      var dH = this.props.display;
+
       if (m0 === 'Number') {
-        this.props.change({mes0: t });
+        this.props.change({mes0: m });
         this.props.change({message3: ""});
       }
       else if (m2 === 'Number') {
-        this.props.change({mes2: t });
+        this.props.change({mes2: m });
         this.props.change({message3: ""});
-        setTimeout( function () {
-          calcu();
-        },50 );
-
+        if (m1 !== 'Operator') {
+          del(20)
+          .then( function () {
+            cal();
+          }).then( function () {
+            del(50);
+          }).then( function () {
+            dH();
+          }).then( function () {
+            del(50);
+          }).then( function () {
+                nex();
+                ch({mes0: 'Number'});
+                ch({mes2: 'Number'});
+                ch({mes1: 'Operator'});
+                ch({res: 'result'});
+          })
       }
     }
+  }
 
     render () {
       console.log(this);
@@ -316,23 +369,43 @@ class B40 extends React.Component {
     }
 
     click () {
-      var calcu = this.props.calc;
-      var t = this.props.message4;
+      var cal = this.props.calc;
+      var nex = this.props.next;
+      var m = this.props.message4;
       var m0 = this.props.mes0;
+      var m1 = this.props.mes1;
       var m2 = this.props.mes2;
+      var del = this.props.delay;
+      var ch = this.props.change;
+      var dH = this.props.display;
+
       if (m0 === 'Number') {
-        this.props.change({mes0: t });
+        this.props.change({mes0: m });
         this.props.change({message4: ""});
       }
       else if (m2 === 'Number') {
-        this.props.change({mes2: t });
+        this.props.change({mes2: m });
         this.props.change({message4: ""});
-        setTimeout( function () {
-          calcu();
-        },50 );
-
+        if (m1 !== 'Operator') {
+          del(20)
+          .then( function () {
+            cal();
+          }).then( function () {
+            del(50);
+          }).then( function () {
+            dH();
+          }).then( function () {
+            del(50);
+          }).then( function () { 
+                nex();
+                ch({mes0: 'Number'});
+                ch({mes2: 'Number'});
+                ch({mes1: 'Operator'});
+                ch({res: 'result'});
+          })
       }
     }
+  }
 
     render () {
       console.log(this);
@@ -351,9 +424,9 @@ class B40 extends React.Component {
 
     click () {
         this.props.change({mes1: '+' });
-        var calcu = this.props.calc;
+        var cal = this.props.calc;
         setTimeout( function () {
-          calcu();
+          cal();
         },50 );
       }
 
@@ -374,9 +447,9 @@ class B40 extends React.Component {
 
     click () {
         this.props.change({mes1: '-' });
-        var calcu = this.props.calc;
+        var cal = this.props.calc;
         setTimeout( function () {
-          calcu();
+          cal();
         },50 );
       }
 
@@ -397,9 +470,9 @@ class B40 extends React.Component {
 
     click () {
         this.props.change({mes1: '*' });
-        var calcu = this.props.calc;
+        var cal = this.props.calc;
         setTimeout( function () {
-          calcu();
+          cal();
         },50 );
       }
 
@@ -420,9 +493,9 @@ class B40 extends React.Component {
 
     click () {
         this.props.change({mes1: '/' });
-        var calcu = this.props.calc;
+        var cal = this.props.calc;
         setTimeout( function () {
-          calcu();
+          cal();
         },50 );
       }
 
@@ -443,9 +516,9 @@ class B40 extends React.Component {
 
     click () {
         this.props.change({mes1: 'Concat' });
-        var calcu = this.props.calc;
+        var cal = this.props.calc;
         setTimeout( function () {
-          calcu();
+          cal();
         },50 );
       }
 
@@ -591,7 +664,7 @@ class B40 extends React.Component {
       return (
           <div
             style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-              textAlign: "center", padding: 20, float: "left"}}  >
+              padding: 20, float: "left"}}  >
               Computations: <br /> {this.props.str1} <br /> {this.props.str2} <br /> {this.props.str3} <br /> {this.props.str4}
           </div>
       )}
@@ -625,29 +698,6 @@ class B4 extends React.Component {
         setTimeout(resolve, ms);
     });
   }
-
-    /*
-
-doThis () {
-var promise = new Promise( function(resolve, reject) {
-    // do a thing, possibly async, then…
-    if ( 2 === 2 ) {
-      resolve(
-      setTimeout ( function () {
-        var a = this.state.message1;
-        var b = this.state.message2;
-        var c = this.state.message3;
-        var d = this.state.message4;
-        ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`);
-    }));
-    } else {
-      reject(Error("It broke"));
-    }
-  });
-}
-promise.then(ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`))
-
-  */
 
   displayHandler () {
       var a = this.state.mes0;
@@ -737,7 +787,7 @@ promise.then(ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`))
     if ( n === 1) {
       this.setState({message2: ''})
     }
-    this.displayHandler();
+    // this.displayHandler();
     this.setState({mes0: 'Number'});
     this.setState({mes2: 'Number'});
     this.setState({mes1: 'Operator'});
@@ -781,17 +831,21 @@ promise.then(ws.send(`CZ#$42,pass,Steve,${a},${b},${c},${d},20`))
     console.log(this);
     return (
       <div>
-        <Display str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} str4={this.state.str4}/>
+        <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} str4={this.state.str4}/>
         <div style={{width: 8000, float: "left", padding: 20}} />
         <div style={{width: 8000, float: "left", padding: 20}} />
-        <B40 message1={this.state.message1} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} next={this.nextRound.bind(this)} />
-        <B41 message2={this.state.message2} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} next={this.nextRound.bind(this)} />
-        <B42 message3={this.state.message3} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} next={this.nextRound.bind(this)} />
-        <B43 message4={this.state.message4} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} next={this.nextRound.bind(this)} />
+        <B40 key='B40' message1={this.state.message1} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+          next={this.nextRound.bind(this)} />
+        <B41 key='B41' message2={this.state.message2} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+          next={this.nextRound.bind(this)} />
+        <B42 key='B42' message3={this.state.message3} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+          next={this.nextRound.bind(this)} />
+        <B43 key='B43' message4={this.state.message4} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+          next={this.nextRound.bind(this)} />
         <div style={{width: 8000, float: "left", padding: 20}} />
         <Op0 change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
           mes1={this.state.mes1} calc={this.calc.bind(this)} next={this.nextRound.bind(this)} />
