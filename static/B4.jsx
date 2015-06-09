@@ -25,6 +25,8 @@ var str1 = "";
 var str2 = "";
 var str3 = "";
 var str4 = "";
+var hidden = true;
+var value = "";
 
 
 function createWebSocket(path) {
@@ -39,9 +41,9 @@ function createWebSocket(path) {
 var ws = createWebSocket('/');
 
 ws.onopen = function() {
-    ws.send('CC#$42David');
+    // ws.send('CC#$42StartName');
     setTimeout ( function () {
-      ws.send("CA#$42,pass,Betty,6,6,12,20");
+     // ws.send("CA#$42,pass,Betty,6,6,12,20");
     },300 );
   }
 
@@ -637,7 +639,6 @@ class Op4 extends React.Component {
      
     }
   }
-
   render () {
     console.log(this);
     return (
@@ -728,7 +729,7 @@ class Op4 extends React.Component {
     )}
   };
 
-  class Roll extends React.Component {
+class Roll extends React.Component {
     constructor(props) {
       super(props);
   }
@@ -737,16 +738,20 @@ class Op4 extends React.Component {
   }
   render () {
     console.log(this);
-    return (
-        <div
-          style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-            textAlign: "center", padding: 20, float: "left"}} onClick={this.clickHandler.bind(this)} >
-            ROLL
-        </div>
-    )}
-  };
+    if (this.props.hidden) { return ( null ) } 
+    else {
+      return (
+          <div
+            style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
+              textAlign: "center", padding: 20, float: "left"}} onClick={this.clickHandler.bind(this)} >
+              ROLL
+          </div>
+      )
+    }
+  }
+};
 
-  class Solutions extends React.Component {
+class Solutions extends React.Component {
     constructor(props) {
       super(props);
       var formatted;
@@ -761,30 +766,72 @@ class Op4 extends React.Component {
     });
     console.log(formatted);
     console.log(this);
-    return (
-        <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-            padding: 20, float: "left"}} onClick={this.clickHandler.bind(this)} >
-            Solutions <br /> <br />
-            {formatted}
-        </div>
-    )}
-  };
-
-  class Display extends React.Component {
-    constructor(props) {
-      super(props);
-    }
-
-    render () {
-      console.log(this);
+    if (this.props.hidden) { return ( null ) } 
+    else {
       return (
-          <div
-            style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-              padding: 20, float: "left"}}  >
-              Computations: <br /> {this.props.str1} <br /> {this.props.str2} <br /> {this.props.str3} <br /> {this.props.str4}
+          <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
+              padding: 20, float: "left"}} onClick={this.clickHandler.bind(this)} >
+              Solutions <br /> <br />
+              {formatted}
           </div>
-      )}
-    };
+      )
+    }
+  }
+}
+
+class Display extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render () {
+    console.log(this);
+    return (
+        <div
+          style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
+            padding: 20, float: "left"}}  >
+            Computations: <br /> {this.props.str1} <br /> {this.props.str2} <br /> {this.props.str3} <br /> {this.props.str4}
+        </div>
+    )
+  }
+};
+
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  
+  handleChange (event) {
+    this.props.change({value: event.target.value});
+  }
+  
+  handleEnter (event) {
+    var ENTER = 13;
+    if( event.keyCode == ENTER ) {
+      var name = this.props.value;
+      this.props.change({ hidden: false});
+      this.props.ws.send('CC#$42'+name);
+    }
+  }
+
+  click () {
+    var name = this.props.value;
+    this.props.change({ hidden: false});
+    this.props.ws.send('CC#$42'+name);
+  }
+  
+  render () {
+    console.log(this);
+    var value = this.props.value;
+    return (
+      <div>
+        <input type="text" value={value} onChange={this.handleChange.bind(this)} onKeyDown={this.handleEnter.bind(this)} />;
+        {this.props.value}
+        <button onClick={this.click.bind(this)}>Join</button>
+      </div>
+    );
+  }
+};
 
 class B4 extends React.Component {
   constructor(props) {
@@ -805,7 +852,9 @@ class B4 extends React.Component {
       str1: str1,
       str2: str2,
       str3: str3,
-      sol: sol
+      sol: sol,
+      hidden: hidden, 
+      value: value
       }
   }
 
@@ -852,11 +901,11 @@ class B4 extends React.Component {
     };
     var s = ws.readyState
     if (s === 1) {
-      ws.send("CA#$42,pass,Susan,6,6,12,20");
+      ws.send("CA#$42,pass,{this2.state.value},6,6,12,20");
       delay(30).then( function () {
         rollD();
       })
-    } else this.delay(1000).then( function () {
+    } else this.delay(300).then( function () {
       this2.rollDice()
     })
   }
@@ -949,48 +998,49 @@ class B4 extends React.Component {
     console.log(this);
     return (
       <div>
-        <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} str4={this.state.str4}/>
-        <div style={{width: 8000, float: "left", padding: 20}} />
-        <div style={{width: 8000, float: "left", padding: 20}} />
-        <B40 key='B40' message1={this.state.message1} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-          next={this.nextRound.bind(this)} />
-        <B41 key='B41' message2={this.state.message2} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-          next={this.nextRound.bind(this)} />
-        <B42 key='B42' message3={this.state.message3} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-          next={this.nextRound.bind(this)} />
-        <B43 key='B43' message4={this.state.message4} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-          next={this.nextRound.bind(this)} />
-        <div style={{width: 8000, float: "left", padding: 20}} />
-        <div style={{width: 8000, float: "left", padding: 20}} />
-        <Op0 key='Op0' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-          next={this.nextRound.bind(this)} />
-        <Op1 key='Op1' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-          next={this.nextRound.bind(this)}  />
-        <Op2 key='Op2' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-          next={this.nextRound.bind(this)}  />
-        <Op3 key='Op3' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-          next={this.nextRound.bind(this)}  />
-        <Op4 key='Op4' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-          mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-          next={this.nextRound.bind(this)}  />
-        <div style={{width: 8000, float: "left", padding: 20}} />
-        <B30 key='B30' mes0={this.state.mes0} />
-        <B31 key='B31' mes1={this.state.mes1} />
-        <B32 key='B32' mes2={this.state.mes2} />
-        <B33 key='B33' />
-        <B34 key='B34' res={this.state.res} />
-        <div style={{width: 8000, float: "left", padding: 20}} />
-        <Roll key='Roll' roll={ this.rollDice.bind(this) } />
-        <div style={{width: 8000, float: "left", padding: 20}} />
-        <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol} />
+          <Login change={this.changeItem.bind(this)} value={this.state.value} ws={this.state.ws} />
+          <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} str4={this.state.str4}/>
+          <div style={{width: 8000, float: "left", padding: 20}} />
+          <div style={{width: 8000, float: "left", padding: 20}} />
+          <B40 key='B40' message1={this.state.message1} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+            next={this.nextRound.bind(this)} />
+          <B41 key='B41' message2={this.state.message2} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+            next={this.nextRound.bind(this)} />
+          <B42 key='B42' message3={this.state.message3} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+            next={this.nextRound.bind(this)} />
+          <B43 key='B43' message4={this.state.message4} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+            next={this.nextRound.bind(this)} />
+          <div style={{width: 8000, float: "left", padding: 20}} />
+          <div style={{width: 8000, float: "left", padding: 20}} />
+          <Op0 key='Op0' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+            next={this.nextRound.bind(this)} />
+          <Op1 key='Op1' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+            next={this.nextRound.bind(this)}  />
+          <Op2 key='Op2' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+            next={this.nextRound.bind(this)}  />
+          <Op3 key='Op3' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+            next={this.nextRound.bind(this)}  />
+          <Op4 key='Op4' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
+            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
+            next={this.nextRound.bind(this)}  />
+          <div style={{width: 8000, float: "left", padding: 20}} />
+          <B30 key='B30' mes0={this.state.mes0} />
+          <B31 key='B31' mes1={this.state.mes1} />
+          <B32 key='B32' mes2={this.state.mes2} />
+          <B33 key='B33' />
+          <B34 key='B34' res={this.state.res} />
+          <div style={{width: 8000, float: "left", padding: 20}} />
+          <Roll key='Roll' roll={ this.rollDice.bind(this) } hidden={this.state.hidden} />
+          <div style={{width: 8000, float: "left", padding: 20}} />
+          <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol} hidden={this.state.hidden} />
       </div>
     )}
   };
