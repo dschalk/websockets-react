@@ -811,6 +811,7 @@ class Login extends React.Component {
       var name = this.props.value;
       this.props.change({ hidden: false});
       this.props.ws.send('CC#$42'+name);
+      ws.send("CA#$42,pass,name,6,6,12,20");
     }
   }
 
@@ -818,6 +819,7 @@ class Login extends React.Component {
     var name = this.props.value;
     this.props.change({ hidden: false});
     this.props.ws.send('CC#$42'+name);
+    ws.send("CA#$42,pass,name,6,6,12,20");
   }
   
   render () {
