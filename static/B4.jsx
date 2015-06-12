@@ -40,160 +40,6 @@ function createWebSocket(path) {
 
 var ws = createWebSocket('/');
 
-ws.onopen = function() {
-    // ws.send('CC#$42StartName');
-    setTimeout ( function () {
-     // ws.send("CA#$42,pass,Betty,6,6,12,20");
-    },300 );
-  }
-
-ws.onmessage = function(event) {
-  console.log(event.data);
-  var gameArray = event.data.split(",");
-  var d2 = event.data.substring(0,6);
-  var d3 = event.data.substring(2,6);
-  var sendersGroup = gameArray[1];   // The sender's group.
-  var sender = gameArray[2];
-  var extra = gameArray[3];
-  var ext4 = gameArray[4];
-  var ext5 = gameArray[5];
-  var ext6 = gameArray[6];
-  var ext7 = gameArray[7];
-  var ext8 = gameArray[8];
-  console.log("******************* gameArray *********");
-  console.log(gameArray);
-  console.log("******************** Hello React *******************")
-  // var p = $(document.createElement('p')).text(event.data);
-  // if (((groupM === gameArray[1]) && (groupM !== "private")) || (playerM === sender) || sendersGroup === "pass") {}
-      switch (d2) {
-
-          case "CC#$42":
-          break;
-
-          case "CZ#$42":
-              sol = extra.split("<br />")
-            //  $("#show").prepend("<br>" + extra);
-            //  $("#a2").html(sender + " clicked SOLUTIONS.<br><br>");
-          break;
-
-          case "CA#$42":               // Set up the next round of play.
-              // refresh();
-              // rollTextM = extra + "," + ext4 + "," + ext5 + "," + ext6;
-              message1 = extra;
-              message2 = ext4;
-              message3 = ext5;
-              message4 = ext6;
-
-              // dM = -1;
-              // populate(extra,ext4,ext5,ext6);
-          break;
-
-          case "CB#$42":
-            //  if ("private" !== sendersGroup || sender == playerM) {
-                var scoreBoard = extra;
-            //  }
-          break;
-
-          case "DB#$42":
-          break;
-
-          case "CO#$42":
-          break;
-
-          case "CD#$42":       // Prevent new player login data from displaying as a chat message.
-
-          break;
-
-          case "CE#$42":
-            //  DS_ob.ar = [];
-          break;
-
-          case "CF#$42":
-
-          break;
-
-          case "CG#$42":
-            //  DS_T = -1;
-          break;
-
-          case "CH#$42":
-              if (playerM !== sender) {
-                //  if (gameM === "on") assign (extra, ext4, ext5, ext6, ext7, ext8);
-              }
-          break;
-
-          case "CK#$42":       // Prevent new player login data from displaying as a chat message.
-
-          break;
-
-          case "CP#$42":
-
-          break;
-
-          case "CI#$42":
-
-          break;
-
-          case "CJ#$42":
-            //  DS_T = 60;
-          break;
-
-          case "CL#$42":
-            //  DS_T = -1;
-          break;
-
-          case "CS#$42":
-
-          break;
-
-          case "CW#$42":
-
-          break;
-
-          case "CM#$42":
-            //  $("#a2").prepend("<br>Time's up and nobody found a solution");
-            //  $("#newDisplay").show();
-          break;
-
-          case "CQ#$42":
-              rollM = extra + "," + ext4 + "," + ext5 + "," + ext6;
-            //  $("#show").prepend("The ranges are now " + extra + "," + ext4 + "," + ext5 + "," + ext6 + "<br>");
-          break;
-
-          case "CN#$42":
-            //  DS_T = -1;
-            //  $("#a2").append("<br>deduct two points from " + impossibleClickerM +
-            //      "'s score. <br>A solution was found before 60 seconds had passed.");
-            //  $("#newDisplay").show();
-          break;
-
-          case "CR#$42":
-            //  refresh();
-          break;
-
-          case "DU#$42":
-            /*  if (sendersGroup == "private") {
-                $("#messages").html("Join a group in order to exchange messages");
-              } else {
-              $('#messages').append(sender + ": " + extra + "<br>");
-              $('#messages').animate({scrollTop: $('#messages')[0].scrollHeight});
-            }  */
-          break;
-
-          case "EE#$42":
-
-          break;
-
-          case "SX#$42":
-            //  ws.send("SX#$42," + groupM + "," + playerM + "," + rollM);
-          break;
-
-          default:
-              console.log( " fell through to default");
-
-          break;
-      }
-  }
 class B40 extends React.Component {
   constructor(props) {
     super(props);
@@ -806,28 +652,35 @@ class Login extends React.Component {
   }
   
   handleEnter (event) {
+  	if (this.props.value == '') { 
+  		return 
+  	} else {
     var ENTER = 13;
-    if( event.keyCode == ENTER ) {
-      var name = this.props.value;
-      this.props.change({ hidden: false});
-      this.props.ws.send('CC#$42'+name);
-      ws.send("CA#$42,pass,name,6,6,12,20");
-    }
+	    if( event.keyCode == ENTER ) {
+	      var name = this.props.value;
+	      this.props.change({ hidden: false});
+	      this.props.ws.send('CC#$42'+name);
+	    }
+  	}
   }
 
-  click () {
-    var name = this.props.value;
-    this.props.change({ hidden: false});
-    this.props.ws.send('CC#$42'+name);
-    ws.send("CA#$42,pass,name,6,6,12,20");
+  click () { 
+  	if (this.props.value == '') { 
+  		return 
+  	} else { 
+	    var name = this.props.value;
+	    this.props.change({ hidden: false});
+	    this.props.ws.send('CC#$42'+name);
+		}
   }
   
   render () {
     console.log(this);
+    if ((this.props.hidden) == false) { return ( null ) } 
     var value = this.props.value;
     return (
       <div>
-        <input type="text" value={value} onChange={this.handleChange.bind(this)} onKeyDown={this.handleEnter.bind(this)} />;
+        <input type="text" value={value} onChange={this.handleChange.bind(this)} onKeyDown={this.handleEnter.bind(this)} />
         {this.props.value}
         <button onClick={this.click.bind(this)}>Join</button>
       </div>
@@ -858,7 +711,75 @@ class B4 extends React.Component {
       hidden: hidden, 
       value: value
       }
+
+var that = this;
+
+ws.onopen = function(e) {
+	console.log("ws.onopen");
   }
+
+ws.onmessage = function(event) {
+  console.log(event.data);
+  var gameArray = event.data.split(",");
+  var d2 = event.data.substring(0,6);
+  var d3 = event.data.substring(2,6);
+  var sendersGroup = gameArray[1];   // The sender's group.
+  var sender = gameArray[2];
+  var extra = gameArray[3];
+  var ext4 = gameArray[4];
+  var ext5 = gameArray[5];
+  var ext6 = gameArray[6];
+  var ext7 = gameArray[7];
+  var ext8 = gameArray[8];
+  // var p = $(document.createElement('p')).text(event.data);
+  // if (((groupM === gameArray[1]) && (groupM !== "private")) || (playerM === sender) || sendersGroup === "pass") {}
+      switch (d2) {
+
+          case "CC#$42":
+          break;
+
+          case "CZ#$42":
+              sol = extra.split("<br />")
+            //  $("#show").prepend("<br>" + extra);
+            //  $("#a2").html(sender + " clicked SOLUTIONS.<br><br>");
+          break;
+
+          case "CA#$42":               // Set up the next round of play.
+              // refresh();
+              // rollTextM = extra + "," + ext4 + "," + ext5 + "," + ext6;
+              message1 = extra;
+              message2 = ext4;
+              message3 = ext5;
+              message4 = ext6;
+              that.setState({message1: extra});
+              that.setState({message2: ext4});
+              that.setState({message3: ext5});
+              that.setState({message4: ext6});
+
+              // populate(extra,ext4,ext5,ext6);  dM = -1;
+          break;
+
+          case "CB#$42":
+            //  if ("private" !== sendersGroup || sender == playerM) {
+                var scoreBoard = extra;
+            //  }
+          break;
+
+          case "EE#$42":
+
+          break;
+
+          case "SX#$42":
+            //  ws.send("SX#$42," + groupM + "," + playerM + "," + rollM);
+          break;
+
+          default:
+              console.log( " fell through to default");
+
+          break;
+      }
+  }
+}
 
   delay(ms) {
     return new Promise(function (resolve, reject) {
@@ -883,29 +804,35 @@ class B4 extends React.Component {
       }
   }
 
+rollD () {
+  this.setState({sol: sol});
+  this.setState({message1: message1});
+  this.setState({message2: message2});
+  this.setState({message3: message3});
+  this.setState({message4: message4});
+  this.setState({mes0: 'Number'});
+  this.setState({mes1: 'Operator'});
+  this.setState({mes2: 'Number'});
+  this.setState({res: 'result'});
+  this.setState({str1: ''});
+  this.setState({str2: ''});
+  this.setState({str3: ''});
+  this.setState({str4: ''});
+  console.log("___________******************* messages from rollD: ")
+  console.log(message1, message2, message3, message4);
+};
+
   rollDice () {
+    console.log("&&&&&&&&& this in rollDice &&&&&&&&");
+  	console.log(this);
+  	console.log("&&&&&&&&&& that was this in rollDice &&&&&&&");
     var this2 = this;
     var delay = this.delay
-    var rollD = function () {
-      this2.setState({sol: sol});
-      this2.setState({message1: message1});
-      this2.setState({message2: message2});
-      this2.setState({message3: message3});
-      this2.setState({message4: message4});
-      this2.setState({mes0: 'Number'});
-      this2.setState({mes1: 'Operator'});
-      this2.setState({mes2: 'Number'});
-      this2.setState({res: 'result'});
-      this2.setState({str1: ''})
-      this2.setState({str2: ''})
-      this2.setState({str3: ''})
-      this2.setState({str4: ''})
-    };
     var s = ws.readyState
     if (s === 1) {
       ws.send("CA#$42,pass,{this2.state.value},6,6,12,20");
       delay(30).then( function () {
-        rollD();
+        this2.rollD();
       })
     } else this.delay(300).then( function () {
       this2.rollDice()
@@ -1000,7 +927,7 @@ class B4 extends React.Component {
     console.log(this);
     return (
       <div>
-          <Login change={this.changeItem.bind(this)} value={this.state.value} ws={this.state.ws} />
+          <Login change={this.changeItem.bind(this)} value={this.state.value} ws={this.state.ws} hidden={this.state.hidden} />
           <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} str4={this.state.str4}/>
           <div style={{width: 8000, float: "left", padding: 20}} />
           <div style={{width: 8000, float: "left", padding: 20}} />
@@ -1076,4 +1003,4 @@ class B4 extends React.Component {
       str4: str4
   }
 */
-  React.render(<B4 />, document.getElementById('divSix'));
+  React.render(<B4 contentEditable={true} />, document.getElementById('divSix'));

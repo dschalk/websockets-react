@@ -175,10 +175,8 @@ application state pending = do
         _   | not (prefix `T.isPrefixOf` msg) ->
                 WS.sendTextData conn ("Wrong announcement" :: Text)
             | any ($ getName client)
-                [T.null, T.any isPunctuation, T.any isSpace] ->
-                    WS.sendTextData conn ("Name cannot " `mappend`
-                        "contain punctuation or whitespace, and " `mappend`
-                        "cannot be empty" :: Text)
+                [T.null] ->
+                    WS.sendTextData conn ("Name cannot be empty" :: Text)
             | clientExists (getName client) clients ->
                 WS.sendTextData conn ("User already exists" :: Text)
             | otherwise -> flip finally disconnect $ do
