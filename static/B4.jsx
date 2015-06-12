@@ -759,13 +759,55 @@ ws.onmessage = function(event) {
               // populate(extra,ext4,ext5,ext6);  dM = -1;
           break;
 
+          case "CE#$42":               // Set up the next round of play.
+              // refresh();
+              // rollTextM = extra + "," + ext4 + "," + ext5 + "," + ext6;
+              message1 = extra;
+              message2 = ext4;
+              message3 = ext5;
+              message4 = ext6;
+              that.setState({message1: extra});
+              that.setState({message2: ext4});
+              that.setState({message3: ext5});
+              that.setState({message4: ext6});
+
+              // populate(extra,ext4,ext5,ext6);  dM = -1;
+          break;
+
           case "CB#$42":
             //  if ("private" !== sendersGroup || sender == playerM) {
                 var scoreBoard = extra;
             //  }
           break;
 
-          case "EE#$42":
+          case "CF#$42":
+          	var name = that.state.value;
+          	if (sender !== name) { 
+	          	mes0 = extra;
+	          	mes1 = ext4;
+	          	mes2 = ext5;
+	          	res = ext6;
+	          	that.setState({mes0: extra});
+	          	that.setState({mes1: ext4});
+	          	that.setState({mes2: ext5});
+	          	that.setState({res: ext6});
+				      that.delay(10).then( function () {
+					      var st = `${extra} ${ext4} ${ext5} = ${ext6}`
+					      if (that.state.str1 === '') {
+					        that.setState({str1: st });
+					      } else if (that.state.str2 === '') {
+					        that.setState({str2: st });
+					      } else if (that.state.str3 === '') {
+					        that.setState({str3: st });
+					      } else if (that.state.str4 === '') {
+					        that.setState({str4: st });
+		      			}
+							  that.setState({mes0: 'Number'});
+							  that.setState({mes1: 'Operator'});
+							  that.setState({mes2: 'Number'});
+							  that.setState({res: 'result'});
+							})
+			    	}
 
           break;
 
@@ -788,23 +830,37 @@ ws.onmessage = function(event) {
   }
 
   displayHandler () {
+  		var this2 = this;
       var a = this.state.mes0;
       var b = this.state.mes1;
       var c = this.state.mes2;
       var d = this.state.res;
-      var st = `${a} ${b} ${c} = ${d}`
-      if (this.state.str1 === '') {
-        this.setState({str1: st });
-      } else if (this.state.str2 === '') {
-        this.setState({str2: st });
-      } else if (this.state.str3 === '') {
-        this.setState({str3: st });
-      } else if (this.state.str4 === '') {
-        this.setState({str4: st });
-      }
+      this.delay(10).then( function () {
+	      var st = `${a} ${b} ${c} = ${d}`
+	      if (this2.state.str1 === '') {
+	        this2.setState({str1: st });
+	      } else if (this2.state.str2 === '') {
+	        this2.setState({str2: st });
+	      } else if (this2.state.str3 === '') {
+	        this2.setState({str3: st });
+	      } else if (this2.state.str4 === '') {
+	        this2.setState({str4: st });
+	      }
+      })
+      .then ( function () {
+      	this2.delay(20);
+      }).then(function () { 
+      	var w = this2.state.message1;
+      	var x = this2.state.message2;
+      	var y = this2.state.message3;
+      	var z = this2.state.message4;
+      	var name = this2.state.value;
+      	ws.send(`CE#$42,pass,${name},${w},${x},${y},${z}`);
+      	ws.send(`CF#$42,pass,${name},${a},${b},${c},${d}`);
+      })
   }
 
-rollD () {
+rollD () { 
   this.setState({sol: sol});
   this.setState({message1: message1});
   this.setState({message2: message2});
@@ -901,27 +957,17 @@ rollD () {
     switch (m1) {
         case "+": this.setState({res: parseFloat(m0) + parseFloat(m2)});
         break;
-        case "-": this.setState({res: parseFloat(this.state.mes0) - parseFloat(m2)});
+        case "-": this.setState({res: parseFloat(m0) - parseFloat(m2)});
         break;
-        case "*": this.setState({res: parseFloat(this.state.mes0) * parseFloat(m2)});
+        case "*": this.setState({res: parseFloat(m0) * parseFloat(m2)});
         break;
-        case "/": this.setState({res: parseFloat(this.state.mes0) / parseFloat(m2)});
+        case "/": this.setState({res: parseFloat(m0) / parseFloat(m2)});
         break;t
         case "Concat": this.setState({res: parseFloat(m0+""+m2)});
         break;
         default : 'operator not selected';
     }
   }
-  // var json = safeStringify(this.props)
-
-  safeStringify(obj) {
-    return JSON.stringify(obj).replace(/<\/script/g, '<\\/script').replace(/<!--/g, '<\\!--')
-}
-
-  createMarkup () {
-      // return { __html: this.safeStringify(this.state.sol) };
-      return { __html: "<div><h1>This</h1><br /><h2>That</h2></div>" };
-    };
 
   render () {
     console.log(this);
@@ -974,33 +1020,10 @@ rollD () {
     )}
   };
 
-  /*
+/*
   B4.defaultProps = {
-      sol: sol
-    }
-
-  B4.defaultProps = {
-      mes0: mes0,
-      mes1: mes1,
-      mes2: mes2,
-      temp: temp,
-      sol: sol,
-      message1: message1,
-      message2: message2,
-      message3: message3,
-      message4: message4,
-      selection0: selection0,
-      selection1: selection0,
-      selection2: selection0,
-      res: res,
-      ws: ws,
-      onmessage: ws.onmessage,
-      readyState: ws.readyState,
-      onopen: ws.onopen,
-      str1: str1,
-      str2: str2,
-      str3: str3,
-      str4: str4
+    sol: sol
   }
+  contentEditable={true}
 */
-  React.render(<B4 contentEditable={true} />, document.getElementById('divSix'));
+  React.render(<B4 />, document.getElementById('divSix'));
