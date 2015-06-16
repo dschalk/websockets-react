@@ -11,6 +11,7 @@ var message1 = 0;
 var message2 = 0;
 var message3 = 0;
 var message4 = 0;
+var mAr = [0,0,0,0,'result'];
 var op1 = '+';
 var op2 = '-';
 var op3 = '*';
@@ -26,8 +27,56 @@ var str2 = "";
 var str3 = "";
 var str4 = "";
 var hidden = true;
+var hidden2 = false;
+var togDice = false;
 var value = "";
+var T = "SCORE!";
+var that = this;
+var numberAr = [0,0,0,0,0];
+var NUMARRAY = [];
+var N = 0;
 
+/*
+var users = [];
+var ar = [];
+var bool = [];
+var createFunctions;
+var createDom;
+var createOperators;
+var createDropboxes;
+var createDrop1;
+var createDrop2;
+var timer;
+var refreshDropboxes;
+var populate;
+var refresh;
+var calc;
+var DS_ar = [];
+var rollM = "6,6,12,20";
+var playerM = "Jack of Hearts";
+var impossibleClickerM = "a@F$Uy&impossible";
+var scoreClickerM = "a@F$Uy&score";
+var groupM = "private";
+var rollTextM = "1,1,1,1";
+var dM = -1;
+var gameM = "off";
+var goalM = 20;
+var goal32M = 20;
+var DS_ob = {};
+DS_ob.ar = [];
+DS_ob.bool = [];
+DS_ob.scoreFunc = function() {
+        $("#countdown").html("");
+        $("#a0").html("");
+        if (playerM === scoreClickerM) {
+            ws.send("CL#$42," + groupM + "," + playerM + "," + "place holder");
+        }
+        if ( playerM === impossibleClickerM) {
+            ws.send("CM#$42,"+ groupM + "," + playerM + "," + "place holder");
+        }
+    };
+
+*/
 
 function createWebSocket(path) {
     var host = window.location.hostname;
@@ -44,46 +93,20 @@ class B40 extends React.Component {
   constructor(props) {
     super(props);
   }
-
   click () {
-    var cal = this.props.calc;
-    var nex = this.props.next;
-    var m = this.props.message1;
-    var m0 = this.props.mes0;
-    var m1 = this.props.mes1;
-    var m2 = this.props.mes2;
-    var del = this.props.delay;
-    var ch = this.props.change;
-    var dH = this.props.display;
-
-    if (m0 === 'Number') {
-      this.props.change({mes0: m });
-      this.props.change({message1: ""});
+    var name = this.props.value;
+    var num = this.props.message1;
+    this.props.change({message1: '' });
+    if (this.props.mes0 === 'Number') {
+      ws.send(`CQ#$42,pass,${name},mes0,${num}`);
     }
-    else if (m2 === 'Number') {
-      this.props.change({mes2: m });
-      this.props.change({message1: ""});
-      if (m1 !== 'Operator') {
-        del(20)
-        .then( function () {
-          cal();
-        }).then( function () {
-          del(50);
-        }).then( function () {
-          dH();
-        }).then( function () {
-          del(50);
-        }).then( function () {
-              nex();
-              ch({mes0: 'Number'});
-              ch({mes2: 'Number'});
-              ch({mes1: 'Operator'});
-              ch({res: 'result'});
-        })
+    else if (this.props.mes2 === 'Number') {
+      ws.send(`CQ#$42,pass,${name},mes2,${num}`);
+      if (this.props.mes1 !== 'Operator') {
+        this.props.calc();
+      }
     }
   }
-}
-
   render () {
     console.log(this);
     return (
@@ -92,49 +115,24 @@ class B40 extends React.Component {
           {this.props.message1}
         </div>
     )}
-
   };
 
-  class B41 extends React.Component {
-    constructor(props) {
-      super(props);
+class B41 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  click () {
+    var name = this.props.value;
+    var num = this.props.message2;
+    this.props.change({message2: '' });
+    if (this.props.mes0 === 'Number') {
+      ws.send(`CQ#$42,pass,${name},mes0,${num}`);
     }
-
-    click () {
-      var cal = this.props.calc;
-      var nex = this.props.next;
-      var m = this.props.message2;
-      var m0 = this.props.mes0;
-      var m1 = this.props.mes1;
-      var m2 = this.props.mes2;
-      var del = this.props.delay;
-      var ch = this.props.change;
-      var dH = this.props.display;
-
-      if (m0 === 'Number') {
-        this.props.change({mes0: m });
-        this.props.change({message2: ""});
-      }
-      else if (m2 === 'Number') {
-        this.props.change({mes2: m });
-        this.props.change({message2: ""});
-        if (m1 !== 'Operator') {
-          del(20)
-          .then( function () {
-            cal();
-          }).then( function () {
-            del(50);
-          }).then( function () {
-            dH();
-          }).then( function () {
-            del(50);
-          }).then( function () {
-                nex();
-                ch({mes0: 'Number'});
-                ch({mes2: 'Number'});
-                ch({mes1: 'Operator'});
-                ch({res: 'result'});
-          })
+    else if (this.props.mes2 === 'Number') {
+      ws.send(`CQ#$42,pass,${name},mes2,${num}`);
+      if (this.props.mes1 !== 'Operator') {
+        this.props.calc();
       }
     }
   }
@@ -147,49 +145,24 @@ class B40 extends React.Component {
             {this.props.message2}
           </div>
       )}
-
-    };
+};
 
   class B42 extends React.Component {
     constructor(props) {
       super(props);
     }
 
-    click () {
-      var cal = this.props.calc;
-      var nex = this.props.next;
-      var m = this.props.message3;
-      var m0 = this.props.mes0;
-      var m1 = this.props.mes1;
-      var m2 = this.props.mes2;
-      var del = this.props.delay;
-      var ch = this.props.change;
-      var dH = this.props.display;
-
-      if (m0 === 'Number') {
-        this.props.change({mes0: m });
-        this.props.change({message3: ""});
-      }
-      else if (m2 === 'Number') {
-        this.props.change({mes2: m });
-        this.props.change({message3: ""});
-        if (m1 !== 'Operator') {
-          del(20)
-          .then( function () {
-            cal();
-          }).then( function () {
-            del(50);
-          }).then( function () {
-            dH();
-          }).then( function () {
-            del(50);
-          }).then( function () {
-                nex();
-                ch({mes0: 'Number'});
-                ch({mes2: 'Number'});
-                ch({mes1: 'Operator'});
-                ch({res: 'result'});
-          })
+  click () {
+    var name = this.props.value;
+    var num = this.props.message3;
+    this.props.change({message3: '' });
+    if (this.props.mes0 === 'Number') {
+      ws.send(`CQ#$42,pass,${name},mes0,${num}`);
+    }
+    else if (this.props.mes2 === 'Number') {
+      ws.send(`CQ#$42,pass,${name},mes2,${num}`);
+      if (this.props.mes1 !== 'Operator') {
+        this.props.calc();
       }
     }
   }
@@ -202,7 +175,6 @@ class B40 extends React.Component {
           {this.props.message3}
         </div>
       )}
-
     };
 
   class B43 extends React.Component {
@@ -210,41 +182,17 @@ class B40 extends React.Component {
       super(props);
     }
 
-    click () {
-      var cal = this.props.calc;
-      var nex = this.props.next;
-      var m = this.props.message4;
-      var m0 = this.props.mes0;
-      var m1 = this.props.mes1;
-      var m2 = this.props.mes2;
-      var del = this.props.delay;
-      var ch = this.props.change;
-      var dH = this.props.display;
-
-      if (m0 === 'Number') {
-        this.props.change({mes0: m });
-        this.props.change({message4: ""});
-      }
-      else if (m2 === 'Number') {
-        this.props.change({mes2: m });
-        this.props.change({message4: ""});
-        if (m1 !== 'Operator') {
-          del(20)
-          .then( function () {
-            cal();
-          }).then( function () {
-            del(50);
-          }).then( function () {
-            dH();
-          }).then( function () {
-            del(50);
-          }).then( function () { 
-                nex();
-                ch({mes0: 'Number'});
-                ch({mes2: 'Number'});
-                ch({mes1: 'Operator'});
-                ch({res: 'result'});
-          })
+  click () {
+    var name = this.props.value;
+    var num = this.props.message4;
+    this.props.change({message4: '' });
+    if (this.props.mes0 === 'Number') {
+      ws.send(`CQ#$42,pass,${name},mes0,${num}`);
+    }
+    else if (this.props.mes2 === 'Number') {
+      ws.send(`CQ#$42,pass,${name},mes2,${num}`);
+      if (this.props.mes1 !== 'Operator') {
+        this.props.calc();
       }
     }
   }
@@ -265,37 +213,14 @@ class Op0 extends React.Component {
   }
 
   click () { 
-      var cal = this.props.calc;
-      var nex = this.props.next;
-      var m0 = this.props.mes0;
-      var m1 = this.props.mes1;
-      var m2 = this.props.mes2;
-      var del = this.props.delay;
-      var ch = this.props.change;
-      var dH = this.props.display;
-      this.props.change({mes1: '+' });
-      var cal = this.props.calc;
-      if ((m0 !== 'Number') && (m2 !== 'Number')) {
-         del(20)
-        .then( function () {
-          cal();
-        }).then( function () {
-          del(50);
-        }).then( function () {
-          dH();
-        }).then( function () {
-          del(50);
-        }).then( function () { 
-              nex();
-              ch({mes0: 'Number'});
-              ch({mes2: 'Number'});
-              ch({mes1: 'Operator'});
-              ch({res: 'result'});
-        })
-       
-      }
+    var name = this.props.value;
+    this.props.change({mes1: '+' });
+    var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+    if (test) {
+        this.props.calc();
     }
-
+  }
+  
   render () {
     console.log(this);
     return (
@@ -312,34 +237,11 @@ class Op1 extends React.Component {
   }
 
   click () { 
-    var cal = this.props.calc;
-    var nex = this.props.next;
-    var m0 = this.props.mes0;
-    var m1 = this.props.mes1;
-    var m2 = this.props.mes2;
-    var del = this.props.delay;
-    var ch = this.props.change;
-    var dH = this.props.display;
+    var name = this.props.value;
     this.props.change({mes1: '-' });
-    var cal = this.props.calc;
-    if ((m0 !== 'Number') && (m2 !== 'Number')) {
-       del(20)
-      .then( function () {
-        cal();
-      }).then( function () {
-        del(50);
-      }).then( function () {
-        dH();
-      }).then( function () {
-        del(50);
-      }).then( function () { 
-            nex();
-            ch({mes0: 'Number'});
-            ch({mes2: 'Number'});
-            ch({mes1: 'Operator'});
-            ch({res: 'result'});
-      })
-     
+    var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+    if (test) {
+        this.props.calc();
     }
   }
 
@@ -358,35 +260,12 @@ class Op2 extends React.Component {
     super(props);
   }
 
-  click () {
-    var cal = this.props.calc;
-    var nex = this.props.next;
-    var m0 = this.props.mes0;
-    var m1 = this.props.mes1;
-    var m2 = this.props.mes2;
-    var del = this.props.delay;
-    var ch = this.props.change;
-    var dH = this.props.display;
+  click () { 
+    var name = this.props.value;
     this.props.change({mes1: '*' });
-    var cal = this.props.calc;
-    if ((m0 !== 'Number') && (m2 !== 'Number')) {
-       del(20)
-      .then( function () {
-        cal();
-      }).then( function () {
-        del(50);
-      }).then( function () {
-        dH();
-      }).then( function () {
-        del(50);
-      }).then( function () { 
-            nex();
-            ch({mes0: 'Number'});
-            ch({mes2: 'Number'});
-            ch({mes1: 'Operator'});
-            ch({res: 'result'});
-      })
-     
+    var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+    if (test) {
+        this.props.calc();
     }
   }
 
@@ -406,35 +285,12 @@ class Op2 extends React.Component {
       super(props);
     }
 
-  click () {
-    var cal = this.props.calc;
-    var nex = this.props.next;
-    var m0 = this.props.mes0;
-    var m1 = this.props.mes1;
-    var m2 = this.props.mes2;
-    var del = this.props.delay;
-    var ch = this.props.change;
-    var dH = this.props.display;
+  click () { 
+    var name = this.props.value;
     this.props.change({mes1: '/' });
-    var cal = this.props.calc;
-    if ((m0 !== 'Number') && (m2 !== 'Number')) {
-       del(20)
-      .then( function () {
-        cal();
-      }).then( function () {
-        del(50);
-      }).then( function () {
-        dH();
-      }).then( function () {
-        del(50);
-      }).then( function () { 
-            nex();
-            ch({mes0: 'Number'});
-            ch({mes2: 'Number'});
-            ch({mes1: 'Operator'});
-            ch({res: 'result'});
-      })
-     
+    var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+    if (test) {
+        this.props.calc();
     }
   }
 
@@ -454,37 +310,15 @@ class Op4 extends React.Component {
     super(props);
   }
 
-  click () {
-    var cal = this.props.calc;
-    var nex = this.props.next;
-    var m0 = this.props.mes0;
-    var m1 = this.props.mes1;
-    var m2 = this.props.mes2;
-    var del = this.props.delay;
-    var ch = this.props.change;
-    var dH = this.props.display;
+  click () { 
+    var name = this.props.value;
     this.props.change({mes1: 'Concat' });
-    var cal = this.props.calc;
-    if ((m0 !== 'Number') && (m2 !== 'Number')) {
-       del(20)
-      .then( function () {
-        cal();
-      }).then( function () {
-        del(50);
-      }).then( function () {
-        dH();
-      }).then( function () {
-        del(50);
-      }).then( function () { 
-            nex();
-            ch({mes0: 'Number'});
-            ch({mes2: 'Number'});
-            ch({mes1: 'Operator'});
-            ch({res: 'result'});
-      })
-     
+    var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+    if (test) {
+        this.props.calc();
     }
   }
+
   render () {
     console.log(this);
     return (
@@ -636,42 +470,43 @@ class Display extends React.Component {
         <div
           style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
             padding: 20, float: "left"}}  >
-            Computations: <br /> {this.props.str1} <br /> {this.props.str2} <br /> {this.props.str3} <br /> {this.props.str4}
+            {this.props.str1} <br /> {this.props.str2} <br /> {this.props.str3} <br /> {this.props.str4}
         </div>
     )
   }
 };
+
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
   }
   
-  handleChange (event) {
+  handleChange (event) {       // ISSUE: Input box won't accept data without this handleChange function. ??
     this.props.change({value: event.target.value});
   }
   
   handleEnter (event) {
-  	if (this.props.value == '') { 
-  		return 
-  	} else {
+    if (this.props.value == '') { 
+      return 
+    } else {
     var ENTER = 13;
-	    if( event.keyCode == ENTER ) {
-	      var name = this.props.value;
-	      this.props.change({ hidden: false});
-	      this.props.ws.send('CC#$42'+name);
-	    }
-  	}
+      if( event.keyCode == ENTER ) {
+        var name = this.props.value;
+        this.props.change({ hidden: false});
+        ws.send('CC#$42'+name);
+      }
+    }
   }
 
   click () { 
-  	if (this.props.value == '') { 
-  		return 
-  	} else { 
-	    var name = this.props.value;
-	    this.props.change({ hidden: false});
-	    this.props.ws.send('CC#$42'+name);
-		}
+    if (this.props.value == '') { 
+      return 
+    } else { 
+      var name = this.props.value;
+      this.props.change({ hidden: false});
+      ws.send('CC#$42'+name);
+    }
   }
   
   render () {
@@ -687,6 +522,28 @@ class Login extends React.Component {
     );
   }
 };
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  click () {
+    var name = this.props.value;
+    ws.send(`CK#$42,pass,${name},10`)
+  }
+
+  render () {
+    console.log(this);
+    return (
+        <div
+          style={{backgroundColor: '#000', color: '#ff0000', fontSize:"32",
+            padding: 30, float: "left"}} onClick={this.click.bind(this)} >
+             {this.props.t}
+        </div>
+    )
+  }
+};
+
 
 class B4 extends React.Component {
   constructor(props) {
@@ -708,18 +565,25 @@ class B4 extends React.Component {
       str2: str2,
       str3: str3,
       sol: sol,
-      hidden: hidden, 
-      value: value
+      hidden: hidden,
+      hidden2: hidden2, 
+      value: value,
+      T: T,
+      numberAr: numberAr,
+      NUMARRAY: NUMARRAY,
+      N: N
       }
 
-var that = this;
+that = this;
 
 ws.onopen = function(e) {
 	console.log("ws.onopen");
   }
 
 ws.onmessage = function(event) {
+  console.log("$$$$$$$$$$$$$$$$$$$$$___ incoming data ____")
   console.log(event.data);
+  console.log("&&&&&&&&&&&&&&&&&&&& ___ that was incoming data ____")
   var gameArray = event.data.split(",");
   var d2 = event.data.substring(0,6);
   var d3 = event.data.substring(2,6);
@@ -731,6 +595,7 @@ ws.onmessage = function(event) {
   var ext6 = gameArray[6];
   var ext7 = gameArray[7];
   var ext8 = gameArray[8];
+  var name = that.state.value;
   // var p = $(document.createElement('p')).text(event.data);
   // if (((groupM === gameArray[1]) && (groupM !== "private")) || (playerM === sender) || sendersGroup === "pass") {}
       switch (d2) {
@@ -744,34 +609,37 @@ ws.onmessage = function(event) {
             //  $("#a2").html(sender + " clicked SOLUTIONS.<br><br>");
           break;
 
-          case "CA#$42":               // Set up the next round of play.
-              // refresh();
-              // rollTextM = extra + "," + ext4 + "," + ext5 + "," + ext6;
+          case "CA#$42":               // Triggered by ROLL
               message1 = extra;
               message2 = ext4;
               message3 = ext5;
               message4 = ext6;
-              that.setState({message1: extra});
-              that.setState({message2: ext4});
-              that.setState({message3: ext5});
-              that.setState({message4: ext6});
-
-              // populate(extra,ext4,ext5,ext6);  dM = -1;
+              numberAr = [extra, ext4, ext5, ext6, res];
+              that.setState
+              ({
+                message1: extra,
+                message2: ext4,
+                message3: ext5,
+                message4: ext6,
+                str1: '',
+                str2: '',
+                str3: '',
+                numberAr: [extra, ext4, ext5, ext6, res]
+              });
           break;
 
-          case "CE#$42":               // Set up the next round of play.
-              // refresh();
-              // rollTextM = extra + "," + ext4 + "," + ext5 + "," + ext6;
+          case "CE#$42":          
               message1 = extra;
               message2 = ext4;
               message3 = ext5;
               message4 = ext6;
-              that.setState({message1: extra});
-              that.setState({message2: ext4});
-              that.setState({message3: ext5});
-              that.setState({message4: ext6});
-
-              // populate(extra,ext4,ext5,ext6);  dM = -1;
+              that.setState
+              ({
+                message1: extra,
+                message2: ext4,
+                message3: ext5,
+                message4: ext6
+              });
           break;
 
           case "CB#$42":
@@ -780,35 +648,60 @@ ws.onmessage = function(event) {
             //  }
           break;
 
-          case "CF#$42":
-          	var name = that.state.value;
-          	if (sender !== name) { 
-	          	mes0 = extra;
-	          	mes1 = ext4;
-	          	mes2 = ext5;
-	          	res = ext6;
-	          	that.setState({mes0: extra});
-	          	that.setState({mes1: ext4});
-	          	that.setState({mes2: ext5});
-	          	that.setState({res: ext6});
-				      that.delay(10).then( function () {
-					      var st = `${extra} ${ext4} ${ext5} = ${ext6}`
-					      if (that.state.str1 === '') {
-					        that.setState({str1: st });
-					      } else if (that.state.str2 === '') {
-					        that.setState({str2: st });
-					      } else if (that.state.str3 === '') {
-					        that.setState({str3: st });
-					      } else if (that.state.str4 === '') {
-					        that.setState({str4: st });
-		      			}
-							  that.setState({mes0: 'Number'});
-							  that.setState({mes1: 'Operator'});
-							  that.setState({mes2: 'Number'});
-							  that.setState({res: 'result'});
-							})
-			    	}
+          case "CF#$42": 
+            that.setState
+            ({
+              mes0: 'Number',
+              mes1: 'Operator',
+              mes2: 'Number',
+              res:  'result'
+            });
+          break;
 
+          case "CH#$42":
+            that.setState({hidden2: true});
+            that.setState({T: 10});
+            str1 = extra;
+            str2 = ext4;
+            str3 = ext5;
+            that.setState
+            ({
+              str1: extra,
+              str2: ext4,
+              str3: ext5,
+              str4: ext6
+            });
+          break;
+
+          case "CJ#$42":
+              T = extra;
+              hidden2 = false;
+              that.setState
+              ({
+                T: extra,
+                hidden2: false
+              });
+          break;
+
+
+          case "CK#$42":
+              that.setState({T: extra});
+          break;
+
+          case "CP#$42":
+              that.setState({res: extra});
+          break;
+
+          case "CQ#$42":
+              that.state[extra]=ext4;
+              that.forceUpdate();
+          break;
+
+          case "CS#$42":
+            if (sender !== name) {
+              that.state[extra]=ext4;
+              that.forceUpdate();
+            };
           break;
 
           case "SX#$42":
@@ -817,10 +710,29 @@ ws.onmessage = function(event) {
 
           default:
               console.log( " fell through to default");
-
           break;
       }
   }
+
+  setInterval( function () { 
+    if (that.state.T === 0) {
+      // DS_ob.scoreFunc();
+      that.setState({T: 'Window of opportunity closed.'});
+      that.setState({hidden2: false});
+      that.setState({message1: ''});
+      that.setState({message2: ''});
+      that.setState({message3: ''});
+      that.setState({message4: ''});
+    }
+    if ( that.state.T > -1 ) {
+      var X = that.state.T - 1
+      that.setState({T: X});
+    }
+    if (that.state.T === -1) {
+      that.setState({T: ''});
+    }
+  },1000 );
+
 }
 
   delay(ms) {
@@ -830,68 +742,19 @@ ws.onmessage = function(event) {
   }
 
   displayHandler () {
-  		var this2 = this;
-      var a = this.state.mes0;
-      var b = this.state.mes1;
-      var c = this.state.mes2;
-      var d = this.state.res;
-      this.delay(10).then( function () {
-	      var st = `${a} ${b} ${c} = ${d}`
-	      if (this2.state.str1 === '') {
-	        this2.setState({str1: st });
-	      } else if (this2.state.str2 === '') {
-	        this2.setState({str2: st });
-	      } else if (this2.state.str3 === '') {
-	        this2.setState({str3: st });
-	      } else if (this2.state.str4 === '') {
-	        this2.setState({str4: st });
-	      }
-      })
-      .then ( function () {
-      	this2.delay(20);
-      }).then(function () { 
-      	var w = this2.state.message1;
-      	var x = this2.state.message2;
-      	var y = this2.state.message3;
-      	var z = this2.state.message4;
-      	var name = this2.state.value;
-      	ws.send(`CE#$42,pass,${name},${w},${x},${y},${z}`);
-      	ws.send(`CF#$42,pass,${name},${a},${b},${c},${d}`);
-      })
+    console.log("##################$$$$$$$$$$$$$$$$$$$$$$$$___ IN displayHandler ___")
   }
 
-rollD () { 
-  this.setState({sol: sol});
-  this.setState({message1: message1});
-  this.setState({message2: message2});
-  this.setState({message3: message3});
-  this.setState({message4: message4});
-  this.setState({mes0: 'Number'});
-  this.setState({mes1: 'Operator'});
-  this.setState({mes2: 'Number'});
-  this.setState({res: 'result'});
-  this.setState({str1: ''});
-  this.setState({str2: ''});
-  this.setState({str3: ''});
-  this.setState({str4: ''});
-  console.log("___________******************* messages from rollD: ")
-  console.log(message1, message2, message3, message4);
-};
-
   rollDice () {
-    console.log("&&&&&&&&& this in rollDice &&&&&&&&");
-  	console.log(this);
-  	console.log("&&&&&&&&&& that was this in rollDice &&&&&&&");
-    var this2 = this;
+    var name = that.state.value;
+    this.setState({T: 'SCORE!'});
+    that = this;
     var delay = this.delay
     var s = ws.readyState
     if (s === 1) {
-      ws.send("CA#$42,pass,{this2.state.value},6,6,12,20");
-      delay(30).then( function () {
-        this2.rollD();
-      })
+      ws.send(`CA#$42,pass,${name},6,6,12,20`);
     } else this.delay(300).then( function () {
-      this2.rollDice()
+      that.rollDice()
     })
   }
 
@@ -912,109 +775,247 @@ rollD () {
     }
   }
 
-  nextRound () {
+  setNumberAr () {
+    var delay = this.delay;
+    var that = this;
     var w1 = this.state.message1;
     var w2 = this.state.message2;
     var w3 = this.state.message3;
     var w4 = this.state.message4;
-    var r = this.state.res;
+    var result = this.state.res;
+    var startArray = [w1, w2, w3, w4, result];
+    console.log("$$$$$$$$$$$$$$$ &&_____ startArray in setNumberAr $$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+    console.log(startArray);
+    console.log("######$$$$$$$$$$$ %%%%%%%%%%%%%%% ^^^^^^^ that was startArray   Now leaving setNumberAr()"); 
+    this.newNums(startArray);   
+  }
+
+  newNums (x) {
+    var j = 0;
     var ar = [];
-    var n = 0;
-    var mAr = [w1, w2, w3, w4, r];
-    for (let k in mAr) {
-	     if (mAr[k] !== "") {
-	        ar[n] = mAr[k];
-	        n += 1;
-        }
+    for (let k in x) {
+        if (x[k] != "" && x[k] != undefined) {
+        ar[j] = x[k];
+        j += 1;
+      }
     }
-    this.setState({message1: ar[0]});
-    this.setState({message2: ar[1]});
-    this.setState({message4: ''})
+    this.setState({NUMARRAY: ar});
+    this.setState({N: j});
+    if (j === 3) {
+      ws.send(`CE#$42,pass,Jim,${ar[0]},${ar[1]},${ar[2]}`);     
+    }
+    else if (j === 2) {
+      ws.send(`CE#$42,pass,Jim,${ar[0]},${ar[1]}`);     
+    }
+    else if (j === 1) {
+      ws.send(`CE#$42,pass,Jim,${ar[0]}`);     
+    }
+    else {
+      ws.send(`CE#$42,pass,Jim,OOOPS!! Check newNums()`);
+    }
+    ws.send( `CF#$42,pass,${name},filler` );
+  }
+
+
+
+
+  nextRound () {
+    var that = this;
+    var n;
+    var delay = this.delay;
+    delay(5).then( function () {
+      that.setNumberAr();
+    }).then(delay(50)).then(function() {
+      n = that.state.N;
+    })
+    var name = this.state.value;
+    var result = this.state.res;
+    var a = this.state.mes0;
+    var b = this.state.mes1;
+    var c = this.state.mes2;
+    var filler = 'dummy';
+    var clock = 10;
+    var equation = `${a} ${b} ${c} = ${result}`;
+    var mesArX = [];
+    this.delay(200).then( function () {
+      console.log(that.state.numberAr);
+      console.log("######$$$$$$$$$$$ %%%%%%%%%%%%%%% ^^^^^^^ next will be n %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+      console.log(n);
+      console.log("######$$$$$$$$$$$ %%%%%%%%%%%%%%% ^^^^^^^ that was n %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+    })     
     if ( n === 3 ) {
-      this.setState({message3: ar[2]})
+      message0 = ar[0];
+      message1 = ar[1];
+      message2 = ar[2];
+      message3 = '' ;
+
+      this.setState({message0: ar[0]});
+      this.setState({message1: ar[1]});
+      this.setState({message2: ar[2]});
+      this.setState({message3: '' });
+      this.setState({str1: string});
     }
-    if ( n < 3 ) {
-      this.setState({message3: ''})
+    else if ( n === 2 ) {
+      message0 = ar[0];
+      message1 = ar[1];
+      message2 = '' ;
+      message3 = '' ;
+      this.setState({message0: ar[0]});
+      this.setState({message1: ar[1]});
+      this.setState({message2: '' });
+      this.setState({message3: '' });
+      this.setState({str2: string});
+      if (result === 20) {
+          clock = `One Point For ${name}`;
+          this.setState({T: clock})
+          // ws.send( `CJ#$42,pass,${name},${clock}` );
+      }
     }
-    if ( n === 1) {
-      this.setState({message2: ''})
-    }
-    // this.displayHandler();
-    this.setState({mes0: 'Number'});
-    this.setState({mes2: 'Number'});
-    this.setState({mes1: 'Operator'});
-    this.setState({res: 'result'});
+    else if ( n === 1) {
+      var t = this.state.T;
+      message0 = ar[0];
+      message1 = '' ;
+      message2 = '' ;
+      message3 = '' ;
+      this.setState({message0: ar[0]});
+      this.setState({message1: '' });
+      this.setState({message2: '' });
+      this.setState({message3: '' });
+      this.setState({str3: string});
+      if (result === 20) {
+          clock = `One Point For ${name}`;
+          this.setState({T: clock});
+      }
+      if (result !== 20) {
+        clock = `Take One Point From ${name}`;
+        this.setState({T: clock});
+      } else {
+        console.log("OOOOOOOOPPPPSS!!!!");
+      }
+    } 
+    /* delay(30).then( function () {
+      var z1 = this.state.message1;
+      var z2 = this.state.message2;
+      var z3 = this.state.message3;
+      var z4 = this.state.message4;
+      var newNums = `${z1},${z2},${z3},${z4}`;
+      ws.send( `CE#$42,pass,${name}, ${newNums}` );
+      */
+      var x1 = this.state.str1;
+      var x2 = this.state.str2;
+      var x3 = this.state.str3;
+      var newStrings = `${x1},${x2},${x3}`
+      ws.send( `CH#$42,pass,${name},${newStrings},${t}` );
+      ws.send( `CF#$42,pass,${name}, ${filler}` );
+
+      console.log("$$$$$$$$$$$$$$$ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+      console.log(newStrings);
+      console.log("######$$$$$$$$$$$ %%%%%%%%%%%%%%% ^^^^^^^ that was mAr mAr0");
+
+    // })
+  }
+
+  calc () {
+    var that = this;
+    this.delay(200).then( function() {
+      var m0 = that.state.mes0;
+      var m1 = that.state.mes1;
+      var m2 = that.state.mes2;
+      switch (m1) {
+          case "+": that.setState({res: parseFloat(m0) + parseFloat(m2)});
+          break;
+          case "-": that.setState({res: parseFloat(m0) - parseFloat(m2)});
+          break;
+          case "*": that.setState({res: parseFloat(m0) * parseFloat(m2)});
+          break;
+          case "/": that.setState({res: parseFloat(m0) / parseFloat(m2)});
+          break;t
+          case "Concat": that.setState({res: parseFloat(m0+""+m2)});
+          break;
+          default : 'operator not selected';
+      }
+      that.delay(50).then( function () {
+        that.setNumberAr();
+        console.log("$$$$$$$$$$$$$$$ &&&&&&&&&&&&&& in calc() %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+        console.log("res is " + that.state.res);
+        console.log("m1 is " + m1);
+        console.log("######$$$$$$$$$$$ %%%%%%%%%%%%%%%  in calc() %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+      })
+    })
+  }
+
+  newPlayer (x) {
+    this.setState({value: x});
+    ws.send("CC#42$"+x)
   }
 
   changeItem (x) {
     this.setState(x)
   }
 
-  calc () {
-    var m0 = this.state.mes0;
-    var m1 = this.state.mes1;
-    var m2 = this.state.mes2;
-    switch (m1) {
-        case "+": this.setState({res: parseFloat(m0) + parseFloat(m2)});
-        break;
-        case "-": this.setState({res: parseFloat(m0) - parseFloat(m2)});
-        break;
-        case "*": this.setState({res: parseFloat(m0) * parseFloat(m2)});
-        break;
-        case "/": this.setState({res: parseFloat(m0) / parseFloat(m2)});
-        break;t
-        case "Concat": this.setState({res: parseFloat(m0+""+m2)});
-        break;
-        default : 'operator not selected';
-    }
-  }
 
   render () {
     console.log(this);
     return (
       <div>
-          <Login change={this.changeItem.bind(this)} value={this.state.value} ws={this.state.ws} hidden={this.state.hidden} />
-          <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} str4={this.state.str4}/>
-          <div style={{width: 8000, float: "left", padding: 20}} />
-          <div style={{width: 8000, float: "left", padding: 20}} />
-          <B40 key='B40' message1={this.state.message1} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-            next={this.nextRound.bind(this)} />
-          <B41 key='B41' message2={this.state.message2} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-            next={this.nextRound.bind(this)} />
-          <B42 key='B42' message3={this.state.message3} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-            next={this.nextRound.bind(this)} />
-          <B43 key='B43' message4={this.state.message4} change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-            next={this.nextRound.bind(this)} />
-          <div style={{width: 8000, float: "left", padding: 20}} />
-          <div style={{width: 8000, float: "left", padding: 20}} />
-          <Op0 key='Op0' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-            next={this.nextRound.bind(this)} />
-          <Op1 key='Op1' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-            next={this.nextRound.bind(this)}  />
-          <Op2 key='Op2' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-            next={this.nextRound.bind(this)}  />
-          <Op3 key='Op3' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-            next={this.nextRound.bind(this)}  />
-          <Op4 key='Op4' change={this.changeItem.bind(this)} mes0={this.state.mes0} mes2={this.state.mes2}
-            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} display={this.displayHandler.bind(this)} 
-            next={this.nextRound.bind(this)}  />
-          <div style={{width: 8000, float: "left", padding: 20}} />
+          <Login key='Login' newPlayer={this.newPlayer.bind(this)} value={this.state.value} 
+            change={this.changeItem.bind(this)}  hidden={this.state.hidden} />
+
+          <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} 
+            str4={this.state.str4}/>
+
+          <Clock key='Clock' change={this.changeItem.bind(this)} t={this.state.T} 
+              value={this.state.value} />
+
+          <div style={{width: 8000, float: "left", padding: 10}} />
+
+          <B40 key='B40' message1={this.state.message1} change={this.changeItem.bind(this)} 
+            mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
+            delay={this.delay.bind(this)} next={this.nextRound.bind(this)} value={this.state.value}/>
+
+          <B41 key='B41' message2={this.state.message2} change={this.changeItem.bind(this)} 
+            mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
+            delay={this.delay.bind(this)} next={this.nextRound.bind(this)} value={this.state.value}/>
+
+          <B42 key='B42' message3={this.state.message3} change={this.changeItem.bind(this)} 
+            mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
+            delay={this.delay.bind(this)} next={this.nextRound.bind(this)} value={this.state.value}/>
+
+          <B43 key='B43' message4={this.state.message4} change={this.changeItem.bind(this)} 
+            mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
+            delay={this.delay.bind(this)} next={this.nextRound.bind(this)} value={this.state.value}/>
+
+          <div style={{width: 8000, float: "left", padding: 10}} />
+
+          <Op0 key='Op0' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
+            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value}/>
+
+          <Op1 key='Op1' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
+            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value}/>
+
+          <Op2 key='Op2' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
+            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value}/>
+
+          <Op3 key='Op3' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
+            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value}/>
+
+          <Op4 key='Op4' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
+            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value}/>
+
+          <div style={{width: 8000, float: "left", padding: 10}} />
+
           <B30 key='B30' mes0={this.state.mes0} />
           <B31 key='B31' mes1={this.state.mes1} />
           <B32 key='B32' mes2={this.state.mes2} />
           <B33 key='B33' />
           <B34 key='B34' res={this.state.res} />
-          <div style={{width: 8000, float: "left", padding: 20}} />
-          <Roll key='Roll' roll={ this.rollDice.bind(this) } hidden={this.state.hidden} />
-          <div style={{width: 8000, float: "left", padding: 20}} />
+
+          <div style={{width: 8000, float: "left", padding: 10}} />
+
+          <Roll key='Roll' roll={this.rollDice.bind(this)} hidden={this.state.hidden} hidden2={this.state.hidden2} />
+
+          <div style={{width: 8000, float: "left", padding: 10}} />
+
           <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol} hidden={this.state.hidden} />
       </div>
     )}

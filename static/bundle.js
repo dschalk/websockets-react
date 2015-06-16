@@ -417,17 +417,17 @@
 /* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
+	__webpack_require__(39);
 	__webpack_require__(40);
 	__webpack_require__(41);
 	__webpack_require__(42);
-	__webpack_require__(43);
-	module.exports = __webpack_require__(39).core.Promise;
+	module.exports = __webpack_require__(43).core.Promise;
 
 /***/ },
 /* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(39);
+	var $ = __webpack_require__(43);
 	module.exports = function defineProperty(it, key, desc){
 	  return $.setDesc(it, key, desc);
 	};
@@ -436,7 +436,7 @@
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(39);
+	var $ = __webpack_require__(43);
 	module.exports = function create(P, D){
 	  return $.create(P, D);
 	};
@@ -445,7 +445,7 @@
 /* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(39);
+	var $ = __webpack_require__(43);
 	__webpack_require__(44);
 	module.exports = function getOwnPropertyDescriptor(it, key){
 	  return $.getDesc(it, key);
@@ -1008,17 +1008,17 @@
 	var ReactComponent = __webpack_require__(19);
 	var ReactCurrentOwner = __webpack_require__(22);
 	var ReactElement = __webpack_require__(23);
-	var ReactErrorUtils = __webpack_require__(53);
-	var ReactInstanceMap = __webpack_require__(54);
-	var ReactLifeCycle = __webpack_require__(55);
-	var ReactPropTypeLocations = __webpack_require__(56);
-	var ReactPropTypeLocationNames = __webpack_require__(52);
+	var ReactErrorUtils = __webpack_require__(54);
+	var ReactInstanceMap = __webpack_require__(55);
+	var ReactLifeCycle = __webpack_require__(56);
+	var ReactPropTypeLocations = __webpack_require__(57);
+	var ReactPropTypeLocationNames = __webpack_require__(53);
 	var ReactUpdateQueue = __webpack_require__(51);
 
 	var assign = __webpack_require__(34);
 	var invariant = __webpack_require__(46);
-	var keyMirror = __webpack_require__(57);
-	var keyOf = __webpack_require__(58);
+	var keyMirror = __webpack_require__(58);
+	var keyOf = __webpack_require__(59);
 	var warning = __webpack_require__(50);
 
 	var MIXINS_KEY = keyOf({mixins: null});
@@ -1955,7 +1955,7 @@
 	'use strict';
 
 	var assign = __webpack_require__(34);
-	var emptyObject = __webpack_require__(59);
+	var emptyObject = __webpack_require__(52);
 	var warning = __webpack_require__(50);
 
 	var didWarn = false;
@@ -2393,12 +2393,12 @@
 
 	var ReactElement = __webpack_require__(23);
 	var ReactFragment = __webpack_require__(48);
-	var ReactPropTypeLocations = __webpack_require__(56);
-	var ReactPropTypeLocationNames = __webpack_require__(52);
+	var ReactPropTypeLocations = __webpack_require__(57);
+	var ReactPropTypeLocationNames = __webpack_require__(53);
 	var ReactCurrentOwner = __webpack_require__(22);
-	var ReactNativeComponent = __webpack_require__(60);
+	var ReactNativeComponent = __webpack_require__(61);
 
-	var getIteratorFn = __webpack_require__(61);
+	var getIteratorFn = __webpack_require__(62);
 	var invariant = __webpack_require__(46);
 	var warning = __webpack_require__(50);
 
@@ -2856,7 +2856,7 @@
 	var ReactElement = __webpack_require__(23);
 	var ReactElementValidator = __webpack_require__(24);
 
-	var mapObject = __webpack_require__(62);
+	var mapObject = __webpack_require__(60);
 
 	/**
 	 * Create a factory that creates HTML tag elements.
@@ -3663,14 +3663,14 @@
 	var ReactElementValidator = __webpack_require__(24);
 	var ReactEmptyComponent = __webpack_require__(97);
 	var ReactInstanceHandles = __webpack_require__(28);
-	var ReactInstanceMap = __webpack_require__(54);
+	var ReactInstanceMap = __webpack_require__(55);
 	var ReactMarkupChecksum = __webpack_require__(98);
 	var ReactPerf = __webpack_require__(30);
 	var ReactReconciler = __webpack_require__(32);
 	var ReactUpdateQueue = __webpack_require__(51);
 	var ReactUpdates = __webpack_require__(99);
 
-	var emptyObject = __webpack_require__(59);
+	var emptyObject = __webpack_require__(52);
 	var containsNode = __webpack_require__(1);
 	var getReactRootElementInContainer = __webpack_require__(101);
 	var instantiateReactComponent = __webpack_require__(102);
@@ -4659,7 +4659,7 @@
 
 	var ReactElement = __webpack_require__(23);
 	var ReactFragment = __webpack_require__(48);
-	var ReactPropTypeLocationNames = __webpack_require__(52);
+	var ReactPropTypeLocationNames = __webpack_require__(53);
 
 	var emptyFunction = __webpack_require__(105);
 
@@ -5143,7 +5143,7 @@
 	var ReactServerRenderingTransaction =
 	  __webpack_require__(107);
 
-	var emptyObject = __webpack_require__(59);
+	var emptyObject = __webpack_require__(52);
 	var instantiateReactComponent = __webpack_require__(102);
 	var invariant = __webpack_require__(46);
 
@@ -5277,7 +5277,7 @@
 	'use strict';
 
 	var ReactCurrentOwner = __webpack_require__(22);
-	var ReactInstanceMap = __webpack_require__(54);
+	var ReactInstanceMap = __webpack_require__(55);
 	var ReactMount = __webpack_require__(29);
 
 	var invariant = __webpack_require__(46);
@@ -5526,129 +5526,28 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var global = typeof self != 'undefined' ? self : Function('return this')()
-	  , core   = {}
-	  , defineProperty = Object.defineProperty
-	  , hasOwnProperty = {}.hasOwnProperty
-	  , ceil  = Math.ceil
-	  , floor = Math.floor
-	  , max   = Math.max
-	  , min   = Math.min;
-	// The engine works fine with descriptors? Thank's IE8 for his funny defineProperty.
-	var DESC = !!function(){
-	  try {
-	    return defineProperty({}, 'a', {get: function(){ return 2; }}).a == 2;
-	  } catch(e){ /* empty */ }
-	}();
-	var hide = createDefiner(1);
-	// 7.1.4 ToInteger
-	function toInteger(it){
-	  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
-	}
-	function desc(bitmap, value){
-	  return {
-	    enumerable  : !(bitmap & 1),
-	    configurable: !(bitmap & 2),
-	    writable    : !(bitmap & 4),
-	    value       : value
-	  };
-	}
-	function simpleSet(object, key, value){
-	  object[key] = value;
-	  return object;
-	}
-	function createDefiner(bitmap){
-	  return DESC ? function(object, key, value){
-	    return $.setDesc(object, key, desc(bitmap, value));
-	  } : simpleSet;
-	}
-
-	function isObject(it){
-	  return it !== null && (typeof it == 'object' || typeof it == 'function');
-	}
-	function isFunction(it){
-	  return typeof it == 'function';
-	}
-	function assertDefined(it){
-	  if(it == undefined)throw TypeError("Can't call method on  " + it);
-	  return it;
-	}
-
-	var $ = module.exports = __webpack_require__(109)({
-	  g: global,
-	  core: core,
-	  html: global.document && document.documentElement,
-	  // http://jsperf.com/core-js-isobject
-	  isObject:   isObject,
-	  isFunction: isFunction,
-	  that: function(){
-	    return this;
-	  },
-	  // 7.1.4 ToInteger
-	  toInteger: toInteger,
-	  // 7.1.15 ToLength
-	  toLength: function(it){
-	    return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
-	  },
-	  toIndex: function(index, length){
-	    index = toInteger(index);
-	    return index < 0 ? max(index + length, 0) : min(index, length);
-	  },
-	  has: function(it, key){
-	    return hasOwnProperty.call(it, key);
-	  },
-	  create:     Object.create,
-	  getProto:   Object.getPrototypeOf,
-	  DESC:       DESC,
-	  desc:       desc,
-	  getDesc:    Object.getOwnPropertyDescriptor,
-	  setDesc:    defineProperty,
-	  setDescs:   Object.defineProperties,
-	  getKeys:    Object.keys,
-	  getNames:   Object.getOwnPropertyNames,
-	  getSymbols: Object.getOwnPropertySymbols,
-	  assertDefined: assertDefined,
-	  // Dummy, fix for not array-like ES3 string in es5 module
-	  ES5Object: Object,
-	  toObject: function(it){
-	    return $.ES5Object(assertDefined(it));
-	  },
-	  hide: hide,
-	  def: createDefiner(0),
-	  set: global.Symbol ? simpleSet : hide,
-	  each: [].forEach
-	});
-	/* eslint-disable no-undef */
-	if(typeof __e != 'undefined')__e = core;
-	if(typeof __g != 'undefined')__g = global;
-
-/***/ },
-/* 40 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
 	// 19.1.3.6 Object.prototype.toString()
-	var cof = __webpack_require__(117)
+	var cof = __webpack_require__(109)
 	  , tmp = {};
-	tmp[__webpack_require__(115)('toStringTag')] = 'z';
-	if(__webpack_require__(39).FW && cof(tmp) != 'z'){
-	  __webpack_require__(126)(Object.prototype, 'toString', function toString(){
+	tmp[__webpack_require__(110)('toStringTag')] = 'z';
+	if(__webpack_require__(43).FW && cof(tmp) != 'z'){
+	  __webpack_require__(111)(Object.prototype, 'toString', function toString(){
 	    return '[object ' + cof.classof(this) + ']';
 	  }, true);
 	}
 
 /***/ },
-/* 41 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var set   = __webpack_require__(39).set
-	  , $at   = __webpack_require__(110)(true)
-	  , ITER  = __webpack_require__(111).safe('iter')
-	  , $iter = __webpack_require__(112)
+	var set   = __webpack_require__(43).set
+	  , $at   = __webpack_require__(112)(true)
+	  , ITER  = __webpack_require__(113).safe('iter')
+	  , $iter = __webpack_require__(114)
 	  , step  = $iter.step;
 
 	// 21.1.3.27 String.prototype[@@iterator]()
-	__webpack_require__(113)(String, 'String', function(iterated){
+	__webpack_require__(115)(String, 'String', function(iterated){
 	  set(this, ITER, {o: String(iterated), i: 0});
 	// 21.1.5.2.1 %StringIteratorPrototype%.next()
 	}, function(){
@@ -5663,13 +5562,13 @@
 	});
 
 /***/ },
-/* 42 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(114);
-	var $           = __webpack_require__(39)
-	  , Iterators   = __webpack_require__(112).Iterators
-	  , ITERATOR    = __webpack_require__(115)('iterator')
+	__webpack_require__(116);
+	var $           = __webpack_require__(43)
+	  , Iterators   = __webpack_require__(114).Iterators
+	  , ITERATOR    = __webpack_require__(110)('iterator')
 	  , ArrayValues = Iterators.Array
 	  , NL          = $.g.NodeList
 	  , HTC         = $.g.HTMLCollection
@@ -5682,20 +5581,20 @@
 	Iterators.NodeList = Iterators.HTMLCollection = ArrayValues;
 
 /***/ },
-/* 43 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var $        = __webpack_require__(39)
-	  , ctx      = __webpack_require__(116)
-	  , cof      = __webpack_require__(117)
+	var $        = __webpack_require__(43)
+	  , ctx      = __webpack_require__(117)
+	  , cof      = __webpack_require__(109)
 	  , $def     = __webpack_require__(118)
 	  , assert   = __webpack_require__(119)
 	  , forOf    = __webpack_require__(120)
 	  , setProto = __webpack_require__(121).set
 	  , species  = __webpack_require__(122)
-	  , SPECIES  = __webpack_require__(115)('species')
-	  , RECORD   = __webpack_require__(111).safe('record')
+	  , SPECIES  = __webpack_require__(110)('species')
+	  , RECORD   = __webpack_require__(113).safe('record')
 	  , PROMISE  = 'Promise'
 	  , global   = $.g
 	  , process  = global.process
@@ -5916,10 +5815,111 @@
 	});
 
 /***/ },
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var global = typeof self != 'undefined' ? self : Function('return this')()
+	  , core   = {}
+	  , defineProperty = Object.defineProperty
+	  , hasOwnProperty = {}.hasOwnProperty
+	  , ceil  = Math.ceil
+	  , floor = Math.floor
+	  , max   = Math.max
+	  , min   = Math.min;
+	// The engine works fine with descriptors? Thank's IE8 for his funny defineProperty.
+	var DESC = !!function(){
+	  try {
+	    return defineProperty({}, 'a', {get: function(){ return 2; }}).a == 2;
+	  } catch(e){ /* empty */ }
+	}();
+	var hide = createDefiner(1);
+	// 7.1.4 ToInteger
+	function toInteger(it){
+	  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+	}
+	function desc(bitmap, value){
+	  return {
+	    enumerable  : !(bitmap & 1),
+	    configurable: !(bitmap & 2),
+	    writable    : !(bitmap & 4),
+	    value       : value
+	  };
+	}
+	function simpleSet(object, key, value){
+	  object[key] = value;
+	  return object;
+	}
+	function createDefiner(bitmap){
+	  return DESC ? function(object, key, value){
+	    return $.setDesc(object, key, desc(bitmap, value));
+	  } : simpleSet;
+	}
+
+	function isObject(it){
+	  return it !== null && (typeof it == 'object' || typeof it == 'function');
+	}
+	function isFunction(it){
+	  return typeof it == 'function';
+	}
+	function assertDefined(it){
+	  if(it == undefined)throw TypeError("Can't call method on  " + it);
+	  return it;
+	}
+
+	var $ = module.exports = __webpack_require__(126)({
+	  g: global,
+	  core: core,
+	  html: global.document && document.documentElement,
+	  // http://jsperf.com/core-js-isobject
+	  isObject:   isObject,
+	  isFunction: isFunction,
+	  that: function(){
+	    return this;
+	  },
+	  // 7.1.4 ToInteger
+	  toInteger: toInteger,
+	  // 7.1.15 ToLength
+	  toLength: function(it){
+	    return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+	  },
+	  toIndex: function(index, length){
+	    index = toInteger(index);
+	    return index < 0 ? max(index + length, 0) : min(index, length);
+	  },
+	  has: function(it, key){
+	    return hasOwnProperty.call(it, key);
+	  },
+	  create:     Object.create,
+	  getProto:   Object.getPrototypeOf,
+	  DESC:       DESC,
+	  desc:       desc,
+	  getDesc:    Object.getOwnPropertyDescriptor,
+	  setDesc:    defineProperty,
+	  setDescs:   Object.defineProperties,
+	  getKeys:    Object.keys,
+	  getNames:   Object.getOwnPropertyNames,
+	  getSymbols: Object.getOwnPropertySymbols,
+	  assertDefined: assertDefined,
+	  // Dummy, fix for not array-like ES3 string in es5 module
+	  ES5Object: Object,
+	  toObject: function(it){
+	    return $.ES5Object(assertDefined(it));
+	  },
+	  hide: hide,
+	  def: createDefiner(0),
+	  set: global.Symbol ? simpleSet : hide,
+	  each: [].forEach
+	});
+	/* eslint-disable no-undef */
+	if(typeof __e != 'undefined')__e = core;
+	if(typeof __g != 'undefined')__g = global;
+
+/***/ },
 /* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $        = __webpack_require__(39)
+	var $        = __webpack_require__(43)
 	  , $def     = __webpack_require__(118)
 	  , isObject = $.isObject
 	  , toObject = $.toObject;
@@ -5975,7 +5975,7 @@
 
 	'use strict';
 
-	var keyMirror = __webpack_require__(57);
+	var keyMirror = __webpack_require__(58);
 
 	var PropagationPhases = keyMirror({bubbled: null, captured: null});
 
@@ -6422,7 +6422,7 @@
 	var ReactFragment = __webpack_require__(48);
 	var ReactInstanceHandles = __webpack_require__(28);
 
-	var getIteratorFn = __webpack_require__(61);
+	var getIteratorFn = __webpack_require__(62);
 	var invariant = __webpack_require__(46);
 	var warning = __webpack_require__(50);
 
@@ -6740,10 +6740,10 @@
 
 	'use strict';
 
-	var ReactLifeCycle = __webpack_require__(55);
+	var ReactLifeCycle = __webpack_require__(56);
 	var ReactCurrentOwner = __webpack_require__(22);
 	var ReactElement = __webpack_require__(23);
-	var ReactInstanceMap = __webpack_require__(54);
+	var ReactInstanceMap = __webpack_require__(55);
 	var ReactUpdates = __webpack_require__(99);
 
 	var assign = __webpack_require__(34);
@@ -7037,6 +7037,33 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
+	 * @providesModule emptyObject
+	 */
+
+	"use strict";
+
+	var emptyObject = {};
+
+	if ("production" !== process.env.NODE_ENV) {
+	  Object.freeze(emptyObject);
+	}
+
+	module.exports = emptyObject;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
+
+/***/ },
+/* 53 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
 	 * @providesModule ReactPropTypeLocationNames
 	 */
 
@@ -7057,7 +7084,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7093,7 +7120,7 @@
 
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7146,7 +7173,7 @@
 
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7187,7 +7214,7 @@
 
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7203,7 +7230,7 @@
 
 	'use strict';
 
-	var keyMirror = __webpack_require__(57);
+	var keyMirror = __webpack_require__(58);
 
 	var ReactPropTypeLocations = keyMirror({
 	  prop: null,
@@ -7215,7 +7242,7 @@
 
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7273,7 +7300,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7313,10 +7340,10 @@
 
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {/**
+	/**
 	 * Copyright 2013-2015, Facebook, Inc.
 	 * All rights reserved.
 	 *
@@ -7324,23 +7351,53 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * @providesModule emptyObject
+	 * @providesModule mapObject
 	 */
 
-	"use strict";
+	'use strict';
 
-	var emptyObject = {};
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-	if ("production" !== process.env.NODE_ENV) {
-	  Object.freeze(emptyObject);
+	/**
+	 * Executes the provided `callback` once for each enumerable own property in the
+	 * object and constructs a new object from the results. The `callback` is
+	 * invoked with three arguments:
+	 *
+	 *  - the property value
+	 *  - the property name
+	 *  - the object being traversed
+	 *
+	 * Properties that are added after the call to `mapObject` will not be visited
+	 * by `callback`. If the values of existing properties are changed, the value
+	 * passed to `callback` will be the value at the time `mapObject` visits them.
+	 * Properties that are deleted before being visited are not visited.
+	 *
+	 * @grep function objectMap()
+	 * @grep function objMap()
+	 *
+	 * @param {?object} object
+	 * @param {function} callback
+	 * @param {*} context
+	 * @return {?object}
+	 */
+	function mapObject(object, callback, context) {
+	  if (!object) {
+	    return null;
+	  }
+	  var result = {};
+	  for (var name in object) {
+	    if (hasOwnProperty.call(object, name)) {
+	      result[name] = callback.call(context, object[name], name, object);
+	    }
+	  }
+	  return result;
 	}
 
-	module.exports = emptyObject;
+	module.exports = mapObject;
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7450,7 +7507,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7495,63 +7552,6 @@
 	}
 
 	module.exports = getIteratorFn;
-
-
-/***/ },
-/* 62 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule mapObject
-	 */
-
-	'use strict';
-
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-	/**
-	 * Executes the provided `callback` once for each enumerable own property in the
-	 * object and constructs a new object from the results. The `callback` is
-	 * invoked with three arguments:
-	 *
-	 *  - the property value
-	 *  - the property name
-	 *  - the object being traversed
-	 *
-	 * Properties that are added after the call to `mapObject` will not be visited
-	 * by `callback`. If the values of existing properties are changed, the value
-	 * passed to `callback` will be the value at the time `mapObject` visits them.
-	 * Properties that are deleted before being visited are not visited.
-	 *
-	 * @grep function objectMap()
-	 * @grep function objMap()
-	 *
-	 * @param {?object} object
-	 * @param {function} callback
-	 * @param {*} context
-	 * @return {?object}
-	 */
-	function mapObject(object, callback, context) {
-	  if (!object) {
-	    return null;
-	  }
-	  var result = {};
-	  for (var name in object) {
-	    if (hasOwnProperty.call(object, name)) {
-	      result[name] = callback.call(context, object[name], name, object);
-	    }
-	  }
-	  return result;
-	}
-
-	module.exports = mapObject;
 
 
 /***/ },
@@ -7834,7 +7834,7 @@
 	var escapeTextContentForBrowser = __webpack_require__(66);
 	var invariant = __webpack_require__(46);
 	var isEventSupported = __webpack_require__(130);
-	var keyOf = __webpack_require__(58);
+	var keyOf = __webpack_require__(59);
 	var warning = __webpack_require__(50);
 
 	var deleteListener = ReactBrowserEventEmitter.deleteListener;
@@ -8382,7 +8382,7 @@
 	var SyntheticCompositionEvent = __webpack_require__(133);
 	var SyntheticInputEvent = __webpack_require__(134);
 
-	var keyOf = __webpack_require__(58);
+	var keyOf = __webpack_require__(59);
 
 	var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 	var START_KEYCODE = 229;
@@ -8882,7 +8882,7 @@
 
 	var isEventSupported = __webpack_require__(130);
 	var isTextInputElement = __webpack_require__(137);
-	var keyOf = __webpack_require__(58);
+	var keyOf = __webpack_require__(59);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
 
@@ -9288,7 +9288,7 @@
 
 	'use strict';
 
-	var keyOf = __webpack_require__(58);
+	var keyOf = __webpack_require__(59);
 
 	/**
 	 * Module that is injectable into `EventPluginHub`, that specifies a
@@ -9337,7 +9337,7 @@
 	var SyntheticMouseEvent = __webpack_require__(138);
 
 	var ReactMount = __webpack_require__(29);
-	var keyOf = __webpack_require__(58);
+	var keyOf = __webpack_require__(59);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
 	var getFirstReactDOM = ReactMount.getFirstReactDOM;
@@ -9869,7 +9869,7 @@
 	var ReactClass = __webpack_require__(20);
 	var ReactElement = __webpack_require__(23);
 
-	var keyMirror = __webpack_require__(57);
+	var keyMirror = __webpack_require__(58);
 
 	var button = ReactElement.createFactory('button');
 
@@ -11008,7 +11008,7 @@
 	var ReactClass = __webpack_require__(20);
 	var ReactEmptyComponent = __webpack_require__(97);
 	var ReactBrowserEventEmitter = __webpack_require__(96);
-	var ReactNativeComponent = __webpack_require__(60);
+	var ReactNativeComponent = __webpack_require__(61);
 	var ReactDOMComponent = __webpack_require__(65);
 	var ReactPerf = __webpack_require__(30);
 	var ReactRootIndex = __webpack_require__(94);
@@ -11235,7 +11235,7 @@
 
 	var getActiveElement = __webpack_require__(151);
 	var isTextInputElement = __webpack_require__(137);
-	var keyOf = __webpack_require__(58);
+	var keyOf = __webpack_require__(59);
 	var shallowEqual = __webpack_require__(152);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
@@ -11478,7 +11478,7 @@
 	var getEventCharCode = __webpack_require__(160);
 
 	var invariant = __webpack_require__(46);
-	var keyOf = __webpack_require__(58);
+	var keyOf = __webpack_require__(59);
 	var warning = __webpack_require__(50);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
@@ -13021,7 +13021,7 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(23);
-	var ReactInstanceMap = __webpack_require__(54);
+	var ReactInstanceMap = __webpack_require__(55);
 
 	var invariant = __webpack_require__(46);
 
@@ -13477,6 +13477,7 @@
 	var message2 = 0;
 	var message3 = 0;
 	var message4 = 0;
+	var mAr = [0, 0, 0, 0, 'result'];
 	var op1 = '+';
 	var op2 = '-';
 	var op3 = '*';
@@ -13492,7 +13493,56 @@
 	var str3 = '';
 	var str4 = '';
 	var hidden = true;
+	var hidden2 = false;
+	var togDice = false;
 	var value = '';
+	var T = 'SCORE!';
+	var that = undefined;
+	var numberAr = [0, 0, 0, 0, 0];
+	var NUMARRAY = [];
+	var N = 0;
+
+	/*
+	var users = [];
+	var ar = [];
+	var bool = [];
+	var createFunctions;
+	var createDom;
+	var createOperators;
+	var createDropboxes;
+	var createDrop1;
+	var createDrop2;
+	var timer;
+	var refreshDropboxes;
+	var populate;
+	var refresh;
+	var calc;
+	var DS_ar = [];
+	var rollM = "6,6,12,20";
+	var playerM = "Jack of Hearts";
+	var impossibleClickerM = "a@F$Uy&impossible";
+	var scoreClickerM = "a@F$Uy&score";
+	var groupM = "private";
+	var rollTextM = "1,1,1,1";
+	var dM = -1;
+	var gameM = "off";
+	var goalM = 20;
+	var goal32M = 20;
+	var DS_ob = {};
+	DS_ob.ar = [];
+	DS_ob.bool = [];
+	DS_ob.scoreFunc = function() {
+	        $("#countdown").html("");
+	        $("#a0").html("");
+	        if (playerM === scoreClickerM) {
+	            ws.send("CL#$42," + groupM + "," + playerM + "," + "place holder");
+	        }
+	        if ( playerM === impossibleClickerM) {
+	            ws.send("CM#$42,"+ groupM + "," + playerM + "," + "place holder");
+	        }
+	    };
+
+	*/
 
 	function createWebSocket(path) {
 	  var host = window.location.hostname;
@@ -13517,38 +13567,15 @@
 	  _createClass(B40, [{
 	    key: 'click',
 	    value: function click() {
-	      var cal = this.props.calc;
-	      var nex = this.props.next;
-	      var m = this.props.message1;
-	      var m0 = this.props.mes0;
-	      var m1 = this.props.mes1;
-	      var m2 = this.props.mes2;
-	      var del = this.props.delay;
-	      var ch = this.props.change;
-	      var dH = this.props.display;
-
-	      if (m0 === 'Number') {
-	        this.props.change({ mes0: m });
-	        this.props.change({ message1: '' });
-	      } else if (m2 === 'Number') {
-	        this.props.change({ mes2: m });
-	        this.props.change({ message1: '' });
-	        if (m1 !== 'Operator') {
-	          del(20).then(function () {
-	            cal();
-	          }).then(function () {
-	            del(50);
-	          }).then(function () {
-	            dH();
-	          }).then(function () {
-	            del(50);
-	          }).then(function () {
-	            nex();
-	            ch({ mes0: 'Number' });
-	            ch({ mes2: 'Number' });
-	            ch({ mes1: 'Operator' });
-	            ch({ res: 'result' });
-	          });
+	      var name = this.props.value;
+	      var num = this.props.message1;
+	      this.props.change({ message1: '' });
+	      if (this.props.mes0 === 'Number') {
+	        ws.send('CQ#$42,pass,' + name + ',mes0,' + num);
+	      } else if (this.props.mes2 === 'Number') {
+	        ws.send('CQ#$42,pass,' + name + ',mes2,' + num);
+	        if (this.props.mes1 !== 'Operator') {
+	          this.props.calc();
 	        }
 	      }
 	    }
@@ -13582,38 +13609,15 @@
 	  _createClass(B41, [{
 	    key: 'click',
 	    value: function click() {
-	      var cal = this.props.calc;
-	      var nex = this.props.next;
-	      var m = this.props.message2;
-	      var m0 = this.props.mes0;
-	      var m1 = this.props.mes1;
-	      var m2 = this.props.mes2;
-	      var del = this.props.delay;
-	      var ch = this.props.change;
-	      var dH = this.props.display;
-
-	      if (m0 === 'Number') {
-	        this.props.change({ mes0: m });
-	        this.props.change({ message2: '' });
-	      } else if (m2 === 'Number') {
-	        this.props.change({ mes2: m });
-	        this.props.change({ message2: '' });
-	        if (m1 !== 'Operator') {
-	          del(20).then(function () {
-	            cal();
-	          }).then(function () {
-	            del(50);
-	          }).then(function () {
-	            dH();
-	          }).then(function () {
-	            del(50);
-	          }).then(function () {
-	            nex();
-	            ch({ mes0: 'Number' });
-	            ch({ mes2: 'Number' });
-	            ch({ mes1: 'Operator' });
-	            ch({ res: 'result' });
-	          });
+	      var name = this.props.value;
+	      var num = this.props.message2;
+	      this.props.change({ message2: '' });
+	      if (this.props.mes0 === 'Number') {
+	        ws.send('CQ#$42,pass,' + name + ',mes0,' + num);
+	      } else if (this.props.mes2 === 'Number') {
+	        ws.send('CQ#$42,pass,' + name + ',mes2,' + num);
+	        if (this.props.mes1 !== 'Operator') {
+	          this.props.calc();
 	        }
 	      }
 	    }
@@ -13647,38 +13651,15 @@
 	  _createClass(B42, [{
 	    key: 'click',
 	    value: function click() {
-	      var cal = this.props.calc;
-	      var nex = this.props.next;
-	      var m = this.props.message3;
-	      var m0 = this.props.mes0;
-	      var m1 = this.props.mes1;
-	      var m2 = this.props.mes2;
-	      var del = this.props.delay;
-	      var ch = this.props.change;
-	      var dH = this.props.display;
-
-	      if (m0 === 'Number') {
-	        this.props.change({ mes0: m });
-	        this.props.change({ message3: '' });
-	      } else if (m2 === 'Number') {
-	        this.props.change({ mes2: m });
-	        this.props.change({ message3: '' });
-	        if (m1 !== 'Operator') {
-	          del(20).then(function () {
-	            cal();
-	          }).then(function () {
-	            del(50);
-	          }).then(function () {
-	            dH();
-	          }).then(function () {
-	            del(50);
-	          }).then(function () {
-	            nex();
-	            ch({ mes0: 'Number' });
-	            ch({ mes2: 'Number' });
-	            ch({ mes1: 'Operator' });
-	            ch({ res: 'result' });
-	          });
+	      var name = this.props.value;
+	      var num = this.props.message3;
+	      this.props.change({ message3: '' });
+	      if (this.props.mes0 === 'Number') {
+	        ws.send('CQ#$42,pass,' + name + ',mes0,' + num);
+	      } else if (this.props.mes2 === 'Number') {
+	        ws.send('CQ#$42,pass,' + name + ',mes2,' + num);
+	        if (this.props.mes1 !== 'Operator') {
+	          this.props.calc();
 	        }
 	      }
 	    }
@@ -13712,38 +13693,15 @@
 	  _createClass(B43, [{
 	    key: 'click',
 	    value: function click() {
-	      var cal = this.props.calc;
-	      var nex = this.props.next;
-	      var m = this.props.message4;
-	      var m0 = this.props.mes0;
-	      var m1 = this.props.mes1;
-	      var m2 = this.props.mes2;
-	      var del = this.props.delay;
-	      var ch = this.props.change;
-	      var dH = this.props.display;
-
-	      if (m0 === 'Number') {
-	        this.props.change({ mes0: m });
-	        this.props.change({ message4: '' });
-	      } else if (m2 === 'Number') {
-	        this.props.change({ mes2: m });
-	        this.props.change({ message4: '' });
-	        if (m1 !== 'Operator') {
-	          del(20).then(function () {
-	            cal();
-	          }).then(function () {
-	            del(50);
-	          }).then(function () {
-	            dH();
-	          }).then(function () {
-	            del(50);
-	          }).then(function () {
-	            nex();
-	            ch({ mes0: 'Number' });
-	            ch({ mes2: 'Number' });
-	            ch({ mes1: 'Operator' });
-	            ch({ res: 'result' });
-	          });
+	      var name = this.props.value;
+	      var num = this.props.message4;
+	      this.props.change({ message4: '' });
+	      if (this.props.mes0 === 'Number') {
+	        ws.send('CQ#$42,pass,' + name + ',mes0,' + num);
+	      } else if (this.props.mes2 === 'Number') {
+	        ws.send('CQ#$42,pass,' + name + ',mes2,' + num);
+	        if (this.props.mes1 !== 'Operator') {
+	          this.props.calc();
 	        }
 	      }
 	    }
@@ -13777,32 +13735,11 @@
 	  _createClass(Op0, [{
 	    key: 'click',
 	    value: function click() {
-	      var cal = this.props.calc;
-	      var nex = this.props.next;
-	      var m0 = this.props.mes0;
-	      var m1 = this.props.mes1;
-	      var m2 = this.props.mes2;
-	      var del = this.props.delay;
-	      var ch = this.props.change;
-	      var dH = this.props.display;
+	      var name = this.props.value;
 	      this.props.change({ mes1: '+' });
-	      var cal = this.props.calc;
-	      if (m0 !== 'Number' && m2 !== 'Number') {
-	        del(20).then(function () {
-	          cal();
-	        }).then(function () {
-	          del(50);
-	        }).then(function () {
-	          dH();
-	        }).then(function () {
-	          del(50);
-	        }).then(function () {
-	          nex();
-	          ch({ mes0: 'Number' });
-	          ch({ mes2: 'Number' });
-	          ch({ mes1: 'Operator' });
-	          ch({ res: 'result' });
-	        });
+	      var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+	      if (test) {
+	        this.props.calc();
 	      }
 	    }
 	  }, {
@@ -13835,32 +13772,11 @@
 	  _createClass(Op1, [{
 	    key: 'click',
 	    value: function click() {
-	      var cal = this.props.calc;
-	      var nex = this.props.next;
-	      var m0 = this.props.mes0;
-	      var m1 = this.props.mes1;
-	      var m2 = this.props.mes2;
-	      var del = this.props.delay;
-	      var ch = this.props.change;
-	      var dH = this.props.display;
+	      var name = this.props.value;
 	      this.props.change({ mes1: '-' });
-	      var cal = this.props.calc;
-	      if (m0 !== 'Number' && m2 !== 'Number') {
-	        del(20).then(function () {
-	          cal();
-	        }).then(function () {
-	          del(50);
-	        }).then(function () {
-	          dH();
-	        }).then(function () {
-	          del(50);
-	        }).then(function () {
-	          nex();
-	          ch({ mes0: 'Number' });
-	          ch({ mes2: 'Number' });
-	          ch({ mes1: 'Operator' });
-	          ch({ res: 'result' });
-	        });
+	      var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+	      if (test) {
+	        this.props.calc();
 	      }
 	    }
 	  }, {
@@ -13893,32 +13809,11 @@
 	  _createClass(Op2, [{
 	    key: 'click',
 	    value: function click() {
-	      var cal = this.props.calc;
-	      var nex = this.props.next;
-	      var m0 = this.props.mes0;
-	      var m1 = this.props.mes1;
-	      var m2 = this.props.mes2;
-	      var del = this.props.delay;
-	      var ch = this.props.change;
-	      var dH = this.props.display;
+	      var name = this.props.value;
 	      this.props.change({ mes1: '*' });
-	      var cal = this.props.calc;
-	      if (m0 !== 'Number' && m2 !== 'Number') {
-	        del(20).then(function () {
-	          cal();
-	        }).then(function () {
-	          del(50);
-	        }).then(function () {
-	          dH();
-	        }).then(function () {
-	          del(50);
-	        }).then(function () {
-	          nex();
-	          ch({ mes0: 'Number' });
-	          ch({ mes2: 'Number' });
-	          ch({ mes1: 'Operator' });
-	          ch({ res: 'result' });
-	        });
+	      var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+	      if (test) {
+	        this.props.calc();
 	      }
 	    }
 	  }, {
@@ -13951,32 +13846,11 @@
 	  _createClass(Op3, [{
 	    key: 'click',
 	    value: function click() {
-	      var cal = this.props.calc;
-	      var nex = this.props.next;
-	      var m0 = this.props.mes0;
-	      var m1 = this.props.mes1;
-	      var m2 = this.props.mes2;
-	      var del = this.props.delay;
-	      var ch = this.props.change;
-	      var dH = this.props.display;
+	      var name = this.props.value;
 	      this.props.change({ mes1: '/' });
-	      var cal = this.props.calc;
-	      if (m0 !== 'Number' && m2 !== 'Number') {
-	        del(20).then(function () {
-	          cal();
-	        }).then(function () {
-	          del(50);
-	        }).then(function () {
-	          dH();
-	        }).then(function () {
-	          del(50);
-	        }).then(function () {
-	          nex();
-	          ch({ mes0: 'Number' });
-	          ch({ mes2: 'Number' });
-	          ch({ mes1: 'Operator' });
-	          ch({ res: 'result' });
-	        });
+	      var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+	      if (test) {
+	        this.props.calc();
 	      }
 	    }
 	  }, {
@@ -14009,32 +13883,11 @@
 	  _createClass(Op4, [{
 	    key: 'click',
 	    value: function click() {
-	      var cal = this.props.calc;
-	      var nex = this.props.next;
-	      var m0 = this.props.mes0;
-	      var m1 = this.props.mes1;
-	      var m2 = this.props.mes2;
-	      var del = this.props.delay;
-	      var ch = this.props.change;
-	      var dH = this.props.display;
+	      var name = this.props.value;
 	      this.props.change({ mes1: 'Concat' });
-	      var cal = this.props.calc;
-	      if (m0 !== 'Number' && m2 !== 'Number') {
-	        del(20).then(function () {
-	          cal();
-	        }).then(function () {
-	          del(50);
-	        }).then(function () {
-	          dH();
-	        }).then(function () {
-	          del(50);
-	        }).then(function () {
-	          nex();
-	          ch({ mes0: 'Number' });
-	          ch({ mes2: 'Number' });
-	          ch({ mes1: 'Operator' });
-	          ch({ res: 'result' });
-	        });
+	      var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+	      if (test) {
+	        this.props.calc();
 	      }
 	    }
 	  }, {
@@ -14297,9 +14150,6 @@
 	        {
 	          style: { backgroundColor: '#000', color: '#d5f765', fontSize: '32',
 	            padding: 20, float: 'left' } },
-	        'Computations: ',
-	        _react2['default'].createElement('br', null),
-	        ' ',
 	        this.props.str1,
 	        ' ',
 	        _react2['default'].createElement('br', null),
@@ -14334,6 +14184,7 @@
 	  _createClass(Login, [{
 	    key: 'handleChange',
 	    value: function handleChange(event) {
+	      // ISSUE: Input box won't accept data without this handleChange function. ??
 	      this.props.change({ value: event.target.value });
 	    }
 	  }, {
@@ -14346,7 +14197,7 @@
 	        if (event.keyCode == ENTER) {
 	          var name = this.props.value;
 	          this.props.change({ hidden: false });
-	          this.props.ws.send('CC#$42' + name);
+	          ws.send('CC#$42' + name);
 	        }
 	      }
 	    }
@@ -14358,7 +14209,7 @@
 	      } else {
 	        var name = this.props.value;
 	        this.props.change({ hidden: false });
-	        this.props.ws.send('CC#$42' + name);
+	        ws.send('CC#$42' + name);
 	      }
 	    }
 	  }, {
@@ -14388,7 +14239,41 @@
 
 	;
 
-	var B4 = (function (_React$Component19) {
+	var Clock = (function (_React$Component19) {
+	  function Clock(props) {
+	    _classCallCheck(this, Clock);
+
+	    _get(Object.getPrototypeOf(Clock.prototype), 'constructor', this).call(this, props);
+	  }
+
+	  _inherits(Clock, _React$Component19);
+
+	  _createClass(Clock, [{
+	    key: 'click',
+	    value: function click() {
+	      var name = this.props.value;
+	      ws.send('CK#$42,pass,' + name + ',10');
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      console.log(this);
+	      return _react2['default'].createElement(
+	        'div',
+	        {
+	          style: { backgroundColor: '#000', color: '#ff0000', fontSize: '32',
+	            padding: 30, float: 'left' }, onClick: this.click.bind(this) },
+	        this.props.t
+	      );
+	    }
+	  }]);
+
+	  return Clock;
+	})(_react2['default'].Component);
+
+	;
+
+	var B4 = (function (_React$Component20) {
 	  function B4(props) {
 	    _classCallCheck(this, B4);
 
@@ -14411,17 +14296,24 @@
 	      str3: str3,
 	      sol: sol,
 	      hidden: hidden,
-	      value: value
+	      hidden2: hidden2,
+	      value: value,
+	      T: T,
+	      numberAr: numberAr,
+	      NUMARRAY: NUMARRAY,
+	      N: N
 	    };
 
-	    var that = this;
+	    that = this;
 
 	    ws.onopen = function (e) {
 	      console.log('ws.onopen');
 	    };
 
 	    ws.onmessage = function (event) {
+	      console.log('$$$$$$$$$$$$$$$$$$$$$___ incoming data ____');
 	      console.log(event.data);
+	      console.log('&&&&&&&&&&&&&&&&&&&& ___ that was incoming data ____');
 	      var gameArray = event.data.split(',');
 	      var d2 = event.data.substring(0, 6);
 	      var d3 = event.data.substring(2, 6);
@@ -14433,6 +14325,7 @@
 	      var ext6 = gameArray[6];
 	      var ext7 = gameArray[7];
 	      var ext8 = gameArray[8];
+	      var name = that.state.value;
 	      // var p = $(document.createElement('p')).text(event.data);
 	      // if (((groupM === gameArray[1]) && (groupM !== "private")) || (playerM === sender) || sendersGroup === "pass") {}
 	      switch (d2) {
@@ -14447,35 +14340,35 @@
 	          break;
 
 	        case 'CA#$42':
-	          // Set up the next round of play.
-	          // refresh();
-	          // rollTextM = extra + "," + ext4 + "," + ext5 + "," + ext6;
+	          // Triggered by ROLL
 	          message1 = extra;
 	          message2 = ext4;
 	          message3 = ext5;
 	          message4 = ext6;
-	          that.setState({ message1: extra });
-	          that.setState({ message2: ext4 });
-	          that.setState({ message3: ext5 });
-	          that.setState({ message4: ext6 });
-
-	          // populate(extra,ext4,ext5,ext6);  dM = -1;
+	          numberAr = [extra, ext4, ext5, ext6, res];
+	          that.setState({
+	            message1: extra,
+	            message2: ext4,
+	            message3: ext5,
+	            message4: ext6,
+	            str1: '',
+	            str2: '',
+	            str3: '',
+	            numberAr: [extra, ext4, ext5, ext6, res]
+	          });
 	          break;
 
 	        case 'CE#$42':
-	          // Set up the next round of play.
-	          // refresh();
-	          // rollTextM = extra + "," + ext4 + "," + ext5 + "," + ext6;
 	          message1 = extra;
 	          message2 = ext4;
 	          message3 = ext5;
 	          message4 = ext6;
-	          that.setState({ message1: extra });
-	          that.setState({ message2: ext4 });
-	          that.setState({ message3: ext5 });
-	          that.setState({ message4: ext6 });
-
-	          // populate(extra,ext4,ext5,ext6);  dM = -1;
+	          that.setState({
+	            message1: extra,
+	            message2: ext4,
+	            message3: ext5,
+	            message4: ext6
+	          });
 	          break;
 
 	        case 'CB#$42':
@@ -14485,34 +14378,55 @@
 	          break;
 
 	        case 'CF#$42':
-	          var name = that.state.value;
-	          if (sender !== name) {
-	            mes0 = extra;
-	            mes1 = ext4;
-	            mes2 = ext5;
-	            res = ext6;
-	            that.setState({ mes0: extra });
-	            that.setState({ mes1: ext4 });
-	            that.setState({ mes2: ext5 });
-	            that.setState({ res: ext6 });
-	            that.delay(10).then(function () {
-	              var st = '' + extra + ' ' + ext4 + ' ' + ext5 + ' = ' + ext6;
-	              if (that.state.str1 === '') {
-	                that.setState({ str1: st });
-	              } else if (that.state.str2 === '') {
-	                that.setState({ str2: st });
-	              } else if (that.state.str3 === '') {
-	                that.setState({ str3: st });
-	              } else if (that.state.str4 === '') {
-	                that.setState({ str4: st });
-	              }
-	              that.setState({ mes0: 'Number' });
-	              that.setState({ mes1: 'Operator' });
-	              that.setState({ mes2: 'Number' });
-	              that.setState({ res: 'result' });
-	            });
-	          }
+	          that.setState({
+	            mes0: 'Number',
+	            mes1: 'Operator',
+	            mes2: 'Number',
+	            res: 'result'
+	          });
+	          break;
 
+	        case 'CH#$42':
+	          that.setState({ hidden2: true });
+	          that.setState({ T: 10 });
+	          str1 = extra;
+	          str2 = ext4;
+	          str3 = ext5;
+	          that.setState({
+	            str1: extra,
+	            str2: ext4,
+	            str3: ext5,
+	            str4: ext6
+	          });
+	          break;
+
+	        case 'CJ#$42':
+	          T = extra;
+	          hidden2 = false;
+	          that.setState({
+	            T: extra,
+	            hidden2: false
+	          });
+	          break;
+
+	        case 'CK#$42':
+	          that.setState({ T: extra });
+	          break;
+
+	        case 'CP#$42':
+	          that.setState({ res: extra });
+	          break;
+
+	        case 'CQ#$42':
+	          that.state[extra] = ext4;
+	          that.forceUpdate();
+	          break;
+
+	        case 'CS#$42':
+	          if (sender !== name) {
+	            that.state[extra] = ext4;
+	            that.forceUpdate();
+	          };
 	          break;
 
 	        case 'SX#$42':
@@ -14521,13 +14435,31 @@
 
 	        default:
 	          console.log(' fell through to default');
-
 	          break;
 	      }
 	    };
+
+	    setInterval(function () {
+	      if (that.state.T === 0) {
+	        // DS_ob.scoreFunc();
+	        that.setState({ T: 'Window of opportunity closed.' });
+	        that.setState({ hidden2: false });
+	        that.setState({ message1: '' });
+	        that.setState({ message2: '' });
+	        that.setState({ message3: '' });
+	        that.setState({ message4: '' });
+	      }
+	      if (that.state.T > -1) {
+	        var X = that.state.T - 1;
+	        that.setState({ T: X });
+	      }
+	      if (that.state.T === -1) {
+	        that.setState({ T: '' });
+	      }
+	    }, 1000);
 	  }
 
-	  _inherits(B4, _React$Component19);
+	  _inherits(B4, _React$Component20);
 
 	  _createClass(B4, [{
 	    key: 'delay',
@@ -14539,69 +14471,20 @@
 	  }, {
 	    key: 'displayHandler',
 	    value: function displayHandler() {
-	      var this2 = this;
-	      var a = this.state.mes0;
-	      var b = this.state.mes1;
-	      var c = this.state.mes2;
-	      var d = this.state.res;
-	      this.delay(10).then(function () {
-	        var st = '' + a + ' ' + b + ' ' + c + ' = ' + d;
-	        if (this2.state.str1 === '') {
-	          this2.setState({ str1: st });
-	        } else if (this2.state.str2 === '') {
-	          this2.setState({ str2: st });
-	        } else if (this2.state.str3 === '') {
-	          this2.setState({ str3: st });
-	        } else if (this2.state.str4 === '') {
-	          this2.setState({ str4: st });
-	        }
-	      }).then(function () {
-	        this2.delay(20);
-	      }).then(function () {
-	        var w = this2.state.message1;
-	        var x = this2.state.message2;
-	        var y = this2.state.message3;
-	        var z = this2.state.message4;
-	        var name = this2.state.value;
-	        ws.send('CE#$42,pass,' + name + ',' + w + ',' + x + ',' + y + ',' + z);
-	        ws.send('CF#$42,pass,' + name + ',' + a + ',' + b + ',' + c + ',' + d);
-	      });
-	    }
-	  }, {
-	    key: 'rollD',
-	    value: function rollD() {
-	      this.setState({ sol: sol });
-	      this.setState({ message1: message1 });
-	      this.setState({ message2: message2 });
-	      this.setState({ message3: message3 });
-	      this.setState({ message4: message4 });
-	      this.setState({ mes0: 'Number' });
-	      this.setState({ mes1: 'Operator' });
-	      this.setState({ mes2: 'Number' });
-	      this.setState({ res: 'result' });
-	      this.setState({ str1: '' });
-	      this.setState({ str2: '' });
-	      this.setState({ str3: '' });
-	      this.setState({ str4: '' });
-	      console.log('___________******************* messages from rollD: ');
-	      console.log(message1, message2, message3, message4);
+	      console.log('##################$$$$$$$$$$$$$$$$$$$$$$$$___ IN displayHandler ___');
 	    }
 	  }, {
 	    key: 'rollDice',
 	    value: function rollDice() {
-	      console.log('&&&&&&&&& this in rollDice &&&&&&&&');
-	      console.log(this);
-	      console.log('&&&&&&&&&& that was this in rollDice &&&&&&&');
-	      var this2 = this;
+	      var name = that.state.value;
+	      this.setState({ T: 'SCORE!' });
+	      that = this;
 	      var delay = this.delay;
 	      var s = ws.readyState;
 	      if (s === 1) {
-	        ws.send('CA#$42,pass,{this2.state.value},6,6,12,20');
-	        delay(30).then(function () {
-	          this2.rollD();
-	        });
+	        ws.send('CA#$42,pass,' + name + ',6,6,12,20');
 	      } else this.delay(300).then(function () {
-	        this2.rollDice();
+	        that.rollDice();
 	      });
 	    }
 	  }, {
@@ -14623,70 +14506,185 @@
 	      }
 	    }
 	  }, {
-	    key: 'nextRound',
-	    value: function nextRound() {
+	    key: 'setNumberAr',
+	    value: function setNumberAr() {
+	      var delay = this.delay;
+	      var that = this;
 	      var w1 = this.state.message1;
 	      var w2 = this.state.message2;
 	      var w3 = this.state.message3;
 	      var w4 = this.state.message4;
-	      var r = this.state.res;
+	      var result = this.state.res;
+	      var startArray = [w1, w2, w3, w4, result];
+	      console.log('$$$$$$$$$$$$$$$ &&_____ startArray in setNumberAr $$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+	      console.log(startArray);
+	      console.log('######$$$$$$$$$$$ %%%%%%%%%%%%%%% ^^^^^^^ that was startArray   Now leaving setNumberAr()');
+	      this.newNums(startArray);
+	    }
+	  }, {
+	    key: 'newNums',
+	    value: function newNums(x) {
+	      var j = 0;
 	      var ar = [];
-	      var n = 0;
-	      var mAr = [w1, w2, w3, w4, r];
-	      for (var k in mAr) {
-	        if (mAr[k] !== '') {
-	          ar[n] = mAr[k];
-	          n += 1;
+	      for (var k in x) {
+	        if (x[k] != '' && x[k] != undefined) {
+	          ar[j] = x[k];
+	          j += 1;
 	        }
 	      }
-	      this.setState({ message1: ar[0] });
-	      this.setState({ message2: ar[1] });
-	      this.setState({ message4: '' });
+	      this.setState({ NUMARRAY: ar });
+	      this.setState({ N: j });
+	      if (j === 3) {
+	        ws.send('CE#$42,pass,Jim,' + ar[0] + ',' + ar[1] + ',' + ar[2]);
+	      } else if (j === 2) {
+	        ws.send('CE#$42,pass,Jim,' + ar[0] + ',' + ar[1]);
+	      } else if (j === 1) {
+	        ws.send('CE#$42,pass,Jim,' + ar[0]);
+	      } else {
+	        ws.send('CE#$42,pass,Jim,OOOPS!! Check newNums()');
+	      }
+	      ws.send('CF#$42,pass,' + name + ',filler');
+	    }
+	  }, {
+	    key: 'nextRound',
+	    value: function nextRound() {
+	      var that = this;
+	      var n;
+	      var delay = this.delay;
+	      delay(5).then(function () {
+	        that.setNumberAr();
+	      }).then(delay(50)).then(function () {
+	        n = that.state.N;
+	      });
+	      var name = this.state.value;
+	      var result = this.state.res;
+	      var a = this.state.mes0;
+	      var b = this.state.mes1;
+	      var c = this.state.mes2;
+	      var filler = 'dummy';
+	      var clock = 10;
+	      var equation = '' + a + ' ' + b + ' ' + c + ' = ' + result;
+	      var mesArX = [];
+	      this.delay(200).then(function () {
+	        console.log(that.state.numberAr);
+	        console.log('######$$$$$$$$$$$ %%%%%%%%%%%%%%% ^^^^^^^ next will be n %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+	        console.log(n);
+	        console.log('######$$$$$$$$$$$ %%%%%%%%%%%%%%% ^^^^^^^ that was n %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+	      });
 	      if (n === 3) {
-	        this.setState({ message3: ar[2] });
-	      }
-	      if (n < 3) {
+	        message0 = ar[0];
+	        message1 = ar[1];
+	        message2 = ar[2];
+	        message3 = '';
+
+	        this.setState({ message0: ar[0] });
+	        this.setState({ message1: ar[1] });
+	        this.setState({ message2: ar[2] });
 	        this.setState({ message3: '' });
-	      }
-	      if (n === 1) {
+	        this.setState({ str1: string });
+	      } else if (n === 2) {
+	        message0 = ar[0];
+	        message1 = ar[1];
+	        message2 = '';
+	        message3 = '';
+	        this.setState({ message0: ar[0] });
+	        this.setState({ message1: ar[1] });
 	        this.setState({ message2: '' });
+	        this.setState({ message3: '' });
+	        this.setState({ str2: string });
+	        if (result === 20) {
+	          clock = 'One Point For ' + name;
+	          this.setState({ T: clock });
+	        }
+	      } else if (n === 1) {
+	        var t = this.state.T;
+	        message0 = ar[0];
+	        message1 = '';
+	        message2 = '';
+	        message3 = '';
+	        this.setState({ message0: ar[0] });
+	        this.setState({ message1: '' });
+	        this.setState({ message2: '' });
+	        this.setState({ message3: '' });
+	        this.setState({ str3: string });
+	        if (result === 20) {
+	          clock = 'One Point For ' + name;
+	          this.setState({ T: clock });
+	        }
+	        if (result !== 20) {
+	          clock = 'Take One Point From ' + name;
+	          this.setState({ T: clock });
+	        } else {
+	          console.log('OOOOOOOOPPPPSS!!!!');
+	        }
 	      }
-	      // this.displayHandler();
-	      this.setState({ mes0: 'Number' });
-	      this.setState({ mes2: 'Number' });
-	      this.setState({ mes1: 'Operator' });
-	      this.setState({ res: 'result' });
+	      /* delay(30).then( function () {
+	        var z1 = this.state.message1;
+	        var z2 = this.state.message2;
+	        var z3 = this.state.message3;
+	        var z4 = this.state.message4;
+	        var newNums = `${z1},${z2},${z3},${z4}`;
+	        ws.send( `CE#$42,pass,${name}, ${newNums}` );
+	        */
+	      var x1 = this.state.str1;
+	      var x2 = this.state.str2;
+	      var x3 = this.state.str3;
+	      var newStrings = '' + x1 + ',' + x2 + ',' + x3;
+	      ws.send('CH#$42,pass,' + name + ',' + newStrings + ',' + t);
+	      ws.send('CF#$42,pass,' + name + ', ' + filler);
+
+	      console.log('$$$$$$$$$$$$$$$ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
+	      console.log(newStrings);
+	      console.log('######$$$$$$$$$$$ %%%%%%%%%%%%%%% ^^^^^^^ that was mAr mAr0');
+
+	      // })
+	    }
+	  }, {
+	    key: 'calc',
+	    value: function calc() {
+	      var that = this;
+	      this.delay(200).then(function () {
+	        var m0 = that.state.mes0;
+	        var m1 = that.state.mes1;
+	        var m2 = that.state.mes2;
+	        switch (m1) {
+	          case '+':
+	            that.setState({ res: parseFloat(m0) + parseFloat(m2) });
+	            break;
+	          case '-':
+	            that.setState({ res: parseFloat(m0) - parseFloat(m2) });
+	            break;
+	          case '*':
+	            that.setState({ res: parseFloat(m0) * parseFloat(m2) });
+	            break;
+	          case '/':
+	            that.setState({ res: parseFloat(m0) / parseFloat(m2) });
+	            break;t;
+	          case 'Concat':
+	            that.setState({ res: parseFloat(m0 + '' + m2) });
+	            break;
+	          default:
+	            'operator not selected';
+	        }
+	        that.delay(50).then(function () {
+	          that.setNumberAr();
+	          console.log('$$$$$$$$$$$$$$$ &&&&&&&&&&&&&& in calc() %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+	          console.log('res is ' + that.state.res);
+	          console.log('m1 is ' + m1);
+	          console.log('######$$$$$$$$$$$ %%%%%%%%%%%%%%%  in calc() %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'newPlayer',
+	    value: function newPlayer(x) {
+	      this.setState({ value: x });
+	      ws.send('CC#42$' + x);
 	    }
 	  }, {
 	    key: 'changeItem',
 	    value: function changeItem(x) {
 	      this.setState(x);
-	    }
-	  }, {
-	    key: 'calc',
-	    value: function calc() {
-	      var m0 = this.state.mes0;
-	      var m1 = this.state.mes1;
-	      var m2 = this.state.mes2;
-	      switch (m1) {
-	        case '+':
-	          this.setState({ res: parseFloat(m0) + parseFloat(m2) });
-	          break;
-	        case '-':
-	          this.setState({ res: parseFloat(m0) - parseFloat(m2) });
-	          break;
-	        case '*':
-	          this.setState({ res: parseFloat(m0) * parseFloat(m2) });
-	          break;
-	        case '/':
-	          this.setState({ res: parseFloat(m0) / parseFloat(m2) });
-	          break;t;
-	        case 'Concat':
-	          this.setState({ res: parseFloat(m0 + '' + m2) });
-	          break;
-	        default:
-	          'operator not selected';
-	      }
 	    }
 	  }, {
 	    key: 'render',
@@ -14695,48 +14693,45 @@
 	      return _react2['default'].createElement(
 	        'div',
 	        null,
-	        _react2['default'].createElement(Login, { change: this.changeItem.bind(this), value: this.state.value, ws: this.state.ws, hidden: this.state.hidden }),
-	        _react2['default'].createElement(Display, { key: 'Display', str1: this.state.str1, str2: this.state.str2, str3: this.state.str3, str4: this.state.str4 }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 20 } }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 20 } }),
-	        _react2['default'].createElement(B40, { key: 'B40', message1: this.state.message1, change: this.changeItem.bind(this), mes0: this.state.mes0, mes2: this.state.mes2,
-	          mes1: this.state.mes1, calc: this.calc.bind(this), delay: this.delay.bind(this), display: this.displayHandler.bind(this),
-	          next: this.nextRound.bind(this) }),
-	        _react2['default'].createElement(B41, { key: 'B41', message2: this.state.message2, change: this.changeItem.bind(this), mes0: this.state.mes0, mes2: this.state.mes2,
-	          mes1: this.state.mes1, calc: this.calc.bind(this), delay: this.delay.bind(this), display: this.displayHandler.bind(this),
-	          next: this.nextRound.bind(this) }),
-	        _react2['default'].createElement(B42, { key: 'B42', message3: this.state.message3, change: this.changeItem.bind(this), mes0: this.state.mes0, mes2: this.state.mes2,
-	          mes1: this.state.mes1, calc: this.calc.bind(this), delay: this.delay.bind(this), display: this.displayHandler.bind(this),
-	          next: this.nextRound.bind(this) }),
-	        _react2['default'].createElement(B43, { key: 'B43', message4: this.state.message4, change: this.changeItem.bind(this), mes0: this.state.mes0, mes2: this.state.mes2,
-	          mes1: this.state.mes1, calc: this.calc.bind(this), delay: this.delay.bind(this), display: this.displayHandler.bind(this),
-	          next: this.nextRound.bind(this) }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 20 } }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 20 } }),
-	        _react2['default'].createElement(Op0, { key: 'Op0', change: this.changeItem.bind(this), mes0: this.state.mes0, mes2: this.state.mes2,
-	          mes1: this.state.mes1, calc: this.calc.bind(this), delay: this.delay.bind(this), display: this.displayHandler.bind(this),
-	          next: this.nextRound.bind(this) }),
-	        _react2['default'].createElement(Op1, { key: 'Op1', change: this.changeItem.bind(this), mes0: this.state.mes0, mes2: this.state.mes2,
-	          mes1: this.state.mes1, calc: this.calc.bind(this), delay: this.delay.bind(this), display: this.displayHandler.bind(this),
-	          next: this.nextRound.bind(this) }),
-	        _react2['default'].createElement(Op2, { key: 'Op2', change: this.changeItem.bind(this), mes0: this.state.mes0, mes2: this.state.mes2,
-	          mes1: this.state.mes1, calc: this.calc.bind(this), delay: this.delay.bind(this), display: this.displayHandler.bind(this),
-	          next: this.nextRound.bind(this) }),
-	        _react2['default'].createElement(Op3, { key: 'Op3', change: this.changeItem.bind(this), mes0: this.state.mes0, mes2: this.state.mes2,
-	          mes1: this.state.mes1, calc: this.calc.bind(this), delay: this.delay.bind(this), display: this.displayHandler.bind(this),
-	          next: this.nextRound.bind(this) }),
-	        _react2['default'].createElement(Op4, { key: 'Op4', change: this.changeItem.bind(this), mes0: this.state.mes0, mes2: this.state.mes2,
-	          mes1: this.state.mes1, calc: this.calc.bind(this), delay: this.delay.bind(this), display: this.displayHandler.bind(this),
-	          next: this.nextRound.bind(this) }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 20 } }),
+	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: this.newPlayer.bind(this), value: this.state.value,
+	          change: this.changeItem.bind(this), hidden: this.state.hidden }),
+	        _react2['default'].createElement(Display, { key: 'Display', str1: this.state.str1, str2: this.state.str2, str3: this.state.str3,
+	          str4: this.state.str4 }),
+	        _react2['default'].createElement(Clock, { key: 'Clock', change: this.changeItem.bind(this), t: this.state.T,
+	          value: this.state.value }),
+	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
+	        _react2['default'].createElement(B40, { key: 'B40', message1: this.state.message1, change: this.changeItem.bind(this),
+	          mes0: this.state.mes0, mes2: this.state.mes2, mes1: this.state.mes1, calc: this.calc.bind(this),
+	          delay: this.delay.bind(this), next: this.nextRound.bind(this), value: this.state.value }),
+	        _react2['default'].createElement(B41, { key: 'B41', message2: this.state.message2, change: this.changeItem.bind(this),
+	          mes0: this.state.mes0, mes2: this.state.mes2, mes1: this.state.mes1, calc: this.calc.bind(this),
+	          delay: this.delay.bind(this), next: this.nextRound.bind(this), value: this.state.value }),
+	        _react2['default'].createElement(B42, { key: 'B42', message3: this.state.message3, change: this.changeItem.bind(this),
+	          mes0: this.state.mes0, mes2: this.state.mes2, mes1: this.state.mes1, calc: this.calc.bind(this),
+	          delay: this.delay.bind(this), next: this.nextRound.bind(this), value: this.state.value }),
+	        _react2['default'].createElement(B43, { key: 'B43', message4: this.state.message4, change: this.changeItem.bind(this),
+	          mes0: this.state.mes0, mes2: this.state.mes2, mes1: this.state.mes1, calc: this.calc.bind(this),
+	          delay: this.delay.bind(this), next: this.nextRound.bind(this), value: this.state.value }),
+	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
+	        _react2['default'].createElement(Op0, { key: 'Op0', mes0: this.state.mes0, mes2: this.state.mes2, change: this.changeItem.bind(this),
+	          mes1: this.state.mes1, calc: this.calc.bind(this), value: this.state.value }),
+	        _react2['default'].createElement(Op1, { key: 'Op1', mes0: this.state.mes0, mes2: this.state.mes2, change: this.changeItem.bind(this),
+	          mes1: this.state.mes1, calc: this.calc.bind(this), value: this.state.value }),
+	        _react2['default'].createElement(Op2, { key: 'Op2', mes0: this.state.mes0, mes2: this.state.mes2, change: this.changeItem.bind(this),
+	          mes1: this.state.mes1, calc: this.calc.bind(this), value: this.state.value }),
+	        _react2['default'].createElement(Op3, { key: 'Op3', mes0: this.state.mes0, mes2: this.state.mes2, change: this.changeItem.bind(this),
+	          mes1: this.state.mes1, calc: this.calc.bind(this), value: this.state.value }),
+	        _react2['default'].createElement(Op4, { key: 'Op4', mes0: this.state.mes0, mes2: this.state.mes2, change: this.changeItem.bind(this),
+	          mes1: this.state.mes1, calc: this.calc.bind(this), value: this.state.value }),
+	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
 	        _react2['default'].createElement(B30, { key: 'B30', mes0: this.state.mes0 }),
 	        _react2['default'].createElement(B31, { key: 'B31', mes1: this.state.mes1 }),
 	        _react2['default'].createElement(B32, { key: 'B32', mes2: this.state.mes2 }),
 	        _react2['default'].createElement(B33, { key: 'B33' }),
 	        _react2['default'].createElement(B34, { key: 'B34', res: this.state.res }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 20 } }),
-	        _react2['default'].createElement(Roll, { key: 'Roll', roll: this.rollDice.bind(this), hidden: this.state.hidden }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 20 } }),
+	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
+	        _react2['default'].createElement(Roll, { key: 'Roll', roll: this.rollDice.bind(this), hidden: this.state.hidden, hidden2: this.state.hidden2 }),
+	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
 	        _react2['default'].createElement(Solutions, { key: 'Solutions', solFunc: this.getSolutions.bind(this), sol: this.state.sol, hidden: this.state.hidden })
 	      );
 	    }
@@ -14754,6 +14749,7 @@
 	  contentEditable={true}
 	*/
 	_react2['default'].render(_react2['default'].createElement(B4, null), document.getElementById('divSix'));
+	// ws.send( `CJ#$42,pass,${name},${clock}` );
 
 /***/ },
 /* 101 */
@@ -14814,7 +14810,7 @@
 
 	var ReactCompositeComponent = __webpack_require__(168);
 	var ReactEmptyComponent = __webpack_require__(97);
-	var ReactNativeComponent = __webpack_require__(60);
+	var ReactNativeComponent = __webpack_require__(61);
 
 	var assign = __webpack_require__(34);
 	var invariant = __webpack_require__(46);
@@ -15400,19 +15396,46 @@
 /* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = function($){
-	  $.FW   = false;
-	  $.path = $.core;
-	  return $;
+	var $        = __webpack_require__(43)
+	  , TAG      = __webpack_require__(110)('toStringTag')
+	  , toString = {}.toString;
+	function cof(it){
+	  return toString.call(it).slice(8, -1);
+	}
+	cof.classof = function(it){
+	  var O, T;
+	  return it == undefined ? it === undefined ? 'Undefined' : 'Null'
+	    : typeof (T = (O = Object(it))[TAG]) == 'string' ? T : cof(O);
 	};
+	cof.set = function(it, tag, stat){
+	  if(it && !$.has(it = stat ? it : it.prototype, TAG))$.hide(it, TAG, tag);
+	};
+	module.exports = cof;
 
 /***/ },
 /* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var global = __webpack_require__(43).g
+	  , store  = __webpack_require__(170)('wks');
+	module.exports = function(name){
+	  return store[name] || (store[name] =
+	    global.Symbol && global.Symbol[name] || __webpack_require__(113).safe('Symbol.' + name));
+	};
+
+/***/ },
+/* 111 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(43).hide;
+
+/***/ },
+/* 112 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// true  -> String#at
 	// false -> String#codePointAt
-	var $ = __webpack_require__(39);
+	var $ = __webpack_require__(43);
 	module.exports = function(TO_STRING){
 	  return function(that, pos){
 	    var s = String($.assertDefined(that))
@@ -15429,25 +15452,25 @@
 	};
 
 /***/ },
-/* 111 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var sid = 0;
 	function uid(key){
 	  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++sid + Math.random()).toString(36));
 	}
-	uid.safe = __webpack_require__(39).g.Symbol || uid;
+	uid.safe = __webpack_require__(43).g.Symbol || uid;
 	module.exports = uid;
 
 /***/ },
-/* 112 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var $                 = __webpack_require__(39)
-	  , cof               = __webpack_require__(117)
+	var $                 = __webpack_require__(43)
+	  , cof               = __webpack_require__(109)
 	  , assertObject      = __webpack_require__(119).obj
-	  , SYMBOL_ITERATOR   = __webpack_require__(115)('iterator')
+	  , SYMBOL_ITERATOR   = __webpack_require__(110)('iterator')
 	  , FF_ITERATOR       = '@@iterator'
 	  , Iterators         = __webpack_require__(170)('iterators')
 	  , IteratorPrototype = {};
@@ -15486,15 +15509,15 @@
 	};
 
 /***/ },
-/* 113 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $def            = __webpack_require__(118)
-	  , $redef          = __webpack_require__(126)
-	  , $               = __webpack_require__(39)
-	  , cof             = __webpack_require__(117)
-	  , $iter           = __webpack_require__(112)
-	  , SYMBOL_ITERATOR = __webpack_require__(115)('iterator')
+	  , $redef          = __webpack_require__(111)
+	  , $               = __webpack_require__(43)
+	  , cof             = __webpack_require__(109)
+	  , $iter           = __webpack_require__(114)
+	  , SYMBOL_ITERATOR = __webpack_require__(110)('iterator')
 	  , FF_ITERATOR     = '@@iterator'
 	  , KEYS            = 'keys'
 	  , VALUES          = 'values'
@@ -15541,13 +15564,13 @@
 	};
 
 /***/ },
-/* 114 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $          = __webpack_require__(39)
+	var $          = __webpack_require__(43)
 	  , setUnscope = __webpack_require__(171)
-	  , ITER       = __webpack_require__(111).safe('iter')
-	  , $iter      = __webpack_require__(112)
+	  , ITER       = __webpack_require__(113).safe('iter')
+	  , $iter      = __webpack_require__(114)
 	  , step       = $iter.step
 	  , Iterators  = $iter.Iterators;
 
@@ -15555,7 +15578,7 @@
 	// 22.1.3.13 Array.prototype.keys()
 	// 22.1.3.29 Array.prototype.values()
 	// 22.1.3.30 Array.prototype[@@iterator]()
-	__webpack_require__(113)(Array, 'Array', function(iterated, kind){
+	__webpack_require__(115)(Array, 'Array', function(iterated, kind){
 	  $.set(this, ITER, {o: $.toObject(iterated), i: 0, k: kind});
 	// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
 	}, function(){
@@ -15580,18 +15603,7 @@
 	setUnscope('entries');
 
 /***/ },
-/* 115 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var global = __webpack_require__(39).g
-	  , store  = __webpack_require__(170)('wks');
-	module.exports = function(name){
-	  return store[name] || (store[name] =
-	    global.Symbol && global.Symbol[name] || __webpack_require__(111).safe('Symbol.' + name));
-	};
-
-/***/ },
-/* 116 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Optional / simple context binding
@@ -15615,30 +15627,10 @@
 	};
 
 /***/ },
-/* 117 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var $        = __webpack_require__(39)
-	  , TAG      = __webpack_require__(115)('toStringTag')
-	  , toString = {}.toString;
-	function cof(it){
-	  return toString.call(it).slice(8, -1);
-	}
-	cof.classof = function(it){
-	  var O, T;
-	  return it == undefined ? it === undefined ? 'Undefined' : 'Null'
-	    : typeof (T = (O = Object(it))[TAG]) == 'string' ? T : cof(O);
-	};
-	cof.set = function(it, tag, stat){
-	  if(it && !$.has(it = stat ? it : it.prototype, TAG))$.hide(it, TAG, tag);
-	};
-	module.exports = cof;
-
-/***/ },
 /* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $          = __webpack_require__(39)
+	var $          = __webpack_require__(43)
 	  , global     = $.g
 	  , core       = $.core
 	  , isFunction = $.isFunction;
@@ -15691,7 +15683,7 @@
 /* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(39);
+	var $ = __webpack_require__(43);
 	function assert(condition, msg1, msg2){
 	  if(!condition)throw TypeError(msg2 ? msg1 + msg2 : msg1);
 	}
@@ -15714,8 +15706,8 @@
 /* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ctx  = __webpack_require__(116)
-	  , get  = __webpack_require__(112).get
+	var ctx  = __webpack_require__(117)
+	  , get  = __webpack_require__(114).get
 	  , call = __webpack_require__(172);
 	module.exports = function(iterable, entries, fn, that){
 	  var iterator = get(iterable)
@@ -15734,7 +15726,7 @@
 
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
 	/* eslint-disable no-proto */
-	var $      = __webpack_require__(39)
+	var $      = __webpack_require__(43)
 	  , assert = __webpack_require__(119);
 	function check(O, proto){
 	  assert.obj(O);
@@ -15744,7 +15736,7 @@
 	  set: Object.setPrototypeOf || ('__proto__' in {} // eslint-disable-line
 	    ? function(buggy, set){
 	        try {
-	          set = __webpack_require__(116)(Function.call, $.getDesc(Object.prototype, '__proto__').set, 2);
+	          set = __webpack_require__(117)(Function.call, $.getDesc(Object.prototype, '__proto__').set, 2);
 	          set({}, []);
 	        } catch(e){ buggy = true; }
 	        return function setPrototypeOf(O, proto){
@@ -15762,8 +15754,8 @@
 /* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $       = __webpack_require__(39)
-	  , SPECIES = __webpack_require__(115)('species');
+	var $       = __webpack_require__(43)
+	  , SPECIES = __webpack_require__(110)('species');
 	module.exports = function(C){
 	  if($.DESC && !(SPECIES in C))$.setDesc(C, SPECIES, {
 	    configurable: true,
@@ -15776,9 +15768,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var $      = __webpack_require__(39)
-	  , ctx    = __webpack_require__(116)
-	  , cof    = __webpack_require__(117)
+	var $      = __webpack_require__(43)
+	  , ctx    = __webpack_require__(117)
+	  , cof    = __webpack_require__(109)
 	  , invoke = __webpack_require__(173)
 	  , cel    = __webpack_require__(174)
 	  , global             = $.g
@@ -15861,7 +15853,7 @@
 /* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $redef = __webpack_require__(126);
+	var $redef = __webpack_require__(111);
 	module.exports = function(target, src){
 	  for(var key in src)$redef(target, key, src[key]);
 	  return target;
@@ -15871,7 +15863,7 @@
 /* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var SYMBOL_ITERATOR = __webpack_require__(115)('iterator')
+	var SYMBOL_ITERATOR = __webpack_require__(110)('iterator')
 	  , SAFE_CLOSING    = false;
 	try {
 	  var riter = [7][SYMBOL_ITERATOR]();
@@ -15895,7 +15887,11 @@
 /* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(39).hide;
+	module.exports = function($){
+	  $.FW   = false;
+	  $.path = $.core;
+	  return $;
+	};
 
 /***/ },
 /* 127 */
@@ -16637,8 +16633,8 @@
 	var EventConstants = __webpack_require__(45);
 	var EventPluginHub = __webpack_require__(135);
 
-	var accumulateInto = __webpack_require__(183);
-	var forEachAccumulated = __webpack_require__(184);
+	var accumulateInto = __webpack_require__(182);
+	var forEachAccumulated = __webpack_require__(183);
 
 	var PropagationPhases = EventConstants.PropagationPhases;
 	var getListener = EventPluginHub.getListener;
@@ -16783,7 +16779,7 @@
 	var PooledClass = __webpack_require__(47);
 
 	var assign = __webpack_require__(34);
-	var getTextContentAccessor = __webpack_require__(182);
+	var getTextContentAccessor = __webpack_require__(184);
 
 	/**
 	 * This helper class stores information about text content of a target node,
@@ -16976,8 +16972,8 @@
 	var EventPluginRegistry = __webpack_require__(163);
 	var EventPluginUtils = __webpack_require__(17);
 
-	var accumulateInto = __webpack_require__(183);
-	var forEachAccumulated = __webpack_require__(184);
+	var accumulateInto = __webpack_require__(182);
+	var forEachAccumulated = __webpack_require__(183);
 	var invariant = __webpack_require__(46);
 
 	/**
@@ -17833,8 +17829,8 @@
 
 	var ReactBrowserEventEmitter = __webpack_require__(96);
 
-	var accumulateInto = __webpack_require__(183);
-	var forEachAccumulated = __webpack_require__(184);
+	var accumulateInto = __webpack_require__(182);
+	var forEachAccumulated = __webpack_require__(183);
 	var invariant = __webpack_require__(46);
 
 	function remove(event) {
@@ -19959,17 +19955,17 @@
 	var ReactCurrentOwner = __webpack_require__(22);
 	var ReactElement = __webpack_require__(23);
 	var ReactElementValidator = __webpack_require__(24);
-	var ReactInstanceMap = __webpack_require__(54);
-	var ReactLifeCycle = __webpack_require__(55);
-	var ReactNativeComponent = __webpack_require__(60);
+	var ReactInstanceMap = __webpack_require__(55);
+	var ReactLifeCycle = __webpack_require__(56);
+	var ReactNativeComponent = __webpack_require__(61);
 	var ReactPerf = __webpack_require__(30);
-	var ReactPropTypeLocations = __webpack_require__(56);
-	var ReactPropTypeLocationNames = __webpack_require__(52);
+	var ReactPropTypeLocations = __webpack_require__(57);
+	var ReactPropTypeLocationNames = __webpack_require__(53);
 	var ReactReconciler = __webpack_require__(32);
 	var ReactUpdates = __webpack_require__(99);
 
 	var assign = __webpack_require__(34);
-	var emptyObject = __webpack_require__(59);
+	var emptyObject = __webpack_require__(52);
 	var invariant = __webpack_require__(46);
 	var shouldUpdateReactComponent = __webpack_require__(104);
 	var warning = __webpack_require__(50);
@@ -20972,7 +20968,7 @@
 /* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $      = __webpack_require__(39)
+	var $      = __webpack_require__(43)
 	  , SHARED = '__core-js_shared__'
 	  , store  = $.g[SHARED] || $.hide($.g, SHARED, {})[SHARED];
 	module.exports = function(key){
@@ -20984,8 +20980,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	// 22.1.3.31 Array.prototype[@@unscopables]
-	var $           = __webpack_require__(39)
-	  , UNSCOPABLES = __webpack_require__(115)('unscopables');
+	var $           = __webpack_require__(43)
+	  , UNSCOPABLES = __webpack_require__(110)('unscopables');
 	if($.FW && !(UNSCOPABLES in []))$.hide(Array.prototype, UNSCOPABLES, {});
 	module.exports = function(key){
 	  if($.FW)[][UNSCOPABLES][key] = true;
@@ -21039,7 +21035,7 @@
 /* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $        = __webpack_require__(39)
+	var $        = __webpack_require__(43)
 	  , document = $.g.document
 	  , isObject = $.isObject
 	  // in old IE typeof document.createElement is 'object'
@@ -21384,7 +21380,7 @@
 
 	'use strict';
 
-	var keyMirror = __webpack_require__(57);
+	var keyMirror = __webpack_require__(58);
 
 	/**
 	 * When a component's children are updated, a series of update configuration
@@ -21539,47 +21535,6 @@
 /* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule getTextContentAccessor
-	 */
-
-	'use strict';
-
-	var ExecutionEnvironment = __webpack_require__(37);
-
-	var contentKey = null;
-
-	/**
-	 * Gets the key used to access text content on a DOM node.
-	 *
-	 * @return {?string} Key used to access text content.
-	 * @internal
-	 */
-	function getTextContentAccessor() {
-	  if (!contentKey && ExecutionEnvironment.canUseDOM) {
-	    // Prefer textContent to innerText because many browsers support both but
-	    // SVG <text> elements don't support innerText even when <div> does.
-	    contentKey = 'textContent' in document.documentElement ?
-	      'textContent' :
-	      'innerText';
-	  }
-	  return contentKey;
-	}
-
-	module.exports = getTextContentAccessor;
-
-
-/***/ },
-/* 183 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright 2014-2015, Facebook, Inc.
 	 * All rights reserved.
@@ -21646,7 +21601,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
 
 /***/ },
-/* 184 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21678,6 +21633,47 @@
 	};
 
 	module.exports = forEachAccumulated;
+
+
+/***/ },
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule getTextContentAccessor
+	 */
+
+	'use strict';
+
+	var ExecutionEnvironment = __webpack_require__(37);
+
+	var contentKey = null;
+
+	/**
+	 * Gets the key used to access text content on a DOM node.
+	 *
+	 * @return {?string} Key used to access text content.
+	 * @internal
+	 */
+	function getTextContentAccessor() {
+	  if (!contentKey && ExecutionEnvironment.canUseDOM) {
+	    // Prefer textContent to innerText because many browsers support both but
+	    // SVG <text> elements don't support innerText even when <div> does.
+	    contentKey = 'textContent' in document.documentElement ?
+	      'textContent' :
+	      'innerText';
+	  }
+	  return contentKey;
+	}
+
+	module.exports = getTextContentAccessor;
 
 
 /***/ },
@@ -22020,7 +22016,7 @@
 	var ExecutionEnvironment = __webpack_require__(37);
 
 	var getNodeForCharacterOffset = __webpack_require__(197);
-	var getTextContentAccessor = __webpack_require__(182);
+	var getTextContentAccessor = __webpack_require__(184);
 
 	/**
 	 * While `isCollapsed` is available on the Selection object and `collapsed`
