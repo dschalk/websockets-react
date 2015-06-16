@@ -28,13 +28,13 @@ var str3 = "";
 var str4 = "";
 var hidden = true;
 var hidden2 = false;
+var hidden3 = false;
 var togDice = false;
 var value = "";
 var T = "SCORE!";
 var that = this;
-var numberAr = [0,0,0,0,0];
-var NUMARRAY = [];
 var N = 0;
+var STRING = '';
 
 /*
 var users = [];
@@ -418,7 +418,7 @@ class Roll extends React.Component {
   }
   render () {
     console.log(this);
-    if (this.props.hidden) { return ( null ) } 
+    if (this.props.hidden || this.props.hidden3) { return ( null ) } 
     else {
       return (
           <div
@@ -463,7 +463,6 @@ class Display extends React.Component {
   constructor(props) {
     super(props);
   }
-
   render () {
     console.log(this);
     return (
@@ -476,16 +475,13 @@ class Display extends React.Component {
   }
 };
 
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
   }
-  
   handleChange (event) {       // ISSUE: Input box won't accept data without this handleChange function. ??
     this.props.change({value: event.target.value});
   }
-  
   handleEnter (event) {
     if (this.props.value == '') { 
       return 
@@ -498,7 +494,6 @@ class Login extends React.Component {
       }
     }
   }
-
   click () { 
     if (this.props.value == '') { 
       return 
@@ -508,7 +503,6 @@ class Login extends React.Component {
       ws.send('CC#$42'+name);
     }
   }
-  
   render () {
     console.log(this);
     if ((this.props.hidden) == false) { return ( null ) } 
@@ -522,6 +516,7 @@ class Login extends React.Component {
     );
   }
 };
+
 class Clock extends React.Component {
   constructor(props) {
     super(props);
@@ -529,9 +524,9 @@ class Clock extends React.Component {
 
   click () {
     var name = this.props.value;
-    ws.send(`CK#$42,pass,${name},10`)
+    ws.send( `CK#$42,pass,${name},10` );
   }
-
+   
   render () {
     console.log(this);
     return (
@@ -543,7 +538,6 @@ class Clock extends React.Component {
     )
   }
 };
-
 
 class B4 extends React.Component {
   constructor(props) {
@@ -566,12 +560,12 @@ class B4 extends React.Component {
       str3: str3,
       sol: sol,
       hidden: hidden,
-      hidden2: hidden2, 
+      hidden2: hidden2,
+      hidden3: hidden3,
       value: value,
       T: T,
-      numberAr: numberAr,
-      NUMARRAY: NUMARRAY,
-      N: N
+      N: N,
+      STRING: STRING
       }
 
 that = this;
@@ -610,11 +604,6 @@ ws.onmessage = function(event) {
           break;
 
           case "CA#$42":               // Triggered by ROLL
-              message1 = extra;
-              message2 = ext4;
-              message3 = ext5;
-              message4 = ext6;
-              numberAr = [extra, ext4, ext5, ext6, res];
               that.setState
               ({
                 message1: extra,
@@ -623,22 +612,17 @@ ws.onmessage = function(event) {
                 message4: ext6,
                 str1: '',
                 str2: '',
-                str3: '',
-                numberAr: [extra, ext4, ext5, ext6, res]
+                str3: ''
               });
           break;
 
           case "CE#$42":          
-              message1 = extra;
-              message2 = ext4;
-              message3 = ext5;
-              message4 = ext6;
               that.setState
               ({
                 message1: extra,
                 message2: ext4,
                 message3: ext5,
-                message4: ext6
+                message4: ext6,
               });
           break;
 
@@ -659,27 +643,20 @@ ws.onmessage = function(event) {
           break;
 
           case "CH#$42":
-            that.setState({hidden2: true});
-            that.setState({T: 10});
-            str1 = extra;
-            str2 = ext4;
-            str3 = ext5;
             that.setState
             ({
+              hidden: true,
               str1: extra,
               str2: ext4,
               str3: ext5,
-              str4: ext6
             });
           break;
 
           case "CJ#$42":
-              T = extra;
-              hidden2 = false;
               that.setState
               ({
-                T: extra,
-                hidden2: false
+                hidden2: false,
+                hidden3: true
               });
           break;
 
@@ -704,25 +681,36 @@ ws.onmessage = function(event) {
             };
           break;
 
+
+          case "CY#$42":
+            that.setState({hidden3: !(that.state.hidden3)});
+          break;
+
+
           case "SX#$42":
             //  ws.send("SX#$42," + groupM + "," + playerM + "," + rollM);
           break;
 
           default:
-              console.log( " fell through to default");
+              console.log( "fell through to default");
           break;
       }
   }
 
   setInterval( function () { 
+    var name = that.state.value;
     if (that.state.T === 0) {
-      // DS_ob.scoreFunc();
-      that.setState({T: 'Window of opportunity closed.'});
-      that.setState({hidden2: false});
-      that.setState({message1: ''});
-      that.setState({message2: ''});
-      that.setState({message3: ''});
-      that.setState({message4: ''});
+      var fals = false;
+      ws.send( `CY#$42,pass,${name},filler` );  // Toggle hidden3
+      that.setState
+      ({
+        T: 'Window of opportunity closed.',
+        hidden2: false,
+        message1: '',
+        message2: '',
+        message3: '',
+        message4: ''
+      });
     }
     if ( that.state.T > -1 ) {
       var X = that.state.T - 1
@@ -747,7 +735,7 @@ ws.onmessage = function(event) {
 
   rollDice () {
     var name = that.state.value;
-    this.setState({T: 'SCORE!'});
+    ws.send(`CK#$42,pass,${name},SCORE!`)
     that = this;
     var delay = this.delay
     var s = ws.readyState
@@ -784,50 +772,58 @@ ws.onmessage = function(event) {
     var w4 = this.state.message4;
     var result = this.state.res;
     var startArray = [w1, w2, w3, w4, result];
-    console.log("$$$$$$$$$$$$$$$ &&_____ startArray in setNumberAr $$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    console.log(startArray);
-    console.log("######$$$$$$$$$$$ %%%%%%%%%%%%%%% ^^^^^^^ that was startArray   Now leaving setNumberAr()"); 
     this.newNums(startArray);   
   }
 
   newNums (x) {
     var j = 0;
     var ar = [];
+    var clock;
+    var string = this.state.STRING;
+    var result = this.state.res;
+    var name = this.state.value;
     for (let k in x) {
-        if (x[k] != "" && x[k] != undefined) {
+        if (x[k] !== "" && x[k] !== undefined) {
         ar[j] = x[k];
         j += 1;
       }
     }
-    this.setState({NUMARRAY: ar});
     this.setState({N: j});
     if (j === 3) {
-      ws.send(`CE#$42,pass,Jim,${ar[0]},${ar[1]},${ar[2]}`);     
+      ws.send(`CQ#$42,pass,${name},str1,${string}`);
+      ws.send(`CE#$42,pass,${name},${ar[0]},${ar[1]},${ar[2]}`)
+      clock = 10;
     }
     else if (j === 2) {
-      ws.send(`CE#$42,pass,Jim,${ar[0]},${ar[1]}`);     
+      ws.send(`CQ#$42,pass,${name},str2,${string}`);
+      ws.send(`CE#$42,pass,${name},${ar[0]},${ar[1]},`)
+      if (result === 20) {
+          clock = "One Point For " + name;
+      } else {clock = 10;}
     }
     else if (j === 1) {
-      ws.send(`CE#$42,pass,Jim,${ar[0]}`);     
+      ws.send(`CQ#$42,pass,${name},str3,${string}`);
+      ws.send(`CE#$42,pass,${name},${ar[0]}`)
+      if (result === 20) {
+          clock = "One Point For " + name;
+          ws.send( `CY#$42,pass,${name},filler` );
+      }
+      if (result !== 20) {
+        clock = "Take One Point From " + name;
+      }
     }
-    else {
-      ws.send(`CE#$42,pass,Jim,OOOPS!! Check newNums()`);
-    }
+    ws.send( `CK#$42,pass,${name},${clock}` );
     ws.send( `CF#$42,pass,${name},filler` );
   }
 
-
-
-
+/*
   nextRound () {
+    var name = this.state.value;
     var that = this;
+    var string1;
+    var string2;
+    var string3;
     var n;
-    var delay = this.delay;
-    delay(5).then( function () {
-      that.setNumberAr();
-    }).then(delay(50)).then(function() {
-      n = that.state.N;
-    })
     var name = this.state.value;
     var result = this.state.res;
     var a = this.state.mes0;
@@ -837,90 +833,52 @@ ws.onmessage = function(event) {
     var clock = 10;
     var equation = `${a} ${b} ${c} = ${result}`;
     var mesArX = [];
-    this.delay(200).then( function () {
-      console.log(that.state.numberAr);
-      console.log("######$$$$$$$$$$$ %%%%%%%%%%%%%%% ^^^^^^^ next will be n %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-      console.log(n);
-      console.log("######$$$$$$$$$$$ %%%%%%%%%%%%%%% ^^^^^^^ that was n %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    })     
     if ( n === 3 ) {
-      message0 = ar[0];
-      message1 = ar[1];
-      message2 = ar[2];
-      message3 = '' ;
-
-      this.setState({message0: ar[0]});
-      this.setState({message1: ar[1]});
-      this.setState({message2: ar[2]});
-      this.setState({message3: '' });
-      this.setState({str1: string});
+      string1 = equation;
+      ws.send(`CK#$42,pass,${name},10`);
     }
     else if ( n === 2 ) {
-      message0 = ar[0];
-      message1 = ar[1];
-      message2 = '' ;
-      message3 = '' ;
-      this.setState({message0: ar[0]});
-      this.setState({message1: ar[1]});
-      this.setState({message2: '' });
-      this.setState({message3: '' });
-      this.setState({str2: string});
-      if (result === 20) {
+      string2 = equation;
+      ws.send(`CK#$42,pass,${name},10`);
+  s   if (result === 20) {
           clock = `One Point For ${name}`;
-          this.setState({T: clock})
-          // ws.send( `CJ#$42,pass,${name},${clock}` );
       }
+      else {clock = 10;}
     }
     else if ( n === 1) {
       var t = this.state.T;
-      message0 = ar[0];
-      message1 = '' ;
-      message2 = '' ;
-      message3 = '' ;
-      this.setState({message0: ar[0]});
-      this.setState({message1: '' });
-      this.setState({message2: '' });
-      this.setState({message3: '' });
       this.setState({str3: string});
       if (result === 20) {
           clock = `One Point For ${name}`;
-          this.setState({T: clock});
       }
       if (result !== 20) {
         clock = `Take One Point From ${name}`;
-        this.setState({T: clock});
-      } else {
-        console.log("OOOOOOOOPPPPSS!!!!");
       }
-    } 
-    /* delay(30).then( function () {
-      var z1 = this.state.message1;
-      var z2 = this.state.message2;
-      var z3 = this.state.message3;
-      var z4 = this.state.message4;
-      var newNums = `${z1},${z2},${z3},${z4}`;
-      ws.send( `CE#$42,pass,${name}, ${newNums}` );
-      */
-      var x1 = this.state.str1;
-      var x2 = this.state.str2;
-      var x3 = this.state.str3;
-      var newStrings = `${x1},${x2},${x3}`
-      ws.send( `CH#$42,pass,${name},${newStrings},${t}` );
-      ws.send( `CF#$42,pass,${name}, ${filler}` );
-
-      console.log("$$$$$$$$$$$$$$$ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-      console.log(newStrings);
-      console.log("######$$$$$$$$$$$ %%%%%%%%%%%%%%% ^^^^^^^ that was mAr mAr0");
-
-    // })
+    }
+      var newStrings = `${string1},${string2},${string3}`
+      ws.send( `CH#$42,pass,${name},${newStrings}` );
+      ws.send( `CF#$42,pass,${name},${filler}` );
   }
+*/
 
   calc () {
     var that = this;
-    this.delay(200).then( function() {
-      var m0 = that.state.mes0;
-      var m1 = that.state.mes1;
-      var m2 = that.state.mes2;
+    var delay = this.delay;
+    var res;
+    var n = this.state.N;
+    var m0;
+    var m1;
+    var m2;
+    var name = this.state.value;
+    var t = this.state.T;
+    if (t !== "SCORE!") {
+      ws.send( `CK#$42,pass,${name},10` );
+    }
+
+    delay(100).then( function() {
+      m0 = that.state.mes0;
+      m1 = that.state.mes1;
+      m2 = that.state.mes2;
       switch (m1) {
           case "+": that.setState({res: parseFloat(m0) + parseFloat(m2)});
           break;
@@ -934,14 +892,16 @@ ws.onmessage = function(event) {
           break;
           default : 'operator not selected';
       }
-      that.delay(50).then( function () {
-        that.setNumberAr();
-        console.log("$$$$$$$$$$$$$$$ &&&&&&&&&&&&&& in calc() %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-        console.log("res is " + that.state.res);
-        console.log("m1 is " + m1);
-        console.log("######$$$$$$$$$$$ %%%%%%%%%%%%%%%  in calc() %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-      })
     })
+    .then( delay(25) )
+    .then( function() {
+      var res = that.state.res;
+      that.setState({STRING: `${m0} ${m1} ${m2} = ${res}`});
+    })
+    .then( delay(25) )
+    .then( function () {
+      that.setNumberAr();
+    });
   }
 
   newPlayer (x) {
@@ -964,26 +924,26 @@ ws.onmessage = function(event) {
           <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} 
             str4={this.state.str4}/>
 
-          <Clock key='Clock' change={this.changeItem.bind(this)} t={this.state.T} 
+          <Clock key='Clock' t={this.state.T} 
               value={this.state.value} />
 
           <div style={{width: 8000, float: "left", padding: 10}} />
 
           <B40 key='B40' message1={this.state.message1} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} next={this.nextRound.bind(this)} value={this.state.value}/>
+            delay={this.delay.bind(this)} value={this.state.value}/>
 
           <B41 key='B41' message2={this.state.message2} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} next={this.nextRound.bind(this)} value={this.state.value}/>
+            delay={this.delay.bind(this)} value={this.state.value}/>
 
           <B42 key='B42' message3={this.state.message3} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} next={this.nextRound.bind(this)} value={this.state.value}/>
+            delay={this.delay.bind(this)} value={this.state.value}/>
 
           <B43 key='B43' message4={this.state.message4} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} next={this.nextRound.bind(this)} value={this.state.value}/>
+            delay={this.delay.bind(this)} value={this.state.value}/>
 
           <div style={{width: 8000, float: "left", padding: 10}} />
 
@@ -1012,7 +972,8 @@ ws.onmessage = function(event) {
 
           <div style={{width: 8000, float: "left", padding: 10}} />
 
-          <Roll key='Roll' roll={this.rollDice.bind(this)} hidden={this.state.hidden} hidden2={this.state.hidden2} />
+          <Roll key='Roll' roll={this.rollDice.bind(this)} hidden={this.state.hidden} 
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <div style={{width: 8000, float: "left", padding: 10}} />
 
