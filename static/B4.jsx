@@ -26,8 +26,8 @@ var str1 = "";
 var str2 = "";
 var str3 = "";
 var str4 = "";
-var hidden = true;
-var hidden2 = false;
+var hidden = false;
+var hidden2 = true;
 var hidden3 = false;
 var togDice = false;
 var value = "";
@@ -108,20 +108,22 @@ class B40 extends React.Component {
     }
   }
   render () {
-    console.log(this);
-    return (
-        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-          fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
-          {this.props.message1}
-        </div>
-    )}
-  };
+        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+    else {
+      console.log(this);
+      return (
+          <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
+            fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+            {this.props.message1}
+          </div>
+      )}
+    }
+  }
 
 class B41 extends React.Component {
   constructor(props) {
     super(props);
   }
-
   click () {
     var name = this.props.value;
     var num = this.props.message2;
@@ -136,22 +138,23 @@ class B41 extends React.Component {
       }
     }
   }
+  render () {
+      if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+  else {
+    console.log(this);
+    return (
+        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
+          fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+          {this.props.message2}
+        </div>
+    )}
+  }
+}
 
-    render () {
-      console.log(this);
-      return (
-          <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-            fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
-            {this.props.message2}
-          </div>
-      )}
-};
-
-  class B42 extends React.Component {
-    constructor(props) {
-      super(props);
-    }
-
+class B42 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   click () {
     var name = this.props.value;
     var num = this.props.message3;
@@ -166,22 +169,24 @@ class B41 extends React.Component {
       }
     }
   }
-
-    render () {
-      console.log(this);
-      return (
+  render () {
+      if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+  else {
+    console.log(this);
+    return (
         <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
           fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
           {this.props.message3}
         </div>
-      )}
-    };
+    )}
+  }
+}
 
-  class B43 extends React.Component {
-    constructor(props) {
-      super(props);
-    }
 
+class B43 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   click () {
     var name = this.props.value;
     var num = this.props.message4;
@@ -196,32 +201,34 @@ class B41 extends React.Component {
       }
     }
   }
-
   render () {
+      if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+  else {
     console.log(this);
     return (
-      <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-        fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
-        {this.props.message4}
-      </div>
+        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
+          fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+          {this.props.message4}
+        </div>
     )}
-};
+  }
+}
 
 class Op0 extends React.Component {
   constructor(props) {
     super(props);
   }
-
   click () { 
     var name = this.props.value;
-    this.props.change({mes1: '+' });
+    ws.send(`CQ#$42,pass,${name},mes1,+`);
     var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
     if (test) {
         this.props.calc();
     }
   }
-  
   render () {
+        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+    else {
     console.log(this);
     return (
         <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
@@ -229,23 +236,24 @@ class Op0 extends React.Component {
           +
         </div>
     )}
-};
+  }
+}
 
 class Op1 extends React.Component {
   constructor(props) {
     super(props);
   }
-
   click () { 
     var name = this.props.value;
-    this.props.change({mes1: '-' });
+    ws.send(`CQ#$42,pass,${name},mes1,-`);
     var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
     if (test) {
         this.props.calc();
     }
   }
-
   render () {
+        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+    else {
     console.log(this);
     return (
         <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
@@ -253,24 +261,24 @@ class Op1 extends React.Component {
           -
         </div>
     )}
-};
+  }
+}
 
 class Op2 extends React.Component {
   constructor(props) {
     super(props);
   }
-
   click () { 
     var name = this.props.value;
-    this.props.change({mes1: '*' });
+    ws.send(`CQ#$42,pass,${name},mes1,*`);
     var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
     if (test) {
         this.props.calc();
     }
   }
-
-
   render () {
+        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+    else {
     console.log(this);
     return (
         <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
@@ -278,24 +286,24 @@ class Op2 extends React.Component {
           *
         </div>
     )}
-};
+  }
+}
 
   class Op3 extends React.Component {
     constructor(props) {
       super(props);
     }
-
   click () { 
     var name = this.props.value;
-    this.props.change({mes1: '/' });
+    ws.send(`CQ#$42,pass,${name},mes1,/`);
     var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
     if (test) {
         this.props.calc();
     }
   }
-
-
     render () {
+        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+    else {
       console.log(this);
       return (
           <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
@@ -303,23 +311,24 @@ class Op2 extends React.Component {
             /
           </div>
       )}
-    };
+    }
+  }
 
 class Op4 extends React.Component {
   constructor(props) {
     super(props);
   }
-
   click () { 
     var name = this.props.value;
-    this.props.change({mes1: 'Concat' });
+    ws.send(`CQ#$42,pass,${name},mes1,Concat`);
     var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
     if (test) {
         this.props.calc();
     }
   }
-
   render () {
+        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+    else {
     console.log(this);
     return (
         <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
@@ -327,87 +336,87 @@ class Op4 extends React.Component {
           Concat
         </div>
     )}
-};
+  }
+}
 
-  class B30 extends React.Component {
-    constructor(props) {
-      super(props);
-    }
+class B30 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render () {
+    console.log(this);
+    return (
+        <div
+          style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
+            textAlign: "center", padding: 20, float: "left" }} >
+                {this.props.mes0}
+        </div>
+    )}
+  };
 
-    render () {
-      console.log(this);
-      return (
-          <div
-            style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-              textAlign: "center", padding: 20, float: "left" }} >
-                  {this.props.mes0}
-          </div>
-      )}
-    };
-
-  class B31 extends React.Component {
-    constructor(props) {
-      super(props);
-    }
-
-    render () {
-      console.log(this);
-      return (
-          <div
-            style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-              textAlign: "center", padding: 20, float: "left" }} >
-                  {this.props.mes1}
-          </div>
-      )}
-    };
-
-    class B32 extends React.Component {
-      constructor(props) {
-        super(props);
-      }
-
-      render () {
-        console.log(this);
-        return (
-            <div
-              style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-                textAlign: "center", padding: 20, float: "left" }} >
-                    {this.props.mes2}
-            </div>
-        )}
-      };
-
-      class B33 extends React.Component {
-        constructor(props) {
-          super(props);
-        }
-
-        render () {
-          console.log(this);
-          return (
-              <div
-                style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-                  textAlign: "center", padding: 20, float: "left" }} >
-                      =
-              </div>
-          )}
-        };
-
-  class B34 extends React.Component {
-    constructor(props) {
-      super(props);
-    }
+class B31 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   render () {
     console.log(this);
     return (
         <div
           style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-            textAlign: "center", padding: 20, float: "left"}}  >
-                  {this.props.res}
+            textAlign: "center", padding: 20, float: "left" }} >
+                {this.props.mes1}
         </div>
     )}
   };
+
+class B32 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render () {
+    console.log(this);
+    return (
+        <div
+          style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
+            textAlign: "center", padding: 20, float: "left" }} >
+                {this.props.mes2}
+        </div>
+    )}
+  };
+
+class B33 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render () {
+    console.log(this);
+    return (
+        <div
+          style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
+            textAlign: "center", padding: 20, float: "left" }} >
+                =
+        </div>
+    )}
+  };
+
+class B34 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+render () {
+  console.log(this);
+  return (
+      <div
+        style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
+          textAlign: "center", padding: 20, float: "left"}}  >
+                {this.props.res}
+      </div>
+  )}
+};
 
 class Roll extends React.Component {
     constructor(props) {
@@ -418,7 +427,7 @@ class Roll extends React.Component {
   }
   render () {
     console.log(this);
-    if (this.props.hidden || this.props.hidden3) { return ( null ) } 
+    if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
     else {
       return (
           <div
@@ -441,23 +450,23 @@ class Solutions extends React.Component {
   }
 
   render () {
-    var formatted = this.props.sol.map(function(line) {
-      return (<p>{line}</p>);
-    });
-    console.log(formatted);
-    console.log(this);
-    if (this.props.hidden) { return ( null ) } 
+        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
     else {
-      return (
-          <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-              padding: 20, float: "left"}} onClick={this.clickHandler.bind(this)} >
-              Solutions <br /> <br />
-              {formatted}
-          </div>
-      )
+      var formatted = this.props.sol.map(function(line) {
+        return (<p>{line}</p>);
+      });
+      console.log(formatted);
+      console.log(this);
+        return (
+            <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
+                padding: 20, float: "left"}} onClick={this.clickHandler.bind(this)} >
+                Solutions <br /> <br />
+                {formatted}
+            </div>
+        )
+      }
     }
   }
-}
 
 class Display extends React.Component {
   constructor(props) {
@@ -489,7 +498,8 @@ class Login extends React.Component {
     var ENTER = 13;
       if( event.keyCode == ENTER ) {
         var name = this.props.value;
-        this.props.change({ hidden: false});
+        this.props.change({ hidden: true});
+        this.props.change({ hidden2: false});
         ws.send('CC#$42'+name);
       }
     }
@@ -499,13 +509,14 @@ class Login extends React.Component {
       return 
     } else { 
       var name = this.props.value;
-      this.props.change({ hidden: false});
+      this.props.change({ hidden: true});
+      this.props.change({ hidden2: false});
       ws.send('CC#$42'+name);
     }
   }
   render () {
     console.log(this);
-    if ((this.props.hidden) == false) { return ( null ) } 
+    if ((this.props.hidden)) { return ( null ) } 
     var value = this.props.value;
     return (
       <div>
@@ -521,21 +532,25 @@ class Clock extends React.Component {
   constructor(props) {
     super(props);
   }
-
   click () {
     var name = this.props.value;
-    ws.send( `CK#$42,pass,${name},10` );
+    if (this.props.t === "SCORE!") {
+      ws.send( `CK#$42,pass,${name},10` );
+      ws.send( `CY#$42,pass,${name},filler` );
+    }
   }
-   
   render () {
-    console.log(this);
-    return (
-        <div
-          style={{backgroundColor: '#000', color: '#ff0000', fontSize:"32",
-            padding: 30, float: "left"}} onClick={this.click.bind(this)} >
-             {this.props.t}
-        </div>
-    )
+        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+    else {
+      console.log(this);
+      return (
+          <div
+            style={{backgroundColor: '#000', color: '#ff0000', fontSize:"32",
+              padding: 30, float: "left"}} onClick={this.click.bind(this)} >
+               {this.props.t}
+          </div>
+      )
+    }
   }
 };
 
@@ -632,6 +647,12 @@ ws.onmessage = function(event) {
             //  }
           break;
 
+          case "CD#$42":
+ 
+          break;
+
+
+
           case "CF#$42": 
             that.setState
             ({
@@ -674,6 +695,13 @@ ws.onmessage = function(event) {
               that.forceUpdate();
           break;
 
+
+          case "CR#$42":
+            that.setState({hidden2: false});
+          break;
+
+
+
           case "CS#$42":
             if (sender !== name) {
               that.state[extra]=ext4;
@@ -683,7 +711,9 @@ ws.onmessage = function(event) {
 
 
           case "CY#$42":
-            that.setState({hidden3: !(that.state.hidden3)});
+            if (sender !== name) {
+              that.setState({hidden2: true});
+            }
           break;
 
 
@@ -700,12 +730,10 @@ ws.onmessage = function(event) {
   setInterval( function () { 
     var name = that.state.value;
     if (that.state.T === 0) {
-      var fals = false;
-      ws.send( `CY#$42,pass,${name},filler` );  // Toggle hidden3
+      ws.send( `CR#$42,pass,${name},filler` );  
       that.setState
       ({
-        T: 'Window of opportunity closed.',
-        hidden2: false,
+        T: `10 seconds expired. Deduct one point from ${name}`,
         message1: '',
         message2: '',
         message3: '',
@@ -735,7 +763,8 @@ ws.onmessage = function(event) {
 
   rollDice () {
     var name = that.state.value;
-    ws.send(`CK#$42,pass,${name},SCORE!`)
+    ws.send(`CK#$42,pass,${name},SCORE!`);
+    ws.send(`CF#$42,pass,${name},filler`);
     that = this;
     var delay = this.delay
     var s = ws.readyState
@@ -799,6 +828,7 @@ ws.onmessage = function(event) {
       ws.send(`CE#$42,pass,${name},${ar[0]},${ar[1]},`)
       if (result === 20) {
           clock = "One Point For " + name;
+          ws.send( `CR#$42,pass,${name},filler` ); 
       } else {clock = 10;}
     }
     else if (j === 1) {
@@ -806,10 +836,11 @@ ws.onmessage = function(event) {
       ws.send(`CE#$42,pass,${name},${ar[0]}`)
       if (result === 20) {
           clock = "One Point For " + name;
-          ws.send( `CY#$42,pass,${name},filler` );
+          ws.send( `CR#$42,pass,${name},filler` ); 
       }
       if (result !== 20) {
         clock = "Take One Point From " + name;
+        ws.send( `CR#$42,pass,${name},filler` ); 
       }
     }
     ws.send( `CK#$42,pass,${name},${clock}` );
@@ -924,43 +955,52 @@ ws.onmessage = function(event) {
           <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} 
             str4={this.state.str4}/>
 
-          <Clock key='Clock' t={this.state.T} 
-              value={this.state.value} />
+          <Clock key='Clock' t={this.state.T} value={this.state.value} hidden={this.state.hidden} 
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <div style={{width: 8000, float: "left", padding: 10}} />
 
           <B40 key='B40' message1={this.state.message1} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} value={this.state.value}/>
+            delay={this.delay.bind(this)} value={this.state.value} hidden={this.state.hidden} 
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <B41 key='B41' message2={this.state.message2} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} value={this.state.value}/>
+            delay={this.delay.bind(this)} value={this.state.value} hidden={this.state.hidden} 
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <B42 key='B42' message3={this.state.message3} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} value={this.state.value}/>
+            delay={this.delay.bind(this)} value={this.state.value} hidden={this.state.hidden} 
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <B43 key='B43' message4={this.state.message4} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} value={this.state.value}/>
+            delay={this.delay.bind(this)} value={this.state.value} hidden={this.state.hidden} 
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <div style={{width: 8000, float: "left", padding: 10}} />
 
           <Op0 key='Op0' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value}/>
+            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value} hidden={this.state.hidden} 
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <Op1 key='Op1' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value}/>
+            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value} hidden={this.state.hidden} 
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <Op2 key='Op2' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value}/>
+            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value} hidden={this.state.hidden} 
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <Op3 key='Op3' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value}/>
+            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value} hidden={this.state.hidden} 
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <Op4 key='Op4' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value}/>
+            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value} hidden={this.state.hidden} 
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <div style={{width: 8000, float: "left", padding: 10}} />
 
@@ -977,7 +1017,8 @@ ws.onmessage = function(event) {
 
           <div style={{width: 8000, float: "left", padding: 10}} />
 
-          <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol} hidden={this.state.hidden} />
+          <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol} 
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
       </div>
     )}
   };
