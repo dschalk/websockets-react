@@ -520,7 +520,8 @@ class Login extends React.Component {
     var value = this.props.value;
     return (
       <div>
-        <input type="text" value={value} onChange={this.handleChange.bind(this)} onKeyDown={this.handleEnter.bind(this)} />
+        <input type="text" value={value} onChange={this.handleChange.bind(this)} 
+          onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)} />
         {this.props.value}
         <button onClick={this.click.bind(this)}>Join</button>
       </div>
