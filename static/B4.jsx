@@ -35,6 +35,8 @@ var T = "SCORE!";
 var that = this;
 var N = 0;
 var STRING = '';
+var impossibleClicker = "a@F$Uy&imp";
+var scoreClicker = "a@F$Uy&sc";
 
 /*
 var users = [];
@@ -450,7 +452,7 @@ class Solutions extends React.Component {
   }
 
   render () {
-        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+        if (this.props.hidden2 && this.props.hidden3) { return ( null ) } 
     else {
       var formatted = this.props.sol.map(function(line) {
         return (<p>{line}</p>);
@@ -500,6 +502,7 @@ class Login extends React.Component {
         var name = this.props.value;
         this.props.change({ hidden: true});
         this.props.change({ hidden2: false});
+        this.props.change({ hidden3: false});
         ws.send('CC#$42'+name);
       }
     }
@@ -511,6 +514,7 @@ class Login extends React.Component {
       var name = this.props.value;
       this.props.change({ hidden: true});
       this.props.change({ hidden2: false});
+      this.props.change({ hidden3: false});
       ws.send('CC#$42'+name);
     }
   }
@@ -521,7 +525,7 @@ class Login extends React.Component {
     return (
       <div>
         <input type="text" value={value} onChange={this.handleChange.bind(this)} 
-          onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)} />
+        onKeyDown={this.handleEnter.bind(this)} />
         {this.props.value}
         <button onClick={this.click.bind(this)}>Join</button>
       </div>
@@ -537,7 +541,7 @@ class Clock extends React.Component {
     var name = this.props.value;
     if (this.props.t === "SCORE!") {
       ws.send( `CK#$42,pass,${name},10` );
-      ws.send( `CY#$42,pass,${name},filler` );
+      ws.send( `CY#$42,pass,${name},${name}` );
     }
   }
   render () {
@@ -581,7 +585,9 @@ class B4 extends React.Component {
       value: value,
       T: T,
       N: N,
-      STRING: STRING
+      STRING: STRING,
+      scoreClicker: scoreClicker,
+      impossibleClicker: impossibleClicker
       }
 
 that = this;
@@ -605,7 +611,9 @@ ws.onmessage = function(event) {
   var ext6 = gameArray[6];
   var ext7 = gameArray[7];
   var ext8 = gameArray[8];
-  var name = that.state.value;
+  console.log('####################################################################');
+  console.log(name === sender);
+  console.log('####################################################################');
   // var p = $(document.createElement('p')).text(event.data);
   // if (((groupM === gameArray[1]) && (groupM !== "private")) || (playerM === sender) || sendersGroup === "pass") {}
       switch (d2) {
@@ -614,7 +622,8 @@ ws.onmessage = function(event) {
           break;
 
           case "CZ#$42":
-              sol = extra.split("<br />")
+            that.setState({sol: extra.split("<br />")});
+
             //  $("#show").prepend("<br>" + extra);
             //  $("#a2").html(sender + " clicked SOLUTIONS.<br><br>");
           break;
@@ -652,8 +661,6 @@ ws.onmessage = function(event) {
  
           break;
 
-
-
           case "CF#$42": 
             that.setState
             ({
@@ -678,10 +685,8 @@ ws.onmessage = function(event) {
               that.setState
               ({
                 hidden2: false,
-                hidden3: true
               });
           break;
-
 
           case "CK#$42":
               that.setState({T: extra});
@@ -696,11 +701,10 @@ ws.onmessage = function(event) {
               that.forceUpdate();
           break;
 
-
           case "CR#$42":
             that.setState({hidden2: false});
+            that.setState({hidden3: false});
           break;
-
 
 
           case "CS#$42":
@@ -710,10 +714,38 @@ ws.onmessage = function(event) {
             };
           break;
 
-
           case "CY#$42":
-            if (sender !== name) {
-              that.setState({hidden2: true});
+            var playerName = that.state.value;
+            scoreClicker = extra;   // 'scoreClicker' declared at the top of this file.
+            that.setState({
+              scoreClicker: scoreClicker,
+              sol: []
+            }, function() {    // Probably no benefit in waiting for rendering to complete, but making
+                               // this synchronous might result in a little less stress for the browser.
+              if (scoreClicker !== playerName) {  
+                var delay = that.delay;
+                var this2 = that;
+                  that.setState({
+                    hidden2: true,
+                    hidden3: false,
+                  });
+                var a = that.state.message1;
+                var b = that.state.message2;
+                var c = that.state.message3;
+                var d = that.state.message4;
+                ws.send(`DZ#$42,pass,${name},${a},${b},${c},${d},20`);
+              }
+          });
+          break;
+
+          case "DZ#$42":
+            var this2 = that;
+            if (that.state.scoreClicker !== that.state.value) {
+              var solutions = extra;
+              that.delay(8000)
+              .then( function() {
+                  this2.setState({sol: solutions.split("<br />")});
+              })
             }
           break;
 

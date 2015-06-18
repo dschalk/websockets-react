@@ -229,6 +229,14 @@ talk conn state (user, _, _, _) = forever $ do
                 broadcast ("CZ#$42," `mappend` group3 `mappend` ","
                     `mappend` sender3 `mappend` "," `mappend` yzz) st
 
+    else if "DZ#$42" `T.isPrefixOf` msg
+            then do
+                y <- liftIO $ truck $ froll msgArray
+                let yzz = T.pack y
+                st <- readMVar state
+                broadcast ("DZ#$42," `mappend` group3 `mappend` ","
+                    `mappend` sender3 `mappend` "," `mappend` yzz) st
+
     else if "CW#$42" `T.isPrefixOf` msg
             then do
                 y <- liftIO $ truck $ froll msgArray
