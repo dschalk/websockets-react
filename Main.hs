@@ -324,9 +324,12 @@ talk conn state (user, _, _, _) = forever $ do
         then
             do
                 new <- readMVar state
-                broadcast ("CB#$42," `mappend` group `mappend` ","
-                    `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (filterGroup group new))) new
-                broadcast ("DB#$42," `mappend` "pass" `mappend` "," `mappend` sender `mappend` "," `mappend` (allGroups new)) new
+                let x = ("CB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (filterGroup group new)))
+                broadcast x new   
+                broadcast ("DB#$42," `mappend` "pass" `mappend` "," `mappend` sender `mappend` "," `mappend` (allGroups new)) new 
+                print "**************************** in SX#$42 "
+                print x
+                print "**************************** leaving SX#42 "
 
 
 
