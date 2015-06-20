@@ -33,15 +33,15 @@ var hidden3 = false;
 var hidden4 = true;
 
 var togDice = false;
-var value = "";
+var name = "";
 var DS_T = "SCORE!";
 var N = 0;
 var STRING = '';
 var impossibleClicker = "a@F$Uy&imp";
 var scoreClicker = "a@F$Uy&sc";
-var scoreBoard = [];
+var scoreBoard = ["Yo Jackwad!"];
 var INPLAY = false;
-var group = 'solo';
+var group = 'International Jackwad';
 
 /*
 var users = [];
@@ -96,13 +96,13 @@ function createWebSocket(path) {
 
 var ws = createWebSocket('/');
 
+
+
 class ScoreBoard extends React.Component {
   constructor(props) {
     super(props);
   }
   render () {
-        if (this.props.hidden2) { return ( null ) } 
-    else {
       var formatted = this.props.scoreBoard.map(function(line) {
         return (<p>{line}</p>);
       });
@@ -115,6 +115,105 @@ class ScoreBoard extends React.Component {
                 {formatted}
             </div>
         )
+    }
+  }
+
+class GroupA extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  click () {
+    this.props.setGroup('GroupA');
+  }
+  render () {
+        if (this.props.hidden2) { return ( null ) } 
+    else {
+        return (
+            <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"26",
+                padding: 20, paddingRight: 100, float: "left"}} onClick={this.click.bind(this)}  >
+                GroupA
+            </div>
+        )
+      }
+    }
+  }
+
+class GroupB extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  click () {
+    this.props.setGroup('GroupB');
+  }
+  render () {
+        if (this.props.hidden2) { return ( null ) } 
+    else {
+        return (
+            <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"26",
+                padding: 20, paddingRight: 100, float: "left"}} onClick={this.click.bind(this)}  >
+                GroupB
+            </div>
+        )
+      }
+    }
+  }
+
+class GroupNew extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleChange (event) {       // ISSUE: Input box won't accept data without this handleChange function. ??
+    group = event.target.value;
+    this.props.change({group: group});
+    this.props.setGroup(group);
+  }
+
+  handleEnter (event) {
+    if (this.props.group == '') { 
+      return 
+    } else {
+      if( event.keyCode == 13 ) {
+        this.props.setGroup(group);
+      }
+    }
+  }
+  click (event) { 
+    if (this.props.name == '') { 
+        return 
+    } else { 
+      this.props.setGroup(group);
+    }
+  }
+  render () {
+    console.log(this);
+    if ((this.props.hidden)) { return ( null ) } 
+    var name = this.props.name;
+    return (
+      <div style={{backgroundColor: '#000', color: '#00f0f0', fontSize:"32",
+              padding: 38, float: "left"}}  >
+        <input type="text" name={name} onChange={this.handleChange.bind(this)} 
+        onKeyDown={this.handleEnter.bind(this)} />
+        {this.props.group}
+        <button onClick={this.click.bind(this)}>New Group</button>
+      </div>
+    );
+  }
+};
+
+class GroupDisplay extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render () {
+        if (this.props.hidden2) { return ( null ) } 
+    else {
+        return (
+            <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"26",
+                padding: 20, paddingRight: 100, float: "left"}} >
+                {this.props.name} has joined {this.props.group}
+            </div>
+        )
       }
     }
   }
@@ -124,7 +223,7 @@ class B40 extends React.Component {
     super(props);
   }
   click () {
-    var name = this.props.value;
+    var name = this.props.name;
     var group = this.props.group;
     var num = this.props.message1;
     this.props.change({message1: '' });
@@ -156,7 +255,7 @@ class B41 extends React.Component {
     super(props);
   }
   click () {
-    var name = this.props.value;
+    var name = this.props.name;
     var group = this.props.group;
     var num = this.props.message2;
     this.props.change({message2: '' });
@@ -188,7 +287,7 @@ class B42 extends React.Component {
     super(props);
   }
   click () {
-    var name = this.props.value;
+    var name = this.props.name;
     var group = this.props.group;
     var num = this.props.message3;
     this.props.change({message3: '' });
@@ -221,7 +320,7 @@ class B43 extends React.Component {
     super(props);
   }
   click () {
-    var name = this.props.value;
+    var name = this.props.name;
     var group = this.props.group;
     var num = this.props.message4;
     this.props.change({message4: '' });
@@ -253,7 +352,7 @@ class Op0 extends React.Component {
     super(props);
   }
   click () { 
-    var name = this.props.value;
+    var name = this.props.name;
     var group = this.props.group;
     ws.send(`CQ#$42,${group},${name},mes1,+`);
     var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
@@ -279,7 +378,7 @@ class Op1 extends React.Component {
     super(props);
   }
   click () { 
-    var name = this.props.value;
+    var name = this.props.name;
     var group = this.props.group;
     ws.send(`CQ#$42,${group},${name},mes1,-`);
     var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
@@ -305,7 +404,7 @@ class Op2 extends React.Component {
     super(props);
   }
   click () { 
-    var name = this.props.value;
+    var name = this.props.name;
     var group = this.props.group;
     ws.send(`CQ#$42,${group},${name},mes1,*`);
     var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
@@ -331,7 +430,7 @@ class Op2 extends React.Component {
       super(props);
     }
   click () { 
-    var name = this.props.value;
+    var name = this.props.name;
     var group = this.props.group;
     ws.send(`CQ#$42,${group},${name},mes1,/`);
     var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
@@ -357,7 +456,7 @@ class Op4 extends React.Component {
     super(props);
   }
   click () { 
-    var name = this.props.value;
+    var name = this.props.name;
     var group = this.props.group;
     ws.send(`CQ#$42,${group},${name},mes1,Concat`);
     var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
@@ -526,49 +625,47 @@ class Login extends React.Component {
     super(props);
   }
   handleChange (event) {       // ISSUE: Input box won't accept data without this handleChange function. ??
-    this.props.change({value: event.target.value});
+    this.props.change({name: event.target.value});
   }
   handleEnter (event) {
-    if (this.props.value == '') { 
+    if (this.props.name == '') { 
       return 
     } else {
     var ENTER = 13;
       if( event.keyCode == ENTER ) {
-        var name = this.props.value;
-        var group = this.props.group;
+        var name = this.props.name;
         this.props.change({ hidden: true});
         this.props.change({ hidden2: false});
         this.props.change({ hidden3: false});
         this.props.change({ hidden4: false});
+        this.props.change({ name: name});
         ws.send('CC#$42'+name);
-        ws.send(`CO#$42,${group},${name},ok`);
       }
     }
   }
   click () { 
-    if (this.props.value == '') { 
+    if (this.props.name == '') { 
       return 
     } else { 
-      var name = this.props.value;
-      var group = this.props.group;
+      var name = this.props.name;
       this.props.change({ hidden: true});
       this.props.change({ hidden2: false});
       this.props.change({ hidden3: false});
       this.props.change({ hidden4: false});
+      this.props.change({ name: name});
       ws.send('CC#$42'+name);
-      ws.send(`CO#$42,${group},${name},ok`);
     }
   }
   render () {
     console.log(this);
     if ((this.props.hidden)) { return ( null ) } 
-    var value = this.props.value;
+    var name = this.props.name;
     return (
       <div style={{backgroundColor: '#000', color: '#00f0f0', fontSize:"32",
               padding: 38, float: "left"}}  >
-        <input type="text" value={value} onChange={this.handleChange.bind(this)} 
+        <input type="text" name={name} onChange={this.handleChange.bind(this)} 
         onKeyDown={this.handleEnter.bind(this)} />
-        {this.props.value}
+        {this.props.name}
         <button onClick={this.click.bind(this)}>Join</button>
       </div>
     );
@@ -582,7 +679,7 @@ class Clock extends React.Component {
   click () {
     if (this.props.t === "SCORE!") {   // Click works only at the start of each round
       this.props.change({INPLAY: true});
-      var name = this.props.value;
+      var name = this.props.name;
     var group = this.props.group;
       // this.props.change({hidden4: false});
       ws.send( `CK#$42,${group},${name},10` );
@@ -621,12 +718,13 @@ class B4 extends React.Component {
       str1: str1,
       str2: str2,
       str3: str3,
+      str4: str4,
       sol: sol,
       hidden: hidden,
       hidden2: hidden2,
       hidden3: hidden3,
       hidden4: hidden4,
-      value: value,
+      name: name,
       DS_T: DS_T,
       N: N,
       STRING: STRING,
@@ -662,10 +760,11 @@ ws.onmessage = function(event) {
   console.log('####################################################################');
   // var p = $(document.createElement('p')).text(event.data);
   if ( ( (that.state.group === gameArray[1]) && (that.state.group !== "solo")) || 
-        that.state.value === sender ) {
+        that.state.name === sender ) {
       switch (d2) {
 
           case "CC#$42":
+            ws.send(`CO#42,solo,${sender},filler`)
           break;
 
           case "CZ#$42":
@@ -704,7 +803,8 @@ ws.onmessage = function(event) {
             //  if ("private" !== sendersGroup || sender == playerM) 
             if (that.state.group !== 'solo') {
               that.setState({
-                scoreBoard: extra.split("<br>")
+                scoreBoard: extra.split("<br>"),
+
               });
             } else {
               that.setState({
@@ -718,7 +818,7 @@ ws.onmessage = function(event) {
           break;
 
           case "CD#$42":
- 
+            
           break;
 
           case "CF#$42":
@@ -775,7 +875,7 @@ ws.onmessage = function(event) {
 
           case "CY#$42":
             that.setState({hidden4: true});
-            var playerName = that.state.value;
+            var playerName = that.state.name;
             scoreClicker = extra;   // 'scoreClicker' declared at the top of this file.
             that.setState({
               scoreClicker: scoreClicker,
@@ -798,7 +898,7 @@ ws.onmessage = function(event) {
 
           case "DZ#$42":
             var this2 = that;
-            if (that.state.scoreClicker !== that.state.value) {
+            if (that.state.scoreClicker !== that.state.name) {
               var solutions = extra;
               that.delay(8000)
               .then( function() {
@@ -812,7 +912,7 @@ ws.onmessage = function(event) {
 
 
           case "SX#$42":
-            ws.send(`CO#$42,${group},${name},filler`);
+            ws.send(`SX#$42,${group},${name},filler`);
             //  ws.send("SX#$42," + groupM + "," + playerM + "," + rollM);
           break;
 
@@ -823,14 +923,14 @@ ws.onmessage = function(event) {
     }
   }
 
-
   setInterval( function () { 
-    var name = that.state.value;
+    var name = that.state.name;
     var group = that.state.group;
     var group = that.state.group;
     if (that.state.DS_T === 0) {
       ws.send(`CR#$42,${group},${name},filler`);  
-      if (that.state.value === that.state.scoreClicker) {
+      if (that.state.name === that.state.scoreClicker) {
+        ws.send(`CI#$42,${group},${name},filler`); 
         ws.send(`CI#$42,${group},${name},filler`);  
       }
       that.setState
@@ -866,7 +966,7 @@ ws.onmessage = function(event) {
     this.setState({
       hidden4: false
     });
-    var name = this.state.value;
+    var name = this.state.name;
     var group = this.state.group;
     ws.send(`CK#$42,${group},${name},SCORE!`);
     ws.send(`CF#$42,${group},${name},filler`);
@@ -882,7 +982,7 @@ ws.onmessage = function(event) {
 
   getSolutions () {
     if (this.state.message4 !== '') {  // That is, no calculations have been made.
-      var name = this.state.value;
+      var name = this.state.name;
       var group = this.state.group;
       var a = this.state.message1;
       var b = this.state.message2;
@@ -893,8 +993,6 @@ ws.onmessage = function(event) {
   }
 
   setNumberAr () {
-    var delay = this.delay;
-    var that = this;
     var w1 = this.state.message1;
     var w2 = this.state.message2;
     var w3 = this.state.message3;
@@ -904,13 +1002,19 @@ ws.onmessage = function(event) {
     this.newNums(startArray);   
   }
 
+  setGroup (x) {
+    var name = this.state.name;
+    ws.send( `CO#$42,${x},${name},filler` );
+    this.setState({group: x});
+  }
+
   newNums (x) {
     var j = 0;
     var ar = [];
     var clock;
     var string = this.state.STRING;
     var result = this.state.res;
-    var name = this.state.value;
+    var name = this.state.name;
     for (let k in x) {
         if (x[k] !== "" && x[k] !== undefined) {
         ar[j] = x[k];
@@ -952,13 +1056,13 @@ ws.onmessage = function(event) {
 
 /*
   nextRound () {
-    var name = this.state.value;
+    var name = this.state.name;
     var that = this;
     var string1;
     var string2;
     var string3;
     var n;
-    var name = this.state.value;
+    var name = this.state.name;
     var result = this.state.res;
     var a = this.state.mes0;
     var b = this.state.mes1;
@@ -1003,11 +1107,10 @@ ws.onmessage = function(event) {
     var m0;
     var m1;
     var m2;
-    var name = this.state.value;
+    var name = this.state.name;
     if (this.state.DS_T !== "SCORE!") {
       ws.send( `CK#$42,${group},${name},10` );
     }
-
     delay(100).then( function() {
       m0 = that.state.mes0;
       m1 = that.state.mes1;
@@ -1037,8 +1140,16 @@ ws.onmessage = function(event) {
     });
   }
 
+/*
+this.setState({
+  selected: input
+}).then(function() {
+  this.props.didSelect(this.state.selected);
+}.bind(this));
+*/
+
   newPlayer (x) {
-    this.setState({value: x});
+    this.setState({name: x});
     ws.send("CC#42$"+x)
   }
 
@@ -1054,14 +1165,22 @@ ws.onmessage = function(event) {
           <ScoreBoard key='ScoreBoard' scoreBoard={this.state.scoreBoard} 
             hidden2={this.state.hidden2} />
 
-          <Login key='Login' newPlayer={this.newPlayer.bind(this)} value={this.state.value} 
-            group={this.state.group} change={this.changeItem.bind(this)} hidden={this.state.hidden} />
+          <GroupA key='GroupA' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} />
+          <GroupB key='GroupB' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} />
+          <GroupNew key='GroupNew' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} />
+          <div style={{width: 8000, float: "left", padding: 5}} />
+          <GroupDisplay key='GroupDisplay' change={this.changeItem.bind(this)} 
+            name={this.state.name} group={this.state.group} />
+
+          <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name} 
+            setGroup={this.setGroup.bind(this)} change={this.changeItem.bind(this)} 
+            group={this.state.group} hidden={this.state.hidden} />
 
 
           <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} 
             str4={this.state.str4}/>
 
-          <Clock key='Clock' t={this.state.DS_T} value={this.state.value} group={this.state.group} 
+          <Clock key='Clock' t={this.state.DS_T} name={this.state.name} group={this.state.group} 
             hidden={this.state.hidden} hidden2={this.state.hidden2} hidden3={this.state.hidden3} 
             hidden4={this.state.hidden4} change={this.changeItem.bind(this)} />
 
@@ -1069,48 +1188,48 @@ ws.onmessage = function(event) {
 
           <B40 key='B40' message1={this.state.message1} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} value={this.state.value} group={this.state.group} 
+            delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} 
              hidden={this.state.hidden} hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <B41 key='B41' message2={this.state.message2} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} value={this.state.value} group={this.state.group} hidden={this.state.hidden} 
+            delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <B42 key='B42' message3={this.state.message3} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} value={this.state.value} group={this.state.group} hidden={this.state.hidden} 
+            delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <B43 key='B43' message4={this.state.message4} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} value={this.state.value} group={this.state.group} hidden={this.state.hidden} 
+            delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <div style={{width: 8000, float: "left", padding: 10}} />
 
           <Op0 key='Op0' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value} 
+            mes1={this.state.mes1} calc={this.calc.bind(this)} name={this.state.name} 
             group={this.state.group} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <Op1 key='Op1' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value} 
+            mes1={this.state.mes1} calc={this.calc.bind(this)} name={this.state.name} 
             group={this.state.group} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <Op2 key='Op2' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value} 
+            mes1={this.state.mes1} calc={this.calc.bind(this)} name={this.state.name} 
             group={this.state.group} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <Op3 key='Op3' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value} 
+            mes1={this.state.mes1} calc={this.calc.bind(this)} name={this.state.name} 
             group={this.state.group} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
           <Op4 key='Op4' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} value={this.state.value} 
+            mes1={this.state.mes1} calc={this.calc.bind(this)} name={this.state.name} 
             group={this.state.group} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 

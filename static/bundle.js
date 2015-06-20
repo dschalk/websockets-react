@@ -102,7 +102,7 @@
 
 	"use strict";
 
-	var _Object$create = __webpack_require__(11)["default"];
+	var _Object$create = __webpack_require__(10)["default"];
 
 	exports["default"] = function (subClass, superClass) {
 	  if (typeof superClass !== "function" && superClass !== null) {
@@ -128,7 +128,7 @@
 
 	"use strict";
 
-	var _Object$getOwnPropertyDescriptor = __webpack_require__(10)["default"];
+	var _Object$getOwnPropertyDescriptor = __webpack_require__(11)["default"];
 
 	exports["default"] = function get(_x, _x2, _x3) {
 	  var _again = true;
@@ -250,13 +250,13 @@
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(16), __esModule: true };
+	module.exports = { "default": __webpack_require__(15), __esModule: true };
 
 /***/ },
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(15), __esModule: true };
+	module.exports = { "default": __webpack_require__(16), __esModule: true };
 
 /***/ },
 /* 12 */
@@ -468,9 +468,9 @@
 
 	'use strict';
 
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(45);
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * Injected dependencies:
@@ -692,11 +692,11 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(45);
-	var ReactFragment = __webpack_require__(46);
+	var PooledClass = __webpack_require__(47);
+	var ReactFragment = __webpack_require__(48);
 
-	var traverseAllChildren = __webpack_require__(47);
-	var warning = __webpack_require__(48);
+	var traverseAllChildren = __webpack_require__(49);
+	var warning = __webpack_require__(50);
 
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
 	var threeArgumentPooler = PooledClass.threeArgumentPooler;
@@ -850,8 +850,8 @@
 
 	var ReactUpdateQueue = __webpack_require__(51);
 
-	var invariant = __webpack_require__(50);
-	var warning = __webpack_require__(48);
+	var invariant = __webpack_require__(46);
+	var warning = __webpack_require__(50);
 
 	/**
 	 * Base class helpers for the updating state of a component.
@@ -1016,10 +1016,10 @@
 	var ReactUpdateQueue = __webpack_require__(51);
 
 	var assign = __webpack_require__(34);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 	var keyMirror = __webpack_require__(57);
 	var keyOf = __webpack_require__(58);
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	var MIXINS_KEY = keyOf({mixins: null});
 
@@ -1956,7 +1956,7 @@
 
 	var assign = __webpack_require__(34);
 	var emptyObject = __webpack_require__(59);
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	var didWarn = false;
 
@@ -2077,7 +2077,7 @@
 	var ReactCurrentOwner = __webpack_require__(22);
 
 	var assign = __webpack_require__(34);
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	var RESERVED_PROPS = {
 	  key: true,
@@ -2392,15 +2392,15 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(23);
-	var ReactFragment = __webpack_require__(46);
+	var ReactFragment = __webpack_require__(48);
 	var ReactPropTypeLocations = __webpack_require__(56);
 	var ReactPropTypeLocationNames = __webpack_require__(52);
 	var ReactCurrentOwner = __webpack_require__(22);
 	var ReactNativeComponent = __webpack_require__(60);
 
 	var getIteratorFn = __webpack_require__(61);
-	var invariant = __webpack_require__(50);
-	var warning = __webpack_require__(48);
+	var invariant = __webpack_require__(46);
+	var warning = __webpack_require__(50);
 
 	function getDeclarationErrorAddendum() {
 	  if (ReactCurrentOwner.current) {
@@ -3320,7 +3320,7 @@
 
 	var ReactRootIndex = __webpack_require__(94);
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	var SEPARATOR = '.';
 	var SEPARATOR_LENGTH = SEPARATOR.length;
@@ -3674,10 +3674,10 @@
 	var containsNode = __webpack_require__(1);
 	var getReactRootElementInContainer = __webpack_require__(101);
 	var instantiateReactComponent = __webpack_require__(102);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 	var setInnerHTML = __webpack_require__(103);
 	var shouldUpdateReactComponent = __webpack_require__(104);
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
 
@@ -4658,7 +4658,7 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(23);
-	var ReactFragment = __webpack_require__(46);
+	var ReactFragment = __webpack_require__(48);
 	var ReactPropTypeLocationNames = __webpack_require__(52);
 
 	var emptyFunction = __webpack_require__(105);
@@ -5145,7 +5145,7 @@
 
 	var emptyObject = __webpack_require__(59);
 	var instantiateReactComponent = __webpack_require__(102);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * @param {ReactElement} element
@@ -5280,9 +5280,9 @@
 	var ReactInstanceMap = __webpack_require__(54);
 	var ReactMount = __webpack_require__(29);
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 	var isNode = __webpack_require__(108);
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	/**
 	 * Returns the DOM node rendered by this element.
@@ -5352,7 +5352,7 @@
 
 	var ReactElement = __webpack_require__(23);
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * Returns the first child in a collection of children and verifies that there
@@ -5962,6 +5962,142 @@
 /* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule EventConstants
+	 */
+
+	'use strict';
+
+	var keyMirror = __webpack_require__(57);
+
+	var PropagationPhases = keyMirror({bubbled: null, captured: null});
+
+	/**
+	 * Types of raw signals from the browser caught at the top level.
+	 */
+	var topLevelTypes = keyMirror({
+	  topBlur: null,
+	  topChange: null,
+	  topClick: null,
+	  topCompositionEnd: null,
+	  topCompositionStart: null,
+	  topCompositionUpdate: null,
+	  topContextMenu: null,
+	  topCopy: null,
+	  topCut: null,
+	  topDoubleClick: null,
+	  topDrag: null,
+	  topDragEnd: null,
+	  topDragEnter: null,
+	  topDragExit: null,
+	  topDragLeave: null,
+	  topDragOver: null,
+	  topDragStart: null,
+	  topDrop: null,
+	  topError: null,
+	  topFocus: null,
+	  topInput: null,
+	  topKeyDown: null,
+	  topKeyPress: null,
+	  topKeyUp: null,
+	  topLoad: null,
+	  topMouseDown: null,
+	  topMouseMove: null,
+	  topMouseOut: null,
+	  topMouseOver: null,
+	  topMouseUp: null,
+	  topPaste: null,
+	  topReset: null,
+	  topScroll: null,
+	  topSelectionChange: null,
+	  topSubmit: null,
+	  topTextInput: null,
+	  topTouchCancel: null,
+	  topTouchEnd: null,
+	  topTouchMove: null,
+	  topTouchStart: null,
+	  topWheel: null
+	});
+
+	var EventConstants = {
+	  topLevelTypes: topLevelTypes,
+	  PropagationPhases: PropagationPhases
+	};
+
+	module.exports = EventConstants;
+
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule invariant
+	 */
+
+	"use strict";
+
+	/**
+	 * Use invariant() to assert state which your program assumes to be true.
+	 *
+	 * Provide sprintf-style format (only %s is supported) and arguments
+	 * to provide information about what broke and what you were
+	 * expecting.
+	 *
+	 * The invariant message will be stripped in production, but the invariant
+	 * will remain to ensure logic does not differ in production.
+	 */
+
+	var invariant = function(condition, format, a, b, c, d, e, f) {
+	  if ("production" !== process.env.NODE_ENV) {
+	    if (format === undefined) {
+	      throw new Error('invariant requires an error message argument');
+	    }
+	  }
+
+	  if (!condition) {
+	    var error;
+	    if (format === undefined) {
+	      error = new Error(
+	        'Minified exception occurred; use the non-minified dev environment ' +
+	        'for the full error message and additional helpful warnings.'
+	      );
+	    } else {
+	      var args = [a, b, c, d, e, f];
+	      var argIndex = 0;
+	      error = new Error(
+	        'Invariant Violation: ' +
+	        format.replace(/%s/g, function() { return args[argIndex++]; })
+	      );
+	    }
+
+	    error.framesToPop = 1; // we don't care about invariant's own frame
+	    throw error;
+	  }
+	};
+
+	module.exports = invariant;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright 2013-2015, Facebook, Inc.
 	 * All rights reserved.
@@ -5975,7 +6111,7 @@
 
 	'use strict';
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * Static poolers. Several custom versions for each potential number of
@@ -6078,7 +6214,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
 
 /***/ },
-/* 46 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6096,7 +6232,7 @@
 
 	var ReactElement = __webpack_require__(23);
 
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	/**
 	 * We used to allow keyed objects to serve as a collection of ReactElements,
@@ -6266,7 +6402,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
 
 /***/ },
-/* 47 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6283,12 +6419,12 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(23);
-	var ReactFragment = __webpack_require__(46);
+	var ReactFragment = __webpack_require__(48);
 	var ReactInstanceHandles = __webpack_require__(28);
 
 	var getIteratorFn = __webpack_require__(61);
-	var invariant = __webpack_require__(50);
-	var warning = __webpack_require__(48);
+	var invariant = __webpack_require__(46);
+	var warning = __webpack_require__(50);
 
 	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
 	var SUBSEPARATOR = ':';
@@ -6522,7 +6658,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
 
 /***/ },
-/* 48 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6588,142 +6724,6 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
 
 /***/ },
-/* 49 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule EventConstants
-	 */
-
-	'use strict';
-
-	var keyMirror = __webpack_require__(57);
-
-	var PropagationPhases = keyMirror({bubbled: null, captured: null});
-
-	/**
-	 * Types of raw signals from the browser caught at the top level.
-	 */
-	var topLevelTypes = keyMirror({
-	  topBlur: null,
-	  topChange: null,
-	  topClick: null,
-	  topCompositionEnd: null,
-	  topCompositionStart: null,
-	  topCompositionUpdate: null,
-	  topContextMenu: null,
-	  topCopy: null,
-	  topCut: null,
-	  topDoubleClick: null,
-	  topDrag: null,
-	  topDragEnd: null,
-	  topDragEnter: null,
-	  topDragExit: null,
-	  topDragLeave: null,
-	  topDragOver: null,
-	  topDragStart: null,
-	  topDrop: null,
-	  topError: null,
-	  topFocus: null,
-	  topInput: null,
-	  topKeyDown: null,
-	  topKeyPress: null,
-	  topKeyUp: null,
-	  topLoad: null,
-	  topMouseDown: null,
-	  topMouseMove: null,
-	  topMouseOut: null,
-	  topMouseOver: null,
-	  topMouseUp: null,
-	  topPaste: null,
-	  topReset: null,
-	  topScroll: null,
-	  topSelectionChange: null,
-	  topSubmit: null,
-	  topTextInput: null,
-	  topTouchCancel: null,
-	  topTouchEnd: null,
-	  topTouchMove: null,
-	  topTouchStart: null,
-	  topWheel: null
-	});
-
-	var EventConstants = {
-	  topLevelTypes: topLevelTypes,
-	  PropagationPhases: PropagationPhases
-	};
-
-	module.exports = EventConstants;
-
-
-/***/ },
-/* 50 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule invariant
-	 */
-
-	"use strict";
-
-	/**
-	 * Use invariant() to assert state which your program assumes to be true.
-	 *
-	 * Provide sprintf-style format (only %s is supported) and arguments
-	 * to provide information about what broke and what you were
-	 * expecting.
-	 *
-	 * The invariant message will be stripped in production, but the invariant
-	 * will remain to ensure logic does not differ in production.
-	 */
-
-	var invariant = function(condition, format, a, b, c, d, e, f) {
-	  if ("production" !== process.env.NODE_ENV) {
-	    if (format === undefined) {
-	      throw new Error('invariant requires an error message argument');
-	    }
-	  }
-
-	  if (!condition) {
-	    var error;
-	    if (format === undefined) {
-	      error = new Error(
-	        'Minified exception occurred; use the non-minified dev environment ' +
-	        'for the full error message and additional helpful warnings.'
-	      );
-	    } else {
-	      var args = [a, b, c, d, e, f];
-	      var argIndex = 0;
-	      error = new Error(
-	        'Invariant Violation: ' +
-	        format.replace(/%s/g, function() { return args[argIndex++]; })
-	      );
-	    }
-
-	    error.framesToPop = 1; // we don't care about invariant's own frame
-	    throw error;
-	  }
-	};
-
-	module.exports = invariant;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
-
-/***/ },
 /* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -6747,8 +6747,8 @@
 	var ReactUpdates = __webpack_require__(99);
 
 	var assign = __webpack_require__(34);
-	var invariant = __webpack_require__(50);
-	var warning = __webpack_require__(48);
+	var invariant = __webpack_require__(46);
+	var warning = __webpack_require__(50);
 
 	function enqueueUpdate(internalInstance) {
 	  if (internalInstance !== ReactLifeCycle.currentlyMountingInstance) {
@@ -7232,7 +7232,7 @@
 
 	'use strict';
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * Constructs an enumeration with keys equal to their value.
@@ -7357,7 +7357,7 @@
 	'use strict';
 
 	var assign = __webpack_require__(34);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	var autoGenerateWrapperClass = null;
 	var genericComponentClass = null;
@@ -7575,7 +7575,7 @@
 	var DOMProperty = __webpack_require__(95);
 
 	var quoteAttributeValueForBrowser = __webpack_require__(127);
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	function shouldIgnoreValue(name, value) {
 	  return value == null ||
@@ -7832,10 +7832,10 @@
 
 	var assign = __webpack_require__(34);
 	var escapeTextContentForBrowser = __webpack_require__(66);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 	var isEventSupported = __webpack_require__(130);
 	var keyOf = __webpack_require__(58);
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	var deleteListener = ReactBrowserEventEmitter.deleteListener;
 	var listenTo = ReactBrowserEventEmitter.listenTo;
@@ -8375,7 +8375,7 @@
 
 	'use strict';
 
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(45);
 	var EventPropagators = __webpack_require__(131);
 	var ExecutionEnvironment = __webpack_require__(37);
 	var FallbackCompositionState = __webpack_require__(132);
@@ -8873,7 +8873,7 @@
 
 	'use strict';
 
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(45);
 	var EventPluginHub = __webpack_require__(135);
 	var EventPropagators = __webpack_require__(131);
 	var ExecutionEnvironment = __webpack_require__(37);
@@ -9332,7 +9332,7 @@
 
 	'use strict';
 
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(45);
 	var EventPropagators = __webpack_require__(131);
 	var SyntheticMouseEvent = __webpack_require__(138);
 
@@ -9691,7 +9691,7 @@
 
 	'use strict';
 
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(45);
 
 	var emptyFunction = __webpack_require__(105);
 
@@ -9932,7 +9932,7 @@
 
 	'use strict';
 
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(45);
 	var LocalEventTrapMixin = __webpack_require__(141);
 	var ReactBrowserComponentMixin = __webpack_require__(74);
 	var ReactClass = __webpack_require__(20);
@@ -9985,7 +9985,7 @@
 
 	'use strict';
 
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(45);
 	var LocalEventTrapMixin = __webpack_require__(141);
 	var ReactBrowserComponentMixin = __webpack_require__(74);
 	var ReactClass = __webpack_require__(20);
@@ -10044,7 +10044,7 @@
 	var ReactMount = __webpack_require__(29);
 	var ReactPerf = __webpack_require__(30);
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 	var setInnerHTML = __webpack_require__(103);
 
 	/**
@@ -10206,7 +10206,7 @@
 
 	'use strict';
 
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(45);
 	var LocalEventTrapMixin = __webpack_require__(141);
 	var ReactBrowserComponentMixin = __webpack_require__(74);
 	var ReactClass = __webpack_require__(20);
@@ -10265,7 +10265,7 @@
 	var ReactUpdates = __webpack_require__(99);
 
 	var assign = __webpack_require__(34);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	var input = ReactElement.createFactory('input');
 
@@ -10439,7 +10439,7 @@
 	var ReactClass = __webpack_require__(20);
 	var ReactElement = __webpack_require__(23);
 
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	var option = ReactElement.createFactory('option');
 
@@ -10681,9 +10681,9 @@
 	var ReactUpdates = __webpack_require__(99);
 
 	var assign = __webpack_require__(34);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	var textarea = ReactElement.createFactory('textarea');
 
@@ -10818,7 +10818,7 @@
 
 	var EventListener = __webpack_require__(144);
 	var ExecutionEnvironment = __webpack_require__(37);
-	var PooledClass = __webpack_require__(45);
+	var PooledClass = __webpack_require__(47);
 	var ReactInstanceHandles = __webpack_require__(28);
 	var ReactMount = __webpack_require__(29);
 	var ReactUpdates = __webpack_require__(99);
@@ -11050,7 +11050,7 @@
 	'use strict';
 
 	var CallbackQueue = __webpack_require__(148);
-	var PooledClass = __webpack_require__(45);
+	var PooledClass = __webpack_require__(47);
 	var ReactBrowserEventEmitter = __webpack_require__(96);
 	var ReactInputSelection = __webpack_require__(149);
 	var ReactPutListenerQueue = __webpack_require__(150);
@@ -11228,7 +11228,7 @@
 
 	'use strict';
 
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(45);
 	var EventPropagators = __webpack_require__(131);
 	var ReactInputSelection = __webpack_require__(149);
 	var SyntheticEvent = __webpack_require__(136);
@@ -11462,7 +11462,7 @@
 
 	'use strict';
 
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(45);
 	var EventPluginUtils = __webpack_require__(17);
 	var EventPropagators = __webpack_require__(131);
 	var SyntheticClipboardEvent = __webpack_require__(154);
@@ -11477,9 +11477,9 @@
 
 	var getEventCharCode = __webpack_require__(160);
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 	var keyOf = __webpack_require__(58);
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
 
@@ -11996,7 +11996,7 @@
 	var ReactClass = __webpack_require__(20);
 	var ReactElement = __webpack_require__(23);
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * Create a component that will throw an exception when unmounted.
@@ -12364,7 +12364,7 @@
 
 	'use strict';
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	function checkMask(value, bitmask) {
 	  return (value & bitmask) === bitmask;
@@ -12664,7 +12664,7 @@
 
 	'use strict';
 
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(45);
 	var EventPluginHub = __webpack_require__(135);
 	var EventPluginRegistry = __webpack_require__(163);
 	var ReactEventEmitterMixin = __webpack_require__(164);
@@ -13023,7 +13023,7 @@
 	var ReactElement = __webpack_require__(23);
 	var ReactInstanceMap = __webpack_require__(54);
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	var component;
 	// This registry keeps track of the React IDs of the components that rendered to
@@ -13171,15 +13171,15 @@
 	'use strict';
 
 	var CallbackQueue = __webpack_require__(148);
-	var PooledClass = __webpack_require__(45);
+	var PooledClass = __webpack_require__(47);
 	var ReactCurrentOwner = __webpack_require__(22);
 	var ReactPerf = __webpack_require__(30);
 	var ReactReconciler = __webpack_require__(32);
 	var Transaction = __webpack_require__(139);
 
 	var assign = __webpack_require__(34);
-	var invariant = __webpack_require__(50);
-	var warning = __webpack_require__(48);
+	var invariant = __webpack_require__(46);
+	var warning = __webpack_require__(50);
 
 	var dirtyComponents = [];
 	var asapCallbackQueue = CallbackQueue.getPooled();
@@ -13499,15 +13499,15 @@
 	var hidden4 = true;
 
 	var togDice = false;
-	var value = '';
+	var name = '';
 	var DS_T = 'SCORE!';
 	var N = 0;
 	var STRING = '';
 	var impossibleClicker = 'a@F$Uy&imp';
 	var scoreClicker = 'a@F$Uy&sc';
-	var scoreBoard = [];
+	var scoreBoard = ['Yo Jackwad!'];
 	var INPLAY = false;
-	var group = 'solo';
+	var group = 'International Jackwad';
 
 	/*
 	var users = [];
@@ -13574,48 +13574,206 @@
 	  _createClass(ScoreBoard, [{
 	    key: 'render',
 	    value: function render() {
-	      if (this.props.hidden2) {
-	        return null;
-	      } else {
-	        var formatted = this.props.scoreBoard.map(function (line) {
-	          return _react2['default'].createElement(
-	            'p',
-	            null,
-	            line
-	          );
-	        });
-	        console.log(formatted);
-	        console.log(this);
+	      var formatted = this.props.scoreBoard.map(function (line) {
 	        return _react2['default'].createElement(
-	          'div',
-	          { style: { backgroundColor: '#000', color: '#d5f765', fontSize: '26',
-	              padding: 20, paddingRight: 100, float: 'right' } },
-	          'Score Board ',
-	          _react2['default'].createElement('br', null),
-	          ' name_score_group ',
-	          _react2['default'].createElement('br', null),
-	          formatted
+	          'p',
+	          null,
+	          line
 	        );
-	      }
+	      });
+	      console.log(formatted);
+	      console.log(this);
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: { backgroundColor: '#000', color: '#d5f765', fontSize: '26',
+	            padding: 20, paddingRight: 100, float: 'right' } },
+	        'Score Board ',
+	        _react2['default'].createElement('br', null),
+	        ' name_score_group ',
+	        _react2['default'].createElement('br', null),
+	        formatted
+	      );
 	    }
 	  }]);
 
 	  return ScoreBoard;
 	})(_react2['default'].Component);
 
-	var B40 = (function (_React$Component2) {
+	var GroupA = (function (_React$Component2) {
+	  function GroupA(props) {
+	    _classCallCheck(this, GroupA);
+
+	    _get(Object.getPrototypeOf(GroupA.prototype), 'constructor', this).call(this, props);
+	  }
+
+	  _inherits(GroupA, _React$Component2);
+
+	  _createClass(GroupA, [{
+	    key: 'click',
+	    value: function click() {
+	      this.props.setGroup('GroupA');
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      if (this.props.hidden2) {
+	        return null;
+	      } else {
+	        return _react2['default'].createElement(
+	          'div',
+	          { style: { backgroundColor: '#000', color: '#d5f765', fontSize: '26',
+	              padding: 20, paddingRight: 100, float: 'left' }, onClick: this.click.bind(this) },
+	          'GroupA'
+	        );
+	      }
+	    }
+	  }]);
+
+	  return GroupA;
+	})(_react2['default'].Component);
+
+	var GroupB = (function (_React$Component3) {
+	  function GroupB(props) {
+	    _classCallCheck(this, GroupB);
+
+	    _get(Object.getPrototypeOf(GroupB.prototype), 'constructor', this).call(this, props);
+	  }
+
+	  _inherits(GroupB, _React$Component3);
+
+	  _createClass(GroupB, [{
+	    key: 'click',
+	    value: function click() {
+	      this.props.setGroup('GroupB');
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      if (this.props.hidden2) {
+	        return null;
+	      } else {
+	        return _react2['default'].createElement(
+	          'div',
+	          { style: { backgroundColor: '#000', color: '#d5f765', fontSize: '26',
+	              padding: 20, paddingRight: 100, float: 'left' }, onClick: this.click.bind(this) },
+	          'GroupB'
+	        );
+	      }
+	    }
+	  }]);
+
+	  return GroupB;
+	})(_react2['default'].Component);
+
+	var GroupNew = (function (_React$Component4) {
+	  function GroupNew(props) {
+	    _classCallCheck(this, GroupNew);
+
+	    _get(Object.getPrototypeOf(GroupNew.prototype), 'constructor', this).call(this, props);
+	  }
+
+	  _inherits(GroupNew, _React$Component4);
+
+	  _createClass(GroupNew, [{
+	    key: 'handleChange',
+	    value: function handleChange(event) {
+	      // ISSUE: Input box won't accept data without this handleChange function. ??
+	      group = event.target.value;
+	      this.props.change({ group: group });
+	      this.props.setGroup(group);
+	    }
+	  }, {
+	    key: 'handleEnter',
+	    value: function handleEnter(event) {
+	      if (this.props.group == '') {
+	        return;
+	      } else {
+	        if (event.keyCode == 13) {
+	          this.props.setGroup(group);
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'click',
+	    value: function click(event) {
+	      if (this.props.name == '') {
+	        return;
+	      } else {
+	        this.props.setGroup(group);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      console.log(this);
+	      if (this.props.hidden) {
+	        return null;
+	      }
+	      var name = this.props.name;
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: { backgroundColor: '#000', color: '#00f0f0', fontSize: '32',
+	            padding: 38, float: 'left' } },
+	        _react2['default'].createElement('input', { type: 'text', name: name, onChange: this.handleChange.bind(this),
+	          onKeyDown: this.handleEnter.bind(this) }),
+	        this.props.group,
+	        _react2['default'].createElement(
+	          'button',
+	          { onClick: this.click.bind(this) },
+	          'New Group'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return GroupNew;
+	})(_react2['default'].Component);
+
+	;
+
+	var GroupDisplay = (function (_React$Component5) {
+	  function GroupDisplay(props) {
+	    _classCallCheck(this, GroupDisplay);
+
+	    _get(Object.getPrototypeOf(GroupDisplay.prototype), 'constructor', this).call(this, props);
+	  }
+
+	  _inherits(GroupDisplay, _React$Component5);
+
+	  _createClass(GroupDisplay, [{
+	    key: 'render',
+	    value: function render() {
+	      if (this.props.hidden2) {
+	        return null;
+	      } else {
+	        return _react2['default'].createElement(
+	          'div',
+	          { style: { backgroundColor: '#000', color: '#d5f765', fontSize: '26',
+	              padding: 20, paddingRight: 100, float: 'left' } },
+	          this.props.name,
+	          ' has joined ',
+	          this.props.group
+	        );
+	      }
+	    }
+	  }]);
+
+	  return GroupDisplay;
+	})(_react2['default'].Component);
+
+	var B40 = (function (_React$Component6) {
 	  function B40(props) {
 	    _classCallCheck(this, B40);
 
 	    _get(Object.getPrototypeOf(B40.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B40, _React$Component2);
+	  _inherits(B40, _React$Component6);
 
 	  _createClass(B40, [{
 	    key: 'click',
 	    value: function click() {
-	      var name = this.props.value;
+	      var name = this.props.name;
 	      var group = this.props.group;
 	      var num = this.props.message1;
 	      this.props.change({ message1: '' });
@@ -13648,19 +13806,19 @@
 	  return B40;
 	})(_react2['default'].Component);
 
-	var B41 = (function (_React$Component3) {
+	var B41 = (function (_React$Component7) {
 	  function B41(props) {
 	    _classCallCheck(this, B41);
 
 	    _get(Object.getPrototypeOf(B41.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B41, _React$Component3);
+	  _inherits(B41, _React$Component7);
 
 	  _createClass(B41, [{
 	    key: 'click',
 	    value: function click() {
-	      var name = this.props.value;
+	      var name = this.props.name;
 	      var group = this.props.group;
 	      var num = this.props.message2;
 	      this.props.change({ message2: '' });
@@ -13693,19 +13851,19 @@
 	  return B41;
 	})(_react2['default'].Component);
 
-	var B42 = (function (_React$Component4) {
+	var B42 = (function (_React$Component8) {
 	  function B42(props) {
 	    _classCallCheck(this, B42);
 
 	    _get(Object.getPrototypeOf(B42.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B42, _React$Component4);
+	  _inherits(B42, _React$Component8);
 
 	  _createClass(B42, [{
 	    key: 'click',
 	    value: function click() {
-	      var name = this.props.value;
+	      var name = this.props.name;
 	      var group = this.props.group;
 	      var num = this.props.message3;
 	      this.props.change({ message3: '' });
@@ -13738,19 +13896,19 @@
 	  return B42;
 	})(_react2['default'].Component);
 
-	var B43 = (function (_React$Component5) {
+	var B43 = (function (_React$Component9) {
 	  function B43(props) {
 	    _classCallCheck(this, B43);
 
 	    _get(Object.getPrototypeOf(B43.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B43, _React$Component5);
+	  _inherits(B43, _React$Component9);
 
 	  _createClass(B43, [{
 	    key: 'click',
 	    value: function click() {
-	      var name = this.props.value;
+	      var name = this.props.name;
 	      var group = this.props.group;
 	      var num = this.props.message4;
 	      this.props.change({ message4: '' });
@@ -13783,19 +13941,19 @@
 	  return B43;
 	})(_react2['default'].Component);
 
-	var Op0 = (function (_React$Component6) {
+	var Op0 = (function (_React$Component10) {
 	  function Op0(props) {
 	    _classCallCheck(this, Op0);
 
 	    _get(Object.getPrototypeOf(Op0.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Op0, _React$Component6);
+	  _inherits(Op0, _React$Component10);
 
 	  _createClass(Op0, [{
 	    key: 'click',
 	    value: function click() {
-	      var name = this.props.value;
+	      var name = this.props.name;
 	      var group = this.props.group;
 	      ws.send('CQ#$42,' + group + ',' + name + ',mes1,+');
 	      var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
@@ -13823,19 +13981,19 @@
 	  return Op0;
 	})(_react2['default'].Component);
 
-	var Op1 = (function (_React$Component7) {
+	var Op1 = (function (_React$Component11) {
 	  function Op1(props) {
 	    _classCallCheck(this, Op1);
 
 	    _get(Object.getPrototypeOf(Op1.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Op1, _React$Component7);
+	  _inherits(Op1, _React$Component11);
 
 	  _createClass(Op1, [{
 	    key: 'click',
 	    value: function click() {
-	      var name = this.props.value;
+	      var name = this.props.name;
 	      var group = this.props.group;
 	      ws.send('CQ#$42,' + group + ',' + name + ',mes1,-');
 	      var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
@@ -13863,19 +14021,19 @@
 	  return Op1;
 	})(_react2['default'].Component);
 
-	var Op2 = (function (_React$Component8) {
+	var Op2 = (function (_React$Component12) {
 	  function Op2(props) {
 	    _classCallCheck(this, Op2);
 
 	    _get(Object.getPrototypeOf(Op2.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Op2, _React$Component8);
+	  _inherits(Op2, _React$Component12);
 
 	  _createClass(Op2, [{
 	    key: 'click',
 	    value: function click() {
-	      var name = this.props.value;
+	      var name = this.props.name;
 	      var group = this.props.group;
 	      ws.send('CQ#$42,' + group + ',' + name + ',mes1,*');
 	      var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
@@ -13903,19 +14061,19 @@
 	  return Op2;
 	})(_react2['default'].Component);
 
-	var Op3 = (function (_React$Component9) {
+	var Op3 = (function (_React$Component13) {
 	  function Op3(props) {
 	    _classCallCheck(this, Op3);
 
 	    _get(Object.getPrototypeOf(Op3.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Op3, _React$Component9);
+	  _inherits(Op3, _React$Component13);
 
 	  _createClass(Op3, [{
 	    key: 'click',
 	    value: function click() {
-	      var name = this.props.value;
+	      var name = this.props.name;
 	      var group = this.props.group;
 	      ws.send('CQ#$42,' + group + ',' + name + ',mes1,/');
 	      var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
@@ -13943,19 +14101,19 @@
 	  return Op3;
 	})(_react2['default'].Component);
 
-	var Op4 = (function (_React$Component10) {
+	var Op4 = (function (_React$Component14) {
 	  function Op4(props) {
 	    _classCallCheck(this, Op4);
 
 	    _get(Object.getPrototypeOf(Op4.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Op4, _React$Component10);
+	  _inherits(Op4, _React$Component14);
 
 	  _createClass(Op4, [{
 	    key: 'click',
 	    value: function click() {
-	      var name = this.props.value;
+	      var name = this.props.name;
 	      var group = this.props.group;
 	      ws.send('CQ#$42,' + group + ',' + name + ',mes1,Concat');
 	      var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
@@ -13983,14 +14141,14 @@
 	  return Op4;
 	})(_react2['default'].Component);
 
-	var B30 = (function (_React$Component11) {
+	var B30 = (function (_React$Component15) {
 	  function B30(props) {
 	    _classCallCheck(this, B30);
 
 	    _get(Object.getPrototypeOf(B30.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B30, _React$Component11);
+	  _inherits(B30, _React$Component15);
 
 	  _createClass(B30, [{
 	    key: 'render',
@@ -14011,14 +14169,14 @@
 
 	;
 
-	var B31 = (function (_React$Component12) {
+	var B31 = (function (_React$Component16) {
 	  function B31(props) {
 	    _classCallCheck(this, B31);
 
 	    _get(Object.getPrototypeOf(B31.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B31, _React$Component12);
+	  _inherits(B31, _React$Component16);
 
 	  _createClass(B31, [{
 	    key: 'render',
@@ -14039,14 +14197,14 @@
 
 	;
 
-	var B32 = (function (_React$Component13) {
+	var B32 = (function (_React$Component17) {
 	  function B32(props) {
 	    _classCallCheck(this, B32);
 
 	    _get(Object.getPrototypeOf(B32.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B32, _React$Component13);
+	  _inherits(B32, _React$Component17);
 
 	  _createClass(B32, [{
 	    key: 'render',
@@ -14067,14 +14225,14 @@
 
 	;
 
-	var B33 = (function (_React$Component14) {
+	var B33 = (function (_React$Component18) {
 	  function B33(props) {
 	    _classCallCheck(this, B33);
 
 	    _get(Object.getPrototypeOf(B33.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B33, _React$Component14);
+	  _inherits(B33, _React$Component18);
 
 	  _createClass(B33, [{
 	    key: 'render',
@@ -14095,14 +14253,14 @@
 
 	;
 
-	var B34 = (function (_React$Component15) {
+	var B34 = (function (_React$Component19) {
 	  function B34(props) {
 	    _classCallCheck(this, B34);
 
 	    _get(Object.getPrototypeOf(B34.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B34, _React$Component15);
+	  _inherits(B34, _React$Component19);
 
 	  _createClass(B34, [{
 	    key: 'render',
@@ -14123,14 +14281,14 @@
 
 	;
 
-	var Roll = (function (_React$Component16) {
+	var Roll = (function (_React$Component20) {
 	  function Roll(props) {
 	    _classCallCheck(this, Roll);
 
 	    _get(Object.getPrototypeOf(Roll.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Roll, _React$Component16);
+	  _inherits(Roll, _React$Component20);
 
 	  _createClass(Roll, [{
 	    key: 'clickHandler',
@@ -14160,7 +14318,7 @@
 
 	;
 
-	var Solutions = (function (_React$Component17) {
+	var Solutions = (function (_React$Component21) {
 	  function Solutions(props) {
 	    _classCallCheck(this, Solutions);
 
@@ -14168,7 +14326,7 @@
 	    var formatted;
 	  }
 
-	  _inherits(Solutions, _React$Component17);
+	  _inherits(Solutions, _React$Component21);
 
 	  _createClass(Solutions, [{
 	    key: 'clickHandler',
@@ -14205,14 +14363,14 @@
 	  return Solutions;
 	})(_react2['default'].Component);
 
-	var Display = (function (_React$Component18) {
+	var Display = (function (_React$Component22) {
 	  function Display(props) {
 	    _classCallCheck(this, Display);
 
 	    _get(Object.getPrototypeOf(Display.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Display, _React$Component18);
+	  _inherits(Display, _React$Component22);
 
 	  _createClass(Display, [{
 	    key: 'render',
@@ -14245,54 +14403,52 @@
 
 	;
 
-	var Login = (function (_React$Component19) {
+	var Login = (function (_React$Component23) {
 	  function Login(props) {
 	    _classCallCheck(this, Login);
 
 	    _get(Object.getPrototypeOf(Login.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Login, _React$Component19);
+	  _inherits(Login, _React$Component23);
 
 	  _createClass(Login, [{
 	    key: 'handleChange',
 	    value: function handleChange(event) {
 	      // ISSUE: Input box won't accept data without this handleChange function. ??
-	      this.props.change({ value: event.target.value });
+	      this.props.change({ name: event.target.value });
 	    }
 	  }, {
 	    key: 'handleEnter',
 	    value: function handleEnter(event) {
-	      if (this.props.value == '') {
+	      if (this.props.name == '') {
 	        return;
 	      } else {
 	        var ENTER = 13;
 	        if (event.keyCode == ENTER) {
-	          var name = this.props.value;
-	          var group = this.props.group;
+	          var name = this.props.name;
 	          this.props.change({ hidden: true });
 	          this.props.change({ hidden2: false });
 	          this.props.change({ hidden3: false });
 	          this.props.change({ hidden4: false });
+	          this.props.change({ name: name });
 	          ws.send('CC#$42' + name);
-	          ws.send('CO#$42,' + group + ',' + name + ',ok');
 	        }
 	      }
 	    }
 	  }, {
 	    key: 'click',
 	    value: function click() {
-	      if (this.props.value == '') {
+	      if (this.props.name == '') {
 	        return;
 	      } else {
-	        var name = this.props.value;
-	        var group = this.props.group;
+	        var name = this.props.name;
 	        this.props.change({ hidden: true });
 	        this.props.change({ hidden2: false });
 	        this.props.change({ hidden3: false });
 	        this.props.change({ hidden4: false });
+	        this.props.change({ name: name });
 	        ws.send('CC#$42' + name);
-	        ws.send('CO#$42,' + group + ',' + name + ',ok');
 	      }
 	    }
 	  }, {
@@ -14302,14 +14458,14 @@
 	      if (this.props.hidden) {
 	        return null;
 	      }
-	      var value = this.props.value;
+	      var name = this.props.name;
 	      return _react2['default'].createElement(
 	        'div',
 	        { style: { backgroundColor: '#000', color: '#00f0f0', fontSize: '32',
 	            padding: 38, float: 'left' } },
-	        _react2['default'].createElement('input', { type: 'text', value: value, onChange: this.handleChange.bind(this),
+	        _react2['default'].createElement('input', { type: 'text', name: name, onChange: this.handleChange.bind(this),
 	          onKeyDown: this.handleEnter.bind(this) }),
-	        this.props.value,
+	        this.props.name,
 	        _react2['default'].createElement(
 	          'button',
 	          { onClick: this.click.bind(this) },
@@ -14324,14 +14480,14 @@
 
 	;
 
-	var Clock = (function (_React$Component20) {
+	var Clock = (function (_React$Component24) {
 	  function Clock(props) {
 	    _classCallCheck(this, Clock);
 
 	    _get(Object.getPrototypeOf(Clock.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Clock, _React$Component20);
+	  _inherits(Clock, _React$Component24);
 
 	  _createClass(Clock, [{
 	    key: 'click',
@@ -14339,7 +14495,7 @@
 	      if (this.props.t === 'SCORE!') {
 	        // Click works only at the start of each round
 	        this.props.change({ INPLAY: true });
-	        var name = this.props.value;
+	        var name = this.props.name;
 	        var group = this.props.group;
 	        // this.props.change({hidden4: false});
 	        ws.send('CK#$42,' + group + ',' + name + ',10');
@@ -14368,7 +14524,7 @@
 
 	;
 
-	var B4 = (function (_React$Component21) {
+	var B4 = (function (_React$Component25) {
 	  function B4(props) {
 	    _classCallCheck(this, B4);
 
@@ -14389,12 +14545,13 @@
 	      str1: str1,
 	      str2: str2,
 	      str3: str3,
+	      str4: str4,
 	      sol: sol,
 	      hidden: hidden,
 	      hidden2: hidden2,
 	      hidden3: hidden3,
 	      hidden4: hidden4,
-	      value: value,
+	      name: name,
 	      DS_T: DS_T,
 	      N: N,
 	      STRING: STRING,
@@ -14429,10 +14586,11 @@
 	      console.log(gameArray);
 	      console.log('####################################################################');
 	      // var p = $(document.createElement('p')).text(event.data);
-	      if (that.state.group === gameArray[1] && that.state.group !== 'solo' || that.state.value === sender) {
+	      if (that.state.group === gameArray[1] && that.state.group !== 'solo' || that.state.name === sender) {
 	        switch (d2) {
 
 	          case 'CC#$42':
+	            ws.send('CO#42,solo,' + sender + ',filler');
 	            break;
 
 	          case 'CZ#$42':
@@ -14469,8 +14627,7 @@
 	            //  if ("private" !== sendersGroup || sender == playerM)
 	            if (that.state.group !== 'solo') {
 	              that.setState({
-	                scoreBoard: extra.split('<br>')
-	              });
+	                scoreBoard: extra.split('<br>') });
 	            } else {
 	              that.setState({
 	                scoreBoard: ['Data is visible to group players.']
@@ -14535,7 +14692,7 @@
 
 	          case 'CY#$42':
 	            that.setState({ hidden4: true });
-	            var playerName = that.state.value;
+	            var playerName = that.state.name;
 	            scoreClicker = extra; // 'scoreClicker' declared at the top of this file.
 	            that.setState({
 	              scoreClicker: scoreClicker,
@@ -14558,7 +14715,7 @@
 
 	          case 'DZ#$42':
 	            var this2 = that;
-	            if (that.state.scoreClicker !== that.state.value) {
+	            if (that.state.scoreClicker !== that.state.name) {
 	              var solutions = extra;
 	              that.delay(8000).then(function () {
 	                this2.setState({
@@ -14570,7 +14727,7 @@
 	            break;
 
 	          case 'SX#$42':
-	            ws.send('CO#$42,' + group + ',' + name + ',filler');
+	            ws.send('SX#$42,' + group + ',' + name + ',filler');
 	            //  ws.send("SX#$42," + groupM + "," + playerM + "," + rollM);
 	            break;
 
@@ -14582,12 +14739,13 @@
 	    };
 
 	    setInterval(function () {
-	      var name = that.state.value;
+	      var name = that.state.name;
 	      var group = that.state.group;
 	      var group = that.state.group;
 	      if (that.state.DS_T === 0) {
 	        ws.send('CR#$42,' + group + ',' + name + ',filler');
-	        if (that.state.value === that.state.scoreClicker) {
+	        if (that.state.name === that.state.scoreClicker) {
+	          ws.send('CI#$42,' + group + ',' + name + ',filler');
 	          ws.send('CI#$42,' + group + ',' + name + ',filler');
 	        }
 	        that.setState({
@@ -14608,7 +14766,7 @@
 	    }, 1000);
 	  }
 
-	  _inherits(B4, _React$Component21);
+	  _inherits(B4, _React$Component25);
 
 	  _createClass(B4, [{
 	    key: 'delay',
@@ -14628,7 +14786,7 @@
 	      this.setState({
 	        hidden4: false
 	      });
-	      var name = this.state.value;
+	      var name = this.state.name;
 	      var group = this.state.group;
 	      ws.send('CK#$42,' + group + ',' + name + ',SCORE!');
 	      ws.send('CF#$42,' + group + ',' + name + ',filler');
@@ -14646,7 +14804,7 @@
 	    value: function getSolutions() {
 	      if (this.state.message4 !== '') {
 	        // That is, no calculations have been made.
-	        var name = this.state.value;
+	        var name = this.state.name;
 	        var group = this.state.group;
 	        var a = this.state.message1;
 	        var b = this.state.message2;
@@ -14658,8 +14816,6 @@
 	  }, {
 	    key: 'setNumberAr',
 	    value: function setNumberAr() {
-	      var delay = this.delay;
-	      var that = this;
 	      var w1 = this.state.message1;
 	      var w2 = this.state.message2;
 	      var w3 = this.state.message3;
@@ -14669,6 +14825,13 @@
 	      this.newNums(startArray);
 	    }
 	  }, {
+	    key: 'setGroup',
+	    value: function setGroup(x) {
+	      var name = this.state.name;
+	      ws.send('CO#$42,' + x + ',' + name + ',filler');
+	      this.setState({ group: x });
+	    }
+	  }, {
 	    key: 'newNums',
 	    value: function newNums(x) {
 	      var j = 0;
@@ -14676,7 +14839,7 @@
 	      var clock;
 	      var string = this.state.STRING;
 	      var result = this.state.res;
-	      var name = this.state.value;
+	      var name = this.state.name;
 	      for (var k in x) {
 	        if (x[k] !== '' && x[k] !== undefined) {
 	          ar[j] = x[k];
@@ -14720,13 +14883,13 @@
 
 	    /*
 	      nextRound () {
-	        var name = this.state.value;
+	        var name = this.state.name;
 	        var that = this;
 	        var string1;
 	        var string2;
 	        var string3;
 	        var n;
-	        var name = this.state.value;
+	        var name = this.state.name;
 	        var result = this.state.res;
 	        var a = this.state.mes0;
 	        var b = this.state.mes1;
@@ -14771,11 +14934,10 @@
 	      var m0;
 	      var m1;
 	      var m2;
-	      var name = this.state.value;
+	      var name = this.state.name;
 	      if (this.state.DS_T !== 'SCORE!') {
 	        ws.send('CK#$42,' + group + ',' + name + ',10');
 	      }
-
 	      delay(100).then(function () {
 	        m0 = that.state.mes0;
 	        m1 = that.state.mes1;
@@ -14808,8 +14970,17 @@
 	    }
 	  }, {
 	    key: 'newPlayer',
+
+	    /*
+	    this.setState({
+	      selected: input
+	    }).then(function() {
+	      this.props.didSelect(this.state.selected);
+	    }.bind(this));
+	    */
+
 	    value: function newPlayer(x) {
-	      this.setState({ value: x });
+	      this.setState({ name: x });
 	      ws.send('CC#42$' + x);
 	    }
 	  }, {
@@ -14826,49 +14997,56 @@
 	        null,
 	        _react2['default'].createElement(ScoreBoard, { key: 'ScoreBoard', scoreBoard: this.state.scoreBoard,
 	          hidden2: this.state.hidden2 }),
-	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: this.newPlayer.bind(this), value: this.state.value,
-	          group: this.state.group, change: this.changeItem.bind(this), hidden: this.state.hidden }),
+	        _react2['default'].createElement(GroupA, { key: 'GroupA', change: this.changeItem.bind(this), setGroup: this.setGroup.bind(this) }),
+	        _react2['default'].createElement(GroupB, { key: 'GroupB', change: this.changeItem.bind(this), setGroup: this.setGroup.bind(this) }),
+	        _react2['default'].createElement(GroupNew, { key: 'GroupNew', change: this.changeItem.bind(this), setGroup: this.setGroup.bind(this) }),
+	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 5 } }),
+	        _react2['default'].createElement(GroupDisplay, { key: 'GroupDisplay', change: this.changeItem.bind(this),
+	          name: this.state.name, group: this.state.group }),
+	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: this.newPlayer.bind(this), name: this.state.name,
+	          setGroup: this.setGroup.bind(this), change: this.changeItem.bind(this),
+	          group: this.state.group, hidden: this.state.hidden }),
 	        _react2['default'].createElement(Display, { key: 'Display', str1: this.state.str1, str2: this.state.str2, str3: this.state.str3,
 	          str4: this.state.str4 }),
-	        _react2['default'].createElement(Clock, { key: 'Clock', t: this.state.DS_T, value: this.state.value, group: this.state.group,
+	        _react2['default'].createElement(Clock, { key: 'Clock', t: this.state.DS_T, name: this.state.name, group: this.state.group,
 	          hidden: this.state.hidden, hidden2: this.state.hidden2, hidden3: this.state.hidden3,
 	          hidden4: this.state.hidden4, change: this.changeItem.bind(this) }),
 	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
 	        _react2['default'].createElement(B40, { key: 'B40', message1: this.state.message1, change: this.changeItem.bind(this),
 	          mes0: this.state.mes0, mes2: this.state.mes2, mes1: this.state.mes1, calc: this.calc.bind(this),
-	          delay: this.delay.bind(this), value: this.state.value, group: this.state.group,
+	          delay: this.delay.bind(this), name: this.state.name, group: this.state.group,
 	          hidden: this.state.hidden, hidden2: this.state.hidden2, hidden3: this.state.hidden3 }),
 	        _react2['default'].createElement(B41, { key: 'B41', message2: this.state.message2, change: this.changeItem.bind(this),
 	          mes0: this.state.mes0, mes2: this.state.mes2, mes1: this.state.mes1, calc: this.calc.bind(this),
-	          delay: this.delay.bind(this), value: this.state.value, group: this.state.group, hidden: this.state.hidden,
+	          delay: this.delay.bind(this), name: this.state.name, group: this.state.group, hidden: this.state.hidden,
 	          hidden2: this.state.hidden2, hidden3: this.state.hidden3 }),
 	        _react2['default'].createElement(B42, { key: 'B42', message3: this.state.message3, change: this.changeItem.bind(this),
 	          mes0: this.state.mes0, mes2: this.state.mes2, mes1: this.state.mes1, calc: this.calc.bind(this),
-	          delay: this.delay.bind(this), value: this.state.value, group: this.state.group, hidden: this.state.hidden,
+	          delay: this.delay.bind(this), name: this.state.name, group: this.state.group, hidden: this.state.hidden,
 	          hidden2: this.state.hidden2, hidden3: this.state.hidden3 }),
 	        _react2['default'].createElement(B43, { key: 'B43', message4: this.state.message4, change: this.changeItem.bind(this),
 	          mes0: this.state.mes0, mes2: this.state.mes2, mes1: this.state.mes1, calc: this.calc.bind(this),
-	          delay: this.delay.bind(this), value: this.state.value, group: this.state.group, hidden: this.state.hidden,
+	          delay: this.delay.bind(this), name: this.state.name, group: this.state.group, hidden: this.state.hidden,
 	          hidden2: this.state.hidden2, hidden3: this.state.hidden3 }),
 	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
 	        _react2['default'].createElement(Op0, { key: 'Op0', mes0: this.state.mes0, mes2: this.state.mes2, change: this.changeItem.bind(this),
-	          mes1: this.state.mes1, calc: this.calc.bind(this), value: this.state.value,
+	          mes1: this.state.mes1, calc: this.calc.bind(this), name: this.state.name,
 	          group: this.state.group, hidden: this.state.hidden,
 	          hidden2: this.state.hidden2, hidden3: this.state.hidden3 }),
 	        _react2['default'].createElement(Op1, { key: 'Op1', mes0: this.state.mes0, mes2: this.state.mes2, change: this.changeItem.bind(this),
-	          mes1: this.state.mes1, calc: this.calc.bind(this), value: this.state.value,
+	          mes1: this.state.mes1, calc: this.calc.bind(this), name: this.state.name,
 	          group: this.state.group, hidden: this.state.hidden,
 	          hidden2: this.state.hidden2, hidden3: this.state.hidden3 }),
 	        _react2['default'].createElement(Op2, { key: 'Op2', mes0: this.state.mes0, mes2: this.state.mes2, change: this.changeItem.bind(this),
-	          mes1: this.state.mes1, calc: this.calc.bind(this), value: this.state.value,
+	          mes1: this.state.mes1, calc: this.calc.bind(this), name: this.state.name,
 	          group: this.state.group, hidden: this.state.hidden,
 	          hidden2: this.state.hidden2, hidden3: this.state.hidden3 }),
 	        _react2['default'].createElement(Op3, { key: 'Op3', mes0: this.state.mes0, mes2: this.state.mes2, change: this.changeItem.bind(this),
-	          mes1: this.state.mes1, calc: this.calc.bind(this), value: this.state.value,
+	          mes1: this.state.mes1, calc: this.calc.bind(this), name: this.state.name,
 	          group: this.state.group, hidden: this.state.hidden,
 	          hidden2: this.state.hidden2, hidden3: this.state.hidden3 }),
 	        _react2['default'].createElement(Op4, { key: 'Op4', mes0: this.state.mes0, mes2: this.state.mes2, change: this.changeItem.bind(this),
-	          mes1: this.state.mes1, calc: this.calc.bind(this), value: this.state.value,
+	          mes1: this.state.mes1, calc: this.calc.bind(this), name: this.state.name,
 	          group: this.state.group, hidden: this.state.hidden,
 	          hidden2: this.state.hidden2, hidden3: this.state.hidden3 }),
 	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
@@ -14962,8 +15140,8 @@
 	var ReactNativeComponent = __webpack_require__(60);
 
 	var assign = __webpack_require__(34);
-	var invariant = __webpack_require__(50);
-	var warning = __webpack_require__(48);
+	var invariant = __webpack_require__(46);
+	var warning = __webpack_require__(50);
 
 	// To avoid a cyclic dependency, we create the final class in this module
 	var ReactCompositeComponentWrapper = function() { };
@@ -15191,7 +15369,7 @@
 
 	'use strict';
 
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	/**
 	 * Given a `prevElement` and `nextElement`, determines if the existing
@@ -15411,7 +15589,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(45);
+	var PooledClass = __webpack_require__(47);
 	var CallbackQueue = __webpack_require__(148);
 	var ReactPutListenerQueue = __webpack_require__(150);
 	var Transaction = __webpack_require__(139);
@@ -16099,7 +16277,7 @@
 	var dangerousStyleValue = __webpack_require__(177);
 	var hyphenateStyleName = __webpack_require__(178);
 	var memoizeStringOnly = __webpack_require__(179);
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	var processStyleName = memoizeStringOnly(function(styleName) {
 	  return hyphenateStyleName(styleName);
@@ -16779,7 +16957,7 @@
 
 	'use strict';
 
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(45);
 	var EventPluginHub = __webpack_require__(135);
 
 	var accumulateInto = __webpack_require__(182);
@@ -16925,7 +17103,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(45);
+	var PooledClass = __webpack_require__(47);
 
 	var assign = __webpack_require__(34);
 	var getTextContentAccessor = __webpack_require__(184);
@@ -17123,7 +17301,7 @@
 
 	var accumulateInto = __webpack_require__(182);
 	var forEachAccumulated = __webpack_require__(183);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * Internal store for event listeners
@@ -17400,7 +17578,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(45);
+	var PooledClass = __webpack_require__(47);
 
 	var assign = __webpack_require__(34);
 	var emptyFunction = __webpack_require__(105);
@@ -17701,7 +17879,7 @@
 
 	'use strict';
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * `Transaction` creates a black box that is able to wrap any method such that
@@ -17980,7 +18158,7 @@
 
 	var accumulateInto = __webpack_require__(182);
 	var forEachAccumulated = __webpack_require__(183);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	function remove(event) {
 	  event.remove();
@@ -18041,7 +18219,7 @@
 	var ReactMultiChildUpdateTypes = __webpack_require__(180);
 
 	var setTextContent = __webpack_require__(188);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * Inserts `childNode` as a child of `parentNode` at the `index`.
@@ -18180,7 +18358,7 @@
 
 	var ReactPropTypes = __webpack_require__(31);
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	var hasReadOnlyValue = {
 	  'button': true,
@@ -18508,7 +18686,7 @@
 
 	'use strict';
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	var injected = false;
 
@@ -18572,10 +18750,10 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(45);
+	var PooledClass = __webpack_require__(47);
 
 	var assign = __webpack_require__(34);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * A specialized pseudo-event module to help keep track of components waiting to
@@ -18814,7 +18992,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(45);
+	var PooledClass = __webpack_require__(47);
 	var ReactBrowserEventEmitter = __webpack_require__(96);
 
 	var assign = __webpack_require__(34);
@@ -19663,7 +19841,7 @@
 
 	'use strict';
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * Injectable ordering of event plugins.
@@ -20115,9 +20293,9 @@
 
 	var assign = __webpack_require__(34);
 	var emptyObject = __webpack_require__(59);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 	var shouldUpdateReactComponent = __webpack_require__(104);
-	var warning = __webpack_require__(48);
+	var warning = __webpack_require__(50);
 
 	function getDeclarationErrorAddendum(component) {
 	  var owner = component._currentElement._owner || null;
@@ -21015,7 +21193,7 @@
 
 	'use strict';
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * ReactOwners are capable of storing references to owned components.
@@ -21340,7 +21518,7 @@
 
 	"use strict";
 
-	var camelize = __webpack_require__(193);
+	var camelize = __webpack_require__(192);
 
 	var msPattern = /^-ms-/;
 
@@ -21448,7 +21626,7 @@
 
 	"use strict";
 
-	var hyphenate = __webpack_require__(192);
+	var hyphenate = __webpack_require__(193);
 
 	var msPattern = /^ms-/;
 
@@ -21697,7 +21875,7 @@
 
 	'use strict';
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 *
@@ -21934,7 +22112,7 @@
 	var createNodesFromMarkup = __webpack_require__(195);
 	var emptyFunction = __webpack_require__(105);
 	var getMarkupWrap = __webpack_require__(196);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	var OPEN_TAG_NAME_EXP = /^(<[^ \/>]+)/;
 	var RESULT_INDEX_ATTR = 'data-danger-index';
@@ -22515,6 +22693,42 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
+	 * @providesModule camelize
+	 * @typechecks
+	 */
+
+	var _hyphenPattern = /-(.)/g;
+
+	/**
+	 * Camelcases a hyphenated string, for example:
+	 *
+	 *   > camelize('background-color')
+	 *   < "backgroundColor"
+	 *
+	 * @param {string} string
+	 * @return {string}
+	 */
+	function camelize(string) {
+	  return string.replace(_hyphenPattern, function(_, character) {
+	    return character.toUpperCase();
+	  });
+	}
+
+	module.exports = camelize;
+
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
 	 * @providesModule hyphenate
 	 * @typechecks
 	 */
@@ -22541,42 +22755,6 @@
 
 
 /***/ },
-/* 193 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule camelize
-	 * @typechecks
-	 */
-
-	var _hyphenPattern = /-(.)/g;
-
-	/**
-	 * Camelcases a hyphenated string, for example:
-	 *
-	 *   > camelize('background-color')
-	 *   < "backgroundColor"
-	 *
-	 * @param {string} string
-	 * @return {string}
-	 */
-	function camelize(string) {
-	  return string.replace(_hyphenPattern, function(_, character) {
-	    return character.toUpperCase();
-	  });
-	}
-
-	module.exports = camelize;
-
-
-/***/ },
 /* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -22593,8 +22771,8 @@
 
 	'use strict';
 
-	var traverseAllChildren = __webpack_require__(47);
-	var warning = __webpack_require__(48);
+	var traverseAllChildren = __webpack_require__(49);
+	var warning = __webpack_require__(50);
 
 	/**
 	 * @param {function} traverseContext Context passed through traversal.
@@ -22659,7 +22837,7 @@
 
 	var createArrayFromMixed = __webpack_require__(198);
 	var getMarkupWrap = __webpack_require__(196);
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * Dummy container used to render all markup.
@@ -22747,7 +22925,7 @@
 
 	var ExecutionEnvironment = __webpack_require__(37);
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * Dummy container used to detect which wraps are necessary.
@@ -23037,7 +23215,7 @@
 	 * @typechecks
 	 */
 
-	var invariant = __webpack_require__(50);
+	var invariant = __webpack_require__(46);
 
 	/**
 	 * Convert array-like objects to arrays.

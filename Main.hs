@@ -255,14 +255,14 @@ talk conn state (user, _, _, _) = forever $ do
                 broadcast msg st
 
     else if "CG#$42" `T.isPrefixOf` msg
-    then
-        mask_ $ do
-            old <- takeMVar state
-            let new = upScore sender old
-            putMVar state new
-            broadcast msg new
-            broadcast ("CB#$42," `mappend` group `mappend` ","
-                `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (filterGroup group new))) new
+        then
+            mask_ $ do
+                old <- takeMVar state
+                let new = upScore sender old
+                putMVar state new
+                broadcast msg new
+                broadcast ("CB#$42," `mappend` group `mappend` ","
+                    `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (filterGroup group new))) new
 
     else if "CI#$42" `T.isPrefixOf` msg
         then
@@ -316,9 +316,7 @@ talk conn state (user, _, _, _) = forever $ do
                     `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (filterGroup group new))) new
                 broadcast ("CO#$42," `mappend` group `mappend` ","
                     `mappend` sender `mappend` "," `mappend` extra) new
-                broadcast ("DB#$42," `mappend` "pass" `mappend` "," `mappend` sender `mappend` "," `mappend` (allGroups new)) new
-
-
+                broadcast ("DB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` (allGroups new)) new
 
     else if "SX#$42" `T.isPrefixOf` msg
         then
@@ -330,9 +328,6 @@ talk conn state (user, _, _, _) = forever $ do
                 print "**************************** in SX#$42 "
                 print x
                 print "**************************** leaving SX#42 "
-
-
-
 
     else if "SU#$42" `T.isPrefixOf` msg
         then
