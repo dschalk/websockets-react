@@ -186,7 +186,7 @@ class GroupNew extends React.Component {
   }
   render () {
     console.log(this);
-    if ((this.props.hidden)) { return ( null ) } 
+    if ((this.props.hidden2)) { return ( null ) } 
     var name = this.props.name;
     return (
       <div style={{backgroundColor: '#000', color: '#00f0f0', fontSize:"32",
@@ -930,8 +930,7 @@ ws.onmessage = function(event) {
     if (that.state.DS_T === 0) {
       ws.send(`CR#$42,${group},${name},filler`);  
       if (that.state.name === that.state.scoreClicker) {
-        ws.send(`CI#$42,${group},${name},filler`); 
-        ws.send(`CI#$42,${group},${name},filler`);  
+        ws.send(`CI#$42,${group},${name},filler`);   
       }
       that.setState
       ({
@@ -1165,12 +1164,15 @@ this.setState({
           <ScoreBoard key='ScoreBoard' scoreBoard={this.state.scoreBoard} 
             hidden2={this.state.hidden2} />
 
-          <GroupA key='GroupA' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} />
-          <GroupB key='GroupB' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} />
-          <GroupNew key='GroupNew' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} />
+          <GroupA key='GroupA' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} 
+            hidden2={this.state.hidden2} />
+          <GroupB key='GroupB' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} 
+            hidden2={this.state.hidden2} />
+          <GroupNew key='GroupNew' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} 
+            hidden2={this.state.hidden2} />
           <div style={{width: 8000, float: "left", padding: 5}} />
           <GroupDisplay key='GroupDisplay' change={this.changeItem.bind(this)} 
-            name={this.state.name} group={this.state.group} />
+            name={this.state.name} group={this.state.group} hidden2={this.state.hidden2} />
 
           <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name} 
             setGroup={this.setGroup.bind(this)} change={this.changeItem.bind(this)} 
