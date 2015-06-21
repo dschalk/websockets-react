@@ -2,47 +2,47 @@
 export {B4};
 import React from 'react';
 
-var mes0 = 'Number';
-var mes1 = 'Operator';
-var mes2 = 'Number';
-var temp = 'temp';
-var sol = [];
-var message1 = 0;
-var message2 = 0;
-var message3 = 0;
-var message4 = 0;
-var mAr = [0,0,0,0,'result'];
-var op1 = '+';
-var op2 = '-';
-var op3 = '*';
-var op4 = '/';
-var op5 = 'Concat';
-var selection0 = '77777';
-var selection1 = '88888';
-var selection2 = '99999';
-var res = 'result';
-var setIntervalVar = 0;
-var str1 = "";
-var str2 = "";
-var str3 = "";
-var str4 = "";
+let mes0 = 'Number';
+let mes1 = 'Operator';
+let mes2 = 'Number';
+let temp = 'temp';
+let sol = [];
+let message1 = 0;
+let message2 = 0;
+let message3 = 0;
+let message4 = 0;
+let mAr = [0,0,0,0,'result'];
+let op1 = '+';
+let op2 = '-';
+let op3 = '*';
+let op4 = '/';
+let op5 = 'Concat';
+let selection0 = '77777';
+let selection1 = '88888';
+let selection2 = '99999';
+let res = 'result';
+let setIntervallet = 0;
+let str1 = "";
+let str2 = "";
+let str3 = "";
+let str4 = "";
 
-var hidden = false;
-var hidden2 = true;
-var hidden3 = false;
-var hidden4 = true;
+let hidden = false;
+let hidden2 = true;
+let hidden3 = false;
+let hidden4 = true;
 
-var togDice = false;
-var name = "";
-var DS_T = "SCORE!";
-var N = 0;
-var STRING = '';
-var impossibleClicker = "a@F$Uy&imp";
-var scoreClicker = "a@F$Uy&sc";
-var scoreBoard = ["Greetings new player."];
-var INPLAY = false;
-var group = 'solo';
-var info = 'Please enter a name.';
+let togDice = false;
+let name = "";
+let DS_T = "SCORE!";
+let N = 0;
+let STRING = '';
+let impossibleClicker = "a@F$Uy&imp";
+let scoreClicker = "a@F$Uy&sc";
+let scoreBoard = ["Greetings new player."];
+let INPLAY = false;
+let group = 'solo';
+let info = 'Please enter a name.';
 
 /*
 var users = [];
@@ -95,7 +95,7 @@ function createWebSocket(path) {
     return new Socket(uri);
 }
 
-var ws = createWebSocket('/');
+const ws = createWebSocket('/');
 
 class ScoreBoard extends React.Component {
   constructor(props) {
@@ -124,7 +124,7 @@ class Messages extends React.Component {
   render () {
     console.log(this);
     return (
-        <div style={{backgroundColor: '#000', color: '#fc0000', fontSize:'38',
+        <div style={{backgroundColor: '#000', color: '#fc0000', fontSize:'28',
             padding: 20, paddingLeft: 100, float: 'left'}} >
             {this.props.info}
         </div>
