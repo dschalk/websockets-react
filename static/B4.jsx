@@ -39,9 +39,10 @@ var N = 0;
 var STRING = '';
 var impossibleClicker = "a@F$Uy&imp";
 var scoreClicker = "a@F$Uy&sc";
-var scoreBoard = ["Yo Jackwad!"];
+var scoreBoard = ["Greetings new player."];
 var INPLAY = false;
-var group = 'International Jackwad';
+var group = 'solo';
+var info = 'Please enter a name.';
 
 /*
 var users = [];
@@ -96,8 +97,6 @@ function createWebSocket(path) {
 
 var ws = createWebSocket('/');
 
-
-
 class ScoreBoard extends React.Component {
   constructor(props) {
     super(props);
@@ -116,6 +115,20 @@ class ScoreBoard extends React.Component {
             </div>
         )
     }
+  }
+
+class Messages extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render () {
+    console.log(this);
+    return (
+        <div style={{backgroundColor: '#000', color: '#fc0000', fontSize:'38',
+            padding: 20, paddingLeft: 100, float: 'left'}} >
+            {this.props.info}
+        </div>
+    )}
   }
 
 class GroupA extends React.Component {
@@ -200,6 +213,7 @@ class GroupNew extends React.Component {
   }
 };
 
+/*
 class GroupDisplay extends React.Component {
   constructor(props) {
     super(props);
@@ -217,6 +231,7 @@ class GroupDisplay extends React.Component {
       }
     }
   }
+*/
 
 class B40 extends React.Component {
   constructor(props) {
@@ -562,6 +577,7 @@ class Roll extends React.Component {
   }
   clickHandler () {
       this.props.roll();
+      this.props.setInfo(`Click SCORE to begin.`);
   }
   render () {
     console.log(this);
@@ -629,8 +645,12 @@ class Login extends React.Component {
   }
   handleEnter (event) {
     if (this.props.name == '') { 
-      return 
-    } else {
+      this.props.change({
+        scoreBoard: [`Please enter a name.`],
+        info: ``
+      }); 
+    } 
+    else {
     var ENTER = 13;
       if( event.keyCode == ENTER ) {
         var name = this.props.name;
@@ -645,7 +665,10 @@ class Login extends React.Component {
   }
   click () { 
     if (this.props.name == '') { 
-      return 
+      this.props.change({
+        scoreBoard: [`Please enter a name.`],
+        info: `Please enter a name.`
+      }); 
     } else { 
       var name = this.props.name;
       this.props.change({ hidden: true});
@@ -731,7 +754,8 @@ class B4 extends React.Component {
       scoreClicker: scoreClicker,
       impossibleClicker: impossibleClicker,
       scoreBoard: scoreBoard,
-      group: group
+      group: group,
+      info: info
       }
 
 var that = this;
@@ -755,16 +779,26 @@ ws.onmessage = function(event) {
   var ext6 = gameArray[6];
   var ext7 = gameArray[7];
   var ext8 = gameArray[8];
-  console.log('####################################################################');
+  console.log('################################################### gameArray #################');
   console.log(gameArray);
-  console.log('####################################################################');
+  console.log('################################################# That was gameArray ##########');
   // var p = $(document.createElement('p')).text(event.data);
   if ( ( (that.state.group === gameArray[1]) && (that.state.group !== "solo")) || 
-        that.state.name === sender ) {
+        that.state.name === sender || extra === '%#8*&&^1#$%^') {
       switch (d2) {
 
           case "CC#$42":
-            ws.send(`CO#42,solo,${sender},filler`)
+            if (extra === '%#8*&&^1#$%^')  {
+              that.setState({info: `You entered a name which is already taken`})
+              setTimeout( function() {
+                document.location.reload(false);
+              },2000);
+              // ws.send(`CO#42,solo,Angel Eyes,filler`);
+            }
+            else {
+              that.setGroup('solo');
+              ws.send(`CO#$42,solo,${sender},filler`);
+            }
           break;
 
           case "CZ#$42":
@@ -804,7 +838,6 @@ ws.onmessage = function(event) {
             if (that.state.group !== 'solo') {
               that.setState({
                 scoreBoard: extra.split("<br>"),
-
               });
             } else {
               that.setState({
@@ -896,6 +929,11 @@ ws.onmessage = function(event) {
           });
           break;
 
+          case "DC#$42":
+            console.log("___________________########$$$$$$$$__________Name taken.");
+            that.setState({})
+          break;
+
           case "DZ#$42":
             var this2 = that;
             if (that.state.scoreClicker !== that.state.name) {
@@ -910,6 +948,9 @@ ws.onmessage = function(event) {
             }
           break;
 
+          case "IA#$42":
+            that.setState({info: extra});
+          break;
 
           case "SX#$42":
             ws.send(`SX#$42,${group},${name},filler`);
@@ -944,9 +985,13 @@ ws.onmessage = function(event) {
     if ( that.state.DS_T > -1 ) {
       var X = that.state.DS_T - 1
       that.setState({DS_T: X});
+      that.setState({info: X});
     }
     if (that.state.DS_T === -1) {
-      that.setState({DS_T: ''});
+      that.setState({
+        DS_T: '',
+        info: ''
+      });
     }
   },1000 );
 }
@@ -1005,6 +1050,12 @@ ws.onmessage = function(event) {
     var name = this.state.name;
     ws.send( `CO#$42,${x},${name},filler` );
     this.setState({group: x});
+  }
+
+  setInfo (x) {
+    var name = this.state.name;
+    var group = this.state.group;
+    ws.send( `IA#$42,${group},${name},${x}` );
   }
 
   newNums (x) {
@@ -1161,23 +1212,25 @@ this.setState({
     console.log(this);
     return (
       <div>
-          <ScoreBoard key='ScoreBoard' scoreBoard={this.state.scoreBoard} 
-            hidden2={this.state.hidden2} />
+          <ScoreBoard key='ScoreBoard' scoreBoard={this.state.scoreBoard} />
+
+          <Messages key='Messages' info={this.state.info} />
 
           <GroupA key='GroupA' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} 
             hidden2={this.state.hidden2} />
+
           <GroupB key='GroupB' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} 
             hidden2={this.state.hidden2} />
+
           <GroupNew key='GroupNew' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} 
             hidden2={this.state.hidden2} />
+
           <div style={{width: 8000, float: "left", padding: 5}} />
-          <GroupDisplay key='GroupDisplay' change={this.changeItem.bind(this)} 
-            name={this.state.name} group={this.state.group} hidden2={this.state.hidden2} />
 
           <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name} 
             setGroup={this.setGroup.bind(this)} change={this.changeItem.bind(this)} 
-            group={this.state.group} hidden={this.state.hidden} />
-
+            group={this.state.group} hidden={this.state.hidden} info={this.state.info} 
+             setInfo={this.setInfo.bind(this)} />
 
           <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} 
             str4={this.state.str4}/>
@@ -1246,7 +1299,7 @@ this.setState({
           <div style={{width: 8000, float: "left", padding: 10}} />
 
           <Roll key='Roll' roll={this.rollDice.bind(this)} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} setInfo={this.setInfo.bind(this)} />
 
           <div style={{width: 8000, float: "left", padding: 10}} />
 

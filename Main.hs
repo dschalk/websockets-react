@@ -178,7 +178,9 @@ application state pending = do
                 [T.null] ->
                     WS.sendTextData conn ("Name cannot be empty" :: Text)
             | clientExists (getName client) clients ->
-                WS.sendTextData conn ("User already exists" :: Text)
+                liftIO $ modifyMVar_ state $ \s -> do
+                    WS.sendTextData conn $ T.pack "CC#$42,seven,seven,%#8*&&^1#$%^"
+                    return s                               
             | otherwise -> flip finally disconnect $ do
                 liftIO $ modifyMVar_ state $ \s -> do
                     let s' = addClient client s
@@ -248,7 +250,8 @@ talk conn state (user, _, _, _) = forever $ do
     else if "CC#$42" `T.isPrefixOf` msg || "CE#$42" `T.isPrefixOf` msg || "CF#$42" `T.isPrefixOf` msg ||
         "CH#$42" `T.isPrefixOf` msg || "CJ#$42" `T.isPrefixOf` msg || "CK#$42" `T.isPrefixOf` msg ||
         "CP#$42" `T.isPrefixOf` msg || "CQ#$42" `T.isPrefixOf` msg || "CS#$42" `T.isPrefixOf` msg ||
-        "CY#$42" `T.isPrefixOf` msg || "CR#$42" `T.isPrefixOf` msg || "CD#$42" `T.isPrefixOf` msg
+        "CY#$42" `T.isPrefixOf` msg || "CR#$42" `T.isPrefixOf` msg || "CD#$42" `T.isPrefixOf` msg || 
+        "IA#$42" `T.isPrefixOf` msg
         then
             do
                 st <- readMVar state
