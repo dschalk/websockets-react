@@ -35,6 +35,13 @@
   (major1) == 0 && (major2) <  2 || \
   (major1) == 0 && (major2) == 2 && (minor) <= 2)
 
+/* package stm-2.4.4 */
+#define VERSION_stm "2.4.4"
+#define MIN_VERSION_stm(major1,major2,minor) (\
+  (major1) <  2 || \
+  (major1) == 2 && (major2) <  4 || \
+  (major1) == 2 && (major2) == 4 && (minor) <= 4)
+
 /* package text-1.2.0.4 */
 #define VERSION_text "1.2.0.4"
 #define MIN_VERSION_text(major1,major2,minor) (\

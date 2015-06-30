@@ -1,0 +1,66 @@
+CO#$42,GroupA,bb,filler
+CO#$42,GroupB,bb,filler
+CK#$42,solo,aa,SCORE!
+CF#$42,solo,aa,filler
+CA#$42,solo,aa,6,6,12,20
+IA#$42,solo,aa,Click SCORE to begin.
+CK#$42,GroupB,bb,SCORE!
+CF#$42,GroupB,bb,filler
+CA#$42,GroupB,bb,6,6,12,20
+IA#$42,GroupB,bb,Click SCORE to begin.
+CO#$42,GroupA,aa,filler
+CO#$42,GroupA,bb,filler
+CK#$42,GroupA,bb,SCORE!
+CF#$42,GroupA,bb,filler
+CA#$42,GroupA,bb,6,6,12,20
+IA#$42,GroupA,bb,Click SCORE to begin.
+CO#$42,GroupB,aa,filler
+CK#$42,GroupB,aa,SCORE!
+CF#$42,GroupB,aa,filler
+CA#$42,GroupB,aa,6,6,12,20
+IA#$42,GroupB,aa,Click SCORE to begin.
+CO#$42,GroupB,bb,filler
+CK#$42,GroupB,bb,SCORE!
+CF#$42,GroupB,bb,filler
+CA#$42,GroupB,bb,6,6,12,20
+IA#$42,GroupB,bb,Click SCORE to begin.
+CK#$42,GroupB,bb,10
+CY#$42,GroupB,bb,bb
+DZ#$42,GroupB,,5,4,5,4,20
+CQ#$42,GroupB,bb,mes0,5
+CQ#$42,GroupB,bb,mes2,4
+CQ#$42,GroupB,bb,mes1,-
+CK#$42,solo,bb,10
+CQ#$42,solo,bb,str1,5 - 4 = 1
+CE#$42,solo,bb,5,4,1
+CK#$42,solo,bb,10
+CF#$42,solo,bb,filler
+CQ#$42,GroupB,bb,mes0,1
+CQ#$42,GroupB,bb,mes2,4
+CR#$42,GroupB,aa,filler
+CQ#$42,GroupB,bb,mes1,*
+CK#$42,solo,bb,10
+CQ#$42,solo,bb,str2,1 * 4 = 4
+CE#$42,solo,bb,5,4,
+CK#$42,solo,bb,10
+CF#$42,solo,bb,filler
+CQ#$42,GroupB,bb,mes0,5
+CQ#$42,GroupB,bb,mes2,4
+CQ#$42,GroupB,bb,mes1,*
+CK#$42,solo,bb,10
+CQ#$42,solo,bb,str3,5 * 4 = 20
+CE#$42,solo,bb,20
+CR#$42,solo,bb,filler
+CG#$42,solo,bb,filler
+CK#$42,solo,bb,One Point For bb
+CF#$42,solo,bb,filler
+CK#$42,GroupB,bb,SCORE!
+CF#$42,GroupB,bb,filler
+CA#$42,GroupB,bb,6,6,12,20
+IA#$42,GroupB,bb,Click SCORE to begin.
+CK#$42,GroupB,bb,10
+CY#$42,GroupB,bb,bb
+DZ#$42,GroupB,,6,2,11,7,20
+CR#$42,GroupB,aa,filler
+CR#$42,GroupB,bb,filler
+CI#$42,GroupB,bb,filler
