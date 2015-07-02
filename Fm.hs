@@ -3,7 +3,7 @@ module Fm where
 import Data.List
 import qualified Data.Text     as T
 import System.Random
-import Data.Aeson
+-- import Data.Aeson
 
 toDouble :: Int -> Double
 toDouble x = (read (show x)) :: Double
@@ -227,8 +227,7 @@ rText _ = return $ T.pack "String"
 
 xyz :: [Double]
 xyz = [1, 1, 1, 1, 20]
+
 main :: IO ()
+main = truck [1,1,1,1,20] >>= print
 
-bus [a,b,c,d,e] = encode $ ca [a,b,c,d,e]
-
-main = print $ bus [1,1,1,1,20]

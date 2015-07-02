@@ -2,107 +2,23 @@
 export {B4};
 import React from 'react';
 
-let mes0 = 'Number';
-let mes1 = 'Operator';
-let mes2 = 'Number';
-let temp = 'temp';
-let sol = [];
-let message1 = 0;
-let message2 = 0;
-let message3 = 0;
-let message4 = 0;
-let mAr = [0,0,0,0,'result'];
-let op1 = '+';
-let op2 = '-';
-let op3 = '*';
-let op4 = '/';
-let op5 = 'Concat';
-let selection0 = '77777';
-let selection1 = '88888';
-let selection2 = '99999';
-let res = 'result';
-let setIntervallet = 0;
-let str1 = "";
-let str2 = "";
-let str3 = "";
-let str4 = "";
-
-let hidden = false;
-let hidden2 = true;
-let hidden3 = false;
-let hidden4 = true;
-
-let togDice = false;
-let name = "";
-let DS_T = "SCORE!";
-let N = 0;
-let STRING = '';
-let impossibleClicker = "a@F$Uy&imp";
-let scoreClicker = "a@F$Uy&sc";
-let scoreBoard = ["Greetings new player."];
-let INPLAY = false;
-let group = 'solo';
-let info = 'Please enter a name.';
-
-/*
-var users = [];
-var ar = [];
-var bool = [];
-var createFunctions;
-var createDom;
-var createOperators;
-var createDropboxes;
-var createDrop1;
-var createDrop2;
-var timer;
-var refreshDropboxes;
-var populate;
-var refresh;
-var calc;
-var DS_ar = [];
-var rollM = "6,6,12,20";
-var playerM = "Jack of Hearts";
-var impossibleClickerM = "a@F$Uy&impossible";
-var scoreClickerM = "a@F$Uy&score";
-var groupM = "private";
-var rollTextM = "1,1,1,1";
-var dM = -1;
-var gameM = "off";
-var goalM = 20;
-var goal32M = 20;
-var DS_ob = {};
-DS_ob.ar = [];
-DS_ob.bool = [];
-DS_ob.scoreFunc = function() {
-        $("#countdown").html("");
-        $("#a0").html("");
-        if (playerM === scoreClickerM) {
-            ws.send("CL#$42," + groupM + "," + playerM + "," + "place holder");
-        }
-        if ( playerM === impossibleClickerM) {
-            ws.send("CM#$42,"+ groupM + "," + playerM + "," + "place holder");
-        }
-    };
-
-*/
-
 function createWebSocket(path) {
-    var host = window.location.hostname;
+    let host = window.location.hostname;
     if(host == '') host = 'localhost';
-    var uri = 'ws://' + host + ':3015' + path;
+    let uri = 'ws://' + host + ':3015' + path;
 
-    var Socket = "MozWebSocket" in window ? MozWebSocket : WebSocket;
+    let Socket = "MozWebSocket" in window ? MozWebSocket : WebSocket;
     return new Socket(uri);
 }
 
-const ws = createWebSocket('/');
+const DES_ws = createWebSocket('/');
 
 class ScoreBoard extends React.Component {
   constructor(props) {
     super(props);
   }
   render () {
-      var formatted = this.props.scoreBoard.map(function(line) {
+      let formatted = this.props.scoreBoard.map(function(line) {
         return (<p>{line}</p>);
       });
       console.log(formatted);
@@ -200,7 +116,7 @@ class GroupNew extends React.Component {
   render () {
     console.log(this);
     if ((this.props.hidden2)) { return ( null ) } 
-    var name = this.props.name;
+    let name = this.props.name;
     return (
       <div style={{backgroundColor: '#000', color: '#00f0f0', fontSize:"32",
               padding: 38, float: "left"}}  >
@@ -238,26 +154,29 @@ class B40 extends React.Component {
     super(props);
   }
   click () {
-    var name = this.props.name;
-    var group = this.props.group;
-    var num = this.props.message1;
+    let name = this.props.name;
+    let group = this.props.group;
+    let num = this.props.message1;
+    this.props.more(this.props.message1);
     this.props.change({message1: '' });
     if (this.props.mes0 === 'Number') {
-      ws.send(`CQ#$42,${group},${name},mes0,${num}`);
+      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
     }
     else if (this.props.mes2 === 'Number') {
-      ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
       if (this.props.mes1 !== 'Operator') {
         this.props.calc();
       }
     }
   }
   render () {
+    let cow = '#d5f765';  // testing
         if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
     else {
       console.log(this);
       return (
-          <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
+          <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', 
+            color: cow,
             fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
             {this.props.message1}
           </div>
@@ -269,28 +188,30 @@ class B41 extends React.Component {
   constructor(props) {
     super(props);
   }
+  
   click () {
-    var name = this.props.name;
-    var group = this.props.group;
-    var num = this.props.message2;
+    let name = this.props.name;
+    let group = this.props.group;
+    let num = this.props.message2;
+    this.props.more(this.props.message2);
     this.props.change({message2: '' });
     if (this.props.mes0 === 'Number') {
-      ws.send(`CQ#$42,${group},${name},mes0,${num}`);
+      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
     }
     else if (this.props.mes2 === 'Number') {
-      ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
       if (this.props.mes1 !== 'Operator') {
         this.props.calc();
       }
     }
   }
   render () {
-      if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
-  else {
+    if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+    else {
     console.log(this);
     return (
-        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-          fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', 
+          color: '#d5f765', fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
           {this.props.message2}
         </div>
     )}
@@ -301,28 +222,29 @@ class B42 extends React.Component {
   constructor(props) {
     super(props);
   }
+  
   click () {
-    var name = this.props.name;
-    var group = this.props.group;
-    var num = this.props.message3;
+    let name = this.props.name;
+    let group = this.props.group;
+    let num = this.props.message3;
+    this.props.more(this.props.message3);
     this.props.change({message3: '' });
     if (this.props.mes0 === 'Number') {
-      ws.send(`CQ#$42,${group},${name},mes0,${num}`);
+      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
     }
     else if (this.props.mes2 === 'Number') {
-      ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
       if (this.props.mes1 !== 'Operator') {
         this.props.calc();
       }
     }
   }
   render () {
-      if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
-  else {
+    if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+    else {
     console.log(this);
     return (
-        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-          fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+        <div onClick={this.click.bind(this)} style={this.props.sty41}  >
           {this.props.message3}
         </div>
     )}
@@ -335,15 +257,16 @@ class B43 extends React.Component {
     super(props);
   }
   click () {
-    var name = this.props.name;
-    var group = this.props.group;
-    var num = this.props.message4;
+    let name = this.props.name;
+    let group = this.props.group;
+    let num = this.props.message4;
+    this.props.more(this.props.message4);
     this.props.change({message4: '' });
     if (this.props.mes0 === 'Number') {
-      ws.send(`CQ#$42,${group},${name},mes0,${num}`);
+      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
     }
     else if (this.props.mes2 === 'Number') {
-      ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
       if (this.props.mes1 !== 'Operator') {
         this.props.calc();
       }
@@ -367,10 +290,10 @@ class Op0 extends React.Component {
     super(props);
   }
   click () { 
-    var name = this.props.name;
-    var group = this.props.group;
-    ws.send(`CQ#$42,${group},${name},mes1,+`);
-    var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+    let name = this.props.name;
+    let group = this.props.group;
+    DES_ws.send(`CQ#$42,${group},${name},mes1,+`);
+    let test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
     if (test) {
         this.props.calc();
     }
@@ -393,10 +316,10 @@ class Op1 extends React.Component {
     super(props);
   }
   click () { 
-    var name = this.props.name;
-    var group = this.props.group;
-    ws.send(`CQ#$42,${group},${name},mes1,-`);
-    var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+    let name = this.props.name;
+    let group = this.props.group;
+    DES_ws.send(`CQ#$42,${group},${name},mes1,-`);
+    let test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
     if (test) {
         this.props.calc();
     }
@@ -419,10 +342,10 @@ class Op2 extends React.Component {
     super(props);
   }
   click () { 
-    var name = this.props.name;
-    var group = this.props.group;
-    ws.send(`CQ#$42,${group},${name},mes1,*`);
-    var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+    let name = this.props.name;
+    let group = this.props.group;
+    DES_ws.send(`CQ#$42,${group},${name},mes1,*`);
+    let test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
     if (test) {
         this.props.calc();
     }
@@ -445,10 +368,10 @@ class Op2 extends React.Component {
       super(props);
     }
   click () { 
-    var name = this.props.name;
-    var group = this.props.group;
-    ws.send(`CQ#$42,${group},${name},mes1,/`);
-    var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+    let name = this.props.name;
+    let group = this.props.group;
+    DES_ws.send(`CQ#$42,${group},${name},mes1,/`);
+    let test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
     if (test) {
         this.props.calc();
     }
@@ -471,10 +394,10 @@ class Op4 extends React.Component {
     super(props);
   }
   click () { 
-    var name = this.props.name;
-    var group = this.props.group;
-    ws.send(`CQ#$42,${group},${name},mes1,Concat`);
-    var test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
+    let name = this.props.name;
+    let group = this.props.group;
+    DES_ws.send(`CQ#$42,${group},${name},mes1,Concat`);
+    let test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
     if (test) {
         this.props.calc();
     }
@@ -597,14 +520,14 @@ class Roll extends React.Component {
 class Solutions extends React.Component {
     constructor(props) {
       super(props);
-      var formatted;
+      let formatted;
   }
   clickHandler () {
     this.props.solFunc();
   }
 
   render () {
-    var formatted = this.props.sol.map(function(line) {
+    let formatted = this.props.sol.map(function(line) {
       return (<p>{line}</p>);
     });
     if (this.props.hidden4) { return ( null ) } 
@@ -651,15 +574,15 @@ class Login extends React.Component {
       }); 
     } 
     else {
-    var ENTER = 13;
+    let ENTER = 13;
       if( event.keyCode == ENTER ) {
-        var name = this.props.name;
+        let name = this.props.name;
         this.props.change({ hidden: true});
         this.props.change({ hidden2: false});
         this.props.change({ hidden3: false});
         this.props.change({ hidden4: false});
         this.props.change({ name: name});
-        ws.send('CC#$42'+name);
+        DES_ws.send('CC#$42'+name);
       }
     }
   }
@@ -670,19 +593,19 @@ class Login extends React.Component {
         info: `Please enter a name.`
       }); 
     } else { 
-      var name = this.props.name;
+      let name = this.props.name;
       this.props.change({ hidden: true});
       this.props.change({ hidden2: false});
       this.props.change({ hidden3: false});
       this.props.change({ hidden4: false});
       this.props.change({ name: name});
-      ws.send('CC#$42'+name);
+      DES_ws.send('CC#$42'+name);
     }
   }
   render () {
     console.log(this);
     if ((this.props.hidden)) { return ( null ) } 
-    var name = this.props.name;
+    let name = this.props.name;
     return (
       <div style={{backgroundColor: '#000', color: '#00f0f0', fontSize:"32",
               padding: 38, float: "left"}}  >
@@ -701,12 +624,15 @@ class Clock extends React.Component {
   }
   click () {
     if (this.props.t === "SCORE!") {   // Click works only at the start of each round
-      this.props.change({INPLAY: true});
-      var name = this.props.name;
-    var group = this.props.group;
+      this.props.change({
+        score: true,
+        message: ''
+      });
+      let name = this.props.name;
+    let group = this.props.group;
       // this.props.change({hidden4: false});
-      ws.send( `CK#$42,${group},${name},10` );
-      ws.send( `CY#$42,${group},${name},${name}` );   // After 8 seconds, non-clickers see solutions.
+      DES_ws.send( `CK#$42,${group},${name},10` );
+      DES_ws.send( `CY#$42,${group},${name},${name}` );   // After 8 seconds, non-clickers see solutions.
     } 
   }
   render () {
@@ -722,76 +648,110 @@ class Clock extends React.Component {
   }
 };
 
+class Messages2 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render () {
+    console.log(this);
+    if (this.props.hidden2) { return ( null ) } 
+    return (
+        <div
+          style={{backgroundColor: '#000', color: '#ff0000', fontSize:"32",
+            padding: 24, float: "left"}} >
+             {this.props.message}
+        </div>
+    )
+  }
+};
+
 class B4 extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      mes0: mes0,
-      mes1: mes1,
-      mes2: mes2,
-      message1: message1,
-      message2: message2,
-      message3: message3,
-      message4: message4,
-      selection0: selection0,
-      selection1: selection0,
-      selection2: selection0,
-      res: res,
-      ws: ws,
-      str1: str1,
-      str2: str2,
-      str3: str3,
-      str4: str4,
-      sol: sol,
-      hidden: hidden,
-      hidden2: hidden2,
-      hidden3: hidden3,
-      hidden4: hidden4,
-      name: name,
-      DS_T: DS_T,
-      N: N,
-      STRING: STRING,
-      scoreClicker: scoreClicker,
-      impossibleClicker: impossibleClicker,
-      scoreBoard: scoreBoard,
-      group: group,
-      info: info
+      this.state = {
+        mes0: 'Number',
+        mes1: 'Operator',
+        mes2: 'Number',
+        temp: 'temp',
+        sol: [],
+        message1: 0,
+        message2: 0,
+        message3: 0,
+        message4: 0,
+        mAr: [0,0,0,0,'result'],
+        op1: '+',
+        op2: '-',
+        op3: '*',
+        op4: '/',
+        op5: 'Concat',
+        selection0: '77777',
+        selection1: '88888',
+        selection2: '99999',
+        res: 'result',
+        resPrevious: 'whatever',
+        setInterval : 0,
+        str1: "",
+        str2: "",
+        str3: "",
+        str4: "",
+
+        hidden: false,
+        hidden2: true,
+        hidden3: false,
+        hidden4: true,
+
+        togDice: false,
+        name: "",
+        DS_T: "SCORE!",
+        N: 0,
+        STRING: '',
+        impossibleClicker: "a@F$Uy&imp",
+        scoreClicker: "a@F$Uy&sc",
+        scoreBoard: ["Greetings new player."],
+        group: 'solo',
+        info: 'Please enter a name.',
+        sty: {backgroundColor: '#000', color: '#d5f765', 
+          fontSize: "38", textAlign: "center", padding: "20", float: "left" },
+        used: [],
+        test: false,
+        message: '',
+        score: false
       }
 
-var that = this;
+let that = this;
 
-ws.onopen = function(e) {
-	console.log("ws.onopen");
+DES_ws.onopen = function(e) {
+	console.log("DES_ws.onopen");
   }
 
-ws.onmessage = function(event) {
+DES_ws.onmessage = function(event) {
   console.log("$$$$$$$$$$$$$$$$$$$$$___ incoming data ____")
   console.log(event.data);
   console.log("&&&&&&&&&&&&&&&&&&&& ___ that was incoming data ____")
-  var gameArray = event.data.split(",");
-  var d2 = event.data.substring(0,6);
-  var d3 = event.data.substring(2,6);
-  var sendersGroup = gameArray[1];   // The sender's group.
-  var sender = gameArray[2];
-  var extra = gameArray[3];
-  var ext4 = gameArray[4];
-  var ext5 = gameArray[5];
-  var ext6 = gameArray[6];
-  var ext7 = gameArray[7];
-  var ext8 = gameArray[8];
-  var group = that.state.group;
+  let gameArray = event.data.split(",");
+  let d2 = event.data.substring(0,6);
+  let d3 = event.data.substring(2,6);
+  let sendersGroup = gameArray[1];   // The sender's group.
+  let sender = gameArray[2];
+  let extra = gameArray[3];
+  let ext4 = gameArray[4];
+  let ext5 = gameArray[5];
+  let ext6 = gameArray[6];
+  let ext7 = gameArray[7];
+  let ext8 = gameArray[8];
+  let group = that.state.group;
   console.log('################################################### gameArray #################');
   console.log(gameArray);
   console.log('################################################# That was gameArray ##########');
-  // var p = $(document.createElement('p')).text(event.data);
-  var ar = extra.split("<br>");
-  var ar2 = ar.map(function (x) {
+  // let p = $(document.createElement('p')).text(event.data);
+  let ar = extra.split("<br>");
+  let ar2 = ar.map(function (x) {
     return x.split("_")
   })
   function inGroup (x) {
     return x[2] == ' ' + group
   }
-  var ar3 = ar2.filter(inGroup)
+  let ar3 = ar2.filter(inGroup)
   console.log("4444444444444444444444444444444444444444444444444444444444444444444")
   console.log(ar);
   console.log(ar2);
@@ -807,11 +767,11 @@ ws.onmessage = function(event) {
               setTimeout( function() {
                 document.location.reload(false);
               },2000);
-              // ws.send(`CO#42,solo,Angel Eyes,filler`);
+              // DES_ws.send(`CO#42,solo,Angel Eyes,filler`);
             }
             else {
               that.setGroup('solo');
-              ws.send(`CO#$42,solo,${sender},filler`);
+              DES_ws.send(`CO#$42,solo,${sender},filler`);
             }
           break;
 
@@ -922,7 +882,7 @@ ws.onmessage = function(event) {
 
           case "CY#$42":
             that.setState({hidden4: true});
-            var playerName = that.state.name;
+            let playerName = that.state.name;
             scoreClicker = extra;   // 'scoreClicker' declared at the top of this file.
             that.setState({
               scoreClicker: scoreClicker,
@@ -934,11 +894,11 @@ ws.onmessage = function(event) {
                     hidden2: true,
                     hidden3: false,
                   });
-                var a = that.state.message1;
-                var b = that.state.message2;
-                var c = that.state.message3;
-                var d = that.state.message4;
-                ws.send(`DZ#$42,${group},${name},${a},${b},${c},${d},20`);
+                let a = that.state.message1;
+                let b = that.state.message2;
+                let c = that.state.message3;
+                let d = that.state.message4;
+                DES_ws.send(`DZ#$42,${group},${name},${a},${b},${c},${d},20`);
               }
           });
           break;
@@ -949,9 +909,9 @@ ws.onmessage = function(event) {
           break;
 
           case "DZ#$42":
-            var this2 = that;
+            let this2 = that;
             if (that.state.scoreClicker !== that.state.name) {
-              var solutions = extra;
+              let solutions = extra;
               that.delay(8000)
               .then( function() {
                   this2.setState({
@@ -967,8 +927,8 @@ ws.onmessage = function(event) {
           break;
 
           case "SX#$42":
-            ws.send(`SX#$42,${group},${name},filler`);
-            //  ws.send("SX#$42," + groupM + "," + playerM + "," + rollM);
+            DES_ws.send(`SX#$42,${group},${name},filler`);
+            //  DES_ws.send("SX#$42," + groupM + "," + playerM + "," + rollM);
           break;
 
           default:
@@ -979,13 +939,12 @@ ws.onmessage = function(event) {
   }
 
   setInterval( function () { 
-    var name = that.state.name;
-    var group = that.state.group;
-    var group = that.state.group;
+    let name = that.state.name;
+    let group = that.state.group;
     if (that.state.DS_T === 0) {
-      ws.send(`CR#$42,${group},${name},filler`);  
+      DES_ws.send(`CR#$42,${group},${name},filler`);  
       if (that.state.name === that.state.scoreClicker) {
-        ws.send(`CI#$42,${group},${name},filler`);   
+        DES_ws.send(`CI#$42,${group},${name},filler`);   
       }
       that.setState
       ({
@@ -997,7 +956,7 @@ ws.onmessage = function(event) {
       });
     }
     if ( that.state.DS_T > -1 ) {
-      var X = that.state.DS_T - 1
+      let X = that.state.DS_T - 1
       that.setState({DS_T: X});
       that.setState({info: X});
     }
@@ -1009,6 +968,36 @@ ws.onmessage = function(event) {
     }
   },1000 );
 }
+
+  isElement (x, ar) { 
+    var value = false;
+    ar.map( function(e) {
+      if (x === e) {
+        value = true;
+      };
+    })
+    return value;
+  }
+
+/*
+  wasUsed (array1, array2) {
+    var that = this;
+    var value = false;
+    array2.map( function(e) { 
+      if (that.isElement(e,array1)) {
+        value = true;
+        return;
+      }
+    });
+    return value;
+  }
+*/
+
+  moreUsed (x) {
+    let ar = this.state.used;
+    ar.push(x);
+    this.setState({ used: ar });
+  }
 
   delay(ms) {
     return new Promise(function (resolve, reject) {
@@ -1022,63 +1011,72 @@ ws.onmessage = function(event) {
 
   rollDice () {
     this.setState({
-      hidden4: false
+      hidden4: false,
+      used: [],
+      test: false,
+      score: false,
+      message: 'You must click SCORE in order to gain a point.',
+      sty: {backgroundColor: '#000', color: '#d5f765', 
+          fontSize: "38", textAlign: "center", padding: "20", float: "left" }
     });
-    var name = this.state.name;
-    var group = this.state.group;
-    ws.send(`CK#$42,${group},${name},SCORE!`);
-    ws.send(`CF#$42,${group},${name},filler`);
-    var that = this;
-    var delay = this.delay
-    var s = ws.readyState
+    let name = this.state.name;
+    let group = this.state.group;
+    DES_ws.send(`CK#$42,${group},${name},SCORE!`);
+    DES_ws.send(`CF#$42,${group},${name},filler`);
+    let that = this;
+    let delay = this.delay
+    let s = DES_ws.readyState
     if (s === 1) {
-      ws.send(`CA#$42,${group},${name},6,6,12,20`);
+      DES_ws.send(`CA#$42,${group},${name},6,6,12,20`);
     } else this.delay(300).then( function () {
       that.rollDice()
     })
+    // this.setState({sty: {backgroundColor: '#000', color: '#d5f765', 
+    //      fontSize: "38", textAlign: "center", padding: "20", float: "left" }});
   }
 
   getSolutions () {
     if (this.state.message4 !== '') {  // That is, no calculations have been made.
-      var name = this.state.name;
-      var group = this.state.group;
-      var a = this.state.message1;
-      var b = this.state.message2;
-      var c = this.state.message3;
-      var d = this.state.message4;
-      ws.send(`CZ#$42,${group},${name},${a},${b},${c},${d},20`);
+      let name = this.state.name;
+      let group = this.state.group;
+      let a = this.state.message1;
+      let b = this.state.message2;
+      let c = this.state.message3;
+      let d = this.state.message4;
+      DES_ws.send(`CZ#$42,${group},${name},${a},${b},${c},${d},20`);
     }
   }
 
   setNumberAr () {
-    var w1 = this.state.message1;
-    var w2 = this.state.message2;
-    var w3 = this.state.message3;
-    var w4 = this.state.message4;
-    var result = this.state.res;
-    var startArray = [w1, w2, w3, w4, result];
+    let w1 = this.state.message1;
+    let w2 = this.state.message2;
+    let w3 = this.state.message3;
+    let w4 = this.state.message4;
+    let result = this.state.res;
+    let startArray = [w1, w2, w3, w4, result];
     this.newNums(startArray);   
   }
 
   setGroup (x) {
-    var name = this.state.name;
-    ws.send( `CO#$42,${x},${name},filler` );
+    let name = this.state.name;
+    DES_ws.send( `CO#$42,${x},${name},filler` );
     this.setState({group: x});
   }
 
   setInfo (x) {
-    var name = this.state.name;
-    var group = this.state.group;
-    ws.send( `IA#$42,${group},${name},${x}` );
+    let name = this.state.name;
+    let group = this.state.group;
+    DES_ws.send( `IA#$42,${group},${name},${x}` );
   }
 
   newNums (x) {
-    var j = 0;
-    var ar = [];
-    var clock;
-    var string = this.state.STRING;
-    var result = this.state.res;
-    var name = this.state.name;
+    let j = 0;
+    let gr = this.state.group;
+    let ar = [];
+    let clock = 10;
+    let string = this.state.STRING;
+    let result = this.state.res;
+    let name = this.state.name;
     for (let k in x) {
         if (x[k] !== "" && x[k] !== undefined) {
         ar[j] = x[k];
@@ -1087,98 +1085,58 @@ ws.onmessage = function(event) {
     }
     this.setState({N: j});
     if (j === 3) {
-      ws.send(`CQ#$42,${group},${name},str1,${string}`);
-      ws.send(`CE#$42,${group},${name},${ar[0]},${ar[1]},${ar[2]}`)
-      clock = 10;
+      DES_ws.send(`CQ#$42,${gr},${name},str1,${string}`);
+      DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},${ar[2]}`);
+      this.setState({message: 'You must use the red number in order to score in this round.'})
     }
     else if (j === 2) {
-      ws.send(`CQ#$42,${group},${name},str2,${string}`);
-      ws.send(`CE#$42,${group},${name},${ar[0]},${ar[1]},`)
-      if (result === 20) {
+      DES_ws.send(`CQ#$42,${gr},${name},str2,${string}`);
+      DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},`)
+      if (result === 20 && this.state.test && this.state.score) {
           clock = "One Point For " + name;
-          ws.send( `CR#$42,${group},${name},filler` ); 
-          ws.send( `CG#$42,${group},${name},filler` ); 
-      } else {clock = 10;}
+          DES_ws.send( `CR#$42,${gr},${name},filler` ); 
+          DES_ws.send( `CG#$42,${gr},${name},filler` ); 
+      }
     }
     else if (j === 1) {
-      ws.send(`CQ#$42,${group},${name},str3,${string}`);
-      ws.send(`CE#$42,${group},${name},${ar[0]}`)
+      DES_ws.send(`CQ#$42,${gr},${name},str3,${string}`);
+      DES_ws.send(`CE#$42,${gr},${name},${ar[0]}`)
       if (result === 20) {
           clock = "One Point For " + name;
-          ws.send( `CR#$42,${group},${name},filler` ); 
-          ws.send( `CG#$42,${group},${name},filler` ); 
+          DES_ws.send( `CR#$42,${gr},${name},filler` ); 
+          DES_ws.send( `CG#$42,${gr},${name},filler` ); 
       }
-      if (result !== 20) {
-        clock = "Take One Point From " + name;
-        ws.send( `CR#$42,${group},${name},filler` ); 
-        ws.send( `CI#$42,${group},${name},filler` ); 
-      }
+        if (result !== 20) {
+          clock = "Take One Point From " + name;
+          DES_ws.send( `CR#$42,${gr},${name},filler` ); 
+          DES_ws.send( `CI#$42,${gr},${name},filler` ); 
+        }
+      } 
+      DES_ws.send( `CK#$42,${gr},${name},${clock}` );
+      DES_ws.send( `CF#$42,${gr},${name},filler` );
     }
-    ws.send( `CK#$42,${group},${name},${clock}` );
-    ws.send( `CF#$42,${group},${name},filler` );
-  }
-
-/*
-  nextRound () {
-    var name = this.state.name;
-    var that = this;
-    var string1;
-    var string2;
-    var string3;
-    var n;
-    var name = this.state.name;
-    var result = this.state.res;
-    var a = this.state.mes0;
-    var b = this.state.mes1;
-    var c = this.state.mes2;
-    var filler = 'dummy';
-    var clock = 10;
-    var equation = `${a} ${b} ${c} = ${result}`;
-    var mesArX = [];
-    if ( n === 3 ) {
-      string1 = equation;
-      ws.send(`CK#$42,${group},${name},10`);
-    }
-    else if ( n === 2 ) {
-      string2 = equation;
-      ws.send(`CK#$42,${group},${name},10`);
-  s   if (result === 20) {
-          clock = `One Point For ${name}`;
-      }
-      else {clock = 10;}
-    }
-    else if ( n === 1) {
-      var t = this.state.T;
-      this.setState({str3: string});
-      if (result === 20) {
-          clock = `One Point For ${name}`;
-      }
-      if (result !== 20) {
-        clock = `Take One Point From ${name}`;
-      }
-    }
-      var newStrings = `${string1},${string2},${string3}`
-      ws.send( `CH#$42,${group},${name},${newStrings}` );
-      ws.send( `CF#$42,${group},${name},${filler}` );
-  }
-*/
 
   calc () {
-    var that = this;
-    var delay = this.delay;
-    var res;
-    var n = this.state.N;
-    var m0;
-    var m1;
-    var m2;
-    var name = this.state.name;
+    let group = this.state.group;
+    let that = this;
+    let delay = this.delay;
+    let res, m0, m1, m2;
+    let n = this.state.N;
+    let name = this.state.name;
     if (this.state.DS_T !== "SCORE!") {
-      ws.send( `CK#$42,${group},${name},10` );
+      DES_ws.send( `CK#$42,${group},${name},10` );
     }
     delay(100).then( function() {
       m0 = that.state.mes0;
       m1 = that.state.mes1;
       m2 = that.state.mes2;
+      let resP = that.state.resPrevious;
+      let ar5 = [m0,m2];
+      let usedTest = that.isElement(resP,[m0,m2]);
+      console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+      console.log(m0,m2,resP,ar5,usedTest);
+      console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+      that.setState({ test: usedTest })
       switch (m1) {
           case "+": that.setState({res: parseFloat(m0) + parseFloat(m2)});
           break;
@@ -1195,32 +1153,32 @@ ws.onmessage = function(event) {
     })
     .then( delay(25) )
     .then( function() {
-      var res = that.state.res;
-      that.setState({STRING: `${m0} ${m1} ${m2} = ${res}`});
+      let res = that.state.res;
+      let resString = res.toString();
+      that.setState({ 
+        STRING: `${m0} ${m1} ${m2} = ${res}`,
+        resPrevious: resString,
+        message: ''
+      });
     })
     .then( delay(25) )
     .then( function () {
       that.setNumberAr();
+    })
+    .then(function() {
+      that.setState({sty: {backgroundColor: '#000', color: '#ff0000', 
+          fontSize: "38", textAlign: "center", padding: "20", float: "left" } });
     });
   }
 
-/*
-this.setState({
-  selected: input
-}).then(function() {
-  this.props.didSelect(this.state.selected);
-}.bind(this));
-*/
-
   newPlayer (x) {
     this.setState({name: x});
-    ws.send("CC#42$"+x)
+    DES_ws.send("CC#42$"+x)
   }
 
   changeItem (x) {
     this.setState(x)
   }
-
 
   render () {
     console.log(this);
@@ -1252,28 +1210,31 @@ this.setState({
           <Clock key='Clock' t={this.state.DS_T} name={this.state.name} group={this.state.group} 
             hidden={this.state.hidden} hidden2={this.state.hidden2} hidden3={this.state.hidden3} 
             hidden4={this.state.hidden4} change={this.changeItem.bind(this)} />
-
+          <div style={{width: 8000, float: "left", padding: 10}} />
+          <Messages2 key='Messages2' message={this.state.message} />
           <div style={{width: 8000, float: "left", padding: 10}} />
 
           <B40 key='B40' message1={this.state.message1} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
             delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} 
-             hidden={this.state.hidden} hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
+             hidden={this.state.hidden} hidden2={this.state.hidden2} hidden3={this.state.hidden3} 
+             more={this.moreUsed.bind(this)} />
 
           <B41 key='B41' message2={this.state.message2} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
             delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} more={this.moreUsed.bind(this)} />
 
           <B42 key='B42' message3={this.state.message3} change={this.changeItem.bind(this)} 
-            mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
+            mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} 
+            calc={this.calc.bind(this)} color2={this.state.color2} sty41={this.state.sty}
             delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} more={this.moreUsed.bind(this)} />
 
           <B43 key='B43' message4={this.state.message4} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
             delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
+            hidden2={this.state.hidden2} hidden3={this.state.hidden3} more={this.moreUsed.bind(this)} />
 
           <div style={{width: 8000, float: "left", padding: 10}} />
 
