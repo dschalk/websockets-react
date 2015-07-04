@@ -13547,10 +13547,10 @@
 	  _createClass(ScoreBoard, [{
 	    key: 'render',
 	    value: function render() {
-	      var formatted = this.props.scoreBoard.map(function (line) {
+	      var formatted = this.props.scoreB.map(function (line) {
 	        return _react2['default'].createElement(
 	          'p',
-	          null,
+	          { key: line.id },
 	          line
 	        );
 	      });
@@ -13558,8 +13558,7 @@
 	      console.log(this);
 	      return _react2['default'].createElement(
 	        'div',
-	        { style: { backgroundColor: '#000', color: '#d5f765', fontSize: '26',
-	            padding: 20, paddingRight: 100, float: 'right' } },
+	        null,
 	        'Score Board ',
 	        _react2['default'].createElement('br', null),
 	        ' name_score_group ',
@@ -13587,8 +13586,7 @@
 	      console.log(this);
 	      return _react2['default'].createElement(
 	        'div',
-	        { style: { backgroundColor: '#000', color: '#fc0000', fontSize: '28',
-	            padding: 20, paddingLeft: 100, float: 'left' } },
+	        null,
 	        this.props.info
 	      );
 	    }
@@ -13619,8 +13617,7 @@
 	      } else {
 	        return _react2['default'].createElement(
 	          'div',
-	          { style: { backgroundColor: '#000', color: '#d5f765', fontSize: '26',
-	              padding: 20, paddingRight: 100, float: 'left' }, onClick: this.click.bind(this) },
+	          { onClick: this.click.bind(this) },
 	          'GroupA'
 	        );
 	      }
@@ -13652,8 +13649,7 @@
 	      } else {
 	        return _react2['default'].createElement(
 	          'div',
-	          { style: { backgroundColor: '#000', color: '#d5f765', fontSize: '26',
-	              padding: 20, paddingRight: 100, float: 'left' }, onClick: this.click.bind(this) },
+	          { onClick: this.click.bind(this) },
 	          'GroupB'
 	        );
 	      }
@@ -13673,17 +13669,10 @@
 	  _inherits(GroupNew, _React$Component5);
 
 	  _createClass(GroupNew, [{
-	    key: 'handleChange',
-	    value: function handleChange(event) {
-	      // ISSUE: Input box won't accept data without this handleChange function. ??
-	      group = event.target.value;
-	      this.props.change({ group: group });
-	      this.props.setGroup(group);
-	    }
-	  }, {
 	    key: 'handleEnter',
 	    value: function handleEnter(event) {
-	      if (this.props.group == '') {
+	      var group = event.target.value;
+	      if (group == '') {
 	        return;
 	      } else {
 	        if (event.keyCode == 13) {
@@ -13694,7 +13683,8 @@
 	  }, {
 	    key: 'click',
 	    value: function click(event) {
-	      if (this.props.name == '') {
+	      var group = event.target.value;
+	      if (group == '') {
 	        return;
 	      } else {
 	        this.props.setGroup(group);
@@ -13707,18 +13697,15 @@
 	      if (this.props.hidden2) {
 	        return null;
 	      }
-	      var name = this.props.name;
 	      return _react2['default'].createElement(
 	        'div',
-	        { style: { backgroundColor: '#000', color: '#00f0f0', fontSize: '32',
-	            padding: 38, float: 'left' } },
-	        _react2['default'].createElement('input', { type: 'text', name: name, onChange: this.handleChange.bind(this),
-	          onKeyDown: this.handleEnter.bind(this) }),
-	        this.props.group,
+	        null,
 	        _react2['default'].createElement(
-	          'button',
-	          { onClick: this.click.bind(this) },
-	          'New Group'
+	          'label',
+	          null,
+	          'New Group',
+	          _react2['default'].createElement('input', { type: 'text', id: 'cow', onKeyDown: this.handleEnter.bind(this),
+	            onClick: this.click.bind(this), style: { width: 90, backgroundColor: '#d8d17d' } })
 	        )
 	      );
 	    }
@@ -13729,34 +13716,110 @@
 
 	;
 
-	/*
-	class GroupDisplay extends React.Component {
-	  constructor(props) {
-	    super(props);
+	var ChangeColor = (function (_React$Component6) {
+	  function ChangeColor(props) {
+	    _classCallCheck(this, ChangeColor);
+
+	    _get(Object.getPrototypeOf(ChangeColor.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  render () {
-	        if (this.props.hidden2) { return ( null ) } 
-	    else {
-	        return (
-	            <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"26",
-	                padding: 20, paddingRight: 100, float: "left"}} >
-	                {this.props.name} has joined {this.props.group}
-	            </div>
-	        )
+	  _inherits(ChangeColor, _React$Component6);
+
+	  _createClass(ChangeColor, [{
+	    key: 'handleEnter',
+	    value: function handleEnter(event) {
+	      var color = event.target.value;
+	      if (event.keyCode == 13 && color != '') {
+	        this.props.changeC(color);
 	      }
 	    }
-	  }
-	*/
+	  }, {
+	    key: 'click',
+	    value: function click(event) {
+	      var color = event.target.value;
+	      if (color != '') {
+	        this.props.changeC(color);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      console.log(this);
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: { fontSize: 22 } },
+	        _react2['default'].createElement(
+	          'label',
+	          null,
+	          _react2['default'].createElement('input', { type: 'text', onKeyDown: this.handleEnter.bind(this), onClick: this.click.bind(this),
+	            style: { width: 70, backgroundColor: '#d8d17d' } }),
+	          'Font Color'
+	        )
+	      );
+	    }
+	  }]);
 
-	var B40 = (function (_React$Component6) {
+	  return ChangeColor;
+	})(_react2['default'].Component);
+
+	;
+
+	var ChangeBackground = (function (_React$Component7) {
+	  function ChangeBackground(props) {
+	    _classCallCheck(this, ChangeBackground);
+
+	    _get(Object.getPrototypeOf(ChangeBackground.prototype), 'constructor', this).call(this, props);
+	  }
+
+	  _inherits(ChangeBackground, _React$Component7);
+
+	  _createClass(ChangeBackground, [{
+	    key: 'handleEnter',
+	    value: function handleEnter(event) {
+	      var color = event.target.value;
+	      if (event.keyCode == 13 && color != '') {
+	        this.props.changeB(color);
+	      }
+	    }
+	  }, {
+	    key: 'click',
+	    value: function click(event) {
+	      var color = event.target.value;
+	      if (color != '') {
+	        this.props.changeC(color);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      console.log(this);
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: { fontSize: 22 } },
+	        _react2['default'].createElement(
+	          'label',
+	          null,
+	          _react2['default'].createElement('input', { type: 'text', onKeyDown: this.handleEnter.bind(this), onClick: this.click.bind(this),
+	            style: { width: 70, backgroundColor: '#d8d17d' } }),
+	          'Background Color'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ChangeBackground;
+	})(_react2['default'].Component);
+
+	;
+
+	var B40 = (function (_React$Component8) {
 	  function B40(props) {
 	    _classCallCheck(this, B40);
 
 	    _get(Object.getPrototypeOf(B40.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B40, _React$Component6);
+	  _inherits(B40, _React$Component8);
 
 	  _createClass(B40, [{
 	    key: 'click',
@@ -13784,10 +13847,8 @@
 	      } else {
 	        console.log(this);
 	        return _react2['default'].createElement(
-	          'div',
-	          { onClick: this.click.bind(this), style: { backgroundColor: '#000',
-	              color: cow,
-	              fontSize: '38', textAlign: 'center', padding: '20', float: 'left' } },
+	          'span',
+	          { onClick: this.click.bind(this), style: { width: 50, marginLeft: 20 } },
 	          this.props.message1
 	        );
 	      }
@@ -13797,14 +13858,14 @@
 	  return B40;
 	})(_react2['default'].Component);
 
-	var B41 = (function (_React$Component7) {
+	var B41 = (function (_React$Component9) {
 	  function B41(props) {
 	    _classCallCheck(this, B41);
 
 	    _get(Object.getPrototypeOf(B41.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B41, _React$Component7);
+	  _inherits(B41, _React$Component9);
 
 	  _createClass(B41, [{
 	    key: 'click',
@@ -13831,9 +13892,8 @@
 	      } else {
 	        console.log(this);
 	        return _react2['default'].createElement(
-	          'div',
-	          { onClick: this.click.bind(this), style: { backgroundColor: '#000',
-	              color: '#d5f765', fontSize: '38', textAlign: 'center', padding: '20', float: 'left' } },
+	          'span',
+	          { onClick: this.click.bind(this), style: { width: 50, marginLeft: 30 } },
 	          this.props.message2
 	        );
 	      }
@@ -13843,14 +13903,14 @@
 	  return B41;
 	})(_react2['default'].Component);
 
-	var B42 = (function (_React$Component8) {
+	var B42 = (function (_React$Component10) {
 	  function B42(props) {
 	    _classCallCheck(this, B42);
 
 	    _get(Object.getPrototypeOf(B42.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B42, _React$Component8);
+	  _inherits(B42, _React$Component10);
 
 	  _createClass(B42, [{
 	    key: 'click',
@@ -13877,8 +13937,8 @@
 	      } else {
 	        console.log(this);
 	        return _react2['default'].createElement(
-	          'div',
-	          { onClick: this.click.bind(this), style: this.props.sty41 },
+	          'span',
+	          { onClick: this.click.bind(this), style: { width: 50, marginLeft: 30 } },
 	          this.props.message3
 	        );
 	      }
@@ -13888,14 +13948,14 @@
 	  return B42;
 	})(_react2['default'].Component);
 
-	var B43 = (function (_React$Component9) {
+	var B43 = (function (_React$Component11) {
 	  function B43(props) {
 	    _classCallCheck(this, B43);
 
 	    _get(Object.getPrototypeOf(B43.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B43, _React$Component9);
+	  _inherits(B43, _React$Component11);
 
 	  _createClass(B43, [{
 	    key: 'click',
@@ -13922,9 +13982,8 @@
 	      } else {
 	        console.log(this);
 	        return _react2['default'].createElement(
-	          'div',
-	          { onClick: this.click.bind(this), style: { backgroundColor: '#000', color: '#d5f765',
-	              fontSize: '38', textAlign: 'center', padding: '20', float: 'left' } },
+	          'span',
+	          { onClick: this.click.bind(this), style: { width: 50, marginLeft: 30 } },
 	          this.props.message4
 	        );
 	      }
@@ -13934,14 +13993,14 @@
 	  return B43;
 	})(_react2['default'].Component);
 
-	var Op0 = (function (_React$Component10) {
+	var Op0 = (function (_React$Component12) {
 	  function Op0(props) {
 	    _classCallCheck(this, Op0);
 
 	    _get(Object.getPrototypeOf(Op0.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Op0, _React$Component10);
+	  _inherits(Op0, _React$Component12);
 
 	  _createClass(Op0, [{
 	    key: 'click',
@@ -13962,9 +14021,8 @@
 	      } else {
 	        console.log(this);
 	        return _react2['default'].createElement(
-	          'div',
-	          { onClick: this.click.bind(this), style: { backgroundColor: '#000', color: '#d5f765',
-	              fontSize: '38', textAlign: 'center', padding: '20', float: 'left' } },
+	          'span',
+	          { onClick: this.click.bind(this), style: { width: 50, marginLeft: 20 } },
 	          '+'
 	        );
 	      }
@@ -13974,14 +14032,14 @@
 	  return Op0;
 	})(_react2['default'].Component);
 
-	var Op1 = (function (_React$Component11) {
+	var Op1 = (function (_React$Component13) {
 	  function Op1(props) {
 	    _classCallCheck(this, Op1);
 
 	    _get(Object.getPrototypeOf(Op1.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Op1, _React$Component11);
+	  _inherits(Op1, _React$Component13);
 
 	  _createClass(Op1, [{
 	    key: 'click',
@@ -14002,9 +14060,8 @@
 	      } else {
 	        console.log(this);
 	        return _react2['default'].createElement(
-	          'div',
-	          { onClick: this.click.bind(this), style: { backgroundColor: '#000', color: '#d5f765',
-	              fontSize: '38', textAlign: 'center', padding: '20', float: 'left' } },
+	          'span',
+	          { onClick: this.click.bind(this), style: { width: 50, marginLeft: 20 } },
 	          '-'
 	        );
 	      }
@@ -14014,14 +14071,14 @@
 	  return Op1;
 	})(_react2['default'].Component);
 
-	var Op2 = (function (_React$Component12) {
+	var Op2 = (function (_React$Component14) {
 	  function Op2(props) {
 	    _classCallCheck(this, Op2);
 
 	    _get(Object.getPrototypeOf(Op2.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Op2, _React$Component12);
+	  _inherits(Op2, _React$Component14);
 
 	  _createClass(Op2, [{
 	    key: 'click',
@@ -14042,9 +14099,8 @@
 	      } else {
 	        console.log(this);
 	        return _react2['default'].createElement(
-	          'div',
-	          { onClick: this.click.bind(this), style: { backgroundColor: '#000', color: '#d5f765',
-	              fontSize: '38', Align: 'center', padding: '20', float: 'left' } },
+	          'span',
+	          { onClick: this.click.bind(this), style: { width: 50, marginLeft: 20 } },
 	          '*'
 	        );
 	      }
@@ -14054,14 +14110,14 @@
 	  return Op2;
 	})(_react2['default'].Component);
 
-	var Op3 = (function (_React$Component13) {
+	var Op3 = (function (_React$Component15) {
 	  function Op3(props) {
 	    _classCallCheck(this, Op3);
 
 	    _get(Object.getPrototypeOf(Op3.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Op3, _React$Component13);
+	  _inherits(Op3, _React$Component15);
 
 	  _createClass(Op3, [{
 	    key: 'click',
@@ -14082,9 +14138,8 @@
 	      } else {
 	        console.log(this);
 	        return _react2['default'].createElement(
-	          'div',
-	          { onClick: this.click.bind(this), style: { backgroundColor: '#000', color: '#d5f765',
-	              fontSize: '38', textAlign: 'center', padding: '20', float: 'left' } },
+	          'span',
+	          { onClick: this.click.bind(this), style: { width: 50, marginLeft: 20 } },
 	          '/'
 	        );
 	      }
@@ -14094,14 +14149,14 @@
 	  return Op3;
 	})(_react2['default'].Component);
 
-	var Op4 = (function (_React$Component14) {
+	var Op4 = (function (_React$Component16) {
 	  function Op4(props) {
 	    _classCallCheck(this, Op4);
 
 	    _get(Object.getPrototypeOf(Op4.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Op4, _React$Component14);
+	  _inherits(Op4, _React$Component16);
 
 	  _createClass(Op4, [{
 	    key: 'click',
@@ -14122,9 +14177,8 @@
 	      } else {
 	        console.log(this);
 	        return _react2['default'].createElement(
-	          'div',
-	          { onClick: this.click.bind(this), style: { backgroundColor: '#000', color: '#d5f765',
-	              fontSize: '38', textAlign: 'center', padding: '20', float: 'left' } },
+	          'span',
+	          { onClick: this.click.bind(this), style: { width: 50, marginLeft: 20 } },
 	          'Concat'
 	        );
 	      }
@@ -14134,24 +14188,22 @@
 	  return Op4;
 	})(_react2['default'].Component);
 
-	var B30 = (function (_React$Component15) {
+	var B30 = (function (_React$Component17) {
 	  function B30(props) {
 	    _classCallCheck(this, B30);
 
 	    _get(Object.getPrototypeOf(B30.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B30, _React$Component15);
+	  _inherits(B30, _React$Component17);
 
 	  _createClass(B30, [{
 	    key: 'render',
 	    value: function render() {
 	      console.log(this);
 	      return _react2['default'].createElement(
-	        'div',
-	        {
-	          style: { backgroundColor: '#000', color: '#d5f765', fontSize: '32',
-	            textAlign: 'center', padding: 20, float: 'left' } },
+	        'span',
+	        { style: { width: 50, marginLeft: 20 } },
 	        this.props.mes0
 	      );
 	    }
@@ -14162,24 +14214,22 @@
 
 	;
 
-	var B31 = (function (_React$Component16) {
+	var B31 = (function (_React$Component18) {
 	  function B31(props) {
 	    _classCallCheck(this, B31);
 
 	    _get(Object.getPrototypeOf(B31.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B31, _React$Component16);
+	  _inherits(B31, _React$Component18);
 
 	  _createClass(B31, [{
 	    key: 'render',
 	    value: function render() {
 	      console.log(this);
 	      return _react2['default'].createElement(
-	        'div',
-	        {
-	          style: { backgroundColor: '#000', color: '#d5f765', fontSize: '32',
-	            textAlign: 'center', padding: 20, float: 'left' } },
+	        'span',
+	        { style: { width: 50, marginLeft: 20 } },
 	        this.props.mes1
 	      );
 	    }
@@ -14190,24 +14240,22 @@
 
 	;
 
-	var B32 = (function (_React$Component17) {
+	var B32 = (function (_React$Component19) {
 	  function B32(props) {
 	    _classCallCheck(this, B32);
 
 	    _get(Object.getPrototypeOf(B32.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B32, _React$Component17);
+	  _inherits(B32, _React$Component19);
 
 	  _createClass(B32, [{
 	    key: 'render',
 	    value: function render() {
 	      console.log(this);
 	      return _react2['default'].createElement(
-	        'div',
-	        {
-	          style: { backgroundColor: '#000', color: '#d5f765', fontSize: '32',
-	            textAlign: 'center', padding: 20, float: 'left' } },
+	        'span',
+	        { style: { width: 50, marginLeft: 20 } },
 	        this.props.mes2
 	      );
 	    }
@@ -14218,24 +14266,22 @@
 
 	;
 
-	var B33 = (function (_React$Component18) {
+	var B33 = (function (_React$Component20) {
 	  function B33(props) {
 	    _classCallCheck(this, B33);
 
 	    _get(Object.getPrototypeOf(B33.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B33, _React$Component18);
+	  _inherits(B33, _React$Component20);
 
 	  _createClass(B33, [{
 	    key: 'render',
 	    value: function render() {
 	      console.log(this);
 	      return _react2['default'].createElement(
-	        'div',
-	        {
-	          style: { backgroundColor: '#000', color: '#d5f765', fontSize: '32',
-	            textAlign: 'center', padding: 20, float: 'left' } },
+	        'span',
+	        { style: { width: 50, marginLeft: 20 } },
 	        '='
 	      );
 	    }
@@ -14246,24 +14292,22 @@
 
 	;
 
-	var B34 = (function (_React$Component19) {
+	var B34 = (function (_React$Component21) {
 	  function B34(props) {
 	    _classCallCheck(this, B34);
 
 	    _get(Object.getPrototypeOf(B34.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(B34, _React$Component19);
+	  _inherits(B34, _React$Component21);
 
 	  _createClass(B34, [{
 	    key: 'render',
 	    value: function render() {
 	      console.log(this);
 	      return _react2['default'].createElement(
-	        'div',
-	        {
-	          style: { backgroundColor: '#000', color: '#d5f765', fontSize: '32',
-	            textAlign: 'center', padding: 20, float: 'left' } },
+	        'span',
+	        { style: { width: 50, marginLeft: 20 } },
 	        this.props.res
 	      );
 	    }
@@ -14274,14 +14318,14 @@
 
 	;
 
-	var Roll = (function (_React$Component20) {
+	var Roll = (function (_React$Component22) {
 	  function Roll(props) {
 	    _classCallCheck(this, Roll);
 
 	    _get(Object.getPrototypeOf(Roll.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Roll, _React$Component20);
+	  _inherits(Roll, _React$Component22);
 
 	  _createClass(Roll, [{
 	    key: 'clickHandler',
@@ -14298,9 +14342,7 @@
 	      } else {
 	        return _react2['default'].createElement(
 	          'div',
-	          {
-	            style: { backgroundColor: '#000', color: '#d5f765', fontSize: '32',
-	              textAlign: 'center', padding: 20, float: 'left' }, onClick: this.clickHandler.bind(this) },
+	          { onClick: this.clickHandler.bind(this) },
 	          'ROLL'
 	        );
 	      }
@@ -14312,7 +14354,7 @@
 
 	;
 
-	var Solutions = (function (_React$Component21) {
+	var Solutions = (function (_React$Component23) {
 	  function Solutions(props) {
 	    _classCallCheck(this, Solutions);
 
@@ -14320,7 +14362,7 @@
 	    var formatted = undefined;
 	  }
 
-	  _inherits(Solutions, _React$Component21);
+	  _inherits(Solutions, _React$Component23);
 
 	  _createClass(Solutions, [{
 	    key: 'clickHandler',
@@ -14337,14 +14379,13 @@
 	          line
 	        );
 	      });
-	      if (this.props.hidden4) {
+	      if (this.props.hidden2) {
 	        return null;
 	      } else {
 	        return _react2['default'].createElement(
 	          'div',
-	          { style: { backgroundColor: '#000', color: '#d5f765', fontSize: '32',
-	              padding: 20, float: 'left' }, onClick: this.clickHandler.bind(this) },
-	          'Solutions ',
+	          { onClick: this.clickHandler.bind(this) },
+	          'Solutions (click) ',
 	          _react2['default'].createElement('br', null),
 	          ' ',
 	          _react2['default'].createElement('br', null),
@@ -14357,14 +14398,127 @@
 	  return Solutions;
 	})(_react2['default'].Component);
 
-	var Display = (function (_React$Component22) {
+	var SetGoal = (function (_React$Component24) {
+	  function SetGoal(props) {
+	    _classCallCheck(this, SetGoal);
+
+	    _get(Object.getPrototypeOf(SetGoal.prototype), 'constructor', this).call(this, props);
+	  }
+
+	  _inherits(SetGoal, _React$Component24);
+
+	  _createClass(SetGoal, [{
+	    key: 'handleChange',
+	    value: function handleChange(event) {
+	      // ISSUE: Input box won't accept data without this handleChange function. ??
+	      goal = event.target.value;
+	      this.props.change({ goal: goal });
+	      this.props.setgoal(goal);
+	    }
+	  }, {
+	    key: 'handleEnter',
+	    value: function handleEnter(event) {
+	      if (this.props.goal == '') {
+	        return;
+	      } else {
+	        if (event.keyCode == 13) {
+	          this.props.setgoal(goal);
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'click',
+	    value: function click(event) {
+	      if (this.props.name == '') {
+	        return;
+	      } else {
+	        this.props.setgoal(goal);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      console.log(this);
+	      if (this.props.hidden2) {
+	        return null;
+	      }
+	      var name = this.props.name;
+	      return _react2['default'].createElement(
+	        'div',
+	        null,
+	        _react2['default'].createElement('input', { type: 'text', name: name, onChange: this.handleChange.bind(this),
+	          onKeyDown: this.handleEnter.bind(this) }),
+	        this.props.goal,
+	        _react2['default'].createElement(
+	          'button',
+	          { onClick: this.click.bind(this) },
+	          'New goal'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return SetGoal;
+	})(_react2['default'].Component);
+
+	;
+
+	var Solutions2 = (function (_React$Component25) {
+	  function Solutions2(props) {
+	    _classCallCheck(this, Solutions2);
+
+	    _get(Object.getPrototypeOf(Solutions2.prototype), 'constructor', this).call(this, props);
+	    var formatted = undefined;
+	  }
+
+	  _inherits(Solutions2, _React$Component25);
+
+	  _createClass(Solutions2, [{
+	    key: 'clickHandler',
+	    value: function clickHandler() {
+	      this.props.solFunc();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var formatted = this.props.sol.map(function (line) {
+	        return _react2['default'].createElement(
+	          'p',
+	          null,
+	          line
+	        );
+	      });
+	      if (this.props.hidden2) {
+	        return null;
+	      } else {
+	        return _react2['default'].createElement(
+	          'div',
+	          { onClick: this.clickHandler.bind(this) },
+	          _react2['default'].createElement(
+	            'div',
+	            null,
+	            'Solutions ',
+	            _react2['default'].createElement('br', null),
+	            ' ',
+	            _react2['default'].createElement('br', null),
+	            formatted
+	          )
+	        );
+	      }
+	    }
+	  }]);
+
+	  return Solutions2;
+	})(_react2['default'].Component);
+
+	var Display = (function (_React$Component26) {
 	  function Display(props) {
 	    _classCallCheck(this, Display);
 
 	    _get(Object.getPrototypeOf(Display.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Display, _React$Component22);
+	  _inherits(Display, _React$Component26);
 
 	  _createClass(Display, [{
 	    key: 'render',
@@ -14372,9 +14526,7 @@
 	      console.log(this);
 	      return _react2['default'].createElement(
 	        'div',
-	        {
-	          style: { backgroundColor: '#000', color: '#d5f765', fontSize: '32',
-	            padding: 20, float: 'left' } },
+	        null,
 	        this.props.str1,
 	        ' ',
 	        _react2['default'].createElement('br', null),
@@ -14397,14 +14549,14 @@
 
 	;
 
-	var Login = (function (_React$Component23) {
+	var Login = (function (_React$Component27) {
 	  function Login(props) {
 	    _classCallCheck(this, Login);
 
 	    _get(Object.getPrototypeOf(Login.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Login, _React$Component23);
+	  _inherits(Login, _React$Component27);
 
 	  _createClass(Login, [{
 	    key: 'handleChange',
@@ -14417,7 +14569,7 @@
 	    value: function handleEnter(event) {
 	      if (this.props.name == '') {
 	        this.props.change({
-	          scoreBoard: ['Please enter a name.'],
+	          scoreB: [''],
 	          info: ''
 	        });
 	      } else {
@@ -14438,7 +14590,7 @@
 	    value: function click() {
 	      if (this.props.name == '') {
 	        this.props.change({
-	          scoreBoard: ['Please enter a name.'],
+	          scoreB: ['Please enter a name.'],
 	          info: 'Please enter a name.'
 	        });
 	      } else {
@@ -14461,14 +14613,14 @@
 	      var name = this.props.name;
 	      return _react2['default'].createElement(
 	        'div',
-	        { style: { backgroundColor: '#000', color: '#00f0f0', fontSize: '32',
-	            padding: 38, float: 'left' } },
+	        null,
 	        _react2['default'].createElement('input', { type: 'text', name: name, onChange: this.handleChange.bind(this),
+	          style: { backgroundColor: '#d8d17d' },
 	          onKeyDown: this.handleEnter.bind(this) }),
 	        this.props.name,
 	        _react2['default'].createElement(
 	          'button',
-	          { onClick: this.click.bind(this) },
+	          { onClick: this.click.bind(this), style: { backgroundColor: '#d8d17d', color: '#f00' } },
 	          'Join'
 	        )
 	      );
@@ -14480,14 +14632,14 @@
 
 	;
 
-	var Clock = (function (_React$Component24) {
+	var Clock = (function (_React$Component28) {
 	  function Clock(props) {
 	    _classCallCheck(this, Clock);
 
 	    _get(Object.getPrototypeOf(Clock.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Clock, _React$Component24);
+	  _inherits(Clock, _React$Component28);
 
 	  _createClass(Clock, [{
 	    key: 'click',
@@ -14499,10 +14651,10 @@
 	          message: ''
 	        });
 	        var _name3 = this.props.name;
-	        var _group = this.props.group;
-	        // this.props.change({hidden4: false});
-	        DES_ws.send('CK#$42,' + _group + ',' + _name3 + ',10');
-	        DES_ws.send('CY#$42,' + _group + ',' + _name3 + ',' + _name3); // After 8 seconds, non-clickers see solutions.
+	        var group = this.props.group;
+	        this.props.change({ scoreClicker: _name3 });
+	        DES_ws.send('CK#$42,' + group + ',' + _name3 + ',10');
+	        DES_ws.send('CY#$42,' + group + ',' + _name3 + ',' + _name3); // After 8 seconds, non-clickers see solutions.
 	      }
 	    }
 	  }, {
@@ -14514,9 +14666,7 @@
 	      }
 	      return _react2['default'].createElement(
 	        'div',
-	        {
-	          style: { backgroundColor: '#000', color: '#ff0000', fontSize: '32',
-	            padding: 30, float: 'left' }, onClick: this.click.bind(this) },
+	        { onClick: this.click.bind(this) },
 	        this.props.t
 	      );
 	    }
@@ -14527,14 +14677,14 @@
 
 	;
 
-	var Messages2 = (function (_React$Component25) {
+	var Messages2 = (function (_React$Component29) {
 	  function Messages2(props) {
 	    _classCallCheck(this, Messages2);
 
 	    _get(Object.getPrototypeOf(Messages2.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Messages2, _React$Component25);
+	  _inherits(Messages2, _React$Component29);
 
 	  _createClass(Messages2, [{
 	    key: 'render',
@@ -14545,9 +14695,7 @@
 	      }
 	      return _react2['default'].createElement(
 	        'div',
-	        {
-	          style: { backgroundColor: '#000', color: '#ff0000', fontSize: '32',
-	            padding: 24, float: 'left' } },
+	        null,
 	        this.props.message
 	      );
 	    }
@@ -14558,8 +14706,10 @@
 
 	;
 
-	var B4 = (function (_React$Component26) {
+	var B4 = (function (_React$Component30) {
 	  function B4(props) {
+	    var _this = this;
+
 	    _classCallCheck(this, B4);
 
 	    _get(Object.getPrototypeOf(B4.prototype), 'constructor', this).call(this, props);
@@ -14589,12 +14739,10 @@
 	      str2: '',
 	      str3: '',
 	      str4: '',
-
 	      hidden: false,
 	      hidden2: true,
 	      hidden3: false,
 	      hidden4: true,
-
 	      togDice: false,
 	      name: '',
 	      DS_T: 'SCORE!',
@@ -14602,15 +14750,17 @@
 	      STRING: '',
 	      impossibleClicker: 'a@F$Uy&imp',
 	      scoreClicker: 'a@F$Uy&sc',
-	      scoreBoard: ['Greetings new player.'],
+	      scoreB: ['Greetings new player.'],
 	      group: 'solo',
 	      info: 'Please enter a name.',
-	      sty: { backgroundColor: '#000', color: '#d5f765',
-	        fontSize: '38', textAlign: 'center', padding: '20', float: 'left' },
 	      used: [],
+	      dynamicBg: '#000000',
+	      dynamicColor: '#e5bb47',
+	      dynamicFont: 28,
 	      test: false,
 	      message: '',
-	      score: false
+	      score: false,
+	      goal: 29
 	    };
 
 	    var that = this;
@@ -14669,7 +14819,7 @@
 	            break;
 
 	          case 'CZ#$42':
-	            sol = extra.split('<br />');
+	            var sol = extra.split('<br />');
 	            that.setState({ sol: sol });
 	            //  $("#a2").html(sender + " clicked SOLUTIONS.<br><br>");
 	            break;
@@ -14702,11 +14852,11 @@
 	            //  if ("private" !== sendersGroup || sender == playerM)
 	            if (that.state.group !== 'solo') {
 	              that.setState({
-	                scoreBoard: ar3
+	                scoreB: ar3
 	              });
 	            } else {
 	              that.setState({
-	                scoreBoard: ['Data is visible to group players.']
+	                scoreB: ['Data is visible to group players.']
 	              });
 	            }
 	            console.log('________________________CB extra');
@@ -14826,28 +14976,28 @@
 	    };
 
 	    setInterval(function () {
-	      var name = that.state.name;
-	      var group = that.state.group;
-	      if (that.state.DS_T === 0) {
+	      var name = _this.state.name;
+	      var group = _this.state.group;
+	      if (_this.state.DS_T === 0) {
 	        DES_ws.send('CR#$42,' + group + ',' + name + ',filler');
-	        if (that.state.name === that.state.scoreClicker) {
+	        if (_this.state.name === _this.state.scoreClicker) {
 	          DES_ws.send('CI#$42,' + group + ',' + name + ',filler');
 	        }
-	        that.setState({
-	          DS_T: '10 seconds expired. Deduct one point from ' + that.state.scoreClicker,
+	        _this.setState({
+	          DS_T: '10 seconds expired. Deduct one point from ' + _this.state.scoreClicker,
 	          message1: '',
 	          message2: '',
 	          message3: '',
 	          message4: ''
 	        });
 	      }
-	      if (that.state.DS_T > -1) {
-	        var X = that.state.DS_T - 1;
-	        that.setState({ DS_T: X });
-	        that.setState({ info: X });
+	      if (_this.state.DS_T > -1) {
+	        var X = _this.state.DS_T - 1;
+	        _this.setState({ DS_T: X });
+	        _this.setState({ info: X });
 	      }
-	      if (that.state.DS_T === -1) {
-	        that.setState({
+	      if (_this.state.DS_T === -1) {
+	        _this.setState({
 	          DS_T: '',
 	          info: ''
 	        });
@@ -14855,7 +15005,7 @@
 	    }, 1000);
 	  }
 
-	  _inherits(B4, _React$Component26);
+	  _inherits(B4, _React$Component30);
 
 	  _createClass(B4, [{
 	    key: 'isElement',
@@ -14869,22 +15019,54 @@
 	      return value;
 	    }
 	  }, {
-	    key: 'moreUsed',
-
-	    /*
-	      wasUsed (array1, array2) {
-	        var that = this;
-	        var value = false;
-	        array2.map( function(e) { 
-	          if (that.isElement(e,array1)) {
-	            value = true;
-	            return;
-	          }
-	        });
-	        return value;
+	    key: 'getStyles',
+	    value: function getStyles() {
+	      return {
+	        padding: '1em',
+	        borderRadius: 5,
+	        background: this.state.dynamicBg
+	      };
+	    }
+	  }, {
+	    key: 'changeBackground',
+	    value: function changeBackground(color) {
+	      this.setState({
+	        dynamicBg: color
+	      });
+	    }
+	  }, {
+	    key: 'changeColor',
+	    value: function changeColor(color) {
+	      this.setState({
+	        dynamicColor: color
+	      });
+	    }
+	  }, {
+	    key: 'increaseFont',
+	    value: function increaseFont() {
+	      var x = this.state.dynamicFont;
+	      if (x > 0) {
+	        this.setState({ dynamicFont: x + 4 });
 	      }
-	    */
-
+	    }
+	  }, {
+	    key: 'decreaseFont',
+	    value: function decreaseFont() {
+	      var x = this.state.dynamicFont;
+	      if (x < 80) {
+	        this.setState({ dynamicFont: x - 4 });
+	      }
+	    }
+	  }, {
+	    key: 'solutions',
+	    value: function solutions() {
+	      var group = this.state.group;
+	      var name = this.state.name;
+	      var goal = this.state.goal;
+	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + goal);
+	    }
+	  }, {
+	    key: 'moreUsed',
 	    value: function moreUsed(x) {
 	      var ar = this.state.used;
 	      ar.push(x);
@@ -14911,8 +15093,8 @@
 	        test: false,
 	        score: false,
 	        message: 'You must click SCORE in order to gain a point.',
-	        sty: { backgroundColor: '#000', color: '#d5f765',
-	          fontSize: '38', textAlign: 'center', padding: '20', float: 'left' }
+	        sty: { color: '#d5f765',
+	          fontSize: '38', textAlign: 'center', padding: '20' }
 	      });
 	      var name = this.state.name;
 	      var group = this.state.group;
@@ -14933,12 +15115,12 @@
 	      if (this.state.message4 !== '') {
 	        // That is, no calculations have been made.
 	        var _name4 = this.state.name;
-	        var _group2 = this.state.group;
+	        var group = this.state.group;
 	        var a = this.state.message1;
 	        var b = this.state.message2;
 	        var c = this.state.message3;
 	        var d = this.state.message4;
-	        DES_ws.send('CZ#$42,' + _group2 + ',' + _name4 + ',' + a + ',' + b + ',' + c + ',' + d + ',20');
+	        DES_ws.send('CZ#$42,' + group + ',' + _name4 + ',' + a + ',' + b + ',' + c + ',' + d + ',20');
 	      }
 	    }
 	  }, {
@@ -14956,7 +15138,7 @@
 	    key: 'setGroup',
 	    value: function setGroup(x) {
 	      var name = this.state.name;
-	      DES_ws.send('CO#$42,' + x + ',' + name + ',filler');
+	      DES_ws.send('CO#$42,' + x + ',' + name + ',setGroup');
 	      this.setState({ group: x });
 	    }
 	  }, {
@@ -15068,8 +15250,8 @@
 	      }).then(delay(25)).then(function () {
 	        that.setNumberAr();
 	      }).then(function () {
-	        that.setState({ sty: { backgroundColor: '#000', color: '#ff0000',
-	            fontSize: '38', textAlign: 'center', padding: '20', float: 'left' } });
+	        that.setState({ sty: { color: '#ff0000',
+	            fontSize: '38', textAlign: 'center', padding: '20' } });
 	      });
 	    }
 	  }, {
@@ -15084,21 +15266,51 @@
 	      this.setState(x);
 	    }
 	  }, {
+	    key: 'logMessage',
+	    value: function logMessage() {
+	      console.log('*************************************************************************** Message from logMessage');
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      console.log(this);
+	      var dynB = this.state.dynamicBg;
+	      var dynC = this.state.dynamicColor;
+	      var dynF = this.state.dynamicFont;
 	      return _react2['default'].createElement(
 	        'div',
-	        null,
-	        _react2['default'].createElement(ScoreBoard, { key: 'ScoreBoard', scoreBoard: this.state.scoreBoard }),
+	        { style: { backgroundColor: dynB, color: dynC, fontSize: dynF, display: 'inlineBlock' } },
+	        _react2['default'].createElement(
+	          'div',
+	          { style: { width: 600, float: 'right' } },
+	          _react2['default'].createElement(ChangeColor, { key: 'ChangeColor', changeC: this.changeColor.bind(this),
+	            style: { width: 8 } }),
+	          _react2['default'].createElement(ChangeBackground, { key: 'ChangeBackground', changeB: this.changeBackground.bind(this),
+	            style: { width: 8 } }),
+	          _react2['default'].createElement(
+	            'button',
+	            { key: '$#19', onClick: this.increaseFont.bind(this),
+	              style: { backgroundColor: '#d8d17d', color: '#f00' } },
+	            'Increase Font Size'
+	          ),
+	          _react2['default'].createElement(
+	            'span',
+	            { style: { backgroundColor: '#000', color: '#000' } },
+	            'e'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { key: '$#20', onClick: this.decreaseFont.bind(this),
+	              style: { backgroundColor: '#d8d17d', color: '#f00' } },
+	            'Decrease Font Size'
+	          ),
+	          _react2['default'].createElement(ScoreBoard, { key: 'ScoreBoard', scoreB: this.state.scoreB })
+	        ),
 	        _react2['default'].createElement(Messages, { key: 'Messages', info: this.state.info }),
-	        _react2['default'].createElement(GroupA, { key: 'GroupA', change: this.changeItem.bind(this), setGroup: this.setGroup.bind(this),
-	          hidden2: this.state.hidden2 }),
-	        _react2['default'].createElement(GroupB, { key: 'GroupB', change: this.changeItem.bind(this), setGroup: this.setGroup.bind(this),
-	          hidden2: this.state.hidden2 }),
-	        _react2['default'].createElement(GroupNew, { key: 'GroupNew', change: this.changeItem.bind(this), setGroup: this.setGroup.bind(this),
-	          hidden2: this.state.hidden2 }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 5 } }),
+	        _react2['default'].createElement(GroupA, { key: 'GroupA', hidden2: this.state.hidden2, setGroup: this.setGroup.bind(this) }),
+	        _react2['default'].createElement(GroupB, { key: 'GroupB', setGroup: this.setGroup.bind(this), hidden2: this.state.hidden2 }),
+	        _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: this.setGroup.bind(this), hidden2: this.state.hidden2, name: this.state.name }),
+	        _react2['default'].createElement('div', null),
 	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: this.newPlayer.bind(this), name: this.state.name,
 	          setGroup: this.setGroup.bind(this), change: this.changeItem.bind(this),
 	          group: this.state.group, hidden: this.state.hidden, info: this.state.info,
@@ -15108,17 +15320,18 @@
 	        _react2['default'].createElement(Clock, { key: 'Clock', t: this.state.DS_T, name: this.state.name, group: this.state.group,
 	          hidden: this.state.hidden, hidden2: this.state.hidden2, hidden3: this.state.hidden3,
 	          hidden4: this.state.hidden4, change: this.changeItem.bind(this) }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
+	        _react2['default'].createElement('div', { style: { width: 8000, backgroundColor: dynB, padding: 10 } }),
 	        _react2['default'].createElement(Messages2, { key: 'Messages2', message: this.state.message }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
+	        _react2['default'].createElement('div', { style: { width: 8000, backgroundColor: dynB, padding: 10 } }),
 	        _react2['default'].createElement(B40, { key: 'B40', message1: this.state.message1, change: this.changeItem.bind(this),
 	          mes0: this.state.mes0, mes2: this.state.mes2, mes1: this.state.mes1, calc: this.calc.bind(this),
 	          delay: this.delay.bind(this), name: this.state.name, group: this.state.group,
 	          hidden: this.state.hidden, hidden2: this.state.hidden2, hidden3: this.state.hidden3,
 	          more: this.moreUsed.bind(this) }),
 	        _react2['default'].createElement(B41, { key: 'B41', message2: this.state.message2, change: this.changeItem.bind(this),
-	          mes0: this.state.mes0, mes2: this.state.mes2, mes1: this.state.mes1, calc: this.calc.bind(this),
-	          delay: this.delay.bind(this), name: this.state.name, group: this.state.group, hidden: this.state.hidden,
+	          mes0: this.state.mes0, mes2: this.state.mes2,
+	          mes1: this.state.mes1, calc: this.calc.bind(this), delay: this.delay.bind(this),
+	          name: this.state.name, group: this.state.group, hidden: this.state.hidden,
 	          hidden2: this.state.hidden2, hidden3: this.state.hidden3, more: this.moreUsed.bind(this) }),
 	        _react2['default'].createElement(B42, { key: 'B42', message3: this.state.message3, change: this.changeItem.bind(this),
 	          mes0: this.state.mes0, mes2: this.state.mes2, mes1: this.state.mes1,
@@ -15127,9 +15340,10 @@
 	          hidden2: this.state.hidden2, hidden3: this.state.hidden3, more: this.moreUsed.bind(this) }),
 	        _react2['default'].createElement(B43, { key: 'B43', message4: this.state.message4, change: this.changeItem.bind(this),
 	          mes0: this.state.mes0, mes2: this.state.mes2, mes1: this.state.mes1, calc: this.calc.bind(this),
-	          delay: this.delay.bind(this), name: this.state.name, group: this.state.group, hidden: this.state.hidden,
-	          hidden2: this.state.hidden2, hidden3: this.state.hidden3, more: this.moreUsed.bind(this) }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
+	          delay: this.delay.bind(this), name: this.state.name, group: this.state.group,
+	          hidden: this.state.hidden, hidden2: this.state.hidden2, hidden3: this.state.hidden3,
+	          more: this.moreUsed.bind(this) }),
+	        _react2['default'].createElement('div', { style: { width: 8000, padding: 10 } }),
 	        _react2['default'].createElement(Op0, { key: 'Op0', mes0: this.state.mes0, mes2: this.state.mes2, change: this.changeItem.bind(this),
 	          mes1: this.state.mes1, calc: this.calc.bind(this), name: this.state.name,
 	          group: this.state.group, hidden: this.state.hidden,
@@ -15150,16 +15364,17 @@
 	          mes1: this.state.mes1, calc: this.calc.bind(this), name: this.state.name,
 	          group: this.state.group, hidden: this.state.hidden,
 	          hidden2: this.state.hidden2, hidden3: this.state.hidden3 }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
+	        _react2['default'].createElement('div', { style: { width: 8000, padding: 10 } }),
 	        _react2['default'].createElement(B30, { key: 'B30', mes0: this.state.mes0 }),
 	        _react2['default'].createElement(B31, { key: 'B31', mes1: this.state.mes1 }),
 	        _react2['default'].createElement(B32, { key: 'B32', mes2: this.state.mes2 }),
 	        _react2['default'].createElement(B33, { key: 'B33' }),
 	        _react2['default'].createElement(B34, { key: 'B34', res: this.state.res }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
+	        _react2['default'].createElement('div', { style: { width: 8000, padding: 10 } }),
 	        _react2['default'].createElement(Roll, { key: 'Roll', roll: this.rollDice.bind(this), hidden: this.state.hidden,
 	          hidden2: this.state.hidden2, hidden3: this.state.hidden3, setInfo: this.setInfo.bind(this) }),
-	        _react2['default'].createElement('div', { style: { width: 8000, float: 'left', padding: 10 } }),
+	        _react2['default'].createElement('div', { style: { width: 8000, padding: 10 } }),
+	        _react2['default'].createElement('div', { style: { width: 8000, padding: 10 } }),
 	        _react2['default'].createElement(Solutions, { key: 'Solutions', solFunc: this.getSolutions.bind(this), sol: this.state.sol,
 	          hidden4: this.state.hidden4 })
 	      );
@@ -15178,8 +15393,8 @@
 	  contentEditable={true}
 	*/
 	_react2['default'].render(_react2['default'].createElement(B4, null), document.getElementById('divSix'));
-	// this.setState({sty: {backgroundColor: '#000', color: '#d5f765',
-	//      fontSize: "38", textAlign: "center", padding: "20", float: "left" }});
+	// this.setState({sty: {color: '#d5f765',
+	//      fontSize: "38", textAlign: "center", padding: "20",  }});
 
 /***/ },
 /* 101 */

@@ -1,115 +1,4 @@
-CK#$42,solo,Adam,SCORE!
-CF#$42,solo,Adam,filler
-CA#$42,solo,Adam,6,6,12,20
-IA#$42,solo,Adam,Click SCORE to begin.
-CO#$42,GroupA,Adam,filler
-CK#$42,GroupA,Adam,10
-CY#$42,GroupA,Adam,Adam
-CQ#$42,GroupA,Adam,mes0,1
-CQ#$42,GroupA,Adam,mes2,5
-CQ#$42,GroupA,Adam,mes1,*
-CK#$42,GroupA,Adam,10
-CQ#$42,GroupA,Adam,str1,1 * 5 = 5
-CE#$42,GroupA,Adam,4,15,5
-CK#$42,GroupA,Adam,10
-CF#$42,GroupA,Adam,filler
-CQ#$42,GroupA,Adam,mes0,15
-CQ#$42,GroupA,Adam,mes2,5
-CQ#$42,GroupA,Adam,mes1,+
-CK#$42,GroupA,Adam,10
-CQ#$42,GroupA,Adam,str2,15 + 5 = 20
-CE#$42,GroupA,Adam,4,20,
-CR#$42,GroupA,Adam,filler
-CG#$42,GroupA,Adam,filler
-CK#$42,GroupA,Adam,One Point For Adam
-CF#$42,GroupA,Adam,filler
-CK#$42,GroupA,Adam,SCORE!
-CF#$42,GroupA,Adam,filler
-CA#$42,GroupA,Adam,6,6,12,20
-IA#$42,GroupA,Adam,Click SCORE to begin.
-CQ#$42,GroupA,Adam,mes0,6
-CQ#$42,GroupA,Adam,mes2,3
-CQ#$42,GroupA,Adam,mes1,*
-CQ#$42,GroupA,Adam,str1,6 * 3 = 18
-CE#$42,GroupA,Adam,4,2,18
-CK#$42,GroupA,Adam,10
-CF#$42,GroupA,Adam,filler
-CQ#$42,GroupA,Adam,mes0,2
-CQ#$42,GroupA,Adam,mes2,18
-CQ#$42,GroupA,Adam,mes1,+
-CK#$42,GroupA,Adam,10
-CQ#$42,GroupA,Adam,str2,2 + 18 = 20
-CE#$42,GroupA,Adam,4,20,
-CR#$42,GroupA,Adam,filler
-CG#$42,GroupA,Adam,filler
-CK#$42,GroupA,Adam,One Point For Adam
-CF#$42,GroupA,Adam,filler
-CK#$42,GroupA,Adam,SCORE!
-CF#$42,GroupA,Adam,filler
-CA#$42,GroupA,Adam,6,6,12,20
-IA#$42,GroupA,Adam,Click SCORE to begin.
-CQ#$42,GroupA,Adam,mes0,15
-CQ#$42,GroupA,Adam,mes2,5
-CQ#$42,GroupA,Adam,mes1,*
-CQ#$42,GroupA,Adam,str1,15 * 5 = 75
-CE#$42,GroupA,Adam,1,6,75
-CK#$42,GroupA,Adam,10
-CF#$42,GroupA,Adam,filler
-CR#$42,GroupA,Adam,filler
-CK#$42,solo,Andy,SCORE!
-CF#$42,solo,Andy,filler
-CA#$42,solo,Andy,6,6,12,20
-IA#$42,solo,Andy,Click SCORE to begin.
-CQ#$42,solo,Andy,mes0,6
-CQ#$42,solo,Andy,mes2,4
-CQ#$42,solo,Andy,mes1,-
-CQ#$42,solo,Andy,str1,6 - 4 = 2
-CE#$42,solo,Andy,12,18,2
-CK#$42,solo,Andy,10
-CF#$42,solo,Andy,filler
-CR#$42,solo,Andy,filler
-CO#$42,GroupA,Adsm,filler
-CK#$42,GroupA,Adsm,SCORE!
-CF#$42,GroupA,Adsm,filler
-CA#$42,GroupA,Adsm,6,6,12,20
-IA#$42,GroupA,Adsm,Click SCORE to begin.
-CK#$42,GroupA,Adsm,10
-CY#$42,GroupA,Adsm,Adsm
-CQ#$42,GroupA,Adsm,mes0,10
-CQ#$42,GroupA,Adsm,mes2,5
-CQ#$42,GroupA,Adsm,mes1,/
-CK#$42,GroupA,Adsm,10
-CQ#$42,GroupA,Adsm,str1,10 / 5 = 2
-CE#$42,GroupA,Adsm,5,4,2
-CK#$42,GroupA,Adsm,10
-CF#$42,GroupA,Adsm,filler
-CR#$42,GroupA,Adsm,filler
-CO#$42,GroupA,aaa,filler
-CK#$42,GroupA,aaa,10
-CY#$42,GroupA,aaa,aaa
-CK#$42,GroupA,aaa,SCORE!
-CF#$42,GroupA,aaa,filler
-CA#$42,GroupA,aaa,6,6,12,20
-IA#$42,GroupA,aaa,Click SCORE to begin.
-CK#$42,GroupA,aaa,10
-CY#$42,GroupA,aaa,aaa
-CQ#$42,GroupA,aaa,mes0,3
-CQ#$42,GroupA,aaa,mes2,3
-CQ#$42,GroupA,aaa,mes1,*
-CK#$42,GroupA,aaa,10
-CQ#$42,GroupA,aaa,str1,3 * 3 = 9
-CE#$42,GroupA,aaa,12,14,9
-CK#$42,GroupA,aaa,10
-CF#$42,GroupA,aaa,filler
-CQ#$42,GroupA,aaa,mes0,14
-CQ#$42,GroupA,aaa,mes2,9
-CQ#$42,GroupA,aaa,mes1,-
-CK#$42,GroupA,aaa,10
-CQ#$42,GroupA,aaa,str2,14 - 9 = 5
-CE#$42,GroupA,aaa,12,5,
-CK#$42,GroupA,aaa,10
-CF#$42,GroupA,aaa,filler
-CR#$42,GroupA,aaa,filler
+CO#$42,GroupA,aaa,setGroup
 CK#$42,GroupA,aaa,SCORE!
 CF#$42,GroupA,aaa,filler
 CA#$42,GroupA,aaa,6,6,12,20
@@ -132,896 +21,226 @@ CA#$42,GroupA,aaa,6,6,12,20
 IA#$42,GroupA,aaa,Click SCORE to begin.
 CK#$42,GroupA,aaa,10
 CY#$42,GroupA,aaa,aaa
-CQ#$42,GroupA,aaa,mes0,2
-CQ#$42,GroupA,aaa,mes2,3
-CQ#$42,GroupA,aaa,mes1,+
-CK#$42,GroupA,aaa,10
-CQ#$42,GroupA,aaa,str1,2 + 3 = 5
-CE#$42,GroupA,aaa,4,9,5
-CK#$42,GroupA,aaa,10
-CF#$42,GroupA,aaa,filler
 CQ#$42,GroupA,aaa,mes0,5
 CQ#$42,GroupA,aaa,mes2,4
 CQ#$42,GroupA,aaa,mes1,*
 CK#$42,GroupA,aaa,10
-CQ#$42,GroupA,aaa,str2,5 * 4 = 20
-CE#$42,GroupA,aaa,9,20,
-CR#$42,GroupA,aaa,filler
-CG#$42,GroupA,aaa,filler
-CK#$42,GroupA,aaa,One Point For aaa
-CF#$42,GroupA,aaa,filler
-CK#$42,GroupA,aaa,SCORE!
-CF#$42,GroupA,aaa,filler
-CA#$42,GroupA,aaa,6,6,12,20
-IA#$42,GroupA,aaa,Click SCORE to begin.
+CQ#$42,GroupA,aaa,str1,5 * 4 = 20
+CE#$42,GroupA,aaa,1,5,20
 CK#$42,GroupA,aaa,10
-CY#$42,GroupA,aaa,aaa
-CQ#$42,GroupA,aaa,mes0,2
-CQ#$42,GroupA,aaa,mes2,12
+CF#$42,GroupA,aaa,filler
+CQ#$42,GroupA,aaa,mes0,1
+CQ#$42,GroupA,aaa,mes2,20
 CQ#$42,GroupA,aaa,mes1,*
 CK#$42,GroupA,aaa,10
-CQ#$42,GroupA,aaa,str1,2 * 12 = 24
-CE#$42,GroupA,aaa,4,6,24
-CK#$42,GroupA,aaa,10
-CF#$42,GroupA,aaa,filler
-CQ#$42,GroupA,aaa,mes0,24
-CQ#$42,GroupA,aaa,mes2,4
-CQ#$42,GroupA,aaa,mes1,-
-CK#$42,GroupA,aaa,10
-CQ#$42,GroupA,aaa,str2,24 - 4 = 20
-CE#$42,GroupA,aaa,6,20,
+CQ#$42,GroupA,aaa,str2,1 * 20 = 20
+CE#$42,GroupA,aaa,5,20,
 CR#$42,GroupA,aaa,filler
 CG#$42,GroupA,aaa,filler
 CK#$42,GroupA,aaa,One Point For aaa
 CF#$42,GroupA,aaa,filler
-CK#$42,GroupA,aaa,SCORE!
-CF#$42,GroupA,aaa,filler
-CA#$42,GroupA,aaa,6,6,12,20
-IA#$42,GroupA,aaa,Click SCORE to begin.
-CO#$42,GroupA,AAA,filler
+CO#$42,GroupA,bbb,setGroup
+CO#$42,GroupA,AAA,setGroup
 CK#$42,GroupA,AAA,SCORE!
 CF#$42,GroupA,AAA,filler
 CA#$42,GroupA,AAA,6,6,12,20
 IA#$42,GroupA,AAA,Click SCORE to begin.
-CK#$42,GroupA,AAA,SCORE!
-CF#$42,GroupA,AAA,filler
-CA#$42,GroupA,AAA,6,6,12,20
-IA#$42,GroupA,AAA,Click SCORE to begin.
-CK#$42,solo,AAA,SCORE!
-CF#$42,solo,AAA,filler
-CA#$42,solo,AAA,6,6,12,20
-IA#$42,solo,AAA,Click SCORE to begin.
-CQ#$42,solo,AAA,mes0,5
-CK#$42,solo,aa,SCORE!
-CF#$42,solo,aa,filler
-CA#$42,solo,aa,6,6,12,20
-IA#$42,solo,aa,Click SCORE to begin.
-CK#$42,solo,aa,SCORE!
-CF#$42,solo,aa,filler
-CA#$42,solo,aa,6,6,12,20
-IA#$42,solo,aa,Click SCORE to begin.
-CQ#$42,solo,aa,mes0,1
+CQ#$42,solo,aaa,mes0,0
 CK#$42,solo,aaa,SCORE!
 CF#$42,solo,aaa,filler
 CA#$42,solo,aaa,6,6,12,20
 IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,3
-CQ#$42,solo,aaa,mes2,2
-CQ#$42,solo,aaa,mes1,Concat
-CQ#$42,solo,aaa,str1,3 Concat 2 = 32
-CE#$42,solo,aaa,1,13,32
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,32
-CQ#$42,solo,aaa,mes2,13
-CQ#$42,solo,aaa,mes1,-
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,32 - 13 = 19
-CE#$42,solo,aaa,1,19,
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,19
-CQ#$42,solo,aaa,mes2,1
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str3,19 + 1 = 20
-CE#$42,solo,aaa,20
-CR#$42,solo,aaa,filler
-CG#$42,solo,aaa,filler
-CK#$42,solo,aaa,One Point For aaa
-CF#$42,solo,aaa,filler
+CO#$42,334,aaa,setGroup
+CO#$42,GroupB,aaa,setGroup
+CO#$42,334fggf,aaa,setGroup
+CO#$42,334,aaa,setGroup
+CO#$42,334gggg,aaa,setGroup
 CK#$42,solo,aaa,SCORE!
 CF#$42,solo,aaa,filler
 CA#$42,solo,aaa,6,6,12,20
 IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,3
-CQ#$42,solo,aaa,mes2,4
-CQ#$42,solo,aaa,mes1,*
-CQ#$42,solo,aaa,str1,3 * 4 = 12
-CE#$42,solo,aaa,5,17,12
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,17
-CQ#$42,solo,aaa,mes2,12
-CQ#$42,solo,aaa,mes1,-
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,17 - 12 = 5
-CE#$42,solo,aaa,5,5,
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,5
-CQ#$42,solo,aaa,mes2,5
-CQ#$42,solo,aaa,mes1,*
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str3,5 * 5 = 25
-CE#$42,solo,aaa,25
-CR#$42,solo,aaa,filler
-CI#$42,solo,aaa,filler
-CK#$42,solo,aaa,Take One Point From aaa
-CF#$42,solo,aaa,filler
-CK#$42,solo,AAA,SCORE!
-CF#$42,solo,AAA,filler
-CA#$42,solo,AAA,6,6,12,20
-IA#$42,solo,AAA,Click SCORE to begin.
-CQ#$42,solo,AAA,mes0,4
-CQ#$42,solo,AAA,mes2,4
-CQ#$42,solo,AAA,mes1,Concat
-CQ#$42,solo,AAA,str1,4 Concat 4 = 44
-CE#$42,solo,AAA,8,1,44
-CK#$42,solo,AAA,10
-CF#$42,solo,AAA,filler
-CQ#$42,solo,AAA,mes0,44
-CQ#$42,solo,AAA,mes2,8
-CQ#$42,solo,AAA,mes1,-
-CK#$42,solo,AAA,10
-CQ#$42,solo,AAA,str2,44 - 8 = 36
-CE#$42,solo,AAA,1,36,
-CK#$42,solo,AAA,10
-CF#$42,solo,AAA,filler
-CR#$42,solo,AAA,filler
+CO#$42,ggg,aaa,setGroup
+CO#$42,gggyy,aaa,setGroup
 CK#$42,solo,aaa,SCORE!
 CF#$42,solo,aaa,filler
 CA#$42,solo,aaa,6,6,12,20
 IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,2
-CQ#$42,solo,aaa,mes2,1
-CQ#$42,solo,aaa,mes1,Concat
-CQ#$42,solo,aaa,str1,2 Concat 1 = 21
-CE#$42,solo,aaa,1,20,21
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CR#$42,solo,aaa,filler
+CO#$42,fairy,aaa,setGroup
+CK#$42,solo,bbb,10
+CY#$42,solo,bbb,bbb
+CR#$42,solo,bbb,filler
+CO#$42,jj,bbb,setGroup
+CO#$42,undefined,AAA,setGroup
+CO#$42,Group7,AAA,setGroup
+CO#$42,Group7,AAA,setGroup
+CO#$42,Group8,AAA,setGroup
+CO#$42,undefined,AAA,setGroup
+CO#$42,dfg,aaa,setGroup
+CO#$42,dfgdd,aaa,setGroup
+CO#$42,ghg,AAA,setGroup
+CO#$42,jj,AAA,setGroup
+CO#$42,jj,BBB,setGroup
+CO#$42,bvorp,AAA,setGroup
+CO#$42,bvorp,AAA,setGroup
+CO#$42,bvorpop,AAA,setGroup
+CO#$42,bvorpopzzz,AAA,setGroup
+CO#$42,bvorpopzzz,AAA,setGroup
+CO#$42,GroupB,AAA,setGroup
+CO#$42,GroupA,AAA,setGroup
+CO#$42,bvorpopzzz,AAA,setGroup
+CO#$42,ddffdssdffdsd,dfdf,setGroup
+CO#$42,GroupB,dfdf,setGroup
+CO#$42,ddffdssdffdsd,dfdf,setGroup
+CO#$42,GroupB,eee,setGroup
+CO#$42,GroupC,eee,setGroup
+CO#$42,GroupA,eee,setGroup
+CO#$42,GroupB,eee,setGroup
+CO#$42,GroupC,eee,setGroup
 CK#$42,solo,aaa,SCORE!
 CF#$42,solo,aaa,filler
 CA#$42,solo,aaa,6,6,12,20
 IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,1
-CQ#$42,solo,aaa,mes2,5
-CQ#$42,solo,aaa,mes1,+
-CQ#$42,solo,aaa,str1,1 + 5 = 6
-CE#$42,solo,aaa,9,8,6
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,9
-CQ#$42,solo,aaa,mes2,8
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,9 + 8 = 17
-CE#$42,solo,aaa,6,17,
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,6
-CQ#$42,solo,aaa,mes2,17
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str3,6 + 17 = 23
-CE#$42,solo,aaa,23
-CR#$42,solo,aaa,filler
-CI#$42,solo,aaa,filler
-CK#$42,solo,aaa,Take One Point From aaa
-CF#$42,solo,aaa,filler
-CK#$42,solo,aa,SCORE!
-CF#$42,solo,aa,filler
-CA#$42,solo,aa,6,6,12,20
-IA#$42,solo,aa,Click SCORE to begin.
-CK#$42,solo,aa,10
-CY#$42,solo,aa,aa
-CQ#$42,solo,aa,mes0,6
-CQ#$42,solo,aa,mes2,3
-CQ#$42,solo,aa,mes1,-
-CK#$42,solo,aa,10
-CR#$42,solo,aa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,6
-CQ#$42,solo,aaa,mes2,2
-CQ#$42,solo,aaa,mes1,*
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,5
-CQ#$42,solo,aaa,mes2,6
-CQ#$42,solo,aaa,mes1,*
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,1
-CQ#$42,solo,aaa,mes2,2
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,aa,SCORE!
-CF#$42,solo,aa,filler
-CA#$42,solo,aa,6,6,12,20
-IA#$42,solo,aa,Click SCORE to begin.
-CQ#$42,solo,aa,mes0,6
-CQ#$42,solo,aa,mes2,4
-CQ#$42,solo,aa,mes1,+
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,3
-CQ#$42,solo,aaa,mes2,2
-CQ#$42,solo,aaa,mes1,*
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CQ#$42,solo,sss,mes0,4
-CQ#$42,solo,sss,mes2,3
-CQ#$42,solo,sss,mes1,+
-CQ#$42,solo,sss,str1,4 + 3 = 7
-CE#$42,solo,sss,3,7,7
-CK#$42,solo,sss,10
-CF#$42,solo,sss,filler
-CQ#$42,solo,sss,mes0,7
-CQ#$42,solo,sss,mes2,3
-CQ#$42,solo,sss,mes1,*
-CK#$42,solo,sss,10
-CQ#$42,solo,sss,str2,7 * 3 = 21
-CE#$42,solo,sss,7,21,
-CK#$42,solo,sss,10
-CF#$42,solo,sss,filler
-CQ#$42,solo,sss,mes0,21
-CQ#$42,solo,sss,mes2,7
-CQ#$42,solo,sss,mes1,-
-CK#$42,solo,sss,10
-CQ#$42,solo,sss,str3,21 - 7 = 14
-CE#$42,solo,sss,14
-CR#$42,solo,sss,filler
-CI#$42,solo,sss,filler
-CK#$42,solo,sss,Take One Point From sss
-CF#$42,solo,sss,filler
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CQ#$42,solo,sss,mes0,2
-CQ#$42,solo,sss,mes2,3
-CQ#$42,solo,sss,mes1,Concat
-CQ#$42,solo,sss,str1,2 Concat 3 = 23
-CE#$42,solo,sss,9,3,23
-CK#$42,solo,sss,10
-CF#$42,solo,sss,filler
-CQ#$42,solo,sss,mes0,23
-CQ#$42,solo,sss,mes2,3
-CQ#$42,solo,sss,mes1,-
-CK#$42,solo,sss,10
-CQ#$42,solo,sss,str2,23 - 3 = 20
-CE#$42,solo,sss,9,20,
-CR#$42,solo,sss,filler
-CG#$42,solo,sss,filler
-CK#$42,solo,sss,One Point For sss
-CF#$42,solo,sss,filler
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CQ#$42,solo,sss,mes0,5
-CQ#$42,solo,sss,mes2,2
-CQ#$42,solo,sss,mes1,-
-CQ#$42,solo,sss,str1,5 - 2 = 3
-CE#$42,solo,sss,4,5,3
-CK#$42,solo,sss,10
-CF#$42,solo,sss,filler
-CQ#$42,solo,sss,mes0,5
-CQ#$42,solo,sss,mes2,4
-CQ#$42,solo,sss,mes1,+
-CK#$42,solo,sss,10
-CQ#$42,solo,sss,str2,5 + 4 = 9
-CE#$42,solo,sss,3,9,
-CK#$42,solo,sss,10
-CF#$42,solo,sss,filler
-CQ#$42,solo,sss,mes0,3
-CQ#$42,solo,sss,mes2,9
-CQ#$42,solo,sss,mes1,-
-CK#$42,solo,sss,10
-CQ#$42,solo,sss,str3,3 - 9 = -6
-CE#$42,solo,sss,-6
-CR#$42,solo,sss,filler
-CI#$42,solo,sss,filler
-CK#$42,solo,sss,Take One Point From sss
-CF#$42,solo,sss,filler
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CK#$42,solo,sss,SCORE!
-CF#$42,solo,sss,filler
-CA#$42,solo,sss,6,6,12,20
-IA#$42,solo,sss,Click SCORE to begin.
-CQ#$42,solo,sss,mes0,6
-CQ#$42,solo,sss,mes2,8
-CQ#$42,solo,sss,mes1,+
-CQ#$42,solo,sss,str1,6 + 8 = 14
-CE#$42,solo,sss,2,10,14
-CK#$42,solo,sss,10
-CF#$42,solo,sss,filler
-CQ#$42,solo,sss,mes0,10
-CQ#$42,solo,sss,mes2,2
-CQ#$42,solo,sss,mes1,*
-CK#$42,solo,sss,10
-CQ#$42,solo,sss,str2,10 * 2 = 20
-CE#$42,solo,sss,14,20,
-CR#$42,solo,sss,filler
-CG#$42,solo,sss,filler
-CK#$42,solo,sss,One Point For sss
-CF#$42,solo,sss,filler
-CK#$42,solo,aa,SCORE!
-CF#$42,solo,aa,filler
-CA#$42,solo,aa,6,6,12,20
-IA#$42,solo,aa,Click SCORE to begin.
-CQ#$42,solo,aa,mes0,3
-CQ#$42,solo,aa,mes2,1
-CQ#$42,solo,aa,mes1,-
-CQ#$42,solo,aa,str1,3 - 1 = 2
-CE#$42,solo,aa,10,10,2
-CK#$42,solo,aa,10
-CF#$42,solo,aa,filler
-CQ#$42,solo,aa,mes0,10
-CQ#$42,solo,aa,mes2,10
-CQ#$42,solo,aa,mes1,+
-CK#$42,solo,aa,10
-CQ#$42,solo,aa,str2,10 + 10 = 20
-CE#$42,solo,aa,2,20,
-CR#$42,solo,aa,filler
-CG#$42,solo,aa,filler
-CK#$42,solo,aa,One Point For aa
-CF#$42,solo,aa,filler
-CK#$42,solo,aa,SCORE!
-CF#$42,solo,aa,filler
-CA#$42,solo,aa,6,6,12,20
-IA#$42,solo,aa,Click SCORE to begin.
-CQ#$42,solo,aa,mes0,2
-CQ#$42,solo,aa,mes2,5
-CQ#$42,solo,aa,mes1,+
-CQ#$42,solo,aa,str1,2 + 5 = 7
-CE#$42,solo,aa,7,17,7
-CK#$42,solo,aa,10
-CF#$42,solo,aa,filler
-CR#$42,solo,aa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,1
-CQ#$42,solo,aaa,mes2,8
-CQ#$42,solo,aaa,mes1,Concat
-CQ#$42,solo,aaa,str1,1 Concat 8 = 18
-CE#$42,solo,aaa,4,5,18
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,4
-CQ#$42,solo,aaa,mes2,5
-CQ#$42,solo,aaa,mes1,*
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,4 * 5 = 20
-CE#$42,solo,aaa,18,20,
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,18
-CQ#$42,solo,aaa,mes2,20
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str3,18 + 20 = 38
-CE#$42,solo,aaa,38
-CR#$42,solo,aaa,filler
-CI#$42,solo,aaa,filler
-CK#$42,solo,aaa,Take One Point From aaa
-CF#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,4
-CQ#$42,solo,aaa,mes2,2
-CQ#$42,solo,aaa,mes1,-
-CQ#$42,solo,aaa,str1,4 - 2 = 2
-CE#$42,solo,aaa,2,20,2
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,2
-CQ#$42,solo,aaa,mes2,2
-CR#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes1,/
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str3,2 / 2 = 1
-CE#$42,solo,aaa,1
-CR#$42,solo,aaa,filler
-CI#$42,solo,aaa,filler
-CK#$42,solo,aaa,Take One Point From aaa
-CF#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,1
-CQ#$42,solo,aaa,mes2,4
-CQ#$42,solo,aaa,mes1,+
-CQ#$42,solo,aaa,str1,1 + 4 = 5
-CE#$42,solo,aaa,6,13,5
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,6
-CQ#$42,solo,aaa,mes2,13
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,6 + 13 = 19
-CE#$42,solo,aaa,5,19,
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,5
-CQ#$42,solo,aaa,mes2,19
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str3,5 + 19 = 24
-CE#$42,solo,aaa,24
-CR#$42,solo,aaa,filler
-CI#$42,solo,aaa,filler
-CK#$42,solo,aaa,Take One Point From aaa
-CF#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,8
-CQ#$42,solo,aaa,mes2,16
-CQ#$42,solo,aaa,mes1,+
-CQ#$42,solo,aaa,str1,8 + 16 = 24
-CE#$42,solo,aaa,5,4,24
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,5
-CQ#$42,solo,aaa,mes2,4
-CQ#$42,solo,aaa,mes1,*
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,5 * 4 = 20
-CE#$42,solo,aaa,24,20,
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,5
-CQ#$42,solo,aaa,mes2,8
-CQ#$42,solo,aaa,mes1,*
-CQ#$42,solo,aaa,str1,5 * 8 = 40
-CE#$42,solo,aaa,3,5,40
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,5
-CQ#$42,solo,aaa,mes2,3
-CQ#$42,solo,aaa,mes1,-
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,5 - 3 = 2
-CE#$42,solo,aaa,40,2,
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,40
-CQ#$42,solo,aaa,mes2,2
-CQ#$42,solo,aaa,mes1,/
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str3,40 / 2 = 20
-CE#$42,solo,aaa,20
-CR#$42,solo,aaa,filler
-CG#$42,solo,aaa,filler
-CK#$42,solo,aaa,One Point For aaa
-CF#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,2
-CQ#$42,solo,aaa,mes2,1
-CQ#$42,solo,aaa,mes1,-
-CQ#$42,solo,aaa,str1,2 - 1 = 1
-CE#$42,solo,aaa,7,19,1
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,19
-CQ#$42,solo,aaa,mes2,1
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,19 + 1 = 20
-CE#$42,solo,aaa,7,20,
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CR#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,4
-CQ#$42,solo,aaa,mes2,1
-CQ#$42,solo,aaa,mes1,*
-CQ#$42,solo,aaa,str1,4 * 1 = 4
-CE#$42,solo,aaa,6,16,4
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,16
-CQ#$42,solo,aaa,mes2,4
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,16 + 4 = 20
-CE#$42,solo,aaa,6,20,
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CR#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,10
-CQ#$42,solo,aaa,mes2,1
-CQ#$42,solo,aaa,mes1,-
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,5
-CQ#$42,solo,aaa,mes2,2
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,AAA,SCORE!
-CF#$42,solo,AAA,filler
-CA#$42,solo,AAA,6,6,12,20
-IA#$42,solo,AAA,Click SCORE to begin.
-CQ#$42,solo,AAA,mes0,3
-CQ#$42,solo,AAA,mes2,1
-CQ#$42,solo,AAA,mes1,*
-CQ#$42,solo,AAA,str1,3 * 1 = 3
-CE#$42,solo,AAA,8,17,3
-CK#$42,solo,AAA,10
-CF#$42,solo,AAA,filler
-CQ#$42,solo,AAA,mes0,3
-CQ#$42,solo,AAA,mes2,17
-CQ#$42,solo,AAA,mes1,+
-CK#$42,solo,AAA,10
-CQ#$42,solo,AAA,str2,3 + 17 = 20
-CE#$42,solo,AAA,8,20,
-CK#$42,solo,AAA,10
-CF#$42,solo,AAA,filler
-CR#$42,solo,AAA,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,1
-CQ#$42,solo,aaa,mes2,1
-CQ#$42,solo,aaa,mes1,+
-CQ#$42,solo,aaa,str1,1 + 1 = 2
-CE#$42,solo,aaa,10,1,2
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,2
-CQ#$42,solo,aaa,mes2,10
-CQ#$42,solo,aaa,mes1,*
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,2 * 10 = 20
-CE#$42,solo,aaa,1,20,
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CR#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,4
-CQ#$42,solo,aaa,mes2,1
-CQ#$42,solo,aaa,mes1,*
-CQ#$42,solo,aaa,str1,4 * 1 = 4
-CE#$42,solo,aaa,3,16,4
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,16
-CQ#$42,solo,aaa,mes2,4
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,16 + 4 = 20
-CE#$42,solo,aaa,3,20,
-CR#$42,solo,aaa,filler
-CG#$42,solo,aaa,filler
-CK#$42,solo,aaa,One Point For aaa
-CF#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,4
-CQ#$42,solo,aaa,mes2,18
-CQ#$42,solo,aaa,mes1,+
-CQ#$42,solo,aaa,str1,4 + 18 = 22
-CE#$42,solo,aaa,2,10,22
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,2
-CQ#$42,solo,aaa,mes2,10
-CQ#$42,solo,aaa,mes1,*
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,2 * 10 = 20
-CE#$42,solo,aaa,22,20,
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CR#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CO#$42,GroupB,aaa,filler
-CQ#$42,GroupB,aaa,mes0,5
-CQ#$42,GroupB,aaa,mes2,5
-CQ#$42,GroupB,aaa,mes1,+
-CQ#$42,GroupB,aaa,str1,5 + 5 = 10
-CE#$42,GroupB,aaa,2,16,10
-CK#$42,GroupB,aaa,10
-CF#$42,GroupB,aaa,filler
-CQ#$42,GroupB,aaa,mes0,10
-CQ#$42,GroupB,aaa,mes2,2
-CQ#$42,GroupB,aaa,mes1,*
-CK#$42,GroupB,aaa,10
-CQ#$42,GroupB,aaa,str2,10 * 2 = 20
-CE#$42,GroupB,aaa,16,20,
-CR#$42,GroupB,aaa,filler
-CG#$42,GroupB,aaa,filler
-CK#$42,GroupB,aaa,One Point For aaa
-CF#$42,GroupB,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CO#$42,GroupA,aaa,filler
-CQ#$42,GroupA,aaa,mes0,2
-CQ#$42,GroupA,aaa,mes2,5
-CQ#$42,GroupA,aaa,mes1,*
-CQ#$42,GroupA,aaa,str1,2 * 5 = 10
-CE#$42,GroupA,aaa,2,10,10
-CK#$42,GroupA,aaa,10
-CF#$42,GroupA,aaa,filler
-CQ#$42,GroupA,aaa,mes0,10
-CQ#$42,GroupA,aaa,mes2,10
-CQ#$42,GroupA,aaa,mes1,+
-CK#$42,GroupA,aaa,10
-CQ#$42,GroupA,aaa,str2,10 + 10 = 20
-CE#$42,GroupA,aaa,2,20,
-CR#$42,GroupA,aaa,filler
-CG#$42,GroupA,aaa,filler
-CK#$42,GroupA,aaa,One Point For aaa
-CF#$42,GroupA,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,6
-CQ#$42,solo,aaa,mes2,2
-CQ#$42,solo,aaa,mes1,/
-CQ#$42,solo,aaa,str1,6 / 2 = 3
-CE#$42,solo,aaa,2,7,3
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,7
-CQ#$42,solo,aaa,mes2,3
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,7 + 3 = 10
-CE#$42,solo,aaa,2,10,
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,10
-CQ#$42,solo,aaa,mes2,2
-CQ#$42,solo,aaa,mes1,*
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str3,10 * 2 = 20
-CE#$42,solo,aaa,20
-CR#$42,solo,aaa,filler
-CG#$42,solo,aaa,filler
-CK#$42,solo,aaa,One Point For aaa
-CF#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,2
-CQ#$42,solo,aaa,mes2,12
-CQ#$42,solo,aaa,mes1,*
-CQ#$42,solo,aaa,str1,2 * 12 = 24
-CE#$42,solo,aaa,1,4,24
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,24
-CQ#$42,solo,aaa,mes2,4
-CQ#$42,solo,aaa,mes1,-
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,24 - 4 = 20
-CE#$42,solo,aaa,1,20,
-CR#$42,solo,aaa,filler
-CG#$42,solo,aaa,filler
-CK#$42,solo,aaa,One Point For aaa
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,20
-CQ#$42,solo,aaa,mes2,1
-CQ#$42,solo,aaa,mes1,*
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str3,20 * 1 = 20
-CE#$42,solo,aaa,20
-CR#$42,solo,aaa,filler
-CG#$42,solo,aaa,filler
-CK#$42,solo,aaa,One Point For aaa
-CF#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CQ#$42,solo,aaa,mes0,3
-CQ#$42,solo,aaa,mes2,5
-CQ#$42,solo,aaa,mes1,*
-CQ#$42,solo,aaa,str1,3 * 5 = 15
-CE#$42,solo,aaa,1,5,15
-CK#$42,solo,aaa,10
-CF#$42,solo,aaa,filler
-CQ#$42,solo,aaa,mes0,15
-CQ#$42,solo,aaa,mes2,5
-CQ#$42,solo,aaa,mes1,+
-CK#$42,solo,aaa,10
-CQ#$42,solo,aaa,str2,15 + 5 = 20
-CE#$42,solo,aaa,1,20,
-CR#$42,solo,aaa,filler
-CG#$42,solo,aaa,filler
-CK#$42,solo,aaa,One Point For aaa
-CF#$42,solo,aaa,filler
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CK#$42,solo,aaa,SCORE!
-CF#$42,solo,aaa,filler
-CA#$42,solo,aaa,6,6,12,20
-IA#$42,solo,aaa,Click SCORE to begin.
-CO#$42,GroupA,aaa,filler
-CO#$42,GroupA,bbb,filler
-CK#$42,GroupA,aaa,SCORE!
-CF#$42,GroupA,aaa,filler
-CA#$42,GroupA,aaa,6,6,12,20
-IA#$42,GroupA,aaa,Click SCORE to begin.
+CZ#$42,solo,aaa,6,2,10,8,20
+CO#$42,GroupB,aaa,setGroup
+CO#$42,GroupB,mm,setGroup
+CK#$42,GroupB,mm,SCORE!
+CF#$42,GroupB,mm,filler
+CA#$42,GroupB,mm,6,6,12,20
+IA#$42,GroupB,mm,Click SCORE to begin.
+CK#$42,solo,kk,SCORE!
+CF#$42,solo,kk,filler
+CA#$42,solo,kk,6,6,12,20
+IA#$42,solo,kk,Click SCORE to begin.
+CQ#$42,solo,kk,mes0,1
+CQ#$42,solo,kk,mes1,Concat
+CQ#$42,solo,kk,mes2,2
+CQ#$42,solo,kk,str1,1 Concat 2 = 12
+CE#$42,solo,kk,6,2,12
+CK#$42,solo,kk,10
+CF#$42,solo,kk,filler
+CQ#$42,solo,kk,mes0,12
+CQ#$42,solo,kk,mes2,2
+CQ#$42,solo,kk,mes1,+
+CK#$42,solo,kk,10
+CQ#$42,solo,kk,str2,12 + 2 = 14
+CE#$42,solo,kk,6,14,
+CK#$42,solo,kk,10
+CF#$42,solo,kk,filler
+CQ#$42,solo,kk,mes0,14
+CQ#$42,solo,kk,mes2,6
+CQ#$42,solo,kk,mes1,+
+CK#$42,solo,kk,10
+CQ#$42,solo,kk,str3,14 + 6 = 20
+CE#$42,solo,kk,20
+CR#$42,solo,kk,filler
+CG#$42,solo,kk,filler
+CK#$42,solo,kk,One Point For kk
+CF#$42,solo,kk,filler
+CO#$42,GroupB,kk,setGroup
+CK#$42,solo,y,SCORE!
+CF#$42,solo,y,filler
+CA#$42,solo,y,6,6,12,20
+IA#$42,solo,y,Click SCORE to begin.
+CQ#$42,solo,y,mes0,2
+CQ#$42,solo,y,mes1,+
+CQ#$42,solo,y,mes2,5
+CQ#$42,solo,y,str1,2 + 5 = 7
+CE#$42,solo,y,9,8,7
+CK#$42,solo,y,10
+CF#$42,solo,y,filler
+CQ#$42,solo,y,mes0,8
+CQ#$42,solo,y,mes2,7
+CQ#$42,solo,y,mes1,Concat
+CK#$42,solo,y,10
+CQ#$42,solo,y,str2,8 Concat 7 = 87
+CE#$42,solo,y,9,87,
+CK#$42,solo,y,10
+CF#$42,solo,y,filler
+CQ#$42,solo,y,mes0,87
+CQ#$42,solo,y,mes2,9
+CQ#$42,solo,y,mes1,/
+CK#$42,solo,y,10
+CQ#$42,solo,y,str3,87 / 9 = 9.666666666666666
+CE#$42,solo,y,9.666666666666666
+CR#$42,solo,y,filler
+CI#$42,solo,y,filler
+CK#$42,solo,y,Take One Point From y
+CF#$42,solo,y,filler
+CK#$42,solo,y,SCORE!
+CF#$42,solo,y,filler
+CA#$42,solo,y,6,6,12,20
+IA#$42,solo,y,Click SCORE to begin.
+CO#$42,GroupA,y,setGroup
+CQ#$42,GroupA,y,mes0,3
+CQ#$42,GroupA,y,mes2,2
+CQ#$42,GroupA,y,mes1,*
+CQ#$42,GroupA,y,str1,3 * 2 = 6
+CE#$42,GroupA,y,11,6,6
+CK#$42,GroupA,y,10
+CF#$42,GroupA,y,filler
+CR#$42,GroupA,y,filler
+CK#$42,GroupA,y,SCORE!
+CF#$42,GroupA,y,filler
+CA#$42,GroupA,y,6,6,12,20
+IA#$42,GroupA,y,Click SCORE to begin.
+CK#$42,GroupA,y,10
+CY#$42,GroupA,y,y
+CR#$42,GroupA,y,filler
+CO#$42,GroupB,y,setGroup
+CK#$42,GroupB,y,SCORE!
+CF#$42,GroupB,y,filler
+CA#$42,GroupB,y,6,6,12,20
+IA#$42,GroupB,y,Click SCORE to begin.
+CK#$42,GroupB,y,10
+CY#$42,GroupB,y,y
+CR#$42,GroupB,y,filler
+CO#$42,GroupA,y,setGroup
+CO#$42,GroupA,aaa,setGroup
 CK#$42,GroupA,aaa,10
 CY#$42,GroupA,aaa,aaa
-CQ#$42,GroupA,aaa,mes0,2
-CQ#$42,GroupA,aaa,mes2,4
-CQ#$42,GroupA,aaa,mes1,+
+CR#$42,GroupA,aaa,filler
+CK#$42,solo,aaa,SCORE!
+CF#$42,solo,aaa,filler
+CA#$42,solo,aaa,6,6,12,20
+IA#$42,solo,aaa,Click SCORE to begin.
+CO#$42,GroupA,aaa,setGroup
 CK#$42,GroupA,aaa,10
-CQ#$42,GroupA,aaa,str1,2 + 4 = 6
-CE#$42,GroupA,aaa,9,8,6
-CK#$42,GroupA,aaa,10
-CF#$42,GroupA,aaa,filler
-CQ#$42,GroupA,aaa,mes0,6
-CQ#$42,GroupA,aaa,mes2,8
-CQ#$42,GroupA,aaa,mes1,-
-CK#$42,GroupA,aaa,10
-CQ#$42,GroupA,aaa,str2,6 - 8 = -2
-CE#$42,GroupA,aaa,9,-2,
-CK#$42,GroupA,aaa,10
-CF#$42,GroupA,aaa,filler
-CQ#$42,GroupA,aaa,mes0,9
-CQ#$42,GroupA,aaa,mes2,-2
-CQ#$42,GroupA,aaa,mes1,+
-CK#$42,GroupA,aaa,10
-CQ#$42,GroupA,aaa,str3,9 + -2 = 7
-CE#$42,GroupA,aaa,7
+CY#$42,GroupA,aaa,aaa
 CR#$42,GroupA,aaa,filler
 CI#$42,GroupA,aaa,filler
-CK#$42,GroupA,aaa,Take One Point From aaa
+CK#$42,GroupA,aaa,SCORE!
 CF#$42,GroupA,aaa,filler
+CA#$42,GroupA,aaa,6,6,12,20
+IA#$42,GroupA,aaa,Click SCORE to begin.
+CK#$42,GroupA,aaa,10
+CY#$42,GroupA,aaa,aaa
+CQ#$42,GroupA,aaa,mes0,5
+CQ#$42,GroupA,aaa,mes2,4
+CQ#$42,GroupA,aaa,mes1,-
+CK#$42,GroupA,aaa,10
+CQ#$42,GroupA,aaa,str1,5 - 4 = 1
+CE#$42,GroupA,aaa,8,13,1
+CK#$42,GroupA,aaa,10
+CF#$42,GroupA,aaa,filler
+CQ#$42,GroupA,aaa,mes0,8
+CQ#$42,GroupA,aaa,mes2,1
+CQ#$42,GroupA,aaa,mes1,-
+CK#$42,GroupA,aaa,10
+CQ#$42,GroupA,aaa,str2,8 - 1 = 7
+CE#$42,GroupA,aaa,13,7,
+CK#$42,GroupA,aaa,10
+CF#$42,GroupA,aaa,filler
+CQ#$42,GroupA,aaa,mes0,13
+CQ#$42,GroupA,aaa,mes2,7
+CQ#$42,GroupA,aaa,mes1,+
+CK#$42,GroupA,aaa,10
+CQ#$42,GroupA,aaa,str3,13 + 7 = 20
+CE#$42,GroupA,aaa,20
+CR#$42,GroupA,aaa,filler
+CG#$42,GroupA,aaa,filler
+CK#$42,GroupA,aaa,One Point For aaa
+CF#$42,GroupA,aaa,filler
+CO#$42,ddd,aaa,setGroup
+CO#$42,GroupB,aaa,setGroup
+CO#$42,GroupA,aaa,setGroup
+CO#$42,ddd,aaa,setGroup

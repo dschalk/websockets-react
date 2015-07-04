@@ -14,19 +14,19 @@ function createWebSocket(path) {
 const DES_ws = createWebSocket('/');
 
 class ScoreBoard extends React.Component {
+
   constructor(props) {
     super(props);
   }
   render () {
-      let formatted = this.props.scoreBoard.map(function(line) {
-        return (<p>{line}</p>);
+      var formatted = this.props.scoreB.map(function(line) {
+        return (<p key={line.id}>{line}</p>);
       });
       console.log(formatted);
       console.log(this);
         return (
-            <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"26",
-                padding: 20, paddingRight: 100, float: "right"}} >
-                Score Board <br /> name_score_group <br />
+            <div>
+                Score Board <br /> name_score_group <br /> 
                 {formatted}
             </div>
         )
@@ -40,8 +40,7 @@ class Messages extends React.Component {
   render () {
     console.log(this);
     return (
-        <div style={{backgroundColor: '#000', color: '#fc0000', fontSize:'28',
-            padding: 20, paddingLeft: 100, float: 'left'}} >
+        <div  >
             {this.props.info}
         </div>
     )}
@@ -58,8 +57,7 @@ class GroupA extends React.Component {
         if (this.props.hidden2) { return ( null ) } 
     else {
         return (
-            <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"26",
-                padding: 20, paddingRight: 100, float: "left"}} onClick={this.click.bind(this)}  >
+            <div  onClick={this.click.bind(this)} >
                 GroupA
             </div>
         )
@@ -78,8 +76,7 @@ class GroupB extends React.Component {
         if (this.props.hidden2) { return ( null ) } 
     else {
         return (
-            <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"26",
-                padding: 20, paddingRight: 100, float: "left"}} onClick={this.click.bind(this)}  >
+            <div onClick={this.click.bind(this)} >
                 GroupB
             </div>
         )
@@ -91,14 +88,10 @@ class GroupNew extends React.Component {
   constructor(props) {
     super(props);
   }
-  handleChange (event) {       // ISSUE: Input box won't accept data without this handleChange function. ??
-    group = event.target.value;
-    this.props.change({group: group});
-    this.props.setGroup(group);
-  }
 
   handleEnter (event) {
-    if (this.props.group == '') { 
+    let group = event.target.value;
+    if (group == '') { 
       return 
     } else {
       if( event.keyCode == 13 ) {
@@ -107,7 +100,8 @@ class GroupNew extends React.Component {
     }
   }
   click (event) { 
-    if (this.props.name == '') { 
+    let group = event.target.value;
+    if (group == '') { 
         return 
     } else { 
       this.props.setGroup(group);
@@ -116,38 +110,78 @@ class GroupNew extends React.Component {
   render () {
     console.log(this);
     if ((this.props.hidden2)) { return ( null ) } 
-    let name = this.props.name;
     return (
-      <div style={{backgroundColor: '#000', color: '#00f0f0', fontSize:"32",
-              padding: 38, float: "left"}}  >
-        <input type="text" name={name} onChange={this.handleChange.bind(this)} 
-        onKeyDown={this.handleEnter.bind(this)} />
-        {this.props.group}
-        <button onClick={this.click.bind(this)}>New Group</button>
+      <div>
+        <label>New Group<input type="text" id='cow' onKeyDown={this.handleEnter.bind(this)} 
+          onClick={this.click.bind(this)} style={{width: 90, backgroundColor: '#d8d17d'}} />
+        </label>
       </div>
     );
   }
 };
 
-/*
-class GroupDisplay extends React.Component {
+class ChangeColor extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleEnter (event) {
+    let color = event.target.value;
+    if ( event.keyCode == 13 && color != '') {
+        this.props.changeC(color);
+      }
+    }
+  click (event) { 
+    let color = event.target.value;
+    if (color != '') {
+      this.props.changeC(color);
+    }
+  }
+  render () {
+    console.log(this);
+    return (
+      <div style={{fontSize: 22}}>
+        <label>
+          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          style={{width: 70, backgroundColor: '#d8d17d'}} />
+          Font Color
+        </label>
+      </div>
+    );
+  }
+};
+
+class ChangeBackground extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  render () {
-        if (this.props.hidden2) { return ( null ) } 
-    else {
-        return (
-            <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"26",
-                padding: 20, paddingRight: 100, float: "left"}} >
-                {this.props.name} has joined {this.props.group}
-            </div>
-        )
+  handleEnter (event) {
+    let color = event.target.value;
+    if ( event.keyCode == 13 && color != '') {
+        this.props.changeB(color);
       }
     }
+  click (event) { 
+    let color = event.target.value;
+    if (color != '') {
+      this.props.changeC(color);
+    }
   }
-*/
+  render () {
+    console.log(this);
+    return (
+      <div style={{fontSize: 22}}>
+        <label>
+          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          style={{width: 70, backgroundColor: '#d8d17d'}} />
+          Background Color
+        </label>
+      </div>
+    );
+  }
+};
+
+
 
 class B40 extends React.Component {
   constructor(props) {
@@ -175,11 +209,9 @@ class B40 extends React.Component {
     else {
       console.log(this);
       return (
-          <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', 
-            color: cow,
-            fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+          <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20}} >
             {this.props.message1}
-          </div>
+          </span>
       )}
     }
   }
@@ -210,10 +242,9 @@ class B41 extends React.Component {
     else {
     console.log(this);
     return (
-        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', 
-          color: '#d5f765', fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 30}} >
           {this.props.message2}
-        </div>
+        </span>
     )}
   }
 }
@@ -244,9 +275,9 @@ class B42 extends React.Component {
     else {
     console.log(this);
     return (
-        <div onClick={this.click.bind(this)} style={this.props.sty41}  >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 30}} >
           {this.props.message3}
-        </div>
+        </span>
     )}
   }
 }
@@ -277,10 +308,9 @@ class B43 extends React.Component {
   else {
     console.log(this);
     return (
-        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-          fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 30}} >
           {this.props.message4}
-        </div>
+        </span>
     )}
   }
 }
@@ -303,10 +333,9 @@ class Op0 extends React.Component {
     else {
     console.log(this);
     return (
-        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-          fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20}} >
           +
-        </div>
+        </span>
     )}
   }
 }
@@ -329,10 +358,9 @@ class Op1 extends React.Component {
     else {
     console.log(this);
     return (
-        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-          fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20}} >
           -
-        </div>
+        </span>
     )}
   }
 }
@@ -355,10 +383,9 @@ class Op2 extends React.Component {
     else {
     console.log(this);
     return (
-        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-          fontSize: "38", Align: "center", padding: "20", float: "left" }} >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20}} >
           *
-        </div>
+        </span>
     )}
   }
 }
@@ -381,10 +408,9 @@ class Op2 extends React.Component {
     else {
       console.log(this);
       return (
-          <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-            fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+          <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20}} >
             /
-          </div>
+          </span>
       )}
     }
   }
@@ -407,10 +433,9 @@ class Op4 extends React.Component {
     else {
     console.log(this);
     return (
-        <div onClick={this.click.bind(this)} style={{backgroundColor: '#000', color: '#d5f765',
-          fontSize: "38", textAlign: "center", padding: "20", float: "left" }} >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20}} >
           Concat
-        </div>
+        </span>
     )}
   }
 }
@@ -422,11 +447,9 @@ class B30 extends React.Component {
   render () {
     console.log(this);
     return (
-        <div
-          style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-            textAlign: "center", padding: 20, float: "left" }} >
-                {this.props.mes0}
-        </div>
+        <span style={{width: 50, marginLeft: 20}}>
+            {this.props.mes0}
+        </span>
     )}
   };
 
@@ -434,15 +457,12 @@ class B31 extends React.Component {
   constructor(props) {
     super(props);
   }
-
   render () {
     console.log(this);
     return (
-        <div
-          style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-            textAlign: "center", padding: 20, float: "left" }} >
+        <span style={{width: 50, marginLeft: 20}}>
                 {this.props.mes1}
-        </div>
+        </span>
     )}
   };
 
@@ -450,15 +470,12 @@ class B32 extends React.Component {
   constructor(props) {
     super(props);
   }
-
   render () {
     console.log(this);
     return (
-        <div
-          style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-            textAlign: "center", padding: 20, float: "left" }} >
+        <span style={{width: 50, marginLeft: 20}}>
                 {this.props.mes2}
-        </div>
+        </span>
     )}
   };
 
@@ -466,15 +483,12 @@ class B33 extends React.Component {
   constructor(props) {
     super(props);
   }
-
   render () {
     console.log(this);
     return (
-        <div
-          style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-            textAlign: "center", padding: 20, float: "left" }} >
+        <span style={{width: 50, marginLeft: 20}}>
                 =
-        </div>
+        </span>
     )}
   };
 
@@ -482,15 +496,12 @@ class B34 extends React.Component {
   constructor(props) {
     super(props);
   }
-
 render () {
   console.log(this);
   return (
-      <div
-        style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-          textAlign: "center", padding: 20, float: "left"}}  >
+      <span style={{width: 50, marginLeft: 20}}>
                 {this.props.res}
-      </div>
+      </span>
   )}
 };
 
@@ -507,9 +518,7 @@ class Roll extends React.Component {
     if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
     else {
       return (
-          <div
-            style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-              textAlign: "center", padding: 20, float: "left"}} onClick={this.clickHandler.bind(this)} >
+          <div onClick={this.clickHandler.bind(this)} >
               ROLL
           </div>
       )
@@ -525,18 +534,82 @@ class Solutions extends React.Component {
   clickHandler () {
     this.props.solFunc();
   }
-
   render () {
     let formatted = this.props.sol.map(function(line) {
       return (<p>{line}</p>);
     });
-    if (this.props.hidden4) { return ( null ) } 
+    if (this.props.hidden2) { return ( null ) } 
     else {
       return (
-          <div style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-              padding: 20, float: "left"}} onClick={this.clickHandler.bind(this)} >
+          <div onClick={this.clickHandler.bind(this)} >
+              Solutions (click) <br /> <br />
+              {formatted}
+          </div>
+      )
+    }
+  }
+}
+
+class SetGoal extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleChange (event) {       // ISSUE: Input box won't accept data without this handleChange function. ??
+    goal = event.target.value;
+    this.props.change({goal: goal});
+    this.props.setgoal(goal);
+  }
+  handleEnter (event) {
+    if (this.props.goal == '') { 
+      return 
+    } else {
+      if( event.keyCode == 13 ) {
+        this.props.setgoal(goal);
+      }
+    }
+  }
+  click (event) { 
+    if (this.props.name == '') { 
+        return 
+    } else { 
+      this.props.setgoal(goal);
+    }
+  }
+  render () {
+    console.log(this);
+    if ((this.props.hidden2)) { return ( null ) } 
+    let name = this.props.name;
+    return (
+      <div >
+        <input type="text" name={name} onChange={this.handleChange.bind(this)} 
+        onKeyDown={this.handleEnter.bind(this)} />
+        {this.props.goal}
+        <button onClick={this.click.bind(this)}>New goal</button>
+      </div>
+    );
+  }
+};
+
+class Solutions2 extends React.Component {
+    constructor(props) {
+      super(props);
+      let formatted;
+  }
+  clickHandler () {
+    this.props.solFunc();
+  }
+  render () {
+    let formatted = this.props.sol.map(function(line) {
+      return (<p>{line}</p>);
+    });
+    if (this.props.hidden2) { return ( null ) } 
+    else {
+      return (
+          <div  onClick={this.clickHandler.bind(this)} >
+            <div> 
               Solutions <br /> <br />
               {formatted}
+            </div>
           </div>
       )
     }
@@ -550,9 +623,7 @@ class Display extends React.Component {
   render () {
     console.log(this);
     return (
-        <div
-          style={{backgroundColor: '#000', color: '#d5f765', fontSize:"32",
-            padding: 20, float: "left"}}  >
+        <div>
             {this.props.str1} <br /> {this.props.str2} <br /> {this.props.str3} <br /> {this.props.str4}
         </div>
     )
@@ -569,7 +640,7 @@ class Login extends React.Component {
   handleEnter (event) {
     if (this.props.name == '') { 
       this.props.change({
-        scoreBoard: [`Please enter a name.`],
+        scoreB: [``],
         info: ``
       }); 
     } 
@@ -589,7 +660,7 @@ class Login extends React.Component {
   click () { 
     if (this.props.name == '') { 
       this.props.change({
-        scoreBoard: [`Please enter a name.`],
+        scoreB: [`Please enter a name.`],
         info: `Please enter a name.`
       }); 
     } else { 
@@ -607,12 +678,14 @@ class Login extends React.Component {
     if ((this.props.hidden)) { return ( null ) } 
     let name = this.props.name;
     return (
-      <div style={{backgroundColor: '#000', color: '#00f0f0', fontSize:"32",
-              padding: 38, float: "left"}}  >
+      <div>
         <input type="text" name={name} onChange={this.handleChange.bind(this)} 
+          style={{backgroundColor: '#d8d17d'}}
         onKeyDown={this.handleEnter.bind(this)} />
         {this.props.name}
-        <button onClick={this.click.bind(this)}>Join</button>
+        <button onClick={this.click.bind(this)} style={{backgroundColor: '#d8d17d', color: '#f00'}} >
+          Join 
+        </button>
       </div>
     );
   }
@@ -629,8 +702,8 @@ class Clock extends React.Component {
         message: ''
       });
       let name = this.props.name;
-    let group = this.props.group;
-      // this.props.change({hidden4: false});
+      let group = this.props.group;
+      this.props.change({scoreClicker: name})
       DES_ws.send( `CK#$42,${group},${name},10` );
       DES_ws.send( `CY#$42,${group},${name},${name}` );   // After 8 seconds, non-clickers see solutions.
     } 
@@ -639,9 +712,7 @@ class Clock extends React.Component {
     console.log(this);
     if (this.props.hidden2) { return ( null ) } 
     return (
-        <div
-          style={{backgroundColor: '#000', color: '#ff0000', fontSize:"32",
-            padding: 30, float: "left"}} onClick={this.click.bind(this)} >
+        <div onClick={this.click.bind(this)} >
              {this.props.t}
         </div>
     )
@@ -656,9 +727,7 @@ class Messages2 extends React.Component {
     console.log(this);
     if (this.props.hidden2) { return ( null ) } 
     return (
-        <div
-          style={{backgroundColor: '#000', color: '#ff0000', fontSize:"32",
-            padding: 24, float: "left"}} >
+        <div>
              {this.props.message}
         </div>
     )
@@ -694,12 +763,10 @@ class B4 extends React.Component {
         str2: "",
         str3: "",
         str4: "",
-
         hidden: false,
         hidden2: true,
         hidden3: false,
         hidden4: true,
-
         togDice: false,
         name: "",
         DS_T: "SCORE!",
@@ -707,15 +774,17 @@ class B4 extends React.Component {
         STRING: '',
         impossibleClicker: "a@F$Uy&imp",
         scoreClicker: "a@F$Uy&sc",
-        scoreBoard: ["Greetings new player."],
+        scoreB: ["Greetings new player."],
         group: 'solo',
         info: 'Please enter a name.',
-        sty: {backgroundColor: '#000', color: '#d5f765', 
-          fontSize: "38", textAlign: "center", padding: "20", float: "left" },
         used: [],
+        dynamicBg: '#000000',
+        dynamicColor: '#e5bb47',
+        dynamicFont: 28,
         test: false,
         message: '',
-        score: false
+        score: false,
+        goal: 29
       }
 
 let that = this;
@@ -776,7 +845,7 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CZ#$42":
-              sol = extra.split("<br />");
+              let sol = extra.split("<br />");
               that.setState({sol: sol});
             //  $("#a2").html(sender + " clicked SOLUTIONS.<br><br>");
           break;
@@ -797,7 +866,7 @@ DES_ws.onmessage = function(event) {
               });
           break;
 
-          case "CE#$42":          
+          case "CE#$42": 
               that.setState
               ({
                 message1: extra,
@@ -811,11 +880,11 @@ DES_ws.onmessage = function(event) {
             //  if ("private" !== sendersGroup || sender == playerM) 
             if (that.state.group !== 'solo') { 
               that.setState({
-                scoreBoard: ar3
+                scoreB: ar3
               });
             } else {
               that.setState({
-                scoreBoard: ['Data is visible to group players.']
+                scoreB: ['Data is visible to group players.']
               })
             }
             console.log("________________________CB extra");
@@ -938,60 +1007,87 @@ DES_ws.onmessage = function(event) {
     }
   }
 
-  setInterval( function () { 
-    let name = that.state.name;
-    let group = that.state.group;
-    if (that.state.DS_T === 0) {
+  setInterval(() => {
+    let name = this.state.name;
+    let group = this.state.group;
+    if (this.state.DS_T === 0) {
       DES_ws.send(`CR#$42,${group},${name},filler`);  
-      if (that.state.name === that.state.scoreClicker) {
+      if (this.state.name === this.state.scoreClicker) {
         DES_ws.send(`CI#$42,${group},${name},filler`);   
       }
-      that.setState
+      this.setState
       ({
-        DS_T: `10 seconds expired. Deduct one point from ${that.state.scoreClicker}`,
+        DS_T: `10 seconds expired. Deduct one point from ${this.state.scoreClicker}`,
         message1: '',
         message2: '',
         message3: '',
         message4: ''
       });
     }
-    if ( that.state.DS_T > -1 ) {
-      let X = that.state.DS_T - 1
-      that.setState({DS_T: X});
-      that.setState({info: X});
+    if ( this.state.DS_T > -1 ) {
+      let X = this.state.DS_T - 1
+      this.setState({DS_T: X});
+      this.setState({info: X});
     }
-    if (that.state.DS_T === -1) {
-      that.setState({
+    if (this.state.DS_T === -1) {
+      this.setState({
         DS_T: '',
         info: ''
       });
     }
-  },1000 );
+  }, 1000 )
 }
 
-  isElement (x, ar) { 
-    var value = false;
-    ar.map( function(e) {
-      if (x === e) {
-        value = true;
-      };
-    })
-    return value;
+isElement (x, ar) { 
+  var value = false;
+  ar.map( e => {
+    if (x === e) {
+      value = true;
+    };
+  })
+  return value;
+}
+
+  getStyles () {
+    return {
+      padding: "1em",
+      borderRadius: 5,
+      background: this.state.dynamicBg
+    };
   }
 
-/*
-  wasUsed (array1, array2) {
-    var that = this;
-    var value = false;
-    array2.map( function(e) { 
-      if (that.isElement(e,array1)) {
-        value = true;
-        return;
-      }
+  changeBackground (color) {
+    this.setState({
+      dynamicBg: color
     });
-    return value;
   }
-*/
+
+  changeColor (color) {
+    this.setState({
+      dynamicColor: color
+    });
+  }
+
+increaseFont () {
+  let x = this.state.dynamicFont;
+  if (x > 0) {
+    this.setState( {dynamicFont: (x + 4) })
+  }
+}
+
+decreaseFont () {
+  let x = this.state.dynamicFont;
+  if (x < 80) {
+    this.setState( {dynamicFont: (x - 4) })
+  }
+}
+
+  solutions () { 
+    let group = this.state.group;
+    let name = this.state.name;
+    let goal = this.state.goal;
+    DES_ws.send( `CZ#$42,${group},${name},${goal}` ); 
+  }
 
   moreUsed (x) {
     let ar = this.state.used;
@@ -1016,8 +1112,8 @@ DES_ws.onmessage = function(event) {
       test: false,
       score: false,
       message: 'You must click SCORE in order to gain a point.',
-      sty: {backgroundColor: '#000', color: '#d5f765', 
-          fontSize: "38", textAlign: "center", padding: "20", float: "left" }
+      sty: {color: '#d5f765', 
+          fontSize: "38", textAlign: "center", padding: "20",  }
     });
     let name = this.state.name;
     let group = this.state.group;
@@ -1031,8 +1127,8 @@ DES_ws.onmessage = function(event) {
     } else this.delay(300).then( function () {
       that.rollDice()
     })
-    // this.setState({sty: {backgroundColor: '#000', color: '#d5f765', 
-    //      fontSize: "38", textAlign: "center", padding: "20", float: "left" }});
+    // this.setState({sty: {color: '#d5f765', 
+    //      fontSize: "38", textAlign: "center", padding: "20",  }});
   }
 
   getSolutions () {
@@ -1059,7 +1155,7 @@ DES_ws.onmessage = function(event) {
 
   setGroup (x) {
     let name = this.state.name;
-    DES_ws.send( `CO#$42,${x},${name},filler` );
+    DES_ws.send( `CO#$42,${x},${name},setGroup` );
     this.setState({group: x});
   }
 
@@ -1166,8 +1262,8 @@ DES_ws.onmessage = function(event) {
       that.setNumberAr();
     })
     .then(function() {
-      that.setState({sty: {backgroundColor: '#000', color: '#ff0000', 
-          fontSize: "38", textAlign: "center", padding: "20", float: "left" } });
+      that.setState({sty: {color: '#ff0000', 
+          fontSize: "38", textAlign: "center", padding: "20",  } });
     });
   }
 
@@ -1180,24 +1276,40 @@ DES_ws.onmessage = function(event) {
     this.setState(x)
   }
 
-  render () {
-    console.log(this);
-    return (
-      <div>
-          <ScoreBoard key='ScoreBoard' scoreBoard={this.state.scoreBoard} />
+  logMessage () {
+    console.log("*************************************************************************** Message from logMessage");
+  }
 
+  render () {
+    console.log(this); 
+    let dynB = this.state.dynamicBg;
+    let dynC = this.state.dynamicColor;
+    let dynF = this.state.dynamicFont;
+    return (
+      <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, display: 'inlineBlock'}} >
+          <div style={{width: 600, float: 'right'}} >
+            <ChangeColor key='ChangeColor' changeC={this.changeColor.bind(this)} 
+              style={{width: 8}} />
+            <ChangeBackground key='ChangeBackground' changeB={this.changeBackground.bind(this)} 
+              style={{width: 8}} />
+            <button key='$#19' onClick={this.increaseFont.bind(this)} 
+              style={{backgroundColor: '#d8d17d', color: '#f00'}} >
+               Increase Font Size</button>
+            <span style={{backgroundColor: '#000', color: '#000'}}>e</span>
+            <button key='$#20' onClick={this.decreaseFont.bind(this)}  
+              style={{backgroundColor: '#d8d17d', color: '#f00'}} >
+              Decrease Font Size</button>
+            <ScoreBoard key='ScoreBoard' scoreB={this.state.scoreB} />
+          </div>
           <Messages key='Messages' info={this.state.info} />
 
-          <GroupA key='GroupA' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} 
-            hidden2={this.state.hidden2} />
+          <GroupA key='GroupA' hidden2={this.state.hidden2} setGroup={this.setGroup.bind(this)} />
 
-          <GroupB key='GroupB' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} 
-            hidden2={this.state.hidden2} />
+          <GroupB key='GroupB' setGroup={this.setGroup.bind(this)} hidden2={this.state.hidden2} />
 
-          <GroupNew key='GroupNew' change={this.changeItem.bind(this)} setGroup={this.setGroup.bind(this)} 
-            hidden2={this.state.hidden2} />
+          <GroupNew key='GroupNew' setGroup={this.setGroup.bind(this)} hidden2={this.state.hidden2} name={this.state.name} />
 
-          <div style={{width: 8000, float: "left", padding: 5}} />
+          <div/>
 
           <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name} 
             setGroup={this.setGroup.bind(this)} change={this.changeItem.bind(this)} 
@@ -1205,14 +1317,17 @@ DES_ws.onmessage = function(event) {
              setInfo={this.setInfo.bind(this)} />
 
           <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} 
-            str4={this.state.str4}/>
+            str4={this.state.str4} />
 
           <Clock key='Clock' t={this.state.DS_T} name={this.state.name} group={this.state.group} 
             hidden={this.state.hidden} hidden2={this.state.hidden2} hidden3={this.state.hidden3} 
-            hidden4={this.state.hidden4} change={this.changeItem.bind(this)} />
-          <div style={{width: 8000, float: "left", padding: 10}} />
+              hidden4={this.state.hidden4} change={this.changeItem.bind(this)} /> 
+
+          <div style={{width: 8000, backgroundColor: dynB,  padding: 10}} />
+
           <Messages2 key='Messages2' message={this.state.message} />
-          <div style={{width: 8000, float: "left", padding: 10}} />
+
+          <div style={{width: 8000,  backgroundColor: dynB, padding: 10}} />
 
           <B40 key='B40' message1={this.state.message1} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
@@ -1221,22 +1336,24 @@ DES_ws.onmessage = function(event) {
              more={this.moreUsed.bind(this)} />
 
           <B41 key='B41' message2={this.state.message2} change={this.changeItem.bind(this)} 
-            mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
+            mes0={this.state.mes0} mes2={this.state.mes2} 
+            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} 
+            name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} more={this.moreUsed.bind(this)} />
 
           <B42 key='B42' message3={this.state.message3} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} 
-            calc={this.calc.bind(this)} color2={this.state.color2} sty41={this.state.sty}
+            calc={this.calc.bind(this)} color2={this.state.color2} sty41={this.state.sty} 
             delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} more={this.moreUsed.bind(this)} />
 
           <B43 key='B43' message4={this.state.message4} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} more={this.moreUsed.bind(this)} />
+            delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} 
+            hidden={this.state.hidden} hidden2={this.state.hidden2} hidden3={this.state.hidden3} 
+            more={this.moreUsed.bind(this)} />
 
-          <div style={{width: 8000, float: "left", padding: 10}} />
+          <div style={{width: 8000,  padding: 10}} />
 
           <Op0 key='Op0' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
             mes1={this.state.mes1} calc={this.calc.bind(this)} name={this.state.name} 
@@ -1263,7 +1380,7 @@ DES_ws.onmessage = function(event) {
             group={this.state.group} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
 
-          <div style={{width: 8000, float: "left", padding: 10}} />
+          <div style={{width: 8000,  padding: 10}} />
 
           <B30 key='B30' mes0={this.state.mes0} />
           <B31 key='B31' mes1={this.state.mes1} />
@@ -1271,13 +1388,14 @@ DES_ws.onmessage = function(event) {
           <B33 key='B33' />
           <B34 key='B34' res={this.state.res} />
 
-          <div style={{width: 8000, float: "left", padding: 10}} />
+          <div style={{width: 8000,  padding: 10}} />
 
           <Roll key='Roll' roll={this.rollDice.bind(this)} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} setInfo={this.setInfo.bind(this)} />
 
-          <div style={{width: 8000, float: "left", padding: 10}} />
+          <div style={{width: 8000,  padding: 10}} />
 
+          <div style={{width: 8000,  padding: 10}} />
           <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol} 
             hidden4={this.state.hidden4} />
       </div>
