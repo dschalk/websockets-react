@@ -162,9 +162,9 @@ class ChangeBackground extends React.Component {
       }
     }
   click (event) { 
-    let color = event.target.value;
-    if (color != '') {
-      this.props.changeC(color);
+    let col = event.target.value;
+    if (col != '') {
+      this.props.changeC(col);
     }
   }
   render () {
@@ -1061,9 +1061,10 @@ isElement (x, ar) {
     });
   }
 
-  changeColor (color) {
+  changeColor (col) {
     this.setState({
-      dynamicColor: color
+      dynamicColor: col,
+      sty: {color: col, width: 50, marginLeft: 30, padding: 10}
     });
   }
 
@@ -1105,13 +1106,15 @@ decreaseFont () {
   }
 
   rollDice () {
+    let col = this.state.dynamicColor;
     this.setState({
+      DS_T: 'SCORE!',
       hidden4: false,
       used: [],
       test: false,
       score: false,
       message: 'You must click SCORE in order to gain a point.',
-      sty: {color: '#d5f765', width: 50, marginLeft: 30, padding: 10}
+      sty: {color: col, width: 50, marginLeft: 30, padding: 10}
     });
     let name = this.state.name;
     let group = this.state.group;
