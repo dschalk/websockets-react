@@ -46,7 +46,7 @@ extra-source-files:  README.md
 cabal-version:       >=1.10
 
 
-executable websockets-react
+executable server
   -- .hs or .lhs file containing the Main module.
   main-is:             Main.hs
   

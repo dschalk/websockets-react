@@ -209,7 +209,7 @@ class B40 extends React.Component {
     else {
       console.log(this);
       return (
-          <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20}} >
+          <span onClick={this.click.bind(this)} style={{ width: 50, marginLeft: 20 }} >
             {this.props.message1}
           </span>
       )}
@@ -535,18 +535,16 @@ class Solutions extends React.Component {
     this.props.solFunc();
   }
   render () {
+    if (this.props.hidden2) { return ( null ) } 
     let formatted = this.props.sol.map(function(line) {
       return (<p>{line}</p>);
     });
-    if (this.props.hidden2) { return ( null ) } 
-    else {
-      return (
-          <div onClick={this.clickHandler.bind(this)} >
-              Solutions (click) <br /> <br />
-              {formatted}
-          </div>
-      )
-    }
+    return (
+      <div onClick={this.clickHandler.bind(this)} >
+          Solutions (click) <br /> <br />
+          {formatted}
+      </div>
+    )
   }
 }
 
@@ -603,16 +601,14 @@ class Solutions2 extends React.Component {
       return (<p>{line}</p>);
     });
     if (this.props.hidden2) { return ( null ) } 
-    else {
-      return (
-          <div  onClick={this.clickHandler.bind(this)} >
-            <div> 
-              Solutions <br /> <br />
-              {formatted}
-            </div>
+    return (
+        <div  onClick={this.clickHandler.bind(this)} >
+          <div> 
+            Solutions <br /> <br />
+            {formatted}
           </div>
-      )
-    }
+        </div>
+    )
   }
 }
 
@@ -1247,17 +1243,17 @@ decreaseFont () {
           default : 'operator not selected';
       }
     })
-    .then( delay(25) )
+    .then( this.forceUpdate() )
+    .then( delay(150) )
     .then( function() {
-      let res = that.state.res;
-      let resString = res.toString();
+      let resString = that.state.res.toString();
       that.setState({ 
-        STRING: `${m0} ${m1} ${m2} = ${res}`,
+        STRING: `${m0} ${m1} ${m2} = ${resString}`,
         resPrevious: resString,
         message: ''
-      });
+        })
     })
-    .then( delay(25) )
+    .then( delay(100) )
     .then( function () {
       that.setNumberAr();
     })
@@ -1392,12 +1388,9 @@ decreaseFont () {
 
           <Roll key='Roll' roll={this.rollDice.bind(this)} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} setInfo={this.setInfo.bind(this)} />
-
-          <div style={{width: 8000,  padding: 10}} />
-
           <div style={{width: 8000,  padding: 10}} />
           <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol} 
-            hidden4={this.state.hidden4} />
+            hidden2={this.state.hidden2} />
       </div>
     )}
   };
