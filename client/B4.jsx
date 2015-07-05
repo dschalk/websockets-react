@@ -209,7 +209,7 @@ class B40 extends React.Component {
     else {
       console.log(this);
       return (
-          <span onClick={this.click.bind(this)} style={{ width: 50, marginLeft: 20 }} >
+          <span onClick={this.click.bind(this)} style={{ width: 50, marginLeft: 15, padding: 10 }} >
             {this.props.message1}
           </span>
       )}
@@ -242,7 +242,7 @@ class B41 extends React.Component {
     else {
     console.log(this);
     return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 30}} >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 30, padding: 10 }} >
           {this.props.message2}
         </span>
     )}
@@ -275,7 +275,7 @@ class B42 extends React.Component {
     else {
     console.log(this);
     return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 30}} >
+        <span onClick={this.click.bind(this)} style={this.props.dynamicStyle} >
           {this.props.message3}
         </span>
     )}
@@ -308,7 +308,7 @@ class B43 extends React.Component {
   else {
     console.log(this);
     return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 30}} >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 30, padding: 10 }} >
           {this.props.message4}
         </span>
     )}
@@ -333,7 +333,7 @@ class Op0 extends React.Component {
     else {
     console.log(this);
     return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20}} >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20, padding: 10}} >
           +
         </span>
     )}
@@ -358,7 +358,7 @@ class Op1 extends React.Component {
     else {
     console.log(this);
     return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20}} >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20, padding: 10}} >
           -
         </span>
     )}
@@ -383,7 +383,7 @@ class Op2 extends React.Component {
     else {
     console.log(this);
     return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20}} >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20, padding: 10}} >
           *
         </span>
     )}
@@ -408,7 +408,7 @@ class Op2 extends React.Component {
     else {
       console.log(this);
       return (
-          <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20}} >
+          <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20, padding: 10}} >
             /
           </span>
       )}
@@ -433,7 +433,7 @@ class Op4 extends React.Component {
     else {
     console.log(this);
     return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20}} >
+        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20, padding: 10}} >
           Concat
         </span>
     )}
@@ -775,12 +775,13 @@ class B4 extends React.Component {
         info: 'Please enter a name.',
         used: [],
         dynamicBg: '#000000',
-        dynamicColor: '#e5bb47',
+        dynamicColor: '#d5f765',
         dynamicFont: 28,
         test: false,
         message: '',
         score: false,
-        goal: 29
+        goal: 29,
+        sty: {color: '#d5f765', width: 50, marginLeft: 30, padding: 10}
       }
 
 let that = this;
@@ -920,8 +921,10 @@ DES_ws.onmessage = function(event) {
               });
           break;
 
-          case "CK#$42":
+          case "CK#$42": 
+            if (that.state.score) {
               that.setState({DS_T: extra});
+            }
           break;
 
           case "CP#$42":
@@ -1108,8 +1111,7 @@ decreaseFont () {
       test: false,
       score: false,
       message: 'You must click SCORE in order to gain a point.',
-      sty: {color: '#d5f765', 
-          fontSize: "38", textAlign: "center", padding: "20",  }
+      sty: {color: '#d5f765', width: 50, marginLeft: 30, padding: 10}
     });
     let name = this.state.name;
     let group = this.state.group;
@@ -1164,6 +1166,7 @@ decreaseFont () {
   newNums (x) {
     let j = 0;
     let gr = this.state.group;
+    let inPlay = this.state.score;
     let ar = [];
     let clock = 10;
     let string = this.state.STRING;
@@ -1184,7 +1187,7 @@ decreaseFont () {
     else if (j === 2) {
       DES_ws.send(`CQ#$42,${gr},${name},str2,${string}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},`)
-      if (result === 20 && this.state.test && this.state.score) {
+      if (result === 20 && this.state.test && inPlay) {
           clock = "One Point For " + name;
           DES_ws.send( `CR#$42,${gr},${name},filler` ); 
           DES_ws.send( `CG#$42,${gr},${name},filler` ); 
@@ -1193,12 +1196,12 @@ decreaseFont () {
     else if (j === 1) {
       DES_ws.send(`CQ#$42,${gr},${name},str3,${string}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]}`)
-      if (result === 20) {
+      if (result === 20 && inPlay) {
           clock = "One Point For " + name;
           DES_ws.send( `CR#$42,${gr},${name},filler` ); 
           DES_ws.send( `CG#$42,${gr},${name},filler` ); 
       }
-        if (result !== 20) {
+        if (result !== 20 && this.state.score) {
           clock = "Take One Point From " + name;
           DES_ws.send( `CR#$42,${gr},${name},filler` ); 
           DES_ws.send( `CI#$42,${gr},${name},filler` ); 
@@ -1258,8 +1261,7 @@ decreaseFont () {
       that.setNumberAr();
     })
     .then(function() {
-      that.setState({sty: {color: '#ff0000', 
-          fontSize: "38", textAlign: "center", padding: "20",  } });
+      that.setState({sty: {color: '#ff0000', width: 50, marginLeft: 30, padding: 10} });
     });
   }
 
@@ -1339,7 +1341,7 @@ decreaseFont () {
 
           <B42 key='B42' message3={this.state.message3} change={this.changeItem.bind(this)} 
             mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} 
-            calc={this.calc.bind(this)} color2={this.state.color2} sty41={this.state.sty} 
+            calc={this.calc.bind(this)} color2={this.state.color2} dynamicStyle={this.state.sty} 
             delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
             hidden2={this.state.hidden2} hidden3={this.state.hidden3} more={this.moreUsed.bind(this)} />
 

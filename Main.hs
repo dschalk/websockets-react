@@ -19,7 +19,7 @@ import Fm hiding (main)
 import Data.List (intersperse)
 import Control.Exception.Base (mask_)
 import Data.List.Split (splitOn)
--- import System.Environment (getEnv) 
+-- import System.Environment (getEnv)
 import Logger2 hiding (main)
 
 type Name = Text
@@ -103,7 +103,7 @@ textState s = [ a `mappend` " _ " `mappend` T.pack (show b)
     `mappend` " _ " `mappend` c | (a,b,c,d) <- s]
 
 newGroup :: Text -> Text -> Client -> Client
-newGroup name group (a, b, c, d)   | name == a  = (a, b, group, d)
+newGroup name group (a, b, c, d)   | name == a  = (a, 0, group, d)
                                    | otherwise = (a, b, c, d)
 
 changeGroup :: Text -> Text -> ServerState -> ServerState
@@ -185,7 +185,7 @@ application state pending = do
             | clientExists (getName client) clients ->
                 liftIO $ modifyMVar_ state $ \s -> do
                     WS.sendTextData conn $ T.pack "CC#$42,seven,seven,%#8*&&^1#$%^"
-                    return s                               
+                    return s
             | otherwise -> flip finally disconnect $ do
                 liftIO $ modifyMVar_ state $ \s -> do
                     let s' = addClient client s
@@ -259,7 +259,7 @@ talk conn state (user, _, _, _) = forever $ do
     else if "CC#$42" `T.isPrefixOf` msg || "CE#$42" `T.isPrefixOf` msg || "CF#$42" `T.isPrefixOf` msg ||
         "CH#$42" `T.isPrefixOf` msg || "CJ#$42" `T.isPrefixOf` msg || "CK#$42" `T.isPrefixOf` msg ||
         "CP#$42" `T.isPrefixOf` msg || "CQ#$42" `T.isPrefixOf` msg || "CS#$42" `T.isPrefixOf` msg ||
-        "CY#$42" `T.isPrefixOf` msg || "CR#$42" `T.isPrefixOf` msg || "CD#$42" `T.isPrefixOf` msg || 
+        "CY#$42" `T.isPrefixOf` msg || "CR#$42" `T.isPrefixOf` msg || "CD#$42" `T.isPrefixOf` msg ||
         "IA#$42" `T.isPrefixOf` msg
         then
             do
@@ -336,8 +336,8 @@ talk conn state (user, _, _, _) = forever $ do
             do
                 new <- readMVar state
                 let x = ("CB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState new)))
-                broadcast x new   
-                broadcast ("DB#$42," `mappend` "pass" `mappend` "," `mappend` sender `mappend` "," `mappend` (allGroups new)) new 
+                broadcast x new
+                broadcast ("DB#$42," `mappend` "pass" `mappend` "," `mappend` sender `mappend` "," `mappend` (allGroups new)) new
                 print "**************************** in SX#$42 "
                 print x
                 print "**************************** leaving SX#42 "
