@@ -528,7 +528,7 @@ DES_ws.onmessage = function(event) {
   console.log(ar2);
   console.log(ar3);
 
-  if ( ( (that.state.group === gameArray[1]) && (that.state.group !== "solo")) || 
+  if ( ( that.state.group === gameArray[1]) || 
         that.state.name === sender || extra === '%#8*&&^1#$%^' || d2 === "CB#$42" ) {
       switch (d2) {
 
@@ -579,16 +579,9 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CB#$42":
-            //  if ("private" !== sendersGroup || sender == playerM) 
-            if (that.state.group !== 'solo') { 
-              that.setState({
-                scoreB: ar3
-              });
-            } else {
-              that.setState({
-                scoreB: ['Data is visible to group players.']
-              })
-            }
+            that.setState({
+              scoreB: ar3
+            });
             console.log("________________________CB extra");
             console.log(extra);
             console.log("________________________CB extra"); 
@@ -1035,6 +1028,7 @@ decreaseFont () {
           default : 'operator not selected';
       }
     })
+    .then( delay(150) )
     .then( this.forceUpdate() )
     .then( delay(150) )
     .then( function() {
@@ -1291,7 +1285,7 @@ decreaseFont () {
             {this.state.DS_T}
           </button>
 
-          <div style={{width: 8000, backgroundColor: dynB,  padding: 10}} />
+          <div style={{width: 1200, backgroundColor: dynB,  padding: 10}} />
 
           <Messages2 key='Messages2' message={this.state.message} />
 
@@ -1323,7 +1317,7 @@ decreaseFont () {
             {this.state.message4}
           </button>
 
-          <div style={{width: 8000,  padding: 10}} />
+          <div style={{width: 1200,  padding: 10}} />
 
           <button onMouseEnter={this.hoverHandler4.bind(this)} onClick={this.handleOp0.bind(this)}
             onMouseLeave={this.leaveHandler4.bind(this)} 
@@ -1360,7 +1354,7 @@ decreaseFont () {
             Concat
           </button>
 
-          <div style={{width: 8000,  padding: 10}} />
+          <div style={{width: 1200,  padding: 10}} />
 
           <B30 key='B30' mes0={this.state.mes0} />
           <B31 key='B31' mes1={this.state.mes1} />
@@ -1368,7 +1362,7 @@ decreaseFont () {
           <B33 key='B33' />
           <B34 key='B34' res={this.state.res} />
 
-          <div style={{width: 8000,  padding: 10}} />
+          <div style={{width: 1200,  padding: 10}} />
 
           <button onMouseEnter={this.hoverHandler.bind(this)} 
             onMouseLeave={this.leaveHandler.bind(this)} style={{backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay}} 
@@ -1376,7 +1370,7 @@ decreaseFont () {
              Roll 
           </button>
 
-          <div style={{width: 8000,  padding: 10}} />
+          <div style={{width: 1200,  padding: 10}} />
           <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol} 
             hidden2={this.state.hidden2} />
       </div>

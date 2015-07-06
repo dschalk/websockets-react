@@ -195,7 +195,7 @@ application state pending = do
                 talk conn state client
          where
                 prefix     = "CC#$42"
-                client     = (T.drop (T.length prefix) msg, 0, T.pack "private", conn)
+                client     = (T.drop (T.length prefix) msg, 0, T.pack "solo", conn)
                 disconnect = modifyMVar state $ \s ->
                      let s' = removeClient client s in broadcast "SX#$42,pass,pass,pass" s' >> return (s', s')
 
