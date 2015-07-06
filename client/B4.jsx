@@ -2,6 +2,7 @@
 export {B4};
 import React from 'react';
 
+
 function createWebSocket(path) {
     let host = window.location.hostname;
     if(host == '') host = 'localhost';
@@ -181,265 +182,6 @@ class ChangeBackground extends React.Component {
   }
 };
 
-
-
-class B40 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  click () {
-    let name = this.props.name;
-    let group = this.props.group;
-    let num = this.props.message1;
-    this.props.more(this.props.message1);
-    this.props.change({message1: '' });
-    if (this.props.mes0 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-    }
-    else if (this.props.mes2 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
-      if (this.props.mes1 !== 'Operator') {
-        this.props.calc();
-      }
-    }
-  }
-  render () {
-    let cow = '#d5f765';  // testing
-        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
-    else {
-      console.log(this);
-      return (
-          <span onClick={this.click.bind(this)} style={{ width: 50, marginLeft: 15, padding: 10 }} >
-            {this.props.message1}
-          </span>
-      )}
-    }
-  }
-
-class B41 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  click () {
-    let name = this.props.name;
-    let group = this.props.group;
-    let num = this.props.message2;
-    this.props.more(this.props.message2);
-    this.props.change({message2: '' });
-    if (this.props.mes0 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-    }
-    else if (this.props.mes2 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
-      if (this.props.mes1 !== 'Operator') {
-        this.props.calc();
-      }
-    }
-  }
-  render () {
-    if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
-    else {
-    console.log(this);
-    return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 30, padding: 10 }} >
-          {this.props.message2}
-        </span>
-    )}
-  }
-}
-
-class B42 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  click () {
-    let name = this.props.name;
-    let group = this.props.group;
-    let num = this.props.message3;
-    this.props.more(this.props.message3);
-    this.props.change({message3: '' });
-    if (this.props.mes0 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-    }
-    else if (this.props.mes2 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
-      if (this.props.mes1 !== 'Operator') {
-        this.props.calc();
-      }
-    }
-  }
-  render () {
-    if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
-    else {
-    console.log(this);
-    return (
-        <span onClick={this.click.bind(this)} style={this.props.dynamicStyle} >
-          {this.props.message3}
-        </span>
-    )}
-  }
-}
-
-
-class B43 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  click () {
-    let name = this.props.name;
-    let group = this.props.group;
-    let num = this.props.message4;
-    this.props.more(this.props.message4);
-    this.props.change({message4: '' });
-    if (this.props.mes0 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-    }
-    else if (this.props.mes2 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
-      if (this.props.mes1 !== 'Operator') {
-        this.props.calc();
-      }
-    }
-  }
-  render () {
-      if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
-  else {
-    console.log(this);
-    return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 30, padding: 10 }} >
-          {this.props.message4}
-        </span>
-    )}
-  }
-}
-
-class Op0 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  click () { 
-    let name = this.props.name;
-    let group = this.props.group;
-    DES_ws.send(`CQ#$42,${group},${name},mes1,+`);
-    let test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
-    if (test) {
-        this.props.calc();
-    }
-  }
-  render () {
-        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
-    else {
-    console.log(this);
-    return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20, padding: 10}} >
-          +
-        </span>
-    )}
-  }
-}
-
-class Op1 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  click () { 
-    let name = this.props.name;
-    let group = this.props.group;
-    DES_ws.send(`CQ#$42,${group},${name},mes1,-`);
-    let test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
-    if (test) {
-        this.props.calc();
-    }
-  }
-  render () {
-        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
-    else {
-    console.log(this);
-    return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20, padding: 10}} >
-          -
-        </span>
-    )}
-  }
-}
-
-class Op2 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  click () { 
-    let name = this.props.name;
-    let group = this.props.group;
-    DES_ws.send(`CQ#$42,${group},${name},mes1,*`);
-    let test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
-    if (test) {
-        this.props.calc();
-    }
-  }
-  render () {
-        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
-    else {
-    console.log(this);
-    return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20, padding: 10}} >
-          *
-        </span>
-    )}
-  }
-}
-
-  class Op3 extends React.Component {
-    constructor(props) {
-      super(props);
-    }
-  click () { 
-    let name = this.props.name;
-    let group = this.props.group;
-    DES_ws.send(`CQ#$42,${group},${name},mes1,/`);
-    let test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
-    if (test) {
-        this.props.calc();
-    }
-  }
-    render () {
-        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
-    else {
-      console.log(this);
-      return (
-          <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20, padding: 10}} >
-            /
-          </span>
-      )}
-    }
-  }
-
-class Op4 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  click () { 
-    let name = this.props.name;
-    let group = this.props.group;
-    DES_ws.send(`CQ#$42,${group},${name},mes1,Concat`);
-    let test = this.props.mes0 !== 'Number' && this.props.mes2 !== 'Number';
-    if (test) {
-        this.props.calc();
-    }
-  }
-  render () {
-        if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
-    else {
-    console.log(this);
-    return (
-        <span onClick={this.click.bind(this)} style={{width: 50, marginLeft: 20, padding: 10}} >
-          Concat
-        </span>
-    )}
-  }
-}
-
 class B30 extends React.Component {
   constructor(props) {
     super(props);
@@ -509,18 +251,14 @@ class Roll extends React.Component {
     constructor(props) {
       super(props);
   }
-  clickHandler () {
-      this.props.roll();
-      this.props.setInfo(`Click SCORE to begin.`);
-  }
   render () {
     console.log(this);
-    if (this.props.hidden2 || this.props.hidden3) { return ( null ) } 
+    if (this.props.hidden2) { return ( null ) } 
     else {
       return (
-          <div onClick={this.clickHandler.bind(this)} >
+          <span>
               ROLL
-          </div>
+          </span>
       )
     }
   }
@@ -630,6 +368,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
   }
+
   handleChange (event) {       // ISSUE: Input box won't accept data without this handleChange function. ??
     this.props.change({name: event.target.value});
   }
@@ -649,6 +388,14 @@ class Login extends React.Component {
         this.props.change({ hidden3: false});
         this.props.change({ hidden4: false});
         this.props.change({ name: name});
+      this.props.change({
+        buttonColor: '#83f7d8',
+        buttonColor0: '#83f7d8',
+        buttonColor1: '#83f7d8',
+        buttonColor2: '#83f7d8',
+        buttonColor3: '#83f7d8',
+        buttonDisplay: 'inline'
+      });
         DES_ws.send('CC#$42'+name);
       }
     }
@@ -666,6 +413,19 @@ class Login extends React.Component {
       this.props.change({ hidden3: false});
       this.props.change({ hidden4: false});
       this.props.change({ name: name});
+      this.props.change({
+        buttonColor: '#83f7d8',
+        buttonColor0: '#83f7d8',
+        buttonColor1: '#83f7d8',
+        buttonColor2: '#83f7d8',
+        buttonColor3: '#83f7d8',
+        buttonColor4: '#acf9a2',
+        buttonColor5: '#acf9a2',
+        buttonColor6: '#acf9a2',
+        buttonColor7: '#acf9a2',
+        buttonColor8: '#acf9a2',
+        buttonDisplay: 'inline'
+      });
       DES_ws.send('CC#$42'+name);
     }
   }
@@ -776,12 +536,24 @@ class B4 extends React.Component {
         used: [],
         dynamicBg: '#000000',
         dynamicColor: '#d5f765',
-        dynamicFont: 28,
+        dynamicFont: 20,
         test: false,
         message: '',
         score: false,
         goal: 29,
-        sty: {color: '#d5f765', width: 50, marginLeft: 30, padding: 10}
+        sty: {color: '#d5f765', width: 50, marginLeft: 30, padding: 10},
+        buttonColor0: '83f7d7',
+        buttonColor1: '83f7d7',
+        buttonColor2: '83f7d7',
+        buttonColor3: '83f7d7',
+        buttonColor4: 'acf9a2',
+        buttonColor5: 'acf9a2',
+        buttonColor6: 'acf9a2',
+        buttonColor7: 'acf9a2',
+        buttonColor8: 'acf9a2',
+        buttonColor: '83f7d7',
+        colorB42: '#000',
+        buttonDisplay: 'none'
       }
 
 let that = this;
@@ -1082,6 +854,79 @@ decreaseFont () {
   }
 }
 
+  hoverHandler () {
+    this.setState( {buttonColor: '#f99094' })
+  }
+  leaveHandler () { 
+    this.setState( {buttonColor: '#83f7d8' })
+  }
+  hoverHandler0 () {
+    this.setState( {buttonColor0: '#f99094' })
+  }
+  leaveHandler0 () { 
+    this.setState( {buttonColor0: '#83f7d8' })
+  }
+  hoverHandler1 () {
+    this.setState( {buttonColor1: '#f99094' })
+  }
+  leaveHandler1 () { 
+    this.setState( {buttonColor1: '#83f7d8' })
+  }
+  hoverHandler2 () {
+    this.setState( {buttonColor2: '#f99094' })
+  }
+  leaveHandler2 () { 
+    this.setState( {buttonColor2: '#83f7d8' })
+  }
+  hoverHandler3 () {
+    this.setState( {buttonColor3: '#f99094' })
+  }
+  leaveHandler3 () { 
+    this.setState( {buttonColor3: '#83f7d8' })
+  }
+
+  hoverHandler4 () {
+    this.setState( {buttonColor4: '#f99094' })
+  }
+  
+  leaveHandler4 () { 
+    this.setState( {buttonColor4: '#acf9a2' })
+  }
+
+  hoverHandler5 () {
+    this.setState( {buttonColor5: '#f99094' })
+  }
+  
+  leaveHandler5 () { 
+    this.setState( {buttonColor5: '#acf9a2' })
+  }
+
+  hoverHandler6 () {
+    this.setState( {buttonColor6: '#f99094' })
+  }
+  
+  leaveHandler6 () { 
+    this.setState( {buttonColor6: '#acf9a2' })
+  }
+
+  hoverHandler7 () {
+    this.setState( {buttonColor7: '#f99094' })
+  }
+  
+  leaveHandler7 () { 
+    this.setState( {buttonColor7: '#acf9a2' })
+  }
+
+  hoverHandler8 () {
+    this.setState( {buttonColor8: '#f99094' })
+  }
+  
+  leaveHandler8 () { 
+    this.setState( {buttonColor8: '#acf9a2' })
+  }
+
+
+
   solutions () { 
     let group = this.state.group;
     let name = this.state.name;
@@ -1114,7 +959,8 @@ decreaseFont () {
       test: false,
       score: false,
       message: 'You must click SCORE in order to gain a point.',
-      sty: {color: col, width: 50, marginLeft: 30, padding: 10}
+      sty: {color: col, width: 50, marginLeft: 30, padding: 10},
+      colorB42: '#ff0000'
     });
     let name = this.state.name;
     let group = this.state.group;
@@ -1264,7 +1110,7 @@ decreaseFont () {
       that.setNumberAr();
     })
     .then(function() {
-      that.setState({sty: {color: '#ff0000', width: 50, marginLeft: 30, padding: 10} });
+      that.setState({colorB42: '#ff0000' });
     });
   }
 
@@ -1281,11 +1127,177 @@ decreaseFont () {
     console.log("*************************************************************************** Message from logMessage");
   }
 
+  buttonHandler () {
+    let name = this.state.name;
+    let group = this.state.group;
+    let x = `Click SCORE to begin.`
+    DES_ws.send( `IA#$42,${group},${name},${x}` );
+    this.rollDice();
+  }
+
+  handleB (m) {
+    let name = this.state.name;
+    let group = this.state.group;
+    let num = this.state.m;
+    this.moreUsed(num);
+    this.setState({m: '' });
+    if (this.state.mes0 === 'Number') {
+      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
+      console.log('_________________________________________________________in handleB40');
+    }
+    else if (this.state.mes2 === 'Number') {
+      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+      if (this.state.mes1 !== 'Operator') {
+        this.calc();
+      }
+    }
+  }
+
+
+
+  handleB40 () {
+    let name = this.state.name;
+    let group = this.state.group;
+    let num = this.state.message1;
+    this.moreUsed(num);
+    this.setState({message1: '' });
+    if (this.state.mes0 === 'Number') {
+      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
+      console.log('_________________________________________________________in handleB40');
+    }
+    else if (this.state.mes2 === 'Number') {
+      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+      if (this.state.mes1 !== 'Operator') {
+        this.calc();
+      }
+    }
+  }
+
+
+  handleB41 () {
+    let name = this.state.name;
+    let group = this.state.group;
+    let num = this.state.message2;
+    this.moreUsed(num);
+    this.setState({message2: '' });
+    if (this.state.mes0 === 'Number') {
+      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
+      console.log('_________________________________________________________in handleB40');
+    }
+    else if (this.state.mes2 === 'Number') {
+      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+      if (this.state.mes1 !== 'Operator') {
+        this.calc();
+      }
+    }
+  }
+
+  handleB42 () {
+    let name = this.state.name;
+    let group = this.state.group;
+    let num = this.state.message3;
+    this.moreUsed(num);
+    this.setState({message3: '' });
+    if (this.state.mes0 === 'Number') {
+      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
+      console.log('_________________________________________________________in handleB40');
+    }
+    else if (this.state.mes2 === 'Number') {
+      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+      if (this.state.mes1 !== 'Operator') {
+        this.calc();
+      }
+    }
+  }
+
+
+  handleB43 () {
+    let name = this.state.name;
+    let group = this.state.group;
+    let num = this.state.message4;
+    this.moreUsed(num);
+    this.setState({message4: '' });
+    if (this.state.mes0 === 'Number') {
+      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
+      console.log('_________________________________________________________in handleB40');
+    }
+    else if (this.state.mes2 === 'Number') {
+      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+      if (this.state.mes1 !== 'Operator') {
+        this.calc();
+      }
+    }
+  }
+
+  handleOp0 () { 
+    let name = this.state.name;
+    let group = this.state.group;
+    DES_ws.send(`CQ#$42,${group},${name},mes1,+`);
+    let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
+    if (test) {
+        this.calc();
+    }
+  }
+
+  handleOp1 () { 
+    let name = this.state.name;
+    let group = this.state.group;
+    DES_ws.send(`CQ#$42,${group},${name},mes1,-`);
+    let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
+    if (test) {
+        this.calc();
+    }
+  }
+
+  handleOp2 () { 
+    let name = this.state.name;
+    let group = this.state.group;
+    DES_ws.send(`CQ#$42,${group},${name},mes1,*`);
+    let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
+    if (test) {
+        this.calc();
+    }
+  }
+
+  handleOp3 () { 
+    let name = this.state.name;
+    let group = this.state.group;
+    DES_ws.send(`CQ#$42,${group},${name},mes1,/`);
+    let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
+    if (test) {
+        this.calc();
+    }
+  }
+
+  handleOp4 () { 
+    let name = this.state.name;
+    let group = this.state.group;
+    DES_ws.send(`CQ#$42,${group},${name},mes1,Concat`);
+    let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
+    if (test) {
+        this.calc();
+    }
+  }
+
   render () {
-    console.log(this); 
+    let buttonCol = this.state.buttonColor;
+    let buttonCol0 = this.state.buttonColor0;
+    let buttonCol1 = this.state.buttonColor1;
+    let buttonCol2 = this.state.buttonColor2;
+    let buttonCol3 = this.state.buttonColor3;
+    let buttonCol4 = this.state.buttonColor4;
+    let buttonCol5 = this.state.buttonColor5;
+    let buttonCol6 = this.state.buttonColor6;
+    let buttonCol7 = this.state.buttonColor7;
+    let buttonCol8 = this.state.buttonColor8;
+     
     let dynB = this.state.dynamicBg;
     let dynC = this.state.dynamicColor;
     let dynF = this.state.dynamicFont;
+    let buttonDisplay = this.state.buttonDisplay;
+    let m1 = this.state.message1;
+
+    console.log(this);
     return (
       <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, display: 'inlineBlock'}} >
           <div style={{width: 600, float: 'right'}} >
@@ -1294,14 +1306,16 @@ decreaseFont () {
             <ChangeBackground key='ChangeBackground' changeB={this.changeBackground.bind(this)} 
               style={{width: 8}} />
             <button key='$#19' onClick={this.increaseFont.bind(this)} 
+               
               style={{backgroundColor: '#d8d17d', color: '#f00'}} >
                Increase Font Size</button>
-            <span style={{backgroundColor: '#000', color: '#000'}}>e</span>
+            <span style={{backgroundColor: dynB, color: dynB}}>e</span>
             <button key='$#20' onClick={this.decreaseFont.bind(this)}  
               style={{backgroundColor: '#d8d17d', color: '#f00'}} >
               Decrease Font Size</button>
             <ScoreBoard key='ScoreBoard' scoreB={this.state.scoreB} />
           </div>
+
           <Messages key='Messages' info={this.state.info} />
 
           <GroupA key='GroupA' hidden2={this.state.hidden2} setGroup={this.setGroup.bind(this)} />
@@ -1328,58 +1342,67 @@ decreaseFont () {
 
           <Messages2 key='Messages2' message={this.state.message} />
 
-          <div style={{width: 8000,  backgroundColor: dynB, padding: 10}} />
+          <button onMouseEnter={this.hoverHandler0.bind(this)} onClick={this.handleB40.bind(this)}
+            onMouseLeave={this.leaveHandler0.bind(this)} 
+            style={{backgroundColor: buttonCol0, display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, marginLeft: 10}} >
+            {this.state.message1}
+          </button>
 
-          <B40 key='B40' message1={this.state.message1} change={this.changeItem.bind(this)} 
-            mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} 
-             hidden={this.state.hidden} hidden2={this.state.hidden2} hidden3={this.state.hidden3} 
-             more={this.moreUsed.bind(this)} />
+          <button onMouseEnter={this.hoverHandler1.bind(this)} onClick={this.handleB41.bind(this)}
+            onMouseLeave={this.leaveHandler1.bind(this)} 
+            style={{backgroundColor: buttonCol1, display: buttonDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3}} >
+            {this.state.message2}
+          </button>
 
-          <B41 key='B41' message2={this.state.message2} change={this.changeItem.bind(this)} 
-            mes0={this.state.mes0} mes2={this.state.mes2} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} delay={this.delay.bind(this)} 
-            name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} more={this.moreUsed.bind(this)} />
+          <button onMouseEnter={this.hoverHandler2.bind(this)} onClick={this.handleB42.bind(this)}
+            onMouseLeave={this.leaveHandler2.bind(this)} 
+            style={{backgroundColor: buttonCol2, display: buttonDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3}} >
+            {this.state.message3}
+          </button>
 
-          <B42 key='B42' message3={this.state.message3} change={this.changeItem.bind(this)} 
-            mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} 
-            calc={this.calc.bind(this)} color2={this.state.color2} dynamicStyle={this.state.sty} 
-            delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} more={this.moreUsed.bind(this)} />
-
-          <B43 key='B43' message4={this.state.message4} change={this.changeItem.bind(this)} 
-            mes0={this.state.mes0} mes2={this.state.mes2} mes1={this.state.mes1} calc={this.calc.bind(this)} 
-            delay={this.delay.bind(this)} name={this.state.name} group={this.state.group} 
-            hidden={this.state.hidden} hidden2={this.state.hidden2} hidden3={this.state.hidden3} 
-            more={this.moreUsed.bind(this)} />
+          <button onMouseEnter={this.hoverHandler3.bind(this)} onClick={this.handleB43.bind(this)}
+            onMouseLeave={this.leaveHandler3.bind(this)} 
+            style={{backgroundColor: buttonCol3, display: buttonDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3}} >
+            {this.state.message4}
+          </button>
 
           <div style={{width: 8000,  padding: 10}} />
 
-          <Op0 key='Op0' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} name={this.state.name} 
-            group={this.state.group} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
+          <button onMouseEnter={this.hoverHandler4.bind(this)} onClick={this.handleOp0.bind(this)}
+            onMouseLeave={this.leaveHandler4.bind(this)} 
+            style={{backgroundColor: buttonCol4, display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, marginLeft: 10}} >
+            +
+          </button>
 
-          <Op1 key='Op1' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} name={this.state.name} 
-            group={this.state.group} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
+          <button onMouseEnter={this.hoverHandler5.bind(this)} onClick={this.handleOp1.bind(this)}
+            onMouseLeave={this.leaveHandler5.bind(this)} 
+            style={{backgroundColor: buttonCol5, display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3}} >
+            -
+          </button>
 
-          <Op2 key='Op2' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} name={this.state.name} 
-            group={this.state.group} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
+          <button onMouseEnter={this.hoverHandler6.bind(this)} onClick={this.handleOp2.bind(this)}
+            onMouseLeave={this.leaveHandler6.bind(this)} 
+            style={{backgroundColor: buttonCol6, display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3}} >
+            *
+          </button>
 
-          <Op3 key='Op3' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} name={this.state.name} 
-            group={this.state.group} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
+          <button onMouseEnter={this.hoverHandler7.bind(this)} onClick={this.handleOp3.bind(this)}
+            onMouseLeave={this.leaveHandler7.bind(this)} 
+            style={{backgroundColor: buttonCol7, display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3}} >
+            /
+          </button>
 
-          <Op4 key='Op4' mes0={this.state.mes0} mes2={this.state.mes2} change={this.changeItem.bind(this)} 
-            mes1={this.state.mes1} calc={this.calc.bind(this)} name={this.state.name} 
-            group={this.state.group} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} />
+          <button onMouseEnter={this.hoverHandler8.bind(this)} onClick={this.handleOp4.bind(this)}
+            onMouseLeave={this.leaveHandler8.bind(this)} 
+            style={{backgroundColor: buttonCol4, display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3}} >
+            Concat
+          </button>
 
           <div style={{width: 8000,  padding: 10}} />
 
@@ -1391,8 +1414,12 @@ decreaseFont () {
 
           <div style={{width: 8000,  padding: 10}} />
 
-          <Roll key='Roll' roll={this.rollDice.bind(this)} hidden={this.state.hidden} 
-            hidden2={this.state.hidden2} hidden3={this.state.hidden3} setInfo={this.setInfo.bind(this)} />
+          <button onMouseEnter={this.hoverHandler.bind(this)} 
+            onMouseLeave={this.leaveHandler.bind(this)} style={{backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay}} 
+              onClick={this.buttonHandler.bind(this)} >
+             Roll 
+          </button>
+
           <div style={{width: 8000,  padding: 10}} />
           <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol} 
             hidden2={this.state.hidden2} />
