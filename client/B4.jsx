@@ -247,23 +247,6 @@ render () {
   )}
 };
 
-class Roll extends React.Component {
-    constructor(props) {
-      super(props);
-  }
-  render () {
-    console.log(this);
-    if (this.props.hidden2) { return ( null ) } 
-    else {
-      return (
-          <span>
-              ROLL
-          </span>
-      )
-    }
-  }
-};
-
 class Solutions extends React.Component {
     constructor(props) {
       super(props);
@@ -385,17 +368,8 @@ class Login extends React.Component {
         let name = this.props.name;
         this.props.change({ hidden: true});
         this.props.change({ hidden2: false});
-        this.props.change({ hidden3: false});
-        this.props.change({ hidden4: false});
         this.props.change({ name: name});
-      this.props.change({
-        buttonColor: '#83f7d8',
-        buttonColor0: '#83f7d8',
-        buttonColor1: '#83f7d8',
-        buttonColor2: '#83f7d8',
-        buttonColor3: '#83f7d8',
-        buttonDisplay: 'inline'
-      });
+        this.props.change({ buttonDisplay: 'inline'});
         DES_ws.send('CC#$42'+name);
       }
     }
@@ -408,24 +382,10 @@ class Login extends React.Component {
       }); 
     } else { 
       let name = this.props.name;
+      this.props.change({ buttonDisplay: 'inline'});
       this.props.change({ hidden: true});
       this.props.change({ hidden2: false});
-      this.props.change({ hidden3: false});
-      this.props.change({ hidden4: false});
       this.props.change({ name: name});
-      this.props.change({
-        buttonColor: '#83f7d8',
-        buttonColor0: '#83f7d8',
-        buttonColor1: '#83f7d8',
-        buttonColor2: '#83f7d8',
-        buttonColor3: '#83f7d8',
-        buttonColor4: '#acf9a2',
-        buttonColor5: '#acf9a2',
-        buttonColor6: '#acf9a2',
-        buttonColor7: '#acf9a2',
-        buttonColor8: '#acf9a2',
-        buttonDisplay: 'inline'
-      });
       DES_ws.send('CC#$42'+name);
     }
   }
@@ -444,34 +404,6 @@ class Login extends React.Component {
         </button>
       </div>
     );
-  }
-};
-
-class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  click () {
-    if (this.props.t === "SCORE!") {   // Click works only at the start of each round
-      this.props.change({
-        score: true,
-        message: ''
-      });
-      let name = this.props.name;
-      let group = this.props.group;
-      this.props.change({scoreClicker: name})
-      DES_ws.send( `CK#$42,${group},${name},10` );
-      DES_ws.send( `CY#$42,${group},${name},${name}` );   // After 8 seconds, non-clickers see solutions.
-    } 
-  }
-  render () {
-    console.log(this);
-    if (this.props.hidden2) { return ( null ) } 
-    return (
-        <div onClick={this.click.bind(this)} >
-             {this.props.t}
-        </div>
-    )
   }
 };
 
@@ -542,16 +474,17 @@ class B4 extends React.Component {
         score: false,
         goal: 29,
         sty: {color: '#d5f765', width: 50, marginLeft: 30, padding: 10},
-        buttonColor0: '83f7d7',
-        buttonColor1: '83f7d7',
-        buttonColor2: '83f7d7',
-        buttonColor3: '83f7d7',
-        buttonColor4: 'acf9a2',
-        buttonColor5: 'acf9a2',
-        buttonColor6: 'acf9a2',
-        buttonColor7: 'acf9a2',
-        buttonColor8: 'acf9a2',
-        buttonColor: '83f7d7',
+        buttonColor0: '#83f7d7',
+        buttonColor1: '#83f7d7',
+        buttonColor2: '#83f7d7',
+        buttonColor3: '#83f7d7',
+        buttonColor4: '#acf9a2',
+        buttonColor5: '#acf9a2',
+        buttonColor6: '#acf9a2',
+        buttonColor7: '#acf9a2',
+        buttonColor8: '#acf9a2',
+        buttonColor9: '#83f7d8',
+        buttonColor: '#83f7d7',
         colorB42: '#000',
         buttonDisplay: 'none'
       }
@@ -792,7 +725,8 @@ DES_ws.onmessage = function(event) {
         message1: '',
         message2: '',
         message3: '',
-        message4: ''
+        message4: '',
+        buttonDisplay: 'inline'
       });
     }
     if ( this.state.DS_T > -1 ) {
@@ -925,7 +859,13 @@ decreaseFont () {
     this.setState( {buttonColor8: '#acf9a2' })
   }
 
-
+  hoverHandler9 () {
+    this.setState( {buttonColor9: '#f99094' })
+  }
+  
+  leaveHandler9 () { 
+    this.setState( {buttonColor9: '#83f7d8' })
+  }
 
   solutions () { 
     let group = this.state.group;
@@ -1153,8 +1093,6 @@ decreaseFont () {
     }
   }
 
-
-
   handleB40 () {
     let name = this.state.name;
     let group = this.state.group;
@@ -1172,7 +1110,6 @@ decreaseFont () {
       }
     }
   }
-
 
   handleB41 () {
     let name = this.state.name;
@@ -1209,7 +1146,6 @@ decreaseFont () {
       }
     }
   }
-
 
   handleB43 () {
     let name = this.state.name;
@@ -1279,6 +1215,20 @@ decreaseFont () {
     }
   }
 
+  handleScore () {
+    let name = this.state.name;
+    let group = this.state.group;
+    if (this.state.DS_T === "SCORE!") {   // Click works only at the start of each round
+      this.setState({
+        score: true,
+        message: '',
+        scoreClicker: name
+      });
+      DES_ws.send( `CK#$42,${group},${name},10` );
+      DES_ws.send( `CY#$42,${group},${name},${name}` );   // After 8 seconds, non-clickers see solutions.
+    } 
+  }
+
   render () {
     let buttonCol = this.state.buttonColor;
     let buttonCol0 = this.state.buttonColor0;
@@ -1290,7 +1240,7 @@ decreaseFont () {
     let buttonCol6 = this.state.buttonColor6;
     let buttonCol7 = this.state.buttonColor7;
     let buttonCol8 = this.state.buttonColor8;
-     
+    let buttonCol9 = this.state.buttonColor9;
     let dynB = this.state.dynamicBg;
     let dynC = this.state.dynamicColor;
     let dynF = this.state.dynamicFont;
@@ -1334,9 +1284,12 @@ decreaseFont () {
           <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} 
             str4={this.state.str4} />
 
-          <Clock key='Clock' t={this.state.DS_T} name={this.state.name} group={this.state.group} 
-            hidden={this.state.hidden} hidden2={this.state.hidden2} hidden3={this.state.hidden3} 
-              hidden4={this.state.hidden4} change={this.changeItem.bind(this)} /> 
+          <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore.bind(this)}
+            onMouseLeave={this.leaveHandler9.bind(this)} 
+            style={{backgroundColor: buttonCol9, display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3}} >
+            {this.state.DS_T}
+          </button>
 
           <div style={{width: 8000, backgroundColor: dynB,  padding: 10}} />
 
@@ -1345,25 +1298,28 @@ decreaseFont () {
           <button onMouseEnter={this.hoverHandler0.bind(this)} onClick={this.handleB40.bind(this)}
             onMouseLeave={this.leaveHandler0.bind(this)} 
             style={{backgroundColor: buttonCol0, display: buttonDisplay, paddingTop: 1.1, 
-              paddingBottom: 0.9, marginRight: 3, marginLeft: 10}} >
+              paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 20}} >
             {this.state.message1}
           </button>
 
           <button onMouseEnter={this.hoverHandler1.bind(this)} onClick={this.handleB41.bind(this)}
             onMouseLeave={this.leaveHandler1.bind(this)} 
-            style={{backgroundColor: buttonCol1, display: buttonDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3}} >
+            style={{backgroundColor: buttonCol1, display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             {this.state.message2}
           </button>
 
           <button onMouseEnter={this.hoverHandler2.bind(this)} onClick={this.handleB42.bind(this)}
             onMouseLeave={this.leaveHandler2.bind(this)} 
-            style={{backgroundColor: buttonCol2, display: buttonDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3}} >
+            style={{backgroundColor: buttonCol2, display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             {this.state.message3}
           </button>
 
           <button onMouseEnter={this.hoverHandler3.bind(this)} onClick={this.handleB43.bind(this)}
             onMouseLeave={this.leaveHandler3.bind(this)} 
-            style={{backgroundColor: buttonCol3, display: buttonDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3}} >
+            style={{backgroundColor: buttonCol3, display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             {this.state.message4}
           </button>
 
@@ -1372,35 +1328,35 @@ decreaseFont () {
           <button onMouseEnter={this.hoverHandler4.bind(this)} onClick={this.handleOp0.bind(this)}
             onMouseLeave={this.leaveHandler4.bind(this)} 
             style={{backgroundColor: buttonCol4, display: buttonDisplay, paddingTop: 1.1, 
-              paddingBottom: 0.9, marginRight: 3, marginLeft: 10}} >
+              paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 20}} >
             +
           </button>
 
           <button onMouseEnter={this.hoverHandler5.bind(this)} onClick={this.handleOp1.bind(this)}
             onMouseLeave={this.leaveHandler5.bind(this)} 
             style={{backgroundColor: buttonCol5, display: buttonDisplay, paddingTop: 1.1, 
-              paddingBottom: 0.9, marginRight: 3}} >
+              paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             -
           </button>
 
           <button onMouseEnter={this.hoverHandler6.bind(this)} onClick={this.handleOp2.bind(this)}
             onMouseLeave={this.leaveHandler6.bind(this)} 
             style={{backgroundColor: buttonCol6, display: buttonDisplay, paddingTop: 1.1, 
-              paddingBottom: 0.9, marginRight: 3}} >
+              paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             *
           </button>
 
           <button onMouseEnter={this.hoverHandler7.bind(this)} onClick={this.handleOp3.bind(this)}
             onMouseLeave={this.leaveHandler7.bind(this)} 
             style={{backgroundColor: buttonCol7, display: buttonDisplay, paddingTop: 1.1, 
-              paddingBottom: 0.9, marginRight: 3}} >
+              paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             /
           </button>
 
           <button onMouseEnter={this.hoverHandler8.bind(this)} onClick={this.handleOp4.bind(this)}
             onMouseLeave={this.leaveHandler8.bind(this)} 
             style={{backgroundColor: buttonCol4, display: buttonDisplay, paddingTop: 1.1, 
-              paddingBottom: 0.9, marginRight: 3}} >
+              paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             Concat
           </button>
 
