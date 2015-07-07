@@ -102,7 +102,7 @@
 
 	"use strict";
 
-	var _Object$create = __webpack_require__(11)["default"];
+	var _Object$create = __webpack_require__(10)["default"];
 
 	exports["default"] = function (subClass, superClass) {
 	  if (typeof superClass !== "function" && superClass !== null) {
@@ -128,7 +128,7 @@
 
 	"use strict";
 
-	var _Object$getOwnPropertyDescriptor = __webpack_require__(10)["default"];
+	var _Object$getOwnPropertyDescriptor = __webpack_require__(11)["default"];
 
 	exports["default"] = function get(_x, _x2, _x3) {
 	  var _again = true;
@@ -437,9 +437,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(43);
-	__webpack_require__(44);
-	module.exports = function getOwnPropertyDescriptor(it, key){
-	  return $.getDesc(it, key);
+	module.exports = function create(P, D){
+	  return $.create(P, D);
 	};
 
 /***/ },
@@ -447,8 +446,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(43);
-	module.exports = function create(P, D){
-	  return $.create(P, D);
+	__webpack_require__(44);
+	module.exports = function getOwnPropertyDescriptor(it, key){
+	  return $.getDesc(it, key);
 	};
 
 /***/ },
@@ -692,11 +692,11 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(47);
-	var ReactFragment = __webpack_require__(48);
+	var PooledClass = __webpack_require__(49);
+	var ReactFragment = __webpack_require__(50);
 
-	var traverseAllChildren = __webpack_require__(49);
-	var warning = __webpack_require__(50);
+	var traverseAllChildren = __webpack_require__(51);
+	var warning = __webpack_require__(48);
 
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
 	var threeArgumentPooler = PooledClass.threeArgumentPooler;
@@ -848,10 +848,10 @@
 
 	'use strict';
 
-	var ReactUpdateQueue = __webpack_require__(51);
+	var ReactUpdateQueue = __webpack_require__(47);
 
 	var invariant = __webpack_require__(46);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	/**
 	 * Base class helpers for the updating state of a component.
@@ -1013,13 +1013,13 @@
 	var ReactLifeCycle = __webpack_require__(56);
 	var ReactPropTypeLocations = __webpack_require__(57);
 	var ReactPropTypeLocationNames = __webpack_require__(53);
-	var ReactUpdateQueue = __webpack_require__(51);
+	var ReactUpdateQueue = __webpack_require__(47);
 
 	var assign = __webpack_require__(34);
 	var invariant = __webpack_require__(46);
 	var keyMirror = __webpack_require__(58);
 	var keyOf = __webpack_require__(59);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	var MIXINS_KEY = keyOf({mixins: null});
 
@@ -1956,7 +1956,7 @@
 
 	var assign = __webpack_require__(34);
 	var emptyObject = __webpack_require__(52);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	var didWarn = false;
 
@@ -2077,7 +2077,7 @@
 	var ReactCurrentOwner = __webpack_require__(22);
 
 	var assign = __webpack_require__(34);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	var RESERVED_PROPS = {
 	  key: true,
@@ -2392,7 +2392,7 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(23);
-	var ReactFragment = __webpack_require__(48);
+	var ReactFragment = __webpack_require__(50);
 	var ReactPropTypeLocations = __webpack_require__(57);
 	var ReactPropTypeLocationNames = __webpack_require__(53);
 	var ReactCurrentOwner = __webpack_require__(22);
@@ -2400,7 +2400,7 @@
 
 	var getIteratorFn = __webpack_require__(61);
 	var invariant = __webpack_require__(46);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	function getDeclarationErrorAddendum() {
 	  if (ReactCurrentOwner.current) {
@@ -3667,7 +3667,7 @@
 	var ReactMarkupChecksum = __webpack_require__(98);
 	var ReactPerf = __webpack_require__(30);
 	var ReactReconciler = __webpack_require__(32);
-	var ReactUpdateQueue = __webpack_require__(51);
+	var ReactUpdateQueue = __webpack_require__(47);
 	var ReactUpdates = __webpack_require__(99);
 
 	var emptyObject = __webpack_require__(52);
@@ -3677,7 +3677,7 @@
 	var invariant = __webpack_require__(46);
 	var setInnerHTML = __webpack_require__(103);
 	var shouldUpdateReactComponent = __webpack_require__(104);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
 
@@ -4658,7 +4658,7 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(23);
-	var ReactFragment = __webpack_require__(48);
+	var ReactFragment = __webpack_require__(50);
 	var ReactPropTypeLocationNames = __webpack_require__(53);
 
 	var emptyFunction = __webpack_require__(105);
@@ -5282,7 +5282,7 @@
 
 	var invariant = __webpack_require__(46);
 	var isNode = __webpack_require__(108);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	/**
 	 * Returns the DOM node rendered by this element.
@@ -5541,13 +5541,13 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var set   = __webpack_require__(43).set
-	  , $at   = __webpack_require__(112)(true)
-	  , ITER  = __webpack_require__(113).safe('iter')
-	  , $iter = __webpack_require__(114)
+	  , $at   = __webpack_require__(125)(true)
+	  , ITER  = __webpack_require__(121).safe('iter')
+	  , $iter = __webpack_require__(113)
 	  , step  = $iter.step;
 
 	// 21.1.3.27 String.prototype[@@iterator]()
-	__webpack_require__(115)(String, 'String', function(iterated){
+	__webpack_require__(126)(String, 'String', function(iterated){
 	  set(this, ITER, {o: String(iterated), i: 0});
 	// 21.1.5.2.1 %StringIteratorPrototype%.next()
 	}, function(){
@@ -5565,9 +5565,9 @@
 /* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(116);
+	__webpack_require__(112);
 	var $           = __webpack_require__(43)
-	  , Iterators   = __webpack_require__(114).Iterators
+	  , Iterators   = __webpack_require__(113).Iterators
 	  , ITERATOR    = __webpack_require__(110)('iterator')
 	  , ArrayValues = Iterators.Array
 	  , NL          = $.g.NodeList
@@ -5586,19 +5586,19 @@
 
 	'use strict';
 	var $        = __webpack_require__(43)
-	  , ctx      = __webpack_require__(117)
+	  , ctx      = __webpack_require__(116)
 	  , cof      = __webpack_require__(109)
-	  , $def     = __webpack_require__(118)
-	  , assert   = __webpack_require__(119)
-	  , forOf    = __webpack_require__(120)
-	  , setProto = __webpack_require__(121).set
-	  , species  = __webpack_require__(122)
+	  , $def     = __webpack_require__(115)
+	  , assert   = __webpack_require__(117)
+	  , forOf    = __webpack_require__(118)
+	  , setProto = __webpack_require__(119).set
+	  , species  = __webpack_require__(120)
 	  , SPECIES  = __webpack_require__(110)('species')
-	  , RECORD   = __webpack_require__(113).safe('record')
+	  , RECORD   = __webpack_require__(121).safe('record')
 	  , PROMISE  = 'Promise'
 	  , global   = $.g
 	  , process  = global.process
-	  , asap     = process && process.nextTick || __webpack_require__(123).set
+	  , asap     = process && process.nextTick || __webpack_require__(122).set
 	  , P        = global[PROMISE]
 	  , isFunction     = $.isFunction
 	  , isObject       = $.isObject
@@ -5736,7 +5736,7 @@
 	      $reject.call(record, err);
 	    }
 	  };
-	  __webpack_require__(124)(P.prototype, {
+	  __webpack_require__(123)(P.prototype, {
 	    // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)
 	    then: function then(onFulfilled, onRejected){
 	      var S = assertObject(assertObject(this).constructor)[SPECIES];
@@ -5783,7 +5783,7 @@
 	      });
 	  }
 	});
-	$def($def.S + $def.F * !(useNative && __webpack_require__(125)(function(iter){
+	$def($def.S + $def.F * !(useNative && __webpack_require__(124)(function(iter){
 	  P.all(iter)['catch'](function(){});
 	})), PROMISE, {
 	  // 25.4.4.1 Promise.all(iterable)
@@ -5867,7 +5867,7 @@
 	  return it;
 	}
 
-	var $ = module.exports = __webpack_require__(126)({
+	var $ = module.exports = __webpack_require__(114)({
 	  g: global,
 	  core: core,
 	  html: global.document && document.documentElement,
@@ -5920,7 +5920,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var $        = __webpack_require__(43)
-	  , $def     = __webpack_require__(118)
+	  , $def     = __webpack_require__(115)
 	  , isObject = $.isObject
 	  , toObject = $.toObject;
 	$.each.call(('freeze,seal,preventExtensions,isFrozen,isSealed,isExtensible,' +
@@ -6099,635 +6099,6 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule PooledClass
-	 */
-
-	'use strict';
-
-	var invariant = __webpack_require__(46);
-
-	/**
-	 * Static poolers. Several custom versions for each potential number of
-	 * arguments. A completely generic pooler is easy to implement, but would
-	 * require accessing the `arguments` object. In each of these, `this` refers to
-	 * the Class itself, not an instance. If any others are needed, simply add them
-	 * here, or in their own files.
-	 */
-	var oneArgumentPooler = function(copyFieldsFrom) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, copyFieldsFrom);
-	    return instance;
-	  } else {
-	    return new Klass(copyFieldsFrom);
-	  }
-	};
-
-	var twoArgumentPooler = function(a1, a2) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2);
-	  }
-	};
-
-	var threeArgumentPooler = function(a1, a2, a3) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2, a3);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2, a3);
-	  }
-	};
-
-	var fiveArgumentPooler = function(a1, a2, a3, a4, a5) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2, a3, a4, a5);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2, a3, a4, a5);
-	  }
-	};
-
-	var standardReleaser = function(instance) {
-	  var Klass = this;
-	  ("production" !== process.env.NODE_ENV ? invariant(
-	    instance instanceof Klass,
-	    'Trying to release an instance into a pool of a different type.'
-	  ) : invariant(instance instanceof Klass));
-	  if (instance.destructor) {
-	    instance.destructor();
-	  }
-	  if (Klass.instancePool.length < Klass.poolSize) {
-	    Klass.instancePool.push(instance);
-	  }
-	};
-
-	var DEFAULT_POOL_SIZE = 10;
-	var DEFAULT_POOLER = oneArgumentPooler;
-
-	/**
-	 * Augments `CopyConstructor` to be a poolable class, augmenting only the class
-	 * itself (statically) not adding any prototypical fields. Any CopyConstructor
-	 * you give this may have a `poolSize` property, and will look for a
-	 * prototypical `destructor` on instances (optional).
-	 *
-	 * @param {Function} CopyConstructor Constructor that can be used to reset.
-	 * @param {Function} pooler Customizable pooler.
-	 */
-	var addPoolingTo = function(CopyConstructor, pooler) {
-	  var NewKlass = CopyConstructor;
-	  NewKlass.instancePool = [];
-	  NewKlass.getPooled = pooler || DEFAULT_POOLER;
-	  if (!NewKlass.poolSize) {
-	    NewKlass.poolSize = DEFAULT_POOL_SIZE;
-	  }
-	  NewKlass.release = standardReleaser;
-	  return NewKlass;
-	};
-
-	var PooledClass = {
-	  addPoolingTo: addPoolingTo,
-	  oneArgumentPooler: oneArgumentPooler,
-	  twoArgumentPooler: twoArgumentPooler,
-	  threeArgumentPooler: threeArgumentPooler,
-	  fiveArgumentPooler: fiveArgumentPooler
-	};
-
-	module.exports = PooledClass;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
-
-/***/ },
-/* 48 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	* @providesModule ReactFragment
-	*/
-
-	'use strict';
-
-	var ReactElement = __webpack_require__(23);
-
-	var warning = __webpack_require__(50);
-
-	/**
-	 * We used to allow keyed objects to serve as a collection of ReactElements,
-	 * or nested sets. This allowed us a way to explicitly key a set a fragment of
-	 * components. This is now being replaced with an opaque data structure.
-	 * The upgrade path is to call React.addons.createFragment({ key: value }) to
-	 * create a keyed fragment. The resulting data structure is opaque, for now.
-	 */
-
-	if ("production" !== process.env.NODE_ENV) {
-	  var fragmentKey = '_reactFragment';
-	  var didWarnKey = '_reactDidWarn';
-	  var canWarnForReactFragment = false;
-
-	  try {
-	    // Feature test. Don't even try to issue this warning if we can't use
-	    // enumerable: false.
-
-	    var dummy = function() {
-	      return 1;
-	    };
-
-	    Object.defineProperty(
-	      {},
-	      fragmentKey,
-	      {enumerable: false, value: true}
-	    );
-
-	    Object.defineProperty(
-	      {},
-	      'key',
-	      {enumerable: true, get: dummy}
-	    );
-
-	    canWarnForReactFragment = true;
-	  } catch (x) { }
-
-	  var proxyPropertyAccessWithWarning = function(obj, key) {
-	    Object.defineProperty(obj, key, {
-	      enumerable: true,
-	      get: function() {
-	        ("production" !== process.env.NODE_ENV ? warning(
-	          this[didWarnKey],
-	          'A ReactFragment is an opaque type. Accessing any of its ' +
-	          'properties is deprecated. Pass it to one of the React.Children ' +
-	          'helpers.'
-	        ) : null);
-	        this[didWarnKey] = true;
-	        return this[fragmentKey][key];
-	      },
-	      set: function(value) {
-	        ("production" !== process.env.NODE_ENV ? warning(
-	          this[didWarnKey],
-	          'A ReactFragment is an immutable opaque type. Mutating its ' +
-	          'properties is deprecated.'
-	        ) : null);
-	        this[didWarnKey] = true;
-	        this[fragmentKey][key] = value;
-	      }
-	    });
-	  };
-
-	  var issuedWarnings = {};
-
-	  var didWarnForFragment = function(fragment) {
-	    // We use the keys and the type of the value as a heuristic to dedupe the
-	    // warning to avoid spamming too much.
-	    var fragmentCacheKey = '';
-	    for (var key in fragment) {
-	      fragmentCacheKey += key + ':' + (typeof fragment[key]) + ',';
-	    }
-	    var alreadyWarnedOnce = !!issuedWarnings[fragmentCacheKey];
-	    issuedWarnings[fragmentCacheKey] = true;
-	    return alreadyWarnedOnce;
-	  };
-	}
-
-	var ReactFragment = {
-	  // Wrap a keyed object in an opaque proxy that warns you if you access any
-	  // of its properties.
-	  create: function(object) {
-	    if ("production" !== process.env.NODE_ENV) {
-	      if (typeof object !== 'object' || !object || Array.isArray(object)) {
-	        ("production" !== process.env.NODE_ENV ? warning(
-	          false,
-	          'React.addons.createFragment only accepts a single object.',
-	          object
-	        ) : null);
-	        return object;
-	      }
-	      if (ReactElement.isValidElement(object)) {
-	        ("production" !== process.env.NODE_ENV ? warning(
-	          false,
-	          'React.addons.createFragment does not accept a ReactElement ' +
-	          'without a wrapper object.'
-	        ) : null);
-	        return object;
-	      }
-	      if (canWarnForReactFragment) {
-	        var proxy = {};
-	        Object.defineProperty(proxy, fragmentKey, {
-	          enumerable: false,
-	          value: object
-	        });
-	        Object.defineProperty(proxy, didWarnKey, {
-	          writable: true,
-	          enumerable: false,
-	          value: false
-	        });
-	        for (var key in object) {
-	          proxyPropertyAccessWithWarning(proxy, key);
-	        }
-	        Object.preventExtensions(proxy);
-	        return proxy;
-	      }
-	    }
-	    return object;
-	  },
-	  // Extract the original keyed object from the fragment opaque type. Warn if
-	  // a plain object is passed here.
-	  extract: function(fragment) {
-	    if ("production" !== process.env.NODE_ENV) {
-	      if (canWarnForReactFragment) {
-	        if (!fragment[fragmentKey]) {
-	          ("production" !== process.env.NODE_ENV ? warning(
-	            didWarnForFragment(fragment),
-	            'Any use of a keyed object should be wrapped in ' +
-	            'React.addons.createFragment(object) before being passed as a ' +
-	            'child.'
-	          ) : null);
-	          return fragment;
-	        }
-	        return fragment[fragmentKey];
-	      }
-	    }
-	    return fragment;
-	  },
-	  // Check if this is a fragment and if so, extract the keyed object. If it
-	  // is a fragment-like object, warn that it should be wrapped. Ignore if we
-	  // can't determine what kind of object this is.
-	  extractIfFragment: function(fragment) {
-	    if ("production" !== process.env.NODE_ENV) {
-	      if (canWarnForReactFragment) {
-	        // If it is the opaque type, return the keyed object.
-	        if (fragment[fragmentKey]) {
-	          return fragment[fragmentKey];
-	        }
-	        // Otherwise, check each property if it has an element, if it does
-	        // it is probably meant as a fragment, so we can warn early. Defer,
-	        // the warning to extract.
-	        for (var key in fragment) {
-	          if (fragment.hasOwnProperty(key) &&
-	              ReactElement.isValidElement(fragment[key])) {
-	            // This looks like a fragment object, we should provide an
-	            // early warning.
-	            return ReactFragment.extract(fragment);
-	          }
-	        }
-	      }
-	    }
-	    return fragment;
-	  }
-	};
-
-	module.exports = ReactFragment;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
-
-/***/ },
-/* 49 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule traverseAllChildren
-	 */
-
-	'use strict';
-
-	var ReactElement = __webpack_require__(23);
-	var ReactFragment = __webpack_require__(48);
-	var ReactInstanceHandles = __webpack_require__(28);
-
-	var getIteratorFn = __webpack_require__(61);
-	var invariant = __webpack_require__(46);
-	var warning = __webpack_require__(50);
-
-	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
-	var SUBSEPARATOR = ':';
-
-	/**
-	 * TODO: Test that a single child and an array with one item have the same key
-	 * pattern.
-	 */
-
-	var userProvidedKeyEscaperLookup = {
-	  '=': '=0',
-	  '.': '=1',
-	  ':': '=2'
-	};
-
-	var userProvidedKeyEscapeRegex = /[=.:]/g;
-
-	var didWarnAboutMaps = false;
-
-	function userProvidedKeyEscaper(match) {
-	  return userProvidedKeyEscaperLookup[match];
-	}
-
-	/**
-	 * Generate a key string that identifies a component within a set.
-	 *
-	 * @param {*} component A component that could contain a manual key.
-	 * @param {number} index Index that is used if a manual key is not provided.
-	 * @return {string}
-	 */
-	function getComponentKey(component, index) {
-	  if (component && component.key != null) {
-	    // Explicit key
-	    return wrapUserProvidedKey(component.key);
-	  }
-	  // Implicit key determined by the index in the set
-	  return index.toString(36);
-	}
-
-	/**
-	 * Escape a component key so that it is safe to use in a reactid.
-	 *
-	 * @param {*} key Component key to be escaped.
-	 * @return {string} An escaped string.
-	 */
-	function escapeUserProvidedKey(text) {
-	  return ('' + text).replace(
-	    userProvidedKeyEscapeRegex,
-	    userProvidedKeyEscaper
-	  );
-	}
-
-	/**
-	 * Wrap a `key` value explicitly provided by the user to distinguish it from
-	 * implicitly-generated keys generated by a component's index in its parent.
-	 *
-	 * @param {string} key Value of a user-provided `key` attribute
-	 * @return {string}
-	 */
-	function wrapUserProvidedKey(key) {
-	  return '$' + escapeUserProvidedKey(key);
-	}
-
-	/**
-	 * @param {?*} children Children tree container.
-	 * @param {!string} nameSoFar Name of the key path so far.
-	 * @param {!number} indexSoFar Number of children encountered until this point.
-	 * @param {!function} callback Callback to invoke with each child found.
-	 * @param {?*} traverseContext Used to pass information throughout the traversal
-	 * process.
-	 * @return {!number} The number of children in this subtree.
-	 */
-	function traverseAllChildrenImpl(
-	  children,
-	  nameSoFar,
-	  indexSoFar,
-	  callback,
-	  traverseContext
-	) {
-	  var type = typeof children;
-
-	  if (type === 'undefined' || type === 'boolean') {
-	    // All of the above are perceived as null.
-	    children = null;
-	  }
-
-	  if (children === null ||
-	      type === 'string' ||
-	      type === 'number' ||
-	      ReactElement.isValidElement(children)) {
-	    callback(
-	      traverseContext,
-	      children,
-	      // If it's the only child, treat the name as if it was wrapped in an array
-	      // so that it's consistent if the number of children grows.
-	      nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar,
-	      indexSoFar
-	    );
-	    return 1;
-	  }
-
-	  var child, nextName, nextIndex;
-	  var subtreeCount = 0; // Count of children found in the current subtree.
-
-	  if (Array.isArray(children)) {
-	    for (var i = 0; i < children.length; i++) {
-	      child = children[i];
-	      nextName = (
-	        (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
-	        getComponentKey(child, i)
-	      );
-	      nextIndex = indexSoFar + subtreeCount;
-	      subtreeCount += traverseAllChildrenImpl(
-	        child,
-	        nextName,
-	        nextIndex,
-	        callback,
-	        traverseContext
-	      );
-	    }
-	  } else {
-	    var iteratorFn = getIteratorFn(children);
-	    if (iteratorFn) {
-	      var iterator = iteratorFn.call(children);
-	      var step;
-	      if (iteratorFn !== children.entries) {
-	        var ii = 0;
-	        while (!(step = iterator.next()).done) {
-	          child = step.value;
-	          nextName = (
-	            (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
-	            getComponentKey(child, ii++)
-	          );
-	          nextIndex = indexSoFar + subtreeCount;
-	          subtreeCount += traverseAllChildrenImpl(
-	            child,
-	            nextName,
-	            nextIndex,
-	            callback,
-	            traverseContext
-	          );
-	        }
-	      } else {
-	        if ("production" !== process.env.NODE_ENV) {
-	          ("production" !== process.env.NODE_ENV ? warning(
-	            didWarnAboutMaps,
-	            'Using Maps as children is not yet fully supported. It is an ' +
-	            'experimental feature that might be removed. Convert it to a ' +
-	            'sequence / iterable of keyed ReactElements instead.'
-	          ) : null);
-	          didWarnAboutMaps = true;
-	        }
-	        // Iterator will provide entry [k,v] tuples rather than values.
-	        while (!(step = iterator.next()).done) {
-	          var entry = step.value;
-	          if (entry) {
-	            child = entry[1];
-	            nextName = (
-	              (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
-	              wrapUserProvidedKey(entry[0]) + SUBSEPARATOR +
-	              getComponentKey(child, 0)
-	            );
-	            nextIndex = indexSoFar + subtreeCount;
-	            subtreeCount += traverseAllChildrenImpl(
-	              child,
-	              nextName,
-	              nextIndex,
-	              callback,
-	              traverseContext
-	            );
-	          }
-	        }
-	      }
-	    } else if (type === 'object') {
-	      ("production" !== process.env.NODE_ENV ? invariant(
-	        children.nodeType !== 1,
-	        'traverseAllChildren(...): Encountered an invalid child; DOM ' +
-	        'elements are not valid children of React components.'
-	      ) : invariant(children.nodeType !== 1));
-	      var fragment = ReactFragment.extract(children);
-	      for (var key in fragment) {
-	        if (fragment.hasOwnProperty(key)) {
-	          child = fragment[key];
-	          nextName = (
-	            (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
-	            wrapUserProvidedKey(key) + SUBSEPARATOR +
-	            getComponentKey(child, 0)
-	          );
-	          nextIndex = indexSoFar + subtreeCount;
-	          subtreeCount += traverseAllChildrenImpl(
-	            child,
-	            nextName,
-	            nextIndex,
-	            callback,
-	            traverseContext
-	          );
-	        }
-	      }
-	    }
-	  }
-
-	  return subtreeCount;
-	}
-
-	/**
-	 * Traverses children that are typically specified as `props.children`, but
-	 * might also be specified through attributes:
-	 *
-	 * - `traverseAllChildren(this.props.children, ...)`
-	 * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
-	 *
-	 * The `traverseContext` is an optional argument that is passed through the
-	 * entire traversal. It can be used to store accumulations or anything else that
-	 * the callback might find relevant.
-	 *
-	 * @param {?*} children Children tree object.
-	 * @param {!function} callback To invoke upon traversing each child.
-	 * @param {?*} traverseContext Context for traversal.
-	 * @return {!number} The number of children in this subtree.
-	 */
-	function traverseAllChildren(children, callback, traverseContext) {
-	  if (children == null) {
-	    return 0;
-	  }
-
-	  return traverseAllChildrenImpl(children, '', 0, callback, traverseContext);
-	}
-
-	module.exports = traverseAllChildren;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
-
-/***/ },
-/* 50 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2014-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule warning
-	 */
-
-	"use strict";
-
-	var emptyFunction = __webpack_require__(105);
-
-	/**
-	 * Similar to invariant but only logs a warning if the condition is not met.
-	 * This can be used to log issues in development environments in critical
-	 * paths. Removing the logging code for production environments will keep the
-	 * same logic and follow the same code paths.
-	 */
-
-	var warning = emptyFunction;
-
-	if ("production" !== process.env.NODE_ENV) {
-	  warning = function(condition, format ) {for (var args=[],$__0=2,$__1=arguments.length;$__0<$__1;$__0++) args.push(arguments[$__0]);
-	    if (format === undefined) {
-	      throw new Error(
-	        '`warning(condition, format, ...args)` requires a warning ' +
-	        'message argument'
-	      );
-	    }
-
-	    if (format.length < 10 || /^[s\W]*$/.test(format)) {
-	      throw new Error(
-	        'The warning format should be able to uniquely identify this ' +
-	        'warning. Please, use a more descriptive format than: ' + format
-	      );
-	    }
-
-	    if (format.indexOf('Failed Composite propType: ') === 0) {
-	      return; // Ignore CompositeComponent proptype check.
-	    }
-
-	    if (!condition) {
-	      var argIndex = 0;
-	      var message = 'Warning: ' + format.replace(/%s/g, function()  {return args[argIndex++];});
-	      console.warn(message);
-	      try {
-	        // --- Welcome to debugging React ---
-	        // This error was thrown as a convenience so that you can use this stack
-	        // to find the callsite that caused this warning to fire.
-	        throw new Error(message);
-	      } catch(x) {}
-	    }
-	  };
-	}
-
-	module.exports = warning;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
-
-/***/ },
-/* 51 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright 2015, Facebook, Inc.
 	 * All rights reserved.
 	 *
@@ -6748,7 +6119,7 @@
 
 	var assign = __webpack_require__(34);
 	var invariant = __webpack_require__(46);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	function enqueueUpdate(internalInstance) {
 	  if (internalInstance !== ReactLifeCycle.currentlyMountingInstance) {
@@ -7022,6 +6393,635 @@
 	};
 
 	module.exports = ReactUpdateQueue;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
+
+/***/ },
+/* 48 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2014-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule warning
+	 */
+
+	"use strict";
+
+	var emptyFunction = __webpack_require__(105);
+
+	/**
+	 * Similar to invariant but only logs a warning if the condition is not met.
+	 * This can be used to log issues in development environments in critical
+	 * paths. Removing the logging code for production environments will keep the
+	 * same logic and follow the same code paths.
+	 */
+
+	var warning = emptyFunction;
+
+	if ("production" !== process.env.NODE_ENV) {
+	  warning = function(condition, format ) {for (var args=[],$__0=2,$__1=arguments.length;$__0<$__1;$__0++) args.push(arguments[$__0]);
+	    if (format === undefined) {
+	      throw new Error(
+	        '`warning(condition, format, ...args)` requires a warning ' +
+	        'message argument'
+	      );
+	    }
+
+	    if (format.length < 10 || /^[s\W]*$/.test(format)) {
+	      throw new Error(
+	        'The warning format should be able to uniquely identify this ' +
+	        'warning. Please, use a more descriptive format than: ' + format
+	      );
+	    }
+
+	    if (format.indexOf('Failed Composite propType: ') === 0) {
+	      return; // Ignore CompositeComponent proptype check.
+	    }
+
+	    if (!condition) {
+	      var argIndex = 0;
+	      var message = 'Warning: ' + format.replace(/%s/g, function()  {return args[argIndex++];});
+	      console.warn(message);
+	      try {
+	        // --- Welcome to debugging React ---
+	        // This error was thrown as a convenience so that you can use this stack
+	        // to find the callsite that caused this warning to fire.
+	        throw new Error(message);
+	      } catch(x) {}
+	    }
+	  };
+	}
+
+	module.exports = warning;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
+
+/***/ },
+/* 49 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule PooledClass
+	 */
+
+	'use strict';
+
+	var invariant = __webpack_require__(46);
+
+	/**
+	 * Static poolers. Several custom versions for each potential number of
+	 * arguments. A completely generic pooler is easy to implement, but would
+	 * require accessing the `arguments` object. In each of these, `this` refers to
+	 * the Class itself, not an instance. If any others are needed, simply add them
+	 * here, or in their own files.
+	 */
+	var oneArgumentPooler = function(copyFieldsFrom) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, copyFieldsFrom);
+	    return instance;
+	  } else {
+	    return new Klass(copyFieldsFrom);
+	  }
+	};
+
+	var twoArgumentPooler = function(a1, a2) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, a1, a2);
+	    return instance;
+	  } else {
+	    return new Klass(a1, a2);
+	  }
+	};
+
+	var threeArgumentPooler = function(a1, a2, a3) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, a1, a2, a3);
+	    return instance;
+	  } else {
+	    return new Klass(a1, a2, a3);
+	  }
+	};
+
+	var fiveArgumentPooler = function(a1, a2, a3, a4, a5) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, a1, a2, a3, a4, a5);
+	    return instance;
+	  } else {
+	    return new Klass(a1, a2, a3, a4, a5);
+	  }
+	};
+
+	var standardReleaser = function(instance) {
+	  var Klass = this;
+	  ("production" !== process.env.NODE_ENV ? invariant(
+	    instance instanceof Klass,
+	    'Trying to release an instance into a pool of a different type.'
+	  ) : invariant(instance instanceof Klass));
+	  if (instance.destructor) {
+	    instance.destructor();
+	  }
+	  if (Klass.instancePool.length < Klass.poolSize) {
+	    Klass.instancePool.push(instance);
+	  }
+	};
+
+	var DEFAULT_POOL_SIZE = 10;
+	var DEFAULT_POOLER = oneArgumentPooler;
+
+	/**
+	 * Augments `CopyConstructor` to be a poolable class, augmenting only the class
+	 * itself (statically) not adding any prototypical fields. Any CopyConstructor
+	 * you give this may have a `poolSize` property, and will look for a
+	 * prototypical `destructor` on instances (optional).
+	 *
+	 * @param {Function} CopyConstructor Constructor that can be used to reset.
+	 * @param {Function} pooler Customizable pooler.
+	 */
+	var addPoolingTo = function(CopyConstructor, pooler) {
+	  var NewKlass = CopyConstructor;
+	  NewKlass.instancePool = [];
+	  NewKlass.getPooled = pooler || DEFAULT_POOLER;
+	  if (!NewKlass.poolSize) {
+	    NewKlass.poolSize = DEFAULT_POOL_SIZE;
+	  }
+	  NewKlass.release = standardReleaser;
+	  return NewKlass;
+	};
+
+	var PooledClass = {
+	  addPoolingTo: addPoolingTo,
+	  oneArgumentPooler: oneArgumentPooler,
+	  twoArgumentPooler: twoArgumentPooler,
+	  threeArgumentPooler: threeArgumentPooler,
+	  fiveArgumentPooler: fiveArgumentPooler
+	};
+
+	module.exports = PooledClass;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
+
+/***/ },
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	* @providesModule ReactFragment
+	*/
+
+	'use strict';
+
+	var ReactElement = __webpack_require__(23);
+
+	var warning = __webpack_require__(48);
+
+	/**
+	 * We used to allow keyed objects to serve as a collection of ReactElements,
+	 * or nested sets. This allowed us a way to explicitly key a set a fragment of
+	 * components. This is now being replaced with an opaque data structure.
+	 * The upgrade path is to call React.addons.createFragment({ key: value }) to
+	 * create a keyed fragment. The resulting data structure is opaque, for now.
+	 */
+
+	if ("production" !== process.env.NODE_ENV) {
+	  var fragmentKey = '_reactFragment';
+	  var didWarnKey = '_reactDidWarn';
+	  var canWarnForReactFragment = false;
+
+	  try {
+	    // Feature test. Don't even try to issue this warning if we can't use
+	    // enumerable: false.
+
+	    var dummy = function() {
+	      return 1;
+	    };
+
+	    Object.defineProperty(
+	      {},
+	      fragmentKey,
+	      {enumerable: false, value: true}
+	    );
+
+	    Object.defineProperty(
+	      {},
+	      'key',
+	      {enumerable: true, get: dummy}
+	    );
+
+	    canWarnForReactFragment = true;
+	  } catch (x) { }
+
+	  var proxyPropertyAccessWithWarning = function(obj, key) {
+	    Object.defineProperty(obj, key, {
+	      enumerable: true,
+	      get: function() {
+	        ("production" !== process.env.NODE_ENV ? warning(
+	          this[didWarnKey],
+	          'A ReactFragment is an opaque type. Accessing any of its ' +
+	          'properties is deprecated. Pass it to one of the React.Children ' +
+	          'helpers.'
+	        ) : null);
+	        this[didWarnKey] = true;
+	        return this[fragmentKey][key];
+	      },
+	      set: function(value) {
+	        ("production" !== process.env.NODE_ENV ? warning(
+	          this[didWarnKey],
+	          'A ReactFragment is an immutable opaque type. Mutating its ' +
+	          'properties is deprecated.'
+	        ) : null);
+	        this[didWarnKey] = true;
+	        this[fragmentKey][key] = value;
+	      }
+	    });
+	  };
+
+	  var issuedWarnings = {};
+
+	  var didWarnForFragment = function(fragment) {
+	    // We use the keys and the type of the value as a heuristic to dedupe the
+	    // warning to avoid spamming too much.
+	    var fragmentCacheKey = '';
+	    for (var key in fragment) {
+	      fragmentCacheKey += key + ':' + (typeof fragment[key]) + ',';
+	    }
+	    var alreadyWarnedOnce = !!issuedWarnings[fragmentCacheKey];
+	    issuedWarnings[fragmentCacheKey] = true;
+	    return alreadyWarnedOnce;
+	  };
+	}
+
+	var ReactFragment = {
+	  // Wrap a keyed object in an opaque proxy that warns you if you access any
+	  // of its properties.
+	  create: function(object) {
+	    if ("production" !== process.env.NODE_ENV) {
+	      if (typeof object !== 'object' || !object || Array.isArray(object)) {
+	        ("production" !== process.env.NODE_ENV ? warning(
+	          false,
+	          'React.addons.createFragment only accepts a single object.',
+	          object
+	        ) : null);
+	        return object;
+	      }
+	      if (ReactElement.isValidElement(object)) {
+	        ("production" !== process.env.NODE_ENV ? warning(
+	          false,
+	          'React.addons.createFragment does not accept a ReactElement ' +
+	          'without a wrapper object.'
+	        ) : null);
+	        return object;
+	      }
+	      if (canWarnForReactFragment) {
+	        var proxy = {};
+	        Object.defineProperty(proxy, fragmentKey, {
+	          enumerable: false,
+	          value: object
+	        });
+	        Object.defineProperty(proxy, didWarnKey, {
+	          writable: true,
+	          enumerable: false,
+	          value: false
+	        });
+	        for (var key in object) {
+	          proxyPropertyAccessWithWarning(proxy, key);
+	        }
+	        Object.preventExtensions(proxy);
+	        return proxy;
+	      }
+	    }
+	    return object;
+	  },
+	  // Extract the original keyed object from the fragment opaque type. Warn if
+	  // a plain object is passed here.
+	  extract: function(fragment) {
+	    if ("production" !== process.env.NODE_ENV) {
+	      if (canWarnForReactFragment) {
+	        if (!fragment[fragmentKey]) {
+	          ("production" !== process.env.NODE_ENV ? warning(
+	            didWarnForFragment(fragment),
+	            'Any use of a keyed object should be wrapped in ' +
+	            'React.addons.createFragment(object) before being passed as a ' +
+	            'child.'
+	          ) : null);
+	          return fragment;
+	        }
+	        return fragment[fragmentKey];
+	      }
+	    }
+	    return fragment;
+	  },
+	  // Check if this is a fragment and if so, extract the keyed object. If it
+	  // is a fragment-like object, warn that it should be wrapped. Ignore if we
+	  // can't determine what kind of object this is.
+	  extractIfFragment: function(fragment) {
+	    if ("production" !== process.env.NODE_ENV) {
+	      if (canWarnForReactFragment) {
+	        // If it is the opaque type, return the keyed object.
+	        if (fragment[fragmentKey]) {
+	          return fragment[fragmentKey];
+	        }
+	        // Otherwise, check each property if it has an element, if it does
+	        // it is probably meant as a fragment, so we can warn early. Defer,
+	        // the warning to extract.
+	        for (var key in fragment) {
+	          if (fragment.hasOwnProperty(key) &&
+	              ReactElement.isValidElement(fragment[key])) {
+	            // This looks like a fragment object, we should provide an
+	            // early warning.
+	            return ReactFragment.extract(fragment);
+	          }
+	        }
+	      }
+	    }
+	    return fragment;
+	  }
+	};
+
+	module.exports = ReactFragment;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
+
+/***/ },
+/* 51 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule traverseAllChildren
+	 */
+
+	'use strict';
+
+	var ReactElement = __webpack_require__(23);
+	var ReactFragment = __webpack_require__(50);
+	var ReactInstanceHandles = __webpack_require__(28);
+
+	var getIteratorFn = __webpack_require__(61);
+	var invariant = __webpack_require__(46);
+	var warning = __webpack_require__(48);
+
+	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
+	var SUBSEPARATOR = ':';
+
+	/**
+	 * TODO: Test that a single child and an array with one item have the same key
+	 * pattern.
+	 */
+
+	var userProvidedKeyEscaperLookup = {
+	  '=': '=0',
+	  '.': '=1',
+	  ':': '=2'
+	};
+
+	var userProvidedKeyEscapeRegex = /[=.:]/g;
+
+	var didWarnAboutMaps = false;
+
+	function userProvidedKeyEscaper(match) {
+	  return userProvidedKeyEscaperLookup[match];
+	}
+
+	/**
+	 * Generate a key string that identifies a component within a set.
+	 *
+	 * @param {*} component A component that could contain a manual key.
+	 * @param {number} index Index that is used if a manual key is not provided.
+	 * @return {string}
+	 */
+	function getComponentKey(component, index) {
+	  if (component && component.key != null) {
+	    // Explicit key
+	    return wrapUserProvidedKey(component.key);
+	  }
+	  // Implicit key determined by the index in the set
+	  return index.toString(36);
+	}
+
+	/**
+	 * Escape a component key so that it is safe to use in a reactid.
+	 *
+	 * @param {*} key Component key to be escaped.
+	 * @return {string} An escaped string.
+	 */
+	function escapeUserProvidedKey(text) {
+	  return ('' + text).replace(
+	    userProvidedKeyEscapeRegex,
+	    userProvidedKeyEscaper
+	  );
+	}
+
+	/**
+	 * Wrap a `key` value explicitly provided by the user to distinguish it from
+	 * implicitly-generated keys generated by a component's index in its parent.
+	 *
+	 * @param {string} key Value of a user-provided `key` attribute
+	 * @return {string}
+	 */
+	function wrapUserProvidedKey(key) {
+	  return '$' + escapeUserProvidedKey(key);
+	}
+
+	/**
+	 * @param {?*} children Children tree container.
+	 * @param {!string} nameSoFar Name of the key path so far.
+	 * @param {!number} indexSoFar Number of children encountered until this point.
+	 * @param {!function} callback Callback to invoke with each child found.
+	 * @param {?*} traverseContext Used to pass information throughout the traversal
+	 * process.
+	 * @return {!number} The number of children in this subtree.
+	 */
+	function traverseAllChildrenImpl(
+	  children,
+	  nameSoFar,
+	  indexSoFar,
+	  callback,
+	  traverseContext
+	) {
+	  var type = typeof children;
+
+	  if (type === 'undefined' || type === 'boolean') {
+	    // All of the above are perceived as null.
+	    children = null;
+	  }
+
+	  if (children === null ||
+	      type === 'string' ||
+	      type === 'number' ||
+	      ReactElement.isValidElement(children)) {
+	    callback(
+	      traverseContext,
+	      children,
+	      // If it's the only child, treat the name as if it was wrapped in an array
+	      // so that it's consistent if the number of children grows.
+	      nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar,
+	      indexSoFar
+	    );
+	    return 1;
+	  }
+
+	  var child, nextName, nextIndex;
+	  var subtreeCount = 0; // Count of children found in the current subtree.
+
+	  if (Array.isArray(children)) {
+	    for (var i = 0; i < children.length; i++) {
+	      child = children[i];
+	      nextName = (
+	        (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
+	        getComponentKey(child, i)
+	      );
+	      nextIndex = indexSoFar + subtreeCount;
+	      subtreeCount += traverseAllChildrenImpl(
+	        child,
+	        nextName,
+	        nextIndex,
+	        callback,
+	        traverseContext
+	      );
+	    }
+	  } else {
+	    var iteratorFn = getIteratorFn(children);
+	    if (iteratorFn) {
+	      var iterator = iteratorFn.call(children);
+	      var step;
+	      if (iteratorFn !== children.entries) {
+	        var ii = 0;
+	        while (!(step = iterator.next()).done) {
+	          child = step.value;
+	          nextName = (
+	            (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
+	            getComponentKey(child, ii++)
+	          );
+	          nextIndex = indexSoFar + subtreeCount;
+	          subtreeCount += traverseAllChildrenImpl(
+	            child,
+	            nextName,
+	            nextIndex,
+	            callback,
+	            traverseContext
+	          );
+	        }
+	      } else {
+	        if ("production" !== process.env.NODE_ENV) {
+	          ("production" !== process.env.NODE_ENV ? warning(
+	            didWarnAboutMaps,
+	            'Using Maps as children is not yet fully supported. It is an ' +
+	            'experimental feature that might be removed. Convert it to a ' +
+	            'sequence / iterable of keyed ReactElements instead.'
+	          ) : null);
+	          didWarnAboutMaps = true;
+	        }
+	        // Iterator will provide entry [k,v] tuples rather than values.
+	        while (!(step = iterator.next()).done) {
+	          var entry = step.value;
+	          if (entry) {
+	            child = entry[1];
+	            nextName = (
+	              (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
+	              wrapUserProvidedKey(entry[0]) + SUBSEPARATOR +
+	              getComponentKey(child, 0)
+	            );
+	            nextIndex = indexSoFar + subtreeCount;
+	            subtreeCount += traverseAllChildrenImpl(
+	              child,
+	              nextName,
+	              nextIndex,
+	              callback,
+	              traverseContext
+	            );
+	          }
+	        }
+	      }
+	    } else if (type === 'object') {
+	      ("production" !== process.env.NODE_ENV ? invariant(
+	        children.nodeType !== 1,
+	        'traverseAllChildren(...): Encountered an invalid child; DOM ' +
+	        'elements are not valid children of React components.'
+	      ) : invariant(children.nodeType !== 1));
+	      var fragment = ReactFragment.extract(children);
+	      for (var key in fragment) {
+	        if (fragment.hasOwnProperty(key)) {
+	          child = fragment[key];
+	          nextName = (
+	            (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
+	            wrapUserProvidedKey(key) + SUBSEPARATOR +
+	            getComponentKey(child, 0)
+	          );
+	          nextIndex = indexSoFar + subtreeCount;
+	          subtreeCount += traverseAllChildrenImpl(
+	            child,
+	            nextName,
+	            nextIndex,
+	            callback,
+	            traverseContext
+	          );
+	        }
+	      }
+	    }
+	  }
+
+	  return subtreeCount;
+	}
+
+	/**
+	 * Traverses children that are typically specified as `props.children`, but
+	 * might also be specified through attributes:
+	 *
+	 * - `traverseAllChildren(this.props.children, ...)`
+	 * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
+	 *
+	 * The `traverseContext` is an optional argument that is passed through the
+	 * entire traversal. It can be used to store accumulations or anything else that
+	 * the callback might find relevant.
+	 *
+	 * @param {?*} children Children tree object.
+	 * @param {!function} callback To invoke upon traversing each child.
+	 * @param {?*} traverseContext Context for traversal.
+	 * @return {!number} The number of children in this subtree.
+	 */
+	function traverseAllChildren(children, callback, traverseContext) {
+	  if (children == null) {
+	    return 0;
+	  }
+
+	  return traverseAllChildrenImpl(children, '', 0, callback, traverseContext);
+	}
+
+	module.exports = traverseAllChildren;
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
 
@@ -7575,7 +7575,7 @@
 	var DOMProperty = __webpack_require__(95);
 
 	var quoteAttributeValueForBrowser = __webpack_require__(127);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	function shouldIgnoreValue(name, value) {
 	  return value == null ||
@@ -7835,7 +7835,7 @@
 	var invariant = __webpack_require__(46);
 	var isEventSupported = __webpack_require__(130);
 	var keyOf = __webpack_require__(59);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	var deleteListener = ReactBrowserEventEmitter.deleteListener;
 	var listenTo = ReactBrowserEventEmitter.listenTo;
@@ -10439,7 +10439,7 @@
 	var ReactClass = __webpack_require__(20);
 	var ReactElement = __webpack_require__(23);
 
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	var option = ReactElement.createFactory('option');
 
@@ -10683,7 +10683,7 @@
 	var assign = __webpack_require__(34);
 	var invariant = __webpack_require__(46);
 
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	var textarea = ReactElement.createFactory('textarea');
 
@@ -10818,7 +10818,7 @@
 
 	var EventListener = __webpack_require__(144);
 	var ExecutionEnvironment = __webpack_require__(37);
-	var PooledClass = __webpack_require__(47);
+	var PooledClass = __webpack_require__(49);
 	var ReactInstanceHandles = __webpack_require__(28);
 	var ReactMount = __webpack_require__(29);
 	var ReactUpdates = __webpack_require__(99);
@@ -11050,7 +11050,7 @@
 	'use strict';
 
 	var CallbackQueue = __webpack_require__(148);
-	var PooledClass = __webpack_require__(47);
+	var PooledClass = __webpack_require__(49);
 	var ReactBrowserEventEmitter = __webpack_require__(96);
 	var ReactInputSelection = __webpack_require__(149);
 	var ReactPutListenerQueue = __webpack_require__(150);
@@ -11479,7 +11479,7 @@
 
 	var invariant = __webpack_require__(46);
 	var keyOf = __webpack_require__(59);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
 
@@ -13171,7 +13171,7 @@
 	'use strict';
 
 	var CallbackQueue = __webpack_require__(148);
-	var PooledClass = __webpack_require__(47);
+	var PooledClass = __webpack_require__(49);
 	var ReactCurrentOwner = __webpack_require__(22);
 	var ReactPerf = __webpack_require__(30);
 	var ReactReconciler = __webpack_require__(32);
@@ -13179,7 +13179,7 @@
 
 	var assign = __webpack_require__(34);
 	var invariant = __webpack_require__(46);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	var dirtyComponents = [];
 	var asapCallbackQueue = CallbackQueue.getPooled();
@@ -13515,102 +13515,14 @@
 	  return ScoreBoard;
 	})(_react2['default'].Component);
 
-	var Messages = (function (_React$Component2) {
-	  function Messages(props) {
-	    _classCallCheck(this, Messages);
-
-	    _get(Object.getPrototypeOf(Messages.prototype), 'constructor', this).call(this, props);
-	  }
-
-	  _inherits(Messages, _React$Component2);
-
-	  _createClass(Messages, [{
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement(
-	        'div',
-	        null,
-	        this.props.info
-	      );
-	    }
-	  }]);
-
-	  return Messages;
-	})(_react2['default'].Component);
-
-	var GroupA = (function (_React$Component3) {
-	  function GroupA(props) {
-	    _classCallCheck(this, GroupA);
-
-	    _get(Object.getPrototypeOf(GroupA.prototype), 'constructor', this).call(this, props);
-	  }
-
-	  _inherits(GroupA, _React$Component3);
-
-	  _createClass(GroupA, [{
-	    key: 'click',
-	    value: function click() {
-	      this.props.setGroup('GroupA');
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      if (this.props.hidden2) {
-	        return null;
-	      } else {
-	        return _react2['default'].createElement(
-	          'div',
-	          { onClick: this.click.bind(this) },
-	          'GroupA'
-	        );
-	      }
-	    }
-	  }]);
-
-	  return GroupA;
-	})(_react2['default'].Component);
-
-	var GroupB = (function (_React$Component4) {
-	  function GroupB(props) {
-	    _classCallCheck(this, GroupB);
-
-	    _get(Object.getPrototypeOf(GroupB.prototype), 'constructor', this).call(this, props);
-	  }
-
-	  _inherits(GroupB, _React$Component4);
-
-	  _createClass(GroupB, [{
-	    key: 'click',
-	    value: function click() {
-	      this.props.setGroup('GroupB');
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      if (this.props.hidden2) {
-	        return null;
-	      } else {
-	        return _react2['default'].createElement(
-	          'div',
-	          { onClick: this.click.bind(this) },
-	          'GroupB'
-	        );
-	      }
-	    }
-	  }]);
-
-	  return GroupB;
-	})(_react2['default'].Component);
-
-	var GroupNew = (function (_React$Component5) {
+	var GroupNew = (function (_React$Component2) {
 	  function GroupNew(props) {
 	    _classCallCheck(this, GroupNew);
 
 	    _get(Object.getPrototypeOf(GroupNew.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(GroupNew, _React$Component5);
+	  _inherits(GroupNew, _React$Component2);
 
 	  _createClass(GroupNew, [{
 	    key: 'handleEnter',
@@ -13649,7 +13561,7 @@
 	          null,
 	          'New Group',
 	          _react2['default'].createElement('input', { type: 'text', id: 'cow', onKeyDown: this.handleEnter.bind(this),
-	            onClick: this.click.bind(this), style: { width: 90, backgroundColor: '#d8d17d' } })
+	            onClick: this.click.bind(this), style: { width: 90, backgroundColor: '#d8d17d', marginLeft: 10 } })
 	        )
 	      );
 	    }
@@ -13660,14 +13572,14 @@
 
 	;
 
-	var ChangeColor = (function (_React$Component6) {
+	var ChangeColor = (function (_React$Component3) {
 	  function ChangeColor(props) {
 	    _classCallCheck(this, ChangeColor);
 
 	    _get(Object.getPrototypeOf(ChangeColor.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(ChangeColor, _React$Component6);
+	  _inherits(ChangeColor, _React$Component3);
 
 	  _createClass(ChangeColor, [{
 	    key: 'handleEnter',
@@ -13708,14 +13620,14 @@
 
 	;
 
-	var ChangeBackground = (function (_React$Component7) {
+	var ChangeBackground = (function (_React$Component4) {
 	  function ChangeBackground(props) {
 	    _classCallCheck(this, ChangeBackground);
 
 	    _get(Object.getPrototypeOf(ChangeBackground.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(ChangeBackground, _React$Component7);
+	  _inherits(ChangeBackground, _React$Component4);
 
 	  _createClass(ChangeBackground, [{
 	    key: 'handleEnter',
@@ -13756,137 +13668,7 @@
 
 	;
 
-	var B30 = (function (_React$Component8) {
-	  function B30(props) {
-	    _classCallCheck(this, B30);
-
-	    _get(Object.getPrototypeOf(B30.prototype), 'constructor', this).call(this, props);
-	  }
-
-	  _inherits(B30, _React$Component8);
-
-	  _createClass(B30, [{
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement(
-	        'span',
-	        { style: { width: 50, marginLeft: 20 } },
-	        this.props.mes0
-	      );
-	    }
-	  }]);
-
-	  return B30;
-	})(_react2['default'].Component);
-
-	;
-
-	var B31 = (function (_React$Component9) {
-	  function B31(props) {
-	    _classCallCheck(this, B31);
-
-	    _get(Object.getPrototypeOf(B31.prototype), 'constructor', this).call(this, props);
-	  }
-
-	  _inherits(B31, _React$Component9);
-
-	  _createClass(B31, [{
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement(
-	        'span',
-	        { style: { width: 50, marginLeft: 20 } },
-	        this.props.mes1
-	      );
-	    }
-	  }]);
-
-	  return B31;
-	})(_react2['default'].Component);
-
-	;
-
-	var B32 = (function (_React$Component10) {
-	  function B32(props) {
-	    _classCallCheck(this, B32);
-
-	    _get(Object.getPrototypeOf(B32.prototype), 'constructor', this).call(this, props);
-	  }
-
-	  _inherits(B32, _React$Component10);
-
-	  _createClass(B32, [{
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement(
-	        'span',
-	        { style: { width: 50, marginLeft: 20 } },
-	        this.props.mes2
-	      );
-	    }
-	  }]);
-
-	  return B32;
-	})(_react2['default'].Component);
-
-	;
-
-	var B33 = (function (_React$Component11) {
-	  function B33(props) {
-	    _classCallCheck(this, B33);
-
-	    _get(Object.getPrototypeOf(B33.prototype), 'constructor', this).call(this, props);
-	  }
-
-	  _inherits(B33, _React$Component11);
-
-	  _createClass(B33, [{
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement(
-	        'span',
-	        { style: { width: 50, marginLeft: 20 } },
-	        '='
-	      );
-	    }
-	  }]);
-
-	  return B33;
-	})(_react2['default'].Component);
-
-	;
-
-	var B34 = (function (_React$Component12) {
-	  function B34(props) {
-	    _classCallCheck(this, B34);
-
-	    _get(Object.getPrototypeOf(B34.prototype), 'constructor', this).call(this, props);
-	  }
-
-	  _inherits(B34, _React$Component12);
-
-	  _createClass(B34, [{
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement(
-	        'span',
-	        { style: { width: 50, marginLeft: 20 } },
-	        this.props.res
-	      );
-	    }
-	  }]);
-
-	  return B34;
-	})(_react2['default'].Component);
-
-	;
-
-	var Solutions = (function (_React$Component13) {
+	var Solutions = (function (_React$Component5) {
 	  function Solutions(props) {
 	    _classCallCheck(this, Solutions);
 
@@ -13894,7 +13676,7 @@
 	    var formatted = undefined;
 	  }
 
-	  _inherits(Solutions, _React$Component13);
+	  _inherits(Solutions, _React$Component5);
 
 	  _createClass(Solutions, [{
 	    key: 'clickHandler',
@@ -13929,14 +13711,14 @@
 	  return Solutions;
 	})(_react2['default'].Component);
 
-	var SetGoal = (function (_React$Component14) {
+	var SetGoal = (function (_React$Component6) {
 	  function SetGoal(props) {
 	    _classCallCheck(this, SetGoal);
 
 	    _get(Object.getPrototypeOf(SetGoal.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(SetGoal, _React$Component14);
+	  _inherits(SetGoal, _React$Component6);
 
 	  _createClass(SetGoal, [{
 	    key: 'handleChange',
@@ -13994,7 +13776,7 @@
 
 	;
 
-	var Solutions2 = (function (_React$Component15) {
+	var Solutions2 = (function (_React$Component7) {
 	  function Solutions2(props) {
 	    _classCallCheck(this, Solutions2);
 
@@ -14002,7 +13784,7 @@
 	    var formatted = undefined;
 	  }
 
-	  _inherits(Solutions2, _React$Component15);
+	  _inherits(Solutions2, _React$Component7);
 
 	  _createClass(Solutions2, [{
 	    key: 'clickHandler',
@@ -14041,52 +13823,14 @@
 	  return Solutions2;
 	})(_react2['default'].Component);
 
-	var Display = (function (_React$Component16) {
-	  function Display(props) {
-	    _classCallCheck(this, Display);
-
-	    _get(Object.getPrototypeOf(Display.prototype), 'constructor', this).call(this, props);
-	  }
-
-	  _inherits(Display, _React$Component16);
-
-	  _createClass(Display, [{
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement(
-	        'div',
-	        null,
-	        this.props.str1,
-	        ' ',
-	        _react2['default'].createElement('br', null),
-	        ' ',
-	        this.props.str2,
-	        ' ',
-	        _react2['default'].createElement('br', null),
-	        ' ',
-	        this.props.str3,
-	        ' ',
-	        _react2['default'].createElement('br', null),
-	        ' ',
-	        this.props.str4
-	      );
-	    }
-	  }]);
-
-	  return Display;
-	})(_react2['default'].Component);
-
-	;
-
-	var Login = (function (_React$Component17) {
+	var Login = (function (_React$Component8) {
 	  function Login(props) {
 	    _classCallCheck(this, Login);
 
 	    _get(Object.getPrototypeOf(Login.prototype), 'constructor', this).call(this, props);
 	  }
 
-	  _inherits(Login, _React$Component17);
+	  _inherits(Login, _React$Component8);
 
 	  _createClass(Login, [{
 	    key: 'handleChange',
@@ -14160,36 +13904,7 @@
 
 	;
 
-	var Messages2 = (function (_React$Component18) {
-	  function Messages2(props) {
-	    _classCallCheck(this, Messages2);
-
-	    _get(Object.getPrototypeOf(Messages2.prototype), 'constructor', this).call(this, props);
-	  }
-
-	  _inherits(Messages2, _React$Component18);
-
-	  _createClass(Messages2, [{
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      if (this.props.hidden2) {
-	        return null;
-	      }
-	      return _react2['default'].createElement(
-	        'div',
-	        null,
-	        this.props.message
-	      );
-	    }
-	  }]);
-
-	  return Messages2;
-	})(_react2['default'].Component);
-
-	;
-
-	var B4 = (function (_React$Component19) {
+	var B4 = (function (_React$Component9) {
 	  function B4(props) {
 	    var _this = this;
 
@@ -14197,6 +13912,10 @@
 
 	    _get(Object.getPrototypeOf(B4.prototype), 'constructor', this).call(this, props);
 	    this.state = {
+	      d1: 0,
+	      d2: 0,
+	      d3: 0,
+	      d4: 0,
 	      mes0: 'Number',
 	      mes1: 'Operator',
 	      mes2: 'Number',
@@ -14224,8 +13943,6 @@
 	      str4: '',
 	      hidden: false,
 	      hidden2: true,
-	      hidden3: false,
-	      hidden4: true,
 	      togDice: false,
 	      name: '',
 	      DS_T: 'SCORE!',
@@ -14255,9 +13972,12 @@
 	      buttonColor7: '#acf9a2',
 	      buttonColor8: '#acf9a2',
 	      buttonColor9: '#83f7d8',
+	      buttonColor10: '#f7b16f',
+	      buttonColor11: '#f7b16f',
 	      buttonColor: '#83f7d7',
 	      colorB42: '#000',
-	      buttonDisplay: 'none'
+	      buttonDisplay: 'none',
+	      buttonDisplay2: 'inline'
 	    };
 
 	    var that = this;
@@ -14282,6 +14002,7 @@
 	      var ext7 = gameArray[7];
 	      var ext8 = gameArray[8];
 	      var group = that.state.group;
+	      var name = that.state.name;
 	      console.log('################################################### gameArray #################');
 	      console.log(gameArray);
 	      console.log('################################################# That was gameArray ##########');
@@ -14299,7 +14020,7 @@
 	      console.log(ar2);
 	      console.log(ar3);
 
-	      if (that.state.group === gameArray[1] || that.state.name === sender || extra === '%#8*&&^1#$%^' || d2 === 'CB#$42') {
+	      if (that.state.group === gameArray[1] || name === sender || extra === '%#8*&&^1#$%^' || d2 === 'CB#$42') {
 	        switch (d2) {
 
 	          case 'CC#$42':
@@ -14333,7 +14054,11 @@
 	              str3: '',
 	              scoreClicker: 'a@F$Uy&sc',
 	              impossibleClicker: 'a@F$Uy&imp',
-	              sol: []
+	              sol: [],
+	              d1: extra,
+	              d2: ext4,
+	              d3: ext5,
+	              d4: ext6
 	            });
 	            break;
 
@@ -14356,7 +14081,9 @@
 	            break;
 
 	          case 'CD#$42':
-
+	            if (sender !== name) {
+	              that.setState({ buttonDisplay2: 'none' });
+	            }
 	            break;
 
 	          case 'CF#$42':
@@ -14383,7 +14110,8 @@
 
 	          case 'CK#$42':
 	            if (that.state.score) {
-	              that.setState({ DS_T: extra });
+	              that.setState({
+	                DS_T: extra });
 	            }
 	            break;
 
@@ -14397,8 +14125,7 @@
 	            break;
 
 	          case 'CR#$42':
-	            that.setState({ hidden2: false });
-	            that.setState({ hidden3: false });
+	            that.setState({ buttonDisplay2: 'inline' });
 	            break;
 
 	          case 'CS#$42':
@@ -14409,26 +14136,20 @@
 	            break;
 
 	          case 'CY#$42':
-	            that.setState({ hidden4: true });
-	            var playerName = that.state.name;
-	            scoreClicker = extra; // 'scoreClicker' declared at the top of this file.
 	            that.setState({
-	              scoreClicker: scoreClicker,
-	              sol: []
-	            }, function () {
-	              // Probably no benefit in waiting for rendering to complete, but making
-	              // this synchronous might result in a little less stress for the browser.
-	              if (scoreClicker !== playerName) {
-	                that.setState({
-	                  hidden2: true,
-	                  hidden3: false });
-	                var a = that.state.message1;
-	                var b = that.state.message2;
-	                var c = that.state.message3;
-	                var d = that.state.message4;
-	                DES_ws.send('DZ#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d + ',20');
-	              }
+	              scoreClicker: extra
 	            });
+	            if (extra !== name) {
+	              that.setState({
+	                buttonDisplay2: 'none'
+	              });
+	            }
+	            var a = that.state.message1;
+	            var b = that.state.message2;
+	            var c = that.state.message3;
+	            var d = that.state.message4;
+	            DES_ws.send('DZ#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d + ',20');
+
 	            break;
 
 	          case 'DC#$42':
@@ -14438,14 +14159,12 @@
 
 	          case 'DZ#$42':
 	            var this2 = that;
-	            if (that.state.scoreClicker !== that.state.name) {
+	            if (that.state.scoreClicker !== name) {
 	              (function () {
 	                var solutions = extra;
 	                that.delay(8000).then(function () {
 	                  this2.setState({
-	                    sol: solutions.split('<br />'),
-	                    hidden4: false
-	                  });
+	                    sol: solutions.split('<br />') });
 	                });
 	              })();
 	            }
@@ -14471,7 +14190,7 @@
 	      var name = _this.state.name;
 	      var group = _this.state.group;
 	      if (_this.state.DS_T === 0) {
-	        DES_ws.send('CR#$42,' + group + ',' + name + ',filler');
+	        DES_ws.send('CR#$42,' + group + ',' + name + ',' + name);
 	        if (_this.state.name === _this.state.scoreClicker) {
 	          DES_ws.send('CI#$42,' + group + ',' + name + ',filler');
 	        }
@@ -14481,7 +14200,7 @@
 	          message2: '',
 	          message3: '',
 	          message4: '',
-	          buttonDisplay: 'inline'
+	          info: ''
 	        });
 	      }
 	      if (_this.state.DS_T > -1) {
@@ -14498,7 +14217,7 @@
 	    }, 1000);
 	  }
 
-	  _inherits(B4, _React$Component19);
+	  _inherits(B4, _React$Component9);
 
 	  _createClass(B4, [{
 	    key: 'isElement',
@@ -14662,6 +14381,26 @@
 	      this.setState({ buttonColor9: '#83f7d8' });
 	    }
 	  }, {
+	    key: 'hoverHandler10',
+	    value: function hoverHandler10() {
+	      this.setState({ buttonColor10: '#f99094' });
+	    }
+	  }, {
+	    key: 'leaveHandler10',
+	    value: function leaveHandler10() {
+	      this.setState({ buttonColor10: '#f7b16f' });
+	    }
+	  }, {
+	    key: 'hoverHandler11',
+	    value: function hoverHandler11() {
+	      this.setState({ buttonColor11: '#f99094' });
+	    }
+	  }, {
+	    key: 'leaveHandler11',
+	    value: function leaveHandler11() {
+	      this.setState({ buttonColor11: '#f7b16f' });
+	    }
+	  }, {
 	    key: 'solutions',
 	    value: function solutions() {
 	      var group = this.state.group;
@@ -14694,13 +14433,13 @@
 	      var col = this.state.dynamicColor;
 	      this.setState({
 	        DS_T: 'SCORE!',
-	        hidden4: false,
 	        used: [],
 	        test: false,
 	        score: false,
 	        message: 'You must click SCORE in order to gain a point.',
 	        sty: { color: col, width: 50, marginLeft: 30, padding: 10 },
-	        colorB42: '#ff0000'
+	        colorB42: '#ff0000',
+	        buttonDisplay2: 'inline'
 	      });
 	      var name = this.state.name;
 	      var group = this.state.group;
@@ -14722,11 +14461,11 @@
 	        // That is, no calculations have been made.
 	        var _name3 = this.state.name;
 	        var group = this.state.group;
-	        var a = this.state.message1;
-	        var b = this.state.message2;
-	        var c = this.state.message3;
-	        var d = this.state.message4;
-	        DES_ws.send('CZ#$42,' + group + ',' + _name3 + ',' + a + ',' + b + ',' + c + ',' + d + ',20');
+	        var _a = this.state.message1;
+	        var _b = this.state.message2;
+	        var _c = this.state.message3;
+	        var _d = this.state.message4;
+	        DES_ws.send('CZ#$42,' + group + ',' + _name3 + ',' + _a + ',' + _b + ',' + _c + ',' + _d + ',20');
 	      }
 	    }
 	  }, {
@@ -14741,11 +14480,25 @@
 	      this.newNums(startArray);
 	    }
 	  }, {
+	    key: 'handleGroupA',
+	    value: function handleGroupA() {
+	      var name = this.state.name;
+	      DES_ws.send('CO#$42,GroupA,' + name + ',handleGroupA');
+	      this.setState({ group: 'GroupA' });
+	    }
+	  }, {
+	    key: 'handleGroupB',
+	    value: function handleGroupB() {
+	      var name = this.state.name;
+	      DES_ws.send('CO#$42,GroupB,' + name + ',handleGroupB');
+	      this.setState({ group: 'GroupB' });
+	    }
+	  }, {
 	    key: 'setGroup',
 	    value: function setGroup(x) {
 	      var name = this.state.name;
-	      DES_ws.send('CO#$42,' + x + ',' + name + ',setGroup');
 	      this.setState({ group: x });
+	      DES_ws.send('CO#$42,' + x + ',' + name + ',filler');
 	    }
 	  }, {
 	    key: 'setInfo',
@@ -14781,7 +14534,7 @@
 	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',');
 	        if (result === 20 && this.state.test && inPlay) {
 	          clock = 'One Point For ' + name;
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',filler');
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',filler');
 	        }
 	      } else if (j === 1) {
@@ -14789,12 +14542,12 @@
 	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0]);
 	        if (result === 20 && inPlay) {
 	          clock = 'One Point For ' + name;
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',filler');
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',filler');
 	        }
 	        if (result !== 20 && this.state.score) {
 	          clock = 'Take One Point From ' + name;
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',filler');
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
 	          DES_ws.send('CI#$42,' + gr + ',' + name + ',filler');
 	        }
 	      }
@@ -15059,10 +14812,13 @@
 	      var buttonCol7 = this.state.buttonColor7;
 	      var buttonCol8 = this.state.buttonColor8;
 	      var buttonCol9 = this.state.buttonColor9;
+	      var buttonCol10 = this.state.buttonColor10;
+	      var buttonCol11 = this.state.buttonColor11;
 	      var dynB = this.state.dynamicBg;
 	      var dynC = this.state.dynamicColor;
 	      var dynF = this.state.dynamicFont;
 	      var buttonDisplay = this.state.buttonDisplay;
+	      var buttonDisplay2 = this.state.buttonDisplay2;
 	      var m1 = this.state.message1;
 
 	      console.log(this);
@@ -15096,113 +14852,239 @@
 	          ),
 	          _react2['default'].createElement(ScoreBoard, { key: 'ScoreBoard', scoreB: this.state.scoreB })
 	        ),
-	        _react2['default'].createElement(Messages, { key: 'Messages', info: this.state.info }),
-	        _react2['default'].createElement(GroupA, { key: 'GroupA', hidden2: this.state.hidden2, setGroup: this.setGroup.bind(this) }),
-	        _react2['default'].createElement(GroupB, { key: 'GroupB', setGroup: this.setGroup.bind(this), hidden2: this.state.hidden2 }),
-	        _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: this.setGroup.bind(this), hidden2: this.state.hidden2, name: this.state.name }),
+	        _react2['default'].createElement(
+	          'div',
+	          { style: { display: buttonDisplay } },
+	          'Current roll: ',
+	          _react2['default'].createElement(
+	            'button',
+	            { style: { backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00' } },
+	            ' ',
+	            this.state.d1,
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { style: { backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00' } },
+	            ' ',
+	            this.state.d2,
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { style: { backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00' } },
+	            ' ',
+	            this.state.d2,
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { style: { backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00' } },
+	            ' ',
+	            this.state.d4,
+	            ' '
+	          )
+	        ),
+	        _react2['default'].createElement(
+	          'div',
+	          null,
+	          ' ',
+	          this.state.info,
+	          ' '
+	        ),
+	        _react2['default'].createElement(
+	          'button',
+	          { onMouseEnter: this.hoverHandler10.bind(this), onClick: this.handleGroupA.bind(this),
+	            onMouseLeave: this.leaveHandler10.bind(this),
+	            style: { backgroundColor: buttonCol10, display: buttonDisplay, paddingTop: 1.1,
+	              paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10 } },
+	          'GroupA'
+	        ),
+	        _react2['default'].createElement(
+	          'button',
+	          { onMouseEnter: this.hoverHandler11.bind(this), onClick: this.handleGroupB.bind(this),
+	            onMouseLeave: this.leaveHandler11.bind(this),
+	            style: { backgroundColor: buttonCol11, display: buttonDisplay, paddingTop: 1.1,
+	              paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10 } },
+	          'GroupB'
+	        ),
+	        _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: this.setGroup.bind(this), hidden2: this.state.hidden2,
+	          name: this.state.name }),
 	        _react2['default'].createElement('div', null),
 	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: this.newPlayer.bind(this), name: this.state.name,
 	          setGroup: this.setGroup.bind(this), change: this.changeItem.bind(this),
 	          group: this.state.group, hidden: this.state.hidden, info: this.state.info,
 	          setInfo: this.setInfo.bind(this) }),
-	        _react2['default'].createElement(Display, { key: 'Display', str1: this.state.str1, str2: this.state.str2, str3: this.state.str3,
-	          str4: this.state.str4 }),
 	        _react2['default'].createElement(
-	          'button',
-	          { onMouseEnter: this.hoverHandler9.bind(this), onClick: this.handleScore.bind(this),
-	            onMouseLeave: this.leaveHandler9.bind(this),
-	            style: { backgroundColor: buttonCol9, display: buttonDisplay, paddingTop: 1.1,
-	              paddingBottom: 0.9, marginRight: 3 } },
-	          this.state.DS_T
-	        ),
-	        _react2['default'].createElement('div', { style: { width: 1200, backgroundColor: dynB, padding: 10 } }),
-	        _react2['default'].createElement(Messages2, { key: 'Messages2', message: this.state.message }),
-	        _react2['default'].createElement(
-	          'button',
-	          { onMouseEnter: this.hoverHandler0.bind(this), onClick: this.handleB40.bind(this),
-	            onMouseLeave: this.leaveHandler0.bind(this),
-	            style: { backgroundColor: buttonCol0, display: buttonDisplay, paddingTop: 1.1,
-	              paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 20 } },
-	          this.state.message1
-	        ),
-	        _react2['default'].createElement(
-	          'button',
-	          { onMouseEnter: this.hoverHandler1.bind(this), onClick: this.handleB41.bind(this),
-	            onMouseLeave: this.leaveHandler1.bind(this),
-	            style: { backgroundColor: buttonCol1, display: buttonDisplay, paddingTop: 1.1,
+	          'div',
+	          { style: { backgroundColor: '#000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1,
 	              paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
-	          this.state.message2
+	          this.state.str1,
+	          ' ',
+	          _react2['default'].createElement('br', null),
+	          ' ',
+	          this.state.str2,
+	          ' ',
+	          _react2['default'].createElement('br', null),
+	          ' ',
+	          this.state.str3,
+	          ' ',
+	          _react2['default'].createElement('br', null),
+	          ' ',
+	          this.state.str4
 	        ),
 	        _react2['default'].createElement(
-	          'button',
-	          { onMouseEnter: this.hoverHandler2.bind(this), onClick: this.handleB42.bind(this),
-	            onMouseLeave: this.leaveHandler2.bind(this),
-	            style: { backgroundColor: buttonCol2, display: buttonDisplay, paddingTop: 1.1,
-	              paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
-	          this.state.message3
-	        ),
-	        _react2['default'].createElement(
-	          'button',
-	          { onMouseEnter: this.hoverHandler3.bind(this), onClick: this.handleB43.bind(this),
-	            onMouseLeave: this.leaveHandler3.bind(this),
-	            style: { backgroundColor: buttonCol3, display: buttonDisplay, paddingTop: 1.1,
-	              paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
-	          this.state.message4
+	          'div',
+	          { style: { display: buttonDisplay2 } },
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { width: 1200, backgroundColor: dynB, padding: 10 } },
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: this.hoverHandler9.bind(this), onClick: this.handleScore.bind(this),
+	              onMouseLeave: this.leaveHandler9.bind(this),
+	              style: { backgroundColor: buttonCol9, display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10 } },
+	            this.state.DS_T
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { width: 1200, backgroundColor: dynB, padding: 10 } },
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            null,
+	            ' ',
+	            this.state.message,
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: this.hoverHandler0.bind(this), onClick: this.handleB40.bind(this),
+	              onMouseLeave: this.leaveHandler0.bind(this),
+	              style: { backgroundColor: buttonCol0, display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 20 } },
+	            this.state.message1
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: this.hoverHandler1.bind(this), onClick: this.handleB41.bind(this),
+	              onMouseLeave: this.leaveHandler1.bind(this),
+	              style: { backgroundColor: buttonCol1, display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
+	            this.state.message2
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: this.hoverHandler2.bind(this), onClick: this.handleB42.bind(this),
+	              onMouseLeave: this.leaveHandler2.bind(this),
+	              style: { backgroundColor: buttonCol2, display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
+	            this.state.message3
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: this.hoverHandler3.bind(this), onClick: this.handleB43.bind(this),
+	              onMouseLeave: this.leaveHandler3.bind(this),
+	              style: { backgroundColor: buttonCol3, display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
+	            this.state.message4
+	          ),
+	          _react2['default'].createElement('div', { style: { width: 1200, padding: 10 } }),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: this.hoverHandler4.bind(this), onClick: this.handleOp0.bind(this),
+	              onMouseLeave: this.leaveHandler4.bind(this),
+	              style: { backgroundColor: buttonCol4, display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 20 } },
+	            '+'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: this.hoverHandler5.bind(this), onClick: this.handleOp1.bind(this),
+	              onMouseLeave: this.leaveHandler5.bind(this),
+	              style: { backgroundColor: buttonCol5, display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
+	            '-'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: this.hoverHandler6.bind(this), onClick: this.handleOp2.bind(this),
+	              onMouseLeave: this.leaveHandler6.bind(this),
+	              style: { backgroundColor: buttonCol6, display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
+	            '*'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: this.hoverHandler7.bind(this), onClick: this.handleOp3.bind(this),
+	              onMouseLeave: this.leaveHandler7.bind(this),
+	              style: { backgroundColor: buttonCol7, display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
+	            '/'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: this.hoverHandler8.bind(this), onClick: this.handleOp4.bind(this),
+	              onMouseLeave: this.leaveHandler8.bind(this),
+	              style: { backgroundColor: buttonCol8, display: buttonDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
+	            'Concat'
+	          )
 	        ),
 	        _react2['default'].createElement('div', { style: { width: 1200, padding: 10 } }),
 	        _react2['default'].createElement(
-	          'button',
-	          { onMouseEnter: this.hoverHandler4.bind(this), onClick: this.handleOp0.bind(this),
-	            onMouseLeave: this.leaveHandler4.bind(this),
-	            style: { backgroundColor: buttonCol4, display: buttonDisplay, paddingTop: 1.1,
-	              paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 20 } },
-	          '+'
+	          'span',
+	          { style: { backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1,
+	              paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16 } },
+	          this.state.mes0
 	        ),
 	        _react2['default'].createElement(
-	          'button',
-	          { onMouseEnter: this.hoverHandler5.bind(this), onClick: this.handleOp1.bind(this),
-	            onMouseLeave: this.leaveHandler5.bind(this),
-	            style: { backgroundColor: buttonCol5, display: buttonDisplay, paddingTop: 1.1,
-	              paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
-	          '-'
+	          'span',
+	          { style: { backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1,
+	              paddingBottom: 0.9, marginRight: 3, fontSize: 16 } },
+	          this.state.mes1
 	        ),
 	        _react2['default'].createElement(
-	          'button',
-	          { onMouseEnter: this.hoverHandler6.bind(this), onClick: this.handleOp2.bind(this),
-	            onMouseLeave: this.leaveHandler6.bind(this),
-	            style: { backgroundColor: buttonCol6, display: buttonDisplay, paddingTop: 1.1,
-	              paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
-	          '*'
+	          'span',
+	          { style: { backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1,
+	              paddingBottom: 0.9, marginRight: 3, fontSize: 16 } },
+	          this.state.mes2
 	        ),
 	        _react2['default'].createElement(
-	          'button',
-	          { onMouseEnter: this.hoverHandler7.bind(this), onClick: this.handleOp3.bind(this),
-	            onMouseLeave: this.leaveHandler7.bind(this),
-	            style: { backgroundColor: buttonCol7, display: buttonDisplay, paddingTop: 1.1,
-	              paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
-	          '/'
+	          'span',
+	          { style: { backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1,
+	              paddingBottom: 0.9, marginRight: 3, fontSize: 16 } },
+	          '='
 	        ),
 	        _react2['default'].createElement(
-	          'button',
-	          { onMouseEnter: this.hoverHandler8.bind(this), onClick: this.handleOp4.bind(this),
-	            onMouseLeave: this.leaveHandler8.bind(this),
-	            style: { backgroundColor: buttonCol4, display: buttonDisplay, paddingTop: 1.1,
-	              paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
-	          'Concat'
+	          'span',
+	          { style: { backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1,
+	              paddingBottom: 0.9, marginRight: 3, fontSize: 16 } },
+	          this.state.res
 	        ),
-	        _react2['default'].createElement('div', { style: { width: 1200, padding: 10 } }),
-	        _react2['default'].createElement(B30, { key: 'B30', mes0: this.state.mes0 }),
-	        _react2['default'].createElement(B31, { key: 'B31', mes1: this.state.mes1 }),
-	        _react2['default'].createElement(B32, { key: 'B32', mes2: this.state.mes2 }),
-	        _react2['default'].createElement(B33, { key: 'B33' }),
-	        _react2['default'].createElement(B34, { key: 'B34', res: this.state.res }),
-	        _react2['default'].createElement('div', { style: { width: 1200, padding: 10 } }),
 	        _react2['default'].createElement(
-	          'button',
-	          { onMouseEnter: this.hoverHandler.bind(this),
-	            onMouseLeave: this.leaveHandler.bind(this), style: { backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay },
-	            onClick: this.buttonHandler.bind(this) },
-	          'Roll'
+	          'div',
+	          { style: { width: 1200, padding: 10 } },
+	          '  '
+	        ),
+	        _react2['default'].createElement(
+	          'div',
+	          { style: { display: buttonDisplay2 } },
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: this.hoverHandler.bind(this),
+	              onMouseLeave: this.leaveHandler.bind(this), style: { backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay },
+	              onClick: this.buttonHandler.bind(this) },
+	            'Roll'
+	          )
 	        ),
 	        _react2['default'].createElement('div', { style: { width: 1200, padding: 10 } }),
 	        _react2['default'].createElement(Solutions, { key: 'Solutions', solFunc: this.getSolutions.bind(this), sol: this.state.sol,
@@ -15216,12 +15098,6 @@
 
 	;
 
-	/*
-	  B4.defaultProps = {
-	    sol: sol
-	  }
-	  contentEditable={true}
-	*/
 	_react2['default'].render(_react2['default'].createElement(B4, null), document.getElementById('divSix'));
 	// this.setState({sty: {color: '#d5f765',
 	//      fontSize: "38", textAlign: "center", padding: "20",  }});
@@ -15289,7 +15165,7 @@
 
 	var assign = __webpack_require__(34);
 	var invariant = __webpack_require__(46);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	// To avoid a cyclic dependency, we create the final class in this module
 	var ReactCompositeComponentWrapper = function() { };
@@ -15517,7 +15393,7 @@
 
 	'use strict';
 
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	/**
 	 * Given a `prevElement` and `nextElement`, determines if the existing
@@ -15737,7 +15613,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(47);
+	var PooledClass = __webpack_require__(49);
 	var CallbackQueue = __webpack_require__(148);
 	var ReactPutListenerQueue = __webpack_require__(150);
 	var Transaction = __webpack_require__(139);
@@ -15895,7 +15771,7 @@
 	  , store  = __webpack_require__(170)('wks');
 	module.exports = function(name){
 	  return store[name] || (store[name] =
-	    global.Symbol && global.Symbol[name] || __webpack_require__(113).safe('Symbol.' + name));
+	    global.Symbol && global.Symbol[name] || __webpack_require__(121).safe('Symbol.' + name));
 	};
 
 /***/ },
@@ -15908,43 +15784,49 @@
 /* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// true  -> String#at
-	// false -> String#codePointAt
-	var $ = __webpack_require__(43);
-	module.exports = function(TO_STRING){
-	  return function(that, pos){
-	    var s = String($.assertDefined(that))
-	      , i = $.toInteger(pos)
-	      , l = s.length
-	      , a, b;
-	    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
-	    a = s.charCodeAt(i);
-	    return a < 0xd800 || a > 0xdbff || i + 1 === l
-	      || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
-	        ? TO_STRING ? s.charAt(i) : a
-	        : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
-	  };
-	};
+	var $          = __webpack_require__(43)
+	  , setUnscope = __webpack_require__(171)
+	  , ITER       = __webpack_require__(121).safe('iter')
+	  , $iter      = __webpack_require__(113)
+	  , step       = $iter.step
+	  , Iterators  = $iter.Iterators;
+
+	// 22.1.3.4 Array.prototype.entries()
+	// 22.1.3.13 Array.prototype.keys()
+	// 22.1.3.29 Array.prototype.values()
+	// 22.1.3.30 Array.prototype[@@iterator]()
+	__webpack_require__(126)(Array, 'Array', function(iterated, kind){
+	  $.set(this, ITER, {o: $.toObject(iterated), i: 0, k: kind});
+	// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+	}, function(){
+	  var iter  = this[ITER]
+	    , O     = iter.o
+	    , kind  = iter.k
+	    , index = iter.i++;
+	  if(!O || index >= O.length){
+	    iter.o = undefined;
+	    return step(1);
+	  }
+	  if(kind == 'keys'  )return step(0, index);
+	  if(kind == 'values')return step(0, O[index]);
+	  return step(0, [index, O[index]]);
+	}, 'values');
+
+	// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+	Iterators.Arguments = Iterators.Array;
+
+	setUnscope('keys');
+	setUnscope('values');
+	setUnscope('entries');
 
 /***/ },
 /* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var sid = 0;
-	function uid(key){
-	  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++sid + Math.random()).toString(36));
-	}
-	uid.safe = __webpack_require__(43).g.Symbol || uid;
-	module.exports = uid;
-
-/***/ },
-/* 114 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 	var $                 = __webpack_require__(43)
 	  , cof               = __webpack_require__(109)
-	  , assertObject      = __webpack_require__(119).obj
+	  , assertObject      = __webpack_require__(117).obj
 	  , SYMBOL_ITERATOR   = __webpack_require__(110)('iterator')
 	  , FF_ITERATOR       = '@@iterator'
 	  , Iterators         = __webpack_require__(170)('iterators')
@@ -15984,125 +15866,17 @@
 	};
 
 /***/ },
+/* 114 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = function($){
+	  $.FW   = false;
+	  $.path = $.core;
+	  return $;
+	};
+
+/***/ },
 /* 115 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var $def            = __webpack_require__(118)
-	  , $redef          = __webpack_require__(111)
-	  , $               = __webpack_require__(43)
-	  , cof             = __webpack_require__(109)
-	  , $iter           = __webpack_require__(114)
-	  , SYMBOL_ITERATOR = __webpack_require__(110)('iterator')
-	  , FF_ITERATOR     = '@@iterator'
-	  , KEYS            = 'keys'
-	  , VALUES          = 'values'
-	  , Iterators       = $iter.Iterators;
-	module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE){
-	  $iter.create(Constructor, NAME, next);
-	  function createMethod(kind){
-	    function $$(that){
-	      return new Constructor(that, kind);
-	    }
-	    switch(kind){
-	      case KEYS: return function keys(){ return $$(this); };
-	      case VALUES: return function values(){ return $$(this); };
-	    } return function entries(){ return $$(this); };
-	  }
-	  var TAG      = NAME + ' Iterator'
-	    , proto    = Base.prototype
-	    , _native  = proto[SYMBOL_ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
-	    , _default = _native || createMethod(DEFAULT)
-	    , methods, key;
-	  // Fix native
-	  if(_native){
-	    var IteratorPrototype = $.getProto(_default.call(new Base));
-	    // Set @@toStringTag to native iterators
-	    cof.set(IteratorPrototype, TAG, true);
-	    // FF fix
-	    if($.FW && $.has(proto, FF_ITERATOR))$iter.set(IteratorPrototype, $.that);
-	  }
-	  // Define iterator
-	  if($.FW)$iter.set(proto, _default);
-	  // Plug for library
-	  Iterators[NAME] = _default;
-	  Iterators[TAG]  = $.that;
-	  if(DEFAULT){
-	    methods = {
-	      keys:    IS_SET            ? _default : createMethod(KEYS),
-	      values:  DEFAULT == VALUES ? _default : createMethod(VALUES),
-	      entries: DEFAULT != VALUES ? _default : createMethod('entries')
-	    };
-	    if(FORCE)for(key in methods){
-	      if(!(key in proto))$redef(proto, key, methods[key]);
-	    } else $def($def.P + $def.F * $iter.BUGGY, NAME, methods);
-	  }
-	};
-
-/***/ },
-/* 116 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var $          = __webpack_require__(43)
-	  , setUnscope = __webpack_require__(171)
-	  , ITER       = __webpack_require__(113).safe('iter')
-	  , $iter      = __webpack_require__(114)
-	  , step       = $iter.step
-	  , Iterators  = $iter.Iterators;
-
-	// 22.1.3.4 Array.prototype.entries()
-	// 22.1.3.13 Array.prototype.keys()
-	// 22.1.3.29 Array.prototype.values()
-	// 22.1.3.30 Array.prototype[@@iterator]()
-	__webpack_require__(115)(Array, 'Array', function(iterated, kind){
-	  $.set(this, ITER, {o: $.toObject(iterated), i: 0, k: kind});
-	// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
-	}, function(){
-	  var iter  = this[ITER]
-	    , O     = iter.o
-	    , kind  = iter.k
-	    , index = iter.i++;
-	  if(!O || index >= O.length){
-	    iter.o = undefined;
-	    return step(1);
-	  }
-	  if(kind == 'keys'  )return step(0, index);
-	  if(kind == 'values')return step(0, O[index]);
-	  return step(0, [index, O[index]]);
-	}, 'values');
-
-	// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
-	Iterators.Arguments = Iterators.Array;
-
-	setUnscope('keys');
-	setUnscope('values');
-	setUnscope('entries');
-
-/***/ },
-/* 117 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// Optional / simple context binding
-	var assertFunction = __webpack_require__(119).fn;
-	module.exports = function(fn, that, length){
-	  assertFunction(fn);
-	  if(~length && that === undefined)return fn;
-	  switch(length){
-	    case 1: return function(a){
-	      return fn.call(that, a);
-	    };
-	    case 2: return function(a, b){
-	      return fn.call(that, a, b);
-	    };
-	    case 3: return function(a, b, c){
-	      return fn.call(that, a, b, c);
-	    };
-	  } return function(/* ...args */){
-	      return fn.apply(that, arguments);
-	    };
-	};
-
-/***/ },
-/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $          = __webpack_require__(43)
@@ -16155,7 +15929,31 @@
 	module.exports = $def;
 
 /***/ },
-/* 119 */
+/* 116 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// Optional / simple context binding
+	var assertFunction = __webpack_require__(117).fn;
+	module.exports = function(fn, that, length){
+	  assertFunction(fn);
+	  if(~length && that === undefined)return fn;
+	  switch(length){
+	    case 1: return function(a){
+	      return fn.call(that, a);
+	    };
+	    case 2: return function(a, b){
+	      return fn.call(that, a, b);
+	    };
+	    case 3: return function(a, b, c){
+	      return fn.call(that, a, b, c);
+	    };
+	  } return function(/* ...args */){
+	      return fn.apply(that, arguments);
+	    };
+	};
+
+/***/ },
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(43);
@@ -16178,11 +15976,11 @@
 	module.exports = assert;
 
 /***/ },
-/* 120 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ctx  = __webpack_require__(117)
-	  , get  = __webpack_require__(114).get
+	var ctx  = __webpack_require__(116)
+	  , get  = __webpack_require__(113).get
 	  , call = __webpack_require__(172);
 	module.exports = function(iterable, entries, fn, that){
 	  var iterator = get(iterable)
@@ -16196,13 +15994,13 @@
 	};
 
 /***/ },
-/* 121 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
 	/* eslint-disable no-proto */
 	var $      = __webpack_require__(43)
-	  , assert = __webpack_require__(119);
+	  , assert = __webpack_require__(117);
 	function check(O, proto){
 	  assert.obj(O);
 	  assert(proto === null || $.isObject(proto), proto, ": can't set as prototype!");
@@ -16211,7 +16009,7 @@
 	  set: Object.setPrototypeOf || ('__proto__' in {} // eslint-disable-line
 	    ? function(buggy, set){
 	        try {
-	          set = __webpack_require__(117)(Function.call, $.getDesc(Object.prototype, '__proto__').set, 2);
+	          set = __webpack_require__(116)(Function.call, $.getDesc(Object.prototype, '__proto__').set, 2);
 	          set({}, []);
 	        } catch(e){ buggy = true; }
 	        return function setPrototypeOf(O, proto){
@@ -16226,7 +16024,7 @@
 	};
 
 /***/ },
-/* 122 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $       = __webpack_require__(43)
@@ -16239,12 +16037,23 @@
 	};
 
 /***/ },
-/* 123 */
+/* 121 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var sid = 0;
+	function uid(key){
+	  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++sid + Math.random()).toString(36));
+	}
+	uid.safe = __webpack_require__(43).g.Symbol || uid;
+	module.exports = uid;
+
+/***/ },
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var $      = __webpack_require__(43)
-	  , ctx    = __webpack_require__(117)
+	  , ctx    = __webpack_require__(116)
 	  , cof    = __webpack_require__(109)
 	  , invoke = __webpack_require__(173)
 	  , cel    = __webpack_require__(174)
@@ -16325,7 +16134,7 @@
 	};
 
 /***/ },
-/* 124 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $redef = __webpack_require__(111);
@@ -16335,7 +16144,7 @@
 	};
 
 /***/ },
-/* 125 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var SYMBOL_ITERATOR = __webpack_require__(110)('iterator')
@@ -16359,13 +16168,80 @@
 	};
 
 /***/ },
+/* 125 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// true  -> String#at
+	// false -> String#codePointAt
+	var $ = __webpack_require__(43);
+	module.exports = function(TO_STRING){
+	  return function(that, pos){
+	    var s = String($.assertDefined(that))
+	      , i = $.toInteger(pos)
+	      , l = s.length
+	      , a, b;
+	    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
+	    a = s.charCodeAt(i);
+	    return a < 0xd800 || a > 0xdbff || i + 1 === l
+	      || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+	        ? TO_STRING ? s.charAt(i) : a
+	        : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+	  };
+	};
+
+/***/ },
 /* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = function($){
-	  $.FW   = false;
-	  $.path = $.core;
-	  return $;
+	var $def            = __webpack_require__(115)
+	  , $redef          = __webpack_require__(111)
+	  , $               = __webpack_require__(43)
+	  , cof             = __webpack_require__(109)
+	  , $iter           = __webpack_require__(113)
+	  , SYMBOL_ITERATOR = __webpack_require__(110)('iterator')
+	  , FF_ITERATOR     = '@@iterator'
+	  , KEYS            = 'keys'
+	  , VALUES          = 'values'
+	  , Iterators       = $iter.Iterators;
+	module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE){
+	  $iter.create(Constructor, NAME, next);
+	  function createMethod(kind){
+	    function $$(that){
+	      return new Constructor(that, kind);
+	    }
+	    switch(kind){
+	      case KEYS: return function keys(){ return $$(this); };
+	      case VALUES: return function values(){ return $$(this); };
+	    } return function entries(){ return $$(this); };
+	  }
+	  var TAG      = NAME + ' Iterator'
+	    , proto    = Base.prototype
+	    , _native  = proto[SYMBOL_ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
+	    , _default = _native || createMethod(DEFAULT)
+	    , methods, key;
+	  // Fix native
+	  if(_native){
+	    var IteratorPrototype = $.getProto(_default.call(new Base));
+	    // Set @@toStringTag to native iterators
+	    cof.set(IteratorPrototype, TAG, true);
+	    // FF fix
+	    if($.FW && $.has(proto, FF_ITERATOR))$iter.set(IteratorPrototype, $.that);
+	  }
+	  // Define iterator
+	  if($.FW)$iter.set(proto, _default);
+	  // Plug for library
+	  Iterators[NAME] = _default;
+	  Iterators[TAG]  = $.that;
+	  if(DEFAULT){
+	    methods = {
+	      keys:    IS_SET            ? _default : createMethod(KEYS),
+	      values:  DEFAULT == VALUES ? _default : createMethod(VALUES),
+	      entries: DEFAULT != VALUES ? _default : createMethod('entries')
+	    };
+	    if(FORCE)for(key in methods){
+	      if(!(key in proto))$redef(proto, key, methods[key]);
+	    } else $def($def.P + $def.F * $iter.BUGGY, NAME, methods);
+	  }
 	};
 
 /***/ },
@@ -16425,7 +16301,7 @@
 	var dangerousStyleValue = __webpack_require__(177);
 	var hyphenateStyleName = __webpack_require__(178);
 	var memoizeStringOnly = __webpack_require__(179);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	var processStyleName = memoizeStringOnly(function(styleName) {
 	  return hyphenateStyleName(styleName);
@@ -17251,7 +17127,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(47);
+	var PooledClass = __webpack_require__(49);
 
 	var assign = __webpack_require__(34);
 	var getTextContentAccessor = __webpack_require__(184);
@@ -17726,7 +17602,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(47);
+	var PooledClass = __webpack_require__(49);
 
 	var assign = __webpack_require__(34);
 	var emptyFunction = __webpack_require__(105);
@@ -18898,7 +18774,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(47);
+	var PooledClass = __webpack_require__(49);
 
 	var assign = __webpack_require__(34);
 	var invariant = __webpack_require__(46);
@@ -19140,7 +19016,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(47);
+	var PooledClass = __webpack_require__(49);
 	var ReactBrowserEventEmitter = __webpack_require__(96);
 
 	var assign = __webpack_require__(34);
@@ -20443,7 +20319,7 @@
 	var emptyObject = __webpack_require__(52);
 	var invariant = __webpack_require__(46);
 	var shouldUpdateReactComponent = __webpack_require__(104);
-	var warning = __webpack_require__(50);
+	var warning = __webpack_require__(48);
 
 	function getDeclarationErrorAddendum(component) {
 	  var owner = component._currentElement._owner || null;
@@ -21466,7 +21342,7 @@
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assertObject = __webpack_require__(119).obj;
+	var assertObject = __webpack_require__(117).obj;
 	function close(iterator){
 	  var ret = iterator['return'];
 	  if(ret !== undefined)assertObject(ret.call(iterator));
@@ -22919,8 +22795,8 @@
 
 	'use strict';
 
-	var traverseAllChildren = __webpack_require__(49);
-	var warning = __webpack_require__(50);
+	var traverseAllChildren = __webpack_require__(51);
+	var warning = __webpack_require__(48);
 
 	/**
 	 * @param {function} traverseContext Context passed through traversal.

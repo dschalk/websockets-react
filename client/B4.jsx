@@ -34,57 +34,6 @@ class ScoreBoard extends React.Component {
     }
   }
 
-class Messages extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render () {
-    console.log(this);
-    return (
-        <div  >
-            {this.props.info}
-        </div>
-    )}
-  }
-
-class GroupA extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  click () {
-    this.props.setGroup('GroupA');
-  }
-  render () {
-        if (this.props.hidden2) { return ( null ) } 
-    else {
-        return (
-            <div  onClick={this.click.bind(this)} >
-                GroupA
-            </div>
-        )
-      }
-    }
-  }
-
-class GroupB extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  click () {
-    this.props.setGroup('GroupB');
-  }
-  render () {
-        if (this.props.hidden2) { return ( null ) } 
-    else {
-        return (
-            <div onClick={this.click.bind(this)} >
-                GroupB
-            </div>
-        )
-      }
-    }
-  }
-
 class GroupNew extends React.Component {
   constructor(props) {
     super(props);
@@ -114,7 +63,7 @@ class GroupNew extends React.Component {
     return (
       <div>
         <label>New Group<input type="text" id='cow' onKeyDown={this.handleEnter.bind(this)} 
-          onClick={this.click.bind(this)} style={{width: 90, backgroundColor: '#d8d17d'}} />
+          onClick={this.click.bind(this)} style={{width: 90, backgroundColor: '#d8d17d', marginLeft: 10}} />
         </label>
       </div>
     );
@@ -180,71 +129,6 @@ class ChangeBackground extends React.Component {
       </div>
     );
   }
-};
-
-class B30 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render () {
-    console.log(this);
-    return (
-        <span style={{width: 50, marginLeft: 20}}>
-            {this.props.mes0}
-        </span>
-    )}
-  };
-
-class B31 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render () {
-    console.log(this);
-    return (
-        <span style={{width: 50, marginLeft: 20}}>
-                {this.props.mes1}
-        </span>
-    )}
-  };
-
-class B32 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render () {
-    console.log(this);
-    return (
-        <span style={{width: 50, marginLeft: 20}}>
-                {this.props.mes2}
-        </span>
-    )}
-  };
-
-class B33 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render () {
-    console.log(this);
-    return (
-        <span style={{width: 50, marginLeft: 20}}>
-                =
-        </span>
-    )}
-  };
-
-class B34 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-render () {
-  console.log(this);
-  return (
-      <span style={{width: 50, marginLeft: 20}}>
-                {this.props.res}
-      </span>
-  )}
 };
 
 class Solutions extends React.Component {
@@ -333,20 +217,6 @@ class Solutions2 extends React.Component {
   }
 }
 
-class Display extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render () {
-    console.log(this);
-    return (
-        <div>
-            {this.props.str1} <br /> {this.props.str2} <br /> {this.props.str3} <br /> {this.props.str4}
-        </div>
-    )
-  }
-};
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -407,25 +277,14 @@ class Login extends React.Component {
   }
 };
 
-class Messages2 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render () {
-    console.log(this);
-    if (this.props.hidden2) { return ( null ) } 
-    return (
-        <div>
-             {this.props.message}
-        </div>
-    )
-  }
-};
-
 class B4 extends React.Component {
   constructor(props) {
     super(props);
-      this.state = {
+      this.state = { 
+        d1: 0,
+        d2: 0,
+        d3: 0,
+        d4: 0,
         mes0: 'Number',
         mes1: 'Operator',
         mes2: 'Number',
@@ -453,8 +312,6 @@ class B4 extends React.Component {
         str4: "",
         hidden: false,
         hidden2: true,
-        hidden3: false,
-        hidden4: true,
         togDice: false,
         name: "",
         DS_T: "SCORE!",
@@ -484,9 +341,12 @@ class B4 extends React.Component {
         buttonColor7: '#acf9a2',
         buttonColor8: '#acf9a2',
         buttonColor9: '#83f7d8',
+        buttonColor10: '#f7b16f',
+        buttonColor11: '#f7b16f',
         buttonColor: '#83f7d7',
         colorB42: '#000',
-        buttonDisplay: 'none'
+        buttonDisplay: 'none',
+        buttonDisplay2: 'inline'
       }
 
 let that = this;
@@ -511,6 +371,7 @@ DES_ws.onmessage = function(event) {
   let ext7 = gameArray[7];
   let ext8 = gameArray[8];
   let group = that.state.group;
+  let name = that.state.name;
   console.log('################################################### gameArray #################');
   console.log(gameArray);
   console.log('################################################# That was gameArray ##########');
@@ -529,7 +390,7 @@ DES_ws.onmessage = function(event) {
   console.log(ar3);
 
   if ( ( that.state.group === gameArray[1]) || 
-        that.state.name === sender || extra === '%#8*&&^1#$%^' || d2 === "CB#$42" ) {
+        name === sender || extra === '%#8*&&^1#$%^' || d2 === "CB#$42" ) {
       switch (d2) {
 
           case "CC#$42":
@@ -564,7 +425,11 @@ DES_ws.onmessage = function(event) {
                 str3: '',
                 scoreClicker: "a@F$Uy&sc",
                 impossibleClicker: "a@F$Uy&imp",
-                sol: []
+                sol: [],
+                d1: extra,
+                d2: ext4,
+                d3: ext5,
+                d4: ext6               
               });
           break;
 
@@ -588,8 +453,10 @@ DES_ws.onmessage = function(event) {
             //  }
           break;
 
-          case "CD#$42":
-            
+          case "CD#$42": 
+            if (sender !== name) {
+              that.setState({buttonDisplay2: 'none'})
+            }
           break;
 
           case "CF#$42":
@@ -621,7 +488,9 @@ DES_ws.onmessage = function(event) {
 
           case "CK#$42": 
             if (that.state.score) {
-              that.setState({DS_T: extra});
+              that.setState({
+                DS_T: extra,
+              });
             }
           break;
 
@@ -635,8 +504,7 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CR#$42":
-            that.setState({hidden2: false});
-            that.setState({hidden3: false});
+            that.setState({buttonDisplay2: 'inline'});
           break;
 
           case "CS#$42":
@@ -647,26 +515,20 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CY#$42":
-            that.setState({hidden4: true});
-            let playerName = that.state.name;
-            scoreClicker = extra;   // 'scoreClicker' declared at the top of this file.
-            that.setState({
-              scoreClicker: scoreClicker,
-              sol: []
-            }, function() {    // Probably no benefit in waiting for rendering to complete, but making
-                               // this synchronous might result in a little less stress for the browser.
-              if (scoreClicker !== playerName) {  
-                  that.setState({
-                    hidden2: true,
-                    hidden3: false,
-                  });
-                let a = that.state.message1;
-                let b = that.state.message2;
-                let c = that.state.message3;
-                let d = that.state.message4;
-                DES_ws.send(`DZ#$42,${group},${name},${a},${b},${c},${d},20`);
+            that.setState( {
+              scoreClicker: extra
+            } )
+            if (extra !== name) {  
+                that.setState({
+                  buttonDisplay2: 'none'
+                } )
               }
-          });
+            let a = that.state.message1;
+            let b = that.state.message2;
+            let c = that.state.message3;
+            let d = that.state.message4;
+            DES_ws.send(`DZ#$42,${group},${name},${a},${b},${c},${d},20`);
+
           break;
 
           case "DC#$42":
@@ -676,13 +538,12 @@ DES_ws.onmessage = function(event) {
 
           case "DZ#$42":
             let this2 = that;
-            if (that.state.scoreClicker !== that.state.name) {
+            if (that.state.scoreClicker !== name) {
               let solutions = extra;
               that.delay(8000)
               .then( function() {
                   this2.setState({
                     sol: solutions.split("<br />"),
-                    hidden4: false
                   });
               })
             }
@@ -708,7 +569,7 @@ DES_ws.onmessage = function(event) {
     let name = this.state.name;
     let group = this.state.group;
     if (this.state.DS_T === 0) {
-      DES_ws.send(`CR#$42,${group},${name},filler`);  
+      DES_ws.send(`CR#$42,${group},${name},${name}`);  
       if (this.state.name === this.state.scoreClicker) {
         DES_ws.send(`CI#$42,${group},${name},filler`);   
       }
@@ -719,7 +580,7 @@ DES_ws.onmessage = function(event) {
         message2: '',
         message3: '',
         message4: '',
-        buttonDisplay: 'inline'
+        info: ''
       });
     }
     if ( this.state.DS_T > -1 ) {
@@ -860,6 +721,24 @@ decreaseFont () {
     this.setState( {buttonColor9: '#83f7d8' })
   }
 
+  hoverHandler10 () {
+    this.setState( {buttonColor10: '#f99094' })
+  }
+  
+  leaveHandler10 () { 
+    this.setState( {buttonColor10: '#f7b16f' })
+  }
+
+  hoverHandler11 () {
+    this.setState( {buttonColor11: '#f99094' })
+  }
+  
+  leaveHandler11 () { 
+    this.setState( {buttonColor11: '#f7b16f' })
+  }
+
+
+
   solutions () { 
     let group = this.state.group;
     let name = this.state.name;
@@ -887,13 +766,13 @@ decreaseFont () {
     let col = this.state.dynamicColor;
     this.setState({
       DS_T: 'SCORE!',
-      hidden4: false,
       used: [],
       test: false,
       score: false,
       message: 'You must click SCORE in order to gain a point.',
       sty: {color: col, width: 50, marginLeft: 30, padding: 10},
-      colorB42: '#ff0000'
+      colorB42: '#ff0000',
+      buttonDisplay2: 'inline'
     });
     let name = this.state.name;
     let group = this.state.group;
@@ -933,10 +812,22 @@ decreaseFont () {
     this.newNums(startArray);   
   }
 
-  setGroup (x) {
+  handleGroupA () {
     let name = this.state.name;
-    DES_ws.send( `CO#$42,${x},${name},setGroup` );
+    DES_ws.send( `CO#$42,GroupA,${name},handleGroupA` );
+    this.setState({group: 'GroupA'});
+  }
+
+  handleGroupB () {
+    let name = this.state.name;
+    DES_ws.send( `CO#$42,GroupB,${name},handleGroupB` );
+    this.setState({group: 'GroupB'});
+  }
+
+  setGroup (x) {
+    var name = this.state.name;
     this.setState({group: x});
+    DES_ws.send( `CO#$42,${x},${name},filler` );
   }
 
   setInfo (x) {
@@ -971,7 +862,7 @@ decreaseFont () {
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},`)
       if (result === 20 && this.state.test && inPlay) {
           clock = "One Point For " + name;
-          DES_ws.send( `CR#$42,${gr},${name},filler` ); 
+          DES_ws.send( `CR#$42,${gr},${name},${name}` ); 
           DES_ws.send( `CG#$42,${gr},${name},filler` ); 
       }
     }
@@ -980,12 +871,12 @@ decreaseFont () {
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]}`)
       if (result === 20 && inPlay) {
           clock = "One Point For " + name;
-          DES_ws.send( `CR#$42,${gr},${name},filler` ); 
+          DES_ws.send( `CR#$42,${gr},${name},${name}` ); 
           DES_ws.send( `CG#$42,${gr},${name},filler` ); 
       }
         if (result !== 20 && this.state.score) {
           clock = "Take One Point From " + name;
-          DES_ws.send( `CR#$42,${gr},${name},filler` ); 
+          DES_ws.send( `CR#$42,${gr},${name},${name}` ); 
           DES_ws.send( `CI#$42,${gr},${name},filler` ); 
         }
       } 
@@ -1235,10 +1126,13 @@ decreaseFont () {
     let buttonCol7 = this.state.buttonColor7;
     let buttonCol8 = this.state.buttonColor8;
     let buttonCol9 = this.state.buttonColor9;
+    let buttonCol10 = this.state.buttonColor10;
+    let buttonCol11 = this.state.buttonColor11;
     let dynB = this.state.dynamicBg;
     let dynC = this.state.dynamicColor;
     let dynF = this.state.dynamicFont;
     let buttonDisplay = this.state.buttonDisplay;
+    let buttonDisplay2 = this.state.buttonDisplay2;
     let m1 = this.state.message1;
 
     console.log(this);
@@ -1260,13 +1154,35 @@ decreaseFont () {
             <ScoreBoard key='ScoreBoard' scoreB={this.state.scoreB} />
           </div>
 
-          <Messages key='Messages' info={this.state.info} />
+          <div style={{display: buttonDisplay }} >
+            Current roll: <button style={{backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00'}} > {this.state.d1} </button> 
+             <button style={{backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00'}} > {this.state.d2} </button>  
+               <button style={{backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00'}} > {this.state.d2} </button>  
+               <button style={{backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00'}} > {this.state.d4} </button> 
+           </div>
 
-          <GroupA key='GroupA' hidden2={this.state.hidden2} setGroup={this.setGroup.bind(this)} />
+          <div> {this.state.info} </div>
 
-          <GroupB key='GroupB' setGroup={this.setGroup.bind(this)} hidden2={this.state.hidden2} />
+          <button onMouseEnter={this.hoverHandler10.bind(this)} onClick={this.handleGroupA.bind(this)}
+            onMouseLeave={this.leaveHandler10.bind(this)} 
+            style={{backgroundColor: buttonCol10, display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10}} >
+            GroupA
+          </button>
 
-          <GroupNew key='GroupNew' setGroup={this.setGroup.bind(this)} hidden2={this.state.hidden2} name={this.state.name} />
+          <button onMouseEnter={this.hoverHandler11.bind(this)} onClick={this.handleGroupB.bind(this)}
+            onMouseLeave={this.leaveHandler11.bind(this)} 
+            style={{backgroundColor: buttonCol11, display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10}} >
+            GroupB
+          </button>
+
+          <GroupNew key='GroupNew' setGroup={this.setGroup.bind(this)} hidden2={this.state.hidden2} 
+            name={this.state.name} />
 
           <div/>
 
@@ -1275,19 +1191,26 @@ decreaseFont () {
             group={this.state.group} hidden={this.state.hidden} info={this.state.info} 
              setInfo={this.setInfo.bind(this)} />
 
-          <Display key='Display' str1={this.state.str1} str2={this.state.str2} str3={this.state.str3} 
-            str4={this.state.str4} />
+          <div style={{backgroundColor: '#000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
+             {this.state.str1} <br /> {this.state.str2} <br /> {this.state.str3} <br /> {this.state.str4}
+          </div>
+
+
+      <div style={{display: buttonDisplay2}} >
+
+          <div style={{width: 1200, backgroundColor: dynB,  padding: 10}} > </div>
 
           <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore.bind(this)}
             onMouseLeave={this.leaveHandler9.bind(this)} 
             style={{backgroundColor: buttonCol9, display: buttonDisplay, paddingTop: 1.1, 
-              paddingBottom: 0.9, marginRight: 3}} >
+              paddingBottom: 0.9, marginRight: 3, marginLeft: 10}} >
             {this.state.DS_T}
           </button>
 
-          <div style={{width: 1200, backgroundColor: dynB,  padding: 10}} />
+          <div style={{width: 1200, backgroundColor: dynB,  padding: 10}} > </div>
 
-          <Messages2 key='Messages2' message={this.state.message} />
+          <div> {this.state.message } </div>
 
           <button onMouseEnter={this.hoverHandler0.bind(this)} onClick={this.handleB40.bind(this)}
             onMouseLeave={this.leaveHandler0.bind(this)} 
@@ -1349,38 +1272,57 @@ decreaseFont () {
 
           <button onMouseEnter={this.hoverHandler8.bind(this)} onClick={this.handleOp4.bind(this)}
             onMouseLeave={this.leaveHandler8.bind(this)} 
-            style={{backgroundColor: buttonCol4, display: buttonDisplay, paddingTop: 1.1, 
+            style={{backgroundColor: buttonCol8, display: buttonDisplay, paddingTop: 1.1, 
               paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             Concat
           </button>
 
-          <div style={{width: 1200,  padding: 10}} />
-
-          <B30 key='B30' mes0={this.state.mes0} />
-          <B31 key='B31' mes1={this.state.mes1} />
-          <B32 key='B32' mes2={this.state.mes2} />
-          <B33 key='B33' />
-          <B34 key='B34' res={this.state.res} />
+      </div>
 
           <div style={{width: 1200,  padding: 10}} />
 
+
+          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16}} >
+            {this.state.mes0}
+          </span>
+
+          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, fontSize: 16}} >
+            {this.state.mes1}
+          </span>
+
+          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, fontSize: 16}} >
+            {this.state.mes2}
+          </span>
+
+          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, fontSize: 16}} >
+            =
+          </span>
+
+          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1, 
+              paddingBottom: 0.9, marginRight: 3, fontSize: 16}} >
+            {this.state.res}
+          </span>
+
+          <div style={{width: 1200,  padding: 10}} >  </div>
+
+      <div style={{display: buttonDisplay2}} >
           <button onMouseEnter={this.hoverHandler.bind(this)} 
             onMouseLeave={this.leaveHandler.bind(this)} style={{backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay}} 
               onClick={this.buttonHandler.bind(this)} >
              Roll 
           </button>
+      </div>
 
           <div style={{width: 1200,  padding: 10}} />
           <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol} 
             hidden2={this.state.hidden2} />
+
       </div>
     )}
   };
 
-/*
-  B4.defaultProps = {
-    sol: sol
-  }
-  contentEditable={true}
-*/
   React.render(<B4 />, document.getElementById('divSix'));
