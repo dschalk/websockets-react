@@ -27,7 +27,7 @@ class ScoreBoard extends React.Component {
       console.log(this);
         return (
             <div>
-                Score Board <br /> name_score_group <br /> 
+                Score Board <br /> name_score_group <br />
                 {formatted}
             </div>
         )
@@ -41,28 +41,28 @@ class GroupNew extends React.Component {
 
   handleEnter (event) {
     let group = event.target.value;
-    if (group == '') { 
-      return 
+    if (group == '') {
+      return
     } else {
       if( event.keyCode == 13 ) {
         this.props.setGroup(group);
       }
     }
   }
-  click (event) { 
+  click (event) {
     let group = event.target.value;
-    if (group == '') { 
-        return 
-    } else { 
+    if (group == '') {
+        return
+    } else {
       this.props.setGroup(group);
     }
   }
   render () {
     console.log(this);
-    if ((this.props.hidden2)) { return ( null ) } 
+    if ((this.props.hidden2)) { return ( null ) }
     return (
       <div>
-        <label>New Group<input type="text" id='cow' onKeyDown={this.handleEnter.bind(this)} 
+        <label>New Group<input type="text" id='cow' onKeyDown={this.handleEnter.bind(this)}
           onClick={this.click.bind(this)} style={{width: 90, backgroundColor: '#d8d17d', marginLeft: 10}} />
         </label>
       </div>
@@ -80,7 +80,7 @@ class ChangeColor extends React.Component {
         this.props.changeC(color);
       }
     }
-  click (event) { 
+  click (event) {
     let color = event.target.value;
     if (color != '') {
       this.props.changeC(color);
@@ -111,7 +111,7 @@ class ChangeBackground extends React.Component {
         this.props.changeB(color);
       }
     }
-  click (event) { 
+  click (event) {
     let col = event.target.value;
     if (col != '') {
       this.props.changeC(col);
@@ -140,7 +140,7 @@ class Solutions extends React.Component {
     this.props.solFunc();
   }
   render () {
-    if (this.props.hidden2) { return ( null ) } 
+    if (this.props.hidden2) { return ( null ) }
     let formatted = this.props.sol.map(function(line) {
       return (<p>{line}</p>);
     });
@@ -157,34 +157,34 @@ class SetGoal extends React.Component {
   constructor(props) {
     super(props);
   }
-  handleChange (event) {       // ISSUE: Input box won't accept data without this handleChange function. ??
+  handleChange (event) {       // ISSUE: Input box does not receive input without this handleChange function. ??
     goal = event.target.value;
     this.props.change({goal: goal});
     this.props.setgoal(goal);
   }
   handleEnter (event) {
-    if (this.props.goal == '') { 
-      return 
+    if (this.props.goal == '') {
+      return
     } else {
       if( event.keyCode == 13 ) {
         this.props.setgoal(goal);
       }
     }
   }
-  click (event) { 
-    if (this.props.name == '') { 
-        return 
-    } else { 
+  click (event) {
+    if (this.props.name == '') {
+        return
+    } else {
       this.props.setgoal(goal);
     }
   }
   render () {
     console.log(this);
-    if ((this.props.hidden2)) { return ( null ) } 
+    if ((this.props.hidden2)) { return ( null ) }
     let name = this.props.name;
     return (
       <div >
-        <input type="text" name={name} onChange={this.handleChange.bind(this)} 
+        <input type="text" name={name} onChange={this.handleChange.bind(this)}
         onKeyDown={this.handleEnter.bind(this)} />
         {this.props.goal}
         <button onClick={this.click.bind(this)}>New goal</button>
@@ -205,10 +205,10 @@ class Solutions2 extends React.Component {
     let formatted = this.props.sol.map(function(line) {
       return (<p>{line}</p>);
     });
-    if (this.props.hidden2) { return ( null ) } 
+    if (this.props.hidden2) { return ( null ) }
     return (
         <div  onClick={this.clickHandler.bind(this)} >
-          <div> 
+          <div>
             Solutions <br /> <br />
             {formatted}
           </div>
@@ -226,51 +226,61 @@ class Login extends React.Component {
     this.props.change({name: event.target.value});
   }
   handleEnter (event) {
-    if (this.props.name == '') { 
+    if (this.props.name == '') {
       this.props.change({
         scoreB: [``],
         info: ``
-      }); 
-    } 
+      });
+    }
     else {
     let ENTER = 13;
       if( event.keyCode == ENTER ) {
         let name = this.props.name;
-        this.props.change({ hidden: true});
-        this.props.change({ hidden2: false});
-        this.props.change({ name: name});
-        this.props.change({ buttonDisplay: 'inline'});
+        this.props.change({
+          hidden: true,
+          hidden2: false,
+          name: name,
+          buttonDisplay: 'inline',
+          buttonDisplay2: 'inline',
+          buttonDisplay3: 'inline',
+          buttonDisplay5: 'inline',
+          });
         DES_ws.send('CC#$42'+name);
       }
     }
   }
-  click () { 
-    if (this.props.name == '') { 
+  click () {
+    if (this.props.name == '') {
       this.props.change({
         scoreB: [`Please enter a name.`],
         info: `Please enter a name.`
-      }); 
-    } else { 
+      });
+    } else {
       let name = this.props.name;
-      this.props.change({ buttonDisplay: 'inline'});
-      this.props.change({ hidden: true});
-      this.props.change({ hidden2: false});
-      this.props.change({ name: name});
+      this.props.change({
+        hidden: true,
+        hidden2: false,
+        name: name,
+        buttonDisplay: 'inline',
+        buttonDisplay2: 'inline',
+        buttonDisplay3: 'inline',
+        buttonDisplay5: 'inline',
+        });
       DES_ws.send('CC#$42'+name);
     }
   }
   render () {
     console.log(this);
-    if ((this.props.hidden)) { return ( null ) } 
+    if ((this.props.hidden)) { return ( null ) }
     let name = this.props.name;
     return (
       <div>
-        <input type="text" name={name} onChange={this.handleChange.bind(this)} 
+        <input type="text" name={name} onChange={this.handleChange.bind(this)}
           style={{backgroundColor: '#d8d17d'}}
         onKeyDown={this.handleEnter.bind(this)} />
         {this.props.name}
         <button onClick={this.click.bind(this)} style={{backgroundColor: '#d8d17d', color: '#f00'}} >
-          Join 
+          Join
         </button>
       </div>
     );
@@ -280,7 +290,7 @@ class Login extends React.Component {
 class B4 extends React.Component {
   constructor(props) {
     super(props);
-      this.state = { 
+      this.state = {
         d1: 0,
         d2: 0,
         d3: 0,
@@ -319,6 +329,7 @@ class B4 extends React.Component {
         STRING: '',
         impossibleClicker: "a@F$Uy&imp",
         scoreClicker: "a@F$Uy&sc",
+        interruptClicker: "a@F$intrup%$",
         scoreB: ["Greetings new player."],
         group: 'solo',
         info: 'Please enter a name.',
@@ -329,6 +340,8 @@ class B4 extends React.Component {
         test: false,
         message: '',
         score: false,
+        impossible: false,
+        interrupt: false,
         goal: 29,
         sty: {color: '#d5f765', width: 50, marginLeft: 30, padding: 10},
         buttonColor0: '#83f7d7',
@@ -341,12 +354,19 @@ class B4 extends React.Component {
         buttonColor7: '#acf9a2',
         buttonColor8: '#acf9a2',
         buttonColor9: '#83f7d8',
-        buttonColor10: '#f7b16f',
-        buttonColor11: '#f7b16f',
+        buttonColor10: '#f4f7af',
+        buttonColor11: '#f4f7af',
+        buttonColor12: '#f4f7af',
+	      buttonColor13: '#f4f7af',
+        buttonColor14: '#f4f7af',
         buttonColor: '#83f7d7',
         colorB42: '#000',
         buttonDisplay: 'none',
-        buttonDisplay2: 'inline'
+        buttonDisplay2: 'none',
+        buttonDisplay3: 'none',
+        buttonDisplay4: 'none',
+        buttonDisplay5: 'none',
+        inPlay: false
       }
 
 let that = this;
@@ -384,12 +404,13 @@ DES_ws.onmessage = function(event) {
     return x[2] == ' ' + group
   }
   let ar3 = ar2.filter(inGroup)
-  console.log("4444444444444444444444444444444444444444444444444444444444444444444")
+  console.log("44444444444444444444444444444444444444444444444444444 ar, ar2, ar3 ")
   console.log(ar);
   console.log(ar2);
   console.log(ar3);
+  console.log("4444444444444444444444444444444444444444444444444444444444444444444")
 
-  if ( ( that.state.group === gameArray[1]) || 
+  if ( ( that.state.group === gameArray[1]) ||
         name === sender || extra === '%#8*&&^1#$%^' || d2 === "CB#$42" ) {
       switch (d2) {
 
@@ -399,11 +420,10 @@ DES_ws.onmessage = function(event) {
               setTimeout( function() {
                 document.location.reload(false);
               },2000);
-              // DES_ws.send(`CO#42,solo,Angel Eyes,filler`);
             }
             else {
               that.setGroup('solo');
-              DES_ws.send(`CO#$42,solo,${sender},filler`);
+              DES_ws.send(`CO#$42,solo,${name},${name}`);
             }
           break;
 
@@ -425,15 +445,22 @@ DES_ws.onmessage = function(event) {
                 str3: '',
                 scoreClicker: "a@F$Uy&sc",
                 impossibleClicker: "a@F$Uy&imp",
+                interruptClicker: "a@F$intrup%$",
                 sol: [],
                 d1: extra,
                 d2: ext4,
                 d3: ext5,
-                d4: ext6               
+                d4: ext6,
+                buttonDisplay2: true,
+                buttonDisplay3: true,
+                score: false,
+                impossible: false,
+                interrupt: false,
+                DS_T: 'SCORE!'
               });
           break;
 
-          case "CE#$42": 
+          case "CE#$42":
               that.setState
               ({
                 message1: extra,
@@ -441,6 +468,7 @@ DES_ws.onmessage = function(event) {
                 message3: ext5,
                 message4: ext6,
               });
+              DES_ws.sent('XXXXX In case CE#$42   ${extra} ${ext4} ${ext5} ${ext6}');
           break;
 
           case "CB#$42":
@@ -449,13 +477,15 @@ DES_ws.onmessage = function(event) {
             });
             console.log("________________________CB extra");
             console.log(extra);
-            console.log("________________________CB extra"); 
+            console.log("________________________CB extra");
             //  }
           break;
 
-          case "CD#$42": 
+          case "CD#$42":
             if (sender !== name) {
-              that.setState({buttonDisplay2: 'none'})
+              that.setState({buttonDisplay2: 'none'});
+              that.setState({buttonDisplay3: 'none'});
+              that.setState({buttonDisplay4: 'none'});
             }
           break;
 
@@ -475,7 +505,7 @@ DES_ws.onmessage = function(event) {
               hidden: true,
               str1: extra,
               str2: ext4,
-              str3: ext5,
+              str3: ext5
             });
           break;
 
@@ -483,15 +513,15 @@ DES_ws.onmessage = function(event) {
               that.setState
               ({
                 hidden2: false,
+                hidden5: false
               });
           break;
 
-          case "CK#$42": 
-            if (that.state.score) {
-              that.setState({
-                DS_T: extra,
+          case "CK#$42":
+              that.setState
+              ({
+                DS_T: extra
               });
-            }
           break;
 
           case "CP#$42":
@@ -504,7 +534,14 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CR#$42":
-            that.setState({buttonDisplay2: 'inline'});
+            that.setState({
+              buttonDisplay2: 'inline',
+              message1: 0,
+              message2: 0,
+              message3: 0,
+              message4: 0,
+              info: ''
+            });
           break;
 
           case "CS#$42":
@@ -514,21 +551,49 @@ DES_ws.onmessage = function(event) {
             };
           break;
 
-          case "CY#$42":
+          case "CY#$42":           // Clicked "SCORE!"
             that.setState( {
-              scoreClicker: extra
+              scoreClicker: extra,
+              score: true,
+              message: '',
+              DS_T: 10,
+              buttonDisplay3: 'none',
+              inPlay: true
             } )
-            if (extra !== name) {  
+            if (extra !== name) {
                 that.setState({
                   buttonDisplay2: 'none'
                 } )
               }
-            let a = that.state.message1;
-            let b = that.state.message2;
-            let c = that.state.message3;
-            let d = that.state.message4;
-            DES_ws.send(`DZ#$42,${group},${name},${a},${b},${c},${d},20`);
+          break;
 
+          case "XY#$42":              // Clicked "SCORE!" after "IMPOSSIBLE"
+            that.setState( {
+              interruptClicker: extra,
+              interrupt: true,
+              message: '',
+              DS_T: 10,
+              inPlay: true,
+              buttonDisplay2: 'inline',
+              buttonDisplay4: 'none',
+            } )
+            if (extra !== name) {
+                that.setState({
+                  buttonDisplay2: 'none'
+                } )
+              }
+          break;
+
+          case "DY#$42":                 // Clicked "IMPOSSIBLE"
+            that.setState({
+              impossibleClicker: extra,
+              impossible: true,
+              message: '',
+              DS_T: 60,
+              buttonDisplay2: 'none',
+              buttonDisplay3: 'none',
+              buttonDisplay4: 'inline',
+            })
           break;
 
           case "DC#$42":
@@ -565,44 +630,67 @@ DES_ws.onmessage = function(event) {
     }
   }
 
-  setInterval(() => {
+  setInterval( () => {
     let name = this.state.name;
     let group = this.state.group;
-    if (this.state.DS_T === 0) {
-      DES_ws.send(`CR#$42,${group},${name},${name}`);  
-      if (this.state.name === this.state.scoreClicker) {
-        DES_ws.send(`CI#$42,${group},${name},filler`);   
-      }
-      this.setState
-      ({
-        DS_T: `10 seconds expired. Deduct one point from ${this.state.scoreClicker}`,
-        message1: '',
-        message2: '',
-        message3: '',
-        message4: '',
-        info: ''
-      });
+    let scoreClicker = this.state.scoreClicker;
+		let impossibleClicker = this.state.impossibleClicker;
+		let interruptClicker = this.state.interruptClicker
+		let score = this.state.score;
+		let impossible = this.state.impossible;
+		let interrupt = this.state.interrupt;
+
+    if ( this.state.DS_T > 0 ) {
+      this.setState({DS_T: this.state.DS_T - 1});
+      this.setState({info: this.state.DS_T});
     }
-    if ( this.state.DS_T > -1 ) {
-      let X = this.state.DS_T - 1
-      this.setState({DS_T: X});
-      this.setState({info: X});
-    }
-    if (this.state.DS_T === -1) {
-      this.setState({
-        DS_T: '',
-        info: ''
-      });
-    }
+
+    if ( this.state.DS_T*1 === 0 ) {
+	  let z = scoreClicker === name;
+		let z2 = impossibleClicker === name;
+		let z3 = interruptClicker === name;
+	  let gr = group;
+      if (!interrupt) {
+				if (z) {
+        	DES_ws.send(`CG#$42,${gr},${name},-1`);
+          this.setState({DS_T: `10 seconds expired. Deduct one point from ${scoreClicker}`});
+      	}
+			  else if (z2) {
+        	DES_ws.send(`CG#$42,${gr},${name},1`);
+          this.setState({DS_T: `60 seconds expired. One point for ${impossibleClicker}`});
+				}
+			}
+      else if (interrupt) {
+		    this.setState( {DS_T: `10 seconds expired. One point awarded to ${that.state.impossibleClicker}
+	One point deducted from ${this.state.interruptClicker}`} )
+				if (z2) {
+					DES_ws.send(`CG#$42,${group},${name},1`);
+					DES_ws.send(`CG#$42,${group},${interruptClicker},-1`);
+      	}
+		  }
+
+			this.setState (
+				{
+					  message1: 0,
+					  message2: 0,
+					  message3: 0,
+					  message4: 0,
+					  info: '',
+					  buttonDisplay2: 'inline',
+					  buttonDisplay3: 'none',
+					  buttonDisplay4: 'none'
+				}
+			)
+		}
   }, 1000 )
 }
 
-isElement (x, ar) { 
+isElement (x, ar) {
   var value = false;
   ar.map( e => {
-    if (x === e) {
-      value = true;
-    };
+	if (x === e) {
+	  value = true;
+	};
   })
   return value;
 }
@@ -645,105 +733,127 @@ decreaseFont () {
   hoverHandler () {
     this.setState( {buttonColor: '#f99094' })
   }
-  leaveHandler () { 
+  leaveHandler () {
     this.setState( {buttonColor: '#83f7d8' })
   }
   hoverHandler0 () {
     this.setState( {buttonColor0: '#f99094' })
   }
-  leaveHandler0 () { 
+  leaveHandler0 () {
     this.setState( {buttonColor0: '#83f7d8' })
   }
   hoverHandler1 () {
     this.setState( {buttonColor1: '#f99094' })
   }
-  leaveHandler1 () { 
+  leaveHandler1 () {
     this.setState( {buttonColor1: '#83f7d8' })
   }
   hoverHandler2 () {
     this.setState( {buttonColor2: '#f99094' })
   }
-  leaveHandler2 () { 
+  leaveHandler2 () {
     this.setState( {buttonColor2: '#83f7d8' })
   }
   hoverHandler3 () {
     this.setState( {buttonColor3: '#f99094' })
   }
-  leaveHandler3 () { 
+  leaveHandler3 () {
     this.setState( {buttonColor3: '#83f7d8' })
   }
 
   hoverHandler4 () {
     this.setState( {buttonColor4: '#f99094' })
   }
-  
-  leaveHandler4 () { 
+
+  leaveHandler4 () {
     this.setState( {buttonColor4: '#acf9a2' })
   }
 
   hoverHandler5 () {
     this.setState( {buttonColor5: '#f99094' })
   }
-  
-  leaveHandler5 () { 
+
+  leaveHandler5 () {
     this.setState( {buttonColor5: '#acf9a2' })
   }
 
   hoverHandler6 () {
     this.setState( {buttonColor6: '#f99094' })
   }
-  
-  leaveHandler6 () { 
+
+  leaveHandler6 () {
     this.setState( {buttonColor6: '#acf9a2' })
   }
 
   hoverHandler7 () {
     this.setState( {buttonColor7: '#f99094' })
   }
-  
-  leaveHandler7 () { 
+
+  leaveHandler7 () {
     this.setState( {buttonColor7: '#acf9a2' })
   }
 
   hoverHandler8 () {
     this.setState( {buttonColor8: '#f99094' })
   }
-  
-  leaveHandler8 () { 
+
+  leaveHandler8 () {
     this.setState( {buttonColor8: '#acf9a2' })
   }
 
   hoverHandler9 () {
     this.setState( {buttonColor9: '#f99094' })
   }
-  
-  leaveHandler9 () { 
+
+  leaveHandler9 () {
     this.setState( {buttonColor9: '#83f7d8' })
   }
 
   hoverHandler10 () {
     this.setState( {buttonColor10: '#f99094' })
   }
-  
-  leaveHandler10 () { 
+
+  leaveHandler10 () {
     this.setState( {buttonColor10: '#f7b16f' })
   }
 
   hoverHandler11 () {
     this.setState( {buttonColor11: '#f99094' })
   }
-  
-  leaveHandler11 () { 
+
+  leaveHandler11 () {
     this.setState( {buttonColor11: '#f7b16f' })
   }
 
+  hoverHandler12 () {
+    this.setState( {buttonColor12: '#f99094' })
+  }
 
+  leaveHandler12 () {
+    this.setState( {buttonColor12: '#f7b16f' })
+  }
 
-  solutions () { 
+  hoverHandler13 () {
+    this.setState( {buttonColor13: '#f99094' })
+  }
+
+  leaveHandler13 () {
+    this.setState( {buttonColor13: '#83f7d8' })
+  }
+
+  hoverHandler14 () {
+    this.setState( {buttonColor14: '#f99094' })
+  }
+
+  leaveHandler14 () {
+    this.setState( {buttonColor14: '#83f7d8' })
+  }
+
+  solutions () {
     let group = this.state.group;
     let name = this.state.name;
     let goal = this.state.goal;
-    DES_ws.send( `CZ#$42,${group},${name},${goal}` ); 
+    DES_ws.send( `CZ#$42,${group},${name},${goal}` );
   }
 
   moreUsed (x) {
@@ -769,10 +879,12 @@ decreaseFont () {
       used: [],
       test: false,
       score: false,
+      interrupt: false,
       message: 'You must click SCORE in order to gain a point.',
       sty: {color: col, width: 50, marginLeft: 30, padding: 10},
       colorB42: '#ff0000',
-      buttonDisplay2: 'inline'
+      buttonDisplay2: 'inline',
+      buttonDisplay3: 'inline'
     });
     let name = this.state.name;
     let group = this.state.group;
@@ -786,7 +898,7 @@ decreaseFont () {
     } else this.delay(300).then( function () {
       that.rollDice()
     })
-    // this.setState({sty: {color: '#d5f765', 
+    // this.setState({sty: {color: '#d5f765',
     //      fontSize: "38", textAlign: "center", padding: "20",  }});
   }
 
@@ -802,16 +914,6 @@ decreaseFont () {
     }
   }
 
-  setNumberAr () {
-    let w1 = this.state.message1;
-    let w2 = this.state.message2;
-    let w3 = this.state.message3;
-    let w4 = this.state.message4;
-    let result = this.state.res;
-    let startArray = [w1, w2, w3, w4, result];
-    this.newNums(startArray);   
-  }
-
   handleGroupA () {
     let name = this.state.name;
     DES_ws.send( `CO#$42,GroupA,${name},handleGroupA` );
@@ -822,6 +924,12 @@ decreaseFont () {
     let name = this.state.name;
     DES_ws.send( `CO#$42,GroupB,${name},handleGroupB` );
     this.setState({group: 'GroupB'});
+  }
+
+  handleGroupC () {
+    let name = this.state.name;
+    DES_ws.send( `CO#$42,GroupC,${name},handleGroupC` );
+    this.setState({group: 'GroupC'});
   }
 
   setGroup (x) {
@@ -836,108 +944,135 @@ decreaseFont () {
     DES_ws.send( `IA#$42,${group},${name},${x}` );
   }
 
-  newNums (x) {
+  setNumberAr (result,str,test) {
+    let w1 = this.state.message1;
+    let w2 = this.state.message2;
+    let w3 = this.state.message3;
+    let w4 = this.state.message4;
+    let startArray = [w1, w2, w3, w4, result];
+    this.newNums(result,str,test,teststartArray);
+  }
+
+  calc (mes0,mes1,mes2) {
+    let that = this;
+    let res = 0;
+    let delay = this.delay;
+    let n = this.state.N;
+    let resP = this.state.resPrevious;
+    let ar5 = [mes0,mes2];
+    let test = (resP === mes0 || resP === mes2);
+    DES_ws.send(`XXXXX In calc where test is defined resP: ${resP}   mes0: ${mes0}   mes2: ${mes2}   test: ${test}`);
+    this.setState({
+      test: test
+    });
+    switch (mes1) {
+      case "+": that.comp( parseFloat(mes0) + parseFloat(mes2),mes0,mes1,mes2,test );
+      break;
+      case "-": that.comp( parseFloat(mes0) - parseFloat(mes2),mes0,mes1,mes2,test );
+      break;
+      case "*": that.comp( parseFloat(mes0) * parseFloat(mes2),mes0,mes1,mes2,test );;
+      break;
+      case "/": that.comp( parseFloat(mes0) / parseFloat(mes2),mes0,mes1,mes2,test );
+      break;t
+      case "Concat": that.comp( parseFloat(mes0+""+mes2),mes0,mes1,mes2,test );
+      break;
+      default : 'operator not selected';
+    }
+  }
+
+  comp (result,mes0,mes1,mes2,test) {
+    let str = `${mes0} ${mes1} ${mes2} = ${result}`;
+    this.setState({
+      STRING: str,
+      resPrevious: result.toString(),
+      message: '',
+      colorB42: '#ff0000'
+    })
+    let w1 = this.state.message1;
+    let w2 = this.state.message2;
+    let w3 = this.state.message3;
+    let w4 = this.state.message4;
+    let startArray = [w1, w2, w3, w4, result];
+    this.newNums(result,str,test,startArray);
+  }
+
+  newNums (result,str,test,x) {
     let j = 0;
     let gr = this.state.group;
-    let inPlay = this.state.score;
+		let inPlay = this.state.inPlay;
     let ar = [];
-    let clock = 10;
-    let string = this.state.STRING;
-    let result = this.state.res;
+    let clock = '';
     let name = this.state.name;
+		let impossibleClicker = this.state.impossibleClicker;
+		let interrupt = this.state.interrupt;
     for (let k in x) {
         if (x[k] !== "" && x[k] !== undefined) {
         ar[j] = x[k];
         j += 1;
       }
     }
-    this.setState({N: j});
+    DES_ws.send(`XXXXX in newNums ${ar}`);
     if (j === 3) {
-      DES_ws.send(`CQ#$42,${gr},${name},str1,${string}`);
-      DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},${ar[2]}`);
-      this.setState({message: 'You must use the red number in order to score in this round.'})
+      DES_ws.send(`CQ#$42,${gr},${name},str1,${str}`);
+      DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},${ar[2]},`);
+      this.setState({message: 'You must use the red number in order to score in this round.'});
+			DES_ws.send( `CK#$42,${gr},${name},10` );
     }
     else if (j === 2) {
-      DES_ws.send(`CQ#$42,${gr},${name},str2,${string}`);
-      DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},`)
-      if (result === 20 && this.state.test && inPlay) {
-          clock = "One Point For " + name;
-          DES_ws.send( `CR#$42,${gr},${name},${name}` ); 
-          DES_ws.send( `CG#$42,${gr},${name},filler` ); 
+      DES_ws.send(`CQ#$42,${gr},${name},str2,${str}`);
+      DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},,`);
+      DES_ws.send(`XXXXX,${result === 20},${test},${inPlay},${interrupt},`);
+      if ( (result === 20) && test && inPlay && !interrupt ) {
+          clock = `One point for ${name}`
+          DES_ws.send( `CR#$42,${gr},${name},${name}` );
+          DES_ws.send( `CG#$42,${gr},${name},1` );
       }
+	  	else if ( (result === 20) && test && inPlay && interrupt ) {
+        clock = `One point for ${name}.
+        Two points deducted from ${impossibleClicker}`;
+        DES_ws.send( `CR#$42,${gr},${name},${name}` );
+        DES_ws.send( `CG#$42,${gr},${name},1` );
+		  	DES_ws.send( `CG#$42,${gr},${impossibleClicker},-2` );
+	  	}
+			else {DES_ws.send( `CK#$42,${gr},${name},10` );}
     }
     else if (j === 1) {
-      DES_ws.send(`CQ#$42,${gr},${name},str3,${string}`);
-      DES_ws.send(`CE#$42,${gr},${name},${ar[0]}`)
-      if (result === 20 && inPlay) {
-          clock = "One Point For " + name;
-          DES_ws.send( `CR#$42,${gr},${name},${name}` ); 
-          DES_ws.send( `CG#$42,${gr},${name},filler` ); 
+      DES_ws.send(`CQ#$42,${gr},${name},str3,${str}`);
+      DES_ws.send(`CE#$42,${gr},${name},${ar[0]},,,`)
+      if (result === 20 && test && inPlay && !interrupt) {
+          clock = `One point for ${name}`;
+          DES_ws.send( `CR#$42,${gr},${name},${name}` );
+          DES_ws.send( `CG#$42,${gr},${name},1` );
       }
-        if (result !== 20 && this.state.score) {
-          clock = "Take One Point From " + name;
-          DES_ws.send( `CR#$42,${gr},${name},${name}` ); 
-          DES_ws.send( `CI#$42,${gr},${name},filler` ); 
+      else if (result === 20 && test && inPlay && interrupt) {
+        clock = `One point for ${name}.
+        Two points deducted from ${impossibleClicker}`;
+          DES_ws.send( `CR#$42,${gr},${name},${name}` );
+          DES_ws.send( `CG#$42,${gr},${name},1` );
+		      DES_ws.send( `CG#$42,${gr},${impossibleClicker},-2` );
         }
-      } 
-      DES_ws.send( `CK#$42,${gr},${name},${clock}` );
-      DES_ws.send( `CF#$42,${gr},${name},filler` );
+      else if (result !== 20 && test && inPlay && !interrupt) {
+          clock = `The result is not 20. ${name} lost one point.`;
+          DES_ws.send( `CR#$42,${gr},${name},${name}` );
+          DES_ws.send( `CG#$42,${gr},${name},-1` );
+        }
+      else if (result !== 20 && test && inPlay && interrupt) {
+          clock = `The result is not 20. One point taken from ${name}.
+          One point awarded to ${impossibleClicker}.`;
+          DES_ws.send( `CR#$42,${gr},${name},${name}` );
+          DES_ws.send( `CG#$42,${gr},${name},-1` );
+		  		DES_ws.send( `CG#$42,${gr},${impossibleClicker},1` );
+        }
+      }
+	  	if (j === 1 || result === 20 ) {
+        DES_ws.send( `CK#$42,${gr},${name},${clock}` );
+				this.setState({
+          DS_T: clock
+        });
+      }
+			DES_ws.send( `CF#$42,${gr},${name},${name}` );
     }
 
-  calc () {
-    let group = this.state.group;
-    let that = this;
-    let delay = this.delay;
-    let res, m0, m1, m2;
-    let n = this.state.N;
-    let name = this.state.name;
-    if (this.state.DS_T !== "SCORE!") {
-      DES_ws.send( `CK#$42,${group},${name},10` );
-    }
-    delay(100).then( function() {
-      m0 = that.state.mes0;
-      m1 = that.state.mes1;
-      m2 = that.state.mes2;
-      let resP = that.state.resPrevious;
-      let ar5 = [m0,m2];
-      let usedTest = that.isElement(resP,[m0,m2]);
-      console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
-      console.log(m0,m2,resP,ar5,usedTest);
-      console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
-      that.setState({ test: usedTest })
-      switch (m1) {
-          case "+": that.setState({res: parseFloat(m0) + parseFloat(m2)});
-          break;
-          case "-": that.setState({res: parseFloat(m0) - parseFloat(m2)});
-          break;
-          case "*": that.setState({res: parseFloat(m0) * parseFloat(m2)});
-          break;
-          case "/": that.setState({res: parseFloat(m0) / parseFloat(m2)});
-          break;t
-          case "Concat": that.setState({res: parseFloat(m0+""+m2)});
-          break;
-          default : 'operator not selected';
-      }
-    })
-    .then( delay(150) )
-    .then( this.forceUpdate() )
-    .then( delay(150) )
-    .then( function() {
-      let resString = that.state.res.toString();
-      that.setState({ 
-        STRING: `${m0} ${m1} ${m2} = ${resString}`,
-        resPrevious: resString,
-        message: ''
-        })
-    })
-    .then( delay(100) )
-    .then( function () {
-      that.setNumberAr();
-    })
-    .then(function() {
-      that.setState({colorB42: '#ff0000' });
-    });
-  }
 
   newPlayer (x) {
     this.setState({name: x});
@@ -960,38 +1095,22 @@ decreaseFont () {
     this.rollDice();
   }
 
-  handleB (m) {
-    let name = this.state.name;
-    let group = this.state.group;
-    let num = this.state.m;
-    this.moreUsed(num);
-    this.setState({m: '' });
-    if (this.state.mes0 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-      console.log('_________________________________________________________in handleB40');
-    }
-    else if (this.state.mes2 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
-      if (this.state.mes1 !== 'Operator') {
-        this.calc();
-      }
-    }
-  }
-
   handleB40 () {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message1;
+    let num0 = this.state.mes0;
+    let op = this.state.mes1;
+    let num2 = this.state.mes2;
     this.moreUsed(num);
     this.setState({message1: '' });
     if (this.state.mes0 === 'Number') {
       DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-      console.log('_________________________________________________________in handleB40');
     }
     else if (this.state.mes2 === 'Number') {
       DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
       if (this.state.mes1 !== 'Operator') {
-        this.calc();
+        this.calc(num0, op, num);
       }
     }
   }
@@ -1000,6 +1119,9 @@ decreaseFont () {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message2;
+    let num0 = this.state.mes0;
+    let op = this.state.mes1;
+    let num2 = this.state.mes2;
     this.moreUsed(num);
     this.setState({message2: '' });
     if (this.state.mes0 === 'Number') {
@@ -1009,7 +1131,7 @@ decreaseFont () {
     else if (this.state.mes2 === 'Number') {
       DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
       if (this.state.mes1 !== 'Operator') {
-        this.calc();
+        this.calc(num0, op, num);
       }
     }
   }
@@ -1018,6 +1140,9 @@ decreaseFont () {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message3;
+    let num0 = this.state.mes0;
+    let op = this.state.mes1;
+    let num2 = this.state.mes2;
     this.moreUsed(num);
     this.setState({message3: '' });
     if (this.state.mes0 === 'Number') {
@@ -1027,7 +1152,7 @@ decreaseFont () {
     else if (this.state.mes2 === 'Number') {
       DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
       if (this.state.mes1 !== 'Operator') {
-        this.calc();
+        this.calc(num0, op, num);
       }
     }
   }
@@ -1035,7 +1160,10 @@ decreaseFont () {
   handleB43 () {
     let name = this.state.name;
     let group = this.state.group;
-    let num = this.state.message4;
+    let num = this.state.message3;
+    let num0 = this.state.mes0;
+    let op = this.state.mes1;
+    let num2 = this.state.mes2;
     this.moreUsed(num);
     this.setState({message4: '' });
     if (this.state.mes0 === 'Number') {
@@ -1045,58 +1173,58 @@ decreaseFont () {
     else if (this.state.mes2 === 'Number') {
       DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
       if (this.state.mes1 !== 'Operator') {
-        this.calc();
+        this.calc(num0, op, num);
       }
     }
   }
 
-  handleOp0 () { 
+  handleOp0 () {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send(`CQ#$42,${group},${name},mes1,+`);
     let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
     if (test) {
-        this.calc();
+        this.calc(this.state.mes0, '+',this.state.mes2);
     }
   }
 
-  handleOp1 () { 
+  handleOp1 () {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send(`CQ#$42,${group},${name},mes1,-`);
     let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
     if (test) {
-        this.calc();
+        this.calc(this.state.mes0, '-',this.state.mes2);
     }
   }
 
-  handleOp2 () { 
+  handleOp2 () {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send(`CQ#$42,${group},${name},mes1,*`);
     let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
     if (test) {
-        this.calc();
+        this.calc(this.state.mes0, '*',this.state.mes2);
     }
   }
 
-  handleOp3 () { 
+  handleOp3 () {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send(`CQ#$42,${group},${name},mes1,/`);
     let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
     if (test) {
-        this.calc();
+        this.calc(this.state.mes0, '/',this.state.mes2);
     }
   }
 
-  handleOp4 () { 
+  handleOp4 () {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send(`CQ#$42,${group},${name},mes1,Concat`);
     let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
     if (test) {
-        this.calc();
+        this.calc(this.state.mes0, 'Concat',this.state.mes2);
     }
   }
 
@@ -1104,14 +1232,20 @@ decreaseFont () {
     let name = this.state.name;
     let group = this.state.group;
     if (this.state.DS_T === "SCORE!") {   // Click works only at the start of each round
-      this.setState({
-        score: true,
-        message: '',
-        scoreClicker: name
-      });
-      DES_ws.send( `CK#$42,${group},${name},10` );
-      DES_ws.send( `CY#$42,${group},${name},${name}` );   // After 8 seconds, non-clickers see solutions.
-    } 
+      DES_ws.send( `CY#$42,${group},${name},${name}` );
+    }
+  }
+
+    handleScore2 () {
+    let name = this.state.name;
+    let group = this.state.group;
+    DES_ws.send( `XY#$42,${group},${name},${name}` );
+  }
+
+    handleImpossible () {
+    let name = this.state.name;
+    let group = this.state.group;
+    DES_ws.send( `DY#$42,${group},${name},${name}` );
   }
 
   render () {
@@ -1128,114 +1262,140 @@ decreaseFont () {
     let buttonCol9 = this.state.buttonColor9;
     let buttonCol10 = this.state.buttonColor10;
     let buttonCol11 = this.state.buttonColor11;
+    let buttonCol12 = this.state.buttonColor12;
+    let buttonCol13 = this.state.buttonColor13;
+    let buttonCol14 = this.state.buttonColor14;
     let dynB = this.state.dynamicBg;
     let dynC = this.state.dynamicColor;
     let dynF = this.state.dynamicFont;
     let buttonDisplay = this.state.buttonDisplay;
     let buttonDisplay2 = this.state.buttonDisplay2;
+    let buttonDisplay3 = this.state.buttonDisplay3;
+    let buttonDisplay4 = this.state.buttonDisplay4;
+    let buttonDisplay5 = this.state.buttonDisplay5;
     let m1 = this.state.message1;
 
     console.log(this);
     return (
       <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, display: 'inlineBlock'}} >
           <div style={{width: 600, float: 'right'}} >
-            <ChangeColor key='ChangeColor' changeC={this.changeColor.bind(this)} 
+            <ChangeColor key='ChangeColor' changeC={this.changeColor.bind(this)}
               style={{width: 8}} />
-            <ChangeBackground key='ChangeBackground' changeB={this.changeBackground.bind(this)} 
+            <ChangeBackground key='ChangeBackground' changeB={this.changeBackground.bind(this)}
               style={{width: 8}} />
-            <button key='$#19' onClick={this.increaseFont.bind(this)} 
-               
+            <button key='$#19' onClick={this.increaseFont.bind(this)}
+
               style={{backgroundColor: '#d8d17d', color: '#f00'}} >
                Increase Font Size</button>
             <span style={{backgroundColor: dynB, color: dynB}}>e</span>
-            <button key='$#20' onClick={this.decreaseFont.bind(this)}  
+            <button key='$#20' onClick={this.decreaseFont.bind(this)}
               style={{backgroundColor: '#d8d17d', color: '#f00'}} >
               Decrease Font Size</button>
             <ScoreBoard key='ScoreBoard' scoreB={this.state.scoreB} />
           </div>
 
           <div style={{display: buttonDisplay }} >
-            Current roll: <button style={{backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1, 
-              paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00'}} > {this.state.d1} </button> 
-             <button style={{backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1, 
-              paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00'}} > {this.state.d2} </button>  
-               <button style={{backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1, 
-              paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00'}} > {this.state.d2} </button>  
-               <button style={{backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1, 
-              paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00'}} > {this.state.d4} </button> 
+            Current roll: <button style={{backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1,
+              paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00'}} > {this.state.d1} </button>
+             <button style={{backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1,
+              paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00'}} > {this.state.d2} </button>
+               <button style={{backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1,
+              paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00'}} > {this.state.d3} </button>
+               <button style={{backgroundColor: '#000', display: buttonDisplay, paddingTop: 1.1,
+              paddingBottom: 0.9, fontSize: 20, marginLeft: 5, color: '#f00'}} > {this.state.d4} </button>
            </div>
 
           <div> {this.state.info} </div>
 
           <button onMouseEnter={this.hoverHandler10.bind(this)} onClick={this.handleGroupA.bind(this)}
-            onMouseLeave={this.leaveHandler10.bind(this)} 
-            style={{backgroundColor: buttonCol10, display: buttonDisplay, paddingTop: 1.1, 
+            onMouseLeave={this.leaveHandler10.bind(this)}
+            style={{backgroundColor: buttonCol10, display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10}} >
             GroupA
           </button>
 
           <button onMouseEnter={this.hoverHandler11.bind(this)} onClick={this.handleGroupB.bind(this)}
-            onMouseLeave={this.leaveHandler11.bind(this)} 
-            style={{backgroundColor: buttonCol11, display: buttonDisplay, paddingTop: 1.1, 
+            onMouseLeave={this.leaveHandler11.bind(this)}
+            style={{backgroundColor: buttonCol11, display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10}} >
             GroupB
           </button>
 
-          <GroupNew key='GroupNew' setGroup={this.setGroup.bind(this)} hidden2={this.state.hidden2} 
+          <button onMouseEnter={this.hoverHandler12.bind(this)} onClick={this.handleGroupC.bind(this)}
+            onMouseLeave={this.leaveHandler12.bind(this)}
+            style={{backgroundColor: buttonCol12, display: buttonDisplay, paddingTop: 1.1,
+              paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10}} >
+            GroupC
+          </button>
+
+          <GroupNew key='GroupNew' setGroup={this.setGroup.bind(this)} hidden2={this.state.hidden2}
             name={this.state.name} />
 
           <div/>
 
-          <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name} 
-            setGroup={this.setGroup.bind(this)} change={this.changeItem.bind(this)} 
-            group={this.state.group} hidden={this.state.hidden} info={this.state.info} 
+          <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
+            setGroup={this.setGroup.bind(this)} change={this.changeItem.bind(this)}
+            group={this.state.group} hidden={this.state.hidden} info={this.state.info}
              setInfo={this.setInfo.bind(this)} />
 
-          <div style={{backgroundColor: '#000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1, 
+          <div style={{backgroundColor: '#000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
              {this.state.str1} <br /> {this.state.str2} <br /> {this.state.str3} <br /> {this.state.str4}
           </div>
 
-
-      <div style={{display: buttonDisplay2}} >
-
           <div style={{width: 1200, backgroundColor: dynB,  padding: 10}} > </div>
 
           <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore.bind(this)}
-            onMouseLeave={this.leaveHandler9.bind(this)} 
-            style={{backgroundColor: buttonCol9, display: buttonDisplay, paddingTop: 1.1, 
+            onMouseLeave={this.leaveHandler9.bind(this)}
+            style={{backgroundColor: buttonCol9, display: buttonDisplay5, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10}} >
             {this.state.DS_T}
           </button>
+
+          <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore2.bind(this)}
+            onMouseLeave={this.leaveHandler9.bind(this)}
+            style={{backgroundColor: buttonCol9, display: buttonDisplay4, paddingTop: 1.1,
+              paddingBottom: 0.9, marginRight: 3, marginLeft: 10}} >
+            SCORE!
+          </button>
+
+          <button onMouseEnter={this.hoverHandler14.bind(this)} onClick={this.handleImpossible.bind(this)}
+            onMouseLeave={this.leaveHandler14.bind(this)}
+            style={{backgroundColor: buttonCol14, display: buttonDisplay3, paddingTop: 1.1,
+              paddingBottom: 0.9, marginRight: 3, marginLeft: 10}} >
+            IMPOSSIBLE
+          </button>
+
+      <div style={{display: buttonDisplay2}} >
 
           <div style={{width: 1200, backgroundColor: dynB,  padding: 10}} > </div>
 
           <div> {this.state.message } </div>
 
           <button onMouseEnter={this.hoverHandler0.bind(this)} onClick={this.handleB40.bind(this)}
-            onMouseLeave={this.leaveHandler0.bind(this)} 
-            style={{backgroundColor: buttonCol0, display: buttonDisplay, paddingTop: 1.1, 
+            onMouseLeave={this.leaveHandler0.bind(this)}
+            style={{backgroundColor: buttonCol0, display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 20}} >
             {this.state.message1}
           </button>
 
           <button onMouseEnter={this.hoverHandler1.bind(this)} onClick={this.handleB41.bind(this)}
-            onMouseLeave={this.leaveHandler1.bind(this)} 
-            style={{backgroundColor: buttonCol1, display: buttonDisplay, paddingTop: 1.1, 
+            onMouseLeave={this.leaveHandler1.bind(this)}
+            style={{backgroundColor: buttonCol1, display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             {this.state.message2}
           </button>
 
           <button onMouseEnter={this.hoverHandler2.bind(this)} onClick={this.handleB42.bind(this)}
-            onMouseLeave={this.leaveHandler2.bind(this)} 
-            style={{backgroundColor: buttonCol2, display: buttonDisplay, paddingTop: 1.1, 
+            onMouseLeave={this.leaveHandler2.bind(this)}
+            style={{backgroundColor: buttonCol2, display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             {this.state.message3}
           </button>
 
           <button onMouseEnter={this.hoverHandler3.bind(this)} onClick={this.handleB43.bind(this)}
-            onMouseLeave={this.leaveHandler3.bind(this)} 
-            style={{backgroundColor: buttonCol3, display: buttonDisplay, paddingTop: 1.1, 
+            onMouseLeave={this.leaveHandler3.bind(this)}
+            style={{backgroundColor: buttonCol3, display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             {this.state.message4}
           </button>
@@ -1243,36 +1403,36 @@ decreaseFont () {
           <div style={{width: 1200,  padding: 10}} />
 
           <button onMouseEnter={this.hoverHandler4.bind(this)} onClick={this.handleOp0.bind(this)}
-            onMouseLeave={this.leaveHandler4.bind(this)} 
-            style={{backgroundColor: buttonCol4, display: buttonDisplay, paddingTop: 1.1, 
+            onMouseLeave={this.leaveHandler4.bind(this)}
+            style={{backgroundColor: buttonCol4, display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 20}} >
             +
           </button>
 
           <button onMouseEnter={this.hoverHandler5.bind(this)} onClick={this.handleOp1.bind(this)}
-            onMouseLeave={this.leaveHandler5.bind(this)} 
-            style={{backgroundColor: buttonCol5, display: buttonDisplay, paddingTop: 1.1, 
+            onMouseLeave={this.leaveHandler5.bind(this)}
+            style={{backgroundColor: buttonCol5, display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             -
           </button>
 
           <button onMouseEnter={this.hoverHandler6.bind(this)} onClick={this.handleOp2.bind(this)}
-            onMouseLeave={this.leaveHandler6.bind(this)} 
-            style={{backgroundColor: buttonCol6, display: buttonDisplay, paddingTop: 1.1, 
+            onMouseLeave={this.leaveHandler6.bind(this)}
+            style={{backgroundColor: buttonCol6, display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             *
           </button>
 
           <button onMouseEnter={this.hoverHandler7.bind(this)} onClick={this.handleOp3.bind(this)}
-            onMouseLeave={this.leaveHandler7.bind(this)} 
-            style={{backgroundColor: buttonCol7, display: buttonDisplay, paddingTop: 1.1, 
+            onMouseLeave={this.leaveHandler7.bind(this)}
+            style={{backgroundColor: buttonCol7, display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             /
           </button>
 
           <button onMouseEnter={this.hoverHandler8.bind(this)} onClick={this.handleOp4.bind(this)}
-            onMouseLeave={this.leaveHandler8.bind(this)} 
-            style={{backgroundColor: buttonCol8, display: buttonDisplay, paddingTop: 1.1, 
+            onMouseLeave={this.leaveHandler8.bind(this)}
+            style={{backgroundColor: buttonCol8, display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
             Concat
           </button>
@@ -1282,27 +1442,27 @@ decreaseFont () {
           <div style={{width: 1200,  padding: 10}} />
 
 
-          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1, 
+          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16}} >
             {this.state.mes0}
           </span>
 
-          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1, 
+          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 16}} >
             {this.state.mes1}
           </span>
 
-          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1, 
+          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 16}} >
             {this.state.mes2}
           </span>
 
-          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1, 
+          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 16}} >
             =
           </span>
 
-          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1, 
+          <span style={{backgroundColor: '000', color: '#0f0', display: buttonDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 16}} >
             {this.state.res}
           </span>
@@ -1310,16 +1470,18 @@ decreaseFont () {
           <div style={{width: 1200,  padding: 10}} >  </div>
 
       <div style={{display: buttonDisplay2}} >
-          <button onMouseEnter={this.hoverHandler.bind(this)} 
-            onMouseLeave={this.leaveHandler.bind(this)} style={{backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay}} 
+          <button onMouseEnter={this.hoverHandler.bind(this)}
+            onMouseLeave={this.leaveHandler.bind(this)} style={{backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay}}
               onClick={this.buttonHandler.bind(this)} >
-             Roll 
+             Roll
           </button>
       </div>
 
+      <div style={{display: buttonDisplay3}} >
           <div style={{width: 1200,  padding: 10}} />
-          <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol} 
+          <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol}
             hidden2={this.state.hidden2} />
+      </div>
 
       </div>
     )}

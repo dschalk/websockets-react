@@ -51,10 +51,12 @@ fy x = case x of
     [_,_,_,d,_,_,_] -> T.pack d
     _ -> T.pack "fy malfunctioned"
 
+fyy :: [String] -> String
+fyy [_,_,_,d] = d
+
 gG :: ServerState -> Group
 gG [a] = getGroup a
 gG _   = "Error Group"
-
 
 allGroups :: ServerState -> Text
 allGroups (x:xs)  | length (x:xs) == 0  = ""
@@ -96,11 +98,11 @@ getConn (_,_,_,d) =d
 
 filterGroup :: Text -> ServerState -> [Text]
 filterGroup group s = [ a `mappend` " _ " `mappend` T.pack (show b)
-    `mappend` " _ " `mappend` c | (a,b,c,d) <- s, group == c]
+    `mappend` " _ " `mappend` c | (a,b,c,_) <- s, group == c]
 
 textState :: ServerState -> [Text]
 textState s = [ a `mappend` " _ " `mappend` T.pack (show b)
-    `mappend` " _ " `mappend` c | (a,b,c,d) <- s]
+    `mappend` " _ " `mappend` c | (a,b,c,_) <- s]
 
 newGroup :: Text -> Text -> Client -> Client
 newGroup name group (a, b, c, d)   | name == a  = (a, 0, group, d)
@@ -108,6 +110,9 @@ newGroup name group (a, b, c, d)   | name == a  = (a, 0, group, d)
 
 changeGroup :: Text -> Text -> ServerState -> ServerState
 changeGroup name group = map (newGroup name group)
+
+
+{-
 
 incFunc :: Text -> Client -> Client
 incFunc x (a, b, c, d)   | x == a   = (a, b + 1, c, d)
@@ -121,14 +126,16 @@ decFunc2 :: Text -> Client -> Client
 decFunc2 x (a, b, c, d)   | x == a   = (a, b - 2, c, d)
                           | otherwise = (a, b, c, d)
 
-upScore :: Text -> ServerState -> ServerState
-upScore name = map (incFunc name)
+-}
 
-downScore :: Text -> ServerState -> ServerState
-downScore name = map (decFunc name)
 
-downScore2 :: Text -> ServerState -> ServerState
-downScore2 name = map (decFunc2 name)
+
+changeS :: Text -> Int -> Client -> Client
+changeS x y (a, b, c, d) | x == a    = (a, b+y, c, d)
+                         | otherwise = (a, b, c, d)
+
+changeScore :: Text -> Int -> ServerState -> ServerState
+changeScore name k = map (changeS name k)
 
 newServerState :: ServerState
 newServerState = []
@@ -148,7 +155,6 @@ addClient client clients = client : clients
 
 removeClient :: Client -> ServerState -> ServerState
 removeClient client = filter ((/= getName client) . getName)
-
 
 closeClientConn client s = do
     let s' = removeClient client s
@@ -206,8 +212,6 @@ talk conn state (user, _, _, _) = forever $ do
     msg <- WS.receiveData conn
 
     l <- initLogger
-    logMessage l (T.unpack msg)
-
     let msgArray = splitOn "," (T.unpack msg)
 
     let group = fw msgArray
@@ -224,6 +228,7 @@ talk conn state (user, _, _, _) = forever $ do
     print "****************************msgArray next: "
     mapM_ print msgArray
     print "****************************That was msgArray"
+
     if "CA#$42" `T.isPrefixOf` msg
         then
             do
@@ -260,7 +265,9 @@ talk conn state (user, _, _, _) = forever $ do
         "CH#$42" `T.isPrefixOf` msg || "CJ#$42" `T.isPrefixOf` msg || "CK#$42" `T.isPrefixOf` msg ||
         "CP#$42" `T.isPrefixOf` msg || "CQ#$42" `T.isPrefixOf` msg || "CS#$42" `T.isPrefixOf` msg ||
         "CY#$42" `T.isPrefixOf` msg || "CR#$42" `T.isPrefixOf` msg || "CD#$42" `T.isPrefixOf` msg ||
-        "IA#$42" `T.isPrefixOf` msg
+        "IA#$42" `T.isPrefixOf` msg || "DY#$42" `T.isPrefixOf` msg || "DI#$42" `T.isPrefixOf` msg ||
+        "XI#$42" `T.isPrefixOf` msg || "XK#$42" `T.isPrefixOf` msg || "XY#$42" `T.isPrefixOf` msg ||
+        "QI#$42" `T.isPrefixOf` msg
         then
             do
                 st <- readMVar state
@@ -269,49 +276,9 @@ talk conn state (user, _, _, _) = forever $ do
     else if "CG#$42" `T.isPrefixOf` msg
         then
             mask_ $ do
+                let extraNum = read (fyy msgArray) :: Int
                 old <- takeMVar state
-                let new = upScore sender old
-                putMVar state new
-                broadcast msg new
-                broadcast ("CB#$42," `mappend` group `mappend` ","
-                    `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState new))) new
-
-    else if "CI#$42" `T.isPrefixOf` msg
-        then
-            mask_ $ do
-                old <- takeMVar state
-                let new = downScore sender old
-                putMVar state new
-                broadcast msg new
-                broadcast ("CB#$42," `mappend` group `mappend` ","
-                    `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState new))) new
-
-    else if "CL#$42" `T.isPrefixOf` msg
-        then
-            mask_ $ do
-                old <- takeMVar state
-                let new = downScore sender old
-                putMVar state new
-                broadcast msg new
-                broadcast ("CB#$42," `mappend` group `mappend` ","
-                    `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState new))) new
-
-    else if "CM#$42" `T.isPrefixOf` msg
-        then
-            mask_ $ do
-                old <- takeMVar state
-                let new = upScore sender old
-                putMVar state new
-                st2 <- readMVar state
-                broadcast msg st2
-                broadcast ("CB#$42," `mappend` group `mappend` ","
-                    `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState new))) st2
-
-    else if "CN#$42" `T.isPrefixOf` msg
-        then
-            mask_ $ do
-                old <- takeMVar state
-                let new = downScore2 extra old
+                let new = changeScore sender extraNum old
                 putMVar state new
                 broadcast msg new
                 broadcast ("CB#$42," `mappend` group `mappend` ","
@@ -326,10 +293,6 @@ talk conn state (user, _, _, _) = forever $ do
                 broadcast msg new
                 let x = "CB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState new))
                 broadcast x new
-                -- logMessage l (T.unpack x)
-                broadcast ("CO#$42," `mappend` group `mappend` ","
-                    `mappend` sender `mappend` "," `mappend` extra) new
-                broadcast ("DB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` (allGroups new)) new
 
     else if "SX#$42" `T.isPrefixOf` msg
         then
@@ -348,6 +311,11 @@ talk conn state (user, _, _, _) = forever $ do
                 st <- readMVar state
                 broadcast ("DU#$42," `mappend` group `mappend` ","
                     `mappend` sender `mappend` "," `mappend` extra) st
+
+    else if "XXXXX" `T.isPrefixOf` msg
+      then
+        do
+            logMessage l (T.unpack msg)
 
     else
             do

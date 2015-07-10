@@ -1,5 +1,1 @@
-##README
-
-In this project, I am converting the Game of Score (<a href="https://github.com/dschalk/score2">dschalk/score2</a>) Javascript over to React.js. So far, this is working out beautifully. Braodcast data is being displayed in all participating browsers without flux, reflux, alt or any such dispatch helpers. Websockets 'onmessage' filters incoming data and updates the player interface with new dice rolls and calculations initiated by another player. You can open <a href="http://machinegun.ninja">Demo of the React portion of the project</a> in multiple browser windows to observe the interactions. Eventually, players will be able to divide into discreet groups as they do in <a href="http://schalk.net">Full Game Demo</a>.
-
-A detailed description of the project is at <a href="https://www.fpcomplete.com/user/dschalk/Websockets%20Game%20of%20Score">Wiki</a> A demo of the full game is at <a href="http://schalk.net">Game Demo</a> A demo of the portion which has been converted over to React.js is at <a href="http://machinegun.ninja">Demo of the React portion of the project</a> I started a blog at <a href="http://transcendent.ninja">Blog</a>
+[Project Documentation](https://www.fpcomplete.com/user/dschalk/Websockets%20Game%20of%20Score?show=tutorials)
