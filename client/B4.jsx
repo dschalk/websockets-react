@@ -1064,7 +1064,7 @@ decreaseFont () {
 		  		DES_ws.send( `CG#$42,${gr},${impossibleClicker},1` );
         }
       }
-	  	if (j === 1 || result === 20 ) {
+	  	if ( j === 1 || (result === 20 && j !== 3) ) {
         DES_ws.send( `CK#$42,${gr},${name},${clock}` );
 				this.setState({
           DS_T: clock
@@ -1160,7 +1160,7 @@ decreaseFont () {
   handleB43 () {
     let name = this.state.name;
     let group = this.state.group;
-    let num = this.state.message3;
+    let num = this.state.message4;
     let num0 = this.state.mes0;
     let op = this.state.mes1;
     let num2 = this.state.mes2;

@@ -5,6 +5,7 @@ import Data.Text (Text)
 import Control.Exception (finally)
 import Control.Monad (forM_, forever)
 import Control.Concurrent
+import Control.Concurrent.STM
 import Control.Monad.IO.Class (liftIO)
 import Network.WebSockets.Connection (sendClose)
 import qualified Data.Text as T
@@ -53,6 +54,7 @@ fy x = case x of
 
 fyy :: [String] -> String
 fyy [_,_,_,d] = d
+fyy _ = "Error in fyy"
 
 gG :: ServerState -> Group
 gG [a] = getGroup a
@@ -61,7 +63,8 @@ gG _   = "Error Group"
 allGroups :: ServerState -> Text
 allGroups (x:xs)  | length (x:xs) == 0  = ""
                   | length (x:xs) == 1  = gG (x:xs)
-                  | length (x:xs) > 1   = ((getGroup x) `mappend` "<br>") `mappend` (allGroups xs)
+                  | length (x:xs) > 1  = ((getGroup x) `mappend` "<br>") `mappend` (allGroups xs)
+                  | otherwise          = "Error in allGroups"
 
 froll :: [String] -> [Double]
 froll [_,_,_,a,b,c,d,e] = map read [a, b, c, d, e]
@@ -111,25 +114,6 @@ newGroup name group (a, b, c, d)   | name == a  = (a, 0, group, d)
 changeGroup :: Text -> Text -> ServerState -> ServerState
 changeGroup name group = map (newGroup name group)
 
-
-{-
-
-incFunc :: Text -> Client -> Client
-incFunc x (a, b, c, d)   | x == a   = (a, b + 1, c, d)
-                         | otherwise = (a, b, c, d)
-
-decFunc :: Text -> Client -> Client
-decFunc x (a, b, c, d)   | x == a   = (a, b - 1, c, d)
-                         | otherwise = (a, b, c, d)
-
-decFunc2 :: Text -> Client -> Client
-decFunc2 x (a, b, c, d)   | x == a   = (a, b - 2, c, d)
-                          | otherwise = (a, b, c, d)
-
--}
-
-
-
 changeS :: Text -> Int -> Client -> Client
 changeS x y (a, b, c, d) | x == a    = (a, b+y, c, d)
                          | otherwise = (a, b, c, d)
@@ -156,9 +140,10 @@ addClient client clients = client : clients
 removeClient :: Client -> ServerState -> ServerState
 removeClient client = filter ((/= getName client) . getName)
 
+closeClientConn :: WS.WebSocketsData a => Client -> ServerState -> a -> ServerState
 closeClientConn client s = do
     let s' = removeClient client s
-    sendClose (getConn client)
+    _ <- sendClose (getConn client)
     return s'
 
 broadcast :: Text -> ServerState -> IO ()
@@ -208,7 +193,7 @@ application state pending = do
 
 
 talk :: WS.Connection -> MVar ServerState -> Client -> IO ()
-talk conn state (user, _, _, _) = forever $ do
+talk conn state (_, _, _, _) = forever $ do
     msg <- WS.receiveData conn
 
     l <- initLogger
