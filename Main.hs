@@ -155,18 +155,18 @@ main :: IO ()
 main = do
     -- por <- getEnv "PORT"
     -- let port = read por
-    state <- newMVar newServerState
+    state <- atomically $ newTMVar newServerState
     Warp.runSettings Warp.defaultSettings
       { Warp.settingsTimeout = 36000,
         Warp.settingsPort = 3015
       } $ WaiWS.websocketsOr WS.defaultConnectionOptions (application state) staticApp
 staticApp :: Network.Wai.Application
 staticApp = Static.staticApp $ Static.embeddedSettings $(embedDir "client")
-application :: MVar ServerState -> WS.ServerApp
+application :: TMVar ServerState -> WS.ServerApp
 application state pending = do
     conn <- WS.acceptRequest pending
     msg <- WS.receiveData conn
-    clients <- liftIO $ readMVar state
+    clients <- atomically $ readTMVar state
     case msg of
         _   | not (prefix `T.isPrefixOf` msg) ->
                 WS.sendTextData conn ("Wrong announcement" :: Text)
@@ -174,25 +174,23 @@ application state pending = do
                 [T.null] ->
                     WS.sendTextData conn ("Name cannot be empty" :: Text)
             | clientExists (getName client) clients ->
-                liftIO $ modifyMVar_ state $ \s -> do
-                    WS.sendTextData conn $ T.pack "CC#$42,seven,seven,%#8*&&^1#$%^"
-                    return s
+                WS.sendTextData conn ("CC#$42,seven,seven,%#8*&&^1#$%^" :: Text)
             | otherwise -> flip finally disconnect $ do
-                liftIO $ modifyMVar_ state $ \s -> do
-                    let s' = addClient client s
+                    st <- atomically $ takeTMVar state
+                    let st2 = addClient client st
+                    atomically $ putTMVar state st2
                     WS.sendTextData conn $ T.pack "CC#$42"
-                    broadcast (getName client `mappend` " joined") s'
-                    return s'
-                talk conn state client
+                    talk conn state client
          where
                 prefix     = "CC#$42"
                 client     = (T.drop (T.length prefix) msg, 0, T.pack "solo", conn)
-                disconnect = modifyMVar state $ \s ->
-                     let s' = removeClient client s in broadcast "SX#$42,pass,pass,pass" s' >> return (s', s')
+                disconnect = do 
+                    s <- atomically $ takeTMVar state
+                    let s' = removeClient client s
+                    atomically $ putTMVar state s'
+                    broadcast "SX#$42,pass,pass,pass" s' >> return (s', s')
 
-
-
-talk :: WS.Connection -> MVar ServerState -> Client -> IO ()
+talk :: WS.Connection -> TMVar ServerState -> Client -> IO ()
 talk conn state (_, _, _, _) = forever $ do
     msg <- WS.receiveData conn
 
@@ -217,7 +215,7 @@ talk conn state (_, _, _, _) = forever $ do
     if "CA#$42" `T.isPrefixOf` msg
         then
             do
-                st <- readMVar state
+                st <- atomically $ readTMVar state
                 z <- rText range
                 broadcast ("CA#$42," `mappend` group4 `mappend` ","
                     `mappend` player4 `mappend` "," `mappend` z) st
@@ -226,7 +224,7 @@ talk conn state (_, _, _, _) = forever $ do
             then do
                 y <- liftIO $ truck $ froll msgArray
                 let yzz = T.pack y
-                st <- readMVar state
+                st <- atomically $ readTMVar state
                 broadcast ("CZ#$42," `mappend` group3 `mappend` ","
                     `mappend` sender3 `mappend` "," `mappend` yzz) st
 
@@ -234,7 +232,7 @@ talk conn state (_, _, _, _) = forever $ do
             then do
                 y <- liftIO $ truck $ froll msgArray
                 let yzz = T.pack y
-                st <- readMVar state
+                st <- atomically $ readTMVar state
                 broadcast ("DZ#$42," `mappend` group3 `mappend` ","
                     `mappend` sender3 `mappend` "," `mappend` yzz) st
 
@@ -242,7 +240,7 @@ talk conn state (_, _, _, _) = forever $ do
             then do
                 y <- liftIO $ truck $ froll msgArray
                 let zz = T.pack y
-                st <- readMVar state
+                st <- atomically $ readTMVar state
                 broadcast ("CW#$42," `mappend` group3 `mappend` ","
                     `mappend` sender3 `mappend` "," `mappend` zz) st
 
@@ -255,16 +253,16 @@ talk conn state (_, _, _, _) = forever $ do
         "QI#$42" `T.isPrefixOf` msg
         then
             do
-                st <- readMVar state
+                st <- atomically $ readTMVar state
                 broadcast msg st
 
     else if "CG#$42" `T.isPrefixOf` msg
         then
             mask_ $ do
                 let extraNum = read (fyy msgArray) :: Int
-                old <- takeMVar state
+                old <- atomically $ takeTMVar state
                 let new = changeScore sender extraNum old
-                putMVar state new
+                atomically $ putTMVar state new
                 broadcast msg new
                 broadcast ("CB#$42," `mappend` group `mappend` ","
                     `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState new))) new
@@ -272,9 +270,9 @@ talk conn state (_, _, _, _) = forever $ do
     else if "CO#$42" `T.isPrefixOf` msg
         then
             mask_ $ do
-                old <- takeMVar state
+                old <- atomically $ takeTMVar state
                 let new = changeGroup sender group old
-                putMVar state new
+                atomically $ putTMVar state new
                 broadcast msg new
                 let x = "CB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState new))
                 broadcast x new
@@ -282,7 +280,7 @@ talk conn state (_, _, _, _) = forever $ do
     else if "SX#$42" `T.isPrefixOf` msg
         then
             do
-                new <- readMVar state
+                new <- atomically $ readTMVar state
                 let x = ("CB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState new)))
                 broadcast x new
                 broadcast ("DB#$42," `mappend` "pass" `mappend` "," `mappend` sender `mappend` "," `mappend` (allGroups new)) new
@@ -293,7 +291,7 @@ talk conn state (_, _, _, _) = forever $ do
     else if "SU#$42" `T.isPrefixOf` msg
         then
             do
-                st <- readMVar state
+                st <- atomically $ readTMVar state
                 broadcast ("DU#$42," `mappend` group `mappend` ","
                     `mappend` sender `mappend` "," `mappend` extra) st
 

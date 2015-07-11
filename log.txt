@@ -90,3 +90,20 @@ XXXXX in newNums 20,1
 XXXXX,false,false,true,false,
 XXXXX In calc where test is defined resP: 1   mes0: 1   mes2: 20   test: true
 XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 3   mes2: 1   test: false
+XXXXX in newNums 4,6,2
+XXXXX In calc where test is defined resP: 2   mes0: 6   mes2: 4   test: false
+XXXXX in newNums 2,10
+XXXXX,false,false,true,false,
+XXXXX In calc where test is defined resP: 10   mes0: 10   mes2: 2   test: true
+XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 2   mes2: 5   test: false
+XXXXX in newNums 6,2,10
+XXXXX In calc where test is defined resP: 10   mes0: 10   mes2: 2   test: true
+XXXXX in newNums 6,20
+XXXXX,true,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 3   mes2: 17   test: false
+XXXXX in newNums 1,2,20
+XXXXX In calc where test is defined resP: 20   mes0: 20   mes2: 1   test: true
+XXXXX in newNums 2,20
+XXXXX,true,true,true,false,
