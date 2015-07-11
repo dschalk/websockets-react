@@ -275,7 +275,7 @@ class Login extends React.Component {
     let name = this.props.name;
     return (
       <div>
-        <input type="text" name={name} onChange={this.handleChange.bind(this)}
+        <input autoFocus type="text" name={name} onChange={this.handleChange.bind(this)}
           style={{backgroundColor: '#d8d17d'}}
         onKeyDown={this.handleEnter.bind(this)} />
         {this.props.name}
