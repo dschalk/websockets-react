@@ -184,7 +184,7 @@ application state pending = do
          where
                 prefix     = "CC#$42"
                 client     = (T.drop (T.length prefix) msg, 0, T.pack "solo", conn)
-                disconnect = do 
+                disconnect = do
                     s <- atomically $ takeTMVar state
                     let s' = removeClient client s
                     atomically $ putTMVar state s'
@@ -250,7 +250,7 @@ talk conn state (_, _, _, _) = forever $ do
         "CY#$42" `T.isPrefixOf` msg || "CR#$42" `T.isPrefixOf` msg || "CD#$42" `T.isPrefixOf` msg ||
         "IA#$42" `T.isPrefixOf` msg || "DY#$42" `T.isPrefixOf` msg || "DI#$42" `T.isPrefixOf` msg ||
         "XI#$42" `T.isPrefixOf` msg || "XK#$42" `T.isPrefixOf` msg || "XY#$42" `T.isPrefixOf` msg ||
-        "QI#$42" `T.isPrefixOf` msg
+        "QI#$42" `T.isPrefixOf` msg || "XO#$42" `T.isPrefixOf` msg
         then
             do
                 st <- atomically $ readTMVar state

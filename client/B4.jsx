@@ -244,6 +244,7 @@ class Login extends React.Component {
           buttonDisplay2: 'inline',
           buttonDisplay3: 'inline',
           buttonDisplay5: 'inline',
+          buttonDisplay15: 'inline'
           });
         DES_ws.send('CC#$42'+name);
       }
@@ -265,6 +266,7 @@ class Login extends React.Component {
         buttonDisplay2: 'inline',
         buttonDisplay3: 'inline',
         buttonDisplay5: 'inline',
+        buttonDisplay15: 'inline'
         });
       DES_ws.send('CC#$42'+name);
     }
@@ -366,7 +368,8 @@ class B4 extends React.Component {
         buttonDisplay3: 'none',
         buttonDisplay4: 'none',
         buttonDisplay5: 'none',
-        inPlay: false
+        buttonDisplay15: 'none',
+        chatMessage: ''
       }
 
 let that = this;
@@ -451,8 +454,9 @@ DES_ws.onmessage = function(event) {
                 d2: ext4,
                 d3: ext5,
                 d4: ext6,
-                buttonDisplay2: true,
-                buttonDisplay3: true,
+                buttonDisplay2: 'inline',
+                buttonDisplay3: 'inline',
+                buttonDisplay15: 'inline',
                 score: false,
                 impossible: false,
                 interrupt: false,
@@ -468,7 +472,6 @@ DES_ws.onmessage = function(event) {
                 message3: ext5,
                 message4: ext6,
               });
-              DES_ws.sent('XXXXX In case CE#$42   ${extra} ${ext4} ${ext5} ${ext6}');
           break;
 
           case "CB#$42":
@@ -536,6 +539,7 @@ DES_ws.onmessage = function(event) {
           case "CR#$42":
             that.setState({
               buttonDisplay2: 'inline',
+              buttonDisplay15: 'inline',
               message1: 0,
               message2: 0,
               message3: 0,
@@ -558,13 +562,13 @@ DES_ws.onmessage = function(event) {
               message: '',
               DS_T: 10,
               buttonDisplay3: 'none',
-              inPlay: true
+              buttonDisplay15: 'none',
             } )
             if (extra !== name) {
-                that.setState({
-                  buttonDisplay2: 'none'
-                } )
-              }
+                setTimeout ( function() {
+                  that.setState({buttonDisplay15: 'inline'});
+                },8000 )
+            }
           break;
 
           case "XY#$42":              // Clicked "SCORE!" after "IMPOSSIBLE"
@@ -573,15 +577,15 @@ DES_ws.onmessage = function(event) {
               interrupt: true,
               message: '',
               DS_T: 10,
-              inPlay: true,
               buttonDisplay2: 'inline',
               buttonDisplay4: 'none',
+              buttonDisplay15: 'none'
             } )
             if (extra !== name) {
-                that.setState({
-                  buttonDisplay2: 'none'
-                } )
               }
+              setTimeout ( function() {
+                that.setState({buttonDisplay15: 'inline'});
+              },8000 )
           break;
 
           case "DY#$42":                 // Clicked "IMPOSSIBLE"
@@ -593,6 +597,7 @@ DES_ws.onmessage = function(event) {
               buttonDisplay2: 'none',
               buttonDisplay3: 'none',
               buttonDisplay4: 'inline',
+              buttonDisplay15: 'none'
             })
           break;
 
@@ -646,10 +651,20 @@ DES_ws.onmessage = function(event) {
     }
 
     if ( this.state.DS_T*1 === 0 ) {
-	  let z = scoreClicker === name;
-		let z2 = impossibleClicker === name;
-		let z3 = interruptClicker === name;
-	  let gr = group;
+      this.setState ({
+            message1: 0,
+            message2: 0,
+            message3: 0,
+            message4: 0,
+            info: '',
+            buttonDisplay2: 'inline',
+            buttonDisplay3: 'none',
+            buttonDisplay4: 'none'
+        })
+  	  let z = scoreClicker === name;
+  		let z2 = impossibleClicker === name;
+  		let z3 = interruptClicker === name;
+  	  let gr = group;
       if (!interrupt) {
 				if (z) {
         	DES_ws.send(`CG#$42,${gr},${name},-1`);
@@ -668,19 +683,6 @@ DES_ws.onmessage = function(event) {
 					DES_ws.send(`CG#$42,${group},${interruptClicker},-1`);
       	}
 		  }
-
-			this.setState (
-				{
-					  message1: 0,
-					  message2: 0,
-					  message3: 0,
-					  message4: 0,
-					  info: '',
-					  buttonDisplay2: 'inline',
-					  buttonDisplay3: 'none',
-					  buttonDisplay4: 'none'
-				}
-			)
 		}
   }, 1000 )
 }
@@ -849,6 +851,15 @@ decreaseFont () {
     this.setState( {buttonColor14: '#83f7d8' })
   }
 
+  hoverHandler15 () {
+    this.setState( {buttonColor5: '#f99094' })
+  }
+
+  leaveHandler15 () {
+    this.setState( {buttonColor5: '#acf9a2' })
+  }
+
+
   solutions () {
     let group = this.state.group;
     let name = this.state.name;
@@ -879,12 +890,14 @@ decreaseFont () {
       used: [],
       test: false,
       score: false,
+      impossible: false,
       interrupt: false,
       message: 'You must click SCORE in order to gain a point.',
       sty: {color: col, width: 50, marginLeft: 30, padding: 10},
       colorB42: '#ff0000',
       buttonDisplay2: 'inline',
-      buttonDisplay3: 'inline'
+      buttonDisplay3: 'inline',
+      buttonDisplay15: 'inline'
     });
     let name = this.state.name;
     let group = this.state.group;
@@ -903,15 +916,13 @@ decreaseFont () {
   }
 
   getSolutions () {
-    if (this.state.message4 !== '') {  // That is, no calculations have been made.
       let name = this.state.name;
       let group = this.state.group;
-      let a = this.state.message1;
-      let b = this.state.message2;
-      let c = this.state.message3;
-      let d = this.state.message4;
+      let a = this.state.d1;
+      let b = this.state.d2;
+      let c = this.state.d3;
+      let d = this.state.d4;
       DES_ws.send(`CZ#$42,${group},${name},${a},${b},${c},${d},20`);
-    }
   }
 
   handleGroupA () {
@@ -999,12 +1010,12 @@ decreaseFont () {
   newNums (result,str,test,x) {
     let j = 0;
     let gr = this.state.group;
-		let inPlay = this.state.inPlay;
     let ar = [];
     let clock = '';
     let name = this.state.name;
 		let impossibleClicker = this.state.impossibleClicker;
 		let interrupt = this.state.interrupt;
+    let test2 = this.state.score || this.state.impossible;
     for (let k in x) {
         if (x[k] !== "" && x[k] !== undefined) {
         ar[j] = x[k];
@@ -1016,47 +1027,51 @@ decreaseFont () {
       DES_ws.send(`CQ#$42,${gr},${name},str1,${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},${ar[2]},`);
       this.setState({message: 'You must use the red number in order to score in this round.'});
-			DES_ws.send( `CK#$42,${gr},${name},10` );
+      if (test2) {
+			  DES_ws.send( `CK#$42,${gr},${name},10` );
+      }
     }
     else if (j === 2) {
       DES_ws.send(`CQ#$42,${gr},${name},str2,${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},,`);
-      DES_ws.send(`XXXXX,${result === 20},${test},${inPlay},${interrupt},`);
-      if ( (result === 20) && test && inPlay && !interrupt ) {
+      DES_ws.send(`XXXXX,${result === 20},${test},${interrupt},`);
+      if ( (result === 20) && test && test2 && !interrupt ) {
           clock = `One point for ${name}`
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},1` );
       }
-	  	else if ( (result === 20) && test && inPlay && interrupt ) {
+	  	else if ( (result === 20) && test && test2 && interrupt ) {
         clock = `One point for ${name}.
         Two points deducted from ${impossibleClicker}`;
         DES_ws.send( `CR#$42,${gr},${name},${name}` );
         DES_ws.send( `CG#$42,${gr},${name},1` );
 		  	DES_ws.send( `CG#$42,${gr},${impossibleClicker},-2` );
 	  	}
-			else {DES_ws.send( `CK#$42,${gr},${name},10` );}
+			else if (test2) {
+      			  DES_ws.send( `CK#$42,${gr},${name},10` );
+      }
     }
     else if (j === 1) {
       DES_ws.send(`CQ#$42,${gr},${name},str3,${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},,,`)
-      if (result === 20 && test && inPlay && !interrupt) {
+      if (result === 20 && test && test2 && !interrupt) {
           clock = `One point for ${name}`;
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},1` );
       }
-      else if (result === 20 && test && inPlay && interrupt) {
+      else if (result === 20 && test && test2 && interrupt) {
         clock = `One point for ${name}.
         Two points deducted from ${impossibleClicker}`;
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},1` );
 		      DES_ws.send( `CG#$42,${gr},${impossibleClicker},-2` );
         }
-      else if (result !== 20 && test && inPlay && !interrupt) {
+      else if (result !== 20 && test && test2 && !interrupt) {
           clock = `The result is not 20. ${name} lost one point.`;
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},-1` );
         }
-      else if (result !== 20 && test && inPlay && interrupt) {
+      else if (result !== 20 && test && test2 && interrupt) {
           clock = `The result is not 20. One point taken from ${name}.
           One point awarded to ${impossibleClicker}.`;
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
@@ -1273,6 +1288,7 @@ decreaseFont () {
     let buttonDisplay3 = this.state.buttonDisplay3;
     let buttonDisplay4 = this.state.buttonDisplay4;
     let buttonDisplay5 = this.state.buttonDisplay5;
+    let buttonDisplay15 = this.state.buttonDisplay15;
     let m1 = this.state.message1;
 
     console.log(this);
@@ -1331,7 +1347,7 @@ decreaseFont () {
           <GroupNew key='GroupNew' setGroup={this.setGroup.bind(this)} hidden2={this.state.hidden2}
             name={this.state.name} />
 
-          <div/>
+          <br />
 
           <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
             setGroup={this.setGroup.bind(this)} change={this.changeItem.bind(this)}
@@ -1400,7 +1416,7 @@ decreaseFont () {
             {this.state.message4}
           </button>
 
-          <div style={{width: 1200,  padding: 10}} />
+          <div style={{width: 1200,  padding: 10}} > </div>
 
           <button onMouseEnter={this.hoverHandler4.bind(this)} onClick={this.handleOp0.bind(this)}
             onMouseLeave={this.leaveHandler4.bind(this)}
@@ -1476,14 +1492,20 @@ decreaseFont () {
              Roll
           </button>
       </div>
+      <br /><br />
 
-      <div style={{display: buttonDisplay3}} >
-          <div style={{width: 1200,  padding: 10}} />
-          <Solutions key='Solutions' solFunc={this.getSolutions.bind(this)} sol={this.state.sol}
-            hidden2={this.state.hidden2} />
-      </div>
-
-      </div>
+      <button  onClick={this.getSolutions.bind(this)} style={{backgroundColor: '#acf9a2', textAlign: 'left',
+          display: buttonDisplay15, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
+          Solutions <br />
+        <div style={{backgroundColor: '#acf9a2'}}>
+              {
+                    this.state.sol.map(function(line) {
+                      return (<p>{line}</p>)
+                    })
+              }
+          </div>
+      </button>
+    </div>
     )}
   };
 
