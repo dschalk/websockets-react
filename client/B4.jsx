@@ -328,7 +328,6 @@ class B4 extends React.Component {
         buttonDisplay6: 'inline',  // Controls display of login form.
         buttonDisplay15: 'none',
         chatMessage: '',
-        groupDisplay: 'solo',
         timeSize: 20
       }
 
@@ -374,7 +373,7 @@ DES_ws.onmessage = function(event) {
   console.log("4444444444444444444444444444444444444444444444444444444444444444444")
 
   if ( ( that.state.group === gameArray[1]) ||
-        name === sender || extra === '%#8*&&^1#$%^' ) {
+        name === sender || extra === '%#8*&&^1#$%^' || d2 == "CB#$42") {
       switch (d2) {
 
           case "CC#$42":                         // Not broadcast. Login message.
@@ -438,7 +437,7 @@ DES_ws.onmessage = function(event) {
             that.setState({
               scoreB: ar2
             });
-            console.log("________________________CB extra and groupDisplay");
+            console.log("________________________CB extra");
             console.log(extra);
             console.log(ext4);
             console.log("________________________CB extra");
@@ -591,6 +590,7 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "SX#$42":                                   // NOT IN USE
+
           break;
 
           default:
@@ -895,26 +895,30 @@ decreaseFont () {
 
   handleGroupA () {
     let name = this.state.name;
-    DES_ws.send( `CO#$42,GroupA,${name},handleGroupA` );
+    let group = this.state.group;
+    DES_ws.send( `CO#$42,${group},${name},GroupA` );
     this.setState({group: 'GroupA'});
   }
 
   handleGroupB () {
     let name = this.state.name;
-    DES_ws.send( `CO#$42,GroupB,${name},handleGroupB` );
+    let group = this.state.group;
+    DES_ws.send( `CO#$42,${group},${name},GroupB` );
     this.setState({group: 'GroupB'});
   }
 
   handleGroupC () {
     let name = this.state.name;
-    DES_ws.send( `CO#$42,GroupC,${name},handleGroupC` );
+    let group = this.state.group;
+    DES_ws.send( `CO#$42,${group},${name},GroupC` );
     this.setState({group: 'GroupC'});
   }
 
   setGroup (x) {
-    var name = this.state.name;
+    let name = this.state.name;
+    let group = this.state.group;
     this.setState({group: x});
-    DES_ws.send( `CO#$42,${x},${name},filler` );
+    DES_ws.send( `CO#$42,${group},${name},${x}` );
   }
 
   setInfo (x) {

@@ -45,6 +45,8 @@ fx x = case x of
     [_,_,c,_,_,_,_] -> T.pack c
     _ -> T.pack "fx malfunctioned"
 
+-- getGr :: Text ->
+
 fy :: [String] -> Text
 fy x = case x of
     [_,_,_,d] -> T.pack d
@@ -90,12 +92,71 @@ filterGroup :: Text -> ServerState -> [Text]
 filterGroup group s = [ a `mappend` " _ " `mappend` T.pack (show b)
     `mappend` " _ " `mappend` c | (a,b,c,_) <- s, group == c]
 
+{-
+
 textState :: Text -> ServerState -> [Text]
-textState g s = [ a `mappend` " [ "  `mappend` T.pack (show b) `mappend` " ] " | (a,b,c,_) <- s, g == c]
+textState g s = [ a `mappend` " [ "  `mappend` T.pack (show b) `mappend` " ] " | (a,b,c,_) <- s]
+
+
+
+bcast :: Text -> ServerState -> IO ()
+bcast message clients = do
+    T.putStrLn message
+    forM_ clients $ \(_ , _, _, conn) -> WS.sendTextData conn message
+
+test :: Client -> Client -> Bool
+test (a,b,c,d) (a',b',c',d')  | c == c' = True
+                              | otherwise = False
+
+-- conn <- WS.acceptRequest pending
+
+select :: Text -> ServerState -> ServerState
+select g st = [ x  | x <- st, test x ("adfgtq",7,g,_) ]
+
+
+
+compare' :: Client -> Client -> Ordering
+compare' (a,b,c,d) (a',b',c',d') = compare c c'
+
+textState :: ServerState -> [Text]
+textState s = [ a `mappend` " [ "  `mappend` T.pack (show b) `mappend` " ] " | (a,b,c,_) <- s]
+
+select :: Text -> ServerState -> ServerState
+select g st = [ x  | x <- st, test x ("adfgtq",7,"b2","cow") ]
+
+-}
+
+subState :: Text -> [(Text,Int,Text,WS.Connection)] -> [(Text,Int,Text,WS.Connection)]
+subState g state = [ (a,b,c,d) | (a,b,c,d) <- state, g == c ]
+
+extract :: [a] -> a
+extract [x] = x
+
+getGroup :: Text -> [(Text,Int,Text,WS.Connection)] -> Text
+getGroup name state = extract [ c | (a,b,c,d) <- state, name == a ]
+
+first :: (a,a1,a2,a3) -> a
+first (w,x,y,z) = w
+
+bcast :: Text -> ServerState -> IO ()
+bcast message clients = do
+    T.putStrLn message
+    forM_ clients $ \(_ , _, _, conn) -> WS.sendTextData conn message
+
+test :: (Text,Int,Text,WS.Connection) -> (Text,Int,Text,WS.Connection) -> Bool
+test (_,_,c,_) (_,_,c',_)  | c == c' = True
+                              | otherwise = False
+
+textState :: Show a => [(Text, a, t, t1)] -> [Text]
+textState s = [ a `mappend` " [ "  `mappend` T.pack (show b) `mappend` " ] " | (a,b,c,d) <- s]
 
 newGroup :: Text -> Text -> Client -> Client
 newGroup name group (a, b, c, d)   | name == a  = (a, 0, group, d)
                                    | otherwise = (a, b, c, d)
+
+getText :: [Text] -> Text
+getText (x:xs)  | null xs    = "Error in getText. Argument is null."
+                | otherwise  = x
 
 changeGroup :: Text -> Text -> ServerState -> ServerState
 changeGroup name group = map (newGroup name group)
@@ -166,15 +227,18 @@ application state pending = do
                     let st2 = addClient client st
                     atomically $ putTMVar state st2
                     WS.sendTextData conn $ T.pack "CC#$42"
-                    broadcast ("CB#$42, solo,0, solo, new player, solo") clients
+                    -- broadcast ("CB#$42, solo,0, solo, new player, solo") clients
                     talk conn state client
          where
                 prefix     = "CC#$42"
-                client     = (T.drop (T.length prefix) msg, 0, T.pack "solo", conn)
+                client     = (T.drop (T.length prefix) msg, 0, T.pack "Jimbo", conn)
                 disconnect = do
                     s <- atomically $ takeTMVar state
                     let s' = removeClient client s
                     atomically $ putTMVar state s'
+                    let gr = getGroup (first client) s
+                    let subSt = subState gr s'
+                    broadcast ("CB#$42," `mappend` gr `mappend` ",dummy," `mappend` T.concat (intersperse "<br>" (textState subSt))) subSt
                     broadcast "SX#$42,pass,pass,pass" s' >> return (s', s')
 
 talk :: WS.Connection -> TMVar ServerState -> Client -> IO ()
@@ -195,9 +259,9 @@ talk conn state (_, _, _, _) = forever $ do
     let player4 = get4Player msgArray
     let group4 = get4Group msgArray
 
-    print "****************************msgArray next: "
-    mapM_ print msgArray
-    print "****************************That was msgArray"
+    --print "****************************msgArray next: "
+    --mapM_ print msgArray
+    --print "****************************That was msgArray"
 
     if "CA#$42" `T.isPrefixOf` msg
         then
@@ -250,30 +314,42 @@ talk conn state (_, _, _, _) = forever $ do
                 old <- atomically $ takeTMVar state
                 let new = changeScore sender extraNum old
                 atomically $ putTMVar state new
-                broadcast msg new
+                let subSt = subState group new
+                broadcast msg subSt
                 broadcast ("CB#$42," `mappend` group `mappend` ","
-                    `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState group new))  `mappend` "," `mappend`  group) new
+                    `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState subSt))) subSt
 
     else if "CO#$42" `T.isPrefixOf` msg
         then
             mask_ $ do
                 old <- atomically $ takeTMVar state
-                let new = changeGroup sender group old
+                let new = changeGroup sender extra old
                 atomically $ putTMVar state new
-                broadcast msg new
-                let x = "CB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState group new))  `mappend` "," `mappend` group
-                broadcast x new
+                let subState1 = subState group new
+                let subState2 = subState extra new
+                let x = "CB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState subState1))
+                let y = "CB#$42," `mappend` extra `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState subState2))
+                print "**************************** in CO#$42 "
+                print group
+                print extra
+                print x
+                print y
+                print "**************************** leaving CO#42 "
+                broadcast y subState2
+                if group /= "solo"
+                   then
+                   broadcast x subState1
+                   else
+                   print "Hello from CO#$42"
 
     else if "SX#$42" `T.isPrefixOf` msg
         then
             do
                 new <- atomically $ readTMVar state
-                let x = "CB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState group new))  `mappend` "," `mappend`  group
-                broadcast x new
-                broadcast ("DB#$42," `mappend` "pass" `mappend` "," `mappend` sender) new
-                print "**************************** in SX#$42 "
-                print x
-                print "**************************** leaving SX#42 "
+                let subSt = subState group new
+                let x = "CB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState subSt))
+                broadcast x subSt
+                broadcast ("DB#$42," `mappend` "pass" `mappend` "," `mappend` sender) subSt
 
     else if "SU#$42" `T.isPrefixOf` msg
         then
@@ -284,9 +360,7 @@ talk conn state (_, _, _, _) = forever $ do
 
     else if "XXXXX" `T.isPrefixOf` msg
       then
-        do
             logMessage l (T.unpack msg)
 
-    else
-            do
-                print "Hello Jackie"
+      else
+            print "Hello Jackie"
