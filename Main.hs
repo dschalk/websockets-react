@@ -29,58 +29,9 @@ type Group = Text
 type Client = (Name, Score, Group, WS.Connection)
 type ServerState = [Client]
 
-fw :: [String] -> Text
-fw x = case x of
-    [_,b,_] -> T.pack b
-    [_,b,_,_] -> T.pack b
-    [_,b,_,_,_,_,_,_] -> T.pack b
-    [_,b,_,_,_,_,_] -> T.pack b
-    _ -> T.pack "fw malfunctioned"
-
-fx :: [String] -> Text
-fx x = case x of
-    [_,_,c] -> T.pack c
-    [_,_,c,_] -> T.pack c
-    [_,_,c,_,_,_,_,_] -> T.pack c
-    [_,_,c,_,_,_,_] -> T.pack c
-    _ -> T.pack "fx malfunctioned"
-
--- getGr :: Text ->
-
-fy :: [String] -> Text
-fy x = case x of
-    [_,_,_,d] -> T.pack d
-    [_,_,_,d,_,_,_,_] -> T.pack d
-    [_,_,_,d,_,_,_] -> T.pack d
-    _ -> T.pack "fy malfunctioned"
-
-fyy :: [String] -> String
-fyy [_,_,_,d] = d
-fyy _ = "Error in fyy"
-
 froll :: [String] -> [Double]
 froll [_,_,_,a,b,c,d,e] = map read [a, b, c, d, e]
 froll _ = [1.0,2.0,3.0,4.0]
-
-fw3 :: [String] -> Text
-fw3 [_,b,_,_,_,_,_,_] = T.pack b
-fw3 _ = T.pack "EE#$42"
-
-fx3 :: [String] -> Text
-fx3 [_,_,c,_,_,_,_,_] = T.pack c
-fx3 _ = T.pack "EE#$42"
-
-get4 :: [String] -> [Int]
-get4 [_,_,_,a,b,c,d] = fmap read [a,b,c,d]
-get4 _ = [-1,-1,-1,-1]
-
-get4Group :: [String] -> Text
-get4Group [_,b,_,_,_,_,_] = T.pack b
-get4Group _ = "get4Group error"
-
-get4Player :: [String] -> Text
-get4Player [_,_,c,_,_,_,_] = T.pack c
-get4Player _ = "get4Player error"
 
 getName :: Client -> Name
 getName (a,_,_,_) = a
@@ -92,38 +43,20 @@ filterGroup :: Text -> ServerState -> [Text]
 filterGroup group s = [ a `mappend` " _ " `mappend` T.pack (show b)
     `mappend` " _ " `mappend` c | (a,b,c,_) <- s, group == c]
 
+get4 :: [String] -> [Int]
+get4 [_,_,_,a,b,c,d] = fmap read [a,b,c,d]
+get4 _ = [-1,-1,-1,-1]
+
 {-
-
-textState :: Text -> ServerState -> [Text]
-textState g s = [ a `mappend` " [ "  `mappend` T.pack (show b) `mappend` " ] " | (a,b,c,_) <- s]
-
-
-
-bcast :: Text -> ServerState -> IO ()
-bcast message clients = do
-    T.putStrLn message
-    forM_ clients $ \(_ , _, _, conn) -> WS.sendTextData conn message
-
 test :: Client -> Client -> Bool
 test (a,b,c,d) (a',b',c',d')  | c == c' = True
                               | otherwise = False
 
--- conn <- WS.acceptRequest pending
-
 select :: Text -> ServerState -> ServerState
-select g st = [ x  | x <- st, test x ("adfgtq",7,g,_) ]
-
-
+select g st = [ x | x <- st, test x (_,_,g,_) ]
 
 compare' :: Client -> Client -> Ordering
 compare' (a,b,c,d) (a',b',c',d') = compare c c'
-
-textState :: ServerState -> [Text]
-textState s = [ a `mappend` " [ "  `mappend` T.pack (show b) `mappend` " ] " | (a,b,c,_) <- s]
-
-select :: Text -> ServerState -> ServerState
-select g st = [ x  | x <- st, test x ("adfgtq",7,"b2","cow") ]
-
 -}
 
 subState :: Text -> [(Text,Int,Text,WS.Connection)] -> [(Text,Int,Text,WS.Connection)]
@@ -244,20 +177,14 @@ application state pending = do
 talk :: WS.Connection -> TMVar ServerState -> Client -> IO ()
 talk conn state (_, _, _, _) = forever $ do
     msg <- WS.receiveData conn
+    let msgArray = splitOn "," (T.unpack msg)
+    let group = T.pack (msgArray !! 1)
+    let sender = T.pack (msgArray !! 2)
+    let extra = T.pack (msgArray !! 3)
+    let extraNum = (read (msgArray !! 3)) :: Int
+    let range = get4 msgArray  -- 7 items in msgArray
 
     l <- initLogger
-    let msgArray = splitOn "," (T.unpack msg)
-
-    let group = fw msgArray
-    let sender = fx msgArray
-    let extra = fy msgArray
-
-    let group3 = fw3 msgArray
-    let sender3 = fx3 msgArray
-
-    let range = get4 msgArray  -- 7 items in msgArray
-    let player4 = get4Player msgArray
-    let group4 = get4Group msgArray
 
     --print "****************************msgArray next: "
     --mapM_ print msgArray
@@ -268,32 +195,32 @@ talk conn state (_, _, _, _) = forever $ do
             do
                 st <- atomically $ readTMVar state
                 z <- rText range
-                broadcast ("CA#$42," `mappend` group4 `mappend` ","
-                    `mappend` player4 `mappend` "," `mappend` z) st
+                broadcast ("CA#$42," `mappend` group `mappend` ","
+                    `mappend` sender `mappend` "," `mappend` z) st
 
     else if "CZ#$42" `T.isPrefixOf` msg
             then do
                 y <- liftIO $ truck $ froll msgArray
                 let yzz = T.pack y
                 st <- atomically $ readTMVar state
-                broadcast ("CZ#$42," `mappend` group3 `mappend` ","
-                    `mappend` sender3 `mappend` "," `mappend` yzz) st
+                broadcast ("CZ#$42," `mappend` group `mappend` ","
+                    `mappend` sender `mappend` "," `mappend` yzz) st
 
     else if "DZ#$42" `T.isPrefixOf` msg
             then do
                 y <- liftIO $ truck $ froll msgArray
                 let yzz = T.pack y
                 st <- atomically $ readTMVar state
-                broadcast ("DZ#$42," `mappend` group3 `mappend` ","
-                    `mappend` sender3 `mappend` "," `mappend` yzz) st
+                broadcast ("DZ#$42," `mappend` group `mappend` ","
+                    `mappend` sender `mappend` "," `mappend` yzz) st
 
     else if "CW#$42" `T.isPrefixOf` msg
             then do
                 y <- liftIO $ truck $ froll msgArray
                 let zz = T.pack y
                 st <- atomically $ readTMVar state
-                broadcast ("CW#$42," `mappend` group3 `mappend` ","
-                    `mappend` sender3 `mappend` "," `mappend` zz) st
+                broadcast ("CW#$42," `mappend` group `mappend` ","
+                    `mappend` sender `mappend` "," `mappend` zz) st
 
     else if "CC#$42" `T.isPrefixOf` msg || "CE#$42" `T.isPrefixOf` msg || "CF#$42" `T.isPrefixOf` msg ||
         "CH#$42" `T.isPrefixOf` msg || "CJ#$42" `T.isPrefixOf` msg || "CK#$42" `T.isPrefixOf` msg ||
@@ -310,7 +237,7 @@ talk conn state (_, _, _, _) = forever $ do
     else if "CG#$42" `T.isPrefixOf` msg
         then
             mask_ $ do
-                let extraNum = read (fyy msgArray) :: Int
+                -- let extraNum = read (fyy msgArray) :: Int
                 old <- atomically $ takeTMVar state
                 let new = changeScore sender extraNum old
                 atomically $ putTMVar state new
@@ -364,3 +291,4 @@ talk conn state (_, _, _, _) = forever $ do
 
       else
             print "Hello Jackie"
+

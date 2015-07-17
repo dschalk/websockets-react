@@ -388,3 +388,25 @@ XXXXX in newNums 1,18,2
 XXXXX In calc where test is defined resP: 2   mes0: 2   mes2: 18   test: true
 XXXXX in newNums 1,20
 XXXXX,true,true,true,
+XXXXX In calc where test is defined resP: whatever   mes0: 2   mes2: 8   test: false
+XXXXX in newNums 3,1,16
+XXXXX In calc where test is defined resP: 16   mes0: 16   mes2: 1   test: true
+XXXXX in newNums 3,17
+XXXXX,false,true,false,
+XXXXX In calc where test is defined resP: 17   mes0: 17   mes2: 3   test: true
+XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 6   mes2: 5   test: false
+XXXXX in newNums 9,19,1
+XXXXX In calc where test is defined resP: 1   mes0: 19   mes2: 1   test: true
+XXXXX in newNums 9,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 4   mes2: 3   test: false
+XXXXX in newNums 1,20,1
+XXXXX In calc where test is defined resP: 1   mes0: 1   mes2: 20   test: true
+XXXXX in newNums 1,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 2   mes2: 6   test: false
+XXXXX in newNums 1,8,12
+XXXXX In calc where test is defined resP: 12   mes0: 12   mes2: 8   test: true
+XXXXX in newNums 1,20
+XXXXX,true,true,true,
