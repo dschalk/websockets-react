@@ -107,3 +107,284 @@ XXXXX in newNums 1,2,20
 XXXXX In calc where test is defined resP: 20   mes0: 20   mes2: 1   test: true
 XXXXX in newNums 2,20
 XXXXX,true,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 6   mes2: 3   test: false
+XXXXX In calc where test is defined resP: 2   mes0: 15   mes2: 11   test: false
+XXXXX In calc where test is defined resP: whatever   mes0: 1   mes2: 10   test: false
+XXXXX in newNums 2,6,10
+XXXXX In calc where test is defined resP: 10   mes0: 10   mes2: 2   test: true
+XXXXX in newNums 6,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: 20   mes0: 2   mes2: 5   test: false
+XXXXX in newNums 2,9,10
+XXXXX In calc where test is defined resP: 10   mes0: 10   mes2: 2   test: true
+XXXXX in newNums 9,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 5   mes2: 3   test: false
+XXXXX in newNums 12,5,15
+XXXXX In calc where test is defined resP: 15   mes0: 15   mes2: 5   test: true
+XXXXX in newNums 12,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: 20   mes0: 1   mes2: 4   test: false
+XXXXX in newNums 9,16,4
+XXXXX In calc where test is defined resP: 4   mes0: 4   mes2: 16   test: true
+XXXXX in newNums 9,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: 20   mes0: 6   mes2: 2   test: false
+XXXXX in newNums 11,15,8
+XXXXX In calc where test is defined resP: 8   mes0: 11   mes2: 15   test: false
+XXXXX in newNums 8,26
+XXXXX,false,false,false,
+XXXXX In calc where test is defined resP: 26   mes0: 8   mes2: 26   test: true
+XXXXX in newNums 34
+XXXXX In calc where test is defined resP: 34   mes0: 1   mes2: 5   test: false
+XXXXX in newNums 10,5,5
+XXXXX In calc where test is defined resP: whatever   mes0: 2   mes2: 3   test: false
+XXXXX in newNums 10,15,5
+XXXXX In calc where test is defined resP: 5   mes0: 5   mes2: 15   test: true
+XXXXX in newNums 10,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 9   mes2: 1   test: false
+XXXXX in newNums 5,8,10
+XXXXX In calc where test is defined resP: 10   mes0: 10   mes2: 8   test: true
+XXXXX in newNums 0,0,0,0,80
+XXXXX In calc where test is defined resP: 80   mes0: 14   mes2: 6   test: false
+XXXXX in newNums 6,2,20
+XXXXX In calc where test is defined resP: 20   mes0: 5   mes2: 6   test: false
+XXXXX in newNums 1,17,56
+XXXXX In calc where test is defined resP: 56   mes0: 56   mes2: 17   test: true
+XXXXX in newNums 1,3.2941176470588234
+XXXXX,false,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 11   mes2: 1   test: false
+XXXXX in newNums 3,6,12
+XXXXX In calc where test is defined resP: whatever   mes0: 15   mes2: 8   test: false
+XXXXX in newNums 1,4,23
+XXXXX In case CE#$42   ${extra} ${ext4} ${ext5} ${ext6}
+XXXXX In calc where test is defined resP: whatever   mes0: 1   mes2: 4   test: false
+XXXXX in newNums 6,3,5
+XXXXX In case CE#$42   ${extra} ${ext4} ${ext5} ${ext6}
+XXXXX In calc where test is defined resP: whatever   mes0: 1   mes2: 4   test: false
+XXXXX in newNums 5,11,4
+XXXXX In calc where test is defined resP: whatever   mes0: 8   mes2: 5   test: false
+XXXXX in newNums 5,3,40
+XXXXX In calc where test is defined resP: 40   mes0: 5   mes2: 3   test: false
+XXXXX in newNums 40,2
+XXXXX,false,false,false,
+XXXXX In calc where test is defined resP: 2   mes0: 40   mes2: 2   test: true
+XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 1   mes2: 3   test: false
+XXXXX in newNums 12,16,4
+XXXXX In calc where test is defined resP: 4   mes0: 4   mes2: 16   test: true
+XXXXX in newNums 12,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 1   mes2: 4   test: false
+XXXXX in newNums 3,16,4
+XXXXX In calc where test is defined resP: 4   mes0: 4   mes2: 16   test: true
+XXXXX in newNums 3,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 6   mes2: 1   test: false
+XXXXX in newNums 2,5,5
+XXXXX In calc where test is defined resP: 5   mes0: 5   mes2: 5   test: true
+XXXXX in newNums 2,10
+XXXXX,false,true,false,
+XXXXX In calc where test is defined resP: 10   mes0: 2   mes2: 10   test: true
+XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 5   mes2: 5   test: false
+XXXXX in newNums 4,16,10
+XXXXX In calc where test is defined resP: whatever   mes0: 5   mes2: 1   test: false
+XXXXX in newNums 5,3,4
+XXXXX In calc where test is defined resP: 4   mes0: 4   mes2: 5   test: true
+XXXXX in newNums 3,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 9   mes2: 1   test: false
+XXXXX in newNums 1,11,10
+XXXXX In calc where test is defined resP: 10   mes0: 11   mes2: 1   test: false
+XXXXX in newNums 10,10
+XXXXX,false,false,false,
+XXXXX In calc where test is defined resP: 10   mes0: 10   mes2: 10   test: true
+XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 1   mes2: 1   test: false
+XXXXX in newNums 10,13,2
+XXXXX In calc where test is defined resP: 2   mes0: 2   mes2: 10   test: true
+XXXXX in newNums 13,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 3   mes2: 4   test: false
+XXXXX in newNums 3,18,7
+XXXXX In calc where test is defined resP: 7   mes0: 3   mes2: 18   test: false
+XXXXX in newNums 7,21
+XXXXX,false,false,false,
+XXXXX In calc where test is defined resP: 21   mes0: 7   mes2: 21   test: true
+XXXXX in newNums 28
+XXXXX In calc where test is defined resP: whatever   mes0: 4   mes2: 2   test: false
+XXXXX in newNums 10,14,2
+XXXXX In calc where test is defined resP: 2   mes0: 2   mes2: 10   test: true
+XXXXX in newNums 14,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 4   mes2: 3   test: false
+XXXXX in newNums 5,6,12
+XXXXX In calc where test is defined resP: 12   mes0: 12   mes2: 6   test: true
+XXXXX in newNums 5,6
+XXXXX,false,true,false,
+XXXXX In calc where test is defined resP: 6   mes0: 6   mes2: 5   test: true
+XXXXX in newNums 30
+XXXXX In calc where test is defined resP: whatever   mes0: 6   mes2: 6   test: false
+XXXXX in newNums 5,5,1
+XXXXX In calc where test is defined resP: 1   mes0: 5   mes2: 1   test: true
+XXXXX in newNums 5,4
+XXXXX,false,true,false,
+XXXXX In calc where test is defined resP: 4   mes0: 4   mes2: 5   test: true
+XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 3   mes2: 2   test: false
+XXXXX in newNums 1,15,5
+XXXXX In calc where test is defined resP: 5   mes0: 5   mes2: 15   test: true
+XXXXX in newNums 1,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 2   mes2: 2   test: false
+XXXXX in newNums 6,14,1
+XXXXX In calc where test is defined resP: 1   mes0: 1   mes2: 14   test: true
+XXXXX in newNums 6,14
+XXXXX,false,true,false,
+XXXXX In calc where test is defined resP: 14   mes0: 14   mes2: 6   test: true
+XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 2   mes2: 5   test: false
+XXXXX in newNums 8,13,7
+XXXXX In calc where test is defined resP: 7   mes0: 7   mes2: 13   test: true
+XXXXX in newNums 8,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: 20   mes0: 5   mes2: 4   test: false
+XXXXX in newNums 6,20,1
+XXXXX In calc where test is defined resP: 1   mes0: 1   mes2: 20   test: true
+XXXXX in newNums 6,20
+XXXXX,true,true,true,
+XXXXX In calc where test is defined resP: 20   mes0: 14   mes2: 4   test: false
+XXXXX in newNums 4,12,18
+XXXXX In calc where test is defined resP: 18   mes0: 12   mes2: 4   test: false
+XXXXX in newNums 18,3
+XXXXX,false,false,true,
+XXXXX In calc where test is defined resP: 3   mes0: 3   mes2: 18   test: true
+XXXXX in newNums 318
+XXXXX In calc where test is defined resP: 318   mes0: 11   mes2: 6   test: false
+XXXXX in newNums 3,4,17
+XXXXX In calc where test is defined resP: 17   mes0: 17   mes2: 3   test: true
+XXXXX in newNums 4,20
+XXXXX,true,true,true,
+XXXXX In calc where test is defined resP: 20   mes0: 6   mes2: 3   test: false
+XXXXX in newNums 10,19,2
+XXXXX In calc where test is defined resP: 2   mes0: 2   mes2: 10   test: true
+XXXXX in newNums 19,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: 20   mes0: 8   mes2: 6   test: false
+XXXXX in newNums 1,10,2
+XXXXX In calc where test is defined resP: 2   mes0: 2   mes2: 10   test: true
+XXXXX in newNums 1,20
+XXXXX,true,true,true,
+XXXXX In calc where test is defined resP: 20   mes0: 1   mes2: 4   test: false
+XXXXX in newNums 2,5,4
+XXXXX In calc where test is defined resP: 4   mes0: 4   mes2: 5   test: true
+XXXXX in newNums 2,20
+XXXXX,true,true,true,
+XXXXX In calc where test is defined resP: whatever   mes0: 4   mes2: 2   test: false
+XXXXX in newNums 4,14,2
+XXXXX In calc where test is defined resP: 2   mes0: 2   mes2: 14   test: true
+XXXXX in newNums 4,16
+XXXXX,false,true,false,
+XXXXX In calc where test is defined resP: 16   mes0: 16   mes2: 4   test: true
+XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 2   mes2: 2   test: false
+XXXXX in newNums 4,15,4
+XXXXX In calc where test is defined resP: 4   mes0: 15   mes2: 4   test: true
+XXXXX in newNums 4,19
+XXXXX,false,true,false,
+XXXXX In calc where test is defined resP: 19   mes0: 19   mes2: 4   test: true
+XXXXX in newNums 23
+XXXXX In calc where test is defined resP: whatever   mes0: 11   mes2: 4   test: false
+XXXXX in newNums 5,3,44
+XXXXX In calc where test is defined resP: 44   mes0: 44   mes2: 3   test: true
+XXXXX in newNums 5,14.666666666666666
+XXXXX,false,true,false,
+XXXXX In calc where test is defined resP: 14.666666666666666   mes0: 5   mes2: 14.666666666666666   test: true
+XXXXX in newNums 73.33333333333333
+XXXXX In calc where test is defined resP: 73.33333333333333   mes0: 9   mes2: 1   test: false
+XXXXX in newNums 4,6,10
+XXXXX In calc where test is defined resP: 10   mes0: 6   mes2: 4   test: false
+XXXXX in newNums 10,2
+XXXXX,false,false,false,
+XXXXX In calc where test is defined resP: 2   mes0: 2   mes2: 10   test: true
+XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 11   mes2: 6   test: false
+XXXXX in newNums 3,2,17
+XXXXX In calc where test is defined resP: 17   mes0: 17   mes2: 3   test: true
+XXXXX in newNums 2,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 12   mes2: 5   test: false
+XXXXX in newNums 3,3,17
+XXXXX In calc where test is defined resP: 17   mes0: 17   mes2: 3   test: true
+XXXXX in newNums 3,20
+XXXXX,true,true,true,
+XXXXX In calc where test is defined resP: whatever   mes0: 11   mes2: 1   test: false
+XXXXX in newNums 1,2,10
+XXXXX In calc where test is defined resP: 10   mes0: 10   mes2: 2   test: true
+XXXXX in newNums 1,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 6   mes2: 3   test: false
+XXXXX in newNums 5,18,2
+XXXXX In calc where test is defined resP: 2   mes0: 2   mes2: 18   test: true
+XXXXX in newNums 5,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 17   mes2: 5   test: false
+XXXXX in newNums 2,9,22
+XXXXX In calc where test is defined resP: whatever   mes0: 20   mes2: 10   test: false
+XXXXX in newNums 1,6,10
+XXXXX In calc where test is defined resP: 10   mes0: 10   mes2: 6   test: true
+XXXXX in newNums 1,60
+XXXXX,false,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 6   mes2: 5   test: false
+XXXXX in newNums 1,10,1
+XXXXX In calc where test is defined resP: 1   mes0: 1   mes2: 1   test: true
+XXXXX in newNums 10,2
+XXXXX,false,true,false,
+XXXXX In calc where test is defined resP: 2   mes0: 2   mes2: 10   test: true
+XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 5   mes2: 4   test: false
+XXXXX in newNums 4,20,1
+XXXXX In calc where test is defined resP: 1   mes0: 1   mes2: 20   test: true
+XXXXX in newNums 4,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 2   mes2: 4   test: false
+XXXXX in newNums 12,2,8
+XXXXX In calc where test is defined resP: 8   mes0: 8   mes2: 12   test: true
+XXXXX in newNums 2,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 10   mes2: 8   test: false
+XXXXX in newNums 5,5,2
+XXXXX In calc where test is defined resP: 2   mes0: 5   mes2: 5   test: false
+XXXXX in newNums 2,10
+XXXXX,false,false,false,
+XXXXX In calc where test is defined resP: 10   mes0: 10   mes2: 2   test: true
+XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 5   mes2: 5   test: false
+XXXXX in newNums 5,6,25
+XXXXX In calc where test is defined resP: 25   mes0: 25   mes2: 5   test: true
+XXXXX in newNums 6,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: 20   mes0: 3   mes2: 7   test: false
+XXXXX in newNums 5,4,21
+XXXXX In calc where test is defined resP: 21   mes0: 5   mes2: 4   test: false
+XXXXX in newNums 21,1
+XXXXX,false,false,false,
+XXXXX In calc where test is defined resP: 1   mes0: 21   mes2: 1   test: true
+XXXXX in newNums 20
+XXXXX In calc where test is defined resP: whatever   mes0: 4   mes2: 2   test: false
+XXXXX in newNums 2,18,2
+XXXXX In calc where test is defined resP: 2   mes0: 18   mes2: 2   test: true
+XXXXX in newNums 2,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 2   mes2: 3   test: false
+XXXXX in newNums 5,15,5
+XXXXX In calc where test is defined resP: 5   mes0: 5   mes2: 15   test: true
+XXXXX in newNums 5,20
+XXXXX,true,true,false,
+XXXXX In calc where test is defined resP: whatever   mes0: 10   mes2: 5   test: false
+XXXXX in newNums 1,18,2
+XXXXX In calc where test is defined resP: 2   mes0: 2   mes2: 18   test: true
+XXXXX in newNums 1,20
+XXXXX,true,true,true,
