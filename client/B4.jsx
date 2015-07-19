@@ -180,13 +180,13 @@ class Login extends React.Component {
     super(props);
   }
 
-  handleChange (event) {       // ISSUE: Input box won't accept data without this handleChange function. ??
+  handleChange (event) {      
     this.props.change({name: event.target.value});
   }
   handleEnter (event) {
     if (this.props.name == '') {
       this.props.change({
-        info: `Please enter a name.`
+        info: ``
       })
     }
     else {
@@ -197,11 +197,7 @@ class Login extends React.Component {
           hidden: true,
           hidden2: false,
           name: name,
-          buttonDisplay: 'inline',
-          buttonDisplay2: 'inline',
-          buttonDisplay3: 'inline',
-          buttonDisplay5: 'inline',
-          buttonDisplay15: 'inline'
+          startDisplay: 'inline',
           });
         DES_ws.send('CC#$42'+name);
       }
@@ -218,12 +214,7 @@ class Login extends React.Component {
         hidden: true,
         hidden2: false,
         name: name,
-        buttonDisplay: 'inline',
-        buttonDisplay2: 'inline',
-        buttonDisplay3: 'inline',
-        buttonDisplay5: 'inline',
-        buttonDisplay6: 'none',
-        buttonDisplay15: 'inline'
+        startDisplay: 'inline',
         });
       DES_ws.send('CC#$42'+name);
     }
@@ -283,7 +274,7 @@ class B4 extends React.Component {
         hidden2: true,
         togDice: false,
         name: "",
-        DS_T: "SCORE!",
+        DS_T: "PAUSE",
         N: 0,
         STRING: '',
         impossibleClicker: "a@F$Uy&imp",
@@ -291,7 +282,7 @@ class B4 extends React.Component {
         interruptClicker: "a@F$intrup%$",
         scoreB: ["Greetings new player."],
         group: 'solo',
-        info: 'Please enter a name.',
+        info: '',
         used: [],
         dynamicBg: '#000000',
         dynamicColor: '#d5f765',
@@ -320,13 +311,14 @@ class B4 extends React.Component {
         buttonColor14: '#f4f7af',
         buttonColor: '#83f7d7',
         colorB42: '#000',
-        buttonDisplay: 'none',     // Controls display of the left side of the interface.
-        buttonDisplay2: 'none',
-        buttonDisplay3: 'inline',  // Hides IMPOSSIBLE when SCORE! or IMPOSSIBLE are clicked.
-        buttonDisplay4: 'none',    // Shows a SCORE! button (triggers handleScore2) after IMPOSSIBLE is clicked.
-        buttonDisplay5: 'none',    // Controls display of DS_T.
-        buttonDisplay6: 'inline',  // Controls display of login form.
-        buttonDisplay15: 'none',
+        startDisplay: 'none',
+        impossibleDisplay: 'none',
+        scoreDisplay: 'none',
+        scoreDisplay2: 'none',
+        timerDisplay: 'none',
+        rollDisplay: 'inline',
+		    numDisplay: 'none',
+        solutionsDisplay: 'none',
         chatMessage: '',
         timeSize: 20
       }
@@ -419,7 +411,14 @@ DES_ws.onmessage = function(event) {
                 score: false,
                 impossible: false,
                 interrupt: false,
-                DS_T: 'SCORE!'
+                DS_T: 'Click SCORE! to score points.',
+                numDisplay: 'inline',
+                scoreDisplay: 'inline',
+                scoreDisplay2: 'none',
+                impossibleDisplay: 'inline',
+                rollDisplay: 'inline',
+                solutionsDisplay: 'inline',
+                timerDisplay: 'none'
               });
           break;
 
@@ -445,11 +444,7 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CD#$42":                             // NOT IN USE
-            if (sender !== name) {
-              that.setState({buttonDisplay2: 'none'});
-              that.setState({buttonDisplay3: 'none'});
-              that.setState({buttonDisplay4: 'none'});
-            }
+
           break;
 
           case "CF#$42":                              // Re-set after a each clculation.
@@ -462,13 +457,14 @@ DES_ws.onmessage = function(event) {
             });
           break;
 
-          case "CH#$42":                               // NOT IN USE
+          case "CH#$42":
             that.setState
             ({
-              hidden: true,
-              str1: extra,
-              str2: ext4,
-              str3: ext5
+              DS_T: extra,
+              rollDisplay: 'inline',
+              numDisplay: 'none',
+              scoreDisplay: 'none',
+              scoreDisplay2: 'none'
             });
           break;
 
@@ -498,9 +494,13 @@ DES_ws.onmessage = function(event) {
 
           case "CR#$42":                       // Resets the player interface after each round.
             that.setState({
-              buttonDisplay2: 'inline',
-              buttonDisplay3: 'inline',
-              buttonDisplay15: 'inline',
+              impossibleDisplay: 'none',
+              numDisplay: 'none',
+              solutionsDisplay: 'none',
+              rollDisplay: 'inline',
+              timerDisplay: 'none',
+              scoreDisplay: 'none',
+              scoreDisplay2: 'none',
               message1: 0,
               message2: 0,
               message3: 0,
@@ -527,12 +527,16 @@ DES_ws.onmessage = function(event) {
               score: true,
               message: '',
               DS_T: 10,
-              buttonDisplay3: 'none',
-              buttonDisplay15: 'none',
+              impossibleDisplay: 'none',
+              solutionsDisplay: 'none',
+              timerDisplay: 'inline',
+              scoreDisplay: 'none',
+              rollDisplay: 'none'
             } )
-            if (extra !== name) {                            // Players can see calculations after wait.
+            if (extra !== name) {      
+				that.setState({numDisplay: 'none'})                      // Players can see calculations after wait.
                 setTimeout ( function() {
-                  that.setState({buttonDisplay15: 'inline'});
+                  that.setState({solutionsDisplay: 'inline'});
                 },8000 )
             }
           break;
@@ -543,15 +547,10 @@ DES_ws.onmessage = function(event) {
               interrupt: true,
               message: '',
               DS_T: 10,
-              buttonDisplay2: 'inline',
-              buttonDisplay4: 'none',
-              buttonDisplay15: 'none'
+              scoreDisplay: 'none',
+              solutionsDisplay: 'none',
+              numDisplay: 'inline'
             } )
-            if (extra !== name) {
-              }
-              setTimeout ( function() {
-                that.setState({buttonDisplay15: 'inline'});
-              },8000 )
           break;
 
           case "DY#$42":                               // Triggered by clicking  "IMPOSSIBLE".
@@ -560,10 +559,12 @@ DES_ws.onmessage = function(event) {
               impossible: true,
               message: '',
               DS_T: 60,
-              buttonDisplay2: 'none',
-              buttonDisplay3: 'none',
-              buttonDisplay4: 'inline',
-              buttonDisplay15: 'none'
+              impossibleDisplay: 'none',
+							numDisplay: 'none',
+              scoreDisplay: 'none',
+              scoreDisplay2: 'inline',
+              solutionsDisplay: 'none',
+              timerDisplay: 'inline'
             })
           break;
 
@@ -599,7 +600,6 @@ DES_ws.onmessage = function(event) {
       }
     }
   }
-
   setInterval( () => {
     let name = this.state.name;
     let group = this.state.group;
@@ -627,7 +627,8 @@ DES_ws.onmessage = function(event) {
             message4: 0,
             info: '',
             timeSize: 20,
-            buttonDisplay15: 'inline'
+            rollDisplay: 'inline',
+            DS_t: -1
         })
   	  let z = scoreClicker === name;
   		let z2 = impossibleClicker === name;
@@ -636,20 +637,20 @@ DES_ws.onmessage = function(event) {
       if (!interrupt) {
 				if (z) {
         	DES_ws.send(`CG#$42,${gr},${name},-1`);
-          this.setState({DS_T: `10 seconds expired. Deduct one point from ${scoreClicker}`});
+          let x = `10 seconds expired. Deduct one point from ${scoreClicker}`;
+          DES_ws.send(`CH#$42,${gr},${name},${x}`);
       	}
 			  else if (z2) {
         	DES_ws.send(`CG#$42,${gr},${name},1`);
-          this.setState({DS_T: `60 seconds expired. One point for ${impossibleClicker}`});
+          let x = `60 seconds expired. One point for ${impossibleClicker}`;
+          DES_ws.send(`CH#$42,${gr},${name},${x}`);
 				}
 			}
-      else if (interrupt) {
-		    this.setState( {DS_T: `10 seconds expired. One point awarded to ${that.state.impossibleClicker}
-	One point deducted from ${this.state.interruptClicker}`} )
-				if (z2) {
-					DES_ws.send(`CG#$42,${group},${name},1`);
-					DES_ws.send(`CG#$42,${group},${interruptClicker},-1`);
-      	}
+      else if (z3) {
+		    let x =  `10 seconds expired. One point awarded to ${that.state.impossibleClicker}. One point deducted from ${interruptClicker}.`
+        DES_ws.send(`CG#$42,${gr},${interruptClicker},-1`);
+				DES_ws.send(`CH#$42,${group},${interruptClicker},${x}`);
+				DES_ws.send(`CG#$42,${gr},${impossibleClicker},1`);
 		  }
 		}
   }, 1000 )
@@ -854,7 +855,7 @@ decreaseFont () {
   rollDice () {
     let col = this.state.dynamicColor;
     this.setState({
-      DS_T: 'SCORE!',
+      DS_T: '',
       used: [],
       test: false,
       score: false,
@@ -863,24 +864,16 @@ decreaseFont () {
       message: 'You must click SCORE in order to gain a point.',
       sty: {color: col, width: 50, marginLeft: 30, padding: 10},
       colorB42: '#ff0000',
-      buttonDisplay2: 'inline',
-      buttonDisplay3: 'inline',
-      buttonDisplay15: 'inline'
+      impossibleDisplay: 'inline',
+      scoreDisplay: 'inline',
+      scoreDisplay2: 'none',
+			numDisplay: 'inline',
+      solutionsDisplay: 'inline',
     });
     let name = this.state.name;
     let group = this.state.group;
-    DES_ws.send(`CK#$42,${group},${name},SCORE!`);
     DES_ws.send(`CF#$42,${group},${name},filler`);
-    let that = this;
-    let delay = this.delay
-    let s = DES_ws.readyState
-    if (s === 1) {
-      DES_ws.send(`CA#$42,${group},${name},6,6,12,20`);
-    } else this.delay(300).then( function () {
-      that.rollDice()
-    })
-    // this.setState({sty: {color: '#d5f765',
-    //      fontSize: "38", textAlign: "center", padding: "20",  }});
+    DES_ws.send(`CA#$42,${group},${name},6,6,12,20`);
   }
 
   getSolutions () {
@@ -1013,6 +1006,7 @@ decreaseFont () {
           DES_ws.send( `CG#$42,${gr},${name},1` );
       }
 	  	else if ( (result === 20) && test && test2 && interrupt ) {
+        this.setState({DS_T: -1});
         clock = `One point for ${name}.
         Two points deducted from ${impossibleClicker}`;
         DES_ws.send( `CR#$42,${gr},${name},${name}` );
@@ -1032,6 +1026,7 @@ decreaseFont () {
           DES_ws.send( `CG#$42,${gr},${name},1` );
       }
       else if (result === 20 && test && test2 && interrupt) {
+        this.setState({DS_T: -1});
         clock = `One point for ${name}.
         Two points deducted from ${impossibleClicker}`;
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
@@ -1039,11 +1034,13 @@ decreaseFont () {
 		      DES_ws.send( `CG#$42,${gr},${impossibleClicker},-2` );
         }
       else if (result !== 20 && test && test2 && !interrupt) {
+          this.setState({DS_T: -1});
           clock = `The result is not 20. ${name} lost one point.`;
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},-1` );
         }
       else if (result !== 20 && test && test2 && interrupt) {
+          this.setState({DS_T: -1});
           clock = `The result is not 20. One point taken from ${name}.
           One point awarded to ${impossibleClicker}.`;
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
@@ -1219,9 +1216,7 @@ decreaseFont () {
   handleScore () {
     let name = this.state.name;
     let group = this.state.group;
-    if (this.state.DS_T === "SCORE!") {   // Click works only at the start of each round
-      DES_ws.send( `CY#$42,${group},${name},${name}` );
-    }
+    DES_ws.send( `CY#$42,${group},${name},${name}` );
   }
 
     handleScore2 () {
@@ -1262,18 +1257,22 @@ decreaseFont () {
     let dynC = this.state.dynamicColor;
     let dynF = this.state.dynamicFont;
     let buttonDisplay = this.state.buttonDisplay;
-    let buttonDisplay2 = this.state.buttonDisplay2;
-    let buttonDisplay3 = this.state.buttonDisplay3;
-    let buttonDisplay4 = this.state.buttonDisplay4;
-    let buttonDisplay5 = this.state.buttonDisplay5;
-    let buttonDisplay6 = this.state.buttonDisplay6;
-    let buttonDisplay15 = this.state.buttonDisplay15;
+    let startDisplay = this.state.startDisplay;
+    let impossibleDisplay = this.state.impossibleDisplay;
+    let scoreDisplay = this.state.scoreDisplay;
+    let scoreDisplay2 = this.state.scoreDisplay2;
+    let timerDisplay = this.state.timerDisplay;
+    let timerDisplay2 = this.state.timerDisplay2;
+    let rollDisplay = this.state.rollDisplay;
+    let numDisplay = this.state.numDisplay;
+    let solutionsDisplay = this.state.solutionsDisplay;
     let m1 = this.state.message1;
     let timeSize = this.state.timeSize;
 
     console.log(this);
     return (
-    <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, display: 'inlineBlock', width: '100%', height: '1200'}} >
+    <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, 
+      display: 'inlineBlock', width: '100%', height: '100%'}} >
       <div style={{width: '35%', float: 'right'}} >
             <ChangeColor key='ChangeColor' changeC={this.changeColor.bind(this)}
               style={{width: 8}} />
@@ -1307,7 +1306,7 @@ decreaseFont () {
          setInfo={this.setInfo.bind(this)} >
       </Login>
 
-      <div style = {{ display: buttonDisplay, paddingTop: 1.1, width: '65%',
+      <div style = {{ display: startDisplay, paddingTop: 1.1, width: '65%',
               paddingBottom: 0.9, fontSize: 20, marginLeft: 5 }}>
 
             Current roll:
@@ -1357,55 +1356,65 @@ decreaseFont () {
 
           <div style={{width: '100%', backgroundColor: dynB,  padding: 10}} > </div>
 
-          <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore.bind(this)}
+          <button onMouseEnter={this.hoverHandler9.bind(this)} 
             onMouseLeave={this.leaveHandler9.bind(this)}
-            style={{backgroundColor: buttonCol9, display: buttonDisplay5, paddingTop: 1.1,
+            style={{backgroundColor: buttonCol9, display: timerDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize}} >
             {this.state.DS_T}
           </button>
 
-          <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore2.bind(this)}
+          <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore.bind(this)}
             onMouseLeave={this.leaveHandler9.bind(this)}
-            style={{backgroundColor: buttonCol9, display: buttonDisplay4, paddingTop: 1.1,
+            style={{backgroundColor: buttonCol9, display: scoreDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize}} >
             SCORE!
           </button>
 
+          <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore2.bind(this)}
+            onMouseLeave={this.leaveHandler9.bind(this)}
+            style={{backgroundColor: buttonCol9, display: scoreDisplay2, paddingTop: 1.1,
+              paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize}} >
+            SCORE!
+          </button>       
+
           <button onMouseEnter={this.hoverHandler14.bind(this)} onClick={this.handleImpossible.bind(this)}
             onMouseLeave={this.leaveHandler14.bind(this)}
-            style={{backgroundColor: buttonCol14, display: buttonDisplay3, paddingTop: 1.1,
+            style={{backgroundColor: buttonCol14, display: impossibleDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize  }} >
-            IMPOSSIBLE
+            IMPJACK
           </button>
 
           <div style={{width: '100%', backgroundColor: dynB,  padding: 10}} > </div>
 
           <div> {this.state.message } </div>
+          <br />
+
+		<div style={{width: '100%', backgroundColor: dynB,  padding: 10, display: numDisplay }} >
 
           <button onMouseEnter={this.hoverHandler0.bind(this)} onClick={this.handleB40.bind(this)}
             onMouseLeave={this.leaveHandler0.bind(this)}
-            style={{backgroundColor: buttonCol0,  paddingTop: 1.1,
+            style={{backgroundColor: buttonCol0,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize  }} >
             {this.state.message1}
           </button>
 
           <button onMouseEnter={this.hoverHandler1.bind(this)} onClick={this.handleB41.bind(this)}
             onMouseLeave={this.leaveHandler1.bind(this)}
-            style={{backgroundColor: buttonCol1,  paddingTop: 1.1,
+            style={{backgroundColor: buttonCol1,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message2}
           </button>
 
           <button onMouseEnter={this.hoverHandler2.bind(this)} onClick={this.handleB42.bind(this)}
             onMouseLeave={this.leaveHandler2.bind(this)}
-            style={{backgroundColor: buttonCol2,  paddingTop: 1.1,
+            style={{backgroundColor: buttonCol2,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message3}
           </button>
 
           <button onMouseEnter={this.hoverHandler3.bind(this)} onClick={this.handleB43.bind(this)}
             onMouseLeave={this.leaveHandler3.bind(this)}
-            style={{backgroundColor: buttonCol3,  paddingTop: 1.1,
+            style={{backgroundColor: buttonCol3,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message4}
           </button>
@@ -1414,28 +1423,28 @@ decreaseFont () {
 
           <button onMouseEnter={this.hoverHandler4.bind(this)} onClick={this.handleOp0.bind(this)}
             onMouseLeave={this.leaveHandler4.bind(this)}
-            style={{backgroundColor: buttonCol4,  paddingTop: 1.1,
+            style={{backgroundColor: buttonCol4,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize  }} >
             +
           </button>
 
           <button onMouseEnter={this.hoverHandler5.bind(this)} onClick={this.handleOp1.bind(this)}
             onMouseLeave={this.leaveHandler5.bind(this)}
-            style={{backgroundColor: buttonCol5,  paddingTop: 1.1,
+            style={{backgroundColor: buttonCol5,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             -
           </button>
 
           <button onMouseEnter={this.hoverHandler6.bind(this)} onClick={this.handleOp2.bind(this)}
             onMouseLeave={this.leaveHandler6.bind(this)}
-            style={{backgroundColor: buttonCol6,  paddingTop: 1.1,
+            style={{backgroundColor: buttonCol6,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             *
           </button>
 
           <button onMouseEnter={this.hoverHandler7.bind(this)} onClick={this.handleOp3.bind(this)}
             onMouseLeave={this.leaveHandler7.bind(this)}
-            style={{backgroundColor: buttonCol7,  paddingTop: 1.1,
+            style={{backgroundColor: buttonCol7,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             /
           </button>
@@ -1446,7 +1455,7 @@ decreaseFont () {
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             Concat
           </button>
-
+		</div>
           <div style={{width: '100%',  padding: 10}} />
 
           <span style={{backgroundColor: '000', color: '#0f0',  paddingTop: 1.1,
@@ -1476,7 +1485,7 @@ decreaseFont () {
 
           <div style={{width: 1200,  padding: 10}} >  </div>
 
-      <div style={{display: buttonDisplay2}} >
+      <div style={{display: rollDisplay}} >
           <button onMouseEnter={this.hoverHandler.bind(this)}
             onMouseLeave={this.leaveHandler.bind(this)} style={{backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay}}
               onClick={this.buttonHandler.bind(this)} >
@@ -1486,7 +1495,7 @@ decreaseFont () {
       <br /><br />
 
       <button  onClick={this.getSolutions.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: buttonDisplay15, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
+          display: solutionsDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
           Solutions <br />
         <div>
               {
@@ -1501,4 +1510,4 @@ decreaseFont () {
     )}
   };
 
-  React.render(<B4 />, document.getElementById('divSix'));
+  React.render(<B4 style={{backgroundColor: '#000000'}}/>, document.getElementById('divSix'));

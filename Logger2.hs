@@ -4,7 +4,7 @@ import Control.Concurrent.STM
 import Control.Monad.IO.Class (liftIO)
 -- -----------------------------------------------------------------------------
 
--- <<Logger 
+-- <<Logger
 data Logger = Logger (TMVar LogCommand)
 
 data LogCommand = Message String | Stop (TMVar ())
@@ -28,13 +28,13 @@ logger (Logger m) = loop
     cmd <- atomically $ takeTMVar m
     case cmd of
       Message msg -> do
-        -- putStrLn msg 
+        -- putStrLn msg
         appendFile f (msg ++ "\n")
         loop
       Stop s -> do
         putStrLn "logger: stop"
         atomically $ putTMVar s ()
-    liftIO $ print "THE END"    
+    liftIO $ print "THE END"
 -- >>
 
 -- <<logMessage
