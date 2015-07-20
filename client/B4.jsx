@@ -50,6 +50,38 @@ class GroupNew extends React.Component {
   }
 };
 
+class Chat extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleEnter (event) {
+    let message = event.target.value;
+    if ( event.keyCode == 13 && message != '') {
+      this.props.changeMessage(message);
+      event.target.value = '';
+    }
+  }
+  click (event) {
+    let message = event.target.value;
+    if (message != '') {
+      this.props.changeMessage(message);
+      event.target.value = '';
+    }
+  }
+  render () {
+    console.log(this);
+    return (
+      <div style={{fontSize: 22}}>
+        Message:
+        <label>
+          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          style={{width: 70, backgroundColor: '#d8d17d'}} />
+        </label>
+      </div>
+    );
+  }
+};
+
 class ChangeColor extends React.Component {
   constructor(props) {
     super(props);
@@ -281,6 +313,8 @@ class B4 extends React.Component {
         scoreClicker: "a@F$Uy&sc",
         interruptClicker: "a@F$intrup%$",
         scoreB: ["Greetings new player."],
+        chatMessage: "",
+        chatArray:[""],
         group: 'solo',
         info: '',
         used: [],
@@ -317,9 +351,8 @@ class B4 extends React.Component {
         scoreDisplay2: 'none',
         timerDisplay: 'none',
         rollDisplay: 'inline',
-		    numDisplay: 'none',
+        numDisplay: 'none',
         solutionsDisplay: 'none',
-        chatMessage: '',
         timeSize: 20
       }
 
@@ -443,8 +476,16 @@ DES_ws.onmessage = function(event) {
             //  }
           break;
 
-          case "CD#$42":                             // NOT IN USE
-
+          case "CD#$42":
+            let xm = that.state.chatMessage;
+            let xmess = extra + "<br>" + xm;
+            console.log(xm);
+            console.log(xmess);
+            let ar3 = xmess.split("<br>");
+            that.setState({
+              chatMessage: xmess,
+              chatArray: ar3
+            });
           break;
 
           case "CF#$42":                              // Re-set after a each clculation.
@@ -479,6 +520,7 @@ DES_ws.onmessage = function(event) {
           case "CK#$42":                      // Updates DS_T after each calculation.
               that.setState
               ({
+                info: extra,
                 DS_T: extra
               });
           break;
@@ -621,14 +663,14 @@ DES_ws.onmessage = function(event) {
 
     if ( this.state.DS_T*1 === 0 ) {
       this.setState ({
-            message1: 0,
+            message1: 0,  // Wipes the old numbers.
             message2: 0,
             message3: 0,
             message4: 0,
             info: '',
-            timeSize: 20,
-            rollDisplay: 'inline',
-            DS_t: -1
+            timeSize: 20, // Returns number display to normal size.
+            rollDisplay: 'inline', // Displays the ROLL button.
+            DS_t: -1 // Make sure this if clause doesn't run again before the next dice roll.
         })
   	  let z = scoreClicker === name;
   		let z2 = impossibleClicker === name;
@@ -637,19 +679,19 @@ DES_ws.onmessage = function(event) {
       if (!interrupt) {
 				if (z) {
         	DES_ws.send(`CG#$42,${gr},${name},-1`);
-          let x = `10 seconds expired. Deduct one point from ${scoreClicker}`;
-          DES_ws.send(`CH#$42,${gr},${name},${x}`);
+          DES_ws.send(`CH#$42,${gr},${name},10 seconds expired. Deduct one point from ${scoreClicker}`);
+
       	}
 			  else if (z2) {
         	DES_ws.send(`CG#$42,${gr},${name},1`);
-          let x = `60 seconds expired. One point for ${impossibleClicker}`;
-          DES_ws.send(`CH#$42,${gr},${name},${x}`);
+          DES_ws.send(`CH#$42,${gr},${name},60 seconds expired. One point for ${impossibleClicker}`);
+
 				}
 			}
       else if (z3) {
-		    let x =  `10 seconds expired. One point awarded to ${that.state.impossibleClicker}. One point deducted from ${interruptClicker}.`
         DES_ws.send(`CG#$42,${gr},${interruptClicker},-1`);
-				DES_ws.send(`CH#$42,${group},${interruptClicker},${x}`);
+				DES_ws.send(`CH#$42,${group},${interruptClicker},10 seconds expired. One point awarded to ${that.state.impossibleClicker}. One point deducted from ${interruptClicker}.`);
+
 				DES_ws.send(`CG#$42,${gr},${impossibleClicker},1`);
 		  }
 		}
@@ -890,27 +932,43 @@ decreaseFont () {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send( `CO#$42,${group},${name},GroupA` );
-    this.setState({group: 'GroupA'});
+    this.setState({
+      group: 'GroupA',
+      chatMessage: '',
+      chatArray: []
+    });
   }
 
   handleGroupB () {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send( `CO#$42,${group},${name},GroupB` );
-    this.setState({group: 'GroupB'});
+    this.setState({
+      group: 'GroupB',
+      chatMessage: '',
+      chatArray: []
+    });
   }
 
   handleGroupC () {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send( `CO#$42,${group},${name},GroupC` );
-    this.setState({group: 'GroupC'});
+    this.setState({
+      group: 'GroupC',
+      chatMessage: '',
+      chatArray: []
+    });
   }
 
   setGroup (x) {
     let name = this.state.name;
     let group = this.state.group;
-    this.setState({group: x});
+    this.setState({
+      group: x,
+      chatMessage: '',
+      chatArray: []
+    });
     DES_ws.send( `CO#$42,${group},${name},${x}` );
   }
 
@@ -1066,6 +1124,12 @@ decreaseFont () {
 
   changeItem (x) {
     this.setState(x)
+  }
+
+  changeMessage(x) {
+    let name = this.state.name;
+    let gr = this.state.group;
+    DES_ws.send (`CD#$42,${gr},${name},${name}: ${x}`);
   }
 
   logMessage () {
@@ -1287,7 +1351,7 @@ decreaseFont () {
               Decrease Font Size</button>
               <br /><br />
 
-            <button  style={{backgroundColor: '#444415', color: '#f2f246', textAlign: 'center',
+            <button  style={{backgroundColor: '#4c1616', color: '#f2f246', textAlign: 'center',
                 display: 'inlineBlock', paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 18}} >
                 Score Board <br />
                 name [score]
@@ -1298,6 +1362,19 @@ decreaseFont () {
                       }
                 </div>
             </button>
+            <br /> <br />
+
+            <button  style={{backgroundColor: '#4c1616', color: '#f2f246', textAlign: 'center',
+                display: 'inlineBlock', paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 18}} >
+                Message Board <br />
+                <div style={{textAlign: 'left'}} > {
+                          this.state.chatArray.map(function(line) {
+                            return (<p key={line.id} > {line} </p>);
+                          })
+                      }
+                </div>
+            </button>
+            <Chat changeMessage={this.changeMessage.bind(this)} > </Chat>
       </div>
 
       <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
@@ -1381,7 +1458,7 @@ decreaseFont () {
             onMouseLeave={this.leaveHandler14.bind(this)}
             style={{backgroundColor: buttonCol14, display: impossibleDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize  }} >
-            IMPJACK
+            IMPOSSIBLE
           </button>
 
           <div style={{width: '100%', backgroundColor: dynB,  padding: 10}} > </div>
@@ -1506,8 +1583,9 @@ decreaseFont () {
         </div>
       </button>
     </div>
+    <div style={{paddingBottom: 500}} />
   </div>
     )}
   };
 
-  React.render(<B4 style={{backgroundColor: '#000000'}}/>, document.getElementById('divSix'));
+  React.render(<B4 />, document.getElementById('divSix'));

@@ -1,0 +1,10 @@
+XXXXX In calc where test is defined resP: whatever   mes0: 4   mes2: 5   test: false
+XXXXX in newNums 1,8,20
+XXXXX In calc where test is defined resP: 20   mes0: 20   mes2: 1   test: true
+XXXXX in newNums 8,20
+XXXXX,true,true,true,
+XXXXX In calc where test is defined resP: whatever   mes0: 3   mes2: 4   test: false
+XXXXX in newNums 8,7,12
+XXXXX In calc where test is defined resP: 12   mes0: 12   mes2: 8   test: true
+XXXXX in newNums 7,20
+XXXXX,true,true,true,
