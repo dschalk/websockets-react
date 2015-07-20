@@ -478,9 +478,8 @@ DES_ws.onmessage = function(event) {
 
           case "CD#$42":
             let xm = that.state.chatMessage;
-            let xmess = extra + "<br>" + xm;
-            console.log(xm);
-            console.log(xmess);
+            let newM = event.data.split("&@3#^7$")[1];
+            let xmess = newM + "<br>" + xm;
             let ar3 = xmess.split("<br>");
             that.setState({
               chatMessage: xmess,
@@ -1129,7 +1128,7 @@ decreaseFont () {
   changeMessage(x) {
     let name = this.state.name;
     let gr = this.state.group;
-    DES_ws.send (`CD#$42,${gr},${name},${name}: ${x}`);
+    DES_ws.send (`CD#$42,${gr},${name},&@3#^7$${name}: ${x}`);
   }
 
   logMessage () {
@@ -1375,6 +1374,7 @@ decreaseFont () {
                 </div>
             </button>
             <Chat changeMessage={this.changeMessage.bind(this)} > </Chat>
+            <div style={{paddingBottom: 200}} />
       </div>
 
       <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
