@@ -350,6 +350,7 @@ class B4 extends React.Component {
         scoreDisplay2: 'none',
         timerDisplay: 'none',
         rollDisplay: 'inline',
+        rollnumsDisplay: 'none',
         numDisplay: 'none',
         solutionsDisplay: 'none',
         timeSize: 20
@@ -396,8 +397,7 @@ DES_ws.onmessage = function(event) {
   console.log(ar2);
   console.log("4444444444444444444444444444444444444444444444444444444444444444444")
 
-  if ( ( that.state.group === gameArray[1]) ||
-        name === sender || extra === '%#8*&&^1#$%^' || d2 == "CB#$42") {
+  // if ( ( that.state.group === gameArray[1]) || name === sender || extra === '%#8*&&^1#$%^' || d2 == "CB#$42") {
       switch (d2) {
 
           case "CC#$42":                         // Not broadcast. Login message.
@@ -449,6 +449,7 @@ DES_ws.onmessage = function(event) {
                 scoreDisplay2: 'none',
                 impossibleDisplay: 'inline',
                 rollDisplay: 'inline',
+                rollnumsDisplay: 'none',
                 solutionsDisplay: 'inline',
                 timerDisplay: 'none'
               });
@@ -524,7 +525,7 @@ DES_ws.onmessage = function(event) {
             that.setState({
               impossibleDisplay: 'none',
               numDisplay: 'none',
-              solutionsDisplay: 'none',
+              solutionsDisplay: 'inline',
               rollDisplay: 'inline',
               timerDisplay: 'none',
               scoreDisplay: 'none',
@@ -552,7 +553,7 @@ DES_ws.onmessage = function(event) {
               solutionsDisplay: 'none',
               timerDisplay: 'inline',
               scoreDisplay: 'none',
-              rollDisplay: 'none'
+              rollDisplay: 'none',
             } )
             if (extra !== name) {      
 				that.setState({numDisplay: 'none'}) // Players can see calculations after wait.
@@ -570,7 +571,8 @@ DES_ws.onmessage = function(event) {
               DS_T: 10,
               scoreDisplay: 'none',
               solutionsDisplay: 'none',
-              numDisplay: 'inline'
+              numDisplay: 'inline',
+              rollnumsDisplay: 'none'
             } )
           break;
 
@@ -585,7 +587,9 @@ DES_ws.onmessage = function(event) {
               scoreDisplay: 'none',
               scoreDisplay2: 'inline',
               solutionsDisplay: 'none',
-              timerDisplay: 'inline'
+              timerDisplay: 'inline',
+              rollDisplay: 'none',
+              rollnumsDisplay: 'inline'
             })
           break;
 
@@ -615,7 +619,6 @@ DES_ws.onmessage = function(event) {
               console.log( "fell through to default");
           break;
       }
-    }
   }
   setInterval( () => {
     let name = this.state.name;
@@ -645,7 +648,8 @@ DES_ws.onmessage = function(event) {
             info: '',
             timeSize: 20, // Returns number display to normal size.
             rollDisplay: 'inline', // Displays the ROLL button.
-            DS_t: -1 
+            solutionsDisplay: 'inline',
+            DS_t: -1
         })
   	  let z = scoreClicker === name;
   		let z2 = impossibleClicker === name;
@@ -861,6 +865,7 @@ decreaseFont () {
       scoreDisplay2: 'none',
 			numDisplay: 'inline',
       solutionsDisplay: 'inline',
+      rollnumsDisplay: 'none'
     });
     let name = this.state.name;
     let group = this.state.group;
@@ -1265,6 +1270,7 @@ decreaseFont () {
     let rollDisplay = this.state.rollDisplay;
     let numDisplay = this.state.numDisplay;
     let solutionsDisplay = this.state.solutionsDisplay;
+    let rollnumsDisplay = this.state.rollnumsDisplay;
     let m1 = this.state.message1;
     let timeSize = this.state.timeSize;
 
@@ -1377,7 +1383,12 @@ decreaseFont () {
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize}} >
             {this.state.DS_T}
           </button>
-
+          <div style={{ display: rollnumsDisplay }} > 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 }} > {this.state.d1} </button> 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 }} > {this.state.d2} </button> 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 }} > {this.state.d3} </button> 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 }} > {this.state.d4} </button> 
+          </div>
           <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore.bind(this)}
             onMouseLeave={this.leaveHandler9.bind(this)}
             style={{backgroundColor: buttonCol9, display: scoreDisplay, paddingTop: 1.1,
