@@ -188,13 +188,11 @@ talk conn state (_, _, _, _) = forever $ do
                 broadcast ("DZ#$42," `mappend` group `mappend` ","
                     `mappend` sender `mappend` "," `mappend` yzz) subSt
 
-    else if "CC#$42" `T.isPrefixOf` msg || "CE#$42" `T.isPrefixOf` msg || "CF#$42" `T.isPrefixOf` msg ||
-        "CH#$42" `T.isPrefixOf` msg || "CJ#$42" `T.isPrefixOf` msg || "CK#$42" `T.isPrefixOf` msg ||
-        "CP#$42" `T.isPrefixOf` msg || "CQ#$42" `T.isPrefixOf` msg || "CS#$42" `T.isPrefixOf` msg ||
+    else if "CC#$42" `T.isPrefixOf` msg || "CE#$42" `T.isPrefixOf` msg ||
+        "CH#$42" `T.isPrefixOf` msg || "CK#$42" `T.isPrefixOf` msg || "XY#$42" `T.isPrefixOf` msg ||
+        "CQ#$42" `T.isPrefixOf` msg || "CF#$42" `T.isPrefixOf` msg || "DI#$42" `T.isPrefixOf` msg ||
         "CY#$42" `T.isPrefixOf` msg || "CR#$42" `T.isPrefixOf` msg || "CD#$42" `T.isPrefixOf` msg ||
-        "IA#$42" `T.isPrefixOf` msg || "DY#$42" `T.isPrefixOf` msg || "DI#$42" `T.isPrefixOf` msg ||
-        "XI#$42" `T.isPrefixOf` msg || "XK#$42" `T.isPrefixOf` msg || "XY#$42" `T.isPrefixOf` msg ||
-        "QI#$42" `T.isPrefixOf` msg || "XO#$42" `T.isPrefixOf` msg
+        "IA#$42" `T.isPrefixOf` msg || "DY#$42" `T.isPrefixOf` msg
         then
             do
                 st <- atomically $ readTMVar state

@@ -1,10 +1,50 @@
-XXXXX In calc where test is defined resP: whatever   mes0: 4   mes2: 5   test: false
-XXXXX in newNums 1,8,20
-XXXXX In calc where test is defined resP: 20   mes0: 20   mes2: 1   test: true
-XXXXX in newNums 8,20
-XXXXX,true,true,true,
-XXXXX In calc where test is defined resP: whatever   mes0: 3   mes2: 4   test: false
-XXXXX in newNums 8,7,12
-XXXXX In calc where test is defined resP: 12   mes0: 12   mes2: 8   test: true
-XXXXX in newNums 7,20
-XXXXX,true,true,true,
+XXXXXX,this.state.message4: 1
+XXXXX In calc at the top: mes0: 6   mes1: +   mes2: 1
+XXXXX In calc where test is defined resP: whatever   mes0: 6   mes2: 1   test: false
+XXXXX In newNums at the top: result: 7   str: 6 + 1 = 7   test: false  x: ,2,12,1,7  
+XXXXX in newNums 2,12,1,7
+
+
+
+XXXXXX,this.state.message4: 
+XXXXX In calc at the top: mes0: 6   mes1: +   mes2: 5
+XXXXX In calc where test is defined resP: whatever   mes0: 6   mes2: 5   test: false
+XXXXX In newNums at the top: result: 11   str: 6 + 5 = 11   test: false  x: 2,1,,,11  
+XXXXX in newNums 2,1,11
+XXXXX In calc at the top: mes0: 2   mes1: +   mes2: 1
+XXXXX In calc where test is defined resP: 11   mes0: 2   mes2: 1   test: false
+XXXXX In newNums at the top: result: 3   str: 2 + 1 = 3   test: false  x: ,1,11,,3  
+XXXXX in newNums 1,11,3
+XXXXX In calc at the top: mes0: 1   mes1: +   mes2: 11
+XXXXX In calc where test is defined resP: 3   mes0: 1   mes2: 11   test: false
+XXXXX In newNums at the top: result: 12   str: 1 + 11 = 12   test: false  x: ,11,3,,12  
+XXXXX in newNums 11,3,12
+XXXXXX,this.state.message4: 
+XXXXX In calc at the top: mes0: 17   mes1: +   mes2: 3
+XXXXX In calc where test is defined resP: whatever   mes0: 17   mes2: 3   test: false
+XXXXX In newNums at the top: result: 20   str: 17 + 3 = 20   test: false  x: 2,,1,,20  
+XXXXX in newNums 2,1,20
+XXXXX In calc at the top: mes0: 1   mes1: *   mes2: 20
+XXXXX In calc where test is defined resP: 20   mes0: 1   mes2: 20   test: true
+XXXXX In newNums at the top: result: 20   str: 1 * 20 = 20   test: true  x: 2,,,,20  
+XXXXX in newNums 2,20
+XXXXX,true,true,false,
+XXXXXX,this.state.message4: 
+XXXXX In calc at the top: mes0: 16   mes1: +   mes2: 4
+XXXXX In calc where test is defined resP: 20   mes0: 16   mes2: 4   test: false
+XXXXX In newNums at the top: result: 20   str: 16 + 4 = 20   test: false  x: 1,,2,,20  
+XXXXX in newNums 1,2,20
+XXXXX In calc at the top: mes0: 1   mes1: *   mes2: 20
+XXXXX In calc where test is defined resP: 20   mes0: 1   mes2: 20   test: true
+XXXXX In newNums at the top: result: 20   str: 1 * 20 = 20   test: true  x: ,2,,,20  
+XXXXX in newNums 2,20
+XXXXX,true,true,false,
+XXXXX In calc at the top: mes0: 2   mes1: *   mes2: 6
+XXXXX In calc where test is defined resP: 20   mes0: 2   mes2: 6   test: false
+XXXXX In newNums at the top: result: 12   str: 2 * 6 = 12   test: false  x: ,,8,3,12  
+XXXXX in newNums 8,3,12
+XXXXX In calc at the top: mes0: 8   mes1: +   mes2: 12
+XXXXX In calc where test is defined resP: 12   mes0: 8   mes2: 12   test: true
+XXXXX In newNums at the top: result: 20   str: 8 + 12 = 20   test: true  x: ,3,,,20  
+XXXXX in newNums 3,20
+XXXXX,true,true,false,

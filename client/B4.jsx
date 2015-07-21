@@ -212,7 +212,7 @@ class Login extends React.Component {
     super(props);
   }
 
-  handleChange (event) {      
+  handleChange (event) {
     this.props.change({name: event.target.value});
   }
   handleEnter (event) {
@@ -317,7 +317,6 @@ class B4 extends React.Component {
         chatArray:[""],
         group: 'solo',
         info: '',
-        used: [],
         dynamicBg: '#000000',
         dynamicColor: '#d5f765',
         dynamicFont: 20,
@@ -508,14 +507,6 @@ DES_ws.onmessage = function(event) {
             });
           break;
 
-          case "CJ#$42":                                // NOT IN USE
-              that.setState
-              ({
-                hidden2: false,
-                hidden5: false
-              });
-          break;
-
           case "CK#$42":                      // Updates DS_T after each calculation.
               that.setState
               ({
@@ -524,16 +515,12 @@ DES_ws.onmessage = function(event) {
               });
           break;
 
-          case "CP#$42":
-              that.setState({res: extra});                // NOT IN USE
-          break;
-
-          case "CQ#$42":                       // Updates the calculation progress display
-              that.state[extra]=ext4;          // UNIQUE  It sets the key and the value in the state object.
+          case "CQ#$42":                 // Updates the calculation progress display
+              that.state[extra]=ext4;    // UNIQUE  It sets the key and the value in the state object.
               that.forceUpdate();
           break;
 
-          case "CR#$42":                       // Resets the player interface after each round.
+          case "CR#$42":                 // Resets the player interface after each round.
             that.setState({
               impossibleDisplay: 'none',
               numDisplay: 'none',
@@ -555,14 +542,7 @@ DES_ws.onmessage = function(event) {
             });
           break;
 
-          case "CS#$42":                                    // NOT IN USE
-            if (sender !== name) {
-              that.state[extra]=ext4;
-              that.forceUpdate();
-            };
-          break;
-
-          case "CY#$42":                                   // Triggered by clicking "SCORE!".
+          case "CY#$42": // Triggered by clicking "SCORE!".
             that.setState( {
               scoreClicker: extra,
               score: true,
@@ -575,7 +555,7 @@ DES_ws.onmessage = function(event) {
               rollDisplay: 'none'
             } )
             if (extra !== name) {      
-				that.setState({numDisplay: 'none'})                      // Players can see calculations after wait.
+				that.setState({numDisplay: 'none'}) // Players can see calculations after wait.
                 setTimeout ( function() {
                   that.setState({solutionsDisplay: 'inline'});
                 },8000 )
@@ -631,10 +611,6 @@ DES_ws.onmessage = function(event) {
             that.setState({info: extra});         // Broadcast to update info message.
           break;
 
-          case "SX#$42":                                   // NOT IN USE
-
-          break;
-
           default:
               console.log( "fell through to default");
           break;
@@ -669,7 +645,7 @@ DES_ws.onmessage = function(event) {
             info: '',
             timeSize: 20, // Returns number display to normal size.
             rollDisplay: 'inline', // Displays the ROLL button.
-            DS_t: -1 // Make sure this if clause doesn't run again before the next dice roll.
+            DS_t: -1 
         })
   	  let z = scoreClicker === name;
   		let z2 = impossibleClicker === name;
@@ -696,24 +672,6 @@ DES_ws.onmessage = function(event) {
 		}
   }, 1000 )
 }
-
-isElement (x, ar) {
-  var value = false;
-  ar.map( e => {
-	if (x === e) {
-	  value = true;
-	};
-  })
-  return value;
-}
-
-  getStyles () {
-    return {
-      padding: "1em",
-      borderRadius: 5,
-      background: this.state.dynamicBg
-    };
-  }
 
   changeBackground (color) {
     this.setState({
@@ -877,12 +835,6 @@ decreaseFont () {
     DES_ws.send( `CZ#$42,${group},${name},${goal}` );
   }
 
-  moreUsed (x) {
-    let ar = this.state.used;
-    ar.push(x);
-    this.setState({ used: ar });
-  }
-
   delay(ms) {
     return new Promise(function (resolve, reject) {
         setTimeout(resolve, ms);
@@ -890,14 +842,13 @@ decreaseFont () {
   }
 
   displayHandler () {
-    console.log("##################$$$$$$$$$$$$$$$$$$$$$$$$___ IN displayHandler ___")
+    console.log("############$$$$$$$$$$$$$$$$$$___ IN displayHandler ___")
   }
 
   rollDice () {
     let col = this.state.dynamicColor;
     this.setState({
       DS_T: '',
-      used: [],
       test: false,
       score: false,
       impossible: false,
@@ -986,7 +937,7 @@ decreaseFont () {
     this.newNums(result,str,test,teststartArray);
   }
 
-  calc (mes0,mes1,mes2) {
+  calc (mes0,mes1,mes2) { 
     let that = this;
     let res = 0;
     let delay = this.delay;
@@ -994,7 +945,6 @@ decreaseFont () {
     let resP = this.state.resPrevious;
     let ar5 = [mes0,mes2];
     let test = (resP === mes0 || resP === mes2);
-    DES_ws.send(`XXXXX In calc where test is defined resP: ${resP}   mes0: ${mes0}   mes2: ${mes2}   test: ${test}`);
     this.setState({
       test: test
     });
@@ -1044,7 +994,6 @@ decreaseFont () {
         j += 1;
       }
     }
-    DES_ws.send(`XXXXX in newNums ${ar}`);
     if (j === 3) {
       DES_ws.send(`CQ#$42,${gr},${name},str1,${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},${ar[2]},`);
@@ -1056,7 +1005,6 @@ decreaseFont () {
     else if (j === 2) {
       DES_ws.send(`CQ#$42,${gr},${name},str2,${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},,`);
-      DES_ws.send(`XXXXX,${result === 20},${test},${interrupt},`);
       if ( (result === 20) && test && test2 && !interrupt ) {
           clock = `One point for ${name}`
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
@@ -1115,7 +1063,6 @@ decreaseFont () {
 			DES_ws.send( `CF#$42,${gr},${name},${name}` );
     }
 
-
   newPlayer (x) {
     this.setState({name: x});
     DES_ws.send("CC#42$"+x)
@@ -1138,8 +1085,7 @@ decreaseFont () {
   buttonHandler () {
     let name = this.state.name;
     let group = this.state.group;
-    let x = `Click SCORE to begin.`
-    DES_ws.send( `IA#$42,${group},${name},${x}` );
+    DES_ws.send( `IA#$42,${group},${name},Click SCORE to begin` );
     this.rollDice();
   }
 
@@ -1150,8 +1096,9 @@ decreaseFont () {
     let num0 = this.state.mes0;
     let op = this.state.mes1;
     let num2 = this.state.mes2;
-    this.moreUsed(num);
-    this.setState({message1: '' });
+    this.setState({message1: '' }); // Doesn't update.
+    this.state.message1 = '';
+    this.forceUpdate();
     if (this.state.mes0 === 'Number') {
       DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
     }
@@ -1170,8 +1117,9 @@ decreaseFont () {
     let num0 = this.state.mes0;
     let op = this.state.mes1;
     let num2 = this.state.mes2;
-    this.moreUsed(num);
     this.setState({message2: '' });
+    this.state.message2 = '';
+    this.forceUpdate();
     if (this.state.mes0 === 'Number') {
       DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
       console.log('_________________________________________________________in handleB40');
@@ -1191,8 +1139,9 @@ decreaseFont () {
     let num0 = this.state.mes0;
     let op = this.state.mes1;
     let num2 = this.state.mes2;
-    this.moreUsed(num);
     this.setState({message3: '' });
+    this.state.message3 = '';
+    this.forceUpdate();
     if (this.state.mes0 === 'Number') {
       DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
       console.log('_________________________________________________________in handleB40');
@@ -1208,23 +1157,19 @@ decreaseFont () {
   handleB43 () {
     let name = this.state.name;
     let group = this.state.group;
-    let num = this.state.message4;
-    let num0 = this.state.mes0;
-    let op = this.state.mes1;
-    let num2 = this.state.mes2;
-    this.moreUsed(num);
+    let msg4 = this.state.message4;
     this.setState({message4: '' });
+    this.state.message4 = '';
+    this.forceUpdate();
     if (this.state.mes0 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-      console.log('_________________________________________________________in handleB40');
+      DES_ws.send(`CQ#$42,${group},${name},mes0,${msg4}`);
     }
-    else if (this.state.mes2 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
-      if (this.state.mes1 !== 'Operator') {
-        this.calc(num0, op, num);
-      }
+    else if (this.state.mes2 === 'Number' && this.state.mes1 === 'Operator') {
+      DES_ws.send(`CQ#$42,${group},${name},mes2,${msg4}`);
     }
+    else {this.calc(this.state.mes0, this.state.mes1, msg4)};
   }
+  
 
   handleOp0 () {
     let name = this.state.name;
@@ -1282,21 +1227,16 @@ decreaseFont () {
     DES_ws.send( `CY#$42,${group},${name},${name}` );
   }
 
-    handleScore2 () {
+  handleScore2 () {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send( `XY#$42,${group},${name},${name}` );
   }
 
-    handleImpossible () {
+  handleImpossible () {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send( `DY#$42,${group},${name},${name}` );
-  }
-
-  displayControl (a,b,c,d) {
-
-
   }
 
   render () {
@@ -1385,18 +1325,20 @@ decreaseFont () {
 
       <div style = {{ display: startDisplay, paddingTop: 1.1, width: '65%',
               paddingBottom: 0.9, fontSize: 20, marginLeft: 5 }}>
-
-            Current roll:
-            <button style={{backgroundColor: '#000', color: '#f00',marginLeft: 5, borderColor: '#93b1f2' }}> { this.state.d1} </button>
-            <button style={{backgroundColor: '#000', color: '#f00', borderColor: '#93b1f2'}}> {this.state.d2} </button>
-            <button style={{backgroundColor: '#000', color: '#f00', borderColor: '#93b1f2'}}> {this.state.d3} </button>
-            <button style={{backgroundColor: '#000', color: '#f00', borderColor: '#93b1f2'}}> {this.state.d4} </button>
-              <div style={{marginLeft: 5}} >
-            Group:
+          Current roll:
+						<button style={{backgroundColor: '#000', color: '#f00',marginLeft: 5, borderColor: '#93b1f2' }}>  
+								{ this.state.d1} </button>
+            <button style={{backgroundColor: '#000', color: '#f00', borderColor: '#93b1f2'}}>
+                {this.state.d2} </button>
+            <button style={{backgroundColor: '#000', color: '#f00', borderColor: '#93b1f2'}}>
+                {this.state.d3} </button>
+            <button style={{backgroundColor: '#000', color: '#f00', borderColor: '#93b1f2'}}>
+                {this.state.d4} </button>
+            <div style={{marginLeft: 5}} >
+              Group:
               <button style={{backgroundColor: '#000', color: '#f00', marginLeft: 5, borderColor: '#93b1f2'}}> 
-              { this.state.group} 
-              </button>
-              </div>
+                {this.state.group} </button>
+            </div>
 
           <div style={{marginLeft: 5}} > {this.state.info} </div>
 
@@ -1470,28 +1412,28 @@ decreaseFont () {
 
           <button onMouseEnter={this.hoverHandler0.bind(this)} onClick={this.handleB40.bind(this)}
             onMouseLeave={this.leaveHandler0.bind(this)}
-            style={{backgroundColor: buttonCol0,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
+            style={{backgroundColor: buttonCol0,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize  }} >
             {this.state.message1}
           </button>
 
           <button onMouseEnter={this.hoverHandler1.bind(this)} onClick={this.handleB41.bind(this)}
             onMouseLeave={this.leaveHandler1.bind(this)}
-            style={{backgroundColor: buttonCol1,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
+            style={{backgroundColor: buttonCol1,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message2}
           </button>
 
           <button onMouseEnter={this.hoverHandler2.bind(this)} onClick={this.handleB42.bind(this)}
             onMouseLeave={this.leaveHandler2.bind(this)}
-            style={{backgroundColor: buttonCol2,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
+            style={{backgroundColor: buttonCol2,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message3}
           </button>
 
           <button onMouseEnter={this.hoverHandler3.bind(this)} onClick={this.handleB43.bind(this)}
             onMouseLeave={this.leaveHandler3.bind(this)}
-            style={{backgroundColor: buttonCol3,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
+            style={{backgroundColor: buttonCol3,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message4}
           </button>
@@ -1500,28 +1442,28 @@ decreaseFont () {
 
           <button onMouseEnter={this.hoverHandler4.bind(this)} onClick={this.handleOp0.bind(this)}
             onMouseLeave={this.leaveHandler4.bind(this)}
-            style={{backgroundColor: buttonCol4,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
+            style={{backgroundColor: buttonCol4,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize  }} >
             +
           </button>
 
           <button onMouseEnter={this.hoverHandler5.bind(this)} onClick={this.handleOp1.bind(this)}
             onMouseLeave={this.leaveHandler5.bind(this)}
-            style={{backgroundColor: buttonCol5,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
+            style={{backgroundColor: buttonCol5,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             -
           </button>
 
           <button onMouseEnter={this.hoverHandler6.bind(this)} onClick={this.handleOp2.bind(this)}
             onMouseLeave={this.leaveHandler6.bind(this)}
-            style={{backgroundColor: buttonCol6,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
+            style={{backgroundColor: buttonCol6,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             *
           </button>
 
           <button onMouseEnter={this.hoverHandler7.bind(this)} onClick={this.handleOp3.bind(this)}
             onMouseLeave={this.leaveHandler7.bind(this)}
-            style={{backgroundColor: buttonCol7,  paddingTop: 1.1, paddingLeft: 2, paddingRight:2,
+            style={{backgroundColor: buttonCol7,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             /
           </button>
