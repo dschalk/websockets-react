@@ -979,7 +979,7 @@ decreaseFont () {
     this.newNums(result,str,test,startArray);
   }
 
-  newNums (result,str,test,x) {
+  newNums (result,str,test,numbers) {
     let j = 0;
     let gr = this.state.group;
     let ar = [];
@@ -988,9 +988,9 @@ decreaseFont () {
 		let impossibleClicker = this.state.impossibleClicker;
 		let interrupt = this.state.interrupt;
     let test2 = this.state.score || this.state.impossible;
-    for (let k in x) {
-        if (x[k] !== "" && x[k] !== undefined) {
-        ar[j] = x[k];
+    for (let k in numbers) {
+        if (numbers[k] !== "" && numbers[k] !== undefined) {
+        ar[j] = numbers[k];
         j += 1;
       }
     }
@@ -1096,7 +1096,6 @@ decreaseFont () {
     let num0 = this.state.mes0;
     let op = this.state.mes1;
     let num2 = this.state.mes2;
-    this.setState({message1: '' }); // Doesn't update.
     this.state.message1 = '';
     this.forceUpdate();
     if (this.state.mes0 === 'Number') {
@@ -1117,7 +1116,6 @@ decreaseFont () {
     let num0 = this.state.mes0;
     let op = this.state.mes1;
     let num2 = this.state.mes2;
-    this.setState({message2: '' });
     this.state.message2 = '';
     this.forceUpdate();
     if (this.state.mes0 === 'Number') {
@@ -1139,7 +1137,6 @@ decreaseFont () {
     let num0 = this.state.mes0;
     let op = this.state.mes1;
     let num2 = this.state.mes2;
-    this.setState({message3: '' });
     this.state.message3 = '';
     this.forceUpdate();
     if (this.state.mes0 === 'Number') {
@@ -1158,7 +1155,6 @@ decreaseFont () {
     let name = this.state.name;
     let group = this.state.group;
     let msg4 = this.state.message4;
-    this.setState({message4: '' });
     this.state.message4 = '';
     this.forceUpdate();
     if (this.state.mes0 === 'Number') {
