@@ -5541,13 +5541,13 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var set   = __webpack_require__(43).set
-	  , $at   = __webpack_require__(112)(true)
-	  , ITER  = __webpack_require__(113).safe('iter')
-	  , $iter = __webpack_require__(114)
+	  , $at   = __webpack_require__(125)(true)
+	  , ITER  = __webpack_require__(120).safe('iter')
+	  , $iter = __webpack_require__(113)
 	  , step  = $iter.step;
 
 	// 21.1.3.27 String.prototype[@@iterator]()
-	__webpack_require__(115)(String, 'String', function(iterated){
+	__webpack_require__(126)(String, 'String', function(iterated){
 	  set(this, ITER, {o: String(iterated), i: 0});
 	// 21.1.5.2.1 %StringIteratorPrototype%.next()
 	}, function(){
@@ -5565,9 +5565,9 @@
 /* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(116);
+	__webpack_require__(112);
 	var $           = __webpack_require__(43)
-	  , Iterators   = __webpack_require__(114).Iterators
+	  , Iterators   = __webpack_require__(113).Iterators
 	  , ITERATOR    = __webpack_require__(110)('iterator')
 	  , ArrayValues = Iterators.Array
 	  , NL          = $.g.NodeList
@@ -5586,19 +5586,19 @@
 
 	'use strict';
 	var $        = __webpack_require__(43)
-	  , ctx      = __webpack_require__(117)
+	  , ctx      = __webpack_require__(114)
 	  , cof      = __webpack_require__(109)
-	  , $def     = __webpack_require__(118)
-	  , assert   = __webpack_require__(119)
-	  , forOf    = __webpack_require__(120)
-	  , setProto = __webpack_require__(121).set
-	  , species  = __webpack_require__(122)
+	  , $def     = __webpack_require__(115)
+	  , assert   = __webpack_require__(116)
+	  , forOf    = __webpack_require__(117)
+	  , setProto = __webpack_require__(118).set
+	  , species  = __webpack_require__(119)
 	  , SPECIES  = __webpack_require__(110)('species')
-	  , RECORD   = __webpack_require__(113).safe('record')
+	  , RECORD   = __webpack_require__(120).safe('record')
 	  , PROMISE  = 'Promise'
 	  , global   = $.g
 	  , process  = global.process
-	  , asap     = process && process.nextTick || __webpack_require__(123).set
+	  , asap     = process && process.nextTick || __webpack_require__(121).set
 	  , P        = global[PROMISE]
 	  , isFunction     = $.isFunction
 	  , isObject       = $.isObject
@@ -5736,7 +5736,7 @@
 	      $reject.call(record, err);
 	    }
 	  };
-	  __webpack_require__(124)(P.prototype, {
+	  __webpack_require__(122)(P.prototype, {
 	    // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)
 	    then: function then(onFulfilled, onRejected){
 	      var S = assertObject(assertObject(this).constructor)[SPECIES];
@@ -5783,7 +5783,7 @@
 	      });
 	  }
 	});
-	$def($def.S + $def.F * !(useNative && __webpack_require__(125)(function(iter){
+	$def($def.S + $def.F * !(useNative && __webpack_require__(123)(function(iter){
 	  P.all(iter)['catch'](function(){});
 	})), PROMISE, {
 	  // 25.4.4.1 Promise.all(iterable)
@@ -5867,7 +5867,7 @@
 	  return it;
 	}
 
-	var $ = module.exports = __webpack_require__(126)({
+	var $ = module.exports = __webpack_require__(124)({
 	  g: global,
 	  core: core,
 	  html: global.document && document.documentElement,
@@ -5920,7 +5920,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var $        = __webpack_require__(43)
-	  , $def     = __webpack_require__(118)
+	  , $def     = __webpack_require__(115)
 	  , isObject = $.isObject
 	  , toObject = $.toObject;
 	$.each.call(('freeze,seal,preventExtensions,isFrozen,isSealed,isExtensible,' +
@@ -14126,9 +14126,27 @@
 	          break;
 
 	        case 'CQ#$42':
-	          // Updates the calculation progress display
-	          that.state[extra] = ext4; // UNIQUE  It sets the key and the value in the state object.
-	          that.forceUpdate();
+	          that.setState({ mes0: extra });
+	          break;
+
+	        case 'DQ#$42':
+	          that.setState({ mes2: extra });
+	          break;
+
+	        case 'EQ#$42':
+	          that.setState({ mes1: extra });
+	          break;
+
+	        case 'FQ#$42':
+	          that.setState({ str1: extra });
+	          break;
+
+	        case 'GQ#$42':
+	          that.setState({ str2: extra });
+	          break;
+
+	        case 'HQ#$42':
+	          that.setState({ str3: extra });
 	          break;
 
 	        case 'CR#$42':
@@ -14661,14 +14679,14 @@
 	        }
 	      }
 	      if (j === 3) {
-	        DES_ws.send('CQ#$42,' + gr + ',' + name + ',str1,' + str);
+	        DES_ws.send('FQ#$42,' + gr + ',' + name + ',' + str);
 	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',' + ar[2] + ',');
 	        this.setState({ message: 'You must use the red number in order to score in this round.' });
 	        if (test2) {
 	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10');
 	        }
 	      } else if (j === 2) {
-	        DES_ws.send('CQ#$42,' + gr + ',' + name + ',str2,' + str);
+	        DES_ws.send('GQ#$42,' + gr + ',' + name + ',' + str);
 	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',,');
 	        if (result === 20 && test && test2 && !interrupt) {
 	          clock = 'One point for ' + name;
@@ -14684,7 +14702,7 @@
 	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10');
 	        }
 	      } else if (j === 1) {
-	        DES_ws.send('CQ#$42,' + gr + ',' + name + ',str3,' + str);
+	        DES_ws.send('HQ#$42,' + gr + ',' + name + ',' + str);
 	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',,,');
 	        if (result === 20 && test && test2 && !interrupt) {
 	          clock = 'One point for ' + name;
@@ -14756,16 +14774,18 @@
 	      var group = this.state.group;
 	      var num = this.state.message1;
 	      var this2 = this;
-	      this.setState({ message1: '' }, function () {
-	        if (this2.state.mes0 === 'Number') {
-	          DES_ws.send('CQ#$42,' + group + ',' + name + ',mes0,' + num);
-	        } else if (this2.state.mes2 === 'Number') {
-	          DES_ws.send('CQ#$42,' + group + ',' + name + ',mes2,' + num);
+	      if (this2.state.mes0 === 'Number') {
+	        this.setState({ message1: '', mes0: num }, function () {
+	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
+	        });
+	      } else if (this2.state.mes2 === 'Number') {
+	        this.setState({ message1: '', mes2: num }, function () {
+	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
 	          if (this2.state.mes1 !== 'Operator') {
 	            this2.calc(this2.state.mes0, this2.state.mes1, num);
 	          }
-	        }
-	      });
+	        });
+	      }
 	    }
 	  }, {
 	    key: 'handleB41',
@@ -14774,16 +14794,18 @@
 	      var group = this.state.group;
 	      var num = this.state.message2;
 	      var this2 = this;
-	      this.setState({ message2: '' }, function () {
-	        if (this2.state.mes0 === 'Number') {
-	          DES_ws.send('CQ#$42,' + group + ',' + name + ',mes0,' + num);
-	        } else if (this2.state.mes2 === 'Number') {
-	          DES_ws.send('CQ#$42,' + group + ',' + name + ',mes2,' + num);
+	      if (this2.state.mes0 === 'Number') {
+	        this.setState({ message2: '', mes0: num }, function () {
+	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
+	        });
+	      } else if (this2.state.mes2 === 'Number') {
+	        this.setState({ message2: '', mes2: num }, function () {
+	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
 	          if (this2.state.mes1 !== 'Operator') {
 	            this2.calc(this2.state.mes0, this2.state.mes1, num);
 	          }
-	        }
-	      });
+	        });
+	      }
 	    }
 	  }, {
 	    key: 'handleB42',
@@ -14792,16 +14814,18 @@
 	      var group = this.state.group;
 	      var num = this.state.message3;
 	      var this2 = this;
-	      this.setState({ message3: '' }, function () {
-	        if (this2.state.mes0 === 'Number') {
-	          DES_ws.send('CQ#$42,' + group + ',' + name + ',mes0,' + num);
-	        } else if (this2.state.mes2 === 'Number') {
-	          DES_ws.send('CQ#$42,' + group + ',' + name + ',mes2,' + num);
+	      if (this2.state.mes0 === 'Number') {
+	        this.setState({ message3: '', mes0: num }, function () {
+	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
+	        });
+	      } else if (this2.state.mes2 === 'Number') {
+	        this.setState({ message3: '', mes2: num }, function () {
+	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
 	          if (this2.state.mes1 !== 'Operator') {
 	            this2.calc(this2.state.mes0, this2.state.mes1, num);
 	          }
-	        }
-	      });
+	        });
+	      }
 	    }
 	  }, {
 	    key: 'handleB43',
@@ -14810,26 +14834,30 @@
 	      var group = this.state.group;
 	      var num = this.state.message4;
 	      var this2 = this;
-	      this.setState({ message4: '' }, function () {
-	        if (this2.state.mes0 === 'Number') {
-	          DES_ws.send('CQ#$42,' + group + ',' + name + ',mes0,' + num);
-	        } else if (this2.state.mes2 === 'Number') {
-	          DES_ws.send('CQ#$42,' + group + ',' + name + ',mes2,' + num);
+	      if (this2.state.mes0 === 'Number') {
+	        this.setState({ message4: '', mes0: num }, function () {
+	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
+	        });
+	      } else if (this2.state.mes2 === 'Number') {
+	        this.setState({ message4: '', mes2: num }, function () {
+	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
 	          if (this2.state.mes1 !== 'Operator') {
 	            this2.calc(this2.state.mes0, this2.state.mes1, num);
 	          }
-	        }
-	      });
+	        });
+	      }
 	    }
 	  }, {
 	    key: 'handleOp0',
 	    value: function handleOp0() {
 	      var name = this.state.name;
 	      var group = this.state.group;
-	      DES_ws.send('CQ#$42,' + group + ',' + name + ',mes1,+');
+	      DES_ws.send('EQ#$42,' + group + ',' + name + ',+');
 	      var test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
 	      if (test) {
-	        this.calc(this.state.mes0, '+', this.state.mes2);
+	        this.setState({ mes1: '+' }, function () {
+	          this.calc(this.state.mes0, '+', this.state.mes2);
+	        });
 	      }
 	    }
 	  }, {
@@ -14837,10 +14865,12 @@
 	    value: function handleOp1() {
 	      var name = this.state.name;
 	      var group = this.state.group;
-	      DES_ws.send('CQ#$42,' + group + ',' + name + ',mes1,-');
+	      DES_ws.send('EQ#$42,' + group + ',' + name + ',-');
 	      var test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
 	      if (test) {
-	        this.calc(this.state.mes0, '-', this.state.mes2);
+	        this.setState({ mes1: '-' }, function () {
+	          this.calc(this.state.mes0, '-', this.state.mes2);
+	        });
 	      }
 	    }
 	  }, {
@@ -14848,10 +14878,12 @@
 	    value: function handleOp2() {
 	      var name = this.state.name;
 	      var group = this.state.group;
-	      DES_ws.send('CQ#$42,' + group + ',' + name + ',mes1,*');
+	      DES_ws.send('EQ#$42,' + group + ',' + name + ',*');
 	      var test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
 	      if (test) {
-	        this.calc(this.state.mes0, '*', this.state.mes2);
+	        this.setState({ mes1: '*' }, function () {
+	          this.calc(this.state.mes0, '*', this.state.mes2);
+	        });
 	      }
 	    }
 	  }, {
@@ -14859,10 +14891,12 @@
 	    value: function handleOp3() {
 	      var name = this.state.name;
 	      var group = this.state.group;
-	      DES_ws.send('CQ#$42,' + group + ',' + name + ',mes1,/');
+	      DES_ws.send('EQ#$42,' + group + ',' + name + ',/');
 	      var test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
 	      if (test) {
-	        this.calc(this.state.mes0, '/', this.state.mes2);
+	        this.setState({ mes1: '/' }, function () {
+	          this.calc(this.state.mes0, '/', this.state.mes2);
+	        });
 	      }
 	    }
 	  }, {
@@ -14870,10 +14904,12 @@
 	    value: function handleOp4() {
 	      var name = this.state.name;
 	      var group = this.state.group;
-	      DES_ws.send('CQ#$42,' + group + ',' + name + ',mes1,Concat');
+	      DES_ws.send('EQ#$42,' + group + ',' + name + ',Concat');
 	      var test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
 	      if (test) {
-	        this.calc(this.state.mes0, 'Concat', this.state.mes2);
+	        this.setState({ mes1: 'Concat' }, function () {
+	          this.calc(this.state.mes0, 'Concat', this.state.mes2);
+	        });
 	      }
 	    }
 	  }, {
@@ -16019,7 +16055,7 @@
 	  , store  = __webpack_require__(170)('wks');
 	module.exports = function(name){
 	  return store[name] || (store[name] =
-	    global.Symbol && global.Symbol[name] || __webpack_require__(113).safe('Symbol.' + name));
+	    global.Symbol && global.Symbol[name] || __webpack_require__(120).safe('Symbol.' + name));
 	};
 
 /***/ },
@@ -16032,43 +16068,49 @@
 /* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// true  -> String#at
-	// false -> String#codePointAt
-	var $ = __webpack_require__(43);
-	module.exports = function(TO_STRING){
-	  return function(that, pos){
-	    var s = String($.assertDefined(that))
-	      , i = $.toInteger(pos)
-	      , l = s.length
-	      , a, b;
-	    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
-	    a = s.charCodeAt(i);
-	    return a < 0xd800 || a > 0xdbff || i + 1 === l
-	      || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
-	        ? TO_STRING ? s.charAt(i) : a
-	        : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
-	  };
-	};
+	var $          = __webpack_require__(43)
+	  , setUnscope = __webpack_require__(171)
+	  , ITER       = __webpack_require__(120).safe('iter')
+	  , $iter      = __webpack_require__(113)
+	  , step       = $iter.step
+	  , Iterators  = $iter.Iterators;
+
+	// 22.1.3.4 Array.prototype.entries()
+	// 22.1.3.13 Array.prototype.keys()
+	// 22.1.3.29 Array.prototype.values()
+	// 22.1.3.30 Array.prototype[@@iterator]()
+	__webpack_require__(126)(Array, 'Array', function(iterated, kind){
+	  $.set(this, ITER, {o: $.toObject(iterated), i: 0, k: kind});
+	// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+	}, function(){
+	  var iter  = this[ITER]
+	    , O     = iter.o
+	    , kind  = iter.k
+	    , index = iter.i++;
+	  if(!O || index >= O.length){
+	    iter.o = undefined;
+	    return step(1);
+	  }
+	  if(kind == 'keys'  )return step(0, index);
+	  if(kind == 'values')return step(0, O[index]);
+	  return step(0, [index, O[index]]);
+	}, 'values');
+
+	// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+	Iterators.Arguments = Iterators.Array;
+
+	setUnscope('keys');
+	setUnscope('values');
+	setUnscope('entries');
 
 /***/ },
 /* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var sid = 0;
-	function uid(key){
-	  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++sid + Math.random()).toString(36));
-	}
-	uid.safe = __webpack_require__(43).g.Symbol || uid;
-	module.exports = uid;
-
-/***/ },
-/* 114 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 	var $                 = __webpack_require__(43)
 	  , cof               = __webpack_require__(109)
-	  , assertObject      = __webpack_require__(119).obj
+	  , assertObject      = __webpack_require__(116).obj
 	  , SYMBOL_ITERATOR   = __webpack_require__(110)('iterator')
 	  , FF_ITERATOR       = '@@iterator'
 	  , Iterators         = __webpack_require__(170)('iterators')
@@ -16108,105 +16150,11 @@
 	};
 
 /***/ },
-/* 115 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var $def            = __webpack_require__(118)
-	  , $redef          = __webpack_require__(111)
-	  , $               = __webpack_require__(43)
-	  , cof             = __webpack_require__(109)
-	  , $iter           = __webpack_require__(114)
-	  , SYMBOL_ITERATOR = __webpack_require__(110)('iterator')
-	  , FF_ITERATOR     = '@@iterator'
-	  , KEYS            = 'keys'
-	  , VALUES          = 'values'
-	  , Iterators       = $iter.Iterators;
-	module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE){
-	  $iter.create(Constructor, NAME, next);
-	  function createMethod(kind){
-	    function $$(that){
-	      return new Constructor(that, kind);
-	    }
-	    switch(kind){
-	      case KEYS: return function keys(){ return $$(this); };
-	      case VALUES: return function values(){ return $$(this); };
-	    } return function entries(){ return $$(this); };
-	  }
-	  var TAG      = NAME + ' Iterator'
-	    , proto    = Base.prototype
-	    , _native  = proto[SYMBOL_ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
-	    , _default = _native || createMethod(DEFAULT)
-	    , methods, key;
-	  // Fix native
-	  if(_native){
-	    var IteratorPrototype = $.getProto(_default.call(new Base));
-	    // Set @@toStringTag to native iterators
-	    cof.set(IteratorPrototype, TAG, true);
-	    // FF fix
-	    if($.FW && $.has(proto, FF_ITERATOR))$iter.set(IteratorPrototype, $.that);
-	  }
-	  // Define iterator
-	  if($.FW)$iter.set(proto, _default);
-	  // Plug for library
-	  Iterators[NAME] = _default;
-	  Iterators[TAG]  = $.that;
-	  if(DEFAULT){
-	    methods = {
-	      keys:    IS_SET            ? _default : createMethod(KEYS),
-	      values:  DEFAULT == VALUES ? _default : createMethod(VALUES),
-	      entries: DEFAULT != VALUES ? _default : createMethod('entries')
-	    };
-	    if(FORCE)for(key in methods){
-	      if(!(key in proto))$redef(proto, key, methods[key]);
-	    } else $def($def.P + $def.F * $iter.BUGGY, NAME, methods);
-	  }
-	};
-
-/***/ },
-/* 116 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var $          = __webpack_require__(43)
-	  , setUnscope = __webpack_require__(171)
-	  , ITER       = __webpack_require__(113).safe('iter')
-	  , $iter      = __webpack_require__(114)
-	  , step       = $iter.step
-	  , Iterators  = $iter.Iterators;
-
-	// 22.1.3.4 Array.prototype.entries()
-	// 22.1.3.13 Array.prototype.keys()
-	// 22.1.3.29 Array.prototype.values()
-	// 22.1.3.30 Array.prototype[@@iterator]()
-	__webpack_require__(115)(Array, 'Array', function(iterated, kind){
-	  $.set(this, ITER, {o: $.toObject(iterated), i: 0, k: kind});
-	// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
-	}, function(){
-	  var iter  = this[ITER]
-	    , O     = iter.o
-	    , kind  = iter.k
-	    , index = iter.i++;
-	  if(!O || index >= O.length){
-	    iter.o = undefined;
-	    return step(1);
-	  }
-	  if(kind == 'keys'  )return step(0, index);
-	  if(kind == 'values')return step(0, O[index]);
-	  return step(0, [index, O[index]]);
-	}, 'values');
-
-	// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
-	Iterators.Arguments = Iterators.Array;
-
-	setUnscope('keys');
-	setUnscope('values');
-	setUnscope('entries');
-
-/***/ },
-/* 117 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Optional / simple context binding
-	var assertFunction = __webpack_require__(119).fn;
+	var assertFunction = __webpack_require__(116).fn;
 	module.exports = function(fn, that, length){
 	  assertFunction(fn);
 	  if(~length && that === undefined)return fn;
@@ -16226,7 +16174,7 @@
 	};
 
 /***/ },
-/* 118 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $          = __webpack_require__(43)
@@ -16279,7 +16227,7 @@
 	module.exports = $def;
 
 /***/ },
-/* 119 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(43);
@@ -16302,11 +16250,11 @@
 	module.exports = assert;
 
 /***/ },
-/* 120 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ctx  = __webpack_require__(117)
-	  , get  = __webpack_require__(114).get
+	var ctx  = __webpack_require__(114)
+	  , get  = __webpack_require__(113).get
 	  , call = __webpack_require__(172);
 	module.exports = function(iterable, entries, fn, that){
 	  var iterator = get(iterable)
@@ -16320,13 +16268,13 @@
 	};
 
 /***/ },
-/* 121 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
 	/* eslint-disable no-proto */
 	var $      = __webpack_require__(43)
-	  , assert = __webpack_require__(119);
+	  , assert = __webpack_require__(116);
 	function check(O, proto){
 	  assert.obj(O);
 	  assert(proto === null || $.isObject(proto), proto, ": can't set as prototype!");
@@ -16335,7 +16283,7 @@
 	  set: Object.setPrototypeOf || ('__proto__' in {} // eslint-disable-line
 	    ? function(buggy, set){
 	        try {
-	          set = __webpack_require__(117)(Function.call, $.getDesc(Object.prototype, '__proto__').set, 2);
+	          set = __webpack_require__(114)(Function.call, $.getDesc(Object.prototype, '__proto__').set, 2);
 	          set({}, []);
 	        } catch(e){ buggy = true; }
 	        return function setPrototypeOf(O, proto){
@@ -16350,7 +16298,7 @@
 	};
 
 /***/ },
-/* 122 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $       = __webpack_require__(43)
@@ -16363,12 +16311,23 @@
 	};
 
 /***/ },
-/* 123 */
+/* 120 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var sid = 0;
+	function uid(key){
+	  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++sid + Math.random()).toString(36));
+	}
+	uid.safe = __webpack_require__(43).g.Symbol || uid;
+	module.exports = uid;
+
+/***/ },
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var $      = __webpack_require__(43)
-	  , ctx    = __webpack_require__(117)
+	  , ctx    = __webpack_require__(114)
 	  , cof    = __webpack_require__(109)
 	  , invoke = __webpack_require__(173)
 	  , cel    = __webpack_require__(174)
@@ -16449,7 +16408,7 @@
 	};
 
 /***/ },
-/* 124 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $redef = __webpack_require__(111);
@@ -16459,7 +16418,7 @@
 	};
 
 /***/ },
-/* 125 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var SYMBOL_ITERATOR = __webpack_require__(110)('iterator')
@@ -16483,13 +16442,90 @@
 	};
 
 /***/ },
-/* 126 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function($){
 	  $.FW   = false;
 	  $.path = $.core;
 	  return $;
+	};
+
+/***/ },
+/* 125 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// true  -> String#at
+	// false -> String#codePointAt
+	var $ = __webpack_require__(43);
+	module.exports = function(TO_STRING){
+	  return function(that, pos){
+	    var s = String($.assertDefined(that))
+	      , i = $.toInteger(pos)
+	      , l = s.length
+	      , a, b;
+	    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
+	    a = s.charCodeAt(i);
+	    return a < 0xd800 || a > 0xdbff || i + 1 === l
+	      || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+	        ? TO_STRING ? s.charAt(i) : a
+	        : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+	  };
+	};
+
+/***/ },
+/* 126 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var $def            = __webpack_require__(115)
+	  , $redef          = __webpack_require__(111)
+	  , $               = __webpack_require__(43)
+	  , cof             = __webpack_require__(109)
+	  , $iter           = __webpack_require__(113)
+	  , SYMBOL_ITERATOR = __webpack_require__(110)('iterator')
+	  , FF_ITERATOR     = '@@iterator'
+	  , KEYS            = 'keys'
+	  , VALUES          = 'values'
+	  , Iterators       = $iter.Iterators;
+	module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE){
+	  $iter.create(Constructor, NAME, next);
+	  function createMethod(kind){
+	    function $$(that){
+	      return new Constructor(that, kind);
+	    }
+	    switch(kind){
+	      case KEYS: return function keys(){ return $$(this); };
+	      case VALUES: return function values(){ return $$(this); };
+	    } return function entries(){ return $$(this); };
+	  }
+	  var TAG      = NAME + ' Iterator'
+	    , proto    = Base.prototype
+	    , _native  = proto[SYMBOL_ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
+	    , _default = _native || createMethod(DEFAULT)
+	    , methods, key;
+	  // Fix native
+	  if(_native){
+	    var IteratorPrototype = $.getProto(_default.call(new Base));
+	    // Set @@toStringTag to native iterators
+	    cof.set(IteratorPrototype, TAG, true);
+	    // FF fix
+	    if($.FW && $.has(proto, FF_ITERATOR))$iter.set(IteratorPrototype, $.that);
+	  }
+	  // Define iterator
+	  if($.FW)$iter.set(proto, _default);
+	  // Plug for library
+	  Iterators[NAME] = _default;
+	  Iterators[TAG]  = $.that;
+	  if(DEFAULT){
+	    methods = {
+	      keys:    IS_SET            ? _default : createMethod(KEYS),
+	      values:  DEFAULT == VALUES ? _default : createMethod(VALUES),
+	      entries: DEFAULT != VALUES ? _default : createMethod('entries')
+	    };
+	    if(FORCE)for(key in methods){
+	      if(!(key in proto))$redef(proto, key, methods[key]);
+	    } else $def($def.P + $def.F * $iter.BUGGY, NAME, methods);
+	  }
 	};
 
 /***/ },
@@ -21590,7 +21626,7 @@
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assertObject = __webpack_require__(119).obj;
+	var assertObject = __webpack_require__(116).obj;
 	function close(iterator){
 	  var ret = iterator['return'];
 	  if(ret !== undefined)assertObject(ret.call(iterator));
@@ -22103,7 +22139,7 @@
 
 	"use strict";
 
-	var camelize = __webpack_require__(193);
+	var camelize = __webpack_require__(194);
 
 	var msPattern = /^-ms-/;
 
@@ -22211,7 +22247,7 @@
 
 	"use strict";
 
-	var hyphenate = __webpack_require__(194);
+	var hyphenate = __webpack_require__(193);
 
 	var msPattern = /^ms-/;
 
@@ -23026,42 +23062,6 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * @providesModule camelize
-	 * @typechecks
-	 */
-
-	var _hyphenPattern = /-(.)/g;
-
-	/**
-	 * Camelcases a hyphenated string, for example:
-	 *
-	 *   > camelize('background-color')
-	 *   < "backgroundColor"
-	 *
-	 * @param {string} string
-	 * @return {string}
-	 */
-	function camelize(string) {
-	  return string.replace(_hyphenPattern, function(_, character) {
-	    return character.toUpperCase();
-	  });
-	}
-
-	module.exports = camelize;
-
-
-/***/ },
-/* 194 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
 	 * @providesModule hyphenate
 	 * @typechecks
 	 */
@@ -23085,6 +23085,42 @@
 	}
 
 	module.exports = hyphenate;
+
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule camelize
+	 * @typechecks
+	 */
+
+	var _hyphenPattern = /-(.)/g;
+
+	/**
+	 * Camelcases a hyphenated string, for example:
+	 *
+	 *   > camelize('background-color')
+	 *   < "backgroundColor"
+	 *
+	 * @param {string} string
+	 * @return {string}
+	 */
+	function camelize(string) {
+	  return string.replace(_hyphenPattern, function(_, character) {
+	    return character.toUpperCase();
+	  });
+	}
+
+	module.exports = camelize;
 
 
 /***/ },

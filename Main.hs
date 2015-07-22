@@ -192,7 +192,10 @@ talk conn state (_, _, _, _) = forever $ do
         "CH#$42" `T.isPrefixOf` msg || "CK#$42" `T.isPrefixOf` msg || "XY#$42" `T.isPrefixOf` msg ||
         "CQ#$42" `T.isPrefixOf` msg || "CF#$42" `T.isPrefixOf` msg || "DI#$42" `T.isPrefixOf` msg ||
         "CY#$42" `T.isPrefixOf` msg || "CR#$42" `T.isPrefixOf` msg || "CD#$42" `T.isPrefixOf` msg ||
-        "IA#$42" `T.isPrefixOf` msg || "DY#$42" `T.isPrefixOf` msg
+        "IA#$42" `T.isPrefixOf` msg || "DY#$42" `T.isPrefixOf` msg || "DQ#$42" `T.isPrefixOf` msg ||
+        "EQ#$42" `T.isPrefixOf` msg || "FQ#$42" `T.isPrefixOf` msg || "GQ#$42" `T.isPrefixOf` msg ||
+        "HQ#$42" `T.isPrefixOf` msg
+
         then
             do
                 st <- atomically $ readTMVar state

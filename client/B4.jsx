@@ -516,10 +516,34 @@ DES_ws.onmessage = function(event) {
               });
           break;
 
-          case "CQ#$42":                 // Updates the calculation progress display
-              that.state[extra]=ext4;    // UNIQUE  It sets the key and the value in the state object.
-              that.forceUpdate();
+          case "CQ#$42":                 
+              that.setState({mes0: extra})
           break;
+
+          case "DQ#$42":                 
+              that.setState({mes2: extra})
+          break;
+
+          case "EQ#$42":                 
+              that.setState({mes1: extra})
+          break;
+
+          case "FQ#$42":                 
+              that.setState({str1: extra})
+          break;
+
+          case "GQ#$42":                 
+              that.setState({str2: extra})
+          break;
+
+          case "HQ#$42":                 
+              that.setState({str3: extra})
+          break;
+
+
+
+
+
 
           case "CR#$42":                 // Resets the player interface after each round.
             that.setState({
@@ -986,7 +1010,7 @@ DES_ws.onmessage = function(event) {
       }
     }
     if (j === 3) {
-      DES_ws.send(`CQ#$42,${gr},${name},str1,${str}`);
+      DES_ws.send(`FQ#$42,${gr},${name},${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},${ar[2]},`);
       this.setState({message: 'You must use the red number in order to score in this round.'});
       if (test2) {
@@ -994,7 +1018,7 @@ DES_ws.onmessage = function(event) {
       }
     }
     else if (j === 2) {
-      DES_ws.send(`CQ#$42,${gr},${name},str2,${str}`);
+      DES_ws.send(`GQ#$42,${gr},${name},${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},,`);
       if ( (result === 20) && test && test2 && !interrupt ) {
           clock = `One point for ${name}`
@@ -1014,7 +1038,7 @@ DES_ws.onmessage = function(event) {
       }
     }
     else if (j === 1) {
-      DES_ws.send(`CQ#$42,${gr},${name},str3,${str}`);
+      DES_ws.send(`HQ#$42,${gr},${name},${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},,,`)
       if (result === 20 && test && test2 && !interrupt) {
           clock = `One point for ${name}`;
@@ -1085,17 +1109,19 @@ DES_ws.onmessage = function(event) {
     let group = this.state.group;
     let num = this.state.message1;
     let this2 = this;
-    this.setState({message1: ''}, function() {
-      if (this2.state.mes0 === 'Number') {
-        DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-      }
-      else if (this2.state.mes2 === 'Number') {
-        DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+    if (this2.state.mes0 === 'Number') {
+      this.setState({message1: '', mes0: num}, function() {
+        DES_ws.send(`CQ#$42,${group},${name},${num}`);
+      })
+    }
+    else if (this2.state.mes2 === 'Number') {
+      this.setState({message1: '', mes2: num}, function() {
+        DES_ws.send(`DQ#$42,${group},${name},${num}`);
         if (this2.state.mes1 !== 'Operator') {
           this2.calc(this2.state.mes0, this2.state.mes1, num);
         }
-      }
-    })
+      })
+    }
   }
 
   handleB41 () {
@@ -1103,17 +1129,19 @@ DES_ws.onmessage = function(event) {
     let group = this.state.group;
     let num = this.state.message2;
     let this2 = this;
-    this.setState({message2: ''}, function() {
-      if (this2.state.mes0 === 'Number') {
-        DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-      }
-      else if (this2.state.mes2 === 'Number') {
-        DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+    if (this2.state.mes0 === 'Number') {
+      this.setState({message2: '', mes0: num}, function() {
+        DES_ws.send(`CQ#$42,${group},${name},${num}`);
+      })
+    }
+    else if (this2.state.mes2 === 'Number') {
+      this.setState({message2: '', mes2: num}, function() {
+        DES_ws.send(`DQ#$42,${group},${name},${num}`);
         if (this2.state.mes1 !== 'Operator') {
           this2.calc(this2.state.mes0, this2.state.mes1, num);
         }
-      }
-    })
+      })
+    }
   }
 
   handleB42 () {
@@ -1121,17 +1149,19 @@ DES_ws.onmessage = function(event) {
     let group = this.state.group;
     let num = this.state.message3;
     let this2 = this;
-    this.setState({message3: ''}, function() {
-      if (this2.state.mes0 === 'Number') {
-        DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-      }
-      else if (this2.state.mes2 === 'Number') {
-        DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+    if (this2.state.mes0 === 'Number') {
+      this.setState({message3: '', mes0: num}, function() {
+        DES_ws.send(`CQ#$42,${group},${name},${num}`);
+      })
+    }
+    else if (this2.state.mes2 === 'Number') {
+      this.setState({message3: '', mes2: num}, function() {
+        DES_ws.send(`DQ#$42,${group},${name},${num}`);
         if (this2.state.mes1 !== 'Operator') {
           this2.calc(this2.state.mes0, this2.state.mes1, num);
         }
-      }
-    })
+      })
+    }
   }
 
   handleB43 () {
@@ -1139,66 +1169,83 @@ DES_ws.onmessage = function(event) {
     let group = this.state.group;
     let num = this.state.message4;
     let this2 = this;
-    this.setState({message4: ''}, function() {
-      if (this2.state.mes0 === 'Number') {
-        DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-      }
-      else if (this2.state.mes2 === 'Number') {
-        DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+    if (this2.state.mes0 === 'Number') {
+      this.setState({message4: '', mes0: num}, function() {
+        DES_ws.send(`CQ#$42,${group},${name},${num}`);
+      })
+    }
+    else if (this2.state.mes2 === 'Number') {
+      this.setState({message4: '', mes2: num}, function() {
+        DES_ws.send(`DQ#$42,${group},${name},${num}`);
         if (this2.state.mes1 !== 'Operator') {
           this2.calc(this2.state.mes0, this2.state.mes1, num);
         }
-      }
-    })
+      })
+    }
   }
 
   handleOp0 () {
     let name = this.state.name;
     let group = this.state.group;
-    DES_ws.send(`CQ#$42,${group},${name},mes1,+`);
+    DES_ws.send(`EQ#$42,${group},${name},+`);
     let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
-    if (test) {
+    if (test) { 
+      this.setState({mes1: '+'}, function () {
         this.calc(this.state.mes0, '+',this.state.mes2);
+      })
+        
     }
   }
 
   handleOp1 () {
     let name = this.state.name;
     let group = this.state.group;
-    DES_ws.send(`CQ#$42,${group},${name},mes1,-`);
+    DES_ws.send(`EQ#$42,${group},${name},-`);
     let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
-    if (test) {
+    if (test) { 
+      this.setState({mes1: '-'}, function () {
         this.calc(this.state.mes0, '-',this.state.mes2);
+      })
+        
     }
   }
 
   handleOp2 () {
     let name = this.state.name;
     let group = this.state.group;
-    DES_ws.send(`CQ#$42,${group},${name},mes1,*`);
+    DES_ws.send(`EQ#$42,${group},${name},*`);
     let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
-    if (test) {
+    if (test) { 
+      this.setState({mes1: '*'}, function () {
         this.calc(this.state.mes0, '*',this.state.mes2);
+      })
+        
     }
   }
 
   handleOp3 () {
     let name = this.state.name;
     let group = this.state.group;
-    DES_ws.send(`CQ#$42,${group},${name},mes1,/`);
+    DES_ws.send(`EQ#$42,${group},${name},/`);
     let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
-    if (test) {
+    if (test) { 
+      this.setState({mes1: '/'}, function () {
         this.calc(this.state.mes0, '/',this.state.mes2);
+      })
+        
     }
   }
 
   handleOp4 () {
     let name = this.state.name;
     let group = this.state.group;
-    DES_ws.send(`CQ#$42,${group},${name},mes1,Concat`);
+    DES_ws.send(`EQ#$42,${group},${name},Concat`);
     let test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
-    if (test) {
+    if (test) { 
+      this.setState({mes1: 'Concat'}, function () {
         this.calc(this.state.mes0, 'Concat',this.state.mes2);
+      })
+        
     }
   }
 
