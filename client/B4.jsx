@@ -690,20 +690,6 @@ DES_ws.onmessage = function(event) {
     });
   }
 
-increaseFont () {
-  let x = this.state.dynamicFont;
-  if (x > 0) {
-    this.setState( {dynamicFont: (x + 4) })
-  }
-}
-
-decreaseFont () {
-  let x = this.state.dynamicFont;
-  if (x < 80) {
-    this.setState( {dynamicFont: (x - 4) })
-  }
-}
-
   hoverHandler () {
     this.setState( {buttonColor: '#f99094' })
   }
@@ -1098,79 +1084,73 @@ decreaseFont () {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message1;
-    let num0 = this.state.mes0;
-    let op = this.state.mes1;
-    let num2 = this.state.mes2;
-    this.state.message1 = '';
-    this.forceUpdate();
-    if (this.state.mes0 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-    }
-    else if (this.state.mes2 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
-      if (this.state.mes1 !== 'Operator') {
-        this.calc(num0, op, num);
+    let this2 = this;
+    this.setState({message1: ''}, function() {
+      if (this2.state.mes0 === 'Number') {
+        DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
       }
-    }
+      else if (this2.state.mes2 === 'Number') {
+        DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+        if (this2.state.mes1 !== 'Operator') {
+          this2.calc(this2.state.mes0, this2.state.mes1, num);
+        }
+      }
+    })
   }
 
   handleB41 () {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message2;
-    let num0 = this.state.mes0;
-    let op = this.state.mes1;
-    let num2 = this.state.mes2;
-    this.state.message2 = '';
-    this.forceUpdate();
-    if (this.state.mes0 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-      console.log('_________________________________________________________in handleB40');
-    }
-    else if (this.state.mes2 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
-      if (this.state.mes1 !== 'Operator') {
-        this.calc(num0, op, num);
+    let this2 = this;
+    this.setState({message2: ''}, function() {
+      if (this2.state.mes0 === 'Number') {
+        DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
       }
-    }
+      else if (this2.state.mes2 === 'Number') {
+        DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+        if (this2.state.mes1 !== 'Operator') {
+          this2.calc(this2.state.mes0, this2.state.mes1, num);
+        }
+      }
+    })
   }
 
   handleB42 () {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message3;
-    let num0 = this.state.mes0;
-    let op = this.state.mes1;
-    let num2 = this.state.mes2;
-    this.state.message3 = '';
-    this.forceUpdate();
-    if (this.state.mes0 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
-      console.log('_________________________________________________________in handleB40');
-    }
-    else if (this.state.mes2 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
-      if (this.state.mes1 !== 'Operator') {
-        this.calc(num0, op, num);
+    let this2 = this;
+    this.setState({message3: ''}, function() {
+      if (this2.state.mes0 === 'Number') {
+        DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
       }
-    }
+      else if (this2.state.mes2 === 'Number') {
+        DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+        if (this2.state.mes1 !== 'Operator') {
+          this2.calc(this2.state.mes0, this2.state.mes1, num);
+        }
+      }
+    })
   }
 
   handleB43 () {
     let name = this.state.name;
     let group = this.state.group;
-    let msg4 = this.state.message4;
-    this.state.message4 = '';
-    this.forceUpdate();
-    if (this.state.mes0 === 'Number') {
-      DES_ws.send(`CQ#$42,${group},${name},mes0,${msg4}`);
-    }
-    else if (this.state.mes2 === 'Number' && this.state.mes1 === 'Operator') {
-      DES_ws.send(`CQ#$42,${group},${name},mes2,${msg4}`);
-    }
-    else {this.calc(this.state.mes0, this.state.mes1, msg4)};
+    let num = this.state.message4;
+    let this2 = this;
+    this.setState({message4: ''}, function() {
+      if (this2.state.mes0 === 'Number') {
+        DES_ws.send(`CQ#$42,${group},${name},mes0,${num}`);
+      }
+      else if (this2.state.mes2 === 'Number') {
+        DES_ws.send(`CQ#$42,${group},${name},mes2,${num}`);
+        if (this2.state.mes1 !== 'Operator') {
+          this2.calc(this2.state.mes0, this2.state.mes1, num);
+        }
+      }
+    })
   }
-  
 
   handleOp0 () {
     let name = this.state.name;
@@ -1240,6 +1220,10 @@ decreaseFont () {
     DES_ws.send( `DY#$42,${group},${name},${name}` );
   }
 
+  eraseMessages () {
+    this.setState({chatArray: [] });
+  }
+
   render () {
     let buttonCol = this.state.buttonColor;
     let buttonCol0 = this.state.buttonColor0;
@@ -1276,22 +1260,14 @@ decreaseFont () {
 
     console.log(this);
     return (
-    <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, 
+   <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, 
       display: 'inlineBlock', width: '100%', height: '100%'}} >
       <div style={{width: '35%', float: 'right'}} >
             <ChangeColor key='ChangeColor' changeC={this.changeColor.bind(this)}
               style={{width: 8}} />
             <ChangeBackground key='ChangeBackground' changeB={this.changeBackground.bind(this)}
               style={{width: 8}} />
-      <button key='$#19' onClick={this.increaseFont.bind(this)}
-              style={{backgroundColor: '#d8d17d', color: '#f00'}} >
-               Increase Font Size</button>
-            <span style={{backgroundColor: dynB, color: dynB}}>e</span>
-            <button key='$#20' onClick={this.decreaseFont.bind(this)}
-              style={{backgroundColor: '#d8d17d', color: '#f00'}} >
-              Decrease Font Size</button>
               <br /><br />
-
             <button  style={{backgroundColor: '#4c1616', color: '#f2f246', textAlign: 'center',
                 display: 'inlineBlock', paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 18}} >
                 Score Board <br />
@@ -1315,17 +1291,21 @@ decreaseFont () {
                       }
                 </div>
             </button>
+            <button  onClick={this.eraseMessages.bind(this)} style={{backgroundColor: '#4c1616', color: '#f2f246', 
+              fontSize: 14, marginLeft: 10}} >
+              Erase Messages
+            </button>
             <Chat changeMessage={this.changeMessage.bind(this)} > </Chat>
             <div style={{paddingBottom: 200}} />
-      </div>
+     </div>
 
-      <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
-        setGroup={this.setGroup.bind(this)} change={this.changeItem.bind(this)}
-        group={this.state.group} hidden={this.state.hidden} info={this.state.info}
-         setInfo={this.setInfo.bind(this)} >
-      </Login>
+        <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
+          setGroup={this.setGroup.bind(this)} change={this.changeItem.bind(this)}
+          group={this.state.group} hidden={this.state.hidden} info={this.state.info}
+           setInfo={this.setInfo.bind(this)} >
+        </Login>
 
-      <div style = {{ display: startDisplay, paddingTop: 1.1, width: '65%',
+     <div style = {{ display: startDisplay, paddingTop: 1.1, width: '65%',
               paddingBottom: 0.9, fontSize: 20, marginLeft: 5 }}>
           Current roll:
 						<button style={{backgroundColor: '#000', color: '#f00',marginLeft: 5, borderColor: '#93b1f2' }}>  
@@ -1370,7 +1350,7 @@ decreaseFont () {
 
           <br />
 
-          <div style={{backgroundColor: '#000', color: '#0f0',  paddingTop: 1.1,
+          <div style={{paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
              {this.state.str1} <br /> {this.state.str2} <br /> {this.state.str3} <br /> {this.state.str4}
           </div>
@@ -1415,7 +1395,7 @@ decreaseFont () {
           <div> {this.state.message } </div>
           <br />
 
-		<div style={{width: '100%', backgroundColor: dynB,  padding: 10, display: numDisplay }} >
+       <div style={{width: '100%', backgroundColor: dynB,  padding: 10, display: numDisplay }} >
 
           <button onMouseEnter={this.hoverHandler0.bind(this)} onClick={this.handleB40.bind(this)}
             onMouseLeave={this.leaveHandler0.bind(this)}
@@ -1481,46 +1461,46 @@ decreaseFont () {
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             Concat
           </button>
-		</div>
+       </div>
           <div style={{width: '100%',  padding: 10}} />
 
-          <span style={{backgroundColor: '000', color: '#0f0',  paddingTop: 1.1,
+          <span style={{paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16}} >
             {this.state.mes0}
           </span>
 
-          <span style={{backgroundColor: '000', color: '#0f0',  paddingTop: 1.1,
+          <span style={{paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 16}} >
             {this.state.mes1}
           </span>
 
-          <span style={{backgroundColor: '000', color: '#0f0',  paddingTop: 1.1,
+          <span style={{paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 16}} >
             {this.state.mes2}
           </span>
 
-          <span style={{backgroundColor: '000', color: '#0f0',  paddingTop: 1.1,
+          <span style={{paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 16}} >
             =
           </span>
 
-          <span style={{backgroundColor: '000', color: '#0f0',  paddingTop: 1.1,
+          <span style={{paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 16}} >
             {this.state.res}
           </span>
 
           <div style={{width: 1200,  padding: 10}} >  </div>
 
-      <div style={{display: rollDisplay}} >
+        <div style={{display: rollDisplay}} >
           <button onMouseEnter={this.hoverHandler.bind(this)}
             onMouseLeave={this.leaveHandler.bind(this)} style={{backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay}}
               onClick={this.buttonHandler.bind(this)} >
              Roll
           </button>
-      </div>
-      <br /><br />
+        </div>
+        <br /><br />
 
-      <button  onClick={this.getSolutions.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+        <button  onClick={this.getSolutions.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
           display: solutionsDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
           Solutions <br />
         <div>
@@ -1530,8 +1510,8 @@ decreaseFont () {
                     })
               }
         </div>
-      </button>
-    </div>
+        </button>
+     </div>
     <div style={{paddingBottom: 500}} />
   </div>
     )}
