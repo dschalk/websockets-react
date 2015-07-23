@@ -76,14 +76,14 @@ ops =  [cat, (+), (-), (*), scoreDiv]
 
 calc :: Double -> Double -> Double -> Double -> Double -> [(String, String, String, String, String, String)]
 calc a b c d e = [(f a', g op1, f b', g op2, f c', show e) |
-                        [a',b',c',d'] <- nub(permutations [a,b,c,d]),
+                        [a',b',c',_'] <- nub(permutations [a,b,c,d]),
                             op1 <- ops,
                             op2 <- ops,
                             op2 (op1 a' b') c' == e]
 
 calc2 :: Double -> Double -> Double -> Double -> Double -> [(String, String, String, String, String, String)]
 calc2 a b c d e = [(f a', g op1, f b', g op2, f c', show e) |
-                        [a',b',c',d'] <- nub(permutations [a,b,c,d]),
+                        [a',b',c',_'] <- nub(permutations [a,b,c,d]),
                             op1 <- ops,
                             op2 <- ops,
                             op2 a' (op1 b' c') == e]

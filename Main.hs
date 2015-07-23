@@ -27,10 +27,6 @@ type Group = Text
 type Client = (Name, Score, Group, WS.Connection)
 type ServerState = [Client]
 
-froll :: [String] -> [Double]
-froll [_,_,_,a,b,c,d,e] = map read [a, b, c, d, e]
-froll _ = [1.0,2.0,3.0,4.0]
-
 getName :: Client -> Name
 getName (a,_,_,_) = a
 
@@ -40,6 +36,10 @@ getConn (_,_,_,d) =d
 get4 :: [String] -> [Int]
 get4 [_,_,_,a,b,c,d] = fmap read [a,b,c,d]
 get4 _ = [-1,-1,-1,-1]
+
+get5 :: [String] -> [Double]
+get5 [_,_,_,a,b,c,d,e] = fmap read [a,b,c,d,e]
+get5 _ = [-1,-1,-1,-1,-1]
 
 subState :: Text -> [(Text,Int,Text,WS.Connection)] -> [(Text,Int,Text,WS.Connection)]
 subState gr state = [ (a,b,c,d) | (a,b,c,d) <- state, gr == c ]
@@ -153,7 +153,6 @@ talk conn state (_, _, _, _) = forever $ do
     let sender = T.pack (msgArray !! 2)
     let extra = T.pack (msgArray !! 3)
     let extraNum = read (msgArray !! 3) :: Int
-    let range = get4 msgArray  -- 7 items in msgArray
 
     l <- initLogger
 
@@ -165,14 +164,14 @@ talk conn state (_, _, _, _) = forever $ do
         then
             do
                 st <- atomically $ readTMVar state
-                z <- rText range
+                z <- rText $ get4 msgArray
                 let subSt = subState group st
                 broadcast ("CA#$42," `mappend` group `mappend` ","
                     `mappend` sender `mappend` "," `mappend` z) subSt
 
     else if "CZ#$42" `T.isPrefixOf` msg
             then do
-                y <- liftIO $ truck $ froll msgArray
+                y <- liftIO $ truck $ get5 msgArray
                 let yzz = T.pack y
                 st <- atomically $ readTMVar state
                 let subSt = subState group st
@@ -181,7 +180,7 @@ talk conn state (_, _, _, _) = forever $ do
 
     else if "DZ#$42" `T.isPrefixOf` msg
             then do
-                y <- liftIO $ truck $ froll msgArray
+                y <- liftIO $ truck $ get5 msgArray
                 let yzz = T.pack y
                 st <- atomically $ readTMVar state
                 let subSt = subState group st

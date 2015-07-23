@@ -82,6 +82,148 @@ class Chat extends React.Component {
   }
 };
 
+class Sides1 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleEnter (event) {
+    let s1 = event.target.value;
+    if ( event.keyCode == 13 && s1 != '') {
+      this.props.change({sides1: s1});
+      event.target.value = '';
+    }
+  }
+  click (event) {
+    let s1 = event.target.value;
+    if (s1 != '') {
+      this.props.change({sides1: s1});
+      event.target.value = '';
+    }
+  }
+  render () {
+    console.log(this);
+    return (
+          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+            style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
+              fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
+    );
+  }
+};
+
+class Sides2 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleEnter (event) {
+    let s2 = event.target.value;
+    if ( event.keyCode == 13 && s2 != '') {
+      this.props.change({sides2: s2});
+      event.target.value = '';
+    }
+  }
+  click (event) {
+    let s2 = event.target.value;
+    if (s2 != '') {
+      this.props.change({sides2: s2});
+      event.target.value = '';
+    }
+  }
+  render () {
+    console.log(this);
+    return (
+          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+            style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
+              fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
+    );
+  }
+};
+
+class Sides3 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleEnter (event) {
+    let s3 = event.target.value;
+    if ( event.keyCode == 13 && s3 != '') {
+      this.props.change({sides3: s3});
+      event.target.value = '';
+    }
+  }
+  click (event) {
+    let s3 = event.target.value;
+    if (s3 != '') {
+      this.props.change({sides3: s3});
+      event.target.value = '';
+    }
+  }
+  render () {
+    console.log(this);
+    return (
+          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+            style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
+              fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
+    );
+  }
+};
+
+class Sides4 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleEnter (event) {
+    let s4 = event.target.value;
+    if ( event.keyCode == 13 && s4 != '') {
+      this.props.change({sides4: s4});
+      event.target.value = '';
+    }
+  }
+  click (event) {
+    let s4 = event.target.value;
+    if (s4 != '') {
+      this.props.change({sides4: s4});
+      event.target.value = '';
+    }
+  }
+  render () {
+    console.log(this);
+    return (
+          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+            style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
+              fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
+    );
+  }
+};
+
+
+
+class SetGoal extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleEnter (event) {
+    let g = event.target.value;
+    if ( event.keyCode == 13 && g != '') {
+      this.props.change({sides1: g});
+      event.target.value = '';
+    }
+  }
+  click (event) {
+    let g = event.target.value;
+    if (g != '') {
+      this.props.change({goal: g});
+      event.target.value = '';
+    }
+  }
+  render () {
+    console.log(this);
+    return (
+          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+            style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
+              fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
+    );
+  }
+};
+
 class ChangeColor extends React.Component {
   constructor(props) {
     super(props);
@@ -138,46 +280,6 @@ class ChangeBackground extends React.Component {
           style={{width: 70, backgroundColor: '#d8d17d'}} />
           Background Color
         </label>
-      </div>
-    );
-  }
-};
-
-class SetGoal extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  handleChange (event) {       // ISSUE: Input box does not receive input without this handleChange function. ??
-    goal = event.target.value;
-    this.props.change({goal: goal});
-    this.props.setgoal(goal);
-  }
-  handleEnter (event) {
-    if (this.props.goal == '') {
-      return
-    } else {
-      if( event.keyCode == 13 ) {
-        this.props.setgoal(goal);
-      }
-    }
-  }
-  click (event) {
-    if (this.props.name == '') {
-        return
-    } else {
-      this.props.setgoal(goal);
-    }
-  }
-  render () {
-    console.log(this);
-    if ((this.props.hidden2)) { return ( null ) }
-    let name = this.props.name;
-    return (
-      <div >
-        <input type="text" name={name} onChange={this.handleChange.bind(this)}
-        onKeyDown={this.handleEnter.bind(this)} />
-        {this.props.goal}
-        <button onClick={this.click.bind(this)}>New goal</button>
       </div>
     );
   }
@@ -277,6 +379,10 @@ class B4 extends React.Component {
         d2: 0,
         d3: 0,
         d4: 0,
+        sides1: '6',
+        sides2: '6',
+        sides3: '12',
+        sides4: '20',
         mes0: 'Number',
         mes1: 'Operator',
         mes2: 'Number',
@@ -297,7 +403,6 @@ class B4 extends React.Component {
         selection2: '99999',
         res: 'result',
         resPrevious: 'whatever',
-        setInterval : 0,
         str1: "",
         str2: "",
         str3: "",
@@ -325,7 +430,7 @@ class B4 extends React.Component {
         score: false,
         impossible: false,
         interrupt: false,
-        goal: 29,
+        goal: '20',
         sty: {color: '#d5f765', width: 50, marginLeft: 30, padding: 10},
         buttonColor0: '#83f7d7',
         buttonColor1: '#83f7d7',
@@ -353,7 +458,12 @@ class B4 extends React.Component {
         rollnumsDisplay: 'none',
         numDisplay: 'none',
         solutionsDisplay: 'none',
-        timeSize: 20
+        parametersDisplay: 'none',
+        timeSize: 20,
+        extraDisplay: 'none',
+        gameDisplay: 'inlineBlock',
+        leftDisplay: 'inlineBlock',
+        rightDisplay: 'inlineBlock'
       }
 
 let that = this;
@@ -432,6 +542,7 @@ DES_ws.onmessage = function(event) {
                 str1: '',
                 str2: '',
                 str3: '',
+                scoreDisplay2: 'none',
                 scoreClicker: "a@F$Uy&sc",
                 impossibleClicker: "a@F$Uy&imp",
                 interruptClicker: "a@F$intrup%$",
@@ -445,13 +556,12 @@ DES_ws.onmessage = function(event) {
                 interrupt: false,
                 DS_T: 'Click SCORE! to score points.',
                 numDisplay: 'inline',
-                scoreDisplay: 'inline',
-                scoreDisplay2: 'none',
                 impossibleDisplay: 'inline',
                 rollDisplay: 'inline',
                 rollnumsDisplay: 'none',
                 solutionsDisplay: 'inline',
                 timerDisplay: 'none',
+                scoreDisplay: 'inline',
                 message: 'You must click SCORE! in order to gain a point.'
               }, function () {
                   return;
@@ -881,18 +991,23 @@ DES_ws.onmessage = function(event) {
     });
     let name = this.state.name;
     let group = this.state.group;
+    let a = this.state.sides1;
+    let b = this.state.sides2;
+    let c = this.state.sides3;
+    let d = this.state.sides4;
     DES_ws.send(`CF#$42,${group},${name},`);
-    DES_ws.send(`CA#$42,${group},${name},6,6,12,20`);
+    DES_ws.send(`CA#$42,${group},${name},${a},${b},${c},${d}`);
   }
 
   getSolutions () {
-      let name = this.state.name;
+    let name = this.state.name;
       let group = this.state.group;
       let a = this.state.d1;
       let b = this.state.d2;
       let c = this.state.d3;
       let d = this.state.d4;
-      DES_ws.send(`CZ#$42,${group},${name},${a},${b},${c},${d},20`);
+      let goal = this.state.goal;
+      DES_ws.send(`CZ#$42,${group},${name},${a},${b},${c},${d},${goal}`);
   }
 
   handleGroupA () {
@@ -999,6 +1114,8 @@ DES_ws.onmessage = function(event) {
     let impossibleClicker = this.state.impossibleClicker;
     let interrupt = this.state.interrupt;
     let test2 = this.state.score || this.state.impossible;
+    let goal = 1*(this.state.goal); // '1*' and '==' is technically overkill, but seems like insurance.
+
     for (let k in numbers) {
         if (numbers[k] !== "" && numbers[k] !== undefined) {
         ar[j] = numbers[k];
@@ -1019,13 +1136,13 @@ DES_ws.onmessage = function(event) {
     else if (j === 2) {
       DES_ws.send(`GQ#$42,${gr},${name},${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},,`);
-      if ( (result === 20) && test && test2 && !interrupt ) {
+      if ( (result == goal) && test && test2 && !interrupt ) {
           this.setState({DS_T: -1});
           DES_ws.send( `CK#$42,${gr},${name},One point for ${name}` );
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},1` );
       }
-      else if ( (result === 20) && test && test2 && interrupt ) {
+      else if ( (result == goal) && test && test2 && interrupt ) {
         this.setState({DS_T: -1});
         DES_ws.send( `CK#$42,${gr},${name},One point for ${name}. Two points deducted from ${impossibleClicker}`);
         DES_ws.send( `CR#$42,${gr},${name},${name}` );
@@ -1042,24 +1159,24 @@ DES_ws.onmessage = function(event) {
     else if (j === 1) {
       DES_ws.send(`HQ#$42,${gr},${name},${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},,,`)
-      if (result === 20 && test && test2 && !interrupt) {
+      if (result == goal && test && test2 && !interrupt) {
           DES_ws.send( `CK#$42,${gr},${name},One point for ${name}` );
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},1` );
       }
-      else if (result === 20 && test2) {
+      else if (result == goal && test2) {
         this.setState({DS_T: -1});
           DES_ws.send( `CK#$42,${gr},${name},One point for ${name}. Two points deducted from ${impossibleClicker}`);
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},1` );
           DES_ws.send( `CG#$42,${gr},${impossibleClicker},-2` );
         }
-      else if (result !== 20 && test && test2 && !interrupt) {
+      else if (result != goal && test && test2 && !interrupt) {
           DES_ws.send( `CK#$42,${gr},${name},The result is not 20. ${name} lost one point.` );
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},-1` );
         }
-      else if (result !== 20 && test && test2 && interrupt) {
+      else if (result != goal && test && test2 && interrupt) {
           DES_ws.send( `CK#$42,${gr},${name},The result is not 20. ${name} lost one point.
                       One point awarded to ${impossibleClicker}.`);
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
@@ -1075,7 +1192,9 @@ DES_ws.onmessage = function(event) {
   }
 
   changeItem (x) {
-    this.setState(x)
+    this.setState(x, function () {
+      this.setState(x);
+    })
   }
 
   changeMessage(x) {
@@ -1265,6 +1384,38 @@ DES_ws.onmessage = function(event) {
     });
   }
 
+  handleExtra () {
+    this.setState({
+      gameDisplay: 'none',
+      extraDisplay: 'inlineBlock'
+    })
+  }
+
+  handleGame () {
+    this.setState({
+      gameDisplay: 'inlineBlock',
+      extraDisplay: 'none'
+    })
+  }
+
+        handleParams () {
+          this.setState({
+            parametersDisplay: 'inline',
+            scoreDisplay: 'none',
+            impossibleDisplay: 'none',
+            message: 'SCORE! and IMPOSSIBLE will return when you shrink the Parameters area.'
+          });
+        }
+
+        shrinkParams () {
+          this.setState({
+            parametersDisplay: 'none',
+            scoreDisplay: 'inline',
+            impossibleDisplay: 'inline',
+            message: 'Back in competition.'
+          });
+        }
+
   render () {
     let buttonCol = this.state.buttonColor;
     let buttonCol0 = this.state.buttonColor0;
@@ -1296,13 +1447,17 @@ DES_ws.onmessage = function(event) {
     let numDisplay = this.state.numDisplay;
     let solutionsDisplay = this.state.solutionsDisplay;
     let rollnumsDisplay = this.state.rollnumsDisplay;
+    let rightDisplay = this.state.rightDisplay;
+    let leftDisplay = this.state.leftDisplay;
+    let extraDisplay = this.state.extraDisplay;
     let m1 = this.state.message1;
     let timeSize = this.state.timeSize;
+    let parametersDisplay = this.state.parametersDisplay;
 
     console.log(this);
     return (
    <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, 
-      display: 'inlineBlock', width: '100%', height: '100%'}} >
+      display: rightDisplay, width: '100%', height: '100%'}} >
       <div style={{width: '35%', float: 'right'}} >
             <ChangeColor key='ChangeColor' changeC={this.changeColor.bind(this)}
               style={{width: 8}} />
@@ -1551,7 +1706,50 @@ DES_ws.onmessage = function(event) {
               }
         </div>
         </button>
+
+
+        <button  onClick={this.handleParams.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+          display: solutionsDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+          Parameters 
+        </button>
+
+        <div style={{  display: parametersDisplay, width: '100%', float: 'left' }} >
+          <p>In this section, you can choose the numbers of sides of each of the dice, and you can also select the goal. For example, you could select 6,6,6, and 6 for the dice and 10 for the goal. A roll of 1,1,2,3 would have a solution:
+            1 + 1 = 2
+            2 + 3 = 5
+            2 * 5 = 10
+You can click 'Solutions' to see a computer-generated list of all the solutions.
+</p><p>Changing parameters does not change them for other group members. You can use the chat window to coordinate a change. If other group members don't know that you modified the parameters in your browser, they might be very surprised to see you get a point for computing, say, the number '18'.
+</p><br />
+          
+          Sides: 
+
+          <Sides1 change={this.changeItem.bind(this)} > Side 1 </Sides1>
+          <Sides2 change={this.changeItem.bind(this)} > Side 2 </Sides2>
+          <Sides3 change={this.changeItem.bind(this)} > Side 3 </Sides3>
+          <Sides4 change={this.changeItem.bind(this)} > Side 4 </Sides4>
+         <br /> <br />
+         Goal
+        <SetGoal change={this.changeItem.bind(this)} />
+        <br /> <br />
+        Collapse Parameters Display: 
+        <button  onClick={this.shrinkParams.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+          display: solutionsDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+          Shrink Parameters
+        </button>
+        </div>
      </div>
+
+
+       <div style={{display: extraDisplay, width: '100%', float: 'left'}} >
+          <button onMouseEnter={this.hoverHandler5.bind(this)} onMouseLeave={this.leaveHandler5.bind(this)}
+            style={{backgroundColor: buttonCol5,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
+              paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
+            Return To Game
+          </button>
+        </div>
+
+
     <div style={{paddingBottom: 500}} />
   </div>
     )}
