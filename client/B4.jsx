@@ -453,7 +453,9 @@ DES_ws.onmessage = function(event) {
                 solutionsDisplay: 'inline',
                 timerDisplay: 'none',
                 message: 'You must click SCORE! in order to gain a point.'
-              });
+              }, function () {
+                  return;
+                });
           break;
 
           case "CE#$42":                             // Updates numbers during play.
@@ -495,6 +497,9 @@ DES_ws.onmessage = function(event) {
               mes1: 'Operator',
               mes2: 'Number',
               res:  'result',
+              timeSize: 20,
+              DS_T: extra,
+              info: extra
             });
           break;
 
@@ -512,6 +517,10 @@ DES_ws.onmessage = function(event) {
           case "CK#$42":                      // Updates DS_T after each calculation.
               that.setState
               ({
+                mes0: 'Number',
+                mes1: 'Operator',
+                mes2: 'Number',
+                res:  'result',
                 info: extra,
                 DS_T: extra
               });
@@ -547,14 +556,12 @@ DES_ws.onmessage = function(event) {
               numDisplay: 'none',
               solutionsDisplay: 'inline',
               rollDisplay: 'inline',
-              timerDisplay: 'none',
               scoreDisplay: 'none',
               scoreDisplay2: 'none',
               message1: 0,
               message2: 0,
               message3: 0,
               message4: 0,
-              info: '',
               timeSize: 20,
               mes0: 'Number',
               mes1: 'Operator',
@@ -874,7 +881,7 @@ DES_ws.onmessage = function(event) {
     });
     let name = this.state.name;
     let group = this.state.group;
-    DES_ws.send(`CF#$42,${group},${name},filler`);
+    DES_ws.send(`CF#$42,${group},${name},`);
     DES_ws.send(`CA#$42,${group},${name},6,6,12,20`);
   }
 
@@ -930,12 +937,6 @@ DES_ws.onmessage = function(event) {
       chatArray: []
     });
     DES_ws.send( `CO#$42,${group},${name},${x}` );
-  }
-
-  setInfo (x) {
-    let name = this.state.name;
-    let group = this.state.group;
-    DES_ws.send( `IA#$42,${group},${name},${x}` );
   }
 
   setNumberAr (result,str,test) {
@@ -1009,21 +1010,24 @@ DES_ws.onmessage = function(event) {
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},${ar[2]},`);
       this.setState({message: 'You must use the red number in order to score in this round.'});
       if (test2) {
-      DES_ws.send( `CK#$42,${gr},${name},10` );
+        DES_ws.send( `CK#$42,${gr},${name},10` );
+      }
+      else {
+        DES_ws.send( `CK#$42,${gr},${name},Did not click SCORE!` );
       }
     }
     else if (j === 2) {
       DES_ws.send(`GQ#$42,${gr},${name},${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},,`);
       if ( (result === 20) && test && test2 && !interrupt ) {
-          clock = `One point for ${name}`
+          this.setState({DS_T: -1});
+          DES_ws.send( `CK#$42,${gr},${name},One point for ${name}` );
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},1` );
       }
       else if ( (result === 20) && test && test2 && interrupt ) {
         this.setState({DS_T: -1});
-        clock = `One point for ${name}.
-        Two points deducted from ${impossibleClicker}`;
+        DES_ws.send( `CK#$42,${gr},${name},One point for ${name}. Two points deducted from ${impossibleClicker}`);
         DES_ws.send( `CR#$42,${gr},${name},${name}` );
         DES_ws.send( `CG#$42,${gr},${name},1` );
         DES_ws.send( `CG#$42,${gr},${impossibleClicker},-2` );
@@ -1031,46 +1035,38 @@ DES_ws.onmessage = function(event) {
       else if (test2) {
         DES_ws.send( `CK#$42,${gr},${name},10` );
       }
+      else {
+        DES_ws.send( `CK#$42,${gr},${name},Did not click SCORE!` );
+      }
     }
     else if (j === 1) {
       DES_ws.send(`HQ#$42,${gr},${name},${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},,,`)
       if (result === 20 && test && test2 && !interrupt) {
-          clock = `One point for ${name}`;
+          DES_ws.send( `CK#$42,${gr},${name},One point for ${name}` );
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},1` );
       }
-      else if (result === 20 && test && test2 && interrupt) {
+      else if (result === 20 && test2) {
         this.setState({DS_T: -1});
-        clock = `One point for ${name}. Two points deducted from ${impossibleClicker}`;
+          DES_ws.send( `CK#$42,${gr},${name},One point for ${name}. Two points deducted from ${impossibleClicker}`);
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},1` );
-        DES_ws.send( `CG#$42,${gr},${impossibleClicker},-2` );
+          DES_ws.send( `CG#$42,${gr},${impossibleClicker},-2` );
         }
       else if (result !== 20 && test && test2 && !interrupt) {
-          DES_ws.send( `XXXXXX,${gr},${name},Yes, we are in result !==20 && test && test2 && !interrupt` );
-          this.setState({DS_T: -1});
-          clock = `The result is not 20. ${name} lost one point.`;
+          DES_ws.send( `CK#$42,${gr},${name},The result is not 20. ${name} lost one point.` );
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},-1` );
         }
       else if (result !== 20 && test && test2 && interrupt) {
-          this.setState({DS_T: -1});
-          clock = `The result is not 20. One point taken from ${name}.
-          One point awarded to ${impossibleClicker}.`;
+          DES_ws.send( `CK#$42,${gr},${name},The result is not 20. ${name} lost one point.
+                      One point awarded to ${impossibleClicker}.`);
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
-          DES_ws.send( `CG#$42,${gr},${name},-1` );
           DES_ws.send( `CG#$42,${gr},${impossibleClicker},1` );
+          DES_ws.send( `CG#$42,${gr},${name},-1` );
         }
       }
-   if ( j === 1 || (result === 20 && j !== 3) ) {
-        DES_ws.send( `CK#$42,${gr},${name},${clock}` );
-        this.setState({
-          timeSize: 20,
-          DS_T: clock
-        });
-      }
-			DES_ws.send( `CF#$42,${gr},${name},${name}` );
     }
 
   newPlayer (x) {
@@ -1346,8 +1342,7 @@ DES_ws.onmessage = function(event) {
 
         <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
           setGroup={this.setGroup.bind(this)} change={this.changeItem.bind(this)}
-          group={this.state.group} hidden={this.state.hidden} info={this.state.info}
-           setInfo={this.setInfo.bind(this)} >
+          group={this.state.group} hidden={this.state.hidden} info={this.state.info} >
         </Login>
 
      <div style = {{ display: startDisplay, paddingTop: 1.1, width: '65%',
