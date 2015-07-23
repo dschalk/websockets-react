@@ -1,0 +1,3 @@
+XXXXXX,GroupA,aa,Yes, we are in result !==20 && test && test2 && !interrupt
+XXXXXX,GroupA,aa,Yes, we are in result !==20 && test && test2 && !interrupt
+XXXXXX,GroupA,aa,Yes, we are in result !==20 && test && test2 && !interrupt
