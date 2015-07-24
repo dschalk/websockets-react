@@ -1,7 +1,7 @@
 'use strict'
 export {B4};
 import React from 'react';
-
+let Immutable = require('immutable');
 
 function createWebSocket(path) {
     let host = window.location.hostname;
@@ -459,6 +459,8 @@ class B4 extends React.Component {
         numDisplay: 'none',
         solutionsDisplay: 'none',
         parametersDisplay: 'none',
+        paramsDisplay: 'inline',
+        shrinkDisplay: 'none',
         timeSize: 20,
         extraDisplay: 'none',
         gameDisplay: 'inlineBlock',
@@ -1403,7 +1405,9 @@ DES_ws.onmessage = function(event) {
             parametersDisplay: 'inline',
             scoreDisplay: 'none',
             impossibleDisplay: 'none',
-            message: 'SCORE! and IMPOSSIBLE will return when you shrink the Parameters area.'
+            message: 'SCORE! and IMPOSSIBLE will return when you shrink the Parameters area.',
+            paramsDisplay: 'none',
+            shrinkDisplay: 'inline'
           });
         }
 
@@ -1412,7 +1416,9 @@ DES_ws.onmessage = function(event) {
             parametersDisplay: 'none',
             scoreDisplay: 'inline',
             impossibleDisplay: 'inline',
-            message: 'Back in competition.'
+            message: 'Back in competition.',
+            paramsDisplay: 'inline',
+            shrinkDisplay: 'none'
           });
         }
 
@@ -1453,6 +1459,8 @@ DES_ws.onmessage = function(event) {
     let m1 = this.state.message1;
     let timeSize = this.state.timeSize;
     let parametersDisplay = this.state.parametersDisplay;
+    let paramsDisplay = this.state.paramsDisplay;
+    let shrinkDisplay = this.state.shrinkDisplay;
 
     console.log(this);
     return (
@@ -1709,15 +1717,20 @@ DES_ws.onmessage = function(event) {
 
 
         <button  onClick={this.handleParams.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: solutionsDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+          display: paramsDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Parameters 
         </button>
 
+        <button  onClick={this.shrinkParams.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+          display: shrinkDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+          Shrink Parameters
+        </button>
+
         <div style={{  display: parametersDisplay, width: '100%', float: 'left' }} >
-          <p>In this section, you can choose the numbers of sides of each of the dice, and you can also select the goal. For example, you could select 6,6,6, and 6 for the dice and 10 for the goal. A roll of 1,1,2,3 would have a solution:
-            1 + 1 = 2
-            2 + 3 = 5
-            2 * 5 = 10
+          <p>In this section, you can choose the numbers of sides of each of the dice, and you can also select the goal. For example, you could select 6,6,6, and 6 for the dice and 10 for the goal. A roll of 1,1,2,3 would have a solution:<br />
+            1 + 1 = 2<br />
+            2 + 3 = 5<br />
+            2 * 5 = 10<br />
 You can click 'Solutions' to see a computer-generated list of all the solutions.
 </p><p>Changing parameters does not change them for other group members. You can use the chat window to coordinate a change. If other group members don't know that you modified the parameters in your browser, they might be very surprised to see you get a point for computing, say, the number '18'.
 </p><br />
@@ -1734,7 +1747,7 @@ You can click 'Solutions' to see a computer-generated list of all the solutions.
         <br /> <br />
         Collapse Parameters Display: 
         <button  onClick={this.shrinkParams.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: solutionsDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+          display: shrinkDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Shrink Parameters
         </button>
         </div>
