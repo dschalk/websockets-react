@@ -14,3 +14,4 @@ XXXXXX,solo,aa,Yes, we are in result !==20 && test && test2 && !interrupt
 XXXXXX,solo,aa,Yes, we are in result !==20 && test && test2 && !interrupt
 XXXXXX,solo,aa,Yes, we are in result !==20 && test && test2 && !interrupt
 XXXXXX,solo,aa,Yes, we are in result !==20 && test && test2 && !interrupt
+XXXXXX,solo,z,cow

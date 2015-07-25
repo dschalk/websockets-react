@@ -1,7 +1,15 @@
 'use strict'
 export {B4};
 import React from 'react';
-let Immutable = require('immutable');
+// let Immutable = require('immutable');
+import shouldPureComponentUpdate from 'react-pure-render/function';
+
+export default class Button {
+    shouldComponentUpdate = shouldPureComponentUpdate;
+
+      render() { }
+}
+
 
 function createWebSocket(path) {
     let host = window.location.hostname;
@@ -203,7 +211,7 @@ class SetGoal extends React.Component {
   handleEnter (event) {
     let g = event.target.value;
     if ( event.keyCode == 13 && g != '') {
-      this.props.change({sides1: g});
+      this.props.change({goal: g});
       event.target.value = '';
     }
   }
@@ -457,10 +465,11 @@ class B4 extends React.Component {
         rollDisplay: 'inline',
         rollnumsDisplay: 'none',
         numDisplay: 'none',
-        solutionsDisplay: 'none',
-        parametersDisplay: 'none',
-        paramsDisplay: 'inline',
-        shrinkDisplay: 'none',
+        showParamsButton: 'inline',
+        hideParamsButton: 'none',
+        showSolutionsButton: 'inline',
+        hideSolutionsButton: 'none',
+        paramsDiv: 'none',
         timeSize: 20,
         extraDisplay: 'none',
         gameDisplay: 'inlineBlock',
@@ -529,9 +538,8 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CZ#$42":                             // Solutions.
-              let sol = extra.split("<br />");
-              that.setState({sol: sol});
-            //  $("#a2").html(sender + " clicked SOLUTIONS.<br><br>");
+            let s = extra.split("<br />");
+            that.setState({sol: s}); 
           break;
 
           case "CA#$42":                             // Triggered by ROLL
@@ -561,7 +569,11 @@ DES_ws.onmessage = function(event) {
                 impossibleDisplay: 'inline',
                 rollDisplay: 'inline',
                 rollnumsDisplay: 'none',
-                solutionsDisplay: 'inline',
+        showParamsButton: 'inline',
+        hideParamsButton: 'none',
+        paramsDiv: 'none',
+        showSolutionsButton: 'inline',
+        hideSolutionsButton: 'none',
                 timerDisplay: 'none',
                 scoreDisplay: 'inline',
                 message: 'You must click SCORE! in order to gain a point.'
@@ -666,7 +678,11 @@ DES_ws.onmessage = function(event) {
             that.setState({
               impossibleDisplay: 'none',
               numDisplay: 'none',
-              solutionsDisplay: 'inline',
+        showParamsButton: 'inline',
+        hideParamsButton: 'none',
+        paramsDiv: 'none',
+        showSolutionsButton: 'inline',
+        hideSolutionsButton: 'none',
               rollDisplay: 'inline',
               scoreDisplay: 'none',
               scoreDisplay2: 'none',
@@ -690,6 +706,11 @@ DES_ws.onmessage = function(event) {
               DS_T: 10,
               impossibleDisplay: 'none',
               solutionsDisplay: 'none',
+              paramsDisplay: 'none',
+              shrinkSol: 'none',
+              solutionsButton: 'none',
+              paramsButton : 'none',
+              shrinkPar: 'none',
               timerDisplay: 'inline',
               scoreDisplay: 'none',
               rollDisplay: 'none',
@@ -710,6 +731,11 @@ DES_ws.onmessage = function(event) {
               DS_T: 10,
               scoreDisplay: 'none',
               solutionsDisplay: 'none',
+              paramsDisplay: 'none',
+              shrinkSol: 'none',
+              solutionsButton: 'none',
+              paramsButton : 'none',
+              shrinkPar: 'none',
               numDisplay: 'inline',
               rollnumsDisplay: 'none'
             } )
@@ -725,10 +751,14 @@ DES_ws.onmessage = function(event) {
 							numDisplay: 'none',
               scoreDisplay: 'none',
               scoreDisplay2: 'inline',
-              solutionsDisplay: 'none',
               timerDisplay: 'inline',
               rollDisplay: 'none',
-              rollnumsDisplay: 'inline'
+              rollnumsDisplay: 'inline',
+        showParamsButton: 'inline',
+        hideParamsButton: 'none',
+        paramsDiv: 'none',
+        showSolutionsButton: 'inline',
+        hideSolutionsButton: 'none',
             })
           break;
 
@@ -787,7 +817,11 @@ DES_ws.onmessage = function(event) {
             info: '',
             timeSize: 20, // Returns number display to normal size.
             rollDisplay: 'inline', // Displays the ROLL button.
-            solutionsDisplay: 'inline',
+        showParamsButton: 'inline',
+        hideParamsButton: 'none',
+        paramsDiv: 'none',
+        showSolutionsButton: 'inline',
+        hideSolutionsButton: 'none',
             DS_t: -1
         })
   	  let z = scoreClicker === name;
@@ -956,7 +990,6 @@ DES_ws.onmessage = function(event) {
     this.setState( {buttonColor5: '#acf9a2' })
   }
 
-
   solutions () {
     let group = this.state.group;
     let name = this.state.name;
@@ -988,8 +1021,12 @@ DES_ws.onmessage = function(event) {
       scoreDisplay: 'inline',
       scoreDisplay2: 'none',
       numDisplay: 'inline',
-      solutionsDisplay: 'inline',
-      rollnumsDisplay: 'none'
+      rollnumsDisplay: 'none',
+        showParamsButton: 'inline',
+        hideParamsButton: 'none',
+        paramsDiv: 'none',
+        showSolutionsButton: 'inline',
+        hideSolutionsButton: 'none',
     });
     let name = this.state.name;
     let group = this.state.group;
@@ -999,17 +1036,6 @@ DES_ws.onmessage = function(event) {
     let d = this.state.sides4;
     DES_ws.send(`CF#$42,${group},${name},`);
     DES_ws.send(`CA#$42,${group},${name},${a},${b},${c},${d}`);
-  }
-
-  getSolutions () {
-    let name = this.state.name;
-      let group = this.state.group;
-      let a = this.state.d1;
-      let b = this.state.d2;
-      let c = this.state.d3;
-      let d = this.state.d4;
-      let goal = this.state.goal;
-      DES_ws.send(`CZ#$42,${group},${name},${a},${b},${c},${d},${goal}`);
   }
 
   handleGroupA () {
@@ -1400,27 +1426,64 @@ DES_ws.onmessage = function(event) {
     })
   }
 
-        handleParams () {
-          this.setState({
-            parametersDisplay: 'inline',
-            scoreDisplay: 'none',
-            impossibleDisplay: 'none',
-            message: 'SCORE! and IMPOSSIBLE will return when you shrink the Parameters area.',
-            paramsDisplay: 'none',
-            shrinkDisplay: 'inline'
-          });
-        }
 
-        shrinkParams () {
-          this.setState({
-            parametersDisplay: 'none',
-            scoreDisplay: 'inline',
-            impossibleDisplay: 'inline',
-            message: 'Back in competition.',
-            paramsDisplay: 'inline',
-            shrinkDisplay: 'none'
-          });
-        }
+
+
+
+  showSolutionsHandler () {
+    let name = this.state.name;
+      let group = this.state.group;
+      let a = this.state.d1;
+      let b = this.state.d2;
+      let c = this.state.d3;
+      let d = this.state.d4;
+      let goal = this.state.goal;
+      DES_ws.send(`CZ#$42,${group},${name},${a},${b},${c},${d},${goal}`);
+      this.setState({
+        rollDisplay: 'none',
+        scoreDisplay: 'none',
+        impossibleDisplay: 'none',
+        scoreDisplay2: 'none',
+        showSolutionsButton: 'none',
+        hideSolutionsButton: 'inline',
+      });
+  }
+
+  hideSolutionsHandler () {
+    let _this = this;
+    this.setState({
+        message: 'Play forfeited for this round by opening Solutions',
+        DS_t: 'Please wait for the next roll. You displayed solutions.',
+        showSolutionsButton: 'inline',
+        hideSolutionsButton: 'none',
+        rollDisplay: 'inline',
+        sol: []
+     });
+  }
+
+   showParamsHandler () {
+      this.setState({
+        scoreDisplay: 'none',
+        scoreDisplay2: 'none',
+        impossibleDisplay: 'none',
+        message: 'SCORE! and IMPOSSIBLE will return when you shrink the Parameters area.',
+        showParamsButton: 'none',
+        hideParamsButton: 'inline',
+        paramsDiv: 'inline'
+      });
+    }
+
+    hideParamsHandler () {
+      this.setState({
+        paramsDisplay: 'none',
+        scoreDisplay: 'inline',
+        impossibleDisplay: 'inline',
+        message: 'Back in competition.',
+        showParamsButton: 'inline',
+        hideParamsButton: 'none',
+        paramsDiv: 'none'
+      });
+    }
 
   render () {
     let buttonCol = this.state.buttonColor;
@@ -1458,9 +1521,16 @@ DES_ws.onmessage = function(event) {
     let extraDisplay = this.state.extraDisplay;
     let m1 = this.state.message1;
     let timeSize = this.state.timeSize;
-    let parametersDisplay = this.state.parametersDisplay;
     let paramsDisplay = this.state.paramsDisplay;
-    let shrinkDisplay = this.state.shrinkDisplay;
+    let paramsButton = this.state.paramsButton;
+    let paramsDiv = this.state.paramsDiv;
+    let shrinkSol = this.state.shrinkSol;
+    let shrinkPar = this.state.shrinkPar;
+    let showSolutionsButton = this.state.showSolutionsButton;
+    let hideSolutionsButton = this.state.hideSolutionsButton;
+    let showParamsButton = this.state.showParamsButton;
+    let hideParamsButton = this.state.hideParamsButton;
+    let sol = this.state.sol;
 
     console.log(this);
     return (
@@ -1473,7 +1543,7 @@ DES_ws.onmessage = function(event) {
               style={{width: 8}} />
               <br /><br />
             <button  style={{backgroundColor: '#4c1616', color: '#f2f246', textAlign: 'center',
-                display: 'inlineBlock', paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 18}} >
+                display: 'inline', paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 18}} >
                 Score Board <br />
                 name [score]
                 <div style={{textAlign: 'left'}} > {
@@ -1703,30 +1773,39 @@ DES_ws.onmessage = function(event) {
         </div>
         <br /> <br/>
 
-        <button  onClick={this.getSolutions.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: solutionsDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+
+        <button  onClick={this.showSolutionsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+          display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Solutions
-        <div>
+        </button>
+
+        <button  onClick={this.hideSolutionsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+          display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+          Hide Solutions
+        </button>
+
+        <div style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+          paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
               {
-                    this.state.sol.map(function(line) {
+                    sol.map(function(line) {
                       return (<p>{line}</p>)
                     })
               }
         </div>
-        </button>
 
 
-        <button  onClick={this.handleParams.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: paramsDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+
+        <button  onClick={this.showParamsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+          display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Parameters 
         </button>
 
-        <button  onClick={this.shrinkParams.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: shrinkDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
-          Shrink Parameters
+        <button  onClick={this.hideParamsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+          display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+          Hide Parameters
         </button>
 
-        <div style={{  display: parametersDisplay, width: '100%', float: 'left' }} >
+        <div style={{  display: paramsDiv, width: '100%', float: 'left' }} >
           <p>In this section, you can choose the numbers of sides of each of the dice, and you can also select the goal. For example, you could select 6,6,6, and 6 for the dice and 10 for the goal. A roll of 1,1,2,3 would have a solution:<br />
             1 + 1 = 2<br />
             2 + 3 = 5<br />
@@ -1746,8 +1825,8 @@ You can click 'Solutions' to see a computer-generated list of all the solutions.
         <SetGoal change={this.changeItem.bind(this)} />
         <br /> <br />
         Collapse Parameters Display: 
-        <button  onClick={this.shrinkParams.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: shrinkDisplay, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+        <button  onClick={this.hideParamsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+          display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Shrink Parameters
         </button>
         </div>
