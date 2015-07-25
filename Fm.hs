@@ -38,7 +38,7 @@ computation :: Double -> String -> Double -> Double
 computation a b c  | b == "+"   = (+) a c
                    | b == "-"   = (-) a c
                    | b == "*"   = (*) a c
-                   | b == "/"   = scoreDiv a c
+                   | b == "/"   = (/) a c
                    | b == "Concatenate"  = cat a c
                    | otherwise = 5000
 
@@ -62,12 +62,8 @@ g x         | x 3 2 == 5 = " + "
 f :: Double -> String
 f x = show (fRound x)
 
-scoreDiv :: Double -> Double -> Double
-scoreDiv az bz  | bz == 0  = 99999
-                | otherwise = (/) az bz
-
 ops :: [Double -> Double -> Double]
-ops =  [cat, (+), (-), (*), scoreDiv]
+ops =  [cat, (+), (-), (*), (/)]
 
 calc :: Double -> Double -> Double -> Double -> Double -> [(String, String, String, String, String, String)]
 calc a b c d e = [(f a', g op1, f b', g op2, f c', show e) |

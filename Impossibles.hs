@@ -12,12 +12,8 @@ cat x y = 10.0*x + y
 f :: Double -> String
 f x = show (round x)
 
-scoreDiv :: Double -> Double -> Double
-scoreDiv az bz  | bz == 0  = 99999
-                | otherwise = (/) az bz
-
 ops :: [Double -> Double -> Double]
-ops =  [cat, (+), (-), (*), scoreDiv]
+ops =  [cat, (+), (-), (*), (/)]
 
 calc a b c d e = [ (a',b',c',d') |
                         [a',b',c',d'] <- nub(permutations [a,b,c,d]),
