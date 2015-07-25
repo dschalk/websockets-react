@@ -45,13 +45,13 @@ class GroupNew extends React.Component {
       this.props.setGroup(group);
     }
   }
-  render () {
+  render = () => {
     console.log(this);
     if ((this.props.hidden2)) { return ( null ) }
     return (
       <div style={{marginLeft: 5}} >
-        <label>New Group<input type="text" id='cow' onKeyDown={this.handleEnter.bind(this)}
-          onClick={this.click.bind(this)} style={{width: 90, backgroundColor: '#d8d17d', marginLeft: 10}} />
+        <label>New Group<input type="text" id='cow' onKeyDown={this.handleEnter}
+          onClick={this.click} style={{width: 90, backgroundColor: '#d8d17d', marginLeft: 10}} />
         </label>
       </div>
     );
@@ -76,13 +76,13 @@ class Chat extends React.Component {
       event.target.value = '';
     }
   }
-  render () {
+  render = () => {
     console.log(this);
     return (
       <div style={{fontSize: 22}}>
         Message:
         <label>
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          <input type="text" onKeyDown={this.handleEnter} onClick={this.click}
           style={{width: 230, backgroundColor: '#d8d17d'}} />
         </label>
       </div>
@@ -108,10 +108,10 @@ class Sides1 extends React.Component {
       event.target.value = '';
     }
   }
-  render () {
+  render = () => {
     console.log(this);
     return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          <input type="text" onKeyDown={this.handleEnter} onClick={this.click}
             style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
               fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
     );
@@ -136,10 +136,10 @@ class Sides2 extends React.Component {
       event.target.value = '';
     }
   }
-  render () {
+  render = () => {
     console.log(this);
     return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          <input type="text" onKeyDown={this.handleEnter} onClick={this.click}
             style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
               fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
     );
@@ -164,10 +164,10 @@ class Sides3 extends React.Component {
       event.target.value = '';
     }
   }
-  render () {
+  render = () => {
     console.log(this);
     return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          <input type="text" onKeyDown={this.handleEnter} onClick={this.click}
             style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
               fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
     );
@@ -192,10 +192,10 @@ class Sides4 extends React.Component {
       event.target.value = '';
     }
   }
-  render () {
+  render = () => {
     console.log(this);
     return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          <input type="text" onKeyDown={this.handleEnter} onClick={this.click}
             style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
               fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
     );
@@ -222,10 +222,10 @@ class SetGoal extends React.Component {
       event.target.value = '';
     }
   }
-  render () {
+  render = () => {
     console.log(this);
     return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          <input type="text" onKeyDown={this.handleEnter} onClick={this.click}
             style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
               fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
     );
@@ -248,12 +248,12 @@ class ChangeColor extends React.Component {
       this.props.changeC(color);
     }
   }
-  render () {
+  render = () => {
     console.log(this);
     return (
       <div style={{fontSize: 22}}>
         <label>
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          <input type="text" onKeyDown={this.handleEnter} onClick={this.click}
           style={{width: 70, backgroundColor: '#d8d17d'}} />
           Font Color
         </label>
@@ -279,12 +279,12 @@ class ChangeBackground extends React.Component {
       this.props.changeC(col);
     }
   }
-  render () {
+  render = () => {
     console.log(this);
     return (
       <div style={{fontSize: 22}}>
         <label>
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          <input type="text" onKeyDown={this.handleEnter} onClick={this.click}
           style={{width: 70, backgroundColor: '#d8d17d'}} />
           Background Color
         </label>
@@ -298,16 +298,16 @@ class Solutions2 extends React.Component {
       super(props);
       let formatted;
   }
-  clickHandler () {
+  clickHandler = () => {
     this.props.solFunc();
   }
-  render () {
+  render = () => {
     let formatted = this.props.sol.map(function(line) {
       return (<p>{line}</p>);
     });
     if (this.props.hidden2) { return ( null ) }
     return (
-        <div  onClick={this.clickHandler.bind(this)} >
+        <div  onClick={this.clickHandler} >
           <div>
             Solutions <br /> <br />
             {formatted}
@@ -345,7 +345,7 @@ class Login extends React.Component {
       }
     }
   }
-  click () {
+  click = () => {
     if (this.props.name == '') {
       this.props.change({
         info: `Please enter a name.`
@@ -361,17 +361,17 @@ class Login extends React.Component {
       DES_ws.send('CC#$42'+name);
     }
   }
-  render () {
+  render = () => {
     console.log(this);
     if ((this.props.hidden)) { return ( null ) }
     let name = this.props.name;
     return (
       <div>
-        <input autoFocus type="text" name={name} onChange={this.handleChange.bind(this)}
+        <input autoFocus type="text" name={name} onChange={this.handleChange}
           style={{backgroundColor: '#d8d17d'}}
-        onKeyDown={this.handleEnter.bind(this)} />
+        onKeyDown={this.handleEnter} />
         {this.props.name}
-        <button onClick={this.click.bind(this)} style={{backgroundColor: '#d8d17d', color: '#f00'}} >
+        <button onClick={this.click} style={{backgroundColor: '#d8d17d', color: '#f00'}} >
           Join
         </button>
       </div>
@@ -577,9 +577,7 @@ DES_ws.onmessage = function(event) {
                 timerDisplay: 'none',
                 scoreDisplay: 'inline',
                 message: 'You must click SCORE! in order to gain a point.'
-              }, function () {
-                  return;
-                });
+              });
           break;
 
           case "CE#$42":                             // Updates numbers during play.
@@ -850,164 +848,164 @@ DES_ws.onmessage = function(event) {
   }, 1000 )
 }
 
-  changeBackground (color) {
+changeBackground = (color) => {
     this.setState({
       dynamicBg: color
     });
-  }
+}
 
-  changeColor (col) {
+changeColor = (col) => {
     this.setState({
       dynamicColor: col,
       sty: {color: col, width: 50, marginLeft: 30, padding: 10}
     });
-  }
+}
 
-  hoverHandler () {
+hoverHandler = () => {
     this.setState( {buttonColor: '#f99094' })
-  }
-  leaveHandler () {
+}
+leaveHandler = () => {
     this.setState( {buttonColor: '#83f7d8' })
-  }
-  hoverHandler0 () {
+}
+  hoverHandler0  = () => {
     this.setState( {buttonColor0: '#f99094' })
   }
-  leaveHandler0 () {
+  leaveHandler0 = () => {
     this.setState( {buttonColor0: '#83f7d8' })
   }
-  hoverHandler1 () {
+  hoverHandler1 = () => {
     this.setState( {buttonColor1: '#f99094' })
   }
-  leaveHandler1 () {
+  leaveHandler1 = () => {
     this.setState( {buttonColor1: '#83f7d8' })
   }
-  hoverHandler2 () {
+  hoverHandler2 = () => {
     this.setState( {buttonColor2: '#f99094' })
   }
-  leaveHandler2 () {
+  leaveHandler2 = () => {
     this.setState( {buttonColor2: '#83f7d8' })
   }
-  hoverHandler3 () {
+  hoverHandler3 = () => {
     this.setState( {buttonColor3: '#f99094' })
   }
-  leaveHandler3 () {
+  leaveHandler3 = () => {
     this.setState( {buttonColor3: '#83f7d8' })
   }
 
-  hoverHandler4 () {
+  hoverHandler4 = () => {
     this.setState( {buttonColor4: '#f99094' })
   }
 
-  leaveHandler4 () {
+  leaveHandler4 = () => {
     this.setState( {buttonColor4: '#acf9a2' })
   }
 
-  hoverHandler5 () {
+  hoverHandler5 = () => {
     this.setState( {buttonColor5: '#f99094' })
   }
 
-  leaveHandler5 () {
+  leaveHandler5 = () => {
     this.setState( {buttonColor5: '#acf9a2' })
   }
 
-  hoverHandler6 () {
+  hoverHandler6 = () => {
     this.setState( {buttonColor6: '#f99094' })
   }
 
-  leaveHandler6 () {
+  leaveHandler6 = () => {
     this.setState( {buttonColor6: '#acf9a2' })
   }
 
-  hoverHandler7 () {
+  hoverHandler7 = () => {
     this.setState( {buttonColor7: '#f99094' })
   }
 
-  leaveHandler7 () {
+  leaveHandler7 = () => {
     this.setState( {buttonColor7: '#acf9a2' })
   }
 
-  hoverHandler8 () {
+  hoverHandler8 = () => {
     this.setState( {buttonColor8: '#f99094' })
   }
 
-  leaveHandler8 () {
+  leaveHandler8 = () => {
     this.setState( {buttonColor8: '#acf9a2' })
   }
 
-  hoverHandler9 () {
+  hoverHandler9 = () => {
     this.setState( {buttonColor9: '#f99094' })
   }
 
-  leaveHandler9 () {
+  leaveHandler9 = () => {
     this.setState( {buttonColor9: '#83f7d8' })
   }
 
-  hoverHandler10 () {
+  hoverHandler10 = () => {
     this.setState( {buttonColor10: '#f99094' })
   }
 
-  leaveHandler10 () {
+  leaveHandler10 = () => {
     this.setState( {buttonColor10: '#f7b16f' })
   }
 
-  hoverHandler11 () {
+  hoverHandler11 = () => {
     this.setState( {buttonColor11: '#f99094' })
   }
 
-  leaveHandler11 () {
+  leaveHandler11 = () => {
     this.setState( {buttonColor11: '#f7b16f' })
   }
 
-  hoverHandler12 () {
+  hoverHandler12 = () => {
     this.setState( {buttonColor12: '#f99094' })
   }
 
-  leaveHandler12 () {
+  leaveHandler12 = () => {
     this.setState( {buttonColor12: '#f7b16f' })
   }
 
-  hoverHandler13 () {
+  hoverHandler13 = () => {
     this.setState( {buttonColor13: '#f99094' })
   }
 
-  leaveHandler13 () {
+  leaveHandler13 = () => {
     this.setState( {buttonColor13: '#83f7d8' })
   }
 
-  hoverHandler14 () {
+  hoverHandler14 = () => {
     this.setState( {buttonColor14: '#f99094' })
   }
 
-  leaveHandler14 () {
+  leaveHandler14 = () => {
     this.setState( {buttonColor14: '#83f7d8' })
   }
 
-  hoverHandler15 () {
+  hoverHandler15 = () => {
     this.setState( {buttonColor5: '#f99094' })
   }
 
-  leaveHandler15 () {
+  leaveHandler15 = () => {
     this.setState( {buttonColor5: '#acf9a2' })
   }
 
-  solutions () {
+  solutions = () => {
     let group = this.state.group;
     let name = this.state.name;
     let goal = this.state.goal;
     DES_ws.send( `CZ#$42,${group},${name},${goal}` );
   }
 
-  delay(ms) {
+  delay = (ms) => {
     return new Promise(function (resolve, reject) {
         setTimeout(resolve, ms);
     });
   }
 
-  displayHandler () {
+  displayHandler = () => {
     console.log("############$$$$$$$$$$$$$$$$$$___ IN displayHandler ___")
   }
 
-  rollDice () {
+  rollDice = () => {
     let col = this.state.dynamicColor;
     this.setState({
       DS_T: '',
@@ -1038,7 +1036,7 @@ DES_ws.onmessage = function(event) {
     DES_ws.send(`CA#$42,${group},${name},${a},${b},${c},${d}`);
   }
 
-  handleGroupA () {
+  handleGroupA = () => {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send( `CO#$42,${group},${name},GroupA` );
@@ -1049,7 +1047,7 @@ DES_ws.onmessage = function(event) {
     });
   }
 
-  handleGroupB () {
+  handleGroupB = () => {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send( `CO#$42,${group},${name},GroupB` );
@@ -1060,7 +1058,7 @@ DES_ws.onmessage = function(event) {
     });
   }
 
-  handleGroupC () {
+  handleGroupC = () => {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send( `CO#$42,${group},${name},GroupC` );
@@ -1071,7 +1069,7 @@ DES_ws.onmessage = function(event) {
     });
   }
 
-  setGroup (x) {
+  setGroup = (x) => {
     let name = this.state.name;
     let group = this.state.group;
     this.setState({
@@ -1082,7 +1080,7 @@ DES_ws.onmessage = function(event) {
     DES_ws.send( `CO#$42,${group},${name},${x}` );
   }
 
-  setNumberAr (result,str,test) {
+  setNumberAr = (result,str,test) => {
     let w1 = this.state.message1;
     let w2 = this.state.message2;
     let w3 = this.state.message3;
@@ -1091,7 +1089,7 @@ DES_ws.onmessage = function(event) {
     this.newNums(result,str,test,teststartArray);
   }
 
-  calc (mes0,mes1,mes2) { 
+  calc = (mes0,mes1,mes2) => {
     let that = this;
     let res = 0;
     let delay = this.delay;
@@ -1111,13 +1109,13 @@ DES_ws.onmessage = function(event) {
       break;
       case "/": that.comp( parseFloat(mes0) / parseFloat(mes2),mes0,mes1,mes2,test );
       break;t
-      case "Concat": that.comp( parseFloat(mes0+""+mes2),mes0,mes1,mes2,test );
+      case "Concat": that.comp( parseFloat(mes0+mes2),mes0,mes1,mes2,test );
       break;
       default : 'operator not selected';
     }
   }
 
-  comp (result,mes0,mes1,mes2,test) {
+  comp = (result,mes0,mes1,mes2,test) => {
     let str = `${mes0} ${mes1} ${mes2} = ${result}`;
     this.setState({
       STRING: str,
@@ -1133,7 +1131,7 @@ DES_ws.onmessage = function(event) {
     this.newNums(result,str,test,startArray);
   }
 
-  newNums (result,str,test,numbers) {
+  newNums = (result,str,test,numbers) => {
     let j = 0;
     let gr = this.state.group;
     let ar = [];
@@ -1214,35 +1212,35 @@ DES_ws.onmessage = function(event) {
       }
     }
 
-  newPlayer (x) {
+  newPlayer = (x) => {
     this.setState({name: x});
     DES_ws.send("CC#42$"+x)
   }
 
-  changeItem (x) {
+  changeItem = (x) => {
     this.setState(x, function () {
       this.setState(x);
     })
   }
 
-  changeMessage(x) {
+  changeMessage = (x) => {
     let name = this.state.name;
     let gr = this.state.group;
     DES_ws.send (`CD#$42,${gr},${name},&@3#^7$${name}: ${x}`);
   }
 
-  logMessage () {
+  logMessage = () => {
     console.log("*************************************************************************** Message from logMessage");
   }
 
-  buttonHandler () {
+  buttonHandler = () => {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send( `IA#$42,${group},${name},Click SCORE to begin` );
     this.rollDice();
   }
 
-  handleB40 () {
+  handleB40 = () => {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message1;
@@ -1262,7 +1260,7 @@ DES_ws.onmessage = function(event) {
     }
   }
 
-  handleB41 () {
+  handleB41 = () => {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message2;
@@ -1282,7 +1280,7 @@ DES_ws.onmessage = function(event) {
     }
   }
 
-  handleB42 () {
+  handleB42 = () => {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message3;
@@ -1302,7 +1300,7 @@ DES_ws.onmessage = function(event) {
     }
   }
 
-  handleB43 () {
+  handleB43 = () => {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message4;
@@ -1322,7 +1320,7 @@ DES_ws.onmessage = function(event) {
     }
   }
 
-  handleOp0 () {
+  handleOp0 = () => {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send(`EQ#$42,${group},${name},+`);
@@ -1335,7 +1333,7 @@ DES_ws.onmessage = function(event) {
     }
   }
 
-  handleOp1 () {
+  handleOp1 = () => {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send(`EQ#$42,${group},${name},-`);
@@ -1348,7 +1346,7 @@ DES_ws.onmessage = function(event) {
     }
   }
 
-  handleOp2 () {
+  handleOp2 = () => {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send(`EQ#$42,${group},${name},*`);
@@ -1361,7 +1359,7 @@ DES_ws.onmessage = function(event) {
     }
   }
 
-  handleOp3 () {
+  handleOp3 = () => {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send(`EQ#$42,${group},${name},/`);
@@ -1374,7 +1372,7 @@ DES_ws.onmessage = function(event) {
     }
   }
 
-  handleOp4 () {
+  handleOp4 = () => {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send(`EQ#$42,${group},${name},Concat`);
@@ -1387,50 +1385,46 @@ DES_ws.onmessage = function(event) {
     }
   }
 
-  handleScore () {
+  handleScore = () => {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send( `CY#$42,${group},${name},${name}` );
   }
 
-  handleScore2 () {
+  handleScore2 = () => {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send( `XY#$42,${group},${name},${name}` );
   }
 
-  handleImpossible () {
+  handleImpossible = () => {
     let name = this.state.name;
     let group = this.state.group;
     DES_ws.send( `DY#$42,${group},${name},${name}` );
   }
 
-  eraseMessages () {
+  eraseMessages = () => {
     this.setState({
       chatArray: [],
       chatMessage: ''
     });
   }
 
-  handleExtra () {
+  handleExtra = () => {
     this.setState({
       gameDisplay: 'none',
       extraDisplay: 'inlineBlock'
     })
   }
 
-  handleGame () {
+  handleGame = () => {
     this.setState({
       gameDisplay: 'inlineBlock',
       extraDisplay: 'none'
     })
   }
 
-
-
-
-
-  showSolutionsHandler () {
+  showSolutionsHandler = () => {
     let name = this.state.name;
       let group = this.state.group;
       let a = this.state.d1;
@@ -1449,7 +1443,7 @@ DES_ws.onmessage = function(event) {
       });
   }
 
-  hideSolutionsHandler () {
+  hideSolutionsHandler = () => {
     let _this = this;
     this.setState({
         message: 'Play forfeited for this round by opening Solutions',
@@ -1461,7 +1455,7 @@ DES_ws.onmessage = function(event) {
      });
   }
 
-   showParamsHandler () {
+   showParamsHandler = () => {
       this.setState({
         scoreDisplay: 'none',
         scoreDisplay2: 'none',
@@ -1473,7 +1467,7 @@ DES_ws.onmessage = function(event) {
       });
     }
 
-    hideParamsHandler () {
+    hideParamsHandler = () => {
       this.setState({
         paramsDisplay: 'none',
         scoreDisplay: 'inline',
@@ -1485,7 +1479,7 @@ DES_ws.onmessage = function(event) {
       });
     }
 
-  render () {
+  render = () => {
     let buttonCol = this.state.buttonColor;
     let buttonCol0 = this.state.buttonColor0;
     let buttonCol1 = this.state.buttonColor1;
@@ -1537,9 +1531,9 @@ DES_ws.onmessage = function(event) {
    <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, 
       display: rightDisplay, width: '100%', height: '100%'}} >
       <div style={{width: '35%', float: 'right'}} >
-            <ChangeColor key='ChangeColor' changeC={this.changeColor.bind(this)}
+            <ChangeColor key='ChangeColor' changeC={this.changeColor}
               style={{width: 8}} />
-            <ChangeBackground key='ChangeBackground' changeB={this.changeBackground.bind(this)}
+            <ChangeBackground key='ChangeBackground' changeB={this.changeBackground}
               style={{width: 8}} />
               <br /><br />
             <button  style={{backgroundColor: '#4c1616', color: '#f2f246', textAlign: 'center',
@@ -1565,16 +1559,16 @@ DES_ws.onmessage = function(event) {
                       }
                 </div>
             </button>
-            <button  onClick={this.eraseMessages.bind(this)} style={{backgroundColor: '#4c1616', color: '#f2f246', 
+            <button  onClick={this.eraseMessages} style={{backgroundColor: '#4c1616', color: '#f2f246', 
               fontSize: 14, marginLeft: 10}} >
               Erase Messages
             </button>
-            <Chat changeMessage={this.changeMessage.bind(this)} > </Chat>
+            <Chat changeMessage={this.changeMessage} > </Chat>
             <div style={{paddingBottom: 200}} />
      </div>
 
-        <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
-          setGroup={this.setGroup.bind(this)} change={this.changeItem.bind(this)}
+        <Login key='Login' newPlayer={this.newPlayer} name={this.state.name}
+          setGroup={this.setGroup} change={this.changeItem}
           group={this.state.group} hidden={this.state.hidden} info={this.state.info} >
         </Login>
 
@@ -1597,28 +1591,28 @@ DES_ws.onmessage = function(event) {
 
           <div style={{marginLeft: 5}} > {this.state.info} </div>
 
-          <button onMouseEnter={this.hoverHandler10.bind(this)} onClick={this.handleGroupA.bind(this)}
-            onMouseLeave={this.leaveHandler10.bind(this)}
+          <button onMouseEnter={this.hoverHandler10} onClick={this.handleGroupA}
+            onMouseLeave={this.leaveHandler10}
             style={{backgroundColor: buttonCol10,  paddingTop: 1.1, 
               paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10}} >
             GroupA
           </button>
 
-          <button onMouseEnter={this.hoverHandler11.bind(this)} onClick={this.handleGroupB.bind(this)}
-            onMouseLeave={this.leaveHandler11.bind(this)}
+          <button onMouseEnter={this.hoverHandler11} onClick={this.handleGroupB}
+            onMouseLeave={this.leaveHandler11}
             style={{backgroundColor: buttonCol11,  paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10}} >
             GroupB
           </button>
 
-          <button onMouseEnter={this.hoverHandler12.bind(this)} onClick={this.handleGroupC.bind(this)}
-            onMouseLeave={this.leaveHandler12.bind(this)}
+          <button onMouseEnter={this.hoverHandler12} onClick={this.handleGroupC}
+            onMouseLeave={this.leaveHandler12}
             style={{backgroundColor: buttonCol12,  paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10}} >
             GroupC
           </button>
 
-          <GroupNew key='GroupNew' setGroup={this.setGroup.bind(this)} hidden2={this.state.hidden2}
+          <GroupNew key='GroupNew' setGroup={this.setGroup} hidden2={this.state.hidden2}
             name={this.state.name} />
 
           <br />
@@ -1630,8 +1624,8 @@ DES_ws.onmessage = function(event) {
 
           <div style={{width: '100%', backgroundColor: dynB,  padding: 10}} > </div>
 
-          <button onMouseEnter={this.hoverHandler9.bind(this)} 
-            onMouseLeave={this.leaveHandler9.bind(this)}
+          <button onMouseEnter={this.hoverHandler9} 
+            onMouseLeave={this.leaveHandler9}
             style={{backgroundColor: buttonCol9, display: timerDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize}} >
             {this.state.DS_T}
@@ -1642,22 +1636,22 @@ DES_ws.onmessage = function(event) {
             <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 }} > {this.state.d3} </button> 
             <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 }} > {this.state.d4} </button> 
           </div>
-          <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore.bind(this)}
-            onMouseLeave={this.leaveHandler9.bind(this)}
+          <button onMouseEnter={this.hoverHandler9} onClick={this.handleScore}
+            onMouseLeave={this.leaveHandler9}
             style={{backgroundColor: buttonCol9, display: scoreDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize}} >
             SCORE!
           </button>
 
-          <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore2.bind(this)}
-            onMouseLeave={this.leaveHandler9.bind(this)}
+          <button onMouseEnter={this.hoverHandler9} onClick={this.handleScore2}
+            onMouseLeave={this.leaveHandler9}
             style={{backgroundColor: buttonCol9, display: scoreDisplay2, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize}} >
             SCORE!
           </button>       
 
-          <button onMouseEnter={this.hoverHandler14.bind(this)} onClick={this.handleImpossible.bind(this)}
-            onMouseLeave={this.leaveHandler14.bind(this)}
+          <button onMouseEnter={this.hoverHandler14} onClick={this.handleImpossible}
+            onMouseLeave={this.leaveHandler14}
             style={{backgroundColor: buttonCol14, display: impossibleDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize  }} >
             IMPOSSIBLE
@@ -1670,29 +1664,29 @@ DES_ws.onmessage = function(event) {
 
        <div style={{width: '100%', backgroundColor: dynB,  padding: 10, display: numDisplay }} >
 
-          <button onMouseEnter={this.hoverHandler0.bind(this)} onClick={this.handleB40.bind(this)}
-            onMouseLeave={this.leaveHandler0.bind(this)}
+          <button onMouseEnter={this.hoverHandler0} onClick={this.handleB40}
+            onMouseLeave={this.leaveHandler0}
             style={{backgroundColor: buttonCol0,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message1}
           </button>
 
-          <button onMouseEnter={this.hoverHandler1.bind(this)} onClick={this.handleB41.bind(this)}
-            onMouseLeave={this.leaveHandler1.bind(this)}
+          <button onMouseEnter={this.hoverHandler1} onClick={this.handleB41}
+            onMouseLeave={this.leaveHandler1}
             style={{backgroundColor: buttonCol1,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message2}
           </button>
 
-          <button onMouseEnter={this.hoverHandler2.bind(this)} onClick={this.handleB42.bind(this)}
-            onMouseLeave={this.leaveHandler2.bind(this)}
+          <button onMouseEnter={this.hoverHandler2} onClick={this.handleB42}
+            onMouseLeave={this.leaveHandler2}
             style={{backgroundColor: buttonCol2,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message3}
           </button>
 
-          <button onMouseEnter={this.hoverHandler3.bind(this)} onClick={this.handleB43.bind(this)}
-            onMouseLeave={this.leaveHandler3.bind(this)}
+          <button onMouseEnter={this.hoverHandler3} onClick={this.handleB43}
+            onMouseLeave={this.leaveHandler3}
             style={{backgroundColor: buttonCol3,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message4}
@@ -1700,36 +1694,36 @@ DES_ws.onmessage = function(event) {
 
           <div style={{width: '100%',  padding: 10}} > </div>
 
-          <button onMouseEnter={this.hoverHandler4.bind(this)} onClick={this.handleOp0.bind(this)}
-            onMouseLeave={this.leaveHandler4.bind(this)}
+          <button onMouseEnter={this.hoverHandler4} onClick={this.handleOp0}
+            onMouseLeave={this.leaveHandler4}
             style={{backgroundColor: buttonCol4,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize  }} >
             +
           </button>
 
-          <button onMouseEnter={this.hoverHandler5.bind(this)} onClick={this.handleOp1.bind(this)}
-            onMouseLeave={this.leaveHandler5.bind(this)}
+          <button onMouseEnter={this.hoverHandler5} onClick={this.handleOp1}
+            onMouseLeave={this.leaveHandler5}
             style={{backgroundColor: buttonCol5,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             -
           </button>
 
-          <button onMouseEnter={this.hoverHandler6.bind(this)} onClick={this.handleOp2.bind(this)}
-            onMouseLeave={this.leaveHandler6.bind(this)}
+          <button onMouseEnter={this.hoverHandler6} onClick={this.handleOp2}
+            onMouseLeave={this.leaveHandler6}
             style={{backgroundColor: buttonCol6,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             *
           </button>
 
-          <button onMouseEnter={this.hoverHandler7.bind(this)} onClick={this.handleOp3.bind(this)}
-            onMouseLeave={this.leaveHandler7.bind(this)}
+          <button onMouseEnter={this.hoverHandler7} onClick={this.handleOp3}
+            onMouseLeave={this.leaveHandler7}
             style={{backgroundColor: buttonCol7,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             /
           </button>
 
-          <button onMouseEnter={this.hoverHandler8.bind(this)} onClick={this.handleOp4.bind(this)}
-            onMouseLeave={this.leaveHandler8.bind(this)}
+          <button onMouseEnter={this.hoverHandler8} onClick={this.handleOp4}
+            onMouseLeave={this.leaveHandler8}
             style={{backgroundColor: buttonCol8,  paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             Concat
@@ -1765,21 +1759,21 @@ DES_ws.onmessage = function(event) {
           <div style={{width: 1200,  padding: 10}} >  </div>
 
         <div style={{display: rollDisplay}} >
-          <button onMouseEnter={this.hoverHandler.bind(this)}
-            onMouseLeave={this.leaveHandler.bind(this)} style={{backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay}}
-              onClick={this.buttonHandler.bind(this)} >
+          <button onMouseEnter={this.hoverHandler}
+            onMouseLeave={this.leaveHandler} style={{backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay}}
+              onClick={this.buttonHandler} >
              Roll
           </button>
         </div>
         <br /> <br/>
 
 
-        <button  onClick={this.showSolutionsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+        <button  onClick={this.showSolutionsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
           display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Solutions
         </button>
 
-        <button  onClick={this.hideSolutionsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
           display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Hide Solutions
         </button>
@@ -1795,12 +1789,12 @@ DES_ws.onmessage = function(event) {
 
 
 
-        <button  onClick={this.showParamsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+        <button  onClick={this.showParamsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
           display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Parameters 
         </button>
 
-        <button  onClick={this.hideParamsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+        <button  onClick={this.hideParamsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
           display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Hide Parameters
         </button>
@@ -1816,16 +1810,16 @@ You can click 'Solutions' to see a computer-generated list of all the solutions.
           
           Sides: 
 
-          <Sides1 change={this.changeItem.bind(this)} > Side 1 </Sides1>
-          <Sides2 change={this.changeItem.bind(this)} > Side 2 </Sides2>
-          <Sides3 change={this.changeItem.bind(this)} > Side 3 </Sides3>
-          <Sides4 change={this.changeItem.bind(this)} > Side 4 </Sides4>
+          <Sides1 change={this.changeItem} > Side 1 </Sides1>
+          <Sides2 change={this.changeItem} > Side 2 </Sides2>
+          <Sides3 change={this.changeItem} > Side 3 </Sides3>
+          <Sides4 change={this.changeItem} > Side 4 </Sides4>
          <br /> <br />
          Goal
-        <SetGoal change={this.changeItem.bind(this)} />
+        <SetGoal change={this.changeItem} />
         <br /> <br />
         Collapse Parameters Display: 
-        <button  onClick={this.hideParamsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+        <button  onClick={this.hideParamsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
           display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Shrink Parameters
         </button>
@@ -1834,7 +1828,7 @@ You can click 'Solutions' to see a computer-generated list of all the solutions.
 
 
        <div style={{display: extraDisplay, width: '100%', float: 'left'}} >
-          <button onMouseEnter={this.hoverHandler5.bind(this)} onMouseLeave={this.leaveHandler5.bind(this)}
+          <button onMouseEnter={this.hoverHandler5} onMouseLeave={this.leaveHandler5}
             style={{backgroundColor: buttonCol5,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             Return To Game

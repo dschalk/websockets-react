@@ -66,7 +66,7 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(12);
-	var ReactInstanceMap = __webpack_require__(37);
+	var ReactInstanceMap = __webpack_require__(38);
 
 	var invariant = __webpack_require__(29);
 
@@ -608,11 +608,11 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(30);
-	var ReactFragment = __webpack_require__(31);
+	var PooledClass = __webpack_require__(32);
+	var ReactFragment = __webpack_require__(33);
 
-	var traverseAllChildren = __webpack_require__(32);
-	var warning = __webpack_require__(33);
+	var traverseAllChildren = __webpack_require__(34);
+	var warning = __webpack_require__(31);
 
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
 	var threeArgumentPooler = PooledClass.threeArgumentPooler;
@@ -764,10 +764,10 @@
 
 	'use strict';
 
-	var ReactUpdateQueue = __webpack_require__(34);
+	var ReactUpdateQueue = __webpack_require__(30);
 
 	var invariant = __webpack_require__(29);
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	/**
 	 * Base class helpers for the updating state of a component.
@@ -924,18 +924,18 @@
 	var ReactComponent = __webpack_require__(8);
 	var ReactCurrentOwner = __webpack_require__(11);
 	var ReactElement = __webpack_require__(12);
-	var ReactErrorUtils = __webpack_require__(36);
-	var ReactInstanceMap = __webpack_require__(37);
-	var ReactLifeCycle = __webpack_require__(38);
-	var ReactPropTypeLocations = __webpack_require__(39);
-	var ReactPropTypeLocationNames = __webpack_require__(35);
-	var ReactUpdateQueue = __webpack_require__(34);
+	var ReactErrorUtils = __webpack_require__(37);
+	var ReactInstanceMap = __webpack_require__(38);
+	var ReactLifeCycle = __webpack_require__(39);
+	var ReactPropTypeLocations = __webpack_require__(40);
+	var ReactPropTypeLocationNames = __webpack_require__(36);
+	var ReactUpdateQueue = __webpack_require__(30);
 
 	var assign = __webpack_require__(23);
 	var invariant = __webpack_require__(29);
-	var keyMirror = __webpack_require__(40);
-	var keyOf = __webpack_require__(41);
-	var warning = __webpack_require__(33);
+	var keyMirror = __webpack_require__(41);
+	var keyOf = __webpack_require__(42);
+	var warning = __webpack_require__(31);
 
 	var MIXINS_KEY = keyOf({mixins: null});
 
@@ -1871,8 +1871,8 @@
 	'use strict';
 
 	var assign = __webpack_require__(23);
-	var emptyObject = __webpack_require__(42);
-	var warning = __webpack_require__(33);
+	var emptyObject = __webpack_require__(35);
+	var warning = __webpack_require__(31);
 
 	var didWarn = false;
 
@@ -1993,7 +1993,7 @@
 	var ReactCurrentOwner = __webpack_require__(11);
 
 	var assign = __webpack_require__(23);
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	var RESERVED_PROPS = {
 	  key: true,
@@ -2308,15 +2308,15 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(12);
-	var ReactFragment = __webpack_require__(31);
-	var ReactPropTypeLocations = __webpack_require__(39);
-	var ReactPropTypeLocationNames = __webpack_require__(35);
+	var ReactFragment = __webpack_require__(33);
+	var ReactPropTypeLocations = __webpack_require__(40);
+	var ReactPropTypeLocationNames = __webpack_require__(36);
 	var ReactCurrentOwner = __webpack_require__(11);
-	var ReactNativeComponent = __webpack_require__(43);
+	var ReactNativeComponent = __webpack_require__(44);
 
-	var getIteratorFn = __webpack_require__(44);
+	var getIteratorFn = __webpack_require__(45);
 	var invariant = __webpack_require__(29);
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	function getDeclarationErrorAddendum() {
 	  if (ReactCurrentOwner.current) {
@@ -2772,7 +2772,7 @@
 	var ReactElement = __webpack_require__(12);
 	var ReactElementValidator = __webpack_require__(13);
 
-	var mapObject = __webpack_require__(45);
+	var mapObject = __webpack_require__(43);
 
 	/**
 	 * Create a factory that creates HTML tag elements.
@@ -3579,21 +3579,21 @@
 	var ReactElementValidator = __webpack_require__(13);
 	var ReactEmptyComponent = __webpack_require__(1);
 	var ReactInstanceHandles = __webpack_require__(17);
-	var ReactInstanceMap = __webpack_require__(37);
+	var ReactInstanceMap = __webpack_require__(38);
 	var ReactMarkupChecksum = __webpack_require__(81);
 	var ReactPerf = __webpack_require__(19);
 	var ReactReconciler = __webpack_require__(21);
-	var ReactUpdateQueue = __webpack_require__(34);
+	var ReactUpdateQueue = __webpack_require__(30);
 	var ReactUpdates = __webpack_require__(82);
 
-	var emptyObject = __webpack_require__(42);
+	var emptyObject = __webpack_require__(35);
 	var containsNode = __webpack_require__(83);
 	var getReactRootElementInContainer = __webpack_require__(84);
 	var instantiateReactComponent = __webpack_require__(85);
 	var invariant = __webpack_require__(29);
 	var setInnerHTML = __webpack_require__(86);
 	var shouldUpdateReactComponent = __webpack_require__(87);
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
 
@@ -4574,10 +4574,10 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(12);
-	var ReactFragment = __webpack_require__(31);
-	var ReactPropTypeLocationNames = __webpack_require__(35);
+	var ReactFragment = __webpack_require__(33);
+	var ReactPropTypeLocationNames = __webpack_require__(36);
 
-	var emptyFunction = __webpack_require__(88);
+	var emptyFunction = __webpack_require__(89);
 
 	/**
 	 * Collection of methods that allow declaration and validation of props that are
@@ -4926,7 +4926,7 @@
 
 	'use strict';
 
-	var ReactRef = __webpack_require__(89);
+	var ReactRef = __webpack_require__(88);
 	var ReactElementValidator = __webpack_require__(13);
 
 	/**
@@ -5059,7 +5059,7 @@
 	var ReactServerRenderingTransaction =
 	  __webpack_require__(90);
 
-	var emptyObject = __webpack_require__(42);
+	var emptyObject = __webpack_require__(35);
 	var instantiateReactComponent = __webpack_require__(85);
 	var invariant = __webpack_require__(29);
 
@@ -5193,12 +5193,12 @@
 	'use strict';
 
 	var ReactCurrentOwner = __webpack_require__(11);
-	var ReactInstanceMap = __webpack_require__(37);
+	var ReactInstanceMap = __webpack_require__(38);
 	var ReactMount = __webpack_require__(18);
 
 	var invariant = __webpack_require__(29);
 	var isNode = __webpack_require__(91);
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	/**
 	 * Returns the DOM node rendered by this element.
@@ -5454,7 +5454,7 @@
 
 	'use strict';
 
-	var keyMirror = __webpack_require__(40);
+	var keyMirror = __webpack_require__(41);
 
 	var PropagationPhases = keyMirror({bubbled: null, captured: null});
 
@@ -5578,635 +5578,6 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule PooledClass
-	 */
-
-	'use strict';
-
-	var invariant = __webpack_require__(29);
-
-	/**
-	 * Static poolers. Several custom versions for each potential number of
-	 * arguments. A completely generic pooler is easy to implement, but would
-	 * require accessing the `arguments` object. In each of these, `this` refers to
-	 * the Class itself, not an instance. If any others are needed, simply add them
-	 * here, or in their own files.
-	 */
-	var oneArgumentPooler = function(copyFieldsFrom) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, copyFieldsFrom);
-	    return instance;
-	  } else {
-	    return new Klass(copyFieldsFrom);
-	  }
-	};
-
-	var twoArgumentPooler = function(a1, a2) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2);
-	  }
-	};
-
-	var threeArgumentPooler = function(a1, a2, a3) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2, a3);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2, a3);
-	  }
-	};
-
-	var fiveArgumentPooler = function(a1, a2, a3, a4, a5) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2, a3, a4, a5);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2, a3, a4, a5);
-	  }
-	};
-
-	var standardReleaser = function(instance) {
-	  var Klass = this;
-	  ("production" !== process.env.NODE_ENV ? invariant(
-	    instance instanceof Klass,
-	    'Trying to release an instance into a pool of a different type.'
-	  ) : invariant(instance instanceof Klass));
-	  if (instance.destructor) {
-	    instance.destructor();
-	  }
-	  if (Klass.instancePool.length < Klass.poolSize) {
-	    Klass.instancePool.push(instance);
-	  }
-	};
-
-	var DEFAULT_POOL_SIZE = 10;
-	var DEFAULT_POOLER = oneArgumentPooler;
-
-	/**
-	 * Augments `CopyConstructor` to be a poolable class, augmenting only the class
-	 * itself (statically) not adding any prototypical fields. Any CopyConstructor
-	 * you give this may have a `poolSize` property, and will look for a
-	 * prototypical `destructor` on instances (optional).
-	 *
-	 * @param {Function} CopyConstructor Constructor that can be used to reset.
-	 * @param {Function} pooler Customizable pooler.
-	 */
-	var addPoolingTo = function(CopyConstructor, pooler) {
-	  var NewKlass = CopyConstructor;
-	  NewKlass.instancePool = [];
-	  NewKlass.getPooled = pooler || DEFAULT_POOLER;
-	  if (!NewKlass.poolSize) {
-	    NewKlass.poolSize = DEFAULT_POOL_SIZE;
-	  }
-	  NewKlass.release = standardReleaser;
-	  return NewKlass;
-	};
-
-	var PooledClass = {
-	  addPoolingTo: addPoolingTo,
-	  oneArgumentPooler: oneArgumentPooler,
-	  twoArgumentPooler: twoArgumentPooler,
-	  threeArgumentPooler: threeArgumentPooler,
-	  fiveArgumentPooler: fiveArgumentPooler
-	};
-
-	module.exports = PooledClass;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
-
-/***/ },
-/* 31 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	* @providesModule ReactFragment
-	*/
-
-	'use strict';
-
-	var ReactElement = __webpack_require__(12);
-
-	var warning = __webpack_require__(33);
-
-	/**
-	 * We used to allow keyed objects to serve as a collection of ReactElements,
-	 * or nested sets. This allowed us a way to explicitly key a set a fragment of
-	 * components. This is now being replaced with an opaque data structure.
-	 * The upgrade path is to call React.addons.createFragment({ key: value }) to
-	 * create a keyed fragment. The resulting data structure is opaque, for now.
-	 */
-
-	if ("production" !== process.env.NODE_ENV) {
-	  var fragmentKey = '_reactFragment';
-	  var didWarnKey = '_reactDidWarn';
-	  var canWarnForReactFragment = false;
-
-	  try {
-	    // Feature test. Don't even try to issue this warning if we can't use
-	    // enumerable: false.
-
-	    var dummy = function() {
-	      return 1;
-	    };
-
-	    Object.defineProperty(
-	      {},
-	      fragmentKey,
-	      {enumerable: false, value: true}
-	    );
-
-	    Object.defineProperty(
-	      {},
-	      'key',
-	      {enumerable: true, get: dummy}
-	    );
-
-	    canWarnForReactFragment = true;
-	  } catch (x) { }
-
-	  var proxyPropertyAccessWithWarning = function(obj, key) {
-	    Object.defineProperty(obj, key, {
-	      enumerable: true,
-	      get: function() {
-	        ("production" !== process.env.NODE_ENV ? warning(
-	          this[didWarnKey],
-	          'A ReactFragment is an opaque type. Accessing any of its ' +
-	          'properties is deprecated. Pass it to one of the React.Children ' +
-	          'helpers.'
-	        ) : null);
-	        this[didWarnKey] = true;
-	        return this[fragmentKey][key];
-	      },
-	      set: function(value) {
-	        ("production" !== process.env.NODE_ENV ? warning(
-	          this[didWarnKey],
-	          'A ReactFragment is an immutable opaque type. Mutating its ' +
-	          'properties is deprecated.'
-	        ) : null);
-	        this[didWarnKey] = true;
-	        this[fragmentKey][key] = value;
-	      }
-	    });
-	  };
-
-	  var issuedWarnings = {};
-
-	  var didWarnForFragment = function(fragment) {
-	    // We use the keys and the type of the value as a heuristic to dedupe the
-	    // warning to avoid spamming too much.
-	    var fragmentCacheKey = '';
-	    for (var key in fragment) {
-	      fragmentCacheKey += key + ':' + (typeof fragment[key]) + ',';
-	    }
-	    var alreadyWarnedOnce = !!issuedWarnings[fragmentCacheKey];
-	    issuedWarnings[fragmentCacheKey] = true;
-	    return alreadyWarnedOnce;
-	  };
-	}
-
-	var ReactFragment = {
-	  // Wrap a keyed object in an opaque proxy that warns you if you access any
-	  // of its properties.
-	  create: function(object) {
-	    if ("production" !== process.env.NODE_ENV) {
-	      if (typeof object !== 'object' || !object || Array.isArray(object)) {
-	        ("production" !== process.env.NODE_ENV ? warning(
-	          false,
-	          'React.addons.createFragment only accepts a single object.',
-	          object
-	        ) : null);
-	        return object;
-	      }
-	      if (ReactElement.isValidElement(object)) {
-	        ("production" !== process.env.NODE_ENV ? warning(
-	          false,
-	          'React.addons.createFragment does not accept a ReactElement ' +
-	          'without a wrapper object.'
-	        ) : null);
-	        return object;
-	      }
-	      if (canWarnForReactFragment) {
-	        var proxy = {};
-	        Object.defineProperty(proxy, fragmentKey, {
-	          enumerable: false,
-	          value: object
-	        });
-	        Object.defineProperty(proxy, didWarnKey, {
-	          writable: true,
-	          enumerable: false,
-	          value: false
-	        });
-	        for (var key in object) {
-	          proxyPropertyAccessWithWarning(proxy, key);
-	        }
-	        Object.preventExtensions(proxy);
-	        return proxy;
-	      }
-	    }
-	    return object;
-	  },
-	  // Extract the original keyed object from the fragment opaque type. Warn if
-	  // a plain object is passed here.
-	  extract: function(fragment) {
-	    if ("production" !== process.env.NODE_ENV) {
-	      if (canWarnForReactFragment) {
-	        if (!fragment[fragmentKey]) {
-	          ("production" !== process.env.NODE_ENV ? warning(
-	            didWarnForFragment(fragment),
-	            'Any use of a keyed object should be wrapped in ' +
-	            'React.addons.createFragment(object) before being passed as a ' +
-	            'child.'
-	          ) : null);
-	          return fragment;
-	        }
-	        return fragment[fragmentKey];
-	      }
-	    }
-	    return fragment;
-	  },
-	  // Check if this is a fragment and if so, extract the keyed object. If it
-	  // is a fragment-like object, warn that it should be wrapped. Ignore if we
-	  // can't determine what kind of object this is.
-	  extractIfFragment: function(fragment) {
-	    if ("production" !== process.env.NODE_ENV) {
-	      if (canWarnForReactFragment) {
-	        // If it is the opaque type, return the keyed object.
-	        if (fragment[fragmentKey]) {
-	          return fragment[fragmentKey];
-	        }
-	        // Otherwise, check each property if it has an element, if it does
-	        // it is probably meant as a fragment, so we can warn early. Defer,
-	        // the warning to extract.
-	        for (var key in fragment) {
-	          if (fragment.hasOwnProperty(key) &&
-	              ReactElement.isValidElement(fragment[key])) {
-	            // This looks like a fragment object, we should provide an
-	            // early warning.
-	            return ReactFragment.extract(fragment);
-	          }
-	        }
-	      }
-	    }
-	    return fragment;
-	  }
-	};
-
-	module.exports = ReactFragment;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
-
-/***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule traverseAllChildren
-	 */
-
-	'use strict';
-
-	var ReactElement = __webpack_require__(12);
-	var ReactFragment = __webpack_require__(31);
-	var ReactInstanceHandles = __webpack_require__(17);
-
-	var getIteratorFn = __webpack_require__(44);
-	var invariant = __webpack_require__(29);
-	var warning = __webpack_require__(33);
-
-	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
-	var SUBSEPARATOR = ':';
-
-	/**
-	 * TODO: Test that a single child and an array with one item have the same key
-	 * pattern.
-	 */
-
-	var userProvidedKeyEscaperLookup = {
-	  '=': '=0',
-	  '.': '=1',
-	  ':': '=2'
-	};
-
-	var userProvidedKeyEscapeRegex = /[=.:]/g;
-
-	var didWarnAboutMaps = false;
-
-	function userProvidedKeyEscaper(match) {
-	  return userProvidedKeyEscaperLookup[match];
-	}
-
-	/**
-	 * Generate a key string that identifies a component within a set.
-	 *
-	 * @param {*} component A component that could contain a manual key.
-	 * @param {number} index Index that is used if a manual key is not provided.
-	 * @return {string}
-	 */
-	function getComponentKey(component, index) {
-	  if (component && component.key != null) {
-	    // Explicit key
-	    return wrapUserProvidedKey(component.key);
-	  }
-	  // Implicit key determined by the index in the set
-	  return index.toString(36);
-	}
-
-	/**
-	 * Escape a component key so that it is safe to use in a reactid.
-	 *
-	 * @param {*} key Component key to be escaped.
-	 * @return {string} An escaped string.
-	 */
-	function escapeUserProvidedKey(text) {
-	  return ('' + text).replace(
-	    userProvidedKeyEscapeRegex,
-	    userProvidedKeyEscaper
-	  );
-	}
-
-	/**
-	 * Wrap a `key` value explicitly provided by the user to distinguish it from
-	 * implicitly-generated keys generated by a component's index in its parent.
-	 *
-	 * @param {string} key Value of a user-provided `key` attribute
-	 * @return {string}
-	 */
-	function wrapUserProvidedKey(key) {
-	  return '$' + escapeUserProvidedKey(key);
-	}
-
-	/**
-	 * @param {?*} children Children tree container.
-	 * @param {!string} nameSoFar Name of the key path so far.
-	 * @param {!number} indexSoFar Number of children encountered until this point.
-	 * @param {!function} callback Callback to invoke with each child found.
-	 * @param {?*} traverseContext Used to pass information throughout the traversal
-	 * process.
-	 * @return {!number} The number of children in this subtree.
-	 */
-	function traverseAllChildrenImpl(
-	  children,
-	  nameSoFar,
-	  indexSoFar,
-	  callback,
-	  traverseContext
-	) {
-	  var type = typeof children;
-
-	  if (type === 'undefined' || type === 'boolean') {
-	    // All of the above are perceived as null.
-	    children = null;
-	  }
-
-	  if (children === null ||
-	      type === 'string' ||
-	      type === 'number' ||
-	      ReactElement.isValidElement(children)) {
-	    callback(
-	      traverseContext,
-	      children,
-	      // If it's the only child, treat the name as if it was wrapped in an array
-	      // so that it's consistent if the number of children grows.
-	      nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar,
-	      indexSoFar
-	    );
-	    return 1;
-	  }
-
-	  var child, nextName, nextIndex;
-	  var subtreeCount = 0; // Count of children found in the current subtree.
-
-	  if (Array.isArray(children)) {
-	    for (var i = 0; i < children.length; i++) {
-	      child = children[i];
-	      nextName = (
-	        (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
-	        getComponentKey(child, i)
-	      );
-	      nextIndex = indexSoFar + subtreeCount;
-	      subtreeCount += traverseAllChildrenImpl(
-	        child,
-	        nextName,
-	        nextIndex,
-	        callback,
-	        traverseContext
-	      );
-	    }
-	  } else {
-	    var iteratorFn = getIteratorFn(children);
-	    if (iteratorFn) {
-	      var iterator = iteratorFn.call(children);
-	      var step;
-	      if (iteratorFn !== children.entries) {
-	        var ii = 0;
-	        while (!(step = iterator.next()).done) {
-	          child = step.value;
-	          nextName = (
-	            (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
-	            getComponentKey(child, ii++)
-	          );
-	          nextIndex = indexSoFar + subtreeCount;
-	          subtreeCount += traverseAllChildrenImpl(
-	            child,
-	            nextName,
-	            nextIndex,
-	            callback,
-	            traverseContext
-	          );
-	        }
-	      } else {
-	        if ("production" !== process.env.NODE_ENV) {
-	          ("production" !== process.env.NODE_ENV ? warning(
-	            didWarnAboutMaps,
-	            'Using Maps as children is not yet fully supported. It is an ' +
-	            'experimental feature that might be removed. Convert it to a ' +
-	            'sequence / iterable of keyed ReactElements instead.'
-	          ) : null);
-	          didWarnAboutMaps = true;
-	        }
-	        // Iterator will provide entry [k,v] tuples rather than values.
-	        while (!(step = iterator.next()).done) {
-	          var entry = step.value;
-	          if (entry) {
-	            child = entry[1];
-	            nextName = (
-	              (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
-	              wrapUserProvidedKey(entry[0]) + SUBSEPARATOR +
-	              getComponentKey(child, 0)
-	            );
-	            nextIndex = indexSoFar + subtreeCount;
-	            subtreeCount += traverseAllChildrenImpl(
-	              child,
-	              nextName,
-	              nextIndex,
-	              callback,
-	              traverseContext
-	            );
-	          }
-	        }
-	      }
-	    } else if (type === 'object') {
-	      ("production" !== process.env.NODE_ENV ? invariant(
-	        children.nodeType !== 1,
-	        'traverseAllChildren(...): Encountered an invalid child; DOM ' +
-	        'elements are not valid children of React components.'
-	      ) : invariant(children.nodeType !== 1));
-	      var fragment = ReactFragment.extract(children);
-	      for (var key in fragment) {
-	        if (fragment.hasOwnProperty(key)) {
-	          child = fragment[key];
-	          nextName = (
-	            (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
-	            wrapUserProvidedKey(key) + SUBSEPARATOR +
-	            getComponentKey(child, 0)
-	          );
-	          nextIndex = indexSoFar + subtreeCount;
-	          subtreeCount += traverseAllChildrenImpl(
-	            child,
-	            nextName,
-	            nextIndex,
-	            callback,
-	            traverseContext
-	          );
-	        }
-	      }
-	    }
-	  }
-
-	  return subtreeCount;
-	}
-
-	/**
-	 * Traverses children that are typically specified as `props.children`, but
-	 * might also be specified through attributes:
-	 *
-	 * - `traverseAllChildren(this.props.children, ...)`
-	 * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
-	 *
-	 * The `traverseContext` is an optional argument that is passed through the
-	 * entire traversal. It can be used to store accumulations or anything else that
-	 * the callback might find relevant.
-	 *
-	 * @param {?*} children Children tree object.
-	 * @param {!function} callback To invoke upon traversing each child.
-	 * @param {?*} traverseContext Context for traversal.
-	 * @return {!number} The number of children in this subtree.
-	 */
-	function traverseAllChildren(children, callback, traverseContext) {
-	  if (children == null) {
-	    return 0;
-	  }
-
-	  return traverseAllChildrenImpl(children, '', 0, callback, traverseContext);
-	}
-
-	module.exports = traverseAllChildren;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
-
-/***/ },
-/* 33 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2014-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule warning
-	 */
-
-	"use strict";
-
-	var emptyFunction = __webpack_require__(88);
-
-	/**
-	 * Similar to invariant but only logs a warning if the condition is not met.
-	 * This can be used to log issues in development environments in critical
-	 * paths. Removing the logging code for production environments will keep the
-	 * same logic and follow the same code paths.
-	 */
-
-	var warning = emptyFunction;
-
-	if ("production" !== process.env.NODE_ENV) {
-	  warning = function(condition, format ) {for (var args=[],$__0=2,$__1=arguments.length;$__0<$__1;$__0++) args.push(arguments[$__0]);
-	    if (format === undefined) {
-	      throw new Error(
-	        '`warning(condition, format, ...args)` requires a warning ' +
-	        'message argument'
-	      );
-	    }
-
-	    if (format.length < 10 || /^[s\W]*$/.test(format)) {
-	      throw new Error(
-	        'The warning format should be able to uniquely identify this ' +
-	        'warning. Please, use a more descriptive format than: ' + format
-	      );
-	    }
-
-	    if (format.indexOf('Failed Composite propType: ') === 0) {
-	      return; // Ignore CompositeComponent proptype check.
-	    }
-
-	    if (!condition) {
-	      var argIndex = 0;
-	      var message = 'Warning: ' + format.replace(/%s/g, function()  {return args[argIndex++];});
-	      console.warn(message);
-	      try {
-	        // --- Welcome to debugging React ---
-	        // This error was thrown as a convenience so that you can use this stack
-	        // to find the callsite that caused this warning to fire.
-	        throw new Error(message);
-	      } catch(x) {}
-	    }
-	  };
-	}
-
-	module.exports = warning;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
-
-/***/ },
-/* 34 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright 2015, Facebook, Inc.
 	 * All rights reserved.
 	 *
@@ -6219,15 +5590,15 @@
 
 	'use strict';
 
-	var ReactLifeCycle = __webpack_require__(38);
+	var ReactLifeCycle = __webpack_require__(39);
 	var ReactCurrentOwner = __webpack_require__(11);
 	var ReactElement = __webpack_require__(12);
-	var ReactInstanceMap = __webpack_require__(37);
+	var ReactInstanceMap = __webpack_require__(38);
 	var ReactUpdates = __webpack_require__(82);
 
 	var assign = __webpack_require__(23);
 	var invariant = __webpack_require__(29);
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	function enqueueUpdate(internalInstance) {
 	  if (internalInstance !== ReactLifeCycle.currentlyMountingInstance) {
@@ -6505,7 +5876,663 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
 
 /***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2014-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule warning
+	 */
+
+	"use strict";
+
+	var emptyFunction = __webpack_require__(89);
+
+	/**
+	 * Similar to invariant but only logs a warning if the condition is not met.
+	 * This can be used to log issues in development environments in critical
+	 * paths. Removing the logging code for production environments will keep the
+	 * same logic and follow the same code paths.
+	 */
+
+	var warning = emptyFunction;
+
+	if ("production" !== process.env.NODE_ENV) {
+	  warning = function(condition, format ) {for (var args=[],$__0=2,$__1=arguments.length;$__0<$__1;$__0++) args.push(arguments[$__0]);
+	    if (format === undefined) {
+	      throw new Error(
+	        '`warning(condition, format, ...args)` requires a warning ' +
+	        'message argument'
+	      );
+	    }
+
+	    if (format.length < 10 || /^[s\W]*$/.test(format)) {
+	      throw new Error(
+	        'The warning format should be able to uniquely identify this ' +
+	        'warning. Please, use a more descriptive format than: ' + format
+	      );
+	    }
+
+	    if (format.indexOf('Failed Composite propType: ') === 0) {
+	      return; // Ignore CompositeComponent proptype check.
+	    }
+
+	    if (!condition) {
+	      var argIndex = 0;
+	      var message = 'Warning: ' + format.replace(/%s/g, function()  {return args[argIndex++];});
+	      console.warn(message);
+	      try {
+	        // --- Welcome to debugging React ---
+	        // This error was thrown as a convenience so that you can use this stack
+	        // to find the callsite that caused this warning to fire.
+	        throw new Error(message);
+	      } catch(x) {}
+	    }
+	  };
+	}
+
+	module.exports = warning;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule PooledClass
+	 */
+
+	'use strict';
+
+	var invariant = __webpack_require__(29);
+
+	/**
+	 * Static poolers. Several custom versions for each potential number of
+	 * arguments. A completely generic pooler is easy to implement, but would
+	 * require accessing the `arguments` object. In each of these, `this` refers to
+	 * the Class itself, not an instance. If any others are needed, simply add them
+	 * here, or in their own files.
+	 */
+	var oneArgumentPooler = function(copyFieldsFrom) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, copyFieldsFrom);
+	    return instance;
+	  } else {
+	    return new Klass(copyFieldsFrom);
+	  }
+	};
+
+	var twoArgumentPooler = function(a1, a2) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, a1, a2);
+	    return instance;
+	  } else {
+	    return new Klass(a1, a2);
+	  }
+	};
+
+	var threeArgumentPooler = function(a1, a2, a3) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, a1, a2, a3);
+	    return instance;
+	  } else {
+	    return new Klass(a1, a2, a3);
+	  }
+	};
+
+	var fiveArgumentPooler = function(a1, a2, a3, a4, a5) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, a1, a2, a3, a4, a5);
+	    return instance;
+	  } else {
+	    return new Klass(a1, a2, a3, a4, a5);
+	  }
+	};
+
+	var standardReleaser = function(instance) {
+	  var Klass = this;
+	  ("production" !== process.env.NODE_ENV ? invariant(
+	    instance instanceof Klass,
+	    'Trying to release an instance into a pool of a different type.'
+	  ) : invariant(instance instanceof Klass));
+	  if (instance.destructor) {
+	    instance.destructor();
+	  }
+	  if (Klass.instancePool.length < Klass.poolSize) {
+	    Klass.instancePool.push(instance);
+	  }
+	};
+
+	var DEFAULT_POOL_SIZE = 10;
+	var DEFAULT_POOLER = oneArgumentPooler;
+
+	/**
+	 * Augments `CopyConstructor` to be a poolable class, augmenting only the class
+	 * itself (statically) not adding any prototypical fields. Any CopyConstructor
+	 * you give this may have a `poolSize` property, and will look for a
+	 * prototypical `destructor` on instances (optional).
+	 *
+	 * @param {Function} CopyConstructor Constructor that can be used to reset.
+	 * @param {Function} pooler Customizable pooler.
+	 */
+	var addPoolingTo = function(CopyConstructor, pooler) {
+	  var NewKlass = CopyConstructor;
+	  NewKlass.instancePool = [];
+	  NewKlass.getPooled = pooler || DEFAULT_POOLER;
+	  if (!NewKlass.poolSize) {
+	    NewKlass.poolSize = DEFAULT_POOL_SIZE;
+	  }
+	  NewKlass.release = standardReleaser;
+	  return NewKlass;
+	};
+
+	var PooledClass = {
+	  addPoolingTo: addPoolingTo,
+	  oneArgumentPooler: oneArgumentPooler,
+	  twoArgumentPooler: twoArgumentPooler,
+	  threeArgumentPooler: threeArgumentPooler,
+	  fiveArgumentPooler: fiveArgumentPooler
+	};
+
+	module.exports = PooledClass;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	* @providesModule ReactFragment
+	*/
+
+	'use strict';
+
+	var ReactElement = __webpack_require__(12);
+
+	var warning = __webpack_require__(31);
+
+	/**
+	 * We used to allow keyed objects to serve as a collection of ReactElements,
+	 * or nested sets. This allowed us a way to explicitly key a set a fragment of
+	 * components. This is now being replaced with an opaque data structure.
+	 * The upgrade path is to call React.addons.createFragment({ key: value }) to
+	 * create a keyed fragment. The resulting data structure is opaque, for now.
+	 */
+
+	if ("production" !== process.env.NODE_ENV) {
+	  var fragmentKey = '_reactFragment';
+	  var didWarnKey = '_reactDidWarn';
+	  var canWarnForReactFragment = false;
+
+	  try {
+	    // Feature test. Don't even try to issue this warning if we can't use
+	    // enumerable: false.
+
+	    var dummy = function() {
+	      return 1;
+	    };
+
+	    Object.defineProperty(
+	      {},
+	      fragmentKey,
+	      {enumerable: false, value: true}
+	    );
+
+	    Object.defineProperty(
+	      {},
+	      'key',
+	      {enumerable: true, get: dummy}
+	    );
+
+	    canWarnForReactFragment = true;
+	  } catch (x) { }
+
+	  var proxyPropertyAccessWithWarning = function(obj, key) {
+	    Object.defineProperty(obj, key, {
+	      enumerable: true,
+	      get: function() {
+	        ("production" !== process.env.NODE_ENV ? warning(
+	          this[didWarnKey],
+	          'A ReactFragment is an opaque type. Accessing any of its ' +
+	          'properties is deprecated. Pass it to one of the React.Children ' +
+	          'helpers.'
+	        ) : null);
+	        this[didWarnKey] = true;
+	        return this[fragmentKey][key];
+	      },
+	      set: function(value) {
+	        ("production" !== process.env.NODE_ENV ? warning(
+	          this[didWarnKey],
+	          'A ReactFragment is an immutable opaque type. Mutating its ' +
+	          'properties is deprecated.'
+	        ) : null);
+	        this[didWarnKey] = true;
+	        this[fragmentKey][key] = value;
+	      }
+	    });
+	  };
+
+	  var issuedWarnings = {};
+
+	  var didWarnForFragment = function(fragment) {
+	    // We use the keys and the type of the value as a heuristic to dedupe the
+	    // warning to avoid spamming too much.
+	    var fragmentCacheKey = '';
+	    for (var key in fragment) {
+	      fragmentCacheKey += key + ':' + (typeof fragment[key]) + ',';
+	    }
+	    var alreadyWarnedOnce = !!issuedWarnings[fragmentCacheKey];
+	    issuedWarnings[fragmentCacheKey] = true;
+	    return alreadyWarnedOnce;
+	  };
+	}
+
+	var ReactFragment = {
+	  // Wrap a keyed object in an opaque proxy that warns you if you access any
+	  // of its properties.
+	  create: function(object) {
+	    if ("production" !== process.env.NODE_ENV) {
+	      if (typeof object !== 'object' || !object || Array.isArray(object)) {
+	        ("production" !== process.env.NODE_ENV ? warning(
+	          false,
+	          'React.addons.createFragment only accepts a single object.',
+	          object
+	        ) : null);
+	        return object;
+	      }
+	      if (ReactElement.isValidElement(object)) {
+	        ("production" !== process.env.NODE_ENV ? warning(
+	          false,
+	          'React.addons.createFragment does not accept a ReactElement ' +
+	          'without a wrapper object.'
+	        ) : null);
+	        return object;
+	      }
+	      if (canWarnForReactFragment) {
+	        var proxy = {};
+	        Object.defineProperty(proxy, fragmentKey, {
+	          enumerable: false,
+	          value: object
+	        });
+	        Object.defineProperty(proxy, didWarnKey, {
+	          writable: true,
+	          enumerable: false,
+	          value: false
+	        });
+	        for (var key in object) {
+	          proxyPropertyAccessWithWarning(proxy, key);
+	        }
+	        Object.preventExtensions(proxy);
+	        return proxy;
+	      }
+	    }
+	    return object;
+	  },
+	  // Extract the original keyed object from the fragment opaque type. Warn if
+	  // a plain object is passed here.
+	  extract: function(fragment) {
+	    if ("production" !== process.env.NODE_ENV) {
+	      if (canWarnForReactFragment) {
+	        if (!fragment[fragmentKey]) {
+	          ("production" !== process.env.NODE_ENV ? warning(
+	            didWarnForFragment(fragment),
+	            'Any use of a keyed object should be wrapped in ' +
+	            'React.addons.createFragment(object) before being passed as a ' +
+	            'child.'
+	          ) : null);
+	          return fragment;
+	        }
+	        return fragment[fragmentKey];
+	      }
+	    }
+	    return fragment;
+	  },
+	  // Check if this is a fragment and if so, extract the keyed object. If it
+	  // is a fragment-like object, warn that it should be wrapped. Ignore if we
+	  // can't determine what kind of object this is.
+	  extractIfFragment: function(fragment) {
+	    if ("production" !== process.env.NODE_ENV) {
+	      if (canWarnForReactFragment) {
+	        // If it is the opaque type, return the keyed object.
+	        if (fragment[fragmentKey]) {
+	          return fragment[fragmentKey];
+	        }
+	        // Otherwise, check each property if it has an element, if it does
+	        // it is probably meant as a fragment, so we can warn early. Defer,
+	        // the warning to extract.
+	        for (var key in fragment) {
+	          if (fragment.hasOwnProperty(key) &&
+	              ReactElement.isValidElement(fragment[key])) {
+	            // This looks like a fragment object, we should provide an
+	            // early warning.
+	            return ReactFragment.extract(fragment);
+	          }
+	        }
+	      }
+	    }
+	    return fragment;
+	  }
+	};
+
+	module.exports = ReactFragment;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule traverseAllChildren
+	 */
+
+	'use strict';
+
+	var ReactElement = __webpack_require__(12);
+	var ReactFragment = __webpack_require__(33);
+	var ReactInstanceHandles = __webpack_require__(17);
+
+	var getIteratorFn = __webpack_require__(45);
+	var invariant = __webpack_require__(29);
+	var warning = __webpack_require__(31);
+
+	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
+	var SUBSEPARATOR = ':';
+
+	/**
+	 * TODO: Test that a single child and an array with one item have the same key
+	 * pattern.
+	 */
+
+	var userProvidedKeyEscaperLookup = {
+	  '=': '=0',
+	  '.': '=1',
+	  ':': '=2'
+	};
+
+	var userProvidedKeyEscapeRegex = /[=.:]/g;
+
+	var didWarnAboutMaps = false;
+
+	function userProvidedKeyEscaper(match) {
+	  return userProvidedKeyEscaperLookup[match];
+	}
+
+	/**
+	 * Generate a key string that identifies a component within a set.
+	 *
+	 * @param {*} component A component that could contain a manual key.
+	 * @param {number} index Index that is used if a manual key is not provided.
+	 * @return {string}
+	 */
+	function getComponentKey(component, index) {
+	  if (component && component.key != null) {
+	    // Explicit key
+	    return wrapUserProvidedKey(component.key);
+	  }
+	  // Implicit key determined by the index in the set
+	  return index.toString(36);
+	}
+
+	/**
+	 * Escape a component key so that it is safe to use in a reactid.
+	 *
+	 * @param {*} key Component key to be escaped.
+	 * @return {string} An escaped string.
+	 */
+	function escapeUserProvidedKey(text) {
+	  return ('' + text).replace(
+	    userProvidedKeyEscapeRegex,
+	    userProvidedKeyEscaper
+	  );
+	}
+
+	/**
+	 * Wrap a `key` value explicitly provided by the user to distinguish it from
+	 * implicitly-generated keys generated by a component's index in its parent.
+	 *
+	 * @param {string} key Value of a user-provided `key` attribute
+	 * @return {string}
+	 */
+	function wrapUserProvidedKey(key) {
+	  return '$' + escapeUserProvidedKey(key);
+	}
+
+	/**
+	 * @param {?*} children Children tree container.
+	 * @param {!string} nameSoFar Name of the key path so far.
+	 * @param {!number} indexSoFar Number of children encountered until this point.
+	 * @param {!function} callback Callback to invoke with each child found.
+	 * @param {?*} traverseContext Used to pass information throughout the traversal
+	 * process.
+	 * @return {!number} The number of children in this subtree.
+	 */
+	function traverseAllChildrenImpl(
+	  children,
+	  nameSoFar,
+	  indexSoFar,
+	  callback,
+	  traverseContext
+	) {
+	  var type = typeof children;
+
+	  if (type === 'undefined' || type === 'boolean') {
+	    // All of the above are perceived as null.
+	    children = null;
+	  }
+
+	  if (children === null ||
+	      type === 'string' ||
+	      type === 'number' ||
+	      ReactElement.isValidElement(children)) {
+	    callback(
+	      traverseContext,
+	      children,
+	      // If it's the only child, treat the name as if it was wrapped in an array
+	      // so that it's consistent if the number of children grows.
+	      nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar,
+	      indexSoFar
+	    );
+	    return 1;
+	  }
+
+	  var child, nextName, nextIndex;
+	  var subtreeCount = 0; // Count of children found in the current subtree.
+
+	  if (Array.isArray(children)) {
+	    for (var i = 0; i < children.length; i++) {
+	      child = children[i];
+	      nextName = (
+	        (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
+	        getComponentKey(child, i)
+	      );
+	      nextIndex = indexSoFar + subtreeCount;
+	      subtreeCount += traverseAllChildrenImpl(
+	        child,
+	        nextName,
+	        nextIndex,
+	        callback,
+	        traverseContext
+	      );
+	    }
+	  } else {
+	    var iteratorFn = getIteratorFn(children);
+	    if (iteratorFn) {
+	      var iterator = iteratorFn.call(children);
+	      var step;
+	      if (iteratorFn !== children.entries) {
+	        var ii = 0;
+	        while (!(step = iterator.next()).done) {
+	          child = step.value;
+	          nextName = (
+	            (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
+	            getComponentKey(child, ii++)
+	          );
+	          nextIndex = indexSoFar + subtreeCount;
+	          subtreeCount += traverseAllChildrenImpl(
+	            child,
+	            nextName,
+	            nextIndex,
+	            callback,
+	            traverseContext
+	          );
+	        }
+	      } else {
+	        if ("production" !== process.env.NODE_ENV) {
+	          ("production" !== process.env.NODE_ENV ? warning(
+	            didWarnAboutMaps,
+	            'Using Maps as children is not yet fully supported. It is an ' +
+	            'experimental feature that might be removed. Convert it to a ' +
+	            'sequence / iterable of keyed ReactElements instead.'
+	          ) : null);
+	          didWarnAboutMaps = true;
+	        }
+	        // Iterator will provide entry [k,v] tuples rather than values.
+	        while (!(step = iterator.next()).done) {
+	          var entry = step.value;
+	          if (entry) {
+	            child = entry[1];
+	            nextName = (
+	              (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
+	              wrapUserProvidedKey(entry[0]) + SUBSEPARATOR +
+	              getComponentKey(child, 0)
+	            );
+	            nextIndex = indexSoFar + subtreeCount;
+	            subtreeCount += traverseAllChildrenImpl(
+	              child,
+	              nextName,
+	              nextIndex,
+	              callback,
+	              traverseContext
+	            );
+	          }
+	        }
+	      }
+	    } else if (type === 'object') {
+	      ("production" !== process.env.NODE_ENV ? invariant(
+	        children.nodeType !== 1,
+	        'traverseAllChildren(...): Encountered an invalid child; DOM ' +
+	        'elements are not valid children of React components.'
+	      ) : invariant(children.nodeType !== 1));
+	      var fragment = ReactFragment.extract(children);
+	      for (var key in fragment) {
+	        if (fragment.hasOwnProperty(key)) {
+	          child = fragment[key];
+	          nextName = (
+	            (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
+	            wrapUserProvidedKey(key) + SUBSEPARATOR +
+	            getComponentKey(child, 0)
+	          );
+	          nextIndex = indexSoFar + subtreeCount;
+	          subtreeCount += traverseAllChildrenImpl(
+	            child,
+	            nextName,
+	            nextIndex,
+	            callback,
+	            traverseContext
+	          );
+	        }
+	      }
+	    }
+	  }
+
+	  return subtreeCount;
+	}
+
+	/**
+	 * Traverses children that are typically specified as `props.children`, but
+	 * might also be specified through attributes:
+	 *
+	 * - `traverseAllChildren(this.props.children, ...)`
+	 * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
+	 *
+	 * The `traverseContext` is an optional argument that is passed through the
+	 * entire traversal. It can be used to store accumulations or anything else that
+	 * the callback might find relevant.
+	 *
+	 * @param {?*} children Children tree object.
+	 * @param {!function} callback To invoke upon traversing each child.
+	 * @param {?*} traverseContext Context for traversal.
+	 * @return {!number} The number of children in this subtree.
+	 */
+	function traverseAllChildren(children, callback, traverseContext) {
+	  if (children == null) {
+	    return 0;
+	  }
+
+	  return traverseAllChildrenImpl(children, '', 0, callback, traverseContext);
+	}
+
+	module.exports = traverseAllChildren;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+
+/***/ },
 /* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule emptyObject
+	 */
+
+	"use strict";
+
+	var emptyObject = {};
+
+	if ("production" !== process.env.NODE_ENV) {
+	  Object.freeze(emptyObject);
+	}
+
+	module.exports = emptyObject;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+
+/***/ },
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6536,7 +6563,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6572,7 +6599,7 @@
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6625,7 +6652,7 @@
 
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6666,7 +6693,7 @@
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6682,7 +6709,7 @@
 
 	'use strict';
 
-	var keyMirror = __webpack_require__(40);
+	var keyMirror = __webpack_require__(41);
 
 	var ReactPropTypeLocations = keyMirror({
 	  prop: null,
@@ -6694,7 +6721,7 @@
 
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6752,7 +6779,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6792,10 +6819,10 @@
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {/**
+	/**
 	 * Copyright 2013-2015, Facebook, Inc.
 	 * All rights reserved.
 	 *
@@ -6803,23 +6830,53 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * @providesModule emptyObject
+	 * @providesModule mapObject
 	 */
 
-	"use strict";
+	'use strict';
 
-	var emptyObject = {};
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-	if ("production" !== process.env.NODE_ENV) {
-	  Object.freeze(emptyObject);
+	/**
+	 * Executes the provided `callback` once for each enumerable own property in the
+	 * object and constructs a new object from the results. The `callback` is
+	 * invoked with three arguments:
+	 *
+	 *  - the property value
+	 *  - the property name
+	 *  - the object being traversed
+	 *
+	 * Properties that are added after the call to `mapObject` will not be visited
+	 * by `callback`. If the values of existing properties are changed, the value
+	 * passed to `callback` will be the value at the time `mapObject` visits them.
+	 * Properties that are deleted before being visited are not visited.
+	 *
+	 * @grep function objectMap()
+	 * @grep function objMap()
+	 *
+	 * @param {?object} object
+	 * @param {function} callback
+	 * @param {*} context
+	 * @return {?object}
+	 */
+	function mapObject(object, callback, context) {
+	  if (!object) {
+	    return null;
+	  }
+	  var result = {};
+	  for (var name in object) {
+	    if (hasOwnProperty.call(object, name)) {
+	      result[name] = callback.call(context, object[name], name, object);
+	    }
+	  }
+	  return result;
 	}
 
-	module.exports = emptyObject;
+	module.exports = mapObject;
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6929,7 +6986,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6977,63 +7034,6 @@
 
 
 /***/ },
-/* 45 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule mapObject
-	 */
-
-	'use strict';
-
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-	/**
-	 * Executes the provided `callback` once for each enumerable own property in the
-	 * object and constructs a new object from the results. The `callback` is
-	 * invoked with three arguments:
-	 *
-	 *  - the property value
-	 *  - the property name
-	 *  - the object being traversed
-	 *
-	 * Properties that are added after the call to `mapObject` will not be visited
-	 * by `callback`. If the values of existing properties are changed, the value
-	 * passed to `callback` will be the value at the time `mapObject` visits them.
-	 * Properties that are deleted before being visited are not visited.
-	 *
-	 * @grep function objectMap()
-	 * @grep function objMap()
-	 *
-	 * @param {?object} object
-	 * @param {function} callback
-	 * @param {*} context
-	 * @return {?object}
-	 */
-	function mapObject(object, callback, context) {
-	  if (!object) {
-	    return null;
-	  }
-	  var result = {};
-	  for (var name in object) {
-	    if (hasOwnProperty.call(object, name)) {
-	      result[name] = callback.call(context, object[name], name, object);
-	    }
-	  }
-	  return result;
-	}
-
-	module.exports = mapObject;
-
-
-/***/ },
 /* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -7054,7 +7054,7 @@
 	var DOMProperty = __webpack_require__(78);
 
 	var quoteAttributeValueForBrowser = __webpack_require__(92);
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	function shouldIgnoreValue(name, value) {
 	  return value == null ||
@@ -7313,8 +7313,8 @@
 	var escapeTextContentForBrowser = __webpack_require__(49);
 	var invariant = __webpack_require__(29);
 	var isEventSupported = __webpack_require__(95);
-	var keyOf = __webpack_require__(41);
-	var warning = __webpack_require__(33);
+	var keyOf = __webpack_require__(42);
+	var warning = __webpack_require__(31);
 
 	var deleteListener = ReactBrowserEventEmitter.deleteListener;
 	var listenTo = ReactBrowserEventEmitter.listenTo;
@@ -7861,7 +7861,7 @@
 	var SyntheticCompositionEvent = __webpack_require__(98);
 	var SyntheticInputEvent = __webpack_require__(99);
 
-	var keyOf = __webpack_require__(41);
+	var keyOf = __webpack_require__(42);
 
 	var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 	var START_KEYCODE = 229;
@@ -8361,7 +8361,7 @@
 
 	var isEventSupported = __webpack_require__(95);
 	var isTextInputElement = __webpack_require__(102);
-	var keyOf = __webpack_require__(41);
+	var keyOf = __webpack_require__(42);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
 
@@ -8767,7 +8767,7 @@
 
 	'use strict';
 
-	var keyOf = __webpack_require__(41);
+	var keyOf = __webpack_require__(42);
 
 	/**
 	 * Module that is injectable into `EventPluginHub`, that specifies a
@@ -8816,7 +8816,7 @@
 	var SyntheticMouseEvent = __webpack_require__(103);
 
 	var ReactMount = __webpack_require__(18);
-	var keyOf = __webpack_require__(41);
+	var keyOf = __webpack_require__(42);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
 	var getFirstReactDOM = ReactMount.getFirstReactDOM;
@@ -9172,7 +9172,7 @@
 
 	var EventConstants = __webpack_require__(28);
 
-	var emptyFunction = __webpack_require__(88);
+	var emptyFunction = __webpack_require__(89);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
 
@@ -9270,7 +9270,7 @@
 	var Transaction = __webpack_require__(104);
 
 	var assign = __webpack_require__(23);
-	var emptyFunction = __webpack_require__(88);
+	var emptyFunction = __webpack_require__(89);
 
 	var RESET_BATCHED_UPDATES = {
 	  initialize: emptyFunction,
@@ -9343,12 +9343,12 @@
 
 	'use strict';
 
-	var AutoFocusMixin = __webpack_require__(106);
+	var AutoFocusMixin = __webpack_require__(105);
 	var ReactBrowserComponentMixin = __webpack_require__(57);
 	var ReactClass = __webpack_require__(9);
 	var ReactElement = __webpack_require__(12);
 
-	var keyMirror = __webpack_require__(40);
+	var keyMirror = __webpack_require__(41);
 
 	var button = ReactElement.createFactory('button');
 
@@ -9412,7 +9412,7 @@
 	'use strict';
 
 	var EventConstants = __webpack_require__(28);
-	var LocalEventTrapMixin = __webpack_require__(105);
+	var LocalEventTrapMixin = __webpack_require__(106);
 	var ReactBrowserComponentMixin = __webpack_require__(57);
 	var ReactClass = __webpack_require__(9);
 	var ReactElement = __webpack_require__(12);
@@ -9465,7 +9465,7 @@
 	'use strict';
 
 	var EventConstants = __webpack_require__(28);
-	var LocalEventTrapMixin = __webpack_require__(105);
+	var LocalEventTrapMixin = __webpack_require__(106);
 	var ReactBrowserComponentMixin = __webpack_require__(57);
 	var ReactClass = __webpack_require__(9);
 	var ReactElement = __webpack_require__(12);
@@ -9686,7 +9686,7 @@
 	'use strict';
 
 	var EventConstants = __webpack_require__(28);
-	var LocalEventTrapMixin = __webpack_require__(105);
+	var LocalEventTrapMixin = __webpack_require__(106);
 	var ReactBrowserComponentMixin = __webpack_require__(57);
 	var ReactClass = __webpack_require__(9);
 	var ReactElement = __webpack_require__(12);
@@ -9734,7 +9734,7 @@
 
 	'use strict';
 
-	var AutoFocusMixin = __webpack_require__(106);
+	var AutoFocusMixin = __webpack_require__(105);
 	var DOMPropertyOperations = __webpack_require__(46);
 	var LinkedValueUtils = __webpack_require__(108);
 	var ReactBrowserComponentMixin = __webpack_require__(57);
@@ -9918,7 +9918,7 @@
 	var ReactClass = __webpack_require__(9);
 	var ReactElement = __webpack_require__(12);
 
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	var option = ReactElement.createFactory('option');
 
@@ -9969,7 +9969,7 @@
 
 	'use strict';
 
-	var AutoFocusMixin = __webpack_require__(106);
+	var AutoFocusMixin = __webpack_require__(105);
 	var LinkedValueUtils = __webpack_require__(108);
 	var ReactBrowserComponentMixin = __webpack_require__(57);
 	var ReactClass = __webpack_require__(9);
@@ -10151,7 +10151,7 @@
 
 	'use strict';
 
-	var AutoFocusMixin = __webpack_require__(106);
+	var AutoFocusMixin = __webpack_require__(105);
 	var DOMPropertyOperations = __webpack_require__(46);
 	var LinkedValueUtils = __webpack_require__(108);
 	var ReactBrowserComponentMixin = __webpack_require__(57);
@@ -10162,7 +10162,7 @@
 	var assign = __webpack_require__(23);
 	var invariant = __webpack_require__(29);
 
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	var textarea = ReactElement.createFactory('textarea');
 
@@ -10297,7 +10297,7 @@
 
 	var EventListener = __webpack_require__(109);
 	var ExecutionEnvironment = __webpack_require__(26);
-	var PooledClass = __webpack_require__(30);
+	var PooledClass = __webpack_require__(32);
 	var ReactInstanceHandles = __webpack_require__(17);
 	var ReactMount = __webpack_require__(18);
 	var ReactUpdates = __webpack_require__(82);
@@ -10487,7 +10487,7 @@
 	var ReactClass = __webpack_require__(9);
 	var ReactEmptyComponent = __webpack_require__(1);
 	var ReactBrowserEventEmitter = __webpack_require__(79);
-	var ReactNativeComponent = __webpack_require__(43);
+	var ReactNativeComponent = __webpack_require__(44);
 	var ReactDOMComponent = __webpack_require__(48);
 	var ReactPerf = __webpack_require__(19);
 	var ReactRootIndex = __webpack_require__(77);
@@ -10529,7 +10529,7 @@
 	'use strict';
 
 	var CallbackQueue = __webpack_require__(113);
-	var PooledClass = __webpack_require__(30);
+	var PooledClass = __webpack_require__(32);
 	var ReactBrowserEventEmitter = __webpack_require__(79);
 	var ReactInputSelection = __webpack_require__(114);
 	var ReactPutListenerQueue = __webpack_require__(115);
@@ -10714,7 +10714,7 @@
 
 	var getActiveElement = __webpack_require__(116);
 	var isTextInputElement = __webpack_require__(102);
-	var keyOf = __webpack_require__(41);
+	var keyOf = __webpack_require__(42);
 	var shallowEqual = __webpack_require__(117);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
@@ -10957,8 +10957,8 @@
 	var getEventCharCode = __webpack_require__(125);
 
 	var invariant = __webpack_require__(29);
-	var keyOf = __webpack_require__(41);
-	var warning = __webpack_require__(33);
+	var keyOf = __webpack_require__(42);
+	var warning = __webpack_require__(31);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
 
@@ -12543,9 +12543,29 @@
 
 	var GroupNew = (function (_React$Component) {
 	  function GroupNew(props) {
+	    var _this2 = this;
+
 	    _classCallCheck(this, GroupNew);
 
 	    _get(Object.getPrototypeOf(GroupNew.prototype), 'constructor', this).call(this, props);
+
+	    this.render = function () {
+	      console.log(_this2);
+	      if (_this2.props.hidden2) {
+	        return null;
+	      }
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: { marginLeft: 5 } },
+	        _react2['default'].createElement(
+	          'label',
+	          null,
+	          'New Group',
+	          _react2['default'].createElement('input', { type: 'text', id: 'cow', onKeyDown: _this2.handleEnter,
+	            onClick: _this2.click, style: { width: 90, backgroundColor: '#d8d17d', marginLeft: 10 } })
+	        )
+	      );
+	    };
 	  }
 
 	  _inherits(GroupNew, _React$Component);
@@ -12572,25 +12592,6 @@
 	        this.props.setGroup(group);
 	      }
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      if (this.props.hidden2) {
-	        return null;
-	      }
-	      return _react2['default'].createElement(
-	        'div',
-	        { style: { marginLeft: 5 } },
-	        _react2['default'].createElement(
-	          'label',
-	          null,
-	          'New Group',
-	          _react2['default'].createElement('input', { type: 'text', id: 'cow', onKeyDown: this.handleEnter.bind(this),
-	            onClick: this.click.bind(this), style: { width: 90, backgroundColor: '#d8d17d', marginLeft: 10 } })
-	        )
-	      );
-	    }
 	  }]);
 
 	  return GroupNew;
@@ -12600,9 +12601,26 @@
 
 	var Chat = (function (_React$Component2) {
 	  function Chat(props) {
+	    var _this3 = this;
+
 	    _classCallCheck(this, Chat);
 
 	    _get(Object.getPrototypeOf(Chat.prototype), 'constructor', this).call(this, props);
+
+	    this.render = function () {
+	      console.log(_this3);
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: { fontSize: 22 } },
+	        'Message:',
+	        _react2['default'].createElement(
+	          'label',
+	          null,
+	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this3.handleEnter, onClick: _this3.click,
+	            style: { width: 230, backgroundColor: '#d8d17d' } })
+	        )
+	      );
+	    };
 	  }
 
 	  _inherits(Chat, _React$Component2);
@@ -12625,22 +12643,6 @@
 	        event.target.value = '';
 	      }
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement(
-	        'div',
-	        { style: { fontSize: 22 } },
-	        'Message:',
-	        _react2['default'].createElement(
-	          'label',
-	          null,
-	          _react2['default'].createElement('input', { type: 'text', onKeyDown: this.handleEnter.bind(this), onClick: this.click.bind(this),
-	            style: { width: 230, backgroundColor: '#d8d17d' } })
-	        )
-	      );
-	    }
 	  }]);
 
 	  return Chat;
@@ -12650,9 +12652,18 @@
 
 	var Sides1 = (function (_React$Component3) {
 	  function Sides1(props) {
+	    var _this4 = this;
+
 	    _classCallCheck(this, Sides1);
 
 	    _get(Object.getPrototypeOf(Sides1.prototype), 'constructor', this).call(this, props);
+
+	    this.render = function () {
+	      console.log(_this4);
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this4.handleEnter, onClick: _this4.click,
+	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
+	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
+	    };
 	  }
 
 	  _inherits(Sides1, _React$Component3);
@@ -12675,14 +12686,6 @@
 	        event.target.value = '';
 	      }
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: this.handleEnter.bind(this), onClick: this.click.bind(this),
-	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
-	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
-	    }
 	  }]);
 
 	  return Sides1;
@@ -12692,9 +12695,18 @@
 
 	var Sides2 = (function (_React$Component4) {
 	  function Sides2(props) {
+	    var _this5 = this;
+
 	    _classCallCheck(this, Sides2);
 
 	    _get(Object.getPrototypeOf(Sides2.prototype), 'constructor', this).call(this, props);
+
+	    this.render = function () {
+	      console.log(_this5);
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this5.handleEnter, onClick: _this5.click,
+	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
+	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
+	    };
 	  }
 
 	  _inherits(Sides2, _React$Component4);
@@ -12717,14 +12729,6 @@
 	        event.target.value = '';
 	      }
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: this.handleEnter.bind(this), onClick: this.click.bind(this),
-	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
-	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
-	    }
 	  }]);
 
 	  return Sides2;
@@ -12734,9 +12738,18 @@
 
 	var Sides3 = (function (_React$Component5) {
 	  function Sides3(props) {
+	    var _this6 = this;
+
 	    _classCallCheck(this, Sides3);
 
 	    _get(Object.getPrototypeOf(Sides3.prototype), 'constructor', this).call(this, props);
+
+	    this.render = function () {
+	      console.log(_this6);
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this6.handleEnter, onClick: _this6.click,
+	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
+	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
+	    };
 	  }
 
 	  _inherits(Sides3, _React$Component5);
@@ -12759,14 +12772,6 @@
 	        event.target.value = '';
 	      }
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: this.handleEnter.bind(this), onClick: this.click.bind(this),
-	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
-	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
-	    }
 	  }]);
 
 	  return Sides3;
@@ -12776,9 +12781,18 @@
 
 	var Sides4 = (function (_React$Component6) {
 	  function Sides4(props) {
+	    var _this7 = this;
+
 	    _classCallCheck(this, Sides4);
 
 	    _get(Object.getPrototypeOf(Sides4.prototype), 'constructor', this).call(this, props);
+
+	    this.render = function () {
+	      console.log(_this7);
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this7.handleEnter, onClick: _this7.click,
+	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
+	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
+	    };
 	  }
 
 	  _inherits(Sides4, _React$Component6);
@@ -12801,14 +12815,6 @@
 	        event.target.value = '';
 	      }
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: this.handleEnter.bind(this), onClick: this.click.bind(this),
-	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
-	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
-	    }
 	  }]);
 
 	  return Sides4;
@@ -12818,9 +12824,18 @@
 
 	var SetGoal = (function (_React$Component7) {
 	  function SetGoal(props) {
+	    var _this8 = this;
+
 	    _classCallCheck(this, SetGoal);
 
 	    _get(Object.getPrototypeOf(SetGoal.prototype), 'constructor', this).call(this, props);
+
+	    this.render = function () {
+	      console.log(_this8);
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this8.handleEnter, onClick: _this8.click,
+	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
+	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
+	    };
 	  }
 
 	  _inherits(SetGoal, _React$Component7);
@@ -12843,14 +12858,6 @@
 	        event.target.value = '';
 	      }
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: this.handleEnter.bind(this), onClick: this.click.bind(this),
-	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
-	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
-	    }
 	  }]);
 
 	  return SetGoal;
@@ -12860,9 +12867,26 @@
 
 	var ChangeColor = (function (_React$Component8) {
 	  function ChangeColor(props) {
+	    var _this9 = this;
+
 	    _classCallCheck(this, ChangeColor);
 
 	    _get(Object.getPrototypeOf(ChangeColor.prototype), 'constructor', this).call(this, props);
+
+	    this.render = function () {
+	      console.log(_this9);
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: { fontSize: 22 } },
+	        _react2['default'].createElement(
+	          'label',
+	          null,
+	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this9.handleEnter, onClick: _this9.click,
+	            style: { width: 70, backgroundColor: '#d8d17d' } }),
+	          'Font Color'
+	        )
+	      );
+	    };
 	  }
 
 	  _inherits(ChangeColor, _React$Component8);
@@ -12883,22 +12907,6 @@
 	        this.props.changeC(color);
 	      }
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement(
-	        'div',
-	        { style: { fontSize: 22 } },
-	        _react2['default'].createElement(
-	          'label',
-	          null,
-	          _react2['default'].createElement('input', { type: 'text', onKeyDown: this.handleEnter.bind(this), onClick: this.click.bind(this),
-	            style: { width: 70, backgroundColor: '#d8d17d' } }),
-	          'Font Color'
-	        )
-	      );
-	    }
 	  }]);
 
 	  return ChangeColor;
@@ -12908,9 +12916,26 @@
 
 	var ChangeBackground = (function (_React$Component9) {
 	  function ChangeBackground(props) {
+	    var _this10 = this;
+
 	    _classCallCheck(this, ChangeBackground);
 
 	    _get(Object.getPrototypeOf(ChangeBackground.prototype), 'constructor', this).call(this, props);
+
+	    this.render = function () {
+	      console.log(_this10);
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: { fontSize: 22 } },
+	        _react2['default'].createElement(
+	          'label',
+	          null,
+	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this10.handleEnter, onClick: _this10.click,
+	            style: { width: 70, backgroundColor: '#d8d17d' } }),
+	          'Background Color'
+	        )
+	      );
+	    };
 	  }
 
 	  _inherits(ChangeBackground, _React$Component9);
@@ -12931,22 +12956,6 @@
 	        this.props.changeC(col);
 	      }
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      return _react2['default'].createElement(
-	        'div',
-	        { style: { fontSize: 22 } },
-	        _react2['default'].createElement(
-	          'label',
-	          null,
-	          _react2['default'].createElement('input', { type: 'text', onKeyDown: this.handleEnter.bind(this), onClick: this.click.bind(this),
-	            style: { width: 70, backgroundColor: '#d8d17d' } }),
-	          'Background Color'
-	        )
-	      );
-	    }
 	  }]);
 
 	  return ChangeBackground;
@@ -12956,35 +12965,30 @@
 
 	var Solutions2 = (function (_React$Component10) {
 	  function Solutions2(props) {
+	    var _this11 = this;
+
 	    _classCallCheck(this, Solutions2);
 
 	    _get(Object.getPrototypeOf(Solutions2.prototype), 'constructor', this).call(this, props);
-	    var formatted = undefined;
-	  }
 
-	  _inherits(Solutions2, _React$Component10);
+	    this.clickHandler = function () {
+	      _this11.props.solFunc();
+	    };
 
-	  _createClass(Solutions2, [{
-	    key: 'clickHandler',
-	    value: function clickHandler() {
-	      this.props.solFunc();
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var formatted = this.props.sol.map(function (line) {
+	    this.render = function () {
+	      var formatted = _this11.props.sol.map(function (line) {
 	        return _react2['default'].createElement(
 	          'p',
 	          null,
 	          line
 	        );
 	      });
-	      if (this.props.hidden2) {
+	      if (_this11.props.hidden2) {
 	        return null;
 	      }
 	      return _react2['default'].createElement(
 	        'div',
-	        { onClick: this.clickHandler.bind(this) },
+	        { onClick: _this11.clickHandler },
 	        _react2['default'].createElement(
 	          'div',
 	          null,
@@ -12995,17 +12999,60 @@
 	          formatted
 	        )
 	      );
-	    }
-	  }]);
+	    };
+
+	    var formatted = undefined;
+	  }
+
+	  _inherits(Solutions2, _React$Component10);
 
 	  return Solutions2;
 	})(_react2['default'].Component);
 
 	var Login = (function (_React$Component11) {
 	  function Login(props) {
+	    var _this12 = this;
+
 	    _classCallCheck(this, Login);
 
 	    _get(Object.getPrototypeOf(Login.prototype), 'constructor', this).call(this, props);
+
+	    this.click = function () {
+	      if (_this12.props.name == '') {
+	        _this12.props.change({
+	          info: 'Please enter a name.'
+	        });
+	      } else {
+	        var _name = _this12.props.name;
+	        _this12.props.change({
+	          hidden: true,
+	          hidden2: false,
+	          name: _name,
+	          startDisplay: 'inline' });
+	        DES_ws.send('CC#$42' + _name);
+	      }
+	    };
+
+	    this.render = function () {
+	      console.log(_this12);
+	      if (_this12.props.hidden) {
+	        return null;
+	      }
+	      var name = _this12.props.name;
+	      return _react2['default'].createElement(
+	        'div',
+	        null,
+	        _react2['default'].createElement('input', { autoFocus: true, type: 'text', name: name, onChange: _this12.handleChange,
+	          style: { backgroundColor: '#d8d17d' },
+	          onKeyDown: _this12.handleEnter }),
+	        _this12.props.name,
+	        _react2['default'].createElement(
+	          'button',
+	          { onClick: _this12.click, style: { backgroundColor: '#d8d17d', color: '#f00' } },
+	          'Join'
+	        )
+	      );
+	    };
 	  }
 
 	  _inherits(Login, _React$Component11);
@@ -13025,54 +13072,15 @@
 	      } else {
 	        var ENTER = 13;
 	        if (event.keyCode == ENTER) {
-	          var _name = this.props.name;
+	          var _name2 = this.props.name;
 	          this.props.change({
 	            hidden: true,
 	            hidden2: false,
-	            name: _name,
+	            name: _name2,
 	            startDisplay: 'inline' });
-	          DES_ws.send('CC#$42' + _name);
+	          DES_ws.send('CC#$42' + _name2);
 	        }
 	      }
-	    }
-	  }, {
-	    key: 'click',
-	    value: function click() {
-	      if (this.props.name == '') {
-	        this.props.change({
-	          info: 'Please enter a name.'
-	        });
-	      } else {
-	        var _name2 = this.props.name;
-	        this.props.change({
-	          hidden: true,
-	          hidden2: false,
-	          name: _name2,
-	          startDisplay: 'inline' });
-	        DES_ws.send('CC#$42' + _name2);
-	      }
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      console.log(this);
-	      if (this.props.hidden) {
-	        return null;
-	      }
-	      var name = this.props.name;
-	      return _react2['default'].createElement(
-	        'div',
-	        null,
-	        _react2['default'].createElement('input', { autoFocus: true, type: 'text', name: name, onChange: this.handleChange.bind(this),
-	          style: { backgroundColor: '#d8d17d' },
-	          onKeyDown: this.handleEnter.bind(this) }),
-	        this.props.name,
-	        _react2['default'].createElement(
-	          'button',
-	          { onClick: this.click.bind(this), style: { backgroundColor: '#d8d17d', color: '#f00' } },
-	          'Join'
-	        )
-	      );
 	    }
 	  }]);
 
@@ -13083,11 +13091,1176 @@
 
 	var B4 = (function (_React$Component12) {
 	  function B4(props) {
-	    var _this2 = this;
+	    var _this13 = this;
 
 	    _classCallCheck(this, B4);
 
 	    _get(Object.getPrototypeOf(B4.prototype), 'constructor', this).call(this, props);
+
+	    this.changeBackground = function (color) {
+	      _this13.setState({
+	        dynamicBg: color
+	      });
+	    };
+
+	    this.changeColor = function (col) {
+	      _this13.setState({
+	        dynamicColor: col,
+	        sty: { color: col, width: 50, marginLeft: 30, padding: 10 }
+	      });
+	    };
+
+	    this.hoverHandler = function () {
+	      _this13.setState({ buttonColor: '#f99094' });
+	    };
+
+	    this.leaveHandler = function () {
+	      _this13.setState({ buttonColor: '#83f7d8' });
+	    };
+
+	    this.hoverHandler0 = function () {
+	      _this13.setState({ buttonColor0: '#f99094' });
+	    };
+
+	    this.leaveHandler0 = function () {
+	      _this13.setState({ buttonColor0: '#83f7d8' });
+	    };
+
+	    this.hoverHandler1 = function () {
+	      _this13.setState({ buttonColor1: '#f99094' });
+	    };
+
+	    this.leaveHandler1 = function () {
+	      _this13.setState({ buttonColor1: '#83f7d8' });
+	    };
+
+	    this.hoverHandler2 = function () {
+	      _this13.setState({ buttonColor2: '#f99094' });
+	    };
+
+	    this.leaveHandler2 = function () {
+	      _this13.setState({ buttonColor2: '#83f7d8' });
+	    };
+
+	    this.hoverHandler3 = function () {
+	      _this13.setState({ buttonColor3: '#f99094' });
+	    };
+
+	    this.leaveHandler3 = function () {
+	      _this13.setState({ buttonColor3: '#83f7d8' });
+	    };
+
+	    this.hoverHandler4 = function () {
+	      _this13.setState({ buttonColor4: '#f99094' });
+	    };
+
+	    this.leaveHandler4 = function () {
+	      _this13.setState({ buttonColor4: '#acf9a2' });
+	    };
+
+	    this.hoverHandler5 = function () {
+	      _this13.setState({ buttonColor5: '#f99094' });
+	    };
+
+	    this.leaveHandler5 = function () {
+	      _this13.setState({ buttonColor5: '#acf9a2' });
+	    };
+
+	    this.hoverHandler6 = function () {
+	      _this13.setState({ buttonColor6: '#f99094' });
+	    };
+
+	    this.leaveHandler6 = function () {
+	      _this13.setState({ buttonColor6: '#acf9a2' });
+	    };
+
+	    this.hoverHandler7 = function () {
+	      _this13.setState({ buttonColor7: '#f99094' });
+	    };
+
+	    this.leaveHandler7 = function () {
+	      _this13.setState({ buttonColor7: '#acf9a2' });
+	    };
+
+	    this.hoverHandler8 = function () {
+	      _this13.setState({ buttonColor8: '#f99094' });
+	    };
+
+	    this.leaveHandler8 = function () {
+	      _this13.setState({ buttonColor8: '#acf9a2' });
+	    };
+
+	    this.hoverHandler9 = function () {
+	      _this13.setState({ buttonColor9: '#f99094' });
+	    };
+
+	    this.leaveHandler9 = function () {
+	      _this13.setState({ buttonColor9: '#83f7d8' });
+	    };
+
+	    this.hoverHandler10 = function () {
+	      _this13.setState({ buttonColor10: '#f99094' });
+	    };
+
+	    this.leaveHandler10 = function () {
+	      _this13.setState({ buttonColor10: '#f7b16f' });
+	    };
+
+	    this.hoverHandler11 = function () {
+	      _this13.setState({ buttonColor11: '#f99094' });
+	    };
+
+	    this.leaveHandler11 = function () {
+	      _this13.setState({ buttonColor11: '#f7b16f' });
+	    };
+
+	    this.hoverHandler12 = function () {
+	      _this13.setState({ buttonColor12: '#f99094' });
+	    };
+
+	    this.leaveHandler12 = function () {
+	      _this13.setState({ buttonColor12: '#f7b16f' });
+	    };
+
+	    this.hoverHandler13 = function () {
+	      _this13.setState({ buttonColor13: '#f99094' });
+	    };
+
+	    this.leaveHandler13 = function () {
+	      _this13.setState({ buttonColor13: '#83f7d8' });
+	    };
+
+	    this.hoverHandler14 = function () {
+	      _this13.setState({ buttonColor14: '#f99094' });
+	    };
+
+	    this.leaveHandler14 = function () {
+	      _this13.setState({ buttonColor14: '#83f7d8' });
+	    };
+
+	    this.hoverHandler15 = function () {
+	      _this13.setState({ buttonColor5: '#f99094' });
+	    };
+
+	    this.leaveHandler15 = function () {
+	      _this13.setState({ buttonColor5: '#acf9a2' });
+	    };
+
+	    this.solutions = function () {
+	      var group = _this13.state.group;
+	      var name = _this13.state.name;
+	      var goal = _this13.state.goal;
+	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + goal);
+	    };
+
+	    this.delay = function (ms) {
+	      return new Promise(function (resolve, reject) {
+	        setTimeout(resolve, ms);
+	      });
+	    };
+
+	    this.displayHandler = function () {
+	      console.log('############$$$$$$$$$$$$$$$$$$___ IN displayHandler ___');
+	    };
+
+	    this.rollDice = function () {
+	      var col = _this13.state.dynamicColor;
+	      _this13.setState({
+	        DS_T: '',
+	        test: false,
+	        score: false,
+	        impossible: false,
+	        interrupt: false,
+	        sty: { color: col, width: 50, marginLeft: 30, padding: 10 },
+	        colorB42: '#ff0000',
+	        impossibleDisplay: 'inline',
+	        scoreDisplay: 'inline',
+	        scoreDisplay2: 'none',
+	        numDisplay: 'inline',
+	        rollnumsDisplay: 'none',
+	        showParamsButton: 'inline',
+	        hideParamsButton: 'none',
+	        paramsDiv: 'none',
+	        showSolutionsButton: 'inline',
+	        hideSolutionsButton: 'none' });
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      var a = _this13.state.sides1;
+	      var b = _this13.state.sides2;
+	      var c = _this13.state.sides3;
+	      var d = _this13.state.sides4;
+	      DES_ws.send('CF#$42,' + group + ',' + name + ',');
+	      DES_ws.send('CA#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d);
+	    };
+
+	    this.handleGroupA = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      DES_ws.send('CO#$42,' + group + ',' + name + ',GroupA');
+	      _this13.setState({
+	        group: 'GroupA',
+	        chatMessage: '',
+	        chatArray: []
+	      });
+	    };
+
+	    this.handleGroupB = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      DES_ws.send('CO#$42,' + group + ',' + name + ',GroupB');
+	      _this13.setState({
+	        group: 'GroupB',
+	        chatMessage: '',
+	        chatArray: []
+	      });
+	    };
+
+	    this.handleGroupC = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      DES_ws.send('CO#$42,' + group + ',' + name + ',GroupC');
+	      _this13.setState({
+	        group: 'GroupC',
+	        chatMessage: '',
+	        chatArray: []
+	      });
+	    };
+
+	    this.setGroup = function (x) {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      _this13.setState({
+	        group: x,
+	        chatMessage: '',
+	        chatArray: []
+	      });
+	      DES_ws.send('CO#$42,' + group + ',' + name + ',' + x);
+	    };
+
+	    this.setNumberAr = function (result, str, test) {
+	      var w1 = _this13.state.message1;
+	      var w2 = _this13.state.message2;
+	      var w3 = _this13.state.message3;
+	      var w4 = _this13.state.message4;
+	      var startArray = [w1, w2, w3, w4, result];
+	      _this13.newNums(result, str, test, teststartArray);
+	    };
+
+	    this.calc = function (mes0, mes1, mes2) {
+	      var that = _this13;
+	      var res = 0;
+	      var delay = _this13.delay;
+	      var n = _this13.state.N;
+	      var resP = _this13.state.resPrevious;
+	      var ar5 = [mes0, mes2];
+	      var test = resP === mes0 || resP === mes2;
+	      _this13.setState({
+	        test: test
+	      });
+	      switch (mes1) {
+	        case '+':
+	          that.comp(parseFloat(mes0) + parseFloat(mes2), mes0, mes1, mes2, test);
+	          break;
+	        case '-':
+	          that.comp(parseFloat(mes0) - parseFloat(mes2), mes0, mes1, mes2, test);
+	          break;
+	        case '*':
+	          that.comp(parseFloat(mes0) * parseFloat(mes2), mes0, mes1, mes2, test);;
+	          break;
+	        case '/':
+	          that.comp(parseFloat(mes0) / parseFloat(mes2), mes0, mes1, mes2, test);
+	          break;t;
+	        case 'Concat':
+	          that.comp(parseFloat(mes0 + mes2), mes0, mes1, mes2, test);
+	          break;
+	        default:
+	          'operator not selected';
+	      }
+	    };
+
+	    this.comp = function (result, mes0, mes1, mes2, test) {
+	      var str = '' + mes0 + ' ' + mes1 + ' ' + mes2 + ' = ' + result;
+	      _this13.setState({
+	        STRING: str,
+	        resPrevious: result.toString(),
+	        message: '',
+	        colorB42: '#ff0000'
+	      });
+	      var w1 = _this13.state.message1;
+	      var w2 = _this13.state.message2;
+	      var w3 = _this13.state.message3;
+	      var w4 = _this13.state.message4;
+	      var startArray = [w1, w2, w3, w4, result];
+	      _this13.newNums(result, str, test, startArray);
+	    };
+
+	    this.newNums = function (result, str, test, numbers) {
+	      var j = 0;
+	      var gr = _this13.state.group;
+	      var ar = [];
+	      var clock = '';
+	      var name = _this13.state.name;
+	      var impossibleClicker = _this13.state.impossibleClicker;
+	      var interrupt = _this13.state.interrupt;
+	      var test2 = _this13.state.score || _this13.state.impossible;
+	      var goal = 1 * _this13.state.goal; // '1*' and '==' is technically overkill, but seems like insurance.
+
+	      for (var k in numbers) {
+	        if (numbers[k] !== '' && numbers[k] !== undefined) {
+	          ar[j] = numbers[k];
+	          j += 1;
+	        }
+	      }
+	      if (j === 3) {
+	        DES_ws.send('FQ#$42,' + gr + ',' + name + ',' + str);
+	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',' + ar[2] + ',');
+	        _this13.setState({ message: 'You must use the red number in order to score in this round.' });
+	        if (test2) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10');
+	        } else {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!');
+	        }
+	      } else if (j === 2) {
+	        DES_ws.send('GQ#$42,' + gr + ',' + name + ',' + str);
+	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',,');
+	        if (result == goal && test && test2 && !interrupt) {
+	          _this13.setState({ DS_T: -1 });
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name);
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
+	        } else if (result == goal && test && test2 && interrupt) {
+	          _this13.setState({ DS_T: -1 });
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + '. Two points deducted from ' + impossibleClicker);
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
+	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');
+	        } else if (test2) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10');
+	        } else {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!');
+	        }
+	      } else if (j === 1) {
+	        DES_ws.send('HQ#$42,' + gr + ',' + name + ',' + str);
+	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',,,');
+	        if (result == goal && test && test2 && !interrupt) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name);
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
+	        } else if (result == goal && test2) {
+	          _this13.setState({ DS_T: -1 });
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + '. Two points deducted from ' + impossibleClicker);
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
+	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');
+	        } else if (result != goal && test && test2 && !interrupt) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',The result is not 20. ' + name + ' lost one point.');
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
+	        } else if (result != goal && test && test2 && interrupt) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',The result is not 20. ' + name + ' lost one point.\n                      One point awarded to ' + impossibleClicker + '.');
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',1');
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
+	        }
+	      }
+	    };
+
+	    this.newPlayer = function (x) {
+	      _this13.setState({ name: x });
+	      DES_ws.send('CC#42$' + x);
+	    };
+
+	    this.changeItem = function (x) {
+	      _this13.setState(x, function () {
+	        this.setState(x);
+	      });
+	    };
+
+	    this.changeMessage = function (x) {
+	      var name = _this13.state.name;
+	      var gr = _this13.state.group;
+	      DES_ws.send('CD#$42,' + gr + ',' + name + ',&@3#^7$' + name + ': ' + x);
+	    };
+
+	    this.logMessage = function () {
+	      console.log('*************************************************************************** Message from logMessage');
+	    };
+
+	    this.buttonHandler = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      DES_ws.send('IA#$42,' + group + ',' + name + ',Click SCORE to begin');
+	      _this13.rollDice();
+	    };
+
+	    this.handleB40 = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      var num = _this13.state.message1;
+	      var this2 = _this13;
+	      if (this2.state.mes0 === 'Number') {
+	        _this13.setState({ message1: '', mes0: num }, function () {
+	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
+	        });
+	      } else if (this2.state.mes2 === 'Number') {
+	        _this13.setState({ message1: '', mes2: num }, function () {
+	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
+	          if (this2.state.mes1 !== 'Operator') {
+	            this2.calc(this2.state.mes0, this2.state.mes1, num);
+	          }
+	        });
+	      }
+	    };
+
+	    this.handleB41 = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      var num = _this13.state.message2;
+	      var this2 = _this13;
+	      if (this2.state.mes0 === 'Number') {
+	        _this13.setState({ message2: '', mes0: num }, function () {
+	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
+	        });
+	      } else if (this2.state.mes2 === 'Number') {
+	        _this13.setState({ message2: '', mes2: num }, function () {
+	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
+	          if (this2.state.mes1 !== 'Operator') {
+	            this2.calc(this2.state.mes0, this2.state.mes1, num);
+	          }
+	        });
+	      }
+	    };
+
+	    this.handleB42 = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      var num = _this13.state.message3;
+	      var this2 = _this13;
+	      if (this2.state.mes0 === 'Number') {
+	        _this13.setState({ message3: '', mes0: num }, function () {
+	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
+	        });
+	      } else if (this2.state.mes2 === 'Number') {
+	        _this13.setState({ message3: '', mes2: num }, function () {
+	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
+	          if (this2.state.mes1 !== 'Operator') {
+	            this2.calc(this2.state.mes0, this2.state.mes1, num);
+	          }
+	        });
+	      }
+	    };
+
+	    this.handleB43 = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      var num = _this13.state.message4;
+	      var this2 = _this13;
+	      if (this2.state.mes0 === 'Number') {
+	        _this13.setState({ message4: '', mes0: num }, function () {
+	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
+	        });
+	      } else if (this2.state.mes2 === 'Number') {
+	        _this13.setState({ message4: '', mes2: num }, function () {
+	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
+	          if (this2.state.mes1 !== 'Operator') {
+	            this2.calc(this2.state.mes0, this2.state.mes1, num);
+	          }
+	        });
+	      }
+	    };
+
+	    this.handleOp0 = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      DES_ws.send('EQ#$42,' + group + ',' + name + ',+');
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
+	      if (test) {
+	        _this13.setState({ mes1: '+' }, function () {
+	          this.calc(this.state.mes0, '+', this.state.mes2);
+	        });
+	      }
+	    };
+
+	    this.handleOp1 = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      DES_ws.send('EQ#$42,' + group + ',' + name + ',-');
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
+	      if (test) {
+	        _this13.setState({ mes1: '-' }, function () {
+	          this.calc(this.state.mes0, '-', this.state.mes2);
+	        });
+	      }
+	    };
+
+	    this.handleOp2 = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      DES_ws.send('EQ#$42,' + group + ',' + name + ',*');
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
+	      if (test) {
+	        _this13.setState({ mes1: '*' }, function () {
+	          this.calc(this.state.mes0, '*', this.state.mes2);
+	        });
+	      }
+	    };
+
+	    this.handleOp3 = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      DES_ws.send('EQ#$42,' + group + ',' + name + ',/');
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
+	      if (test) {
+	        _this13.setState({ mes1: '/' }, function () {
+	          this.calc(this.state.mes0, '/', this.state.mes2);
+	        });
+	      }
+	    };
+
+	    this.handleOp4 = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      DES_ws.send('EQ#$42,' + group + ',' + name + ',Concat');
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
+	      if (test) {
+	        _this13.setState({ mes1: 'Concat' }, function () {
+	          this.calc(this.state.mes0, 'Concat', this.state.mes2);
+	        });
+	      }
+	    };
+
+	    this.handleScore = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      DES_ws.send('CY#$42,' + group + ',' + name + ',' + name);
+	    };
+
+	    this.handleScore2 = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      DES_ws.send('XY#$42,' + group + ',' + name + ',' + name);
+	    };
+
+	    this.handleImpossible = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      DES_ws.send('DY#$42,' + group + ',' + name + ',' + name);
+	    };
+
+	    this.eraseMessages = function () {
+	      _this13.setState({
+	        chatArray: [],
+	        chatMessage: ''
+	      });
+	    };
+
+	    this.handleExtra = function () {
+	      _this13.setState({
+	        gameDisplay: 'none',
+	        extraDisplay: 'inlineBlock'
+	      });
+	    };
+
+	    this.handleGame = function () {
+	      _this13.setState({
+	        gameDisplay: 'inlineBlock',
+	        extraDisplay: 'none'
+	      });
+	    };
+
+	    this.showSolutionsHandler = function () {
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      var a = _this13.state.d1;
+	      var b = _this13.state.d2;
+	      var c = _this13.state.d3;
+	      var d = _this13.state.d4;
+	      var goal = _this13.state.goal;
+	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d + ',' + goal);
+	      _this13.setState({
+	        rollDisplay: 'none',
+	        scoreDisplay: 'none',
+	        impossibleDisplay: 'none',
+	        scoreDisplay2: 'none',
+	        showSolutionsButton: 'none',
+	        hideSolutionsButton: 'inline' });
+	    };
+
+	    this.hideSolutionsHandler = function () {
+	      var _this = _this13;
+	      _this13.setState({
+	        message: 'Play forfeited for this round by opening Solutions',
+	        DS_t: 'Please wait for the next roll. You displayed solutions.',
+	        showSolutionsButton: 'inline',
+	        hideSolutionsButton: 'none',
+	        rollDisplay: 'inline',
+	        sol: []
+	      });
+	    };
+
+	    this.showParamsHandler = function () {
+	      _this13.setState({
+	        scoreDisplay: 'none',
+	        scoreDisplay2: 'none',
+	        impossibleDisplay: 'none',
+	        message: 'SCORE! and IMPOSSIBLE will return when you shrink the Parameters area.',
+	        showParamsButton: 'none',
+	        hideParamsButton: 'inline',
+	        paramsDiv: 'inline'
+	      });
+	    };
+
+	    this.hideParamsHandler = function () {
+	      _this13.setState({
+	        paramsDisplay: 'none',
+	        scoreDisplay: 'inline',
+	        impossibleDisplay: 'inline',
+	        message: 'Back in competition.',
+	        showParamsButton: 'inline',
+	        hideParamsButton: 'none',
+	        paramsDiv: 'none'
+	      });
+	    };
+
+	    this.render = function () {
+	      var buttonCol = _this13.state.buttonColor;
+	      var buttonCol0 = _this13.state.buttonColor0;
+	      var buttonCol1 = _this13.state.buttonColor1;
+	      var buttonCol2 = _this13.state.buttonColor2;
+	      var buttonCol3 = _this13.state.buttonColor3;
+	      var buttonCol4 = _this13.state.buttonColor4;
+	      var buttonCol5 = _this13.state.buttonColor5;
+	      var buttonCol6 = _this13.state.buttonColor6;
+	      var buttonCol7 = _this13.state.buttonColor7;
+	      var buttonCol8 = _this13.state.buttonColor8;
+	      var buttonCol9 = _this13.state.buttonColor9;
+	      var buttonCol10 = _this13.state.buttonColor10;
+	      var buttonCol11 = _this13.state.buttonColor11;
+	      var buttonCol12 = _this13.state.buttonColor12;
+	      var buttonCol13 = _this13.state.buttonColor13;
+	      var buttonCol14 = _this13.state.buttonColor14;
+	      var dynB = _this13.state.dynamicBg;
+	      var dynC = _this13.state.dynamicColor;
+	      var dynF = _this13.state.dynamicFont;
+	      var buttonDisplay = _this13.state.buttonDisplay;
+	      var startDisplay = _this13.state.startDisplay;
+	      var impossibleDisplay = _this13.state.impossibleDisplay;
+	      var scoreDisplay = _this13.state.scoreDisplay;
+	      var scoreDisplay2 = _this13.state.scoreDisplay2;
+	      var timerDisplay = _this13.state.timerDisplay;
+	      var timerDisplay2 = _this13.state.timerDisplay2;
+	      var rollDisplay = _this13.state.rollDisplay;
+	      var numDisplay = _this13.state.numDisplay;
+	      var solutionsDisplay = _this13.state.solutionsDisplay;
+	      var rollnumsDisplay = _this13.state.rollnumsDisplay;
+	      var rightDisplay = _this13.state.rightDisplay;
+	      var leftDisplay = _this13.state.leftDisplay;
+	      var extraDisplay = _this13.state.extraDisplay;
+	      var m1 = _this13.state.message1;
+	      var timeSize = _this13.state.timeSize;
+	      var paramsDisplay = _this13.state.paramsDisplay;
+	      var paramsButton = _this13.state.paramsButton;
+	      var paramsDiv = _this13.state.paramsDiv;
+	      var shrinkSol = _this13.state.shrinkSol;
+	      var shrinkPar = _this13.state.shrinkPar;
+	      var showSolutionsButton = _this13.state.showSolutionsButton;
+	      var hideSolutionsButton = _this13.state.hideSolutionsButton;
+	      var showParamsButton = _this13.state.showParamsButton;
+	      var hideParamsButton = _this13.state.hideParamsButton;
+	      var sol = _this13.state.sol;
+
+	      console.log(_this13);
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: { backgroundColor: dynB, color: dynC, fontSize: dynF,
+	            display: rightDisplay, width: '100%', height: '100%' } },
+	        _react2['default'].createElement(
+	          'div',
+	          { style: { width: '35%', float: 'right' } },
+	          _react2['default'].createElement(ChangeColor, { key: 'ChangeColor', changeC: _this13.changeColor,
+	            style: { width: 8 } }),
+	          _react2['default'].createElement(ChangeBackground, { key: 'ChangeBackground', changeB: _this13.changeBackground,
+	            style: { width: 8 } }),
+	          _react2['default'].createElement('br', null),
+	          _react2['default'].createElement('br', null),
+	          _react2['default'].createElement(
+	            'button',
+	            { style: { backgroundColor: '#4c1616', color: '#f2f246', textAlign: 'center',
+	                display: 'inline', paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 18 } },
+	            'Score Board ',
+	            _react2['default'].createElement('br', null),
+	            'name [score]',
+	            _react2['default'].createElement(
+	              'div',
+	              { style: { textAlign: 'left' } },
+	              ' ',
+	              _this13.state.scoreB.map(function (line) {
+	                return _react2['default'].createElement(
+	                  'p',
+	                  { key: line.id },
+	                  ' ',
+	                  line,
+	                  ' '
+	                );
+	              })
+	            )
+	          ),
+	          _react2['default'].createElement('br', null),
+	          ' ',
+	          _react2['default'].createElement('br', null),
+	          _react2['default'].createElement(
+	            'button',
+	            { style: { backgroundColor: '#4c1616', color: '#f2f246', textAlign: 'center',
+	                display: 'inlineBlock', paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 18 } },
+	            'Message Board ',
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement(
+	              'div',
+	              { style: { textAlign: 'left' } },
+	              ' ',
+	              _this13.state.chatArray.map(function (line) {
+	                return _react2['default'].createElement(
+	                  'p',
+	                  { key: line.id },
+	                  ' ',
+	                  line,
+	                  ' '
+	                );
+	              })
+	            )
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onClick: _this13.eraseMessages, style: { backgroundColor: '#4c1616', color: '#f2f246',
+	                fontSize: 14, marginLeft: 10 } },
+	            'Erase Messages'
+	          ),
+	          _react2['default'].createElement(
+	            Chat,
+	            { changeMessage: _this13.changeMessage },
+	            ' '
+	          ),
+	          _react2['default'].createElement('div', { style: { paddingBottom: 200 } })
+	        ),
+	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: _this13.newPlayer, name: _this13.state.name,
+	          setGroup: _this13.setGroup, change: _this13.changeItem,
+	          group: _this13.state.group, hidden: _this13.state.hidden, info: _this13.state.info }),
+	        _react2['default'].createElement(
+	          'div',
+	          { style: { display: startDisplay, paddingTop: 1.1, width: '65%',
+	              paddingBottom: 0.9, fontSize: 20, marginLeft: 5 } },
+	          'Current roll:',
+	          _react2['default'].createElement(
+	            'button',
+	            { style: { backgroundColor: '#000', color: '#f00', marginLeft: 5, borderColor: '#93b1f2' } },
+	            _this13.state.d1,
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { style: { backgroundColor: '#000', color: '#f00', borderColor: '#93b1f2' } },
+	            _this13.state.d2,
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { style: { backgroundColor: '#000', color: '#f00', borderColor: '#93b1f2' } },
+	            _this13.state.d3,
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { style: { backgroundColor: '#000', color: '#f00', borderColor: '#93b1f2' } },
+	            _this13.state.d4,
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { marginLeft: 5 } },
+	            'Group:',
+	            _react2['default'].createElement(
+	              'button',
+	              { style: { backgroundColor: '#000', color: '#f00', marginLeft: 5, borderColor: '#93b1f2' } },
+	              _this13.state.group,
+	              ' '
+	            )
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { marginLeft: 5 } },
+	            ' ',
+	            _this13.state.info,
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: _this13.hoverHandler10, onClick: _this13.handleGroupA,
+	              onMouseLeave: _this13.leaveHandler10,
+	              style: { backgroundColor: buttonCol10, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10 } },
+	            'GroupA'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: _this13.hoverHandler11, onClick: _this13.handleGroupB,
+	              onMouseLeave: _this13.leaveHandler11,
+	              style: { backgroundColor: buttonCol11, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10 } },
+	            'GroupB'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: _this13.hoverHandler12, onClick: _this13.handleGroupC,
+	              onMouseLeave: _this13.leaveHandler12,
+	              style: { backgroundColor: buttonCol12, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10 } },
+	            'GroupC'
+	          ),
+	          _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: _this13.setGroup, hidden2: _this13.state.hidden2,
+	            name: _this13.state.name }),
+	          _react2['default'].createElement('br', null),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
+	            _this13.state.str1,
+	            ' ',
+	            _react2['default'].createElement('br', null),
+	            ' ',
+	            _this13.state.str2,
+	            ' ',
+	            _react2['default'].createElement('br', null),
+	            ' ',
+	            _this13.state.str3,
+	            ' ',
+	            _react2['default'].createElement('br', null),
+	            ' ',
+	            _this13.state.str4
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { width: '100%', backgroundColor: dynB, padding: 10 } },
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: _this13.hoverHandler9,
+	              onMouseLeave: _this13.leaveHandler9,
+	              style: { backgroundColor: buttonCol9, display: timerDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
+	            _this13.state.DS_T
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { display: rollnumsDisplay } },
+	            _react2['default'].createElement(
+	              'button',
+	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 } },
+	              ' ',
+	              _this13.state.d1,
+	              ' '
+	            ),
+	            _react2['default'].createElement(
+	              'button',
+	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 } },
+	              ' ',
+	              _this13.state.d2,
+	              ' '
+	            ),
+	            _react2['default'].createElement(
+	              'button',
+	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 } },
+	              ' ',
+	              _this13.state.d3,
+	              ' '
+	            ),
+	            _react2['default'].createElement(
+	              'button',
+	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 } },
+	              ' ',
+	              _this13.state.d4,
+	              ' '
+	            )
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: _this13.hoverHandler9, onClick: _this13.handleScore,
+	              onMouseLeave: _this13.leaveHandler9,
+	              style: { backgroundColor: buttonCol9, display: scoreDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
+	            'SCORE!'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: _this13.hoverHandler9, onClick: _this13.handleScore2,
+	              onMouseLeave: _this13.leaveHandler9,
+	              style: { backgroundColor: buttonCol9, display: scoreDisplay2, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
+	            'SCORE!'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: _this13.hoverHandler14, onClick: _this13.handleImpossible,
+	              onMouseLeave: _this13.leaveHandler14,
+	              style: { backgroundColor: buttonCol14, display: impossibleDisplay, paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
+	            'IMPOSSIBLE'
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { width: '100%', backgroundColor: dynB, padding: 10 } },
+	            ' '
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { marginLeft: 12 } },
+	            ' ',
+	            _this13.state.message,
+	            ' '
+	          ),
+	          _react2['default'].createElement('br', null),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { width: '100%', backgroundColor: dynB, padding: 10, display: numDisplay } },
+	            _react2['default'].createElement(
+	              'button',
+	              { onMouseEnter: _this13.hoverHandler0, onClick: _this13.handleB40,
+	                onMouseLeave: _this13.leaveHandler0,
+	                style: { backgroundColor: buttonCol0, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
+	              _this13.state.message1
+	            ),
+	            _react2['default'].createElement(
+	              'button',
+	              { onMouseEnter: _this13.hoverHandler1, onClick: _this13.handleB41,
+	                onMouseLeave: _this13.leaveHandler1,
+	                style: { backgroundColor: buttonCol1, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
+	              _this13.state.message2
+	            ),
+	            _react2['default'].createElement(
+	              'button',
+	              { onMouseEnter: _this13.hoverHandler2, onClick: _this13.handleB42,
+	                onMouseLeave: _this13.leaveHandler2,
+	                style: { backgroundColor: buttonCol2, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
+	              _this13.state.message3
+	            ),
+	            _react2['default'].createElement(
+	              'button',
+	              { onMouseEnter: _this13.hoverHandler3, onClick: _this13.handleB43,
+	                onMouseLeave: _this13.leaveHandler3,
+	                style: { backgroundColor: buttonCol3, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
+	              _this13.state.message4
+	            ),
+	            _react2['default'].createElement(
+	              'div',
+	              { style: { width: '100%', padding: 10 } },
+	              ' '
+	            ),
+	            _react2['default'].createElement(
+	              'button',
+	              { onMouseEnter: _this13.hoverHandler4, onClick: _this13.handleOp0,
+	                onMouseLeave: _this13.leaveHandler4,
+	                style: { backgroundColor: buttonCol4, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	                  paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
+	              '+'
+	            ),
+	            _react2['default'].createElement(
+	              'button',
+	              { onMouseEnter: _this13.hoverHandler5, onClick: _this13.handleOp1,
+	                onMouseLeave: _this13.leaveHandler5,
+	                style: { backgroundColor: buttonCol5, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
+	              '-'
+	            ),
+	            _react2['default'].createElement(
+	              'button',
+	              { onMouseEnter: _this13.hoverHandler6, onClick: _this13.handleOp2,
+	                onMouseLeave: _this13.leaveHandler6,
+	                style: { backgroundColor: buttonCol6, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
+	              '*'
+	            ),
+	            _react2['default'].createElement(
+	              'button',
+	              { onMouseEnter: _this13.hoverHandler7, onClick: _this13.handleOp3,
+	                onMouseLeave: _this13.leaveHandler7,
+	                style: { backgroundColor: buttonCol7, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
+	              '/'
+	            ),
+	            _react2['default'].createElement(
+	              'button',
+	              { onMouseEnter: _this13.hoverHandler8, onClick: _this13.handleOp4,
+	                onMouseLeave: _this13.leaveHandler8,
+	                style: { backgroundColor: buttonCol8, paddingTop: 1.1,
+	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
+	              'Concat'
+	            )
+	          ),
+	          _react2['default'].createElement('div', { style: { width: '100%', padding: 10 } }),
+	          _react2['default'].createElement(
+	            'span',
+	            { style: { paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16 } },
+	            _this13.state.mes0
+	          ),
+	          _react2['default'].createElement(
+	            'span',
+	            { style: { paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 16 } },
+	            _this13.state.mes1
+	          ),
+	          _react2['default'].createElement(
+	            'span',
+	            { style: { paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 16 } },
+	            _this13.state.mes2
+	          ),
+	          _react2['default'].createElement(
+	            'span',
+	            { style: { paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 16 } },
+	            '='
+	          ),
+	          _react2['default'].createElement(
+	            'span',
+	            { style: { paddingTop: 1.1,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: 16 } },
+	            _this13.state.res
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { width: 1200, padding: 10 } },
+	            '  '
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { display: rollDisplay } },
+	            _react2['default'].createElement(
+	              'button',
+	              { onMouseEnter: _this13.hoverHandler,
+	                onMouseLeave: _this13.leaveHandler, style: { backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay },
+	                onClick: _this13.buttonHandler },
+	              'Roll'
+	            )
+	          ),
+	          _react2['default'].createElement('br', null),
+	          ' ',
+	          _react2['default'].createElement('br', null),
+	          _react2['default'].createElement(
+	            'button',
+	            { onClick: _this13.showSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	                display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	            'Solutions'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onClick: _this13.hideSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	            'Hide Solutions'
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	                paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	            sol.map(function (line) {
+	              return _react2['default'].createElement(
+	                'p',
+	                null,
+	                line
+	              );
+	            })
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onClick: _this13.showParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	                display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	            'Parameters'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onClick: _this13.hideParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	                display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	            'Hide Parameters'
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { display: paramsDiv, width: '100%', float: 'left' } },
+	            _react2['default'].createElement(
+	              'p',
+	              null,
+	              'In this section, you can choose the numbers of sides of each of the dice, and you can also select the goal. For example, you could select 6,6,6, and 6 for the dice and 10 for the goal. A roll of 1,1,2,3 would have a solution:',
+	              _react2['default'].createElement('br', null),
+	              '1 + 1 = 2',
+	              _react2['default'].createElement('br', null),
+	              '2 + 3 = 5',
+	              _react2['default'].createElement('br', null),
+	              '2 * 5 = 10',
+	              _react2['default'].createElement('br', null),
+	              'You can click \'Solutions\' to see a computer-generated list of all the solutions.'
+	            ),
+	            _react2['default'].createElement(
+	              'p',
+	              null,
+	              'Changing parameters does not change them for other group members. You can use the chat window to coordinate a change. If other group members don\'t know that you modified the parameters in your browser, they might be very surprised to see you get a point for computing, say, the number \'18\'.'
+	            ),
+	            _react2['default'].createElement('br', null),
+	            'Sides:',
+	            _react2['default'].createElement(
+	              Sides1,
+	              { change: _this13.changeItem },
+	              ' Side 1 '
+	            ),
+	            _react2['default'].createElement(
+	              Sides2,
+	              { change: _this13.changeItem },
+	              ' Side 2 '
+	            ),
+	            _react2['default'].createElement(
+	              Sides3,
+	              { change: _this13.changeItem },
+	              ' Side 3 '
+	            ),
+	            _react2['default'].createElement(
+	              Sides4,
+	              { change: _this13.changeItem },
+	              ' Side 4 '
+	            ),
+	            _react2['default'].createElement('br', null),
+	            ' ',
+	            _react2['default'].createElement('br', null),
+	            'Goal',
+	            _react2['default'].createElement(SetGoal, { change: _this13.changeItem }),
+	            _react2['default'].createElement('br', null),
+	            ' ',
+	            _react2['default'].createElement('br', null),
+	            'Collapse Parameters Display:',
+	            _react2['default'].createElement(
+	              'button',
+	              { onClick: _this13.hideParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	                  display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	              'Shrink Parameters'
+	            )
+	          )
+	        ),
+	        _react2['default'].createElement(
+	          'div',
+	          { style: { display: extraDisplay, width: '100%', float: 'left' } },
+	          _react2['default'].createElement(
+	            'button',
+	            { onMouseEnter: _this13.hoverHandler5, onMouseLeave: _this13.leaveHandler5,
+	              style: { backgroundColor: buttonCol5, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	                paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
+	            'Return To Game'
+	          )
+	        ),
+	        _react2['default'].createElement('div', { style: { paddingBottom: 500 } })
+	      );
+	    };
+
 	    this.state = {
 	      d1: 0,
 	      d2: 0,
@@ -13284,8 +14457,6 @@
 	            timerDisplay: 'none',
 	            scoreDisplay: 'inline',
 	            message: 'You must click SCORE! in order to gain a point.'
-	          }, function () {
-	            return;
 	          });
 	          break;
 
@@ -13499,25 +14670,25 @@
 	      }
 	    };
 	    setInterval(function () {
-	      var name = _this2.state.name;
-	      var group = _this2.state.group;
-	      var scoreClicker = _this2.state.scoreClicker;
-	      var impossibleClicker = _this2.state.impossibleClicker;
-	      var interruptClicker = _this2.state.interruptClicker;
-	      var score = _this2.state.score;
-	      var impossible = _this2.state.impossible;
-	      var interrupt = _this2.state.interrupt;
+	      var name = _this13.state.name;
+	      var group = _this13.state.group;
+	      var scoreClicker = _this13.state.scoreClicker;
+	      var impossibleClicker = _this13.state.impossibleClicker;
+	      var interruptClicker = _this13.state.interruptClicker;
+	      var score = _this13.state.score;
+	      var impossible = _this13.state.impossible;
+	      var interrupt = _this13.state.interrupt;
 
-	      if (_this2.state.DS_T > 0) {
-	        _this2.setState({
-	          DS_T: _this2.state.DS_T - 1,
+	      if (_this13.state.DS_T > 0) {
+	        _this13.setState({
+	          DS_T: _this13.state.DS_T - 1,
 	          timeSize: 40
 	        });
-	        _this2.setState({ info: _this2.state.DS_T });
+	        _this13.setState({ info: _this13.state.DS_T });
 	      }
 
-	      if (_this2.state.DS_T * 1 === 0) {
-	        _this2.setState({
+	      if (_this13.state.DS_T * 1 === 0) {
+	        _this13.setState({
 	          message1: 0, // Wipes the old numbers.
 	          message2: 0,
 	          message3: 0,
@@ -13555,1245 +14726,6 @@
 	  }
 
 	  _inherits(B4, _React$Component12);
-
-	  _createClass(B4, [{
-	    key: 'changeBackground',
-	    value: function changeBackground(color) {
-	      this.setState({
-	        dynamicBg: color
-	      });
-	    }
-	  }, {
-	    key: 'changeColor',
-	    value: function changeColor(col) {
-	      this.setState({
-	        dynamicColor: col,
-	        sty: { color: col, width: 50, marginLeft: 30, padding: 10 }
-	      });
-	    }
-	  }, {
-	    key: 'hoverHandler',
-	    value: function hoverHandler() {
-	      this.setState({ buttonColor: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler',
-	    value: function leaveHandler() {
-	      this.setState({ buttonColor: '#83f7d8' });
-	    }
-	  }, {
-	    key: 'hoverHandler0',
-	    value: function hoverHandler0() {
-	      this.setState({ buttonColor0: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler0',
-	    value: function leaveHandler0() {
-	      this.setState({ buttonColor0: '#83f7d8' });
-	    }
-	  }, {
-	    key: 'hoverHandler1',
-	    value: function hoverHandler1() {
-	      this.setState({ buttonColor1: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler1',
-	    value: function leaveHandler1() {
-	      this.setState({ buttonColor1: '#83f7d8' });
-	    }
-	  }, {
-	    key: 'hoverHandler2',
-	    value: function hoverHandler2() {
-	      this.setState({ buttonColor2: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler2',
-	    value: function leaveHandler2() {
-	      this.setState({ buttonColor2: '#83f7d8' });
-	    }
-	  }, {
-	    key: 'hoverHandler3',
-	    value: function hoverHandler3() {
-	      this.setState({ buttonColor3: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler3',
-	    value: function leaveHandler3() {
-	      this.setState({ buttonColor3: '#83f7d8' });
-	    }
-	  }, {
-	    key: 'hoverHandler4',
-	    value: function hoverHandler4() {
-	      this.setState({ buttonColor4: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler4',
-	    value: function leaveHandler4() {
-	      this.setState({ buttonColor4: '#acf9a2' });
-	    }
-	  }, {
-	    key: 'hoverHandler5',
-	    value: function hoverHandler5() {
-	      this.setState({ buttonColor5: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler5',
-	    value: function leaveHandler5() {
-	      this.setState({ buttonColor5: '#acf9a2' });
-	    }
-	  }, {
-	    key: 'hoverHandler6',
-	    value: function hoverHandler6() {
-	      this.setState({ buttonColor6: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler6',
-	    value: function leaveHandler6() {
-	      this.setState({ buttonColor6: '#acf9a2' });
-	    }
-	  }, {
-	    key: 'hoverHandler7',
-	    value: function hoverHandler7() {
-	      this.setState({ buttonColor7: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler7',
-	    value: function leaveHandler7() {
-	      this.setState({ buttonColor7: '#acf9a2' });
-	    }
-	  }, {
-	    key: 'hoverHandler8',
-	    value: function hoverHandler8() {
-	      this.setState({ buttonColor8: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler8',
-	    value: function leaveHandler8() {
-	      this.setState({ buttonColor8: '#acf9a2' });
-	    }
-	  }, {
-	    key: 'hoverHandler9',
-	    value: function hoverHandler9() {
-	      this.setState({ buttonColor9: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler9',
-	    value: function leaveHandler9() {
-	      this.setState({ buttonColor9: '#83f7d8' });
-	    }
-	  }, {
-	    key: 'hoverHandler10',
-	    value: function hoverHandler10() {
-	      this.setState({ buttonColor10: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler10',
-	    value: function leaveHandler10() {
-	      this.setState({ buttonColor10: '#f7b16f' });
-	    }
-	  }, {
-	    key: 'hoverHandler11',
-	    value: function hoverHandler11() {
-	      this.setState({ buttonColor11: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler11',
-	    value: function leaveHandler11() {
-	      this.setState({ buttonColor11: '#f7b16f' });
-	    }
-	  }, {
-	    key: 'hoverHandler12',
-	    value: function hoverHandler12() {
-	      this.setState({ buttonColor12: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler12',
-	    value: function leaveHandler12() {
-	      this.setState({ buttonColor12: '#f7b16f' });
-	    }
-	  }, {
-	    key: 'hoverHandler13',
-	    value: function hoverHandler13() {
-	      this.setState({ buttonColor13: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler13',
-	    value: function leaveHandler13() {
-	      this.setState({ buttonColor13: '#83f7d8' });
-	    }
-	  }, {
-	    key: 'hoverHandler14',
-	    value: function hoverHandler14() {
-	      this.setState({ buttonColor14: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler14',
-	    value: function leaveHandler14() {
-	      this.setState({ buttonColor14: '#83f7d8' });
-	    }
-	  }, {
-	    key: 'hoverHandler15',
-	    value: function hoverHandler15() {
-	      this.setState({ buttonColor5: '#f99094' });
-	    }
-	  }, {
-	    key: 'leaveHandler15',
-	    value: function leaveHandler15() {
-	      this.setState({ buttonColor5: '#acf9a2' });
-	    }
-	  }, {
-	    key: 'solutions',
-	    value: function solutions() {
-	      var group = this.state.group;
-	      var name = this.state.name;
-	      var goal = this.state.goal;
-	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + goal);
-	    }
-	  }, {
-	    key: 'delay',
-	    value: function delay(ms) {
-	      return new Promise(function (resolve, reject) {
-	        setTimeout(resolve, ms);
-	      });
-	    }
-	  }, {
-	    key: 'displayHandler',
-	    value: function displayHandler() {
-	      console.log('############$$$$$$$$$$$$$$$$$$___ IN displayHandler ___');
-	    }
-	  }, {
-	    key: 'rollDice',
-	    value: function rollDice() {
-	      var col = this.state.dynamicColor;
-	      this.setState({
-	        DS_T: '',
-	        test: false,
-	        score: false,
-	        impossible: false,
-	        interrupt: false,
-	        sty: { color: col, width: 50, marginLeft: 30, padding: 10 },
-	        colorB42: '#ff0000',
-	        impossibleDisplay: 'inline',
-	        scoreDisplay: 'inline',
-	        scoreDisplay2: 'none',
-	        numDisplay: 'inline',
-	        rollnumsDisplay: 'none',
-	        showParamsButton: 'inline',
-	        hideParamsButton: 'none',
-	        paramsDiv: 'none',
-	        showSolutionsButton: 'inline',
-	        hideSolutionsButton: 'none' });
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      var a = this.state.sides1;
-	      var b = this.state.sides2;
-	      var c = this.state.sides3;
-	      var d = this.state.sides4;
-	      DES_ws.send('CF#$42,' + group + ',' + name + ',');
-	      DES_ws.send('CA#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d);
-	    }
-	  }, {
-	    key: 'handleGroupA',
-	    value: function handleGroupA() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      DES_ws.send('CO#$42,' + group + ',' + name + ',GroupA');
-	      this.setState({
-	        group: 'GroupA',
-	        chatMessage: '',
-	        chatArray: []
-	      });
-	    }
-	  }, {
-	    key: 'handleGroupB',
-	    value: function handleGroupB() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      DES_ws.send('CO#$42,' + group + ',' + name + ',GroupB');
-	      this.setState({
-	        group: 'GroupB',
-	        chatMessage: '',
-	        chatArray: []
-	      });
-	    }
-	  }, {
-	    key: 'handleGroupC',
-	    value: function handleGroupC() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      DES_ws.send('CO#$42,' + group + ',' + name + ',GroupC');
-	      this.setState({
-	        group: 'GroupC',
-	        chatMessage: '',
-	        chatArray: []
-	      });
-	    }
-	  }, {
-	    key: 'setGroup',
-	    value: function setGroup(x) {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      this.setState({
-	        group: x,
-	        chatMessage: '',
-	        chatArray: []
-	      });
-	      DES_ws.send('CO#$42,' + group + ',' + name + ',' + x);
-	    }
-	  }, {
-	    key: 'setNumberAr',
-	    value: function setNumberAr(result, str, test) {
-	      var w1 = this.state.message1;
-	      var w2 = this.state.message2;
-	      var w3 = this.state.message3;
-	      var w4 = this.state.message4;
-	      var startArray = [w1, w2, w3, w4, result];
-	      this.newNums(result, str, test, teststartArray);
-	    }
-	  }, {
-	    key: 'calc',
-	    value: function calc(mes0, mes1, mes2) {
-	      var that = this;
-	      var res = 0;
-	      var delay = this.delay;
-	      var n = this.state.N;
-	      var resP = this.state.resPrevious;
-	      var ar5 = [mes0, mes2];
-	      var test = resP === mes0 || resP === mes2;
-	      this.setState({
-	        test: test
-	      });
-	      switch (mes1) {
-	        case '+':
-	          that.comp(parseFloat(mes0) + parseFloat(mes2), mes0, mes1, mes2, test);
-	          break;
-	        case '-':
-	          that.comp(parseFloat(mes0) - parseFloat(mes2), mes0, mes1, mes2, test);
-	          break;
-	        case '*':
-	          that.comp(parseFloat(mes0) * parseFloat(mes2), mes0, mes1, mes2, test);;
-	          break;
-	        case '/':
-	          that.comp(parseFloat(mes0) / parseFloat(mes2), mes0, mes1, mes2, test);
-	          break;t;
-	        case 'Concat':
-	          that.comp(parseFloat(mes0 + '' + mes2), mes0, mes1, mes2, test);
-	          break;
-	        default:
-	          'operator not selected';
-	      }
-	    }
-	  }, {
-	    key: 'comp',
-	    value: function comp(result, mes0, mes1, mes2, test) {
-	      var str = '' + mes0 + ' ' + mes1 + ' ' + mes2 + ' = ' + result;
-	      this.setState({
-	        STRING: str,
-	        resPrevious: result.toString(),
-	        message: '',
-	        colorB42: '#ff0000'
-	      });
-	      var w1 = this.state.message1;
-	      var w2 = this.state.message2;
-	      var w3 = this.state.message3;
-	      var w4 = this.state.message4;
-	      var startArray = [w1, w2, w3, w4, result];
-	      this.newNums(result, str, test, startArray);
-	    }
-	  }, {
-	    key: 'newNums',
-	    value: function newNums(result, str, test, numbers) {
-	      var j = 0;
-	      var gr = this.state.group;
-	      var ar = [];
-	      var clock = '';
-	      var name = this.state.name;
-	      var impossibleClicker = this.state.impossibleClicker;
-	      var interrupt = this.state.interrupt;
-	      var test2 = this.state.score || this.state.impossible;
-	      var goal = 1 * this.state.goal; // '1*' and '==' is technically overkill, but seems like insurance.
-
-	      for (var k in numbers) {
-	        if (numbers[k] !== '' && numbers[k] !== undefined) {
-	          ar[j] = numbers[k];
-	          j += 1;
-	        }
-	      }
-	      if (j === 3) {
-	        DES_ws.send('FQ#$42,' + gr + ',' + name + ',' + str);
-	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',' + ar[2] + ',');
-	        this.setState({ message: 'You must use the red number in order to score in this round.' });
-	        if (test2) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10');
-	        } else {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!');
-	        }
-	      } else if (j === 2) {
-	        DES_ws.send('GQ#$42,' + gr + ',' + name + ',' + str);
-	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',,');
-	        if (result == goal && test && test2 && !interrupt) {
-	          this.setState({ DS_T: -1 });
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name);
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
-	        } else if (result == goal && test && test2 && interrupt) {
-	          this.setState({ DS_T: -1 });
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + '. Two points deducted from ' + impossibleClicker);
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
-	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');
-	        } else if (test2) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10');
-	        } else {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!');
-	        }
-	      } else if (j === 1) {
-	        DES_ws.send('HQ#$42,' + gr + ',' + name + ',' + str);
-	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',,,');
-	        if (result == goal && test && test2 && !interrupt) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name);
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
-	        } else if (result == goal && test2) {
-	          this.setState({ DS_T: -1 });
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + '. Two points deducted from ' + impossibleClicker);
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
-	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');
-	        } else if (result != goal && test && test2 && !interrupt) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',The result is not 20. ' + name + ' lost one point.');
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
-	        } else if (result != goal && test && test2 && interrupt) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',The result is not 20. ' + name + ' lost one point.\n                      One point awarded to ' + impossibleClicker + '.');
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',1');
-	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
-	        }
-	      }
-	    }
-	  }, {
-	    key: 'newPlayer',
-	    value: function newPlayer(x) {
-	      this.setState({ name: x });
-	      DES_ws.send('CC#42$' + x);
-	    }
-	  }, {
-	    key: 'changeItem',
-	    value: function changeItem(x) {
-	      this.setState(x, function () {
-	        this.setState(x);
-	      });
-	    }
-	  }, {
-	    key: 'changeMessage',
-	    value: function changeMessage(x) {
-	      var name = this.state.name;
-	      var gr = this.state.group;
-	      DES_ws.send('CD#$42,' + gr + ',' + name + ',&@3#^7$' + name + ': ' + x);
-	    }
-	  }, {
-	    key: 'logMessage',
-	    value: function logMessage() {
-	      console.log('*************************************************************************** Message from logMessage');
-	    }
-	  }, {
-	    key: 'buttonHandler',
-	    value: function buttonHandler() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      DES_ws.send('IA#$42,' + group + ',' + name + ',Click SCORE to begin');
-	      this.rollDice();
-	    }
-	  }, {
-	    key: 'handleB40',
-	    value: function handleB40() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      var num = this.state.message1;
-	      var this2 = this;
-	      if (this2.state.mes0 === 'Number') {
-	        this.setState({ message1: '', mes0: num }, function () {
-	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
-	        });
-	      } else if (this2.state.mes2 === 'Number') {
-	        this.setState({ message1: '', mes2: num }, function () {
-	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
-	          if (this2.state.mes1 !== 'Operator') {
-	            this2.calc(this2.state.mes0, this2.state.mes1, num);
-	          }
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'handleB41',
-	    value: function handleB41() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      var num = this.state.message2;
-	      var this2 = this;
-	      if (this2.state.mes0 === 'Number') {
-	        this.setState({ message2: '', mes0: num }, function () {
-	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
-	        });
-	      } else if (this2.state.mes2 === 'Number') {
-	        this.setState({ message2: '', mes2: num }, function () {
-	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
-	          if (this2.state.mes1 !== 'Operator') {
-	            this2.calc(this2.state.mes0, this2.state.mes1, num);
-	          }
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'handleB42',
-	    value: function handleB42() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      var num = this.state.message3;
-	      var this2 = this;
-	      if (this2.state.mes0 === 'Number') {
-	        this.setState({ message3: '', mes0: num }, function () {
-	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
-	        });
-	      } else if (this2.state.mes2 === 'Number') {
-	        this.setState({ message3: '', mes2: num }, function () {
-	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
-	          if (this2.state.mes1 !== 'Operator') {
-	            this2.calc(this2.state.mes0, this2.state.mes1, num);
-	          }
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'handleB43',
-	    value: function handleB43() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      var num = this.state.message4;
-	      var this2 = this;
-	      if (this2.state.mes0 === 'Number') {
-	        this.setState({ message4: '', mes0: num }, function () {
-	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
-	        });
-	      } else if (this2.state.mes2 === 'Number') {
-	        this.setState({ message4: '', mes2: num }, function () {
-	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
-	          if (this2.state.mes1 !== 'Operator') {
-	            this2.calc(this2.state.mes0, this2.state.mes1, num);
-	          }
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'handleOp0',
-	    value: function handleOp0() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      DES_ws.send('EQ#$42,' + group + ',' + name + ',+');
-	      var test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
-	      if (test) {
-	        this.setState({ mes1: '+' }, function () {
-	          this.calc(this.state.mes0, '+', this.state.mes2);
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'handleOp1',
-	    value: function handleOp1() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      DES_ws.send('EQ#$42,' + group + ',' + name + ',-');
-	      var test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
-	      if (test) {
-	        this.setState({ mes1: '-' }, function () {
-	          this.calc(this.state.mes0, '-', this.state.mes2);
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'handleOp2',
-	    value: function handleOp2() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      DES_ws.send('EQ#$42,' + group + ',' + name + ',*');
-	      var test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
-	      if (test) {
-	        this.setState({ mes1: '*' }, function () {
-	          this.calc(this.state.mes0, '*', this.state.mes2);
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'handleOp3',
-	    value: function handleOp3() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      DES_ws.send('EQ#$42,' + group + ',' + name + ',/');
-	      var test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
-	      if (test) {
-	        this.setState({ mes1: '/' }, function () {
-	          this.calc(this.state.mes0, '/', this.state.mes2);
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'handleOp4',
-	    value: function handleOp4() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      DES_ws.send('EQ#$42,' + group + ',' + name + ',Concat');
-	      var test = this.state.mes0 !== 'Number' && this.state.mes2 !== 'Number';
-	      if (test) {
-	        this.setState({ mes1: 'Concat' }, function () {
-	          this.calc(this.state.mes0, 'Concat', this.state.mes2);
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'handleScore',
-	    value: function handleScore() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      DES_ws.send('CY#$42,' + group + ',' + name + ',' + name);
-	    }
-	  }, {
-	    key: 'handleScore2',
-	    value: function handleScore2() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      DES_ws.send('XY#$42,' + group + ',' + name + ',' + name);
-	    }
-	  }, {
-	    key: 'handleImpossible',
-	    value: function handleImpossible() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      DES_ws.send('DY#$42,' + group + ',' + name + ',' + name);
-	    }
-	  }, {
-	    key: 'eraseMessages',
-	    value: function eraseMessages() {
-	      this.setState({
-	        chatArray: [],
-	        chatMessage: ''
-	      });
-	    }
-	  }, {
-	    key: 'handleExtra',
-	    value: function handleExtra() {
-	      this.setState({
-	        gameDisplay: 'none',
-	        extraDisplay: 'inlineBlock'
-	      });
-	    }
-	  }, {
-	    key: 'handleGame',
-	    value: function handleGame() {
-	      this.setState({
-	        gameDisplay: 'inlineBlock',
-	        extraDisplay: 'none'
-	      });
-	    }
-	  }, {
-	    key: 'showSolutionsHandler',
-	    value: function showSolutionsHandler() {
-	      var name = this.state.name;
-	      var group = this.state.group;
-	      var a = this.state.d1;
-	      var b = this.state.d2;
-	      var c = this.state.d3;
-	      var d = this.state.d4;
-	      var goal = this.state.goal;
-	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d + ',' + goal);
-	      this.setState({
-	        rollDisplay: 'none',
-	        scoreDisplay: 'none',
-	        impossibleDisplay: 'none',
-	        scoreDisplay2: 'none',
-	        showSolutionsButton: 'none',
-	        hideSolutionsButton: 'inline' });
-	    }
-	  }, {
-	    key: 'hideSolutionsHandler',
-	    value: function hideSolutionsHandler() {
-	      var _this = this;
-	      this.setState({
-	        message: 'Play forfeited for this round by opening Solutions',
-	        DS_t: 'Please wait for the next roll. You displayed solutions.',
-	        showSolutionsButton: 'inline',
-	        hideSolutionsButton: 'none',
-	        rollDisplay: 'inline',
-	        sol: []
-	      });
-	    }
-	  }, {
-	    key: 'showParamsHandler',
-	    value: function showParamsHandler() {
-	      this.setState({
-	        scoreDisplay: 'none',
-	        scoreDisplay2: 'none',
-	        impossibleDisplay: 'none',
-	        message: 'SCORE! and IMPOSSIBLE will return when you shrink the Parameters area.',
-	        showParamsButton: 'none',
-	        hideParamsButton: 'inline',
-	        paramsDiv: 'inline'
-	      });
-	    }
-	  }, {
-	    key: 'hideParamsHandler',
-	    value: function hideParamsHandler() {
-	      this.setState({
-	        paramsDisplay: 'none',
-	        scoreDisplay: 'inline',
-	        impossibleDisplay: 'inline',
-	        message: 'Back in competition.',
-	        showParamsButton: 'inline',
-	        hideParamsButton: 'none',
-	        paramsDiv: 'none'
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var buttonCol = this.state.buttonColor;
-	      var buttonCol0 = this.state.buttonColor0;
-	      var buttonCol1 = this.state.buttonColor1;
-	      var buttonCol2 = this.state.buttonColor2;
-	      var buttonCol3 = this.state.buttonColor3;
-	      var buttonCol4 = this.state.buttonColor4;
-	      var buttonCol5 = this.state.buttonColor5;
-	      var buttonCol6 = this.state.buttonColor6;
-	      var buttonCol7 = this.state.buttonColor7;
-	      var buttonCol8 = this.state.buttonColor8;
-	      var buttonCol9 = this.state.buttonColor9;
-	      var buttonCol10 = this.state.buttonColor10;
-	      var buttonCol11 = this.state.buttonColor11;
-	      var buttonCol12 = this.state.buttonColor12;
-	      var buttonCol13 = this.state.buttonColor13;
-	      var buttonCol14 = this.state.buttonColor14;
-	      var dynB = this.state.dynamicBg;
-	      var dynC = this.state.dynamicColor;
-	      var dynF = this.state.dynamicFont;
-	      var buttonDisplay = this.state.buttonDisplay;
-	      var startDisplay = this.state.startDisplay;
-	      var impossibleDisplay = this.state.impossibleDisplay;
-	      var scoreDisplay = this.state.scoreDisplay;
-	      var scoreDisplay2 = this.state.scoreDisplay2;
-	      var timerDisplay = this.state.timerDisplay;
-	      var timerDisplay2 = this.state.timerDisplay2;
-	      var rollDisplay = this.state.rollDisplay;
-	      var numDisplay = this.state.numDisplay;
-	      var solutionsDisplay = this.state.solutionsDisplay;
-	      var rollnumsDisplay = this.state.rollnumsDisplay;
-	      var rightDisplay = this.state.rightDisplay;
-	      var leftDisplay = this.state.leftDisplay;
-	      var extraDisplay = this.state.extraDisplay;
-	      var m1 = this.state.message1;
-	      var timeSize = this.state.timeSize;
-	      var paramsDisplay = this.state.paramsDisplay;
-	      var paramsButton = this.state.paramsButton;
-	      var paramsDiv = this.state.paramsDiv;
-	      var shrinkSol = this.state.shrinkSol;
-	      var shrinkPar = this.state.shrinkPar;
-	      var showSolutionsButton = this.state.showSolutionsButton;
-	      var hideSolutionsButton = this.state.hideSolutionsButton;
-	      var showParamsButton = this.state.showParamsButton;
-	      var hideParamsButton = this.state.hideParamsButton;
-	      var sol = this.state.sol;
-
-	      console.log(this);
-	      return _react2['default'].createElement(
-	        'div',
-	        { style: { backgroundColor: dynB, color: dynC, fontSize: dynF,
-	            display: rightDisplay, width: '100%', height: '100%' } },
-	        _react2['default'].createElement(
-	          'div',
-	          { style: { width: '35%', float: 'right' } },
-	          _react2['default'].createElement(ChangeColor, { key: 'ChangeColor', changeC: this.changeColor.bind(this),
-	            style: { width: 8 } }),
-	          _react2['default'].createElement(ChangeBackground, { key: 'ChangeBackground', changeB: this.changeBackground.bind(this),
-	            style: { width: 8 } }),
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement(
-	            'button',
-	            { style: { backgroundColor: '#4c1616', color: '#f2f246', textAlign: 'center',
-	                display: 'inline', paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 18 } },
-	            'Score Board ',
-	            _react2['default'].createElement('br', null),
-	            'name [score]',
-	            _react2['default'].createElement(
-	              'div',
-	              { style: { textAlign: 'left' } },
-	              ' ',
-	              this.state.scoreB.map(function (line) {
-	                return _react2['default'].createElement(
-	                  'p',
-	                  { key: line.id },
-	                  ' ',
-	                  line,
-	                  ' '
-	                );
-	              })
-	            )
-	          ),
-	          _react2['default'].createElement('br', null),
-	          ' ',
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement(
-	            'button',
-	            { style: { backgroundColor: '#4c1616', color: '#f2f246', textAlign: 'center',
-	                display: 'inlineBlock', paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 18 } },
-	            'Message Board ',
-	            _react2['default'].createElement('br', null),
-	            _react2['default'].createElement(
-	              'div',
-	              { style: { textAlign: 'left' } },
-	              ' ',
-	              this.state.chatArray.map(function (line) {
-	                return _react2['default'].createElement(
-	                  'p',
-	                  { key: line.id },
-	                  ' ',
-	                  line,
-	                  ' '
-	                );
-	              })
-	            )
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { onClick: this.eraseMessages.bind(this), style: { backgroundColor: '#4c1616', color: '#f2f246',
-	                fontSize: 14, marginLeft: 10 } },
-	            'Erase Messages'
-	          ),
-	          _react2['default'].createElement(
-	            Chat,
-	            { changeMessage: this.changeMessage.bind(this) },
-	            ' '
-	          ),
-	          _react2['default'].createElement('div', { style: { paddingBottom: 200 } })
-	        ),
-	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: this.newPlayer.bind(this), name: this.state.name,
-	          setGroup: this.setGroup.bind(this), change: this.changeItem.bind(this),
-	          group: this.state.group, hidden: this.state.hidden, info: this.state.info }),
-	        _react2['default'].createElement(
-	          'div',
-	          { style: { display: startDisplay, paddingTop: 1.1, width: '65%',
-	              paddingBottom: 0.9, fontSize: 20, marginLeft: 5 } },
-	          'Current roll:',
-	          _react2['default'].createElement(
-	            'button',
-	            { style: { backgroundColor: '#000', color: '#f00', marginLeft: 5, borderColor: '#93b1f2' } },
-	            this.state.d1,
-	            ' '
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { style: { backgroundColor: '#000', color: '#f00', borderColor: '#93b1f2' } },
-	            this.state.d2,
-	            ' '
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { style: { backgroundColor: '#000', color: '#f00', borderColor: '#93b1f2' } },
-	            this.state.d3,
-	            ' '
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { style: { backgroundColor: '#000', color: '#f00', borderColor: '#93b1f2' } },
-	            this.state.d4,
-	            ' '
-	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { marginLeft: 5 } },
-	            'Group:',
-	            _react2['default'].createElement(
-	              'button',
-	              { style: { backgroundColor: '#000', color: '#f00', marginLeft: 5, borderColor: '#93b1f2' } },
-	              this.state.group,
-	              ' '
-	            )
-	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { marginLeft: 5 } },
-	            ' ',
-	            this.state.info,
-	            ' '
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { onMouseEnter: this.hoverHandler10.bind(this), onClick: this.handleGroupA.bind(this),
-	              onMouseLeave: this.leaveHandler10.bind(this),
-	              style: { backgroundColor: buttonCol10, paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10 } },
-	            'GroupA'
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { onMouseEnter: this.hoverHandler11.bind(this), onClick: this.handleGroupB.bind(this),
-	              onMouseLeave: this.leaveHandler11.bind(this),
-	              style: { backgroundColor: buttonCol11, paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10 } },
-	            'GroupB'
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { onMouseEnter: this.hoverHandler12.bind(this), onClick: this.handleGroupC.bind(this),
-	              onMouseLeave: this.leaveHandler12.bind(this),
-	              style: { backgroundColor: buttonCol12, paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10 } },
-	            'GroupC'
-	          ),
-	          _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: this.setGroup.bind(this), hidden2: this.state.hidden2,
-	            name: this.state.name }),
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
-	            this.state.str1,
-	            ' ',
-	            _react2['default'].createElement('br', null),
-	            ' ',
-	            this.state.str2,
-	            ' ',
-	            _react2['default'].createElement('br', null),
-	            ' ',
-	            this.state.str3,
-	            ' ',
-	            _react2['default'].createElement('br', null),
-	            ' ',
-	            this.state.str4
-	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { width: '100%', backgroundColor: dynB, padding: 10 } },
-	            ' '
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { onMouseEnter: this.hoverHandler9.bind(this),
-	              onMouseLeave: this.leaveHandler9.bind(this),
-	              style: { backgroundColor: buttonCol9, display: timerDisplay, paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
-	            this.state.DS_T
-	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { display: rollnumsDisplay } },
-	            _react2['default'].createElement(
-	              'button',
-	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 } },
-	              ' ',
-	              this.state.d1,
-	              ' '
-	            ),
-	            _react2['default'].createElement(
-	              'button',
-	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 } },
-	              ' ',
-	              this.state.d2,
-	              ' '
-	            ),
-	            _react2['default'].createElement(
-	              'button',
-	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 } },
-	              ' ',
-	              this.state.d3,
-	              ' '
-	            ),
-	            _react2['default'].createElement(
-	              'button',
-	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 } },
-	              ' ',
-	              this.state.d4,
-	              ' '
-	            )
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { onMouseEnter: this.hoverHandler9.bind(this), onClick: this.handleScore.bind(this),
-	              onMouseLeave: this.leaveHandler9.bind(this),
-	              style: { backgroundColor: buttonCol9, display: scoreDisplay, paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
-	            'SCORE!'
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { onMouseEnter: this.hoverHandler9.bind(this), onClick: this.handleScore2.bind(this),
-	              onMouseLeave: this.leaveHandler9.bind(this),
-	              style: { backgroundColor: buttonCol9, display: scoreDisplay2, paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
-	            'SCORE!'
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { onMouseEnter: this.hoverHandler14.bind(this), onClick: this.handleImpossible.bind(this),
-	              onMouseLeave: this.leaveHandler14.bind(this),
-	              style: { backgroundColor: buttonCol14, display: impossibleDisplay, paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
-	            'IMPOSSIBLE'
-	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { width: '100%', backgroundColor: dynB, padding: 10 } },
-	            ' '
-	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { marginLeft: 12 } },
-	            ' ',
-	            this.state.message,
-	            ' '
-	          ),
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { width: '100%', backgroundColor: dynB, padding: 10, display: numDisplay } },
-	            _react2['default'].createElement(
-	              'button',
-	              { onMouseEnter: this.hoverHandler0.bind(this), onClick: this.handleB40.bind(this),
-	                onMouseLeave: this.leaveHandler0.bind(this),
-	                style: { backgroundColor: buttonCol0, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
-	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
-	              this.state.message1
-	            ),
-	            _react2['default'].createElement(
-	              'button',
-	              { onMouseEnter: this.hoverHandler1.bind(this), onClick: this.handleB41.bind(this),
-	                onMouseLeave: this.leaveHandler1.bind(this),
-	                style: { backgroundColor: buttonCol1, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
-	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
-	              this.state.message2
-	            ),
-	            _react2['default'].createElement(
-	              'button',
-	              { onMouseEnter: this.hoverHandler2.bind(this), onClick: this.handleB42.bind(this),
-	                onMouseLeave: this.leaveHandler2.bind(this),
-	                style: { backgroundColor: buttonCol2, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
-	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
-	              this.state.message3
-	            ),
-	            _react2['default'].createElement(
-	              'button',
-	              { onMouseEnter: this.hoverHandler3.bind(this), onClick: this.handleB43.bind(this),
-	                onMouseLeave: this.leaveHandler3.bind(this),
-	                style: { backgroundColor: buttonCol3, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
-	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
-	              this.state.message4
-	            ),
-	            _react2['default'].createElement(
-	              'div',
-	              { style: { width: '100%', padding: 10 } },
-	              ' '
-	            ),
-	            _react2['default'].createElement(
-	              'button',
-	              { onMouseEnter: this.hoverHandler4.bind(this), onClick: this.handleOp0.bind(this),
-	                onMouseLeave: this.leaveHandler4.bind(this),
-	                style: { backgroundColor: buttonCol4, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
-	                  paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
-	              '+'
-	            ),
-	            _react2['default'].createElement(
-	              'button',
-	              { onMouseEnter: this.hoverHandler5.bind(this), onClick: this.handleOp1.bind(this),
-	                onMouseLeave: this.leaveHandler5.bind(this),
-	                style: { backgroundColor: buttonCol5, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
-	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
-	              '-'
-	            ),
-	            _react2['default'].createElement(
-	              'button',
-	              { onMouseEnter: this.hoverHandler6.bind(this), onClick: this.handleOp2.bind(this),
-	                onMouseLeave: this.leaveHandler6.bind(this),
-	                style: { backgroundColor: buttonCol6, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
-	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
-	              '*'
-	            ),
-	            _react2['default'].createElement(
-	              'button',
-	              { onMouseEnter: this.hoverHandler7.bind(this), onClick: this.handleOp3.bind(this),
-	                onMouseLeave: this.leaveHandler7.bind(this),
-	                style: { backgroundColor: buttonCol7, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
-	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
-	              '/'
-	            ),
-	            _react2['default'].createElement(
-	              'button',
-	              { onMouseEnter: this.hoverHandler8.bind(this), onClick: this.handleOp4.bind(this),
-	                onMouseLeave: this.leaveHandler8.bind(this),
-	                style: { backgroundColor: buttonCol8, paddingTop: 1.1,
-	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
-	              'Concat'
-	            )
-	          ),
-	          _react2['default'].createElement('div', { style: { width: '100%', padding: 10 } }),
-	          _react2['default'].createElement(
-	            'span',
-	            { style: { paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16 } },
-	            this.state.mes0
-	          ),
-	          _react2['default'].createElement(
-	            'span',
-	            { style: { paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, fontSize: 16 } },
-	            this.state.mes1
-	          ),
-	          _react2['default'].createElement(
-	            'span',
-	            { style: { paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, fontSize: 16 } },
-	            this.state.mes2
-	          ),
-	          _react2['default'].createElement(
-	            'span',
-	            { style: { paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, fontSize: 16 } },
-	            '='
-	          ),
-	          _react2['default'].createElement(
-	            'span',
-	            { style: { paddingTop: 1.1,
-	                paddingBottom: 0.9, marginRight: 3, fontSize: 16 } },
-	            this.state.res
-	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { width: 1200, padding: 10 } },
-	            '  '
-	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { display: rollDisplay } },
-	            _react2['default'].createElement(
-	              'button',
-	              { onMouseEnter: this.hoverHandler.bind(this),
-	                onMouseLeave: this.leaveHandler.bind(this), style: { backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay },
-	                onClick: this.buttonHandler.bind(this) },
-	              'Roll'
-	            )
-	          ),
-	          _react2['default'].createElement('br', null),
-	          ' ',
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement(
-	            'button',
-	            { onClick: this.showSolutionsHandler.bind(this), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
-	            'Solutions'
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { onClick: this.hideSolutionsHandler.bind(this), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
-	            'Hide Solutions'
-	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
-	            sol.map(function (line) {
-	              return _react2['default'].createElement(
-	                'p',
-	                null,
-	                line
-	              );
-	            })
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { onClick: this.showParamsHandler.bind(this), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
-	            'Parameters'
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { onClick: this.hideParamsHandler.bind(this), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
-	            'Hide Parameters'
-	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { display: paramsDiv, width: '100%', float: 'left' } },
-	            _react2['default'].createElement(
-	              'p',
-	              null,
-	              'In this section, you can choose the numbers of sides of each of the dice, and you can also select the goal. For example, you could select 6,6,6, and 6 for the dice and 10 for the goal. A roll of 1,1,2,3 would have a solution:',
-	              _react2['default'].createElement('br', null),
-	              '1 + 1 = 2',
-	              _react2['default'].createElement('br', null),
-	              '2 + 3 = 5',
-	              _react2['default'].createElement('br', null),
-	              '2 * 5 = 10',
-	              _react2['default'].createElement('br', null),
-	              'You can click \'Solutions\' to see a computer-generated list of all the solutions.'
-	            ),
-	            _react2['default'].createElement(
-	              'p',
-	              null,
-	              'Changing parameters does not change them for other group members. You can use the chat window to coordinate a change. If other group members don\'t know that you modified the parameters in your browser, they might be very surprised to see you get a point for computing, say, the number \'18\'.'
-	            ),
-	            _react2['default'].createElement('br', null),
-	            'Sides:',
-	            _react2['default'].createElement(
-	              Sides1,
-	              { change: this.changeItem.bind(this) },
-	              ' Side 1 '
-	            ),
-	            _react2['default'].createElement(
-	              Sides2,
-	              { change: this.changeItem.bind(this) },
-	              ' Side 2 '
-	            ),
-	            _react2['default'].createElement(
-	              Sides3,
-	              { change: this.changeItem.bind(this) },
-	              ' Side 3 '
-	            ),
-	            _react2['default'].createElement(
-	              Sides4,
-	              { change: this.changeItem.bind(this) },
-	              ' Side 4 '
-	            ),
-	            _react2['default'].createElement('br', null),
-	            ' ',
-	            _react2['default'].createElement('br', null),
-	            'Goal',
-	            _react2['default'].createElement(SetGoal, { change: this.changeItem.bind(this) }),
-	            _react2['default'].createElement('br', null),
-	            ' ',
-	            _react2['default'].createElement('br', null),
-	            'Collapse Parameters Display:',
-	            _react2['default'].createElement(
-	              'button',
-	              { onClick: this.hideParamsHandler.bind(this), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                  display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
-	              'Shrink Parameters'
-	            )
-	          )
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { style: { display: extraDisplay, width: '100%', float: 'left' } },
-	          _react2['default'].createElement(
-	            'button',
-	            { onMouseEnter: this.hoverHandler5.bind(this), onMouseLeave: this.leaveHandler5.bind(this),
-	              style: { backgroundColor: buttonCol5, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
-	                paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
-	            'Return To Game'
-	          )
-	        ),
-	        _react2['default'].createElement('div', { style: { paddingBottom: 500 } })
-	      );
-	    }
-	  }]);
 
 	  return B4;
 	})(_react2['default'].Component);
@@ -14872,7 +14804,7 @@
 	'use strict';
 
 	var CallbackQueue = __webpack_require__(113);
-	var PooledClass = __webpack_require__(30);
+	var PooledClass = __webpack_require__(32);
 	var ReactCurrentOwner = __webpack_require__(11);
 	var ReactPerf = __webpack_require__(19);
 	var ReactReconciler = __webpack_require__(21);
@@ -14880,7 +14812,7 @@
 
 	var assign = __webpack_require__(23);
 	var invariant = __webpack_require__(29);
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	var dirtyComponents = [];
 	var asapCallbackQueue = CallbackQueue.getPooled();
@@ -15246,11 +15178,11 @@
 
 	var ReactCompositeComponent = __webpack_require__(133);
 	var ReactEmptyComponent = __webpack_require__(1);
-	var ReactNativeComponent = __webpack_require__(43);
+	var ReactNativeComponent = __webpack_require__(44);
 
 	var assign = __webpack_require__(23);
 	var invariant = __webpack_require__(29);
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	// To avoid a cyclic dependency, we create the final class in this module
 	var ReactCompositeComponentWrapper = function() { };
@@ -15478,7 +15410,7 @@
 
 	'use strict';
 
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	/**
 	 * Given a `prevElement` and `nextElement`, determines if the existing
@@ -15579,44 +15511,6 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * @providesModule emptyFunction
-	 */
-
-	function makeEmptyFunction(arg) {
-	  return function() {
-	    return arg;
-	  };
-	}
-
-	/**
-	 * This function accepts and discards inputs; it has no side effects. This is
-	 * primarily useful idiomatically for overridable function endpoints which
-	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
-	 */
-	function emptyFunction() {}
-
-	emptyFunction.thatReturns = makeEmptyFunction;
-	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-	emptyFunction.thatReturnsThis = function() { return this; };
-	emptyFunction.thatReturnsArgument = function(arg) { return arg; };
-
-	module.exports = emptyFunction;
-
-
-/***/ },
-/* 89 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
 	 * @providesModule ReactRef
 	 */
 
@@ -15681,6 +15575,44 @@
 
 
 /***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule emptyFunction
+	 */
+
+	function makeEmptyFunction(arg) {
+	  return function() {
+	    return arg;
+	  };
+	}
+
+	/**
+	 * This function accepts and discards inputs; it has no side effects. This is
+	 * primarily useful idiomatically for overridable function endpoints which
+	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+	 */
+	function emptyFunction() {}
+
+	emptyFunction.thatReturns = makeEmptyFunction;
+	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+	emptyFunction.thatReturnsThis = function() { return this; };
+	emptyFunction.thatReturnsArgument = function(arg) { return arg; };
+
+	module.exports = emptyFunction;
+
+
+/***/ },
 /* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -15698,13 +15630,13 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(30);
+	var PooledClass = __webpack_require__(32);
 	var CallbackQueue = __webpack_require__(113);
 	var ReactPutListenerQueue = __webpack_require__(115);
 	var Transaction = __webpack_require__(104);
 
 	var assign = __webpack_require__(23);
-	var emptyFunction = __webpack_require__(88);
+	var emptyFunction = __webpack_require__(89);
 
 	/**
 	 * Provides a `CallbackQueue` queue for collecting `onDOMReady` callbacks
@@ -15885,7 +15817,7 @@
 	var dangerousStyleValue = __webpack_require__(137);
 	var hyphenateStyleName = __webpack_require__(138);
 	var memoizeStringOnly = __webpack_require__(139);
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	var processStyleName = memoizeStringOnly(function(styleName) {
 	  return hyphenateStyleName(styleName);
@@ -16711,7 +16643,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(30);
+	var PooledClass = __webpack_require__(32);
 
 	var assign = __webpack_require__(23);
 	var getTextContentAccessor = __webpack_require__(144);
@@ -17186,10 +17118,10 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(30);
+	var PooledClass = __webpack_require__(32);
 
 	var assign = __webpack_require__(23);
-	var emptyFunction = __webpack_require__(88);
+	var emptyFunction = __webpack_require__(89);
 	var getEventTarget = __webpack_require__(110);
 
 	/**
@@ -17718,6 +17650,37 @@
 /* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule AutoFocusMixin
+	 * @typechecks static-only
+	 */
+
+	'use strict';
+
+	var focusNode = __webpack_require__(146);
+
+	var AutoFocusMixin = {
+	  componentDidMount: function() {
+	    if (this.props.autoFocus) {
+	      focusNode(this.getDOMNode());
+	    }
+	  }
+	};
+
+	module.exports = AutoFocusMixin;
+
+
+/***/ },
+/* 106 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright 2014-2015, Facebook, Inc.
 	 * All rights reserved.
@@ -17773,37 +17736,6 @@
 	module.exports = LocalEventTrapMixin;
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
-
-/***/ },
-/* 106 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule AutoFocusMixin
-	 * @typechecks static-only
-	 */
-
-	'use strict';
-
-	var focusNode = __webpack_require__(146);
-
-	var AutoFocusMixin = {
-	  componentDidMount: function() {
-	    if (this.props.autoFocus) {
-	      focusNode(this.getDOMNode());
-	    }
-	  }
-	};
-
-	module.exports = AutoFocusMixin;
-
 
 /***/ },
 /* 107 */
@@ -18128,7 +18060,7 @@
 	 * @typechecks
 	 */
 
-	var emptyFunction = __webpack_require__(88);
+	var emptyFunction = __webpack_require__(89);
 
 	/**
 	 * Upstream version of event listener. Does not take into account specific
@@ -18358,7 +18290,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(30);
+	var PooledClass = __webpack_require__(32);
 
 	var assign = __webpack_require__(23);
 	var invariant = __webpack_require__(29);
@@ -18600,7 +18532,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(30);
+	var PooledClass = __webpack_require__(32);
 	var ReactBrowserEventEmitter = __webpack_require__(79);
 
 	var assign = __webpack_require__(23);
@@ -19890,20 +19822,20 @@
 	var ReactCurrentOwner = __webpack_require__(11);
 	var ReactElement = __webpack_require__(12);
 	var ReactElementValidator = __webpack_require__(13);
-	var ReactInstanceMap = __webpack_require__(37);
-	var ReactLifeCycle = __webpack_require__(38);
-	var ReactNativeComponent = __webpack_require__(43);
+	var ReactInstanceMap = __webpack_require__(38);
+	var ReactLifeCycle = __webpack_require__(39);
+	var ReactNativeComponent = __webpack_require__(44);
 	var ReactPerf = __webpack_require__(19);
-	var ReactPropTypeLocations = __webpack_require__(39);
-	var ReactPropTypeLocationNames = __webpack_require__(35);
+	var ReactPropTypeLocations = __webpack_require__(40);
+	var ReactPropTypeLocationNames = __webpack_require__(36);
 	var ReactReconciler = __webpack_require__(21);
 	var ReactUpdates = __webpack_require__(82);
 
 	var assign = __webpack_require__(23);
-	var emptyObject = __webpack_require__(42);
+	var emptyObject = __webpack_require__(35);
 	var invariant = __webpack_require__(29);
 	var shouldUpdateReactComponent = __webpack_require__(87);
-	var warning = __webpack_require__(33);
+	var warning = __webpack_require__(31);
 
 	function getDeclarationErrorAddendum(component) {
 	  var owner = component._currentElement._owner || null;
@@ -21235,7 +21167,7 @@
 
 	'use strict';
 
-	var keyMirror = __webpack_require__(40);
+	var keyMirror = __webpack_require__(41);
 
 	/**
 	 * When a component's children are updated, a series of update configuration
@@ -21638,7 +21570,7 @@
 	var ExecutionEnvironment = __webpack_require__(26);
 
 	var createNodesFromMarkup = __webpack_require__(155);
-	var emptyFunction = __webpack_require__(88);
+	var emptyFunction = __webpack_require__(89);
 	var getMarkupWrap = __webpack_require__(156);
 	var invariant = __webpack_require__(29);
 
@@ -22299,8 +22231,8 @@
 
 	'use strict';
 
-	var traverseAllChildren = __webpack_require__(32);
-	var warning = __webpack_require__(33);
+	var traverseAllChildren = __webpack_require__(34);
+	var warning = __webpack_require__(31);
 
 	/**
 	 * @param {function} traverseContext Context passed through traversal.
