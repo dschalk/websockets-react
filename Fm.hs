@@ -3,7 +3,6 @@ module Fm where
 import Data.List
 import qualified Data.Text     as T
 import System.Random
--- import Data.Aeson
 
 toDouble :: Int -> Double
 toDouble x = (read (show x)) :: Double
@@ -50,11 +49,7 @@ notWhole :: Double -> Bool
 notWhole x = toDouble (fRound x) /= x
 
 cat :: Double -> Double -> Double
-cat l m   | m < 0  = 3.1
-          | l == 0  = 3.1
-          | notWhole l  = 3.1
-          | notWhole m  = 3.1
-          | otherwise  = read ((show $ fRound l) ++ (show $ fRound m)) :: Double
+cat x y = 10.0*x + y
 
 g :: (Double -> Double -> Double) -> String
 g x         | x 3 2 == 5 = " + "
