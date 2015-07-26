@@ -608,11 +608,11 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(32);
-	var ReactFragment = __webpack_require__(33);
+	var PooledClass = __webpack_require__(30);
+	var ReactFragment = __webpack_require__(31);
 
-	var traverseAllChildren = __webpack_require__(34);
-	var warning = __webpack_require__(31);
+	var traverseAllChildren = __webpack_require__(32);
+	var warning = __webpack_require__(33);
 
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
 	var threeArgumentPooler = PooledClass.threeArgumentPooler;
@@ -764,10 +764,10 @@
 
 	'use strict';
 
-	var ReactUpdateQueue = __webpack_require__(30);
+	var ReactUpdateQueue = __webpack_require__(34);
 
 	var invariant = __webpack_require__(29);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	/**
 	 * Base class helpers for the updating state of a component.
@@ -929,13 +929,13 @@
 	var ReactLifeCycle = __webpack_require__(39);
 	var ReactPropTypeLocations = __webpack_require__(40);
 	var ReactPropTypeLocationNames = __webpack_require__(36);
-	var ReactUpdateQueue = __webpack_require__(30);
+	var ReactUpdateQueue = __webpack_require__(34);
 
 	var assign = __webpack_require__(23);
 	var invariant = __webpack_require__(29);
 	var keyMirror = __webpack_require__(41);
 	var keyOf = __webpack_require__(42);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	var MIXINS_KEY = keyOf({mixins: null});
 
@@ -1872,7 +1872,7 @@
 
 	var assign = __webpack_require__(23);
 	var emptyObject = __webpack_require__(35);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	var didWarn = false;
 
@@ -1993,7 +1993,7 @@
 	var ReactCurrentOwner = __webpack_require__(11);
 
 	var assign = __webpack_require__(23);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	var RESERVED_PROPS = {
 	  key: true,
@@ -2308,15 +2308,15 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(12);
-	var ReactFragment = __webpack_require__(33);
+	var ReactFragment = __webpack_require__(31);
 	var ReactPropTypeLocations = __webpack_require__(40);
 	var ReactPropTypeLocationNames = __webpack_require__(36);
 	var ReactCurrentOwner = __webpack_require__(11);
-	var ReactNativeComponent = __webpack_require__(44);
+	var ReactNativeComponent = __webpack_require__(43);
 
-	var getIteratorFn = __webpack_require__(45);
+	var getIteratorFn = __webpack_require__(44);
 	var invariant = __webpack_require__(29);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	function getDeclarationErrorAddendum() {
 	  if (ReactCurrentOwner.current) {
@@ -2772,7 +2772,7 @@
 	var ReactElement = __webpack_require__(12);
 	var ReactElementValidator = __webpack_require__(13);
 
-	var mapObject = __webpack_require__(43);
+	var mapObject = __webpack_require__(45);
 
 	/**
 	 * Create a factory that creates HTML tag elements.
@@ -3583,7 +3583,7 @@
 	var ReactMarkupChecksum = __webpack_require__(81);
 	var ReactPerf = __webpack_require__(19);
 	var ReactReconciler = __webpack_require__(21);
-	var ReactUpdateQueue = __webpack_require__(30);
+	var ReactUpdateQueue = __webpack_require__(34);
 	var ReactUpdates = __webpack_require__(82);
 
 	var emptyObject = __webpack_require__(35);
@@ -3593,7 +3593,7 @@
 	var invariant = __webpack_require__(29);
 	var setInnerHTML = __webpack_require__(86);
 	var shouldUpdateReactComponent = __webpack_require__(87);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
 
@@ -4574,10 +4574,10 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(12);
-	var ReactFragment = __webpack_require__(33);
+	var ReactFragment = __webpack_require__(31);
 	var ReactPropTypeLocationNames = __webpack_require__(36);
 
-	var emptyFunction = __webpack_require__(89);
+	var emptyFunction = __webpack_require__(88);
 
 	/**
 	 * Collection of methods that allow declaration and validation of props that are
@@ -4926,7 +4926,7 @@
 
 	'use strict';
 
-	var ReactRef = __webpack_require__(88);
+	var ReactRef = __webpack_require__(89);
 	var ReactElementValidator = __webpack_require__(13);
 
 	/**
@@ -5198,7 +5198,7 @@
 
 	var invariant = __webpack_require__(29);
 	var isNode = __webpack_require__(91);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	/**
 	 * Returns the DOM node rendered by this element.
@@ -5578,6 +5578,635 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule PooledClass
+	 */
+
+	'use strict';
+
+	var invariant = __webpack_require__(29);
+
+	/**
+	 * Static poolers. Several custom versions for each potential number of
+	 * arguments. A completely generic pooler is easy to implement, but would
+	 * require accessing the `arguments` object. In each of these, `this` refers to
+	 * the Class itself, not an instance. If any others are needed, simply add them
+	 * here, or in their own files.
+	 */
+	var oneArgumentPooler = function(copyFieldsFrom) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, copyFieldsFrom);
+	    return instance;
+	  } else {
+	    return new Klass(copyFieldsFrom);
+	  }
+	};
+
+	var twoArgumentPooler = function(a1, a2) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, a1, a2);
+	    return instance;
+	  } else {
+	    return new Klass(a1, a2);
+	  }
+	};
+
+	var threeArgumentPooler = function(a1, a2, a3) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, a1, a2, a3);
+	    return instance;
+	  } else {
+	    return new Klass(a1, a2, a3);
+	  }
+	};
+
+	var fiveArgumentPooler = function(a1, a2, a3, a4, a5) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, a1, a2, a3, a4, a5);
+	    return instance;
+	  } else {
+	    return new Klass(a1, a2, a3, a4, a5);
+	  }
+	};
+
+	var standardReleaser = function(instance) {
+	  var Klass = this;
+	  ("production" !== process.env.NODE_ENV ? invariant(
+	    instance instanceof Klass,
+	    'Trying to release an instance into a pool of a different type.'
+	  ) : invariant(instance instanceof Klass));
+	  if (instance.destructor) {
+	    instance.destructor();
+	  }
+	  if (Klass.instancePool.length < Klass.poolSize) {
+	    Klass.instancePool.push(instance);
+	  }
+	};
+
+	var DEFAULT_POOL_SIZE = 10;
+	var DEFAULT_POOLER = oneArgumentPooler;
+
+	/**
+	 * Augments `CopyConstructor` to be a poolable class, augmenting only the class
+	 * itself (statically) not adding any prototypical fields. Any CopyConstructor
+	 * you give this may have a `poolSize` property, and will look for a
+	 * prototypical `destructor` on instances (optional).
+	 *
+	 * @param {Function} CopyConstructor Constructor that can be used to reset.
+	 * @param {Function} pooler Customizable pooler.
+	 */
+	var addPoolingTo = function(CopyConstructor, pooler) {
+	  var NewKlass = CopyConstructor;
+	  NewKlass.instancePool = [];
+	  NewKlass.getPooled = pooler || DEFAULT_POOLER;
+	  if (!NewKlass.poolSize) {
+	    NewKlass.poolSize = DEFAULT_POOL_SIZE;
+	  }
+	  NewKlass.release = standardReleaser;
+	  return NewKlass;
+	};
+
+	var PooledClass = {
+	  addPoolingTo: addPoolingTo,
+	  oneArgumentPooler: oneArgumentPooler,
+	  twoArgumentPooler: twoArgumentPooler,
+	  threeArgumentPooler: threeArgumentPooler,
+	  fiveArgumentPooler: fiveArgumentPooler
+	};
+
+	module.exports = PooledClass;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+
+/***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	* @providesModule ReactFragment
+	*/
+
+	'use strict';
+
+	var ReactElement = __webpack_require__(12);
+
+	var warning = __webpack_require__(33);
+
+	/**
+	 * We used to allow keyed objects to serve as a collection of ReactElements,
+	 * or nested sets. This allowed us a way to explicitly key a set a fragment of
+	 * components. This is now being replaced with an opaque data structure.
+	 * The upgrade path is to call React.addons.createFragment({ key: value }) to
+	 * create a keyed fragment. The resulting data structure is opaque, for now.
+	 */
+
+	if ("production" !== process.env.NODE_ENV) {
+	  var fragmentKey = '_reactFragment';
+	  var didWarnKey = '_reactDidWarn';
+	  var canWarnForReactFragment = false;
+
+	  try {
+	    // Feature test. Don't even try to issue this warning if we can't use
+	    // enumerable: false.
+
+	    var dummy = function() {
+	      return 1;
+	    };
+
+	    Object.defineProperty(
+	      {},
+	      fragmentKey,
+	      {enumerable: false, value: true}
+	    );
+
+	    Object.defineProperty(
+	      {},
+	      'key',
+	      {enumerable: true, get: dummy}
+	    );
+
+	    canWarnForReactFragment = true;
+	  } catch (x) { }
+
+	  var proxyPropertyAccessWithWarning = function(obj, key) {
+	    Object.defineProperty(obj, key, {
+	      enumerable: true,
+	      get: function() {
+	        ("production" !== process.env.NODE_ENV ? warning(
+	          this[didWarnKey],
+	          'A ReactFragment is an opaque type. Accessing any of its ' +
+	          'properties is deprecated. Pass it to one of the React.Children ' +
+	          'helpers.'
+	        ) : null);
+	        this[didWarnKey] = true;
+	        return this[fragmentKey][key];
+	      },
+	      set: function(value) {
+	        ("production" !== process.env.NODE_ENV ? warning(
+	          this[didWarnKey],
+	          'A ReactFragment is an immutable opaque type. Mutating its ' +
+	          'properties is deprecated.'
+	        ) : null);
+	        this[didWarnKey] = true;
+	        this[fragmentKey][key] = value;
+	      }
+	    });
+	  };
+
+	  var issuedWarnings = {};
+
+	  var didWarnForFragment = function(fragment) {
+	    // We use the keys and the type of the value as a heuristic to dedupe the
+	    // warning to avoid spamming too much.
+	    var fragmentCacheKey = '';
+	    for (var key in fragment) {
+	      fragmentCacheKey += key + ':' + (typeof fragment[key]) + ',';
+	    }
+	    var alreadyWarnedOnce = !!issuedWarnings[fragmentCacheKey];
+	    issuedWarnings[fragmentCacheKey] = true;
+	    return alreadyWarnedOnce;
+	  };
+	}
+
+	var ReactFragment = {
+	  // Wrap a keyed object in an opaque proxy that warns you if you access any
+	  // of its properties.
+	  create: function(object) {
+	    if ("production" !== process.env.NODE_ENV) {
+	      if (typeof object !== 'object' || !object || Array.isArray(object)) {
+	        ("production" !== process.env.NODE_ENV ? warning(
+	          false,
+	          'React.addons.createFragment only accepts a single object.',
+	          object
+	        ) : null);
+	        return object;
+	      }
+	      if (ReactElement.isValidElement(object)) {
+	        ("production" !== process.env.NODE_ENV ? warning(
+	          false,
+	          'React.addons.createFragment does not accept a ReactElement ' +
+	          'without a wrapper object.'
+	        ) : null);
+	        return object;
+	      }
+	      if (canWarnForReactFragment) {
+	        var proxy = {};
+	        Object.defineProperty(proxy, fragmentKey, {
+	          enumerable: false,
+	          value: object
+	        });
+	        Object.defineProperty(proxy, didWarnKey, {
+	          writable: true,
+	          enumerable: false,
+	          value: false
+	        });
+	        for (var key in object) {
+	          proxyPropertyAccessWithWarning(proxy, key);
+	        }
+	        Object.preventExtensions(proxy);
+	        return proxy;
+	      }
+	    }
+	    return object;
+	  },
+	  // Extract the original keyed object from the fragment opaque type. Warn if
+	  // a plain object is passed here.
+	  extract: function(fragment) {
+	    if ("production" !== process.env.NODE_ENV) {
+	      if (canWarnForReactFragment) {
+	        if (!fragment[fragmentKey]) {
+	          ("production" !== process.env.NODE_ENV ? warning(
+	            didWarnForFragment(fragment),
+	            'Any use of a keyed object should be wrapped in ' +
+	            'React.addons.createFragment(object) before being passed as a ' +
+	            'child.'
+	          ) : null);
+	          return fragment;
+	        }
+	        return fragment[fragmentKey];
+	      }
+	    }
+	    return fragment;
+	  },
+	  // Check if this is a fragment and if so, extract the keyed object. If it
+	  // is a fragment-like object, warn that it should be wrapped. Ignore if we
+	  // can't determine what kind of object this is.
+	  extractIfFragment: function(fragment) {
+	    if ("production" !== process.env.NODE_ENV) {
+	      if (canWarnForReactFragment) {
+	        // If it is the opaque type, return the keyed object.
+	        if (fragment[fragmentKey]) {
+	          return fragment[fragmentKey];
+	        }
+	        // Otherwise, check each property if it has an element, if it does
+	        // it is probably meant as a fragment, so we can warn early. Defer,
+	        // the warning to extract.
+	        for (var key in fragment) {
+	          if (fragment.hasOwnProperty(key) &&
+	              ReactElement.isValidElement(fragment[key])) {
+	            // This looks like a fragment object, we should provide an
+	            // early warning.
+	            return ReactFragment.extract(fragment);
+	          }
+	        }
+	      }
+	    }
+	    return fragment;
+	  }
+	};
+
+	module.exports = ReactFragment;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule traverseAllChildren
+	 */
+
+	'use strict';
+
+	var ReactElement = __webpack_require__(12);
+	var ReactFragment = __webpack_require__(31);
+	var ReactInstanceHandles = __webpack_require__(17);
+
+	var getIteratorFn = __webpack_require__(44);
+	var invariant = __webpack_require__(29);
+	var warning = __webpack_require__(33);
+
+	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
+	var SUBSEPARATOR = ':';
+
+	/**
+	 * TODO: Test that a single child and an array with one item have the same key
+	 * pattern.
+	 */
+
+	var userProvidedKeyEscaperLookup = {
+	  '=': '=0',
+	  '.': '=1',
+	  ':': '=2'
+	};
+
+	var userProvidedKeyEscapeRegex = /[=.:]/g;
+
+	var didWarnAboutMaps = false;
+
+	function userProvidedKeyEscaper(match) {
+	  return userProvidedKeyEscaperLookup[match];
+	}
+
+	/**
+	 * Generate a key string that identifies a component within a set.
+	 *
+	 * @param {*} component A component that could contain a manual key.
+	 * @param {number} index Index that is used if a manual key is not provided.
+	 * @return {string}
+	 */
+	function getComponentKey(component, index) {
+	  if (component && component.key != null) {
+	    // Explicit key
+	    return wrapUserProvidedKey(component.key);
+	  }
+	  // Implicit key determined by the index in the set
+	  return index.toString(36);
+	}
+
+	/**
+	 * Escape a component key so that it is safe to use in a reactid.
+	 *
+	 * @param {*} key Component key to be escaped.
+	 * @return {string} An escaped string.
+	 */
+	function escapeUserProvidedKey(text) {
+	  return ('' + text).replace(
+	    userProvidedKeyEscapeRegex,
+	    userProvidedKeyEscaper
+	  );
+	}
+
+	/**
+	 * Wrap a `key` value explicitly provided by the user to distinguish it from
+	 * implicitly-generated keys generated by a component's index in its parent.
+	 *
+	 * @param {string} key Value of a user-provided `key` attribute
+	 * @return {string}
+	 */
+	function wrapUserProvidedKey(key) {
+	  return '$' + escapeUserProvidedKey(key);
+	}
+
+	/**
+	 * @param {?*} children Children tree container.
+	 * @param {!string} nameSoFar Name of the key path so far.
+	 * @param {!number} indexSoFar Number of children encountered until this point.
+	 * @param {!function} callback Callback to invoke with each child found.
+	 * @param {?*} traverseContext Used to pass information throughout the traversal
+	 * process.
+	 * @return {!number} The number of children in this subtree.
+	 */
+	function traverseAllChildrenImpl(
+	  children,
+	  nameSoFar,
+	  indexSoFar,
+	  callback,
+	  traverseContext
+	) {
+	  var type = typeof children;
+
+	  if (type === 'undefined' || type === 'boolean') {
+	    // All of the above are perceived as null.
+	    children = null;
+	  }
+
+	  if (children === null ||
+	      type === 'string' ||
+	      type === 'number' ||
+	      ReactElement.isValidElement(children)) {
+	    callback(
+	      traverseContext,
+	      children,
+	      // If it's the only child, treat the name as if it was wrapped in an array
+	      // so that it's consistent if the number of children grows.
+	      nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar,
+	      indexSoFar
+	    );
+	    return 1;
+	  }
+
+	  var child, nextName, nextIndex;
+	  var subtreeCount = 0; // Count of children found in the current subtree.
+
+	  if (Array.isArray(children)) {
+	    for (var i = 0; i < children.length; i++) {
+	      child = children[i];
+	      nextName = (
+	        (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
+	        getComponentKey(child, i)
+	      );
+	      nextIndex = indexSoFar + subtreeCount;
+	      subtreeCount += traverseAllChildrenImpl(
+	        child,
+	        nextName,
+	        nextIndex,
+	        callback,
+	        traverseContext
+	      );
+	    }
+	  } else {
+	    var iteratorFn = getIteratorFn(children);
+	    if (iteratorFn) {
+	      var iterator = iteratorFn.call(children);
+	      var step;
+	      if (iteratorFn !== children.entries) {
+	        var ii = 0;
+	        while (!(step = iterator.next()).done) {
+	          child = step.value;
+	          nextName = (
+	            (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
+	            getComponentKey(child, ii++)
+	          );
+	          nextIndex = indexSoFar + subtreeCount;
+	          subtreeCount += traverseAllChildrenImpl(
+	            child,
+	            nextName,
+	            nextIndex,
+	            callback,
+	            traverseContext
+	          );
+	        }
+	      } else {
+	        if ("production" !== process.env.NODE_ENV) {
+	          ("production" !== process.env.NODE_ENV ? warning(
+	            didWarnAboutMaps,
+	            'Using Maps as children is not yet fully supported. It is an ' +
+	            'experimental feature that might be removed. Convert it to a ' +
+	            'sequence / iterable of keyed ReactElements instead.'
+	          ) : null);
+	          didWarnAboutMaps = true;
+	        }
+	        // Iterator will provide entry [k,v] tuples rather than values.
+	        while (!(step = iterator.next()).done) {
+	          var entry = step.value;
+	          if (entry) {
+	            child = entry[1];
+	            nextName = (
+	              (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
+	              wrapUserProvidedKey(entry[0]) + SUBSEPARATOR +
+	              getComponentKey(child, 0)
+	            );
+	            nextIndex = indexSoFar + subtreeCount;
+	            subtreeCount += traverseAllChildrenImpl(
+	              child,
+	              nextName,
+	              nextIndex,
+	              callback,
+	              traverseContext
+	            );
+	          }
+	        }
+	      }
+	    } else if (type === 'object') {
+	      ("production" !== process.env.NODE_ENV ? invariant(
+	        children.nodeType !== 1,
+	        'traverseAllChildren(...): Encountered an invalid child; DOM ' +
+	        'elements are not valid children of React components.'
+	      ) : invariant(children.nodeType !== 1));
+	      var fragment = ReactFragment.extract(children);
+	      for (var key in fragment) {
+	        if (fragment.hasOwnProperty(key)) {
+	          child = fragment[key];
+	          nextName = (
+	            (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
+	            wrapUserProvidedKey(key) + SUBSEPARATOR +
+	            getComponentKey(child, 0)
+	          );
+	          nextIndex = indexSoFar + subtreeCount;
+	          subtreeCount += traverseAllChildrenImpl(
+	            child,
+	            nextName,
+	            nextIndex,
+	            callback,
+	            traverseContext
+	          );
+	        }
+	      }
+	    }
+	  }
+
+	  return subtreeCount;
+	}
+
+	/**
+	 * Traverses children that are typically specified as `props.children`, but
+	 * might also be specified through attributes:
+	 *
+	 * - `traverseAllChildren(this.props.children, ...)`
+	 * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
+	 *
+	 * The `traverseContext` is an optional argument that is passed through the
+	 * entire traversal. It can be used to store accumulations or anything else that
+	 * the callback might find relevant.
+	 *
+	 * @param {?*} children Children tree object.
+	 * @param {!function} callback To invoke upon traversing each child.
+	 * @param {?*} traverseContext Context for traversal.
+	 * @return {!number} The number of children in this subtree.
+	 */
+	function traverseAllChildren(children, callback, traverseContext) {
+	  if (children == null) {
+	    return 0;
+	  }
+
+	  return traverseAllChildrenImpl(children, '', 0, callback, traverseContext);
+	}
+
+	module.exports = traverseAllChildren;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2014-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule warning
+	 */
+
+	"use strict";
+
+	var emptyFunction = __webpack_require__(88);
+
+	/**
+	 * Similar to invariant but only logs a warning if the condition is not met.
+	 * This can be used to log issues in development environments in critical
+	 * paths. Removing the logging code for production environments will keep the
+	 * same logic and follow the same code paths.
+	 */
+
+	var warning = emptyFunction;
+
+	if ("production" !== process.env.NODE_ENV) {
+	  warning = function(condition, format ) {for (var args=[],$__0=2,$__1=arguments.length;$__0<$__1;$__0++) args.push(arguments[$__0]);
+	    if (format === undefined) {
+	      throw new Error(
+	        '`warning(condition, format, ...args)` requires a warning ' +
+	        'message argument'
+	      );
+	    }
+
+	    if (format.length < 10 || /^[s\W]*$/.test(format)) {
+	      throw new Error(
+	        'The warning format should be able to uniquely identify this ' +
+	        'warning. Please, use a more descriptive format than: ' + format
+	      );
+	    }
+
+	    if (format.indexOf('Failed Composite propType: ') === 0) {
+	      return; // Ignore CompositeComponent proptype check.
+	    }
+
+	    if (!condition) {
+	      var argIndex = 0;
+	      var message = 'Warning: ' + format.replace(/%s/g, function()  {return args[argIndex++];});
+	      console.warn(message);
+	      try {
+	        // --- Welcome to debugging React ---
+	        // This error was thrown as a convenience so that you can use this stack
+	        // to find the callsite that caused this warning to fire.
+	        throw new Error(message);
+	      } catch(x) {}
+	    }
+	  };
+	}
+
+	module.exports = warning;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright 2015, Facebook, Inc.
 	 * All rights reserved.
 	 *
@@ -5598,7 +6227,7 @@
 
 	var assign = __webpack_require__(23);
 	var invariant = __webpack_require__(29);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	function enqueueUpdate(internalInstance) {
 	  if (internalInstance !== ReactLifeCycle.currentlyMountingInstance) {
@@ -5872,635 +6501,6 @@
 	};
 
 	module.exports = ReactUpdateQueue;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
-
-/***/ },
-/* 31 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2014-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule warning
-	 */
-
-	"use strict";
-
-	var emptyFunction = __webpack_require__(89);
-
-	/**
-	 * Similar to invariant but only logs a warning if the condition is not met.
-	 * This can be used to log issues in development environments in critical
-	 * paths. Removing the logging code for production environments will keep the
-	 * same logic and follow the same code paths.
-	 */
-
-	var warning = emptyFunction;
-
-	if ("production" !== process.env.NODE_ENV) {
-	  warning = function(condition, format ) {for (var args=[],$__0=2,$__1=arguments.length;$__0<$__1;$__0++) args.push(arguments[$__0]);
-	    if (format === undefined) {
-	      throw new Error(
-	        '`warning(condition, format, ...args)` requires a warning ' +
-	        'message argument'
-	      );
-	    }
-
-	    if (format.length < 10 || /^[s\W]*$/.test(format)) {
-	      throw new Error(
-	        'The warning format should be able to uniquely identify this ' +
-	        'warning. Please, use a more descriptive format than: ' + format
-	      );
-	    }
-
-	    if (format.indexOf('Failed Composite propType: ') === 0) {
-	      return; // Ignore CompositeComponent proptype check.
-	    }
-
-	    if (!condition) {
-	      var argIndex = 0;
-	      var message = 'Warning: ' + format.replace(/%s/g, function()  {return args[argIndex++];});
-	      console.warn(message);
-	      try {
-	        // --- Welcome to debugging React ---
-	        // This error was thrown as a convenience so that you can use this stack
-	        // to find the callsite that caused this warning to fire.
-	        throw new Error(message);
-	      } catch(x) {}
-	    }
-	  };
-	}
-
-	module.exports = warning;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
-
-/***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule PooledClass
-	 */
-
-	'use strict';
-
-	var invariant = __webpack_require__(29);
-
-	/**
-	 * Static poolers. Several custom versions for each potential number of
-	 * arguments. A completely generic pooler is easy to implement, but would
-	 * require accessing the `arguments` object. In each of these, `this` refers to
-	 * the Class itself, not an instance. If any others are needed, simply add them
-	 * here, or in their own files.
-	 */
-	var oneArgumentPooler = function(copyFieldsFrom) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, copyFieldsFrom);
-	    return instance;
-	  } else {
-	    return new Klass(copyFieldsFrom);
-	  }
-	};
-
-	var twoArgumentPooler = function(a1, a2) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2);
-	  }
-	};
-
-	var threeArgumentPooler = function(a1, a2, a3) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2, a3);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2, a3);
-	  }
-	};
-
-	var fiveArgumentPooler = function(a1, a2, a3, a4, a5) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2, a3, a4, a5);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2, a3, a4, a5);
-	  }
-	};
-
-	var standardReleaser = function(instance) {
-	  var Klass = this;
-	  ("production" !== process.env.NODE_ENV ? invariant(
-	    instance instanceof Klass,
-	    'Trying to release an instance into a pool of a different type.'
-	  ) : invariant(instance instanceof Klass));
-	  if (instance.destructor) {
-	    instance.destructor();
-	  }
-	  if (Klass.instancePool.length < Klass.poolSize) {
-	    Klass.instancePool.push(instance);
-	  }
-	};
-
-	var DEFAULT_POOL_SIZE = 10;
-	var DEFAULT_POOLER = oneArgumentPooler;
-
-	/**
-	 * Augments `CopyConstructor` to be a poolable class, augmenting only the class
-	 * itself (statically) not adding any prototypical fields. Any CopyConstructor
-	 * you give this may have a `poolSize` property, and will look for a
-	 * prototypical `destructor` on instances (optional).
-	 *
-	 * @param {Function} CopyConstructor Constructor that can be used to reset.
-	 * @param {Function} pooler Customizable pooler.
-	 */
-	var addPoolingTo = function(CopyConstructor, pooler) {
-	  var NewKlass = CopyConstructor;
-	  NewKlass.instancePool = [];
-	  NewKlass.getPooled = pooler || DEFAULT_POOLER;
-	  if (!NewKlass.poolSize) {
-	    NewKlass.poolSize = DEFAULT_POOL_SIZE;
-	  }
-	  NewKlass.release = standardReleaser;
-	  return NewKlass;
-	};
-
-	var PooledClass = {
-	  addPoolingTo: addPoolingTo,
-	  oneArgumentPooler: oneArgumentPooler,
-	  twoArgumentPooler: twoArgumentPooler,
-	  threeArgumentPooler: threeArgumentPooler,
-	  fiveArgumentPooler: fiveArgumentPooler
-	};
-
-	module.exports = PooledClass;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
-
-/***/ },
-/* 33 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	* @providesModule ReactFragment
-	*/
-
-	'use strict';
-
-	var ReactElement = __webpack_require__(12);
-
-	var warning = __webpack_require__(31);
-
-	/**
-	 * We used to allow keyed objects to serve as a collection of ReactElements,
-	 * or nested sets. This allowed us a way to explicitly key a set a fragment of
-	 * components. This is now being replaced with an opaque data structure.
-	 * The upgrade path is to call React.addons.createFragment({ key: value }) to
-	 * create a keyed fragment. The resulting data structure is opaque, for now.
-	 */
-
-	if ("production" !== process.env.NODE_ENV) {
-	  var fragmentKey = '_reactFragment';
-	  var didWarnKey = '_reactDidWarn';
-	  var canWarnForReactFragment = false;
-
-	  try {
-	    // Feature test. Don't even try to issue this warning if we can't use
-	    // enumerable: false.
-
-	    var dummy = function() {
-	      return 1;
-	    };
-
-	    Object.defineProperty(
-	      {},
-	      fragmentKey,
-	      {enumerable: false, value: true}
-	    );
-
-	    Object.defineProperty(
-	      {},
-	      'key',
-	      {enumerable: true, get: dummy}
-	    );
-
-	    canWarnForReactFragment = true;
-	  } catch (x) { }
-
-	  var proxyPropertyAccessWithWarning = function(obj, key) {
-	    Object.defineProperty(obj, key, {
-	      enumerable: true,
-	      get: function() {
-	        ("production" !== process.env.NODE_ENV ? warning(
-	          this[didWarnKey],
-	          'A ReactFragment is an opaque type. Accessing any of its ' +
-	          'properties is deprecated. Pass it to one of the React.Children ' +
-	          'helpers.'
-	        ) : null);
-	        this[didWarnKey] = true;
-	        return this[fragmentKey][key];
-	      },
-	      set: function(value) {
-	        ("production" !== process.env.NODE_ENV ? warning(
-	          this[didWarnKey],
-	          'A ReactFragment is an immutable opaque type. Mutating its ' +
-	          'properties is deprecated.'
-	        ) : null);
-	        this[didWarnKey] = true;
-	        this[fragmentKey][key] = value;
-	      }
-	    });
-	  };
-
-	  var issuedWarnings = {};
-
-	  var didWarnForFragment = function(fragment) {
-	    // We use the keys and the type of the value as a heuristic to dedupe the
-	    // warning to avoid spamming too much.
-	    var fragmentCacheKey = '';
-	    for (var key in fragment) {
-	      fragmentCacheKey += key + ':' + (typeof fragment[key]) + ',';
-	    }
-	    var alreadyWarnedOnce = !!issuedWarnings[fragmentCacheKey];
-	    issuedWarnings[fragmentCacheKey] = true;
-	    return alreadyWarnedOnce;
-	  };
-	}
-
-	var ReactFragment = {
-	  // Wrap a keyed object in an opaque proxy that warns you if you access any
-	  // of its properties.
-	  create: function(object) {
-	    if ("production" !== process.env.NODE_ENV) {
-	      if (typeof object !== 'object' || !object || Array.isArray(object)) {
-	        ("production" !== process.env.NODE_ENV ? warning(
-	          false,
-	          'React.addons.createFragment only accepts a single object.',
-	          object
-	        ) : null);
-	        return object;
-	      }
-	      if (ReactElement.isValidElement(object)) {
-	        ("production" !== process.env.NODE_ENV ? warning(
-	          false,
-	          'React.addons.createFragment does not accept a ReactElement ' +
-	          'without a wrapper object.'
-	        ) : null);
-	        return object;
-	      }
-	      if (canWarnForReactFragment) {
-	        var proxy = {};
-	        Object.defineProperty(proxy, fragmentKey, {
-	          enumerable: false,
-	          value: object
-	        });
-	        Object.defineProperty(proxy, didWarnKey, {
-	          writable: true,
-	          enumerable: false,
-	          value: false
-	        });
-	        for (var key in object) {
-	          proxyPropertyAccessWithWarning(proxy, key);
-	        }
-	        Object.preventExtensions(proxy);
-	        return proxy;
-	      }
-	    }
-	    return object;
-	  },
-	  // Extract the original keyed object from the fragment opaque type. Warn if
-	  // a plain object is passed here.
-	  extract: function(fragment) {
-	    if ("production" !== process.env.NODE_ENV) {
-	      if (canWarnForReactFragment) {
-	        if (!fragment[fragmentKey]) {
-	          ("production" !== process.env.NODE_ENV ? warning(
-	            didWarnForFragment(fragment),
-	            'Any use of a keyed object should be wrapped in ' +
-	            'React.addons.createFragment(object) before being passed as a ' +
-	            'child.'
-	          ) : null);
-	          return fragment;
-	        }
-	        return fragment[fragmentKey];
-	      }
-	    }
-	    return fragment;
-	  },
-	  // Check if this is a fragment and if so, extract the keyed object. If it
-	  // is a fragment-like object, warn that it should be wrapped. Ignore if we
-	  // can't determine what kind of object this is.
-	  extractIfFragment: function(fragment) {
-	    if ("production" !== process.env.NODE_ENV) {
-	      if (canWarnForReactFragment) {
-	        // If it is the opaque type, return the keyed object.
-	        if (fragment[fragmentKey]) {
-	          return fragment[fragmentKey];
-	        }
-	        // Otherwise, check each property if it has an element, if it does
-	        // it is probably meant as a fragment, so we can warn early. Defer,
-	        // the warning to extract.
-	        for (var key in fragment) {
-	          if (fragment.hasOwnProperty(key) &&
-	              ReactElement.isValidElement(fragment[key])) {
-	            // This looks like a fragment object, we should provide an
-	            // early warning.
-	            return ReactFragment.extract(fragment);
-	          }
-	        }
-	      }
-	    }
-	    return fragment;
-	  }
-	};
-
-	module.exports = ReactFragment;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
-
-/***/ },
-/* 34 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule traverseAllChildren
-	 */
-
-	'use strict';
-
-	var ReactElement = __webpack_require__(12);
-	var ReactFragment = __webpack_require__(33);
-	var ReactInstanceHandles = __webpack_require__(17);
-
-	var getIteratorFn = __webpack_require__(45);
-	var invariant = __webpack_require__(29);
-	var warning = __webpack_require__(31);
-
-	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
-	var SUBSEPARATOR = ':';
-
-	/**
-	 * TODO: Test that a single child and an array with one item have the same key
-	 * pattern.
-	 */
-
-	var userProvidedKeyEscaperLookup = {
-	  '=': '=0',
-	  '.': '=1',
-	  ':': '=2'
-	};
-
-	var userProvidedKeyEscapeRegex = /[=.:]/g;
-
-	var didWarnAboutMaps = false;
-
-	function userProvidedKeyEscaper(match) {
-	  return userProvidedKeyEscaperLookup[match];
-	}
-
-	/**
-	 * Generate a key string that identifies a component within a set.
-	 *
-	 * @param {*} component A component that could contain a manual key.
-	 * @param {number} index Index that is used if a manual key is not provided.
-	 * @return {string}
-	 */
-	function getComponentKey(component, index) {
-	  if (component && component.key != null) {
-	    // Explicit key
-	    return wrapUserProvidedKey(component.key);
-	  }
-	  // Implicit key determined by the index in the set
-	  return index.toString(36);
-	}
-
-	/**
-	 * Escape a component key so that it is safe to use in a reactid.
-	 *
-	 * @param {*} key Component key to be escaped.
-	 * @return {string} An escaped string.
-	 */
-	function escapeUserProvidedKey(text) {
-	  return ('' + text).replace(
-	    userProvidedKeyEscapeRegex,
-	    userProvidedKeyEscaper
-	  );
-	}
-
-	/**
-	 * Wrap a `key` value explicitly provided by the user to distinguish it from
-	 * implicitly-generated keys generated by a component's index in its parent.
-	 *
-	 * @param {string} key Value of a user-provided `key` attribute
-	 * @return {string}
-	 */
-	function wrapUserProvidedKey(key) {
-	  return '$' + escapeUserProvidedKey(key);
-	}
-
-	/**
-	 * @param {?*} children Children tree container.
-	 * @param {!string} nameSoFar Name of the key path so far.
-	 * @param {!number} indexSoFar Number of children encountered until this point.
-	 * @param {!function} callback Callback to invoke with each child found.
-	 * @param {?*} traverseContext Used to pass information throughout the traversal
-	 * process.
-	 * @return {!number} The number of children in this subtree.
-	 */
-	function traverseAllChildrenImpl(
-	  children,
-	  nameSoFar,
-	  indexSoFar,
-	  callback,
-	  traverseContext
-	) {
-	  var type = typeof children;
-
-	  if (type === 'undefined' || type === 'boolean') {
-	    // All of the above are perceived as null.
-	    children = null;
-	  }
-
-	  if (children === null ||
-	      type === 'string' ||
-	      type === 'number' ||
-	      ReactElement.isValidElement(children)) {
-	    callback(
-	      traverseContext,
-	      children,
-	      // If it's the only child, treat the name as if it was wrapped in an array
-	      // so that it's consistent if the number of children grows.
-	      nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar,
-	      indexSoFar
-	    );
-	    return 1;
-	  }
-
-	  var child, nextName, nextIndex;
-	  var subtreeCount = 0; // Count of children found in the current subtree.
-
-	  if (Array.isArray(children)) {
-	    for (var i = 0; i < children.length; i++) {
-	      child = children[i];
-	      nextName = (
-	        (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
-	        getComponentKey(child, i)
-	      );
-	      nextIndex = indexSoFar + subtreeCount;
-	      subtreeCount += traverseAllChildrenImpl(
-	        child,
-	        nextName,
-	        nextIndex,
-	        callback,
-	        traverseContext
-	      );
-	    }
-	  } else {
-	    var iteratorFn = getIteratorFn(children);
-	    if (iteratorFn) {
-	      var iterator = iteratorFn.call(children);
-	      var step;
-	      if (iteratorFn !== children.entries) {
-	        var ii = 0;
-	        while (!(step = iterator.next()).done) {
-	          child = step.value;
-	          nextName = (
-	            (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
-	            getComponentKey(child, ii++)
-	          );
-	          nextIndex = indexSoFar + subtreeCount;
-	          subtreeCount += traverseAllChildrenImpl(
-	            child,
-	            nextName,
-	            nextIndex,
-	            callback,
-	            traverseContext
-	          );
-	        }
-	      } else {
-	        if ("production" !== process.env.NODE_ENV) {
-	          ("production" !== process.env.NODE_ENV ? warning(
-	            didWarnAboutMaps,
-	            'Using Maps as children is not yet fully supported. It is an ' +
-	            'experimental feature that might be removed. Convert it to a ' +
-	            'sequence / iterable of keyed ReactElements instead.'
-	          ) : null);
-	          didWarnAboutMaps = true;
-	        }
-	        // Iterator will provide entry [k,v] tuples rather than values.
-	        while (!(step = iterator.next()).done) {
-	          var entry = step.value;
-	          if (entry) {
-	            child = entry[1];
-	            nextName = (
-	              (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
-	              wrapUserProvidedKey(entry[0]) + SUBSEPARATOR +
-	              getComponentKey(child, 0)
-	            );
-	            nextIndex = indexSoFar + subtreeCount;
-	            subtreeCount += traverseAllChildrenImpl(
-	              child,
-	              nextName,
-	              nextIndex,
-	              callback,
-	              traverseContext
-	            );
-	          }
-	        }
-	      }
-	    } else if (type === 'object') {
-	      ("production" !== process.env.NODE_ENV ? invariant(
-	        children.nodeType !== 1,
-	        'traverseAllChildren(...): Encountered an invalid child; DOM ' +
-	        'elements are not valid children of React components.'
-	      ) : invariant(children.nodeType !== 1));
-	      var fragment = ReactFragment.extract(children);
-	      for (var key in fragment) {
-	        if (fragment.hasOwnProperty(key)) {
-	          child = fragment[key];
-	          nextName = (
-	            (nameSoFar !== '' ? nameSoFar + SUBSEPARATOR : SEPARATOR) +
-	            wrapUserProvidedKey(key) + SUBSEPARATOR +
-	            getComponentKey(child, 0)
-	          );
-	          nextIndex = indexSoFar + subtreeCount;
-	          subtreeCount += traverseAllChildrenImpl(
-	            child,
-	            nextName,
-	            nextIndex,
-	            callback,
-	            traverseContext
-	          );
-	        }
-	      }
-	    }
-	  }
-
-	  return subtreeCount;
-	}
-
-	/**
-	 * Traverses children that are typically specified as `props.children`, but
-	 * might also be specified through attributes:
-	 *
-	 * - `traverseAllChildren(this.props.children, ...)`
-	 * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
-	 *
-	 * The `traverseContext` is an optional argument that is passed through the
-	 * entire traversal. It can be used to store accumulations or anything else that
-	 * the callback might find relevant.
-	 *
-	 * @param {?*} children Children tree object.
-	 * @param {!function} callback To invoke upon traversing each child.
-	 * @param {?*} traverseContext Context for traversal.
-	 * @return {!number} The number of children in this subtree.
-	 */
-	function traverseAllChildren(children, callback, traverseContext) {
-	  if (children == null) {
-	    return 0;
-	  }
-
-	  return traverseAllChildrenImpl(children, '', 0, callback, traverseContext);
-	}
-
-	module.exports = traverseAllChildren;
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
 
@@ -6822,63 +6822,6 @@
 /* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule mapObject
-	 */
-
-	'use strict';
-
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-	/**
-	 * Executes the provided `callback` once for each enumerable own property in the
-	 * object and constructs a new object from the results. The `callback` is
-	 * invoked with three arguments:
-	 *
-	 *  - the property value
-	 *  - the property name
-	 *  - the object being traversed
-	 *
-	 * Properties that are added after the call to `mapObject` will not be visited
-	 * by `callback`. If the values of existing properties are changed, the value
-	 * passed to `callback` will be the value at the time `mapObject` visits them.
-	 * Properties that are deleted before being visited are not visited.
-	 *
-	 * @grep function objectMap()
-	 * @grep function objMap()
-	 *
-	 * @param {?object} object
-	 * @param {function} callback
-	 * @param {*} context
-	 * @return {?object}
-	 */
-	function mapObject(object, callback, context) {
-	  if (!object) {
-	    return null;
-	  }
-	  var result = {};
-	  for (var name in object) {
-	    if (hasOwnProperty.call(object, name)) {
-	      result[name] = callback.call(context, object[name], name, object);
-	    }
-	  }
-	  return result;
-	}
-
-	module.exports = mapObject;
-
-
-/***/ },
-/* 44 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright 2014-2015, Facebook, Inc.
 	 * All rights reserved.
@@ -6986,7 +6929,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
 
 /***/ },
-/* 45 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7034,6 +6977,63 @@
 
 
 /***/ },
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule mapObject
+	 */
+
+	'use strict';
+
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+	/**
+	 * Executes the provided `callback` once for each enumerable own property in the
+	 * object and constructs a new object from the results. The `callback` is
+	 * invoked with three arguments:
+	 *
+	 *  - the property value
+	 *  - the property name
+	 *  - the object being traversed
+	 *
+	 * Properties that are added after the call to `mapObject` will not be visited
+	 * by `callback`. If the values of existing properties are changed, the value
+	 * passed to `callback` will be the value at the time `mapObject` visits them.
+	 * Properties that are deleted before being visited are not visited.
+	 *
+	 * @grep function objectMap()
+	 * @grep function objMap()
+	 *
+	 * @param {?object} object
+	 * @param {function} callback
+	 * @param {*} context
+	 * @return {?object}
+	 */
+	function mapObject(object, callback, context) {
+	  if (!object) {
+	    return null;
+	  }
+	  var result = {};
+	  for (var name in object) {
+	    if (hasOwnProperty.call(object, name)) {
+	      result[name] = callback.call(context, object[name], name, object);
+	    }
+	  }
+	  return result;
+	}
+
+	module.exports = mapObject;
+
+
+/***/ },
 /* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -7054,7 +7054,7 @@
 	var DOMProperty = __webpack_require__(78);
 
 	var quoteAttributeValueForBrowser = __webpack_require__(92);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	function shouldIgnoreValue(name, value) {
 	  return value == null ||
@@ -7314,7 +7314,7 @@
 	var invariant = __webpack_require__(29);
 	var isEventSupported = __webpack_require__(95);
 	var keyOf = __webpack_require__(42);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	var deleteListener = ReactBrowserEventEmitter.deleteListener;
 	var listenTo = ReactBrowserEventEmitter.listenTo;
@@ -9172,7 +9172,7 @@
 
 	var EventConstants = __webpack_require__(28);
 
-	var emptyFunction = __webpack_require__(89);
+	var emptyFunction = __webpack_require__(88);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
 
@@ -9270,7 +9270,7 @@
 	var Transaction = __webpack_require__(104);
 
 	var assign = __webpack_require__(23);
-	var emptyFunction = __webpack_require__(89);
+	var emptyFunction = __webpack_require__(88);
 
 	var RESET_BATCHED_UPDATES = {
 	  initialize: emptyFunction,
@@ -9918,7 +9918,7 @@
 	var ReactClass = __webpack_require__(9);
 	var ReactElement = __webpack_require__(12);
 
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	var option = ReactElement.createFactory('option');
 
@@ -10162,7 +10162,7 @@
 	var assign = __webpack_require__(23);
 	var invariant = __webpack_require__(29);
 
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	var textarea = ReactElement.createFactory('textarea');
 
@@ -10297,7 +10297,7 @@
 
 	var EventListener = __webpack_require__(109);
 	var ExecutionEnvironment = __webpack_require__(26);
-	var PooledClass = __webpack_require__(32);
+	var PooledClass = __webpack_require__(30);
 	var ReactInstanceHandles = __webpack_require__(17);
 	var ReactMount = __webpack_require__(18);
 	var ReactUpdates = __webpack_require__(82);
@@ -10487,7 +10487,7 @@
 	var ReactClass = __webpack_require__(9);
 	var ReactEmptyComponent = __webpack_require__(1);
 	var ReactBrowserEventEmitter = __webpack_require__(79);
-	var ReactNativeComponent = __webpack_require__(44);
+	var ReactNativeComponent = __webpack_require__(43);
 	var ReactDOMComponent = __webpack_require__(48);
 	var ReactPerf = __webpack_require__(19);
 	var ReactRootIndex = __webpack_require__(77);
@@ -10529,7 +10529,7 @@
 	'use strict';
 
 	var CallbackQueue = __webpack_require__(113);
-	var PooledClass = __webpack_require__(32);
+	var PooledClass = __webpack_require__(30);
 	var ReactBrowserEventEmitter = __webpack_require__(79);
 	var ReactInputSelection = __webpack_require__(114);
 	var ReactPutListenerQueue = __webpack_require__(115);
@@ -10958,7 +10958,7 @@
 
 	var invariant = __webpack_require__(29);
 	var keyOf = __webpack_require__(42);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
 
@@ -12491,9 +12491,9 @@
 	  value: true
 	});
 
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -12513,20 +12513,13 @@
 
 	exports.B4 = B4;
 
-	var Button = (function () {
-	  function Button() {
-	    _classCallCheck(this, Button);
+	var Button = function Button() {
+	  _classCallCheck(this, Button);
 
-	    this.shouldComponentUpdate = _reactPureRenderFunction2['default'];
-	  }
+	  this.shouldComponentUpdate = _reactPureRenderFunction2['default'];
 
-	  _createClass(Button, [{
-	    key: 'render',
-	    value: function render() {}
-	  }]);
-
-	  return Button;
-	})();
+	  this.render = function () {};
+	};
 
 	exports['default'] = Button;
 
@@ -12561,8 +12554,8 @@
 	          'label',
 	          null,
 	          'New Group',
-	          _react2['default'].createElement('input', { type: 'text', id: 'cow', onKeyDown: _this2.handleEnter,
-	            onClick: _this2.click, style: { width: 90, backgroundColor: '#d8d17d', marginLeft: 10 } })
+	          _react2['default'].createElement('input', { type: 'text', id: 'cow', onKeyDown: _this2.handleEnter.bind(_this2),
+	            onClick: _this2.click.bind(_this2), style: { width: 90, backgroundColor: '#d8d17d', marginLeft: 10 } })
 	        )
 	      );
 	    };
@@ -12616,7 +12609,7 @@
 	        _react2['default'].createElement(
 	          'label',
 	          null,
-	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this3.handleEnter, onClick: _this3.click,
+	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this3.handleEnter.bind(_this3), onClick: _this3.click.bind(_this3),
 	            style: { width: 230, backgroundColor: '#d8d17d' } })
 	        )
 	      );
@@ -12660,7 +12653,7 @@
 
 	    this.render = function () {
 	      console.log(_this4);
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this4.handleEnter, onClick: _this4.click,
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this4.handleEnter.bind(_this4), onClick: _this4.click.bind(_this4),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -12703,7 +12696,7 @@
 
 	    this.render = function () {
 	      console.log(_this5);
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this5.handleEnter, onClick: _this5.click,
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this5.handleEnter.bind(_this5), onClick: _this5.click.bind(_this5),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -12746,7 +12739,7 @@
 
 	    this.render = function () {
 	      console.log(_this6);
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this6.handleEnter, onClick: _this6.click,
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this6.handleEnter.bind(_this6), onClick: _this6.click.bind(_this6),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -12789,7 +12782,7 @@
 
 	    this.render = function () {
 	      console.log(_this7);
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this7.handleEnter, onClick: _this7.click,
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this7.handleEnter.bind(_this7), onClick: _this7.click.bind(_this7),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -12832,7 +12825,7 @@
 
 	    this.render = function () {
 	      console.log(_this8);
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this8.handleEnter, onClick: _this8.click,
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this8.handleEnter.bind(_this8), onClick: _this8.click.bind(_this8),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -12881,7 +12874,7 @@
 	        _react2['default'].createElement(
 	          'label',
 	          null,
-	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this9.handleEnter, onClick: _this9.click,
+	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this9.handleEnter.bind(_this9), onClick: _this9.click.bind(_this9),
 	            style: { width: 70, backgroundColor: '#d8d17d' } }),
 	          'Font Color'
 	        )
@@ -12930,7 +12923,7 @@
 	        _react2['default'].createElement(
 	          'label',
 	          null,
-	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this10.handleEnter, onClick: _this10.click,
+	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this10.handleEnter.bind(_this10), onClick: _this10.click.bind(_this10),
 	            style: { width: 70, backgroundColor: '#d8d17d' } }),
 	          'Background Color'
 	        )
@@ -12988,7 +12981,7 @@
 	      }
 	      return _react2['default'].createElement(
 	        'div',
-	        { onClick: _this11.clickHandler },
+	        { onClick: _this11.clickHandler.bind(_this11) },
 	        _react2['default'].createElement(
 	          'div',
 	          null,
@@ -13042,13 +13035,13 @@
 	      return _react2['default'].createElement(
 	        'div',
 	        null,
-	        _react2['default'].createElement('input', { autoFocus: true, type: 'text', name: name, onChange: _this12.handleChange,
+	        _react2['default'].createElement('input', { autoFocus: true, type: 'text', name: name, onChange: _this12.handleChange.bind(_this12),
 	          style: { backgroundColor: '#d8d17d' },
-	          onKeyDown: _this12.handleEnter }),
+	          onKeyDown: _this12.handleEnter.bind(_this12) }),
 	        _this12.props.name,
 	        _react2['default'].createElement(
 	          'button',
-	          { onClick: _this12.click, style: { backgroundColor: '#d8d17d', color: '#f00' } },
+	          { onClick: _this12.click.bind(_this12), style: { backgroundColor: '#d8d17d', color: '#f00' } },
 	          'Join'
 	        )
 	      );
@@ -13100,13 +13093,6 @@
 	    this.changeBackground = function (color) {
 	      _this13.setState({
 	        dynamicBg: color
-	      });
-	    };
-
-	    this.changeColor = function (col) {
-	      _this13.setState({
-	        dynamicColor: col,
-	        sty: { color: col, width: 50, marginLeft: 30, padding: 10 }
 	      });
 	    };
 
@@ -13253,12 +13239,6 @@
 	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + goal);
 	    };
 
-	    this.delay = function (ms) {
-	      return new Promise(function (resolve, reject) {
-	        setTimeout(resolve, ms);
-	      });
-	    };
-
 	    this.displayHandler = function () {
 	      console.log('############$$$$$$$$$$$$$$$$$$___ IN displayHandler ___');
 	    };
@@ -13335,151 +13315,6 @@
 	        chatArray: []
 	      });
 	      DES_ws.send('CO#$42,' + group + ',' + name + ',' + x);
-	    };
-
-	    this.setNumberAr = function (result, str, test) {
-	      var w1 = _this13.state.message1;
-	      var w2 = _this13.state.message2;
-	      var w3 = _this13.state.message3;
-	      var w4 = _this13.state.message4;
-	      var startArray = [w1, w2, w3, w4, result];
-	      _this13.newNums(result, str, test, teststartArray);
-	    };
-
-	    this.calc = function (mes0, mes1, mes2) {
-	      var that = _this13;
-	      var res = 0;
-	      var delay = _this13.delay;
-	      var n = _this13.state.N;
-	      var resP = _this13.state.resPrevious;
-	      var ar5 = [mes0, mes2];
-	      var test = resP === mes0 || resP === mes2;
-	      _this13.setState({
-	        test: test
-	      });
-	      switch (mes1) {
-	        case '+':
-	          that.comp(parseFloat(mes0) + parseFloat(mes2), mes0, mes1, mes2, test);
-	          break;
-	        case '-':
-	          that.comp(parseFloat(mes0) - parseFloat(mes2), mes0, mes1, mes2, test);
-	          break;
-	        case '*':
-	          that.comp(parseFloat(mes0) * parseFloat(mes2), mes0, mes1, mes2, test);;
-	          break;
-	        case '/':
-	          that.comp(parseFloat(mes0) / parseFloat(mes2), mes0, mes1, mes2, test);
-	          break;t;
-	        case 'Concat':
-	          that.comp(parseFloat(mes0 + mes2), mes0, mes1, mes2, test);
-	          break;
-	        default:
-	          'operator not selected';
-	      }
-	    };
-
-	    this.comp = function (result, mes0, mes1, mes2, test) {
-	      var str = '' + mes0 + ' ' + mes1 + ' ' + mes2 + ' = ' + result;
-	      _this13.setState({
-	        STRING: str,
-	        resPrevious: result.toString(),
-	        message: '',
-	        colorB42: '#ff0000'
-	      });
-	      var w1 = _this13.state.message1;
-	      var w2 = _this13.state.message2;
-	      var w3 = _this13.state.message3;
-	      var w4 = _this13.state.message4;
-	      var startArray = [w1, w2, w3, w4, result];
-	      _this13.newNums(result, str, test, startArray);
-	    };
-
-	    this.newNums = function (result, str, test, numbers) {
-	      var j = 0;
-	      var gr = _this13.state.group;
-	      var ar = [];
-	      var clock = '';
-	      var name = _this13.state.name;
-	      var impossibleClicker = _this13.state.impossibleClicker;
-	      var interrupt = _this13.state.interrupt;
-	      var test2 = _this13.state.score || _this13.state.impossible;
-	      var goal = 1 * _this13.state.goal; // '1*' and '==' is technically overkill, but seems like insurance.
-
-	      for (var k in numbers) {
-	        if (numbers[k] !== '' && numbers[k] !== undefined) {
-	          ar[j] = numbers[k];
-	          j += 1;
-	        }
-	      }
-	      if (j === 3) {
-	        DES_ws.send('FQ#$42,' + gr + ',' + name + ',' + str);
-	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',' + ar[2] + ',');
-	        _this13.setState({ message: 'You must use the red number in order to score in this round.' });
-	        if (test2) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10');
-	        } else {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!');
-	        }
-	      } else if (j === 2) {
-	        DES_ws.send('GQ#$42,' + gr + ',' + name + ',' + str);
-	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',,');
-	        if (result == goal && test && test2 && !interrupt) {
-	          _this13.setState({ DS_T: -1 });
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name);
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
-	        } else if (result == goal && test && test2 && interrupt) {
-	          _this13.setState({ DS_T: -1 });
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + '. Two points deducted from ' + impossibleClicker);
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
-	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');
-	        } else if (test2) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10');
-	        } else {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!');
-	        }
-	      } else if (j === 1) {
-	        DES_ws.send('HQ#$42,' + gr + ',' + name + ',' + str);
-	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',,,');
-	        if (result == goal && test && test2 && !interrupt) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name);
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
-	        } else if (result == goal && test2) {
-	          _this13.setState({ DS_T: -1 });
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + '. Two points deducted from ' + impossibleClicker);
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
-	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');
-	        } else if (result != goal && test && test2 && !interrupt) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',The result is not 20. ' + name + ' lost one point.');
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
-	        } else if (result != goal && test && test2 && interrupt) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',The result is not 20. ' + name + ' lost one point.\n                      One point awarded to ' + impossibleClicker + '.');
-	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',1');
-	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
-	        }
-	      }
-	    };
-
-	    this.newPlayer = function (x) {
-	      _this13.setState({ name: x });
-	      DES_ws.send('CC#42$' + x);
-	    };
-
-	    this.changeItem = function (x) {
-	      _this13.setState(x, function () {
-	        this.setState(x);
-	      });
-	    };
-
-	    this.changeMessage = function (x) {
-	      var name = _this13.state.name;
-	      var gr = _this13.state.group;
-	      DES_ws.send('CD#$42,' + gr + ',' + name + ',&@3#^7$' + name + ': ' + x);
 	    };
 
 	    this.logMessage = function () {
@@ -13576,7 +13411,7 @@
 	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
 	        _this13.setState({ mes1: '+' }, function () {
-	          this.calc(this.state.mes0, '+', this.state.mes2);
+	          _this13.calc(_this13.state.mes0, '+', _this13.state.mes2);
 	        });
 	      }
 	    };
@@ -13588,7 +13423,7 @@
 	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
 	        _this13.setState({ mes1: '-' }, function () {
-	          this.calc(this.state.mes0, '-', this.state.mes2);
+	          _this13.calc(_this13.state.mes0, '-', _this13.state.mes2);
 	        });
 	      }
 	    };
@@ -13600,7 +13435,7 @@
 	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
 	        _this13.setState({ mes1: '*' }, function () {
-	          this.calc(this.state.mes0, '*', this.state.mes2);
+	          _this13.calc(_this13.state.mes0, '*', _this13.state.mes2);
 	        });
 	      }
 	    };
@@ -13612,7 +13447,7 @@
 	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
 	        _this13.setState({ mes1: '/' }, function () {
-	          this.calc(this.state.mes0, '/', this.state.mes2);
+	          _this13.calc(_this13.state.mes0, '/', _this13.state.mes2);
 	        });
 	      }
 	    };
@@ -13624,7 +13459,7 @@
 	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
 	        _this13.setState({ mes1: 'Concat' }, function () {
-	          this.calc(this.state.mes0, 'Concat', this.state.mes2);
+	          _this13.calc(_this13.state.mes0, 'Concat', _this13.state.mes2);
 	        });
 	      }
 	    };
@@ -13837,13 +13672,13 @@
 	          ),
 	          _react2['default'].createElement(
 	            Chat,
-	            { changeMessage: _this13.changeMessage },
+	            { changeMessage: _this13.changeMessage.bind(_this13) },
 	            ' '
 	          ),
 	          _react2['default'].createElement('div', { style: { paddingBottom: 200 } })
 	        ),
-	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: _this13.newPlayer, name: _this13.state.name,
-	          setGroup: _this13.setGroup, change: _this13.changeItem,
+	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: _this13.newPlayer.bind(_this13), name: _this13.state.name,
+	          setGroup: _this13.setGroup.bind(_this13), change: _this13.changeItem.bind(_this13),
 	          group: _this13.state.group, hidden: _this13.state.hidden, info: _this13.state.info }),
 	        _react2['default'].createElement(
 	          'div',
@@ -13894,29 +13729,29 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onMouseEnter: _this13.hoverHandler10, onClick: _this13.handleGroupA,
-	              onMouseLeave: _this13.leaveHandler10,
+	            { onMouseEnter: _this13.hoverHandler10.bind(_this13), onClick: _this13.handleGroupA.bind(_this13),
+	              onMouseLeave: _this13.leaveHandler10.bind(_this13),
 	              style: { backgroundColor: buttonCol10, paddingTop: 1.1,
 	                paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10 } },
 	            'GroupA'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onMouseEnter: _this13.hoverHandler11, onClick: _this13.handleGroupB,
-	              onMouseLeave: _this13.leaveHandler11,
+	            { onMouseEnter: _this13.hoverHandler11.bind(_this13), onClick: _this13.handleGroupB.bind(_this13),
+	              onMouseLeave: _this13.leaveHandler11.bind(_this13),
 	              style: { backgroundColor: buttonCol11, paddingTop: 1.1,
 	                paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10 } },
 	            'GroupB'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onMouseEnter: _this13.hoverHandler12, onClick: _this13.handleGroupC,
-	              onMouseLeave: _this13.leaveHandler12,
+	            { onMouseEnter: _this13.hoverHandler12.bind(_this13), onClick: _this13.handleGroupC.bind(_this13),
+	              onMouseLeave: _this13.leaveHandler12.bind(_this13),
 	              style: { backgroundColor: buttonCol12, paddingTop: 1.1,
 	                paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10 } },
 	            'GroupC'
 	          ),
-	          _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: _this13.setGroup, hidden2: _this13.state.hidden2,
+	          _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: _this13.setGroup.bind(_this13), hidden2: _this13.state.hidden2,
 	            name: _this13.state.name }),
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
@@ -13944,8 +13779,8 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onMouseEnter: _this13.hoverHandler9,
-	              onMouseLeave: _this13.leaveHandler9,
+	            { onMouseEnter: _this13.hoverHandler9.bind(_this13),
+	              onMouseLeave: _this13.leaveHandler9.bind(_this13),
 	              style: { backgroundColor: buttonCol9, display: timerDisplay, paddingTop: 1.1,
 	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
 	            _this13.state.DS_T
@@ -13984,24 +13819,24 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onMouseEnter: _this13.hoverHandler9, onClick: _this13.handleScore,
-	              onMouseLeave: _this13.leaveHandler9,
+	            { onMouseEnter: _this13.hoverHandler9.bind(_this13), onClick: _this13.handleScore.bind(_this13),
+	              onMouseLeave: _this13.leaveHandler9.bind(_this13),
 	              style: { backgroundColor: buttonCol9, display: scoreDisplay, paddingTop: 1.1,
 	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
 	            'SCORE!'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onMouseEnter: _this13.hoverHandler9, onClick: _this13.handleScore2,
-	              onMouseLeave: _this13.leaveHandler9,
+	            { onMouseEnter: _this13.hoverHandler9.bind(_this13), onClick: _this13.handleScore2.bind(_this13),
+	              onMouseLeave: _this13.leaveHandler9.bind(_this13),
 	              style: { backgroundColor: buttonCol9, display: scoreDisplay2, paddingTop: 1.1,
 	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
 	            'SCORE!'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onMouseEnter: _this13.hoverHandler14, onClick: _this13.handleImpossible,
-	              onMouseLeave: _this13.leaveHandler14,
+	            { onMouseEnter: _this13.hoverHandler14.bind(_this13), onClick: _this13.handleImpossible.bind(_this13),
+	              onMouseLeave: _this13.leaveHandler14.bind(_this13),
 	              style: { backgroundColor: buttonCol14, display: impossibleDisplay, paddingTop: 1.1,
 	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
 	            'IMPOSSIBLE'
@@ -14024,32 +13859,32 @@
 	            { style: { width: '100%', backgroundColor: dynB, padding: 10, display: numDisplay } },
 	            _react2['default'].createElement(
 	              'button',
-	              { onMouseEnter: _this13.hoverHandler0, onClick: _this13.handleB40,
-	                onMouseLeave: _this13.leaveHandler0,
+	              { onMouseEnter: _this13.hoverHandler0.bind(_this13), onClick: _this13.handleB40,
+	                onMouseLeave: _this13.leaveHandler0.bind(_this13),
 	                style: { backgroundColor: buttonCol0, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
 	              _this13.state.message1
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onMouseEnter: _this13.hoverHandler1, onClick: _this13.handleB41,
-	                onMouseLeave: _this13.leaveHandler1,
+	              { onMouseEnter: _this13.hoverHandler1.bind(_this13), onClick: _this13.handleB41,
+	                onMouseLeave: _this13.leaveHandler1.bind(_this13),
 	                style: { backgroundColor: buttonCol1, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
 	              _this13.state.message2
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onMouseEnter: _this13.hoverHandler2, onClick: _this13.handleB42,
-	                onMouseLeave: _this13.leaveHandler2,
+	              { onMouseEnter: _this13.hoverHandler2.bind(_this13), onClick: _this13.handleB42,
+	                onMouseLeave: _this13.leaveHandler2.bind(_this13),
 	                style: { backgroundColor: buttonCol2, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
 	              _this13.state.message3
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onMouseEnter: _this13.hoverHandler3, onClick: _this13.handleB43,
-	                onMouseLeave: _this13.leaveHandler3,
+	              { onMouseEnter: _this13.hoverHandler3.bind(_this13), onClick: _this13.handleB43,
+	                onMouseLeave: _this13.leaveHandler3.bind(_this13),
 	                style: { backgroundColor: buttonCol3, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
 	              _this13.state.message4
@@ -14061,40 +13896,40 @@
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onMouseEnter: _this13.hoverHandler4, onClick: _this13.handleOp0,
-	                onMouseLeave: _this13.leaveHandler4,
+	              { onMouseEnter: _this13.hoverHandler4.bind(_this13), onClick: _this13.handleOp0,
+	                onMouseLeave: _this13.leaveHandler4.bind(_this13),
 	                style: { backgroundColor: buttonCol4, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                  paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize } },
 	              '+'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onMouseEnter: _this13.hoverHandler5, onClick: _this13.handleOp1,
-	                onMouseLeave: _this13.leaveHandler5,
+	              { onMouseEnter: _this13.hoverHandler5.bind(_this13), onClick: _this13.handleOp1,
+	                onMouseLeave: _this13.leaveHandler5.bind(_this13),
 	                style: { backgroundColor: buttonCol5, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
 	              '-'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onMouseEnter: _this13.hoverHandler6, onClick: _this13.handleOp2,
-	                onMouseLeave: _this13.leaveHandler6,
+	              { onMouseEnter: _this13.hoverHandler6.bind(_this13), onClick: _this13.handleOp2,
+	                onMouseLeave: _this13.leaveHandler6.bind(_this13),
 	                style: { backgroundColor: buttonCol6, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
 	              '*'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onMouseEnter: _this13.hoverHandler7, onClick: _this13.handleOp3,
-	                onMouseLeave: _this13.leaveHandler7,
+	              { onMouseEnter: _this13.hoverHandler7.bind(_this13), onClick: _this13.handleOp3,
+	                onMouseLeave: _this13.leaveHandler7.bind(_this13),
 	                style: { backgroundColor: buttonCol7, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
 	              '/'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onMouseEnter: _this13.hoverHandler8, onClick: _this13.handleOp4,
-	                onMouseLeave: _this13.leaveHandler8,
+	              { onMouseEnter: _this13.hoverHandler8.bind(_this13), onClick: _this13.handleOp4,
+	                onMouseLeave: _this13.leaveHandler8.bind(_this13),
 	                style: { backgroundColor: buttonCol8, paddingTop: 1.1,
 	                  paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
 	              'Concat'
@@ -14141,9 +13976,9 @@
 	            { style: { display: rollDisplay } },
 	            _react2['default'].createElement(
 	              'button',
-	              { onMouseEnter: _this13.hoverHandler,
-	                onMouseLeave: _this13.leaveHandler, style: { backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay },
-	                onClick: _this13.buttonHandler },
+	              { onMouseEnter: _this13.hoverHandler.bind(_this13),
+	                onMouseLeave: _this13.leaveHandler.bind(_this13), style: { backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay },
+	                onClick: _this13.buttonHandler.bind(_this13) },
 	              'Roll'
 	            )
 	          ),
@@ -14152,13 +13987,13 @@
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this13.showSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	            { onClick: _this13.showSolutionsHandler.bind(_this13), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	            'Solutions'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this13.hideSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	            { onClick: _this13.hideSolutionsHandler.bind(_this13), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	            'Hide Solutions'
 	          ),
@@ -14176,13 +14011,13 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this13.showParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	            { onClick: _this13.showParamsHandler.bind(_this13), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	            'Parameters'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this13.hideParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	            { onClick: _this13.hideParamsHandler.bind(_this13), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	            'Hide Parameters'
 	          ),
@@ -14211,36 +14046,36 @@
 	            'Sides:',
 	            _react2['default'].createElement(
 	              Sides1,
-	              { change: _this13.changeItem },
+	              { change: _this13.changeItem.bind(_this13) },
 	              ' Side 1 '
 	            ),
 	            _react2['default'].createElement(
 	              Sides2,
-	              { change: _this13.changeItem },
+	              { change: _this13.changeItem.bind(_this13) },
 	              ' Side 2 '
 	            ),
 	            _react2['default'].createElement(
 	              Sides3,
-	              { change: _this13.changeItem },
+	              { change: _this13.changeItem.bind(_this13) },
 	              ' Side 3 '
 	            ),
 	            _react2['default'].createElement(
 	              Sides4,
-	              { change: _this13.changeItem },
+	              { change: _this13.changeItem.bind(_this13) },
 	              ' Side 4 '
 	            ),
 	            _react2['default'].createElement('br', null),
 	            ' ',
 	            _react2['default'].createElement('br', null),
 	            'Goal',
-	            _react2['default'].createElement(SetGoal, { change: _this13.changeItem }),
+	            _react2['default'].createElement(SetGoal, { change: _this13.changeItem.bind(_this13) }),
 	            _react2['default'].createElement('br', null),
 	            ' ',
 	            _react2['default'].createElement('br', null),
 	            'Collapse Parameters Display:',
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this13.hideParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	              { onClick: _this13.hideParamsHandler.bind(_this13), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                  display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	              'Shrink Parameters'
 	            )
@@ -14251,7 +14086,7 @@
 	          { style: { display: extraDisplay, width: '100%', float: 'left' } },
 	          _react2['default'].createElement(
 	            'button',
-	            { onMouseEnter: _this13.hoverHandler5, onMouseLeave: _this13.leaveHandler5,
+	            { onMouseEnter: _this13.hoverHandler5.bind(_this13), onMouseLeave: _this13.leaveHandler5.bind(_this13),
 	              style: { backgroundColor: buttonCol5, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                paddingBottom: 0.9, marginRight: 3, fontSize: timeSize } },
 	            'Return To Game'
@@ -14457,6 +14292,8 @@
 	            timerDisplay: 'none',
 	            scoreDisplay: 'inline',
 	            message: 'You must click SCORE! in order to gain a point.'
+	          }, function () {
+	            return;
 	          });
 	          break;
 
@@ -14727,6 +14564,177 @@
 
 	  _inherits(B4, _React$Component12);
 
+	  _createClass(B4, [{
+	    key: 'changeColor',
+	    value: function changeColor(col) {
+	      this.setState({
+	        dynamicColor: col,
+	        sty: { color: col, width: 50, marginLeft: 30, padding: 10 }
+	      });
+	    }
+	  }, {
+	    key: 'delay',
+	    value: function delay(ms) {
+	      return new Promise(function (resolve, reject) {
+	        setTimeout(resolve, ms);
+	      });
+	    }
+	  }, {
+	    key: 'setNumberAr',
+	    value: function setNumberAr(result, str, test) {
+	      var w1 = this.state.message1;
+	      var w2 = this.state.message2;
+	      var w3 = this.state.message3;
+	      var w4 = this.state.message4;
+	      var startArray = [w1, w2, w3, w4, result];
+	      this.newNums(result, str, test, teststartArray);
+	    }
+	  }, {
+	    key: 'calc',
+	    value: function calc(mes0, mes1, mes2) {
+	      var that = this;
+	      var res = 0;
+	      var delay = this.delay;
+	      var n = this.state.N;
+	      var resP = this.state.resPrevious;
+	      var ar5 = [mes0, mes2];
+	      var test = resP === mes0 || resP === mes2;
+	      this.setState({
+	        test: test
+	      });
+	      switch (mes1) {
+	        case '+':
+	          that.comp(parseFloat(mes0) + parseFloat(mes2), mes0, mes1, mes2, test);
+	          break;
+	        case '-':
+	          that.comp(parseFloat(mes0) - parseFloat(mes2), mes0, mes1, mes2, test);
+	          break;
+	        case '*':
+	          that.comp(parseFloat(mes0) * parseFloat(mes2), mes0, mes1, mes2, test);;
+	          break;
+	        case '/':
+	          that.comp(parseFloat(mes0) / parseFloat(mes2), mes0, mes1, mes2, test);
+	          break;t;
+	        case 'Concat':
+	          that.comp(parseFloat(mes0 + '' + mes2), mes0, mes1, mes2, test);
+	          break;
+	        default:
+	          'operator not selected';
+	      }
+	    }
+	  }, {
+	    key: 'comp',
+	    value: function comp(result, mes0, mes1, mes2, test) {
+	      var str = '' + mes0 + ' ' + mes1 + ' ' + mes2 + ' = ' + result;
+	      this.setState({
+	        STRING: str,
+	        resPrevious: result.toString(),
+	        message: '',
+	        colorB42: '#ff0000'
+	      });
+	      var w1 = this.state.message1;
+	      var w2 = this.state.message2;
+	      var w3 = this.state.message3;
+	      var w4 = this.state.message4;
+	      var startArray = [w1, w2, w3, w4, result];
+	      this.newNums(result, str, test, startArray);
+	    }
+	  }, {
+	    key: 'newNums',
+	    value: function newNums(result, str, test, numbers) {
+	      var j = 0;
+	      var gr = this.state.group;
+	      var ar = [];
+	      var clock = '';
+	      var name = this.state.name;
+	      var impossibleClicker = this.state.impossibleClicker;
+	      var interrupt = this.state.interrupt;
+	      var test2 = this.state.score || this.state.impossible;
+	      var goal = 1 * this.state.goal; // '1*' and '==' is technically overkill, but seems like insurance.
+
+	      for (var k in numbers) {
+	        if (numbers[k] !== '' && numbers[k] !== undefined) {
+	          ar[j] = numbers[k];
+	          j += 1;
+	        }
+	      }
+	      if (j === 3) {
+	        DES_ws.send('FQ#$42,' + gr + ',' + name + ',' + str);
+	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',' + ar[2] + ',');
+	        this.setState({ message: 'You must use the red number in order to score in this round.' });
+	        if (test2) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10');
+	        } else {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!');
+	        }
+	      } else if (j === 2) {
+	        DES_ws.send('GQ#$42,' + gr + ',' + name + ',' + str);
+	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',,');
+	        if (result == goal && test && test2 && !interrupt) {
+	          this.setState({ DS_T: -1 });
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name);
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
+	        } else if (result == goal && test && test2 && interrupt) {
+	          this.setState({ DS_T: -1 });
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + '. Two points deducted from ' + impossibleClicker);
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
+	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');
+	        } else if (test2) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10');
+	        } else {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!');
+	        }
+	      } else if (j === 1) {
+	        DES_ws.send('HQ#$42,' + gr + ',' + name + ',' + str);
+	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',,,');
+	        if (result == goal && test && test2 && !interrupt) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name);
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
+	        } else if (result == goal && test2) {
+	          this.setState({ DS_T: -1 });
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + '. Two points deducted from ' + impossibleClicker);
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
+	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');
+	        } else if (result != goal && test && test2 && !interrupt) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',The result is not 20. ' + name + ' lost one point.');
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
+	        } else if (result != goal && test && test2 && interrupt) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',The result is not 20. ' + name + ' lost one point.\n                      One point awarded to ' + impossibleClicker + '.');
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',1');
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'newPlayer',
+	    value: function newPlayer(x) {
+	      this.setState({ name: x });
+	      DES_ws.send('CC#42$' + x);
+	    }
+	  }, {
+	    key: 'changeItem',
+	    value: function changeItem(x) {
+	      var _this14 = this;
+
+	      this.setState(x, function () {
+	        _this14.setState(x);
+	      });
+	    }
+	  }, {
+	    key: 'changeMessage',
+	    value: function changeMessage(x) {
+	      var name = this.state.name;
+	      var gr = this.state.group;
+	      DES_ws.send('CD#$42,' + gr + ',' + name + ',&@3#^7$' + name + ': ' + x);
+	    }
+	  }]);
+
 	  return B4;
 	})(_react2['default'].Component);
 
@@ -14804,7 +14812,7 @@
 	'use strict';
 
 	var CallbackQueue = __webpack_require__(113);
-	var PooledClass = __webpack_require__(32);
+	var PooledClass = __webpack_require__(30);
 	var ReactCurrentOwner = __webpack_require__(11);
 	var ReactPerf = __webpack_require__(19);
 	var ReactReconciler = __webpack_require__(21);
@@ -14812,7 +14820,7 @@
 
 	var assign = __webpack_require__(23);
 	var invariant = __webpack_require__(29);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	var dirtyComponents = [];
 	var asapCallbackQueue = CallbackQueue.getPooled();
@@ -15178,11 +15186,11 @@
 
 	var ReactCompositeComponent = __webpack_require__(133);
 	var ReactEmptyComponent = __webpack_require__(1);
-	var ReactNativeComponent = __webpack_require__(44);
+	var ReactNativeComponent = __webpack_require__(43);
 
 	var assign = __webpack_require__(23);
 	var invariant = __webpack_require__(29);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	// To avoid a cyclic dependency, we create the final class in this module
 	var ReactCompositeComponentWrapper = function() { };
@@ -15410,7 +15418,7 @@
 
 	'use strict';
 
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	/**
 	 * Given a `prevElement` and `nextElement`, determines if the existing
@@ -15511,6 +15519,44 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
+	 * @providesModule emptyFunction
+	 */
+
+	function makeEmptyFunction(arg) {
+	  return function() {
+	    return arg;
+	  };
+	}
+
+	/**
+	 * This function accepts and discards inputs; it has no side effects. This is
+	 * primarily useful idiomatically for overridable function endpoints which
+	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+	 */
+	function emptyFunction() {}
+
+	emptyFunction.thatReturns = makeEmptyFunction;
+	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+	emptyFunction.thatReturnsThis = function() { return this; };
+	emptyFunction.thatReturnsArgument = function(arg) { return arg; };
+
+	module.exports = emptyFunction;
+
+
+/***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
 	 * @providesModule ReactRef
 	 */
 
@@ -15575,44 +15621,6 @@
 
 
 /***/ },
-/* 89 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule emptyFunction
-	 */
-
-	function makeEmptyFunction(arg) {
-	  return function() {
-	    return arg;
-	  };
-	}
-
-	/**
-	 * This function accepts and discards inputs; it has no side effects. This is
-	 * primarily useful idiomatically for overridable function endpoints which
-	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
-	 */
-	function emptyFunction() {}
-
-	emptyFunction.thatReturns = makeEmptyFunction;
-	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-	emptyFunction.thatReturnsThis = function() { return this; };
-	emptyFunction.thatReturnsArgument = function(arg) { return arg; };
-
-	module.exports = emptyFunction;
-
-
-/***/ },
 /* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -15630,13 +15638,13 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(32);
+	var PooledClass = __webpack_require__(30);
 	var CallbackQueue = __webpack_require__(113);
 	var ReactPutListenerQueue = __webpack_require__(115);
 	var Transaction = __webpack_require__(104);
 
 	var assign = __webpack_require__(23);
-	var emptyFunction = __webpack_require__(89);
+	var emptyFunction = __webpack_require__(88);
 
 	/**
 	 * Provides a `CallbackQueue` queue for collecting `onDOMReady` callbacks
@@ -15817,7 +15825,7 @@
 	var dangerousStyleValue = __webpack_require__(137);
 	var hyphenateStyleName = __webpack_require__(138);
 	var memoizeStringOnly = __webpack_require__(139);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	var processStyleName = memoizeStringOnly(function(styleName) {
 	  return hyphenateStyleName(styleName);
@@ -16643,7 +16651,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(32);
+	var PooledClass = __webpack_require__(30);
 
 	var assign = __webpack_require__(23);
 	var getTextContentAccessor = __webpack_require__(144);
@@ -17118,10 +17126,10 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(32);
+	var PooledClass = __webpack_require__(30);
 
 	var assign = __webpack_require__(23);
-	var emptyFunction = __webpack_require__(89);
+	var emptyFunction = __webpack_require__(88);
 	var getEventTarget = __webpack_require__(110);
 
 	/**
@@ -18060,7 +18068,7 @@
 	 * @typechecks
 	 */
 
-	var emptyFunction = __webpack_require__(89);
+	var emptyFunction = __webpack_require__(88);
 
 	/**
 	 * Upstream version of event listener. Does not take into account specific
@@ -18290,7 +18298,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(32);
+	var PooledClass = __webpack_require__(30);
 
 	var assign = __webpack_require__(23);
 	var invariant = __webpack_require__(29);
@@ -18532,7 +18540,7 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(32);
+	var PooledClass = __webpack_require__(30);
 	var ReactBrowserEventEmitter = __webpack_require__(79);
 
 	var assign = __webpack_require__(23);
@@ -19824,7 +19832,7 @@
 	var ReactElementValidator = __webpack_require__(13);
 	var ReactInstanceMap = __webpack_require__(38);
 	var ReactLifeCycle = __webpack_require__(39);
-	var ReactNativeComponent = __webpack_require__(44);
+	var ReactNativeComponent = __webpack_require__(43);
 	var ReactPerf = __webpack_require__(19);
 	var ReactPropTypeLocations = __webpack_require__(40);
 	var ReactPropTypeLocationNames = __webpack_require__(36);
@@ -19835,7 +19843,7 @@
 	var emptyObject = __webpack_require__(35);
 	var invariant = __webpack_require__(29);
 	var shouldUpdateReactComponent = __webpack_require__(87);
-	var warning = __webpack_require__(31);
+	var warning = __webpack_require__(33);
 
 	function getDeclarationErrorAddendum(component) {
 	  var owner = component._currentElement._owner || null;
@@ -21570,7 +21578,7 @@
 	var ExecutionEnvironment = __webpack_require__(26);
 
 	var createNodesFromMarkup = __webpack_require__(155);
-	var emptyFunction = __webpack_require__(89);
+	var emptyFunction = __webpack_require__(88);
 	var getMarkupWrap = __webpack_require__(156);
 	var invariant = __webpack_require__(29);
 
@@ -22231,8 +22239,8 @@
 
 	'use strict';
 
-	var traverseAllChildren = __webpack_require__(34);
-	var warning = __webpack_require__(31);
+	var traverseAllChildren = __webpack_require__(32);
+	var warning = __webpack_require__(33);
 
 	/**
 	 * @param {function} traverseContext Context passed through traversal.
