@@ -856,7 +856,7 @@ changeBackground = (color) => {
     });
   }
 
-  changeColor (col) {
+  changeColor = (col) => {
     this.setState({
       dynamicColor: col,
       sty: {color: col, width: 50, marginLeft: 30, padding: 10}
