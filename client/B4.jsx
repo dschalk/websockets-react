@@ -1597,28 +1597,28 @@ changeBackground = (color) => {
 
           <div style={{marginLeft: 5}} > {this.state.info} </div>
 
-          <button onMouseEnter={this.hoverHandler10.bind(this)} onClick={this.handleGroupA.bind(this)}
-            onMouseLeave={this.leaveHandler10.bind(this)}
+          <button onMouseEnter={this.hoverHandler10} onClick={this.handleGroupA}
+            onMouseLeave={this.leaveHandler10}
             style={{backgroundColor: buttonCol10,  paddingTop: 1.1, 
               paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10}} >
             GroupA
           </button>
 
-          <button onMouseEnter={this.hoverHandler11.bind(this)} onClick={this.handleGroupB.bind(this)}
-            onMouseLeave={this.leaveHandler11.bind(this)}
+          <button onMouseEnter={this.hoverHandler11} onClick={this.handleGroupB}
+            onMouseLeave={this.leaveHandler11}
             style={{backgroundColor: buttonCol11,  paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10}} >
             GroupB
           </button>
 
-          <button onMouseEnter={this.hoverHandler12.bind(this)} onClick={this.handleGroupC.bind(this)}
-            onMouseLeave={this.leaveHandler12.bind(this)}
+          <button onMouseEnter={this.hoverHandler12} onClick={this.handleGroupC}
+            onMouseLeave={this.leaveHandler12}
             style={{backgroundColor: buttonCol12,  paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: 14, marginLeft: 10}} >
             GroupC
           </button>
 
-          <GroupNew key='GroupNew' setGroup={this.setGroup.bind(this)} hidden2={this.state.hidden2}
+          <GroupNew key='GroupNew' setGroup={this.setGroup} hidden2={this.state.hidden2}
             name={this.state.name} />
 
           <br />
@@ -1630,8 +1630,8 @@ changeBackground = (color) => {
 
           <div style={{width: '100%', backgroundColor: dynB,  padding: 10}} > </div>
 
-          <button onMouseEnter={this.hoverHandler9.bind(this)} 
-            onMouseLeave={this.leaveHandler9.bind(this)}
+          <button onMouseEnter={this.hoverHandler9} 
+            onMouseLeave={this.leaveHandler9}
             style={{backgroundColor: buttonCol9, display: timerDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize}} >
             {this.state.DS_T}
@@ -1642,22 +1642,22 @@ changeBackground = (color) => {
             <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 }} > {this.state.d3} </button> 
             <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 26 }} > {this.state.d4} </button> 
           </div>
-          <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore.bind(this)}
-            onMouseLeave={this.leaveHandler9.bind(this)}
+          <button onMouseEnter={this.hoverHandler9} onClick={this.handleScore}
+            onMouseLeave={this.leaveHandler9}
             style={{backgroundColor: buttonCol9, display: scoreDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize}} >
             SCORE!
           </button>
 
-          <button onMouseEnter={this.hoverHandler9.bind(this)} onClick={this.handleScore2.bind(this)}
-            onMouseLeave={this.leaveHandler9.bind(this)}
+          <button onMouseEnter={this.hoverHandler9} onClick={this.handleScore2}
+            onMouseLeave={this.leaveHandler9}
             style={{backgroundColor: buttonCol9, display: scoreDisplay2, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize}} >
             SCORE!
           </button>       
 
-          <button onMouseEnter={this.hoverHandler14.bind(this)} onClick={this.handleImpossible.bind(this)}
-            onMouseLeave={this.leaveHandler14.bind(this)}
+          <button onMouseEnter={this.hoverHandler14} onClick={this.handleImpossible}
+            onMouseLeave={this.leaveHandler14}
             style={{backgroundColor: buttonCol14, display: impossibleDisplay, paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize  }} >
             IMPOSSIBLE
@@ -1670,29 +1670,29 @@ changeBackground = (color) => {
 
        <div style={{width: '100%', backgroundColor: dynB,  padding: 10, display: numDisplay }} >
 
-          <button onMouseEnter={this.hoverHandler0.bind(this)} onClick={this.handleB40}
-            onMouseLeave={this.leaveHandler0.bind(this)}
+          <button onMouseEnter={this.hoverHandler0} onClick={this.handleB40}
+            onMouseLeave={this.leaveHandler0}
             style={{backgroundColor: buttonCol0,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message1}
           </button>
 
-          <button onMouseEnter={this.hoverHandler1.bind(this)} onClick={this.handleB41}
-            onMouseLeave={this.leaveHandler1.bind(this)}
+          <button onMouseEnter={this.hoverHandler1} onClick={this.handleB41}
+            onMouseLeave={this.leaveHandler1}
             style={{backgroundColor: buttonCol1,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message2}
           </button>
 
-          <button onMouseEnter={this.hoverHandler2.bind(this)} onClick={this.handleB42}
-            onMouseLeave={this.leaveHandler2.bind(this)}
+          <button onMouseEnter={this.hoverHandler2} onClick={this.handleB42}
+            onMouseLeave={this.leaveHandler2}
             style={{backgroundColor: buttonCol2,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message3}
           </button>
 
-          <button onMouseEnter={this.hoverHandler3.bind(this)} onClick={this.handleB43}
-            onMouseLeave={this.leaveHandler3.bind(this)}
+          <button onMouseEnter={this.hoverHandler3} onClick={this.handleB43}
+            onMouseLeave={this.leaveHandler3}
             style={{backgroundColor: buttonCol3,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             {this.state.message4}
@@ -1700,36 +1700,36 @@ changeBackground = (color) => {
 
           <div style={{width: '100%',  padding: 10}} > </div>
 
-          <button onMouseEnter={this.hoverHandler4.bind(this)} onClick={this.handleOp0}
-            onMouseLeave={this.leaveHandler4.bind(this)}
+          <button onMouseEnter={this.hoverHandler4} onClick={this.handleOp0}
+            onMouseLeave={this.leaveHandler4}
             style={{backgroundColor: buttonCol4,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize  }} >
             +
           </button>
 
-          <button onMouseEnter={this.hoverHandler5.bind(this)} onClick={this.handleOp1}
-            onMouseLeave={this.leaveHandler5.bind(this)}
+          <button onMouseEnter={this.hoverHandler5} onClick={this.handleOp1}
+            onMouseLeave={this.leaveHandler5}
             style={{backgroundColor: buttonCol5,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             -
           </button>
 
-          <button onMouseEnter={this.hoverHandler6.bind(this)} onClick={this.handleOp2}
-            onMouseLeave={this.leaveHandler6.bind(this)}
+          <button onMouseEnter={this.hoverHandler6} onClick={this.handleOp2}
+            onMouseLeave={this.leaveHandler6}
             style={{backgroundColor: buttonCol6,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             *
           </button>
 
-          <button onMouseEnter={this.hoverHandler7.bind(this)} onClick={this.handleOp3}
-            onMouseLeave={this.leaveHandler7.bind(this)}
+          <button onMouseEnter={this.hoverHandler7} onClick={this.handleOp3}
+            onMouseLeave={this.leaveHandler7}
             style={{backgroundColor: buttonCol7,  paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             /
           </button>
 
-          <button onMouseEnter={this.hoverHandler8.bind(this)} onClick={this.handleOp4}
-            onMouseLeave={this.leaveHandler8.bind(this)}
+          <button onMouseEnter={this.hoverHandler8} onClick={this.handleOp4}
+            onMouseLeave={this.leaveHandler8}
             style={{backgroundColor: buttonCol8,  paddingTop: 1.1,
               paddingBottom: 0.9, marginRight: 3, fontSize: timeSize  }} >
             Concat
@@ -1765,21 +1765,21 @@ changeBackground = (color) => {
           <div style={{width: 1200,  padding: 10}} >  </div>
 
         <div style={{display: rollDisplay}} >
-          <button onMouseEnter={this.hoverHandler.bind(this)}
-            onMouseLeave={this.leaveHandler.bind(this)} style={{backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay}}
-              onClick={this.buttonHandler.bind(this)} >
+          <button onMouseEnter={this.hoverHandler}
+            onMouseLeave={this.leaveHandler} style={{backgroundColor: buttonCol, marginLeft: 10, display: buttonDisplay}}
+              onClick={this.buttonHandler} >
              Roll
           </button>
         </div>
         <br /> <br/>
 
 
-        <button  onClick={this.showSolutionsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+        <button  onClick={this.showSolutionsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
           display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Solutions
         </button>
 
-        <button  onClick={this.hideSolutionsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
           display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Hide Solutions
         </button>
@@ -1795,12 +1795,12 @@ changeBackground = (color) => {
 
 
 
-        <button  onClick={this.showParamsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+        <button  onClick={this.showParamsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
           display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Parameters 
         </button>
 
-        <button  onClick={this.hideParamsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+        <button  onClick={this.hideParamsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
           display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Hide Parameters
         </button>
