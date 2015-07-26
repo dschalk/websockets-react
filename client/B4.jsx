@@ -1246,17 +1246,16 @@ changeBackground = (color) => {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message1;
-    let this2 = this;
-    if (this2.state.mes0 === 'Number') {
+    if (this.state.mes0 === 'Number') {
       this.setState({message1: '', mes0: num}, () => {
         DES_ws.send(`CQ#$42,${group},${name},${num}`);
       })
     }
-    else if (this2.state.mes2 === 'Number') {
+    else if (this.state.mes2 === 'Number') {
       this.setState({message1: '', mes2: num}, () => {
         DES_ws.send(`DQ#$42,${group},${name},${num}`);
-        if (this2.state.mes1 !== 'Operator') {
-          this2.calc(this2.state.mes0, this2.state.mes1, num);
+        if (this.state.mes1 !== 'Operator') {
+          this.calc(this.state.mes0, this.state.mes1, num);
         }
       })
     }
@@ -1266,17 +1265,16 @@ changeBackground = (color) => {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message2;
-    let this2 = this;
-    if (this2.state.mes0 === 'Number') {
+    if (this.state.mes0 === 'Number') {
       this.setState({message2: '', mes0: num},() => {
         DES_ws.send(`CQ#$42,${group},${name},${num}`);
       })
     }
-    else if (this2.state.mes2 === 'Number') {
+    else if (this.state.mes2 === 'Number') {
       this.setState({message2: '', mes2: num}, () => {
         DES_ws.send(`DQ#$42,${group},${name},${num}`);
-        if (this2.state.mes1 !== 'Operator') {
-          this2.calc(this2.state.mes0, this2.state.mes1, num);
+        if (this.state.mes1 !== 'Operator') {
+          this.calc(this.state.mes0, this.state.mes1, num);
         }
       })
     }
@@ -1286,17 +1284,16 @@ changeBackground = (color) => {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message3;
-    let this2 = this;
-    if (this2.state.mes0 === 'Number') {
+    if (this.state.mes0 === 'Number') {
       this.setState({message3: '', mes0: num}, () => {
         DES_ws.send(`CQ#$42,${group},${name},${num}`);
       })
     }
-    else if (this2.state.mes2 === 'Number') {
+    else if (this.state.mes2 === 'Number') {
       this.setState({message3: '', mes2: num}, () => {
         DES_ws.send(`DQ#$42,${group},${name},${num}`);
-        if (this2.state.mes1 !== 'Operator') {
-          this2.calc(this2.state.mes0, this2.state.mes1, num);
+        if (this.state.mes1 !== 'Operator') {
+          this.calc(this.state.mes0, this.state.mes1, num);
         }
       })
     }
@@ -1306,17 +1303,16 @@ changeBackground = (color) => {
     let name = this.state.name;
     let group = this.state.group;
     let num = this.state.message4;
-    let this2 = this;
-    if (this2.state.mes0 === 'Number') {
+    if (this.state.mes0 === 'Number') {
       this.setState({message4: '', mes0: num}, () => {
         DES_ws.send(`CQ#$42,${group},${name},${num}`);
       })
     }
-    else if (this2.state.mes2 === 'Number') {
+    else if (this.state.mes2 === 'Number') {
       this.setState({message4: '', mes2: num}, () => {
         DES_ws.send(`DQ#$42,${group},${name},${num}`);
-        if (this2.state.mes1 !== 'Operator') {
-          this2.calc(this2.state.mes0, this2.state.mes1, num);
+        if (this.state.mes1 !== 'Operator') {
+          this.calc(this.state.mes0, this.state.mes1, num);
         }
       })
     }
