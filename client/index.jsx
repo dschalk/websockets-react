@@ -1,2 +1,1 @@
-
-import "./B4";
+import "./B2";

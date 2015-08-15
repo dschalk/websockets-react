@@ -22,6 +22,9 @@ import Data.List.Split (splitOn)
 -- import System.Environment (getEnv)
 import Logger2 hiding (main)
 
+solo :: Text
+solo = "solo"
+
 type Name = Text
 type Score = Int
 type Group = Text
@@ -42,8 +45,9 @@ get5 :: [String] -> [Double]
 get5 [_,_,_,a,b,c,d,e] = fmap read [a,b,c,d,e]
 get5 _ = [-1,-1,-1,-1,-1]
 
-subState :: Text -> [(Text,Int,Text,WS.Connection)] -> [(Text,Int,Text,WS.Connection)]
-subState gr state = [ (a,b,c,d) | (a,b,c,d) <- state, gr == c ]
+subState :: Text -> Text -> [(Text,Int,Text,WS.Connection)] -> [(Text,Int,Text,WS.Connection)]
+subState name gr state  | gr /= solo  = [ (a,b,c,d) | (a,b,c,d) <- state, gr == c ]
+                        | gr == solo = [ (a,b,c,d) | (a,b,c,d) <- state, name == a]
 
 extract :: [Text] -> Text
 extract [x] = x
@@ -143,7 +147,7 @@ application state pending = do
                     let s' = removeClient client s
                     atomically $ putTMVar state s'
                     let gr = getGroup (first client) s
-                    let subSt = subState gr s'
+                    let subSt = subState (getName client) gr s'
                     broadcast ("CB#$42," `mappend` gr `mappend` ",dummy," `mappend` T.concat (intersperse "<br>" (textState subSt))) subSt
 
 talk :: WS.Connection -> TMVar ServerState -> Client -> IO ()
@@ -166,7 +170,7 @@ talk conn state (_, _, _, _) = forever $ do
             do
                 st <- atomically $ readTMVar state
                 z <- rText $ get4 msgArray
-                let subSt = subState group st
+                let subSt = subState sender group st
                 broadcast ("CA#$42," `mappend` group `mappend` ","
                     `mappend` sender `mappend` "," `mappend` z) subSt
 
@@ -175,7 +179,7 @@ talk conn state (_, _, _, _) = forever $ do
                 y <- liftIO $ truck $ get5 msgArray
                 let yzz = T.pack y
                 st <- atomically $ readTMVar state
-                let subSt = subState group st
+                let subSt = subState sender group st
                 broadcast ("CZ#$42," `mappend` group `mappend` ","
                     `mappend` sender `mappend` "," `mappend` yzz) subSt
 
@@ -184,7 +188,7 @@ talk conn state (_, _, _, _) = forever $ do
                 y <- liftIO $ truck $ get5 msgArray
                 let yzz = T.pack y
                 st <- atomically $ readTMVar state
-                let subSt = subState group st
+                let subSt = subState sender group st
                 broadcast ("DZ#$42," `mappend` group `mappend` ","
                     `mappend` sender `mappend` "," `mappend` yzz) subSt
 
@@ -199,7 +203,7 @@ talk conn state (_, _, _, _) = forever $ do
         then
             do
                 st <- atomically $ readTMVar state
-                let subSt = subState group st
+                let subSt = subState sender group st
                 broadcast msg subSt
 
     else if "CG#$42" `T.isPrefixOf` msg
@@ -209,7 +213,7 @@ talk conn state (_, _, _, _) = forever $ do
                 old <- atomically $ takeTMVar state
                 let new = changeScore sender extraNum old
                 atomically $ putTMVar state new
-                let subSt = subState group new
+                let subSt = subState sender group new
                 broadcast msg subSt
                 broadcast ("CB#$42," `mappend` group `mappend` ","
                     `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState subSt))) subSt
@@ -220,8 +224,8 @@ talk conn state (_, _, _, _) = forever $ do
                 old <- atomically $ takeTMVar state
                 let new = changeGroup sender extra old
                 atomically $ putTMVar state new
-                let subState1 = subState group new
-                let subState2 = subState extra new
+                let subState1 = subState sender group new
+                let subState2 = subState sender extra new
                 let x = "CB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState subState1))
                 let y = "CB#$42," `mappend` extra `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState subState2))
                 broadcast y subState2

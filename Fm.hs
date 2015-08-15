@@ -45,11 +45,12 @@ computation a b c  | b == "+"   = (+) a c
 fRound :: Double -> Int
 fRound = round
 
-notWhole :: Double -> Bool
-notWhole x = toDouble (fRound x) /= x
+whole :: Double -> Bool
+whole x = toDouble (fRound x) == x
 
 cat :: Double -> Double -> Double
-cat x y = 10.0*x + y
+cat l m  | ((whole l) && (whole m) && m >= 0 && l /= 0)  = read ((show $ fRound l) ++ (show $ fRound m))
+         | otherwise = 8.888
 
 g :: (Double -> Double -> Double) -> String
 g x         | x 3 2 == 5 = " + "
