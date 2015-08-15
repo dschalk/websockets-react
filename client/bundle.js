@@ -604,7 +604,7 @@
 	  14: '#9fc972',
 	  15: '#f7b16f',
 	  19: '#9fc972',
-	  20: '#f7b16f',
+	  20: '#9fc972',
 	  21: '#9fc972'
 	});
 
@@ -612,6 +612,10 @@
 	  group: 'solo',
 	  chatMessage: '',
 	  chatArray: []
+	});
+
+	var data2 = _mobservable2['default'].makeReactive({
+	  information: 'Click ROLL to begin playing.'
 	});
 
 	var B2X = (function (_React$Component11) {
@@ -892,6 +896,7 @@
 	    this.handleScore2 = function () {
 	      var name = _this12.state.name;
 	      var group = _this12.data.group;
+	      _this12.setState({ numDisplay: 'inline' });
 	      DES_ws.send('XY#$42,' + group + ',' + name + ',' + name);
 	    };
 
@@ -989,6 +994,7 @@
 	      _this12.props.key = 'B2X';
 	      count += 1;
 	      console.log('The count is now ' + count + ' and the color is ' + _this12.mouse[15]);
+	      var information = _this12.data2.information;
 	      var name = _this12.state.name;
 	      var group = _this12.data.group;
 	      var dynB = _this12.state.dynamicBg;
@@ -1256,13 +1262,23 @@
 	          ),
 	          _react2['default'].createElement(
 	            'div',
-	            { style: { width: '100%', backgroundColor: dynB, padding: 10 } },
+	            { style: { width: '55%' } },
+	            information
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { width: '60%', backgroundColor: dynB, padding: 0 } },
 	            ' '
 	          ),
 	          _react2['default'].createElement(
 	            'button',
 	            { style: _this12.style6(cr21, timerDisplay) },
 	            _this12.state.DS_T
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { width: '60%', backgroundColor: dynB, padding: 10 } },
+	            ' '
 	          ),
 	          _react2['default'].createElement(
 	            'div',
@@ -1338,14 +1354,6 @@
 	            { style: { width: '100%', backgroundColor: dynB, padding: 10 } },
 	            ' '
 	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { marginLeft: 12 } },
-	            ' ',
-	            _this12.state.message,
-	            ' '
-	          ),
-	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'div',
 	            { style: { width: '100%', backgroundColor: dynB, padding: 10, display: numDisplay } },
@@ -1607,6 +1615,7 @@
 
 	    this.mouse = mouseHandler;
 	    this.data = data;
+	    this.data2 = data2;
 	    this.props = {
 	      resPrevious: ''
 	    };
@@ -1802,7 +1811,7 @@
 
 	        case "CF#$42":
 	          // Re-set after a each clculation.
-	          that.setState({
+	          that.data2.information = 'You must click SCORE! or IMPOSSIBLE to gain a point.', that.setState({
 	            mes0: 'Number',
 	            mes1: 'Operator',
 	            mes2: 'Number',
@@ -1814,6 +1823,7 @@
 	          break;
 
 	        case "CH#$42":
+	          that.data2.information = ext4;
 	          that.setState({
 	            DS_T: extra,
 	            rollDisplay: 'inline',
@@ -1825,6 +1835,7 @@
 
 	        case "CK#$42":
 	          // Updates DS_T after each calculation.
+	          that.data2.information = ext4;
 	          that.setState({
 	            mes0: 'Number',
 	            mes1: 'Operator',
@@ -1886,10 +1897,11 @@
 
 	        case "CY#$42":
 	          // Triggered by clicking "SCORE!".
+	          that.data2.information = '';
 	          that.setState({
 	            scoreClicker: extra,
 	            score: true,
-	            message: '',
+	            information: '',
 	            DS_T: 10,
 	            impossibleDisplay: 'none',
 	            solutionsDisplay: 'none',
@@ -1912,25 +1924,26 @@
 
 	        case "XY#$42":
 	          // Triggered by clicking "SCORE!" after "IMPOSSIBLE".
+	          that.data2.information = '';
 	          that.setState({
 	            interruptClicker: extra,
 	            interrupt: true,
 	            message: '',
 	            DS_T: 10,
-	            scoreDisplay: 'none',
+	            scoreDisplay2: 'none',
 	            solutionsDisplay: 'none',
 	            paramsDisplay: 'none',
 	            shrinkSol: 'none',
 	            showSolutionsButton: 'none',
 	            paramsButton: 'none',
 	            shrinkPar: 'none',
-	            numDisplay: 'inline',
 	            rollnumsDisplay: 'none'
 	          });
 	          break;
 
 	        case "DY#$42":
 	          // Triggered by clicking  "IMPOSSIBLE".
+	          that.data2.information = 'Click SCORE! if you want to show a solution and gain a point.';
 	          that.setState({
 	            impossibleClicker: extra,
 	            impossible: true,
@@ -2014,27 +2027,20 @@
 	          hideSolutionsButton: 'none',
 	          DS_t: -1
 	        });
-	        var z = scoreClicker === name;
-	        var z2 = impossibleClicker === name;
-	        var z3 = interruptClicker === name;
-	        if (!interrupt) {
-	          if (z) {
-	            DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
-	            DES_ws.send('CH#$42,' + gr + ',' + name + ',10 seconds expired. Deduct one point from ' + scoreClicker);
-	          } else if (z2) {
-	            DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
-	            DES_ws.send('CH#$42,' + gr + ',' + name + ',60 seconds expired. One point for ' + impossibleClicker);
-	          }
-	        } else if (z3) {
-	          DES_ws.send('CG#$42,' + gr + ',' + interruptClicker + ',-1');
-	          DES_ws.send('CH#$42,' + gr + ',' + interruptClicker + ',10 seconds expired. One point awarded to ' + that.state.impossibleClicker + '. One point deducted from ' + interruptClicker + '.');
 
-	          if (impossibleClicker !== interruptClicker) {
-	            DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',1');
-	          } else {
-	            DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-1');
-	            DES_ws.send('CH#$42,' + gr + ',' + impossibleClicker + ',\n            ' + impossibleClicker + ' forfeits two points for blocking with SCORE!');
-	          }
+	        var z = scoreClicker === name;
+	        var z2 = impossibleClicker === name && interruptClicker !== name;
+	        var z3 = impossibleClicker === name && interruptClicker === name;
+
+	        if (z) {
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
+	          DES_ws.send('CH#$42,' + gr + ',' + name + ',10 seconds expired. Deduct one point from ' + scoreClicker);
+	        } else if (z2) {
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
+	          DES_ws.send('CH#$42,' + gr + ',' + name + ',60 seconds expired. One point for ' + impossibleClicker);
+	        } else if (z3) {
+	          DES_ws.send('CG#$42,' + gr + ',' + interruptClicker + ',-2');
+	          DES_ws.send('CH#$42,' + gr + ',' + impossibleClicker + ',\n                      ' + impossibleClicker + ' forfeits two points for blocking with SCORE!,\n                      ' + impossibleClicker + ' clicked IMPOSSIBLE and blocked others from solving by clicking SCORE!\n       ');
 	        }
 	      }
 	    }, 1000);
@@ -2099,6 +2105,7 @@
 	      var name = this.state.name;
 	      var impossibleClicker = this.state.impossibleClicker;
 	      var interruptClicker = this.state.interruptClicker;
+	      var scoreClicker = this.state.scoreClicker;
 	      var interrupt = this.state.interrupt;
 	      var test2 = this.state.score || this.state.impossible;
 	      var goal = 1 * this.state.goal; // '1*' and '==' is technically overkill, but seems like insurance.
@@ -2125,7 +2132,7 @@
 	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',,');
 	        if (result == goal && test && test2 && !interrupt) {
 	          this.setState({ DS_T: -1 });
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name);
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + ',Score!');
 	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
 	        } else if (result == goal && test && test2 && interrupt) {
@@ -2140,35 +2147,67 @@
 	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!');
 	        }
 	      } else if (j === 1) {
+	        this.setState({
+	          message1: 0, // Wipes the old numbers.
+	          message2: 0,
+	          message3: 0,
+	          message4: 0,
+	          info: '',
+	          timeSize: 20, // Returns number display to normal size.
+	          rollDisplay: 'inline', // Displays the ROLL button.
+	          showParamsButton: 'inline',
+	          hideParamsButton: 'none',
+	          paramsDiv: 'none',
+	          showSolutionsButton: 'inline',
+	          hideSolutionsButton: 'none',
+	          DS_t: 'Round Over'
+	        });
+
+	        var z = scoreClicker === name;
+	        var z2 = interruptClicker === name && impossibleClicker !== name;
+	        var z3 = interruptClicker === name && impossibleClicker === name;
+
+	        if (z && test2 && result === goal) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + ',Score!');
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
+	        }
+
+	        if (z && test2 && result !== goal) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Deduct one point from ' + name + ',The result is not \'20\'');
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
+	        }
+
+	        if (z2 && test2 && result === goal) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + ',Score!');
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Twopoints taken from ' + impossibleClicker + ',' + interruptClicker + ' found a solution.');
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
+	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');
+	        }
+
+	        if (z2 && test2 && result !== goal) {
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + impossibleClicker + '. No solution found.,' + interruptClicker + ' loses one point.The result is not ' + goal);
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ', -1');
+	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',1');
+	        }
+
+	        if (z3 && test2 && result === goal) {
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
+	          DES_ws.send('CH#$42,' + gr + ',' + impossibleClicker + ',\n                      ' + name + ' forfeits two points. A solution was found (by ' + name + ')!,\n                      ' + name + ' gains one point for finding a solution. Net result is -1');
+	        }
+
+	        if (z3 && test2 && result !== goal) {
+	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
+	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-2');
+	          DES_ws.send('CH#$42,' + gr + ',' + impossibleClicker + ',\n                      ' + impossibleClicker + ' forfeits two points for blocking with SCORE!,\n                      ' + impossibleClicker + ' clicked IMPOSSIBLE and blocked others by clicking SCORE!\n       ');
+	        }
+
 	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',,,');
 	        DES_ws.send('HQ#$42,' + gr + ',' + name + ',' + str);
-	        if (result === goal) {
-	          if (test2) {
-	            if (interrupt) {
-	              this.setState({ DS_T: -1 });
-	              DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + '. Two points deducted from ' + impossibleClicker);
-	              DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	              DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
-	              DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');
-	            } else if (!interrupt) {
-	              DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name);
-	              DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
-	              DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
-	            }
-	          }
-	        } else if (result !== goal && test2) {
-	          if (interrupt && impossibleClicker !== interruptClicker) {
-	            DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',1');
-	            DES_ws.send('CG#$42,' + gr + ',' + interruptClicker + ',-1');
-	            DES_ws.send('CK#$42,' + gr + ',' + name + ',The result is not 20. ' + name + ' lost one point. One point awarded to ' + impossibleClicker + '.');
-	          } else if (interrupt && impossibleClicker === interruptClicker) {
-	            DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-1');
-	            DES_ws.send('CH#$42,' + gr + ',' + impossibleClicker + ',' + impossibleClicker + ' forfeits two points for blocking with SCORE!');
-	          } else if (!interrupt) {
-	            DES_ws.send('CG#$42,' + gr + ',' + scoreClicker + ',-1');
-	            DES_ws.send('CH#$42,' + gr + ',' + scoreClicker + ',' + scoreClicker + ' forfeits one point. The result is not ' + goal);
-	          }
-	        }
 	      }
 	    }
 	  }]);

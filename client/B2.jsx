@@ -356,8 +356,8 @@ let mouseHandler = mobservable.makeReactive({
     14: '#9fc972',
     15: '#f7b16f',
     19: '#9fc972',
-    20: '#f7b16f',
-    21: '#9fc972'
+    20: '#9fc972',
+    21: '#9fc972',
 });
 
 let data = mobservable.makeReactive({
@@ -366,12 +366,17 @@ let data = mobservable.makeReactive({
   chatArray: []
 });
 
+let data2 = mobservable.makeReactive({
+  information: 'Click ROLL to begin playing.'
+});
+
 class B2X extends React.Component {
   // shouldComponentUpdate = shouldPureComponentUpdate;
   constructor(props) {
     super(props);
     this.mouse = mouseHandler;
     this.data = data;
+    this.data2 = data2;
     this.props = {
       resPrevious: ''
     };
@@ -564,6 +569,7 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CF#$42":                              // Re-set after a each clculation.
+            that.data2.information = 'You must click SCORE! or IMPOSSIBLE to gain a point.',
             that.setState
             ({
               mes0: 'Number',
@@ -577,6 +583,7 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CH#$42":
+            that.data2.information = ext4;
             that.setState
             ({
               DS_T: extra,
@@ -588,6 +595,7 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CK#$42":                      // Updates DS_T after each calculation.
+              that.data2.information = ext4;
               that.setState
               ({
                 mes0: 'Number',
@@ -648,10 +656,11 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CY#$42": // Triggered by clicking "SCORE!".
+            that.data2.information = '';
             that.setState( {
               scoreClicker: extra,
               score: true,
-              message: '',
+              information: '',
               DS_T: 10,
               impossibleDisplay: 'none',
               solutionsDisplay: 'none',
@@ -673,24 +682,25 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "XY#$42":              // Triggered by clicking "SCORE!" after "IMPOSSIBLE".
-            that.setState( {
+            that.data2.information = '';
+            that.setState({
               interruptClicker: extra,
               interrupt: true,
               message: '',
               DS_T: 10,
-              scoreDisplay: 'none',
+              scoreDisplay2: 'none',
               solutionsDisplay: 'none',
               paramsDisplay: 'none',
               shrinkSol: 'none',
               showSolutionsButton: 'none',
               paramsButton : 'none',
               shrinkPar: 'none',
-              numDisplay: 'inline',
               rollnumsDisplay: 'none'
-            } )
+            })
           break;
 
           case "DY#$42":                               // Triggered by clicking  "IMPOSSIBLE".
+            that.data2.information = 'Click SCORE! if you want to show a solution and gain a point.';
             that.setState({
               impossibleClicker: extra,
               impossible: true,
@@ -773,34 +783,27 @@ DES_ws.onmessage = function(event) {
         hideSolutionsButton: 'none',
             DS_t: -1
         })
+
   	  let z = scoreClicker === name;
-  		let z2 = impossibleClicker === name;
-  		let z3 = interruptClicker === name;
-      if (!interrupt) {
-				if (z) {
+  		let z2 = impossibleClicker === name && interruptClicker !== name;
+  		let z3 = impossibleClicker === name && interruptClicker === name;
+
+			if (z) {
         	DES_ws.send(`CG#$42,${gr},${name},-1`);
           DES_ws.send(`CH#$42,${gr},${name},10 seconds expired. Deduct one point from ${scoreClicker}`);
+      }
 
-      	}
-			  else if (z2) {
+			else if (z2) {
         	DES_ws.send(`CG#$42,${gr},${name},1`);
           DES_ws.send(`CH#$42,${gr},${name},60 seconds expired. One point for ${impossibleClicker}`);
+      }
 
-				}
-			}
       else if (z3) {
-        DES_ws.send(`CG#$42,${gr},${interruptClicker},-1`);
-				DES_ws.send(`CH#$42,${gr},${interruptClicker},10 seconds expired. One point awarded to ${that.state.impossibleClicker}. One point deducted from ${interruptClicker}.`);
-
-        if (impossibleClicker !== interruptClicker) {
-          DES_ws.send(`CG#$42,${gr},${impossibleClicker},1`);
-        }
-        else {
-          DES_ws.send(`CG#$42,${gr},${impossibleClicker},-1`);
-          DES_ws.send(`CH#$42,${gr},${impossibleClicker},
-            ${impossibleClicker} forfeits two points for blocking with SCORE!`);
-
-        }
+        DES_ws.send(`CG#$42,${gr},${interruptClicker},-2`);
+        DES_ws.send(`CH#$42,${gr},${impossibleClicker},
+                      ${impossibleClicker} forfeits two points for blocking with SCORE!,
+                      ${impossibleClicker} clicked IMPOSSIBLE and blocked others from solving by clicking SCORE!
+       `);
 		  }
 		}
   }, 1000 )
@@ -961,6 +964,7 @@ DES_ws.onmessage = function(event) {
     let name = this.state.name;
     let impossibleClicker = this.state.impossibleClicker;
     let interruptClicker = this.state.interruptClicker;
+    let scoreClicker = this.state.scoreClicker;
     let interrupt = this.state.interrupt;
     let test2 = this.state.score || this.state.impossible;
     let goal = 1*(this.state.goal); // '1*' and '==' is technically overkill, but seems like insurance.
@@ -989,7 +993,7 @@ DES_ws.onmessage = function(event) {
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},,`);
       if ( (result == goal) && test && test2 && !interrupt ) {
           this.setState({DS_T: -1});
-          DES_ws.send( `CK#$42,${gr},${name},One point for ${name}` );
+          DES_ws.send( `CK#$42,${gr},${name},One point for ${name},Score!` );
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},1` );
       }
@@ -1008,40 +1012,72 @@ DES_ws.onmessage = function(event) {
       }
     }
     else if (j === 1) {
-      DES_ws.send(`CE#$42,${gr},${name},${ar[0]},,,`);
-      DES_ws.send(`HQ#$42,${gr},${name},${str}`);
-      if (result === goal) {
-        if (test2) {
-          if (interrupt) {
-            this.setState({DS_T: -1});
-            DES_ws.send( `CK#$42,${gr},${name},One point for ${name}. Two points deducted from ${impossibleClicker}`);
-            DES_ws.send( `CR#$42,${gr},${name},${name}` );
-            DES_ws.send( `CG#$42,${gr},${name},1` );
-            DES_ws.send( `CG#$42,${gr},${impossibleClicker},-2` );
-          }
-          else if (!interrupt) {
-            DES_ws.send( `CK#$42,${gr},${name},One point for ${name}` );
-            DES_ws.send( `CR#$42,${gr},${name},${name}` );
-            DES_ws.send( `CG#$42,${gr},${name},1` );
-          }
-        }
+      this.setState ({
+            message1: 0,  // Wipes the old numbers.
+            message2: 0,
+            message3: 0,
+            message4: 0,
+            info: '',
+            timeSize: 20, // Returns number display to normal size.
+            rollDisplay: 'inline', // Displays the ROLL button.
+        showParamsButton: 'inline',
+        hideParamsButton: 'none',
+        paramsDiv: 'none',
+        showSolutionsButton: 'inline',
+        hideSolutionsButton: 'none',
+        DS_t: 'Round Over'  
+        })
+
+  	  let z = scoreClicker === name;
+  		let z2 = interruptClicker === name && impossibleClicker !== name;
+  		let z3 = interruptClicker === name && impossibleClicker === name;
+
+			if (z && test2 && result === goal) {
+        DES_ws.send( `CK#$42,${gr},${name},One point for ${name},Score!` );
+          DES_ws.send( `CR#$42,${gr},${name},${name}` );
+          DES_ws.send( `CG#$42,${gr},${name},1` );
       }
 
-      else if ((result !== goal) && test2) {
-        if (interrupt && (impossibleClicker !== interruptClicker)) {
-            DES_ws.send(`CG#$42,${gr},${impossibleClicker},1`);
-            DES_ws.send(`CG#$42,${gr},${interruptClicker},-1`);
-            DES_ws.send( `CK#$42,${gr},${name},The result is not 20. ${name} lost one point. One point awarded to ${impossibleClicker}.`);
-        }
-        else if (interrupt && (impossibleClicker === interruptClicker)) {
-              DES_ws.send(`CG#$42,${gr},${impossibleClicker},-1`);
-              DES_ws.send(`CH#$42,${gr},${impossibleClicker},${impossibleClicker} forfeits two points for blocking with SCORE!`);
-        }
-        else if (!interrupt) {
-              DES_ws.send(`CG#$42,${gr},${scoreClicker},-1`);
-              DES_ws.send(`CH#$42,${gr},${scoreClicker},${scoreClicker} forfeits one point. The result is not ${goal}`);
-        }
+			if (z && test2 && result !== goal) {
+          DES_ws.send( `CK#$42,${gr},${name},Deduct one point from ${name},The result is not '20'` );
+          DES_ws.send( `CR#$42,${gr},${name},${name}` );
+          DES_ws.send( `CG#$42,${gr},${name},-1` );
       }
+
+			if (z2 && test2 && result === goal) {
+          DES_ws.send( `CK#$42,${gr},${name},One point for ${name},Score!` );
+          DES_ws.send( `CK#$42,${gr},${name},Twopoints taken from ${impossibleClicker},${interruptClicker} found a solution.` );
+          DES_ws.send( `CR#$42,${gr},${name},${name}` );
+          DES_ws.send( `CG#$42,${gr},${name},1` );
+          DES_ws.send( `CG#$42,${gr},${impossibleClicker},-2` );
+      }
+
+			if (z2 && test2 && result !== goal) {
+          DES_ws.send( `CK#$42,${gr},${name},One point for ${impossibleClicker}. No solution found.,${interruptClicker} loses one point.The result is not ${goal}` );
+          DES_ws.send( `CR#$42,${gr},${name},${name}` );
+          DES_ws.send( `CG#$42,${gr},${name}, -1` );
+          DES_ws.send( `CG#$42,${gr},${impossibleClicker},1` );
+      }
+
+			if (z3 && test2 && result === goal) {
+          DES_ws.send( `CR#$42,${gr},${name},${name}` );
+          DES_ws.send( `CG#$42,${gr},${name},-1` );
+          DES_ws.send(`CH#$42,${gr},${impossibleClicker},
+                      ${name} forfeits two points. A solution was found (by ${name})!,
+                      ${name} gains one point for finding a solution. Net result is -1`);
+      }
+
+			if (z3 && test2 && result !== goal) {
+          DES_ws.send( `CR#$42,${gr},${name},${name}` );
+          DES_ws.send( `CG#$42,${gr},${name},-2` );
+          DES_ws.send(`CH#$42,${gr},${impossibleClicker},
+                      ${impossibleClicker} forfeits two points for blocking with SCORE!,
+                      ${impossibleClicker} clicked IMPOSSIBLE and blocked others by clicking SCORE!
+       `);
+		  }
+
+      DES_ws.send(`CE#$42,${gr},${name},${ar[0]},,,`);
+      DES_ws.send(`HQ#$42,${gr},${name},${str}`);
     }
   }
 
@@ -1211,6 +1247,7 @@ DES_ws.onmessage = function(event) {
   handleScore2 = () => {
     let name = this.state.name;
     let group = this.data.group;
+    this.setState({numDisplay: 'inline'});
     DES_ws.send( `XY#$42,${group},${name},${name}` );
   }
 
@@ -1305,6 +1342,7 @@ DES_ws.onmessage = function(event) {
     this.props.key = 'B2X'
     count += 1;
     console.log('The count is now ' + count + ' and the color is ' + this.mouse[15] );
+    let information = this.data2.information;
     let name = this.state.name;
     let group = this.data.group;
     let dynB = this.state.dynamicBg;
@@ -1373,6 +1411,7 @@ DES_ws.onmessage = function(event) {
    <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, 
       display: rightDisplay, width: '100%', height: '100%'}} >
       <div style={{width: '35%', float: 'right'}} >
+
             <ChangeColor key='ChangeColor' changeC={this.changeColor}
               style={{width: 8}} />
             <ChangeBackground key='ChangeBackground' changeB={this.changeBackground}
@@ -1468,11 +1507,17 @@ DES_ws.onmessage = function(event) {
              {this.state.str1} <br /> {this.state.str2} <br /> {this.state.str3} <br /> {this.state.str4}
           </div>
 
-          <div style={{width: '100%', backgroundColor: dynB,  padding: 10}} > </div>
+          <div style = {{width: '55%' }} >
+              {information}
+          </div>
+
+          <div style={{width: '60%', backgroundColor: dynB,  padding: 0}} > </div>
 
           <button style={this.style6(cr21,timerDisplay)}>
               {this.state.DS_T}
           </button>
+
+          <div style={{width: '60%', backgroundColor: dynB,  padding: 10}} > </div>
 
           <div style={{ display: rollnumsDisplay }} > 
             <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
@@ -1508,9 +1553,6 @@ DES_ws.onmessage = function(event) {
           </button>
 
           <div style={{width: '100%', backgroundColor: dynB,  padding: 10}} > </div>
-
-          <div style={{marginLeft: 12}} > {this.state.message } </div>
-          <br />
 
        <div style={{width: '100%', backgroundColor: dynB,  padding: 10, display: numDisplay }} >
 
