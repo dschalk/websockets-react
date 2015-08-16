@@ -585,6 +585,30 @@
 
 	;
 
+	var Messages = (function (_React$Component11) {
+	  _inherits(Messages, _React$Component11);
+
+	  function Messages(props) {
+	    var _this12 = this;
+
+	    _classCallCheck(this, Messages);
+
+	    _get(Object.getPrototypeOf(Messages.prototype), 'constructor', this).call(this, props);
+
+	    this.render = function () {
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: { fontSize: 22 } },
+	        _this12.props.information
+	      );
+	    };
+	  }
+
+	  return Messages;
+	})(_react2['default'].Component);
+
+	;
+
 	var mouseHandler = _mobservable2['default'].makeReactive({
 
 	  0: '#83f7d7',
@@ -611,33 +635,31 @@
 	var data = _mobservable2['default'].makeReactive({
 	  group: 'solo',
 	  chatMessage: '',
-	  chatArray: []
+	  chatArray: [],
+	  information: 'click ROLL to begin playing.',
+	  resPrevious: ''
 	});
 
-	var data2 = _mobservable2['default'].makeReactive({
-	  information: 'Click ROLL to begin playing.'
-	});
-
-	var B2X = (function (_React$Component11) {
-	  _inherits(B2X, _React$Component11);
+	var B2X = (function (_React$Component12) {
+	  _inherits(B2X, _React$Component12);
 
 	  // shouldComponentUpdate = shouldPureComponentUpdate;
 
 	  function B2X(props) {
-	    var _this12 = this;
+	    var _this13 = this;
 
 	    _classCallCheck(this, B2X);
 
 	    _get(Object.getPrototypeOf(B2X.prototype), 'constructor', this).call(this, props);
 
 	    this.changeMessage = function (x) {
-	      var name = _this12.state.name;
-	      var gr = _this12.data.group;
+	      var name = _this13.state.name;
+	      var gr = _this13.data.group;
 	      DES_ws.send('CD#$42,' + gr + ',' + name + ',' + name + ',' + x);
 	    };
 
 	    this.setColorState = function (fn) {
-	      return _this12.setState(function (_ref) {
+	      return _this13.setState(function (_ref) {
 	        var colors = _ref.colors;
 	        return {
 	          colors: fn(colors)
@@ -646,30 +668,31 @@
 	    };
 
 	    this.changeBackground = function (color) {
-	      _this12.setState({
+	      _this13.setState({
 	        dynamicBg: color
 	      });
 	    };
 
 	    this.changeColor = function (col) {
-	      _this12.setState({
+	      _this13.setState({
 	        dynamicColor: col,
 	        sty: { color: col, width: 50, marginLeft: 30, padding: 10 }
 	      });
 	    };
 
 	    this.solutions = function () {
-	      var group = _this12.data.group;
-	      var name = _this12.state.name;
-	      var goal = _this12.state.goal;
+	      var group = _this13.data.group;
+	      var name = _this13.state.name;
+	      var goal = _this13.state.goal;
 	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + goal);
 	    };
 
 	    this.displayHandler = function () {};
 
 	    this.rollDice = function () {
-	      var col = _this12.state.dynamicColor;
-	      _this12.setState({
+	      var col = _this13.state.dynamicColor;
+	      _this13.mouse[2] = '#83f7d8';
+	      _this13.setState({
 	        DS_T: '',
 	        test: false,
 	        score: false,
@@ -687,254 +710,254 @@
 	        showSolutionsButton: 'inline',
 	        hideSolutionsButton: 'none'
 	      });
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
-	      var a = _this12.state.sides1;
-	      var b = _this12.state.sides2;
-	      var c = _this12.state.sides3;
-	      var d = _this12.state.sides4;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var a = _this13.state.sides1;
+	      var b = _this13.state.sides2;
+	      var c = _this13.state.sides3;
+	      var d = _this13.state.sides4;
 	      DES_ws.send('CF#$42,' + group + ',' + name + ',');
 	      DES_ws.send('CA#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d);
 	    };
 
 	    this.handleGroupA = function () {
-	      if (_this12.data.group !== 'GroupA') {
-	        var _name3 = _this12.state.name;
-	        var group = _this12.data.group;
+	      if (_this13.data.group !== 'GroupA') {
+	        var _name3 = _this13.state.name;
+	        var group = _this13.data.group;
 	        DES_ws.send('CO#$42,' + group + ',' + _name3 + ',GroupA');
-	        _this12.data.group = 'GroupA';
-	        _this12.data.chatMessage = '';
-	        _this12.data.chatArray = [];
+	        _this13.data.group = 'GroupA';
+	        _this13.data.chatMessage = '';
+	        _this13.data.chatArray = [];
 	      }
 	    };
 
 	    this.handleGroupB = function () {
-	      if (_this12.data.group !== 'GroupB') {
-	        var _name4 = _this12.state.name;
-	        var group = _this12.data.group;
+	      if (_this13.data.group !== 'GroupB') {
+	        var _name4 = _this13.state.name;
+	        var group = _this13.data.group;
 	        DES_ws.send('CO#$42,' + group + ',' + _name4 + ',GroupB');
-	        _this12.data.group = 'GroupB';
-	        _this12.data.chatMessage = '';
-	        _this12.data.chatArray = [];
+	        _this13.data.group = 'GroupB';
+	        _this13.data.chatMessage = '';
+	        _this13.data.chatArray = [];
 	      }
 	    };
 
 	    this.handleGroupC = function () {
-	      if (_this12.data.group !== 'GroupC') {
-	        var _name5 = _this12.state.name;
-	        var group = _this12.data.group;
+	      if (_this13.data.group !== 'GroupC') {
+	        var _name5 = _this13.state.name;
+	        var group = _this13.data.group;
 	        DES_ws.send('CO#$42,' + group + ',' + _name5 + ',GroupC');
-	        _this12.data.group = 'GroupC';
-	        _this12.data.chatMessage = '';
-	        _this12.data.chatArray = [];
+	        _this13.data.group = 'GroupC';
+	        _this13.data.chatMessage = '';
+	        _this13.data.chatArray = [];
 	      }
 	    };
 
 	    this.setGroup = function (x) {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
-	      _this12.data.group = x;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      _this13.data.group = x;
 	      DES_ws.send('CO#$42,' + group + ',' + name + ',' + x);
-	      _this12.data.chatMessage = '';
-	      _this12.data.chatArray = [];
+	      _this13.data.chatMessage = '';
+	      _this13.data.chatArray = [];
 	    };
 
 	    this.newPlayer = function (x) {
-	      _this12.setState({ name: x });
+	      _this13.setState({ name: x });
 	      DES_ws.send("CC#42$" + x);
 	    };
 
 	    this.changeItem = function (x) {
-	      _this12.setState(x);
+	      _this13.setState(x);
 	    };
 
 	    this.buttonHandler = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('IA#$42,' + group + ',' + name + ',Click SCORE to begin');
-	      _this12.rollDice();
+	      _this13.rollDice();
 	    };
 
 	    this.handleB40 = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
-	      var num = _this12.state.message1;
-	      if (_this12.state.mes0 === 'Number') {
-	        _this12.setState({ message1: '', mes0: num }, function () {
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var num = _this13.state.message1;
+	      if (_this13.state.mes0 === 'Number') {
+	        _this13.setState({ message1: '', mes0: num }, function () {
 	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
 	        });
-	      } else if (_this12.state.mes2 === 'Number') {
-	        _this12.setState({ message1: '', mes2: num }, function () {
+	      } else if (_this13.state.mes2 === 'Number') {
+	        _this13.setState({ message1: '', mes2: num }, function () {
 	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
-	          if (_this12.state.mes1 !== 'Operator') {
-	            _this12.calc(_this12.state.mes0, _this12.state.mes1, num);
+	          if (_this13.state.mes1 !== 'Operator') {
+	            _this13.calc(_this13.state.mes0, _this13.state.mes1, num);
 	          }
 	        });
 	      }
 	    };
 
 	    this.handleB41 = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
-	      var num = _this12.state.message2;
-	      if (_this12.state.mes0 === 'Number') {
-	        _this12.setState({ message2: '', mes0: num }, function () {
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var num = _this13.state.message2;
+	      if (_this13.state.mes0 === 'Number') {
+	        _this13.setState({ message2: '', mes0: num }, function () {
 	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
 	        });
-	      } else if (_this12.state.mes2 === 'Number') {
-	        _this12.setState({ message2: '', mes2: num }, function () {
+	      } else if (_this13.state.mes2 === 'Number') {
+	        _this13.setState({ message2: '', mes2: num }, function () {
 	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
-	          if (_this12.state.mes1 !== 'Operator') {
-	            _this12.calc(_this12.state.mes0, _this12.state.mes1, num);
+	          if (_this13.state.mes1 !== 'Operator') {
+	            _this13.calc(_this13.state.mes0, _this13.state.mes1, num);
 	          }
 	        });
 	      }
 	    };
 
 	    this.handleB42 = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
-	      var num = _this12.state.message3;
-	      if (_this12.state.mes0 === 'Number') {
-	        _this12.setState({ message3: '', mes0: num }, function () {
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var num = _this13.state.message3;
+	      if (_this13.state.mes0 === 'Number') {
+	        _this13.setState({ message3: '', mes0: num }, function () {
 	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
 	        });
-	      } else if (_this12.state.mes2 === 'Number') {
-	        _this12.setState({ message3: '', mes2: num }, function () {
+	      } else if (_this13.state.mes2 === 'Number') {
+	        _this13.setState({ message3: '', mes2: num }, function () {
 	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
-	          if (_this12.state.mes1 !== 'Operator') {
-	            _this12.calc(_this12.state.mes0, _this12.state.mes1, num);
+	          if (_this13.state.mes1 !== 'Operator') {
+	            _this13.calc(_this13.state.mes0, _this13.state.mes1, num);
 	          }
 	        });
 	      }
 	    };
 
 	    this.handleB43 = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
-	      var num = _this12.state.message4;
-	      if (_this12.state.mes0 === 'Number') {
-	        _this12.setState({ message4: '', mes0: num }, function () {
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var num = _this13.state.message4;
+	      if (_this13.state.mes0 === 'Number') {
+	        _this13.setState({ message4: '', mes0: num }, function () {
 	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
 	        });
-	      } else if (_this12.state.mes2 === 'Number') {
-	        _this12.setState({ message4: '', mes2: num }, function () {
+	      } else if (_this13.state.mes2 === 'Number') {
+	        _this13.setState({ message4: '', mes2: num }, function () {
 	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
-	          if (_this12.state.mes1 !== 'Operator') {
-	            _this12.calc(_this12.state.mes0, _this12.state.mes1, num);
+	          if (_this13.state.mes1 !== 'Operator') {
+	            _this13.calc(_this13.state.mes0, _this13.state.mes1, num);
 	          }
 	        });
 	      }
 	    };
 
 	    this.handleOp0 = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('EQ#$42,' + group + ',' + name + ',+');
-	      var test = _this12.state.mes0 !== 'Number' && _this12.state.mes2 !== 'Number';
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
-	        _this12.setState({ mes1: '+' }, function () {
-	          _this12.calc(_this12.state.mes0, '+', _this12.state.mes2);
+	        _this13.setState({ mes1: '+' }, function () {
+	          _this13.calc(_this13.state.mes0, '+', _this13.state.mes2);
 	        });
 	      }
 	    };
 
 	    this.handleOp1 = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('EQ#$42,' + group + ',' + name + ',-');
-	      var test = _this12.state.mes0 !== 'Number' && _this12.state.mes2 !== 'Number';
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
-	        _this12.setState({ mes1: '-' }, function () {
-	          _this12.calc(_this12.state.mes0, '-', _this12.state.mes2);
+	        _this13.setState({ mes1: '-' }, function () {
+	          _this13.calc(_this13.state.mes0, '-', _this13.state.mes2);
 	        });
 	      }
 	    };
 
 	    this.handleOp2 = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('EQ#$42,' + group + ',' + name + ',*');
-	      var test = _this12.state.mes0 !== 'Number' && _this12.state.mes2 !== 'Number';
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
-	        _this12.setState({ mes1: '*' }, function () {
-	          _this12.calc(_this12.state.mes0, '*', _this12.state.mes2);
+	        _this13.setState({ mes1: '*' }, function () {
+	          _this13.calc(_this13.state.mes0, '*', _this13.state.mes2);
 	        });
 	      }
 	    };
 
 	    this.handleOp3 = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('EQ#$42,' + group + ',' + name + ',/');
-	      var test = _this12.state.mes0 !== 'Number' && _this12.state.mes2 !== 'Number';
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
-	        _this12.setState({ mes1: '/' }, function () {
-	          _this12.calc(_this12.state.mes0, '/', _this12.state.mes2);
+	        _this13.setState({ mes1: '/' }, function () {
+	          _this13.calc(_this13.state.mes0, '/', _this13.state.mes2);
 	        });
 	      }
 	    };
 
 	    this.handleOp4 = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('EQ#$42,' + group + ',' + name + ',Concat');
-	      var test = _this12.state.mes0 !== 'Number' && _this12.state.mes2 !== 'Number';
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
-	        _this12.setState({ mes1: 'Concat' }, function () {
-	          _this12.calc(_this12.state.mes0, 'Concat', _this12.state.mes2);
+	        _this13.setState({ mes1: 'Concat' }, function () {
+	          _this13.calc(_this13.state.mes0, 'Concat', _this13.state.mes2);
 	        });
 	      }
 	    };
 
 	    this.handleScore = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('CY#$42,' + group + ',' + name + ',' + name);
 	    };
 
 	    this.handleScore2 = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
-	      _this12.setState({ numDisplay: 'inline' });
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      _this13.setState({ numDisplay: 'inline' });
 	      DES_ws.send('XY#$42,' + group + ',' + name + ',' + name);
 	    };
 
 	    this.handleImpossible = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('DY#$42,' + group + ',' + name + ',' + name);
 	    };
 
 	    this.eraseMessages = function () {
-	      _this12.data.chatArray = [];
-	      _this12.data.chatMessage = '';
+	      _this13.data.chatArray = [];
+	      _this13.data.chatMessage = '';
 	    };
 
 	    this.handleExtra = function () {
-	      _this12.setState({
+	      _this13.setState({
 	        gameDisplay: 'none',
 	        extraDisplay: 'inlineBlock'
 	      });
 	    };
 
 	    this.handleGame = function () {
-	      _this12.setState({
+	      _this13.setState({
 	        gameDisplay: 'inlineBlock',
 	        extraDisplay: 'none'
 	      });
 	    };
 
 	    this.showSolutionsHandler = function () {
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
-	      var a = _this12.state.d1;
-	      var b = _this12.state.d2;
-	      var c = _this12.state.d3;
-	      var d = _this12.state.d4;
-	      var goal = _this12.state.goal;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var a = _this13.state.d1;
+	      var b = _this13.state.d2;
+	      var c = _this13.state.d3;
+	      var d = _this13.state.d4;
+	      var goal = _this13.state.goal;
 	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d + ',' + goal);
-	      _this12.setState({
+	      _this13.setState({
 	        rollDisplay: 'none',
 	        scoreDisplay: 'none',
 	        impossibleDisplay: 'none',
@@ -945,8 +968,8 @@
 	    };
 
 	    this.hideSolutionsHandler = function () {
-	      var _this = _this12;
-	      _this12.setState({
+	      var _this = _this13;
+	      _this13.setState({
 	        message: 'Play forfeited for this round by opening Solutions',
 	        DS_t: 'Please wait for the next roll. You displayed solutions.',
 	        showSolutionsButton: 'inline',
@@ -957,7 +980,7 @@
 	    };
 
 	    this.showParamsHandler = function () {
-	      _this12.setState({
+	      _this13.setState({
 	        scoreDisplay: 'none',
 	        scoreDisplay2: 'none',
 	        impossibleDisplay: 'none',
@@ -969,7 +992,7 @@
 	    };
 
 	    this.hideParamsHandler = function () {
-	      _this12.setState({
+	      _this13.setState({
 	        paramsDisplay: 'none',
 	        scoreDisplay: 'inline',
 	        impossibleDisplay: 'inline',
@@ -982,81 +1005,80 @@
 
 	    this.style5 = function (x) {
 	      return { backgroundColor: x, paddingTop: 1.3, paddingLeft: 12, paddingRight: 12,
-	        paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: _this12.state.timeSize };
+	        paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: _this13.state.timeSize };
 	    };
 
 	    this.style6 = function (x, y) {
 	      return { backgroundColor: x, display: y, paddingBottom: 0.9,
-	        marginRight: 3, marginLeft: 10, fontSize: _this12.state.timeSize };
+	        marginRight: 3, marginLeft: 10, fontSize: _this13.state.timeSize };
 	    };
 
 	    this.render = function () {
-	      _this12.props.key = 'B2X';
 	      count += 1;
-	      console.log('The count is now ' + count + ' and the color is ' + _this12.mouse[15]);
-	      var information = _this12.data2.information;
-	      var name = _this12.state.name;
-	      var group = _this12.data.group;
-	      var dynB = _this12.state.dynamicBg;
-	      var dynC = _this12.state.dynamicColor;
-	      var dynF = _this12.state.dynamicFont;
-	      var buttonDisplay = _this12.state.buttonDisplay;
-	      var startDisplay = _this12.state.startDisplay;
-	      var impossibleDisplay = _this12.state.impossibleDisplay;
-	      var scoreDisplay = _this12.state.scoreDisplay;
-	      var scoreDisplay2 = _this12.state.scoreDisplay2;
-	      var timerDisplay = _this12.state.timerDisplay;
-	      var timerDisplay2 = _this12.state.timerDisplay2;
-	      var rollDisplay = _this12.state.rollDisplay;
-	      var numDisplay = _this12.state.numDisplay;
-	      var solutionsDisplay = _this12.state.solutionsDisplay;
-	      var rollnumsDisplay = _this12.state.rollnumsDisplay;
-	      var rightDisplay = _this12.state.rightDisplay;
-	      var leftDisplay = _this12.state.leftDisplay;
-	      var extraDisplay = _this12.state.extraDisplay;
-	      var m1 = _this12.state.message1;
-	      var timeSize = _this12.state.timeSize;
-	      var paramsDisplay = _this12.state.paramsDisplay;
-	      var paramsButton = _this12.state.paramsButton;
-	      var paramsDiv = _this12.state.paramsDiv;
-	      var shrinkSol = _this12.state.shrinkSol;
-	      var shrinkPar = _this12.state.shrinkPar;
-	      var showSolutionsButton = _this12.state.showSolutionsButton;
-	      var hideSolutionsButton = _this12.state.hideSolutionsButton;
-	      var showParamsButton = _this12.state.showParamsButton;
-	      var hideParamsButton = _this12.state.hideParamsButton;
-	      var sol = _this12.state.sol;
+	      console.log('The count is now ' + count + ' and the color is ' + _this13.mouse[15]);
+	      var information = _this13.data.information;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var dynB = _this13.state.dynamicBg;
+	      var dynC = _this13.state.dynamicColor;
+	      var dynF = _this13.state.dynamicFont;
+	      var buttonDisplay = _this13.state.buttonDisplay;
+	      var startDisplay = _this13.state.startDisplay;
+	      var impossibleDisplay = _this13.state.impossibleDisplay;
+	      var scoreDisplay = _this13.state.scoreDisplay;
+	      var scoreDisplay2 = _this13.state.scoreDisplay2;
+	      var timerDisplay = _this13.state.timerDisplay;
+	      var timerDisplay2 = _this13.state.timerDisplay2;
+	      var rollDisplay = _this13.state.rollDisplay;
+	      var numDisplay = _this13.state.numDisplay;
+	      var solutionsDisplay = _this13.state.solutionsDisplay;
+	      var rollnumsDisplay = _this13.state.rollnumsDisplay;
+	      var rightDisplay = _this13.state.rightDisplay;
+	      var leftDisplay = _this13.state.leftDisplay;
+	      var extraDisplay = _this13.state.extraDisplay;
+	      var m1 = _this13.state.message1;
+	      var timeSize = _this13.state.timeSize;
+	      var paramsDisplay = _this13.state.paramsDisplay;
+	      var paramsButton = _this13.state.paramsButton;
+	      var paramsDiv = _this13.state.paramsDiv;
+	      var shrinkSol = _this13.state.shrinkSol;
+	      var shrinkPar = _this13.state.shrinkPar;
+	      var showSolutionsButton = _this13.state.showSolutionsButton;
+	      var hideSolutionsButton = _this13.state.hideSolutionsButton;
+	      var showParamsButton = _this13.state.showParamsButton;
+	      var hideParamsButton = _this13.state.hideParamsButton;
+	      var sol = _this13.state.sol;
 	      var base = '#f7b16f';
-	      var d1 = _this12.state.d1;
-	      var d2 = _this12.state.d2;
-	      var d3 = _this12.state.d3;
-	      var d4 = _this12.state.d4;
-	      var sides1 = _this12.state.sides1;
-	      var sides2 = _this12.state.sides2;
-	      var sides3 = _this12.state.sides3;
-	      var sides4 = _this12.state.sides4;
-	      var goal = _this12.state.goal;
-	      var cr15 = _this12.mouse[15];
-	      var cr11 = _this12.mouse[11];
-	      var cr12 = _this12.mouse[12];
-	      var cr0 = _this12.mouse[0];
-	      var cr1 = _this12.mouse[1];
-	      var cr2 = _this12.mouse[2];
-	      var cr3 = _this12.mouse[3];
-	      var cr4 = _this12.mouse[4];
-	      var cr5 = _this12.mouse[5];
-	      var cr6 = _this12.mouse[6];
-	      var cr7 = _this12.mouse[7];
-	      var cr8 = _this12.mouse[8];
-	      var cr9 = _this12.mouse[9];
-	      var cr10 = _this12.mouse[10];
-	      var cr13 = _this12.mouse[13];
-	      var cr14 = _this12.mouse[14];
-	      var cr19 = _this12.mouse[19];
-	      var cr20 = _this12.mouse[20];
-	      var cr21 = _this12.mouse[21];
-	      var style1 = { backgroundColor: _this12.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
-	      var style2 = { backgroundColor: _this12.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
+	      var d1 = _this13.state.d1;
+	      var d2 = _this13.state.d2;
+	      var d3 = _this13.state.d3;
+	      var d4 = _this13.state.d4;
+	      var sides1 = _this13.state.sides1;
+	      var sides2 = _this13.state.sides2;
+	      var sides3 = _this13.state.sides3;
+	      var sides4 = _this13.state.sides4;
+	      var goal = _this13.state.goal;
+	      var cr15 = _this13.mouse[15];
+	      var cr11 = _this13.mouse[11];
+	      var cr12 = _this13.mouse[12];
+	      var cr0 = _this13.mouse[0];
+	      var cr1 = _this13.mouse[1];
+	      var cr2 = _this13.mouse[2];
+	      var cr3 = _this13.mouse[3];
+	      var cr4 = _this13.mouse[4];
+	      var cr5 = _this13.mouse[5];
+	      var cr6 = _this13.mouse[6];
+	      var cr7 = _this13.mouse[7];
+	      var cr8 = _this13.mouse[8];
+	      var cr9 = _this13.mouse[9];
+	      var cr10 = _this13.mouse[10];
+	      var cr13 = _this13.mouse[13];
+	      var cr14 = _this13.mouse[14];
+	      var cr19 = _this13.mouse[19];
+	      var cr20 = _this13.mouse[20];
+	      var cr21 = _this13.mouse[21];
+	      var style1 = { backgroundColor: _this13.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
+	      var style2 = { backgroundColor: _this13.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
 	      var style3 = { paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16 };
 
 	      return _react2['default'].createElement(
@@ -1066,9 +1088,9 @@
 	        _react2['default'].createElement(
 	          'div',
 	          { style: { width: '35%', float: 'right' } },
-	          _react2['default'].createElement(ChangeColor, { key: 'ChangeColor', changeC: _this12.changeColor,
+	          _react2['default'].createElement(ChangeColor, { key: 'ChangeColor', changeC: _this13.changeColor,
 	            style: { width: 8 } }),
-	          _react2['default'].createElement(ChangeBackground, { key: 'ChangeBackground', changeB: _this12.changeBackground,
+	          _react2['default'].createElement(ChangeBackground, { key: 'ChangeBackground', changeB: _this13.changeBackground,
 	            style: { width: 8 } }),
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement('br', null),
@@ -1083,7 +1105,7 @@
 	              'div',
 	              { style: { textAlign: 'left' } },
 	              ' ',
-	              _this12.state.scoreB.map(function (line) {
+	              _this13.state.scoreB.map(function (line) {
 	                return _react2['default'].createElement(
 	                  'p',
 	                  { key: line.id },
@@ -1107,7 +1129,7 @@
 	              'div',
 	              { style: { textAlign: 'left' } },
 	              ' ',
-	              _this12.data.chatArray.map(function (line) {
+	              _this13.data.chatArray.map(function (line) {
 	                return _react2['default'].createElement(
 	                  'p',
 	                  { key: line.id },
@@ -1120,20 +1142,20 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this12.eraseMessages, style: { backgroundColor: '#4c1616', color: '#f2f246',
+	            { onClick: _this13.eraseMessages, style: { backgroundColor: '#4c1616', color: '#f2f246',
 	                fontSize: 14, marginLeft: 10 } },
 	            'Erase Messages'
 	          ),
 	          _react2['default'].createElement(
 	            Chat,
-	            { changeMessage: _this12.changeMessage },
+	            { changeMessage: _this13.changeMessage },
 	            ' '
 	          ),
 	          _react2['default'].createElement('div', { style: { paddingBottom: 200 } })
 	        ),
-	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: _this12.newPlayer.bind(_this12), name: _this12.state.name,
-	          setGroup: _this12.setGroup.bind(_this12), change: _this12.changeItem,
-	          group: group, hidden: _this12.state.hidden, info: _this12.state.info }),
+	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: _this13.newPlayer.bind(_this13), name: _this13.state.name,
+	          setGroup: _this13.setGroup.bind(_this13), change: _this13.changeItem,
+	          group: group, hidden: _this13.state.hidden, info: _this13.state.info }),
 	        _react2['default'].createElement(
 	          'div',
 	          { style: { display: startDisplay, paddingTop: 3.8, width: '65%',
@@ -1206,39 +1228,39 @@
 	            'div',
 	            { style: { marginLeft: 5 } },
 	            ' ',
-	            _this12.state.info,
+	            _this13.state.info,
 	            ' '
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this12.handleGroupA, style: { backgroundColor: cr15, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	            { onClick: _this13.handleGroupA, style: { backgroundColor: cr15, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10 },
 	              onMouseEnter: function () {
-	                _this12.mouse[15] = '#f99094';
+	                _this13.mouse[15] = '#f99094';
 	              }, onMouseLeave: function () {
-	                _this12.mouse[15] = base;
+	                _this13.mouse[15] = base;
 	              } },
 	            'GroupA'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
 	            { onMouseEnter: function () {
-	                _this12.mouse[11] = '#f99094';
+	                _this13.mouse[11] = '#f99094';
 	              }, onMouseLeave: function () {
-	                _this12.mouse[11] = base;
+	                _this13.mouse[11] = base;
 	              },
-	              onClick: _this12.handleGroupB, style: { backgroundColor: cr11, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	              onClick: _this13.handleGroupB, style: { backgroundColor: cr11, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10 } },
 	            'GroupB'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this12.handleGroupC, style: { backgroundColor: cr12, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	            { onClick: _this13.handleGroupC, style: { backgroundColor: cr12, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10 },
 	              onMouseEnter: function () {
-	                _this12.mouse[12] = '#f99094';
+	                _this13.mouse[12] = '#f99094';
 	              }, onMouseLeave: function () {
-	                _this12.mouse[12] = base;
+	                _this13.mouse[12] = base;
 	              } },
 	            'GroupC'
 	          ),
@@ -1246,25 +1268,21 @@
 	          _react2['default'].createElement(
 	            'div',
 	            { style: { paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
-	            _this12.state.str1,
+	            _this13.state.str1,
 	            ' ',
 	            _react2['default'].createElement('br', null),
 	            ' ',
-	            _this12.state.str2,
+	            _this13.state.str2,
 	            ' ',
 	            _react2['default'].createElement('br', null),
 	            ' ',
-	            _this12.state.str3,
+	            _this13.state.str3,
 	            ' ',
 	            _react2['default'].createElement('br', null),
 	            ' ',
-	            _this12.state.str4
+	            _this13.state.str4
 	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { width: '55%' } },
-	            information
-	          ),
+	          _react2['default'].createElement(Messages, { information: information }),
 	          _react2['default'].createElement(
 	            'div',
 	            { style: { width: '60%', backgroundColor: dynB, padding: 0 } },
@@ -1272,8 +1290,8 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: _this12.style6(cr21, timerDisplay) },
-	            _this12.state.DS_T
+	            { style: _this13.style6(cr21, timerDisplay) },
+	            _this13.state.DS_T
 	          ),
 	          _react2['default'].createElement(
 	            'div',
@@ -1318,35 +1336,35 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this12.handleScore,
+	            { onClick: _this13.handleScore,
 	              onMouseEnter: function () {
-	                _this12.mouse[9] = '#f99094';
+	                _this13.mouse[9] = '#f99094';
 	              }, onMouseLeave: function () {
-	                _this12.mouse[9] = '#9fc972';
+	                _this13.mouse[9] = '#9fc972';
 	              },
-	              style: _this12.style6(cr9, scoreDisplay) },
+	              style: _this13.style6(cr9, scoreDisplay) },
 	            'SCORE!'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this12.handleScore2,
+	            { onClick: _this13.handleScore2,
 	              onMouseEnter: function () {
-	                _this12.mouse[19] = '#f99094';
+	                _this13.mouse[19] = '#f99094';
 	              }, onMouseLeave: function () {
-	                _this12.mouse[19] = '#9fc972';
+	                _this13.mouse[19] = '#9fc972';
 	              },
-	              style: _this12.style6(cr19, scoreDisplay2) },
+	              style: _this13.style6(cr19, scoreDisplay2) },
 	            'SCORE!'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this12.handleImpossible,
+	            { onClick: _this13.handleImpossible,
 	              onMouseEnter: function () {
-	                _this12.mouse[14] = '#f99094';
+	                _this13.mouse[14] = '#f99094';
 	              }, onMouseLeave: function () {
-	                _this12.mouse[14] = '#9fc972';
+	                _this13.mouse[14] = '#9fc972';
 	              },
-	              style: _this12.style6(cr14, impossibleDisplay) },
+	              style: _this13.style6(cr14, impossibleDisplay) },
 	            'IMPOSSIBLE'
 	          ),
 	          _react2['default'].createElement(
@@ -1359,47 +1377,47 @@
 	            { style: { width: '100%', backgroundColor: dynB, padding: 10, display: numDisplay } },
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this12.handleB40, cow: 'red',
+	              { onClick: _this13.handleB40, cow: 'red',
 	                onMouseEnter: function () {
-	                  _this12.mouse[0] = '#f99094';
+	                  _this13.mouse[0] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this12.mouse[0] = '#83f7d8';
+	                  _this13.mouse[0] = '#83f7d8';
 	                },
-	                style: _this12.style5(cr0) },
-	              _this12.state.message1
+	                style: _this13.style5(cr0) },
+	              _this13.state.message1
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this12.handleB41,
+	              { onClick: _this13.handleB41,
 	                onMouseEnter: function () {
-	                  _this12.mouse[1] = '#f99094';
+	                  _this13.mouse[1] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this12.mouse[1] = '#83f7d8';
+	                  _this13.mouse[1] = '#83f7d8';
 	                },
-	                style: _this12.style5(cr1) },
-	              _this12.state.message2
+	                style: _this13.style5(cr1) },
+	              _this13.state.message2
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this12.handleB42,
+	              { onClick: _this13.handleB42,
 	                onMouseEnter: function () {
-	                  _this12.mouse[2] = '#f99094';
+	                  _this13.mouse[2] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this12.mouse[2] = '#83f7d8';
+	                  _this13.mouse[2] = '#83f7d8';
 	                },
-	                style: _this12.style5(cr2) },
-	              _this12.state.message3
+	                style: _this13.style5(cr2) },
+	              _this13.state.message3
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this12.handleB43,
+	              { onClick: _this13.handleB43,
 	                onMouseEnter: function () {
-	                  _this12.mouse[3] = '#f99094';
+	                  _this13.mouse[3] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this12.mouse[3] = '#83f7d8';
+	                  _this13.mouse[3] = '#83f7d8';
 	                },
-	                style: _this12.style5(cr3) },
-	              _this12.state.message4
+	                style: _this13.style5(cr3) },
+	              _this13.state.message4
 	            ),
 	            _react2['default'].createElement(
 	              'div',
@@ -1408,57 +1426,57 @@
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this12.handleOp0,
+	              { onClick: _this13.handleOp0,
 	                onMouseEnter: function () {
-	                  _this12.mouse[4] = '#f99094';
+	                  _this13.mouse[4] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this12.mouse[4] = '#83f7d8';
+	                  _this13.mouse[4] = '#83f7d8';
 	                },
-	                style: _this12.style5(cr4) },
+	                style: _this13.style5(cr4) },
 	              '+'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this12.handleOp1,
+	              { onClick: _this13.handleOp1,
 	                onMouseEnter: function () {
-	                  _this12.mouse[5] = '#f99094';
+	                  _this13.mouse[5] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this12.mouse[5] = '#83f7d8';
+	                  _this13.mouse[5] = '#83f7d8';
 	                },
-	                style: _this12.style5(cr5) },
+	                style: _this13.style5(cr5) },
 	              '-'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this12.handleOp2,
+	              { onClick: _this13.handleOp2,
 	                onMouseEnter: function () {
-	                  _this12.mouse[6] = '#f99094';
+	                  _this13.mouse[6] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this12.mouse[6] = '#83f7d8';
+	                  _this13.mouse[6] = '#83f7d8';
 	                },
-	                style: _this12.style5(cr6) },
+	                style: _this13.style5(cr6) },
 	              '*'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this12.handleOp3,
+	              { onClick: _this13.handleOp3,
 	                onMouseEnter: function () {
-	                  _this12.mouse[7] = '#f99094';
+	                  _this13.mouse[7] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this12.mouse[7] = '#83f7d8';
+	                  _this13.mouse[7] = '#83f7d8';
 	                },
-	                style: _this12.style5(cr7) },
+	                style: _this13.style5(cr7) },
 	              '/'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this12.handleOp4,
+	              { onClick: _this13.handleOp4,
 	                onMouseEnter: function () {
-	                  _this12.mouse[8] = '#f99094';
+	                  _this13.mouse[8] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this12.mouse[8] = '#83f7d8';
+	                  _this13.mouse[8] = '#83f7d8';
 	                },
-	                style: _this12.style5(cr8) },
+	                style: _this13.style5(cr8) },
 	              'Concat'
 	            )
 	          ),
@@ -1466,17 +1484,17 @@
 	          _react2['default'].createElement(
 	            'span',
 	            { style: style3 },
-	            _this12.state.mes0
+	            _this13.state.mes0
 	          ),
 	          _react2['default'].createElement(
 	            'span',
 	            { style: style3 },
-	            _this12.state.mes1
+	            _this13.state.mes1
 	          ),
 	          _react2['default'].createElement(
 	            'span',
 	            { style: style3 },
-	            _this12.state.mes2
+	            _this13.state.mes2
 	          ),
 	          _react2['default'].createElement(
 	            'span',
@@ -1486,7 +1504,7 @@
 	          _react2['default'].createElement(
 	            'span',
 	            { style: style3 },
-	            _this12.state.res
+	            _this13.state.res
 	          ),
 	          _react2['default'].createElement(
 	            'div',
@@ -1500,12 +1518,12 @@
 	              'button',
 	              {
 	                onMouseEnter: function () {
-	                  _this12.mouse[13] = '#f99094';
+	                  _this13.mouse[13] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this12.mouse[13] = '#9fc972';
+	                  _this13.mouse[13] = '#9fc972';
 	                },
-	                style: _this12.style6(cr13, buttonDisplay),
-	                onClick: _this12.buttonHandler },
+	                style: _this13.style6(cr13, buttonDisplay),
+	                onClick: _this13.buttonHandler },
 	              'Roll'
 	            )
 	          ),
@@ -1514,13 +1532,13 @@
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this12.showSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	            { onClick: _this13.showSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	            'Solutions'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this12.hideSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	            { onClick: _this13.hideSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	            'Hide Solutions'
 	          ),
@@ -1538,20 +1556,20 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this12.showParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	            { onClick: _this13.showParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	            'Create a New Group'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this12.hideParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	            { onClick: _this13.hideParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	            'Hide This New Group Form'
 	          ),
 	          _react2['default'].createElement(
 	            'div',
 	            { style: { display: paramsDiv, width: '60%', float: 'left' } },
-	            _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: _this12.setGroup, name: _this12.state.name }),
+	            _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: _this13.setGroup, name: _this13.state.name }),
 	            _react2['default'].createElement(
 	              'p',
 	              null,
@@ -1574,36 +1592,36 @@
 	            'Sides:',
 	            _react2['default'].createElement(
 	              Sides1,
-	              { change: _this12.changeItem },
+	              { change: _this13.changeItem },
 	              ' Side 1 '
 	            ),
 	            _react2['default'].createElement(
 	              Sides2,
-	              { change: _this12.changeItem },
+	              { change: _this13.changeItem },
 	              ' Side 2 '
 	            ),
 	            _react2['default'].createElement(
 	              Sides3,
-	              { change: _this12.changeItem },
+	              { change: _this13.changeItem },
 	              ' Side 3 '
 	            ),
 	            _react2['default'].createElement(
 	              Sides4,
-	              { change: _this12.changeItem },
+	              { change: _this13.changeItem },
 	              ' Side 4 '
 	            ),
 	            _react2['default'].createElement('br', null),
 	            ' ',
 	            _react2['default'].createElement('br', null),
 	            'Goal',
-	            _react2['default'].createElement(SetGoal, { change: _this12.changeItem }),
+	            _react2['default'].createElement(SetGoal, { change: _this13.changeItem }),
 	            _react2['default'].createElement('br', null),
 	            ' ',
 	            _react2['default'].createElement('br', null),
 	            'Collapse Parameters Display:',
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this12.hideParamsHandler.bind(_this12), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	              { onClick: _this13.hideParamsHandler.bind(_this13), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                  display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	              'Shrink Parameters'
 	            )
@@ -1615,10 +1633,6 @@
 
 	    this.mouse = mouseHandler;
 	    this.data = data;
-	    this.data2 = data2;
-	    this.props = {
-	      resPrevious: ''
-	    };
 	    this.state = {
 	      d1: 0,
 	      d2: 0,
@@ -1745,6 +1759,7 @@
 
 	        case "CA#$42":
 	          // Triggered by ROLL
+	          that.data.information = 'You must click SCORE! or IMPOSSIBLE to gain a point.';
 	          that.setState({
 	            message1: extra,
 	            message2: ext4,
@@ -1776,11 +1791,13 @@
 	            showSolutionsButton: 'inline',
 	            hideSolutionsButton: 'none',
 	            timerDisplay: 'none',
-	            scoreDisplay: 'inline',
-	            message: 'You must click SCORE! in order to gain a point.'
-	          }, function () {
-	            return;
+	            scoreDisplay: 'inline'
 	          });
+	          break;
+
+	        case "DI#$42":
+	          // Changes data.information .
+	          that.data.information = extra;
 	          break;
 
 	        case "CE#$42":
@@ -1811,7 +1828,7 @@
 
 	        case "CF#$42":
 	          // Re-set after a each clculation.
-	          that.data2.information = 'You must click SCORE! or IMPOSSIBLE to gain a point.', that.setState({
+	          that.setState({
 	            mes0: 'Number',
 	            mes1: 'Operator',
 	            mes2: 'Number',
@@ -1823,7 +1840,7 @@
 	          break;
 
 	        case "CH#$42":
-	          that.data2.information = ext4;
+	          that.data.information = ext4;
 	          that.setState({
 	            DS_T: extra,
 	            rollDisplay: 'inline',
@@ -1835,7 +1852,7 @@
 
 	        case "CK#$42":
 	          // Updates DS_T after each calculation.
-	          that.data2.information = ext4;
+	          that.data.information = ext4;
 	          that.setState({
 	            mes0: 'Number',
 	            mes1: 'Operator',
@@ -1897,11 +1914,9 @@
 
 	        case "CY#$42":
 	          // Triggered by clicking "SCORE!".
-	          that.data2.information = '';
 	          that.setState({
 	            scoreClicker: extra,
 	            score: true,
-	            information: '',
 	            DS_T: 10,
 	            impossibleDisplay: 'none',
 	            solutionsDisplay: 'none',
@@ -1924,7 +1939,6 @@
 
 	        case "XY#$42":
 	          // Triggered by clicking "SCORE!" after "IMPOSSIBLE".
-	          that.data2.information = '';
 	          that.setState({
 	            interruptClicker: extra,
 	            interrupt: true,
@@ -1943,7 +1957,7 @@
 
 	        case "DY#$42":
 	          // Triggered by clicking  "IMPOSSIBLE".
-	          that.data2.information = 'Click SCORE! if you want to show a solution and gain a point.';
+	          that.data.information = 'Click SCORE! if you want to show a solution and gain a point.';
 	          that.setState({
 	            impossibleClicker: extra,
 	            impossible: true,
@@ -1994,25 +2008,25 @@
 	    };
 
 	    setInterval(function () {
-	      var name = _this12.state.name;
-	      var gr = _this12.data.group;
-	      var scoreClicker = _this12.state.scoreClicker;
-	      var impossibleClicker = _this12.state.impossibleClicker;
-	      var interruptClicker = _this12.state.interruptClicker;
-	      var score = _this12.state.score;
-	      var impossible = _this12.state.impossible;
-	      var interrupt = _this12.state.interrupt;
+	      var name = _this13.state.name;
+	      var gr = _this13.data.group;
+	      var scoreClicker = _this13.state.scoreClicker;
+	      var impossibleClicker = _this13.state.impossibleClicker;
+	      var interruptClicker = _this13.state.interruptClicker;
+	      var score = _this13.state.score;
+	      var impossible = _this13.state.impossible;
+	      var interrupt = _this13.state.interrupt;
 
-	      if (_this12.state.DS_T > 0) {
-	        _this12.setState({
-	          DS_T: _this12.state.DS_T - 1,
+	      if (_this13.state.DS_T > 0) {
+	        _this13.setState({
+	          DS_T: _this13.state.DS_T - 1,
 	          timeSize: 40
 	        });
-	        _this12.setState({ info: _this12.state.DS_T });
+	        _this13.setState({ info: _this13.state.DS_T });
 	      }
 
-	      if (_this12.state.DS_T * 1 === 0) {
-	        _this12.setState({
+	      if (_this13.state.DS_T * 1 === 0) {
+	        _this13.setState({
 	          message1: 0, // Wipes the old numbers.
 	          message2: 0,
 	          message3: 0,
@@ -2034,10 +2048,10 @@
 
 	        if (z) {
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
-	          DES_ws.send('CH#$42,' + gr + ',' + name + ',10 seconds expired. Deduct one point from ' + scoreClicker);
+	          DES_ws.send('CH#$42,' + gr + ',' + name + ',10 seconds expired. Deduct one point from ' + scoreClicker + ', ');
 	        } else if (z2) {
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
-	          DES_ws.send('CH#$42,' + gr + ',' + name + ',60 seconds expired. One point for ' + impossibleClicker);
+	          DES_ws.send('CH#$42,' + gr + ',' + name + ',60 seconds expired. One point for ' + impossibleClicker + ', ');
 	        } else if (z3) {
 	          DES_ws.send('CG#$42,' + gr + ',' + interruptClicker + ',-2');
 	          DES_ws.send('CH#$42,' + gr + ',' + impossibleClicker + ',\n                      ' + impossibleClicker + ' forfeits two points for blocking with SCORE!,\n                      ' + impossibleClicker + ' clicked IMPOSSIBLE and blocked others from solving by clicking SCORE!\n       ');
@@ -2060,7 +2074,7 @@
 	      var res = 0;
 	      var delay = this.delay;
 	      var n = this.state.N;
-	      var resP = this.props.resPrevious;
+	      var resP = this.data.resPrevious;
 	      var ar5 = [mes0, mes2];
 	      var test = resP === mes0 || resP === mes2;
 	      switch (mes1) {
@@ -2087,7 +2101,7 @@
 	    key: 'comp',
 	    value: function comp(result, mes0, mes1, mes2, test) {
 	      var str = mes0 + ' ' + mes1 + ' ' + mes2 + ' = ' + result;
-	      this.props.resPrevious = result.toString();
+	      this.data.resPrevious = result.toString();
 	      var w1 = this.state.message1;
 	      var w2 = this.state.message2;
 	      var w3 = this.state.message3;
@@ -2119,12 +2133,11 @@
 	      if (j === 3) {
 	        DES_ws.send('FQ#$42,' + gr + ',' + name + ',' + str);
 	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',' + ar[2] + ',');
-	        this.setState({ message: 'You must use the number with the yellow background in order to score in this round.' });
 	        this.mouse[2] = 'yellow';
 	        if (test2) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10');
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10,To score in this computation: Use the yellow background number.');
 	        } else {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!');
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!,Not competing.');
 	        }
 	      } else if (j === 2) {
 	        this.setState({ message: '' });
@@ -2132,19 +2145,19 @@
 	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',,');
 	        if (result == goal && test && test2 && !interrupt) {
 	          this.setState({ DS_T: -1 });
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + ',Score!');
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + ',Success!');
 	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
 	        } else if (result == goal && test && test2 && interrupt) {
 	          this.setState({ DS_T: -1 });
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + '. Two points deducted from ' + impossibleClicker);
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Two points deducted from ' + impossibleClicker + ',One point for ' + name);
 	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
 	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');
 	        } else if (test2) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10');
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10, ');
 	        } else {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!');
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!, ');
 	        }
 	      } else if (j === 1) {
 	        this.setState({
@@ -2168,7 +2181,7 @@
 	        var z3 = interruptClicker === name && impossibleClicker === name;
 
 	        if (z && test2 && result === goal) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + ',Score!');
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + ',Success');
 	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
 	        }
@@ -2180,8 +2193,7 @@
 	        }
 
 	        if (z2 && test2 && result === goal) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',One point for ' + name + ',Score!');
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Twopoints taken from ' + impossibleClicker + ',' + interruptClicker + ' found a solution.');
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Twopoints taken from ' + impossibleClicker + ',' + name + ' found a solution. +1 for ' + name);
 	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
 	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');

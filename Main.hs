@@ -161,10 +161,6 @@ talk conn state (_, _, _, _) = forever $ do
 
     l <- initLogger
 
-    --print "****************************msgArray next: "
-    --mapM_ print msgArray
-    --print "****************************That was msgArray"
-
     if "CA#$42" `T.isPrefixOf` msg
         then
             do
