@@ -83,7 +83,7 @@
 	function createWebSocket(path) {
 	  var host = window.location.hostname;
 	  if (host == '') host = 'localhost';
-	  var uri = 'ws://' + host + ':3015' + path;
+	  var uri = 'ws://' + host + ':3013' + path;
 
 	  var Socket = "MozWebSocket" in window ? MozWebSocket : WebSocket;
 	  return new Socket(uri);
@@ -1717,9 +1717,17 @@
 	      var gameArray = event.data.split(",");
 	      console.log(event);
 	      console.log(gameArray);
+	      var makeStr = function makeStr(x) {
+	        var l = x.length;
+	        var str = '';
+	        for (var i = 5; i < l; i += 1) {
+	          str = str + ', ' + x[i];
+	        }
+	        return x[4] + ' ' + str;
+	      };
 	      var d2 = event.data.substring(0, 6);
 	      var d3 = event.data.substring(2, 6);
-	      var sendersGroup = gameArray[1]; // The sender's group.
+	      var sendersGroup = gameArray[1];
 	      var sender = gameArray[2];
 	      var extra = gameArray[3];
 	      var ext4 = gameArray[4];
@@ -1819,7 +1827,7 @@
 
 	        case "CD#$42":
 	          var xm = that.data.chatMessage;
-	          var newM = ext4;
+	          var newM = makeStr(gameArray);
 	          var xmess = newM + "<br>" + xm;
 	          that.data.chatArray = xmess.split("<br>");
 	          that.data.chatMessage = xmess;

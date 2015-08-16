@@ -8,7 +8,7 @@ let count = 0;
 function createWebSocket(path) {
     let host = window.location.hostname;
     if(host == '') host = 'localhost';
-    let uri = 'ws://' + host + ':3015' + path;
+    let uri = 'ws://' + host + ':3013' + path;
 
     let Socket = "MozWebSocket" in window ? MozWebSocket : WebSocket;
     return new Socket(uri);
@@ -467,13 +467,22 @@ DES_ws.onopen = function(e) {
   console.log("DES_ws.onopen");
     }
 
+
 DES_ws.onmessage = function(event) {
   let gameArray = event.data.split(",");
   console.log(event);
   console.log(gameArray);
+  let makeStr = x => {
+    let l = x.length;
+    let str = '';
+      for (let i=5; i<l; i+=1) {
+        str = str + ', ' +x[i];
+      }
+    return (x[4] + ' ' + str);
+  }
   let d2 = event.data.substring(0,6);
   let d3 = event.data.substring(2,6);
-  let sendersGroup = gameArray[1];   // The sender's group.
+  let sendersGroup = gameArray[1]; 
   let sender = gameArray[2];
   let extra = gameArray[3];
   let ext4 = gameArray[4];
@@ -570,7 +579,7 @@ DES_ws.onmessage = function(event) {
 
           case "CD#$42":
             let xm = that.data.chatMessage;
-            let newM = ext4;
+            let newM = makeStr(gameArray);
             let xmess = newM + "<br>" + xm;
             that.data.chatArray = xmess.split("<br>");
             that.data.chatMessage = xmess;
