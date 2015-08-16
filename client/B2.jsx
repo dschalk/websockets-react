@@ -429,7 +429,6 @@ class B2X extends React.Component {
         scoreClicker: "a@F$Uy&sc",
         interruptClicker: "a@F$intrup%$",
         scoreB: ["Greetings new player."],
-        chatMessage: "",
         chatArray:[""],
         info: '',
         dynamicBg: '#000000',
@@ -664,6 +663,7 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CY#$42": // Triggered by clicking "SCORE!".
+            that.data.information = '';
             that.setState( {
               scoreClicker: extra,
               score: true,
@@ -817,7 +817,7 @@ DES_ws.onmessage = function(event) {
   changeMessage = (x) => {
     let name = this.state.name;
     let gr = this.data.group;
-    DES_ws.send (`CD#$42,${gr},${name},${name},${x}`);
+    DES_ws.send (`CD#$42,${gr},${name},${name},${name}: ${x}`);
   }
 
   setColorState = (fn) => {
@@ -1637,7 +1637,7 @@ DES_ws.onmessage = function(event) {
 
           <div style={{width: 1200,  padding: 10}} >  </div>
 
-        <div style={{display: rollDisplay}} autoFocus >
+        <div style={{display: rollDisplay}} >
           <button 
             onMouseEnter={() => {this.mouse[13] = '#f99094'}} onMouseLeave={() => {this.mouse[13] = '#9fc972'}} 
             style={this.style6(cr13,buttonDisplay)}

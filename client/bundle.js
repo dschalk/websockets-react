@@ -655,7 +655,7 @@
 	    this.changeMessage = function (x) {
 	      var name = _this13.state.name;
 	      var gr = _this13.data.group;
-	      DES_ws.send('CD#$42,' + gr + ',' + name + ',' + name + ',' + x);
+	      DES_ws.send('CD#$42,' + gr + ',' + name + ',' + name + ',' + name + ': ' + x);
 	    };
 
 	    this.setColorState = function (fn) {
@@ -1513,7 +1513,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'div',
-	            { style: { display: rollDisplay }, autoFocus: true },
+	            { style: { display: rollDisplay } },
 	            _react2['default'].createElement(
 	              'button',
 	              {
@@ -1675,7 +1675,6 @@
 	      scoreClicker: "a@F$Uy&sc",
 	      interruptClicker: "a@F$intrup%$",
 	      scoreB: ["Greetings new player."],
-	      chatMessage: "",
 	      chatArray: [""],
 	      info: '',
 	      dynamicBg: '#000000',
@@ -1914,6 +1913,7 @@
 
 	        case "CY#$42":
 	          // Triggered by clicking "SCORE!".
+	          that.data.information = '';
 	          that.setState({
 	            scoreClicker: extra,
 	            score: true,
