@@ -8,7 +8,7 @@ let count = 0;
 function createWebSocket(path) {
     let host = window.location.hostname;
     if(host == '') host = 'localhost';
-    let uri = 'ws://' + host + ':3013' + path;
+    let uri = 'ws://' + host + ':3015' + path;
 
     let Socket = "MozWebSocket" in window ? MozWebSocket : WebSocket;
     return new Socket(uri);
@@ -43,7 +43,7 @@ class GroupNew extends React.Component {
     if ((this.props.hidden2)) { return ( null ) }
     return (
       <div style={{marginLeft: 5}} >
-        <label>Group Name:  <input type="text" id='cow' onKeyDown={this.handleEnter.bind(this)}
+        <label>Player defined group name:  <input type="text" id='cow' onKeyDown={this.handleEnter.bind(this)}
           onClick={this.click.bind(this)} style={{width: 90, backgroundColor: '#d8d17d', marginLeft: 10}} />
         </label>
       </div>
@@ -1461,7 +1461,7 @@ DES_ws.onmessage = function(event) {
      </div>
 
         <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
-          setGroup={this.setGroup.bind(this)} change={this.changeItem}
+          setGroup={this.setGroup} change={this.changeItem}
           group={group} hidden={this.state.hidden} info={this.state.info} >
         </Login>
 
@@ -1513,6 +1513,8 @@ DES_ws.onmessage = function(event) {
             GroupC
           </button>
 
+          <br />
+          <GroupNew key='GroupNew' setGroup={this.setGroup} name={this.state.name} />
           <br />
 
           <div style={{paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >

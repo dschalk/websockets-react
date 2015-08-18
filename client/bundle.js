@@ -83,7 +83,7 @@
 	function createWebSocket(path) {
 	  var host = window.location.hostname;
 	  if (host == '') host = 'localhost';
-	  var uri = 'ws://' + host + ':3013' + path;
+	  var uri = 'ws://' + host + ':3015' + path;
 
 	  var Socket = "MozWebSocket" in window ? MozWebSocket : WebSocket;
 	  return new Socket(uri);
@@ -111,7 +111,7 @@
 	        _react2['default'].createElement(
 	          'label',
 	          null,
-	          'Group Name:  ',
+	          'Player defined group name:  ',
 	          _react2['default'].createElement('input', { type: 'text', id: 'cow', onKeyDown: _this2.handleEnter.bind(_this2),
 	            onClick: _this2.click.bind(_this2), style: { width: 90, backgroundColor: '#d8d17d', marginLeft: 10 } })
 	        )
@@ -1154,7 +1154,7 @@
 	          _react2['default'].createElement('div', { style: { paddingBottom: 200 } })
 	        ),
 	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: _this13.newPlayer.bind(_this13), name: _this13.state.name,
-	          setGroup: _this13.setGroup.bind(_this13), change: _this13.changeItem,
+	          setGroup: _this13.setGroup, change: _this13.changeItem,
 	          group: group, hidden: _this13.state.hidden, info: _this13.state.info }),
 	        _react2['default'].createElement(
 	          'div',
@@ -1264,6 +1264,8 @@
 	              } },
 	            'GroupC'
 	          ),
+	          _react2['default'].createElement('br', null),
+	          _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: _this13.setGroup, name: _this13.state.name }),
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'div',
