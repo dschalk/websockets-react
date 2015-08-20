@@ -83,7 +83,7 @@
 	function createWebSocket(path) {
 	  var host = window.location.hostname;
 	  if (host == '') host = 'localhost';
-	  var uri = 'ws://' + host + ':3015' + path;
+	  var uri = 'ws://' + host + ':3013' + path;
 
 	  var Socket = "MozWebSocket" in window ? MozWebSocket : WebSocket;
 	  return new Socket(uri);
@@ -198,228 +198,18 @@
 
 	;
 
-	var Number1 = (function (_React$Component3) {
-	  _inherits(Number1, _React$Component3);
-
-	  function Number1(props) {
-	    var _this4 = this;
-
-	    _classCallCheck(this, Number1);
-
-	    _get(Object.getPrototypeOf(Number1.prototype), 'constructor', this).call(this, props);
-
-	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this4.handleEnter.bind(_this4), onClick: _this4.click.bind(_this4),
-	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
-	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
-	    };
-	  }
-
-	  _createClass(Number1, [{
-	    key: 'handleEnter',
-	    value: function handleEnter(event) {
-	      var s1 = event.target.value;
-	      if (event.keyCode == 13 && s1 != '') {
-	        this.props.change(s1);
-	        event.target.value = '';
-	      }
-	    }
-	  }, {
-	    key: 'click',
-	    value: function click(event) {
-	      var s1 = event.target.value;
-	      if (s1 != '') {
-	        this.props.change(s1);
-	        event.target.value = '';
-	      }
-	    }
-	  }]);
-
-	  return Number1;
-	})(_react2['default'].Component);
-
-	;
-
-	var Number2 = (function (_React$Component4) {
-	  _inherits(Number2, _React$Component4);
-
-	  function Number2(props) {
-	    var _this5 = this;
-
-	    _classCallCheck(this, Number2);
-
-	    _get(Object.getPrototypeOf(Number2.prototype), 'constructor', this).call(this, props);
-
-	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this5.handleEnter.bind(_this5), onClick: _this5.click.bind(_this5),
-	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
-	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
-	    };
-	  }
-
-	  _createClass(Number2, [{
-	    key: 'handleEnter',
-	    value: function handleEnter(event) {
-	      var s2 = event.target.value;
-	      if (event.keyCode == 13 && s2 != '') {
-	        this.props.change(s2);
-	        event.target.value = '';
-	      }
-	    }
-	  }, {
-	    key: 'click',
-	    value: function click(event) {
-	      var s2 = event.target.value;
-	      if (s2 != '') {
-	        this.props.change(s2);
-	        event.target.value = '';
-	      }
-	    }
-	  }]);
-
-	  return Number2;
-	})(_react2['default'].Component);
-
-	;
-
-	var Number3 = (function (_React$Component5) {
-	  _inherits(Number3, _React$Component5);
-
-	  function Number3(props) {
-	    var _this6 = this;
-
-	    _classCallCheck(this, Number3);
-
-	    _get(Object.getPrototypeOf(Number3.prototype), 'constructor', this).call(this, props);
-
-	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this6.handleEnter.bind(_this6), onClick: _this6.click.bind(_this6),
-	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
-	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
-	    };
-	  }
-
-	  _createClass(Number3, [{
-	    key: 'handleEnter',
-	    value: function handleEnter(event) {
-	      var s3 = event.target.value;
-	      if (event.keyCode == 13 && s3 != '') {
-	        this.props.change(s3);
-	        event.target.value = '';
-	      }
-	    }
-	  }, {
-	    key: 'click',
-	    value: function click(event) {
-	      var s3 = event.target.value;
-	      if (s3 != '') {
-	        this.props.change(s3);
-	        event.target.value = '';
-	      }
-	    }
-	  }]);
-
-	  return Number3;
-	})(_react2['default'].Component);
-
-	;
-
-	var Number4 = (function (_React$Component6) {
-	  _inherits(Number4, _React$Component6);
-
-	  function Number4(props) {
-	    var _this7 = this;
-
-	    _classCallCheck(this, Number4);
-
-	    _get(Object.getPrototypeOf(Number4.prototype), 'constructor', this).call(this, props);
-
-	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this7.handleEnter.bind(_this7), onClick: _this7.click.bind(_this7),
-	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
-	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
-	    };
-	  }
-
-	  _createClass(Number4, [{
-	    key: 'handleEnter',
-	    value: function handleEnter(event) {
-	      var s4 = event.target.value;
-	      if (event.keyCode == 13 && s4 != '') {
-	        this.props.change(s4);
-	        event.target.value = '';
-	      }
-	    }
-	  }, {
-	    key: 'click',
-	    value: function click(event) {
-	      var s4 = event.target.value;
-	      if (s4 != '') {
-	        this.props.change(s4);
-	        event.target.value = '';
-	      }
-	    }
-	  }]);
-
-	  return Number4;
-	})(_react2['default'].Component);
-
-	;
-
-	var Goal = (function (_React$Component7) {
-	  _inherits(Goal, _React$Component7);
-
-	  function Goal(props) {
-	    var _this8 = this;
-
-	    _classCallCheck(this, Goal);
-
-	    _get(Object.getPrototypeOf(Goal.prototype), 'constructor', this).call(this, props);
-
-	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this8.handleEnter.bind(_this8), onClick: _this8.click.bind(_this8),
-	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
-	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
-	    };
-	  }
-
-	  _createClass(Goal, [{
-	    key: 'handleEnter',
-	    value: function handleEnter(event) {
-	      var g = event.target.value;
-	      if (event.keyCode == 13 && g != '') {
-	        this.props.change(g);
-	        event.target.value = '';
-	      }
-	    }
-	  }, {
-	    key: 'click',
-	    value: function click(event) {
-	      var g = event.target.value;
-	      if (g != '') {
-	        this.props.change(g);
-	        event.target.value = '';
-	      }
-	    }
-	  }]);
-
-	  return Goal;
-	})(_react2['default'].Component);
-
-	;
-
-	var Sides1 = (function (_React$Component8) {
-	  _inherits(Sides1, _React$Component8);
+	var Sides1 = (function (_React$Component3) {
+	  _inherits(Sides1, _React$Component3);
 
 	  function Sides1(props) {
-	    var _this9 = this;
+	    var _this4 = this;
 
 	    _classCallCheck(this, Sides1);
 
 	    _get(Object.getPrototypeOf(Sides1.prototype), 'constructor', this).call(this, props);
 
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this9.handleEnter.bind(_this9), onClick: _this9.click.bind(_this9),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this4.handleEnter.bind(_this4), onClick: _this4.click.bind(_this4),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -450,18 +240,18 @@
 
 	;
 
-	var Sides2 = (function (_React$Component9) {
-	  _inherits(Sides2, _React$Component9);
+	var Sides2 = (function (_React$Component4) {
+	  _inherits(Sides2, _React$Component4);
 
 	  function Sides2(props) {
-	    var _this10 = this;
+	    var _this5 = this;
 
 	    _classCallCheck(this, Sides2);
 
 	    _get(Object.getPrototypeOf(Sides2.prototype), 'constructor', this).call(this, props);
 
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this10.handleEnter.bind(_this10), onClick: _this10.click.bind(_this10),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this5.handleEnter.bind(_this5), onClick: _this5.click.bind(_this5),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -492,18 +282,18 @@
 
 	;
 
-	var Sides3 = (function (_React$Component10) {
-	  _inherits(Sides3, _React$Component10);
+	var Sides3 = (function (_React$Component5) {
+	  _inherits(Sides3, _React$Component5);
 
 	  function Sides3(props) {
-	    var _this11 = this;
+	    var _this6 = this;
 
 	    _classCallCheck(this, Sides3);
 
 	    _get(Object.getPrototypeOf(Sides3.prototype), 'constructor', this).call(this, props);
 
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this11.handleEnter.bind(_this11), onClick: _this11.click.bind(_this11),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this6.handleEnter.bind(_this6), onClick: _this6.click.bind(_this6),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -534,18 +324,18 @@
 
 	;
 
-	var Sides4 = (function (_React$Component11) {
-	  _inherits(Sides4, _React$Component11);
+	var Sides4 = (function (_React$Component6) {
+	  _inherits(Sides4, _React$Component6);
 
 	  function Sides4(props) {
-	    var _this12 = this;
+	    var _this7 = this;
 
 	    _classCallCheck(this, Sides4);
 
 	    _get(Object.getPrototypeOf(Sides4.prototype), 'constructor', this).call(this, props);
 
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this12.handleEnter.bind(_this12), onClick: _this12.click.bind(_this12),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this7.handleEnter.bind(_this7), onClick: _this7.click.bind(_this7),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -576,18 +366,18 @@
 
 	;
 
-	var SetGoal = (function (_React$Component12) {
-	  _inherits(SetGoal, _React$Component12);
+	var SetGoal = (function (_React$Component7) {
+	  _inherits(SetGoal, _React$Component7);
 
 	  function SetGoal(props) {
-	    var _this13 = this;
+	    var _this8 = this;
 
 	    _classCallCheck(this, SetGoal);
 
 	    _get(Object.getPrototypeOf(SetGoal.prototype), 'constructor', this).call(this, props);
 
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this13.handleEnter.bind(_this13), onClick: _this13.click.bind(_this13),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this8.handleEnter.bind(_this8), onClick: _this8.click.bind(_this8),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -618,11 +408,11 @@
 
 	;
 
-	var ChangeColor = (function (_React$Component13) {
-	  _inherits(ChangeColor, _React$Component13);
+	var ChangeColor = (function (_React$Component8) {
+	  _inherits(ChangeColor, _React$Component8);
 
 	  function ChangeColor(props) {
-	    var _this14 = this;
+	    var _this9 = this;
 
 	    _classCallCheck(this, ChangeColor);
 
@@ -635,7 +425,7 @@
 	        _react2['default'].createElement(
 	          'label',
 	          null,
-	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this14.handleEnter.bind(_this14), onClick: _this14.click.bind(_this14),
+	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this9.handleEnter.bind(_this9), onClick: _this9.click.bind(_this9),
 	            style: { width: 70, backgroundColor: '#d8d17d' } }),
 	          'Font Color'
 	        )
@@ -666,11 +456,11 @@
 
 	;
 
-	var ChangeBackground = (function (_React$Component14) {
-	  _inherits(ChangeBackground, _React$Component14);
+	var ChangeBackground = (function (_React$Component9) {
+	  _inherits(ChangeBackground, _React$Component9);
 
 	  function ChangeBackground(props) {
-	    var _this15 = this;
+	    var _this10 = this;
 
 	    _classCallCheck(this, ChangeBackground);
 
@@ -683,7 +473,7 @@
 	        _react2['default'].createElement(
 	          'label',
 	          null,
-	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this15.handleEnter.bind(_this15), onClick: _this15.click.bind(_this15),
+	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this10.handleEnter.bind(_this10), onClick: _this10.click.bind(_this10),
 	            style: { width: 70, backgroundColor: '#d8d17d' } }),
 	          'Background Color'
 	        )
@@ -714,49 +504,48 @@
 
 	;
 
-	var Login = (function (_React$Component15) {
-	  _inherits(Login, _React$Component15);
+	var Login = (function (_React$Component10) {
+	  _inherits(Login, _React$Component10);
 
 	  function Login(props) {
-	    var _this16 = this;
+	    var _this11 = this;
 
 	    _classCallCheck(this, Login);
 
 	    _get(Object.getPrototypeOf(Login.prototype), 'constructor', this).call(this, props);
 
 	    this.click = function () {
-	      if (_this16.props.name == '') {
-	        _this16.props.change({
+	      if (_this11.props.name == '') {
+	        _this11.props.change({
 	          info: 'Please enter a name.'
 	        });
 	      } else {
-	        var _name = _this16.props.name;
-	        _this16.props.change({
+	        var _name = _this11.props.name;
+	        _this11.props.change({
 	          hidden: true,
 	          hidden2: false,
 	          name: _name,
-	          startDisplay: 'inline',
-	          messageDisplay: 'inline'
+	          startDisplay: 'inline'
 	        });
 	        DES_ws.send('CC#$42' + _name);
 	      }
 	    };
 
 	    this.render = function () {
-	      if (_this16.props.hidden) {
+	      if (_this11.props.hidden) {
 	        return null;
 	      }
-	      var name = _this16.props.name;
+	      var name = _this11.props.name;
 	      return _react2['default'].createElement(
 	        'div',
 	        null,
-	        _react2['default'].createElement('input', { autoFocus: true, type: 'text', name: name, onChange: _this16.handleChange.bind(_this16),
+	        _react2['default'].createElement('input', { autoFocus: true, type: 'text', name: name, onChange: _this11.handleChange.bind(_this11),
 	          style: { backgroundColor: '#d8d17d' },
-	          onKeyDown: _this16.handleEnter.bind(_this16) }),
-	        _this16.props.name,
+	          onKeyDown: _this11.handleEnter.bind(_this11) }),
+	        _this11.props.name,
 	        _react2['default'].createElement(
 	          'button',
-	          { onClick: _this16.click.bind(_this16), style: { backgroundColor: '#d8d17d', color: '#f00' } },
+	          { onClick: _this11.click.bind(_this11), style: { backgroundColor: '#d8d17d', color: '#f00' } },
 	          'Join'
 	        )
 	      );
@@ -796,11 +585,11 @@
 
 	;
 
-	var Messages = (function (_React$Component16) {
-	  _inherits(Messages, _React$Component16);
+	var Messages = (function (_React$Component11) {
+	  _inherits(Messages, _React$Component11);
 
 	  function Messages(props) {
-	    var _this17 = this;
+	    var _this12 = this;
 
 	    _classCallCheck(this, Messages);
 
@@ -810,7 +599,7 @@
 	      return _react2['default'].createElement(
 	        'div',
 	        { style: { fontSize: 22 } },
-	        _this17.props.information
+	        _this12.props.information
 	      );
 	    };
 	  }
@@ -821,6 +610,7 @@
 	;
 
 	var mouseHandler = _mobservable2['default'].makeReactive({
+
 	  0: '#83f7d7',
 	  1: '#83f7d7',
 	  2: '#83f7d7',
@@ -847,50 +637,29 @@
 	  chatMessage: '',
 	  chatArray: [],
 	  information: 'click ROLL to begin playing.',
-	  resPrevious: '',
-	  dd1: 0,
-	  dd2: 0,
-	  dd3: 0,
-	  dd4: 0,
-	  goal2: 20
+	  resPrevious: ''
 	});
 
-	data.ddChange1 = function (x) {
-	  data.dd1 = x;
-	};
-	data.ddChange2 = function (x) {
-	  data.dd2 = x;
-	};
-	data.ddChange3 = function (x) {
-	  data.dd3 = x;
-	};
-	data.ddChange4 = function (x) {
-	  data.dd4 = x;
-	};
-	data.ddChangeGoal2 = function (x) {
-	  data.goal2 = x;
-	};
-
-	var B2X = (function (_React$Component17) {
-	  _inherits(B2X, _React$Component17);
+	var B2X = (function (_React$Component12) {
+	  _inherits(B2X, _React$Component12);
 
 	  // shouldComponentUpdate = shouldPureComponentUpdate;
 
 	  function B2X(props) {
-	    var _this18 = this;
+	    var _this13 = this;
 
 	    _classCallCheck(this, B2X);
 
 	    _get(Object.getPrototypeOf(B2X.prototype), 'constructor', this).call(this, props);
 
 	    this.changeMessage = function (x) {
-	      var name = _this18.state.name;
-	      var gr = _this18.data.group;
+	      var name = _this13.state.name;
+	      var gr = _this13.data.group;
 	      DES_ws.send('CD#$42,' + gr + ',' + name + ',' + name + ',' + name + ': ' + x);
 	    };
 
 	    this.setColorState = function (fn) {
-	      return _this18.setState(function (_ref) {
+	      return _this13.setState(function (_ref) {
 	        var colors = _ref.colors;
 	        return {
 	          colors: fn(colors)
@@ -899,31 +668,31 @@
 	    };
 
 	    this.changeBackground = function (color) {
-	      _this18.setState({
+	      _this13.setState({
 	        dynamicBg: color
 	      });
 	    };
 
 	    this.changeColor = function (col) {
-	      _this18.setState({
+	      _this13.setState({
 	        dynamicColor: col,
 	        sty: { color: col, width: 50, marginLeft: 30, padding: 10 }
 	      });
 	    };
 
 	    this.solutions = function () {
-	      var group = _this18.data.group;
-	      var name = _this18.state.name;
-	      var goal = _this18.state.goal;
+	      var group = _this13.data.group;
+	      var name = _this13.state.name;
+	      var goal = _this13.state.goal;
 	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + goal);
 	    };
 
 	    this.displayHandler = function () {};
 
 	    this.rollDice = function () {
-	      var col = _this18.state.dynamicColor;
-	      _this18.mouse[2] = '#83f7d8';
-	      _this18.setState({
+	      var col = _this13.state.dynamicColor;
+	      _this13.mouse[2] = '#83f7d8';
+	      _this13.setState({
 	        DS_T: '',
 	        test: false,
 	        score: false,
@@ -941,273 +710,254 @@
 	        showSolutionsButton: 'inline',
 	        hideSolutionsButton: 'none'
 	      });
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
-	      var a = _this18.state.sides1;
-	      var b = _this18.state.sides2;
-	      var c = _this18.state.sides3;
-	      var d = _this18.state.sides4;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var a = _this13.state.sides1;
+	      var b = _this13.state.sides2;
+	      var c = _this13.state.sides3;
+	      var d = _this13.state.sides4;
 	      DES_ws.send('CF#$42,' + group + ',' + name + ',');
 	      DES_ws.send('CA#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d);
 	    };
 
 	    this.handleGroupA = function () {
-	      if (_this18.data.group !== 'GroupA') {
-	        var _name3 = _this18.state.name;
-	        var group = _this18.data.group;
+	      if (_this13.data.group !== 'GroupA') {
+	        var _name3 = _this13.state.name;
+	        var group = _this13.data.group;
 	        DES_ws.send('CO#$42,' + group + ',' + _name3 + ',GroupA');
-	        _this18.data.group = 'GroupA';
-	        _this18.data.chatMessage = '';
-	        _this18.data.chatArray = [];
+	        _this13.data.group = 'GroupA';
+	        _this13.data.chatMessage = '';
+	        _this13.data.chatArray = [];
 	      }
 	    };
 
 	    this.handleGroupB = function () {
-	      if (_this18.data.group !== 'GroupB') {
-	        var _name4 = _this18.state.name;
-	        var group = _this18.data.group;
+	      if (_this13.data.group !== 'GroupB') {
+	        var _name4 = _this13.state.name;
+	        var group = _this13.data.group;
 	        DES_ws.send('CO#$42,' + group + ',' + _name4 + ',GroupB');
-	        _this18.data.group = 'GroupB';
-	        _this18.data.chatMessage = '';
-	        _this18.data.chatArray = [];
+	        _this13.data.group = 'GroupB';
+	        _this13.data.chatMessage = '';
+	        _this13.data.chatArray = [];
 	      }
 	    };
 
 	    this.handleGroupC = function () {
-	      if (_this18.data.group !== 'GroupC') {
-	        var _name5 = _this18.state.name;
-	        var group = _this18.data.group;
+	      if (_this13.data.group !== 'GroupC') {
+	        var _name5 = _this13.state.name;
+	        var group = _this13.data.group;
 	        DES_ws.send('CO#$42,' + group + ',' + _name5 + ',GroupC');
-	        _this18.data.group = 'GroupC';
-	        _this18.data.chatMessage = '';
-	        _this18.data.chatArray = [];
+	        _this13.data.group = 'GroupC';
+	        _this13.data.chatMessage = '';
+	        _this13.data.chatArray = [];
 	      }
 	    };
 
 	    this.setGroup = function (x) {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
-	      _this18.data.group = x;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      _this13.data.group = x;
 	      DES_ws.send('CO#$42,' + group + ',' + name + ',' + x);
-	      _this18.data.chatMessage = '';
-	      _this18.data.chatArray = [];
+	      _this13.data.chatMessage = '';
+	      _this13.data.chatArray = [];
 	    };
 
 	    this.newPlayer = function (x) {
-	      _this18.setState({ name: x });
+	      _this13.setState({ name: x });
 	      DES_ws.send("CC#42$" + x);
 	    };
 
 	    this.changeItem = function (x) {
-	      _this18.setState(x);
+	      _this13.setState(x);
 	    };
 
 	    this.buttonHandler = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('IA#$42,' + group + ',' + name + ',Click SCORE to begin');
-	      _this18.rollDice();
+	      _this13.rollDice();
 	    };
 
 	    this.handleB40 = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
-	      var num = _this18.state.message1;
-	      if (_this18.state.mes0 === 'Number') {
-	        _this18.setState({ message1: '', mes0: num }, function () {
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var num = _this13.state.message1;
+	      if (_this13.state.mes0 === 'Number') {
+	        _this13.setState({ message1: '', mes0: num }, function () {
 	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
 	        });
-	      } else if (_this18.state.mes2 === 'Number') {
-	        _this18.setState({ message1: '', mes2: num }, function () {
+	      } else if (_this13.state.mes2 === 'Number') {
+	        _this13.setState({ message1: '', mes2: num }, function () {
 	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
-	          if (_this18.state.mes1 !== 'Operator') {
-	            _this18.calc(_this18.state.mes0, _this18.state.mes1, num);
+	          if (_this13.state.mes1 !== 'Operator') {
+	            _this13.calc(_this13.state.mes0, _this13.state.mes1, num);
 	          }
 	        });
 	      }
 	    };
 
 	    this.handleB41 = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
-	      var num = _this18.state.message2;
-	      if (_this18.state.mes0 === 'Number') {
-	        _this18.setState({ message2: '', mes0: num }, function () {
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var num = _this13.state.message2;
+	      if (_this13.state.mes0 === 'Number') {
+	        _this13.setState({ message2: '', mes0: num }, function () {
 	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
 	        });
-	      } else if (_this18.state.mes2 === 'Number') {
-	        _this18.setState({ message2: '', mes2: num }, function () {
+	      } else if (_this13.state.mes2 === 'Number') {
+	        _this13.setState({ message2: '', mes2: num }, function () {
 	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
-	          if (_this18.state.mes1 !== 'Operator') {
-	            _this18.calc(_this18.state.mes0, _this18.state.mes1, num);
+	          if (_this13.state.mes1 !== 'Operator') {
+	            _this13.calc(_this13.state.mes0, _this13.state.mes1, num);
 	          }
 	        });
 	      }
 	    };
 
 	    this.handleB42 = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
-	      var num = _this18.state.message3;
-	      if (_this18.state.mes0 === 'Number') {
-	        _this18.setState({ message3: '', mes0: num }, function () {
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var num = _this13.state.message3;
+	      if (_this13.state.mes0 === 'Number') {
+	        _this13.setState({ message3: '', mes0: num }, function () {
 	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
 	        });
-	      } else if (_this18.state.mes2 === 'Number') {
-	        _this18.setState({ message3: '', mes2: num }, function () {
+	      } else if (_this13.state.mes2 === 'Number') {
+	        _this13.setState({ message3: '', mes2: num }, function () {
 	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
-	          if (_this18.state.mes1 !== 'Operator') {
-	            _this18.calc(_this18.state.mes0, _this18.state.mes1, num);
+	          if (_this13.state.mes1 !== 'Operator') {
+	            _this13.calc(_this13.state.mes0, _this13.state.mes1, num);
 	          }
 	        });
 	      }
 	    };
 
 	    this.handleB43 = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
-	      var num = _this18.state.message4;
-	      if (_this18.state.mes0 === 'Number') {
-	        _this18.setState({ message4: '', mes0: num }, function () {
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var num = _this13.state.message4;
+	      if (_this13.state.mes0 === 'Number') {
+	        _this13.setState({ message4: '', mes0: num }, function () {
 	          DES_ws.send('CQ#$42,' + group + ',' + name + ',' + num);
 	        });
-	      } else if (_this18.state.mes2 === 'Number') {
-	        _this18.setState({ message4: '', mes2: num }, function () {
+	      } else if (_this13.state.mes2 === 'Number') {
+	        _this13.setState({ message4: '', mes2: num }, function () {
 	          DES_ws.send('DQ#$42,' + group + ',' + name + ',' + num);
-	          if (_this18.state.mes1 !== 'Operator') {
-	            _this18.calc(_this18.state.mes0, _this18.state.mes1, num);
+	          if (_this13.state.mes1 !== 'Operator') {
+	            _this13.calc(_this13.state.mes0, _this13.state.mes1, num);
 	          }
 	        });
 	      }
 	    };
 
 	    this.handleOp0 = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('EQ#$42,' + group + ',' + name + ',+');
-	      var test = _this18.state.mes0 !== 'Number' && _this18.state.mes2 !== 'Number';
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
-	        _this18.setState({ mes1: '+' }, function () {
-	          _this18.calc(_this18.state.mes0, '+', _this18.state.mes2);
+	        _this13.setState({ mes1: '+' }, function () {
+	          _this13.calc(_this13.state.mes0, '+', _this13.state.mes2);
 	        });
 	      }
 	    };
 
 	    this.handleOp1 = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('EQ#$42,' + group + ',' + name + ',-');
-	      var test = _this18.state.mes0 !== 'Number' && _this18.state.mes2 !== 'Number';
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
-	        _this18.setState({ mes1: '-' }, function () {
-	          _this18.calc(_this18.state.mes0, '-', _this18.state.mes2);
+	        _this13.setState({ mes1: '-' }, function () {
+	          _this13.calc(_this13.state.mes0, '-', _this13.state.mes2);
 	        });
 	      }
 	    };
 
 	    this.handleOp2 = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('EQ#$42,' + group + ',' + name + ',*');
-	      var test = _this18.state.mes0 !== 'Number' && _this18.state.mes2 !== 'Number';
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
-	        _this18.setState({ mes1: '*' }, function () {
-	          _this18.calc(_this18.state.mes0, '*', _this18.state.mes2);
+	        _this13.setState({ mes1: '*' }, function () {
+	          _this13.calc(_this13.state.mes0, '*', _this13.state.mes2);
 	        });
 	      }
 	    };
 
 	    this.handleOp3 = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('EQ#$42,' + group + ',' + name + ',/');
-	      var test = _this18.state.mes0 !== 'Number' && _this18.state.mes2 !== 'Number';
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
-	        _this18.setState({ mes1: '/' }, function () {
-	          _this18.calc(_this18.state.mes0, '/', _this18.state.mes2);
+	        _this13.setState({ mes1: '/' }, function () {
+	          _this13.calc(_this13.state.mes0, '/', _this13.state.mes2);
 	        });
 	      }
 	    };
 
 	    this.handleOp4 = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('EQ#$42,' + group + ',' + name + ',Concat');
-	      var test = _this18.state.mes0 !== 'Number' && _this18.state.mes2 !== 'Number';
+	      var test = _this13.state.mes0 !== 'Number' && _this13.state.mes2 !== 'Number';
 	      if (test) {
-	        _this18.setState({ mes1: 'Concat' }, function () {
-	          _this18.calc(_this18.state.mes0, 'Concat', _this18.state.mes2);
+	        _this13.setState({ mes1: 'Concat' }, function () {
+	          _this13.calc(_this13.state.mes0, 'Concat', _this13.state.mes2);
 	        });
 	      }
 	    };
 
 	    this.handleScore = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('CY#$42,' + group + ',' + name + ',' + name);
 	    };
 
 	    this.handleScore2 = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
-	      _this18.setState({ numDisplay: 'inline' });
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      _this13.setState({ numDisplay: 'inline' });
 	      DES_ws.send('XY#$42,' + group + ',' + name + ',' + name);
 	    };
 
 	    this.handleImpossible = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
 	      DES_ws.send('DY#$42,' + group + ',' + name + ',' + name);
 	    };
 
 	    this.eraseMessages = function () {
-	      _this18.data.chatArray = [];
-	      _this18.data.chatMessage = '';
+	      _this13.data.chatArray = [];
+	      _this13.data.chatMessage = '';
 	    };
 
 	    this.handleExtra = function () {
-	      _this18.setState({
+	      _this13.setState({
 	        gameDisplay: 'none',
 	        extraDisplay: 'inlineBlock'
 	      });
 	    };
 
 	    this.handleGame = function () {
-	      _this18.setState({
+	      _this13.setState({
 	        gameDisplay: 'inlineBlock',
 	        extraDisplay: 'none'
 	      });
 	    };
 
 	    this.showSolutionsHandler = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
-	      var a = _this18.state.d1;
-	      var b = _this18.state.d2;
-	      var c = _this18.state.d3;
-	      var d = _this18.state.d4;
-	      var goal = _this18.state.goal;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var a = _this13.state.d1;
+	      var b = _this13.state.d2;
+	      var c = _this13.state.d3;
+	      var d = _this13.state.d4;
+	      var goal = _this13.state.goal;
 	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d + ',' + goal);
-	      _this18.setState({
-	        rollDisplay: 'none',
-	        scoreDisplay: 'none',
-	        impossibleDisplay: 'none',
-	        scoreDisplay2: 'none',
-	        showSolutionsButton: 'none',
-	        hideSolutionsButton: 'inline'
-	      });
-	    };
-
-	    this.showSolutionsHandler_2 = function () {
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
-	      var goal2 = _this18.data.goal2;
-	      var a = _this18.data.dd1;
-	      var b = _this18.data.dd2;
-	      var c = _this18.data.dd3;
-	      var d = _this18.data.dd4;
-	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d + ',' + goal2);
-	      _this18.setState({
+	      _this13.setState({
 	        rollDisplay: 'none',
 	        scoreDisplay: 'none',
 	        impossibleDisplay: 'none',
@@ -1218,9 +968,8 @@
 	    };
 
 	    this.hideSolutionsHandler = function () {
-	      var _this = _this18;
-	      _this18.data.information = 'Click ROLL to resume play';
-	      _this18.setState({
+	      var _this = _this13;
+	      _this13.setState({
 	        message: 'Play forfeited for this round by opening Solutions',
 	        DS_t: 'Please wait for the next roll. You displayed solutions.',
 	        showSolutionsButton: 'inline',
@@ -1231,7 +980,7 @@
 	    };
 
 	    this.showParamsHandler = function () {
-	      _this18.setState({
+	      _this13.setState({
 	        scoreDisplay: 'none',
 	        scoreDisplay2: 'none',
 	        impossibleDisplay: 'none',
@@ -1243,7 +992,7 @@
 	    };
 
 	    this.hideParamsHandler = function () {
-	      _this18.setState({
+	      _this13.setState({
 	        paramsDisplay: 'none',
 	        scoreDisplay: 'inline',
 	        impossibleDisplay: 'inline',
@@ -1256,93 +1005,80 @@
 
 	    this.style5 = function (x) {
 	      return { backgroundColor: x, paddingTop: 1.3, paddingLeft: 12, paddingRight: 12,
-	        paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: _this18.state.timeSize };
+	        paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: _this13.state.timeSize };
 	    };
 
 	    this.style6 = function (x, y) {
 	      return { backgroundColor: x, display: y, paddingBottom: 0.9,
-	        marginRight: 3, marginLeft: 10, fontSize: _this18.state.timeSize };
+	        marginRight: 3, marginLeft: 10, fontSize: _this13.state.timeSize };
 	    };
 
 	    this.render = function () {
-	      console.log(_this18);
 	      count += 1;
-	      console.log('The count is now ' + count + ' and the color is ' + _this18.mouse[15]);
-	      var information = _this18.data.information;
-	      var dd1 = _this18.data.dd1;
-	      var dd2 = _this18.data.dd2;
-	      var dd3 = _this18.data.dd3;
-	      var dd4 = _this18.data.dd4;
-	      var goal2 = _this18.data.goal2;
-	      var ddChange1 = _this18.data.ddChange1;
-	      var ddChange2 = _this18.data.ddChange2;
-	      var ddChange3 = _this18.data.ddChange3;
-	      var ddChange4 = _this18.data.ddChange4;
-	      var dataChange = _this18.data.dataChange;
-	      var ddChangeGoal2 = _this18.data.ddChangeGoal2;
-	      var name = _this18.state.name;
-	      var group = _this18.data.group;
-	      var dynB = _this18.state.dynamicBg;
-	      var dynC = _this18.state.dynamicColor;
-	      var dynF = _this18.state.dynamicFont;
-	      var buttonDisplay = _this18.state.buttonDisplay;
-	      var startDisplay = _this18.state.startDisplay;
-	      var impossibleDisplay = _this18.state.impossibleDisplay;
-	      var scoreDisplay = _this18.state.scoreDisplay;
-	      var scoreDisplay2 = _this18.state.scoreDisplay2;
-	      var timerDisplay = _this18.state.timerDisplay;
-	      var timerDisplay2 = _this18.state.timerDisplay2;
-	      var rollDisplay = _this18.state.rollDisplay;
-	      var messageDisplay = _this18.state.messageDisplay;
-	      var numDisplay = _this18.state.numDisplay;
-	      var solutionsDisplay = _this18.state.solutionsDisplay;
-	      var rollnumsDisplay = _this18.state.rollnumsDisplay;
-	      var rightDisplay = _this18.state.rightDisplay;
-	      var leftDisplay = _this18.state.leftDisplay;
-	      var extraDisplay = _this18.state.extraDisplay;
-	      var m1 = _this18.state.message1;
-	      var timeSize = _this18.state.timeSize;
-	      var paramsDisplay = _this18.state.paramsDisplay;
-	      var paramsButton = _this18.state.paramsButton;
-	      var paramsDiv = _this18.state.paramsDiv;
-	      var shrinkSol = _this18.state.shrinkSol;
-	      var shrinkPar = _this18.state.shrinkPar;
-	      var showSolutionsButton = _this18.state.showSolutionsButton;
-	      var hideSolutionsButton = _this18.state.hideSolutionsButton;
-	      var showParamsButton = _this18.state.showParamsButton;
-	      var hideParamsButton = _this18.state.hideParamsButton;
-	      var sol = _this18.state.sol;
+	      console.log('The count is now ' + count + ' and the color is ' + _this13.mouse[15]);
+	      var information = _this13.data.information;
+	      var name = _this13.state.name;
+	      var group = _this13.data.group;
+	      var dynB = _this13.state.dynamicBg;
+	      var dynC = _this13.state.dynamicColor;
+	      var dynF = _this13.state.dynamicFont;
+	      var buttonDisplay = _this13.state.buttonDisplay;
+	      var startDisplay = _this13.state.startDisplay;
+	      var impossibleDisplay = _this13.state.impossibleDisplay;
+	      var scoreDisplay = _this13.state.scoreDisplay;
+	      var scoreDisplay2 = _this13.state.scoreDisplay2;
+	      var timerDisplay = _this13.state.timerDisplay;
+	      var timerDisplay2 = _this13.state.timerDisplay2;
+	      var rollDisplay = _this13.state.rollDisplay;
+	      var numDisplay = _this13.state.numDisplay;
+	      var solutionsDisplay = _this13.state.solutionsDisplay;
+	      var rollnumsDisplay = _this13.state.rollnumsDisplay;
+	      var rightDisplay = _this13.state.rightDisplay;
+	      var leftDisplay = _this13.state.leftDisplay;
+	      var extraDisplay = _this13.state.extraDisplay;
+	      var m1 = _this13.state.message1;
+	      var timeSize = _this13.state.timeSize;
+	      var paramsDisplay = _this13.state.paramsDisplay;
+	      var paramsButton = _this13.state.paramsButton;
+	      var paramsDiv = _this13.state.paramsDiv;
+	      var shrinkSol = _this13.state.shrinkSol;
+	      var shrinkPar = _this13.state.shrinkPar;
+	      var showSolutionsButton = _this13.state.showSolutionsButton;
+	      var hideSolutionsButton = _this13.state.hideSolutionsButton;
+	      var showParamsButton = _this13.state.showParamsButton;
+	      var hideParamsButton = _this13.state.hideParamsButton;
+	      var sol = _this13.state.sol;
 	      var base = '#f7b16f';
-	      var d1 = _this18.state.d1;
-	      var d2 = _this18.state.d2;
-	      var d3 = _this18.state.d3;
-	      var d4 = _this18.state.d4;
-	      var sides1 = _this18.state.sides1;
-	      var sides2 = _this18.state.sides2;
-	      var sides3 = _this18.state.sides3;
-	      var sides4 = _this18.state.sides4;
-	      var goal = _this18.state.goal;
-	      var cr15 = _this18.mouse[15];
-	      var cr11 = _this18.mouse[11];
-	      var cr12 = _this18.mouse[12];
-	      var cr0 = _this18.mouse[0];
-	      var cr1 = _this18.mouse[1];
-	      var cr2 = _this18.mouse[2];
-	      var cr3 = _this18.mouse[3];
-	      var cr4 = _this18.mouse[4];
-	      var cr5 = _this18.mouse[5];
-	      var cr6 = _this18.mouse[6];
-	      var cr7 = _this18.mouse[7];
-	      var cr8 = _this18.mouse[8];
-	      var cr9 = _this18.mouse[9];
-	      var cr10 = _this18.mouse[10];
-	      var cr13 = _this18.mouse[13];
-	      var cr14 = _this18.mouse[14];
-	      var cr19 = _this18.mouse[19];
-	      var cr20 = _this18.mouse[20];
-	      var cr21 = _this18.mouse[21];
-	      var style1 = { backgroundColor: _this18.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
-	      var style2 = { backgroundColor: _this18.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
+	      var d1 = _this13.state.d1;
+	      var d2 = _this13.state.d2;
+	      var d3 = _this13.state.d3;
+	      var d4 = _this13.state.d4;
+	      var sides1 = _this13.state.sides1;
+	      var sides2 = _this13.state.sides2;
+	      var sides3 = _this13.state.sides3;
+	      var sides4 = _this13.state.sides4;
+	      var goal = _this13.state.goal;
+	      var cr15 = _this13.mouse[15];
+	      var cr11 = _this13.mouse[11];
+	      var cr12 = _this13.mouse[12];
+	      var cr0 = _this13.mouse[0];
+	      var cr1 = _this13.mouse[1];
+	      var cr2 = _this13.mouse[2];
+	      var cr3 = _this13.mouse[3];
+	      var cr4 = _this13.mouse[4];
+	      var cr5 = _this13.mouse[5];
+	      var cr6 = _this13.mouse[6];
+	      var cr7 = _this13.mouse[7];
+	      var cr8 = _this13.mouse[8];
+	      var cr9 = _this13.mouse[9];
+	      var cr10 = _this13.mouse[10];
+	      var cr13 = _this13.mouse[13];
+	      var cr14 = _this13.mouse[14];
+	      var cr19 = _this13.mouse[19];
+	      var cr20 = _this13.mouse[20];
+	      var cr21 = _this13.mouse[21];
+	      var style1 = { backgroundColor: _this13.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
+	      var style2 = { backgroundColor: _this13.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
 	      var style3 = { paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16 };
 
 	      return _react2['default'].createElement(
@@ -1351,10 +1087,10 @@
 	            display: rightDisplay, width: '100%', height: '100%' } },
 	        _react2['default'].createElement(
 	          'div',
-	          { style: { width: '35%', float: 'right', display: startDisplay } },
-	          _react2['default'].createElement(ChangeColor, { key: 'ChangeColor', changeC: _this18.changeColor,
+	          { style: { width: '35%', float: 'right' } },
+	          _react2['default'].createElement(ChangeColor, { key: 'ChangeColor', changeC: _this13.changeColor,
 	            style: { width: 8 } }),
-	          _react2['default'].createElement(ChangeBackground, { key: 'ChangeBackground', changeB: _this18.changeBackground,
+	          _react2['default'].createElement(ChangeBackground, { key: 'ChangeBackground', changeB: _this13.changeBackground,
 	            style: { width: 8 } }),
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement('br', null),
@@ -1369,7 +1105,7 @@
 	              'div',
 	              { style: { textAlign: 'left' } },
 	              ' ',
-	              _this18.state.scoreB.map(function (line) {
+	              _this13.state.scoreB.map(function (line) {
 	                return _react2['default'].createElement(
 	                  'p',
 	                  { key: line.id },
@@ -1393,7 +1129,7 @@
 	              'div',
 	              { style: { textAlign: 'left' } },
 	              ' ',
-	              _this18.data.chatArray.map(function (line) {
+	              _this13.data.chatArray.map(function (line) {
 	                return _react2['default'].createElement(
 	                  'p',
 	                  { key: line.id },
@@ -1406,92 +1142,23 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.eraseMessages, style: { backgroundColor: '#4c1616', color: '#f2f246',
+	            { onClick: _this13.eraseMessages, style: { backgroundColor: '#4c1616', color: '#f2f246',
 	                fontSize: 14, marginLeft: 10 } },
 	            'Erase Messages'
 	          ),
 	          _react2['default'].createElement(
 	            Chat,
-	            { changeMessage: _this18.changeMessage },
+	            { changeMessage: _this13.changeMessage },
 	            ' '
 	          ),
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement(
-	            'h3',
-	            { style: { textAlign: 'center' } },
-	            'Get All Solutions'
-	          ),
-	          'Current Numbers:',
-	          _react2['default'].createElement(
-	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
-	                paddingTop: 1.8, paddingBottom: 0.4 } },
-	            ' ',
-	            dd1,
-	            ' '
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
-	                paddingTop: 1.8, paddingBottom: 0.4 } },
-	            ' ',
-	            dd2,
-	            ' '
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
-	                paddingTop: 1.8, paddingBottom: 0.4 } },
-	            ' ',
-	            dd3,
-	            ' '
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
-	                paddingTop: 1.8, paddingBottom: 0.4 } },
-	            ' ',
-	            dd4,
-	            ' '
-	          ),
-	          _react2['default'].createElement('br', null),
-	          'Current Goal:',
-	          _react2['default'].createElement(
-	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
-	                paddingTop: 1.8, paddingBottom: 0.4 } },
-	            ' ',
-	            goal2,
-	            ' '
-	          ),
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement('br', null),
-	          'Put new number in a box, then click on the box or press \'Enter\'. The number disappears and the result is shown above. Click "Show Solutions" when you are done.',
-	          _react2['default'].createElement('br', null),
-	          'New Numbers:',
-	          _react2['default'].createElement(Number1, { change: ddChange1 }),
-	          _react2['default'].createElement(Number2, { change: ddChange2 }),
-	          _react2['default'].createElement(Number3, { change: ddChange3 }),
-	          _react2['default'].createElement(Number4, { change: ddChange4 }),
-	          _react2['default'].createElement('br', null),
-	          'New Goal:',
-	          _react2['default'].createElement(Goal, { change: ddChangeGoal2 }),
-	          _react2['default'].createElement('br', null),
-	          'Show Solutions',
-	          _react2['default'].createElement(
-	            'button',
-	            { onClick: _this18.showSolutionsHandler_2, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
-	            'Solutions'
-	          )
+	          _react2['default'].createElement('div', { style: { paddingBottom: 200 } })
 	        ),
-	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: _this18.newPlayer.bind(_this18), name: _this18.state.name,
-	          setGroup: _this18.setGroup, change: _this18.changeItem,
-	          group: group, hidden: _this18.state.hidden, info: _this18.state.info }),
+	        _react2['default'].createElement(Login, { key: 'Login', newPlayer: _this13.newPlayer.bind(_this13), name: _this13.state.name,
+	          setGroup: _this13.setGroup, change: _this13.changeItem,
+	          group: group, hidden: _this13.state.hidden, info: _this13.state.info }),
 	        _react2['default'].createElement(
 	          'div',
-	          { style: { display: startDisplay, paddingTop: 3.8, width: '60%',
+	          { style: { display: startDisplay, paddingTop: 3.8, width: '65%',
 	              paddingBottom: 0.8, fontSize: 20, marginLeft: 5 } },
 	          'Current roll:',
 	          _react2['default'].createElement(
@@ -1561,61 +1228,61 @@
 	            'div',
 	            { style: { marginLeft: 5 } },
 	            ' ',
-	            _this18.state.info,
+	            _this13.state.info,
 	            ' '
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.handleGroupA, style: { backgroundColor: cr15, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	            { onClick: _this13.handleGroupA, style: { backgroundColor: cr15, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10 },
 	              onMouseEnter: function () {
-	                _this18.mouse[15] = '#f99094';
+	                _this13.mouse[15] = '#f99094';
 	              }, onMouseLeave: function () {
-	                _this18.mouse[15] = base;
+	                _this13.mouse[15] = base;
 	              } },
 	            'GroupA'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
 	            { onMouseEnter: function () {
-	                _this18.mouse[11] = '#f99094';
+	                _this13.mouse[11] = '#f99094';
 	              }, onMouseLeave: function () {
-	                _this18.mouse[11] = base;
+	                _this13.mouse[11] = base;
 	              },
-	              onClick: _this18.handleGroupB, style: { backgroundColor: cr11, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	              onClick: _this13.handleGroupB, style: { backgroundColor: cr11, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10 } },
 	            'GroupB'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.handleGroupC, style: { backgroundColor: cr12, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
+	            { onClick: _this13.handleGroupC, style: { backgroundColor: cr12, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10 },
 	              onMouseEnter: function () {
-	                _this18.mouse[12] = '#f99094';
+	                _this13.mouse[12] = '#f99094';
 	              }, onMouseLeave: function () {
-	                _this18.mouse[12] = base;
+	                _this13.mouse[12] = base;
 	              } },
 	            'GroupC'
 	          ),
 	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: _this18.setGroup, name: _this18.state.name }),
+	          _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: _this13.setGroup, name: _this13.state.name }),
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'div',
 	            { style: { paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
-	            _this18.state.str1,
+	            _this13.state.str1,
 	            ' ',
 	            _react2['default'].createElement('br', null),
 	            ' ',
-	            _this18.state.str2,
+	            _this13.state.str2,
 	            ' ',
 	            _react2['default'].createElement('br', null),
 	            ' ',
-	            _this18.state.str3,
+	            _this13.state.str3,
 	            ' ',
 	            _react2['default'].createElement('br', null),
 	            ' ',
-	            _this18.state.str4
+	            _this13.state.str4
 	          ),
 	          _react2['default'].createElement(Messages, { information: information }),
 	          _react2['default'].createElement(
@@ -1625,8 +1292,8 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: _this18.style6(cr21, timerDisplay) },
-	            _this18.state.DS_T
+	            { style: _this13.style6(cr21, timerDisplay) },
+	            _this13.state.DS_T
 	          ),
 	          _react2['default'].createElement(
 	            'div',
@@ -1671,165 +1338,165 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.handleScore,
+	            { onClick: _this13.handleScore,
 	              onMouseEnter: function () {
-	                _this18.mouse[9] = '#f99094';
+	                _this13.mouse[9] = '#f99094';
 	              }, onMouseLeave: function () {
-	                _this18.mouse[9] = '#9fc972';
+	                _this13.mouse[9] = '#9fc972';
 	              },
-	              style: _this18.style6(cr9, scoreDisplay) },
+	              style: _this13.style6(cr9, scoreDisplay) },
 	            'SCORE!'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.handleScore2,
+	            { onClick: _this13.handleScore2,
 	              onMouseEnter: function () {
-	                _this18.mouse[19] = '#f99094';
+	                _this13.mouse[19] = '#f99094';
 	              }, onMouseLeave: function () {
-	                _this18.mouse[19] = '#9fc972';
+	                _this13.mouse[19] = '#9fc972';
 	              },
-	              style: _this18.style6(cr19, scoreDisplay2) },
+	              style: _this13.style6(cr19, scoreDisplay2) },
 	            'SCORE!'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.handleImpossible,
+	            { onClick: _this13.handleImpossible,
 	              onMouseEnter: function () {
-	                _this18.mouse[14] = '#f99094';
+	                _this13.mouse[14] = '#f99094';
 	              }, onMouseLeave: function () {
-	                _this18.mouse[14] = '#9fc972';
+	                _this13.mouse[14] = '#9fc972';
 	              },
-	              style: _this18.style6(cr14, impossibleDisplay) },
+	              style: _this13.style6(cr14, impossibleDisplay) },
 	            'IMPOSSIBLE'
 	          ),
 	          _react2['default'].createElement(
 	            'div',
-	            { style: { width: '60%', backgroundColor: dynB, padding: 10 } },
+	            { style: { width: '100%', backgroundColor: dynB, padding: 10 } },
 	            ' '
 	          ),
 	          _react2['default'].createElement(
 	            'div',
-	            { style: { width: '60%', backgroundColor: dynB, padding: 10, display: numDisplay } },
+	            { style: { width: '100%', backgroundColor: dynB, padding: 10, display: numDisplay } },
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.handleB40, cow: 'red',
+	              { onClick: _this13.handleB40, cow: 'red',
 	                onMouseEnter: function () {
-	                  _this18.mouse[0] = '#f99094';
+	                  _this13.mouse[0] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this18.mouse[0] = '#83f7d8';
+	                  _this13.mouse[0] = '#83f7d8';
 	                },
-	                style: _this18.style5(cr0) },
-	              _this18.state.message1
+	                style: _this13.style5(cr0) },
+	              _this13.state.message1
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.handleB41,
+	              { onClick: _this13.handleB41,
 	                onMouseEnter: function () {
-	                  _this18.mouse[1] = '#f99094';
+	                  _this13.mouse[1] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this18.mouse[1] = '#83f7d8';
+	                  _this13.mouse[1] = '#83f7d8';
 	                },
-	                style: _this18.style5(cr1) },
-	              _this18.state.message2
+	                style: _this13.style5(cr1) },
+	              _this13.state.message2
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.handleB42,
+	              { onClick: _this13.handleB42,
 	                onMouseEnter: function () {
-	                  _this18.mouse[2] = '#f99094';
+	                  _this13.mouse[2] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this18.mouse[2] = '#83f7d8';
+	                  _this13.mouse[2] = '#83f7d8';
 	                },
-	                style: _this18.style5(cr2) },
-	              _this18.state.message3
+	                style: _this13.style5(cr2) },
+	              _this13.state.message3
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.handleB43,
+	              { onClick: _this13.handleB43,
 	                onMouseEnter: function () {
-	                  _this18.mouse[3] = '#f99094';
+	                  _this13.mouse[3] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this18.mouse[3] = '#83f7d8';
+	                  _this13.mouse[3] = '#83f7d8';
 	                },
-	                style: _this18.style5(cr3) },
-	              _this18.state.message4
+	                style: _this13.style5(cr3) },
+	              _this13.state.message4
 	            ),
 	            _react2['default'].createElement(
 	              'div',
-	              { style: { width: '60%', padding: 10 } },
+	              { style: { width: '100%', padding: 10 } },
 	              ' '
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.handleOp0,
+	              { onClick: _this13.handleOp0,
 	                onMouseEnter: function () {
-	                  _this18.mouse[4] = '#f99094';
+	                  _this13.mouse[4] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this18.mouse[4] = '#83f7d8';
+	                  _this13.mouse[4] = '#83f7d8';
 	                },
-	                style: _this18.style5(cr4) },
+	                style: _this13.style5(cr4) },
 	              '+'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.handleOp1,
+	              { onClick: _this13.handleOp1,
 	                onMouseEnter: function () {
-	                  _this18.mouse[5] = '#f99094';
+	                  _this13.mouse[5] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this18.mouse[5] = '#83f7d8';
+	                  _this13.mouse[5] = '#83f7d8';
 	                },
-	                style: _this18.style5(cr5) },
+	                style: _this13.style5(cr5) },
 	              '-'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.handleOp2,
+	              { onClick: _this13.handleOp2,
 	                onMouseEnter: function () {
-	                  _this18.mouse[6] = '#f99094';
+	                  _this13.mouse[6] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this18.mouse[6] = '#83f7d8';
+	                  _this13.mouse[6] = '#83f7d8';
 	                },
-	                style: _this18.style5(cr6) },
+	                style: _this13.style5(cr6) },
 	              '*'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.handleOp3,
+	              { onClick: _this13.handleOp3,
 	                onMouseEnter: function () {
-	                  _this18.mouse[7] = '#f99094';
+	                  _this13.mouse[7] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this18.mouse[7] = '#83f7d8';
+	                  _this13.mouse[7] = '#83f7d8';
 	                },
-	                style: _this18.style5(cr7) },
+	                style: _this13.style5(cr7) },
 	              '/'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.handleOp4,
+	              { onClick: _this13.handleOp4,
 	                onMouseEnter: function () {
-	                  _this18.mouse[8] = '#f99094';
+	                  _this13.mouse[8] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this18.mouse[8] = '#83f7d8';
+	                  _this13.mouse[8] = '#83f7d8';
 	                },
-	                style: _this18.style5(cr8) },
+	                style: _this13.style5(cr8) },
 	              'Concat'
 	            )
 	          ),
-	          _react2['default'].createElement('div', { style: { width: '60%', padding: 10 } }),
+	          _react2['default'].createElement('div', { style: { width: '100%', padding: 10 } }),
 	          _react2['default'].createElement(
 	            'span',
 	            { style: style3 },
-	            _this18.state.mes0
+	            _this13.state.mes0
 	          ),
 	          _react2['default'].createElement(
 	            'span',
 	            { style: style3 },
-	            _this18.state.mes1
+	            _this13.state.mes1
 	          ),
 	          _react2['default'].createElement(
 	            'span',
 	            { style: style3 },
-	            _this18.state.mes2
+	            _this13.state.mes2
 	          ),
 	          _react2['default'].createElement(
 	            'span',
@@ -1839,11 +1506,11 @@
 	          _react2['default'].createElement(
 	            'span',
 	            { style: style3 },
-	            _this18.state.res
+	            _this13.state.res
 	          ),
 	          _react2['default'].createElement(
 	            'div',
-	            { style: { width: '00%', padding: 10 } },
+	            { style: { width: 1200, padding: 10 } },
 	            '  '
 	          ),
 	          _react2['default'].createElement(
@@ -1853,12 +1520,12 @@
 	              'button',
 	              {
 	                onMouseEnter: function () {
-	                  _this18.mouse[13] = '#f99094';
+	                  _this13.mouse[13] = '#f99094';
 	                }, onMouseLeave: function () {
-	                  _this18.mouse[13] = '#9fc972';
+	                  _this13.mouse[13] = '#9fc972';
 	                },
-	                style: _this18.style6(cr13, buttonDisplay),
-	                onClick: _this18.buttonHandler },
+	                style: _this13.style6(cr13, buttonDisplay),
+	                onClick: _this13.buttonHandler },
 	              'Roll'
 	            )
 	          ),
@@ -1867,19 +1534,19 @@
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.showSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	            { onClick: _this13.showSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	            'Solutions'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.hideSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	            { onClick: _this13.hideSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	            'Hide Solutions'
 	          ),
 	          _react2['default'].createElement(
 	            'div',
-	            { style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05', width: '64%',
+	            { style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	            sol.map(function (line) {
 	              return _react2['default'].createElement(
@@ -1889,25 +1556,22 @@
 	              );
 	            })
 	          ),
-	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.hideSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
-	            'Hide Solutions'
-	          ),
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement(
-	            'button',
-	            { onClick: _this18.showParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	            { onClick: _this13.showParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	            'Create a New Group'
 	          ),
 	          _react2['default'].createElement(
+	            'button',
+	            { onClick: _this13.hideParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	                display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	            'Hide This New Group Form'
+	          ),
+	          _react2['default'].createElement(
 	            'div',
 	            { style: { display: paramsDiv, width: '60%', float: 'left' } },
-	            _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: _this18.setGroup, name: _this18.state.name }),
+	            _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: _this13.setGroup, name: _this13.state.name }),
 	            _react2['default'].createElement(
 	              'p',
 	              null,
@@ -1930,36 +1594,36 @@
 	            'Sides:',
 	            _react2['default'].createElement(
 	              Sides1,
-	              { change: _this18.changeItem },
+	              { change: _this13.changeItem },
 	              ' Side 1 '
 	            ),
 	            _react2['default'].createElement(
 	              Sides2,
-	              { change: _this18.changeItem },
+	              { change: _this13.changeItem },
 	              ' Side 2 '
 	            ),
 	            _react2['default'].createElement(
 	              Sides3,
-	              { change: _this18.changeItem },
+	              { change: _this13.changeItem },
 	              ' Side 3 '
 	            ),
 	            _react2['default'].createElement(
 	              Sides4,
-	              { change: _this18.changeItem },
+	              { change: _this13.changeItem },
 	              ' Side 4 '
 	            ),
 	            _react2['default'].createElement('br', null),
 	            ' ',
 	            _react2['default'].createElement('br', null),
 	            'Goal',
-	            _react2['default'].createElement(SetGoal, { change: _this18.changeItem }),
+	            _react2['default'].createElement(SetGoal, { change: _this13.changeItem }),
 	            _react2['default'].createElement('br', null),
 	            ' ',
 	            _react2['default'].createElement('br', null),
 	            'Collapse Parameters Display:',
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.hideParamsHandler.bind(_this18), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+	              { onClick: _this13.hideParamsHandler.bind(_this13), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
 	                  display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
 	              'Shrink Parameters'
 	            )
@@ -2026,7 +1690,6 @@
 	      goal: '20',
 	      sty: { color: '#d5f765', width: 50, marginLeft: 30, padding: 10 },
 	      startDisplay: 'none',
-	      messageDisplay: 'none',
 	      impossibleDisplay: 'none',
 	      scoreDisplay: 'none',
 	      scoreDisplay2: 'none',
@@ -2065,7 +1728,7 @@
 	        return x[4] + ' ' + str;
 	      };
 	      var d2 = event.data.substring(0, 6);
-	      // let d3 = event.data.substring(2,6);
+	      var d3 = event.data.substring(2, 6);
 	      var sendersGroup = gameArray[1];
 	      var sender = gameArray[2];
 	      var extra = gameArray[3];
@@ -2099,7 +1762,6 @@
 
 	        case "CZ#$42":
 	          // Solutions.
-	          that.data.information = 'You must hide the solutions in order to resume play';
 	          var s = extra.split("<br />");
 	          that.setState({ sol: s });
 	          break;
@@ -2356,25 +2018,25 @@
 	    };
 
 	    setInterval(function () {
-	      var name = _this18.state.name;
-	      var gr = _this18.data.group;
-	      var scoreClicker = _this18.state.scoreClicker;
-	      var impossibleClicker = _this18.state.impossibleClicker;
-	      var interruptClicker = _this18.state.interruptClicker;
-	      var score = _this18.state.score;
-	      var impossible = _this18.state.impossible;
-	      var interrupt = _this18.state.interrupt;
+	      var name = _this13.state.name;
+	      var gr = _this13.data.group;
+	      var scoreClicker = _this13.state.scoreClicker;
+	      var impossibleClicker = _this13.state.impossibleClicker;
+	      var interruptClicker = _this13.state.interruptClicker;
+	      var score = _this13.state.score;
+	      var impossible = _this13.state.impossible;
+	      var interrupt = _this13.state.interrupt;
 
-	      if (_this18.state.DS_T > 0) {
-	        _this18.setState({
-	          DS_T: _this18.state.DS_T - 1,
+	      if (_this13.state.DS_T > 0) {
+	        _this13.setState({
+	          DS_T: _this13.state.DS_T - 1,
 	          timeSize: 40
 	        });
-	        _this18.setState({ info: _this18.state.DS_T });
+	        _this13.setState({ info: _this13.state.DS_T });
 	      }
 
-	      if (_this18.state.DS_T * 1 === 0) {
-	        _this18.setState({
+	      if (_this13.state.DS_T * 1 === 0) {
+	        _this13.setState({
 	          message1: 0, // Wipes the old numbers.
 	          message2: 0,
 	          message3: 0,

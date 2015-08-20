@@ -8,7 +8,7 @@ let count = 0;
 function createWebSocket(path) {
     let host = window.location.hostname;
     if(host == '') host = 'localhost';
-    let uri = 'ws://' + host + ':3015' + path;
+    let uri = 'ws://' + host + ':3013' + path;
 
     let Socket = "MozWebSocket" in window ? MozWebSocket : WebSocket;
     return new Socket(uri);
@@ -81,176 +81,6 @@ class Chat extends React.Component {
     );
   }
 };
-
-
-
-
-
-
-
-
-
-
-class Number1 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  handleEnter (event) {
-    let s1 = event.target.value;
-    if ( event.keyCode == 13 && s1 != '') {
-      this.props.change(s1);
-      event.target.value = '';
-    }
-  }
-  click (event) {
-    let s1 = event.target.value;
-    if (s1 != '') {
-      this.props.change(s1);
-      event.target.value = '';
-    }
-  }
-  render = () => {
-    return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
-            style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
-              fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
-    );
-  }
-};
-
-class Number2 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  handleEnter (event) {
-    let s2 = event.target.value;
-    if ( event.keyCode == 13 && s2 != '') {
-      this.props.change(s2);
-      event.target.value = '';
-    }
-  }
-  click (event) {
-    let s2 = event.target.value;
-    if (s2 != '') {
-      this.props.change(s2);
-      event.target.value = '';
-    }
-  }
-  render = () => {
-    return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
-            style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
-              fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
-    );
-  }
-};
-
-class Number3 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  handleEnter (event) {
-    let s3 = event.target.value;
-    if ( event.keyCode == 13 && s3 != '') {
-      this.props.change(s3);
-      event.target.value = '';
-    }
-  }
-  click (event) {
-    let s3 = event.target.value;
-    if (s3 != '') {
-      this.props.change(s3);
-      event.target.value = '';
-    }
-  }
-  render = () => {
-    return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
-            style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
-              fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
-    );
-  }
-};
-
-class Number4 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  handleEnter (event) {
-    let s4 = event.target.value;
-    if ( event.keyCode == 13 && s4 != '') {
-      this.props.change(s4);
-      event.target.value = '';
-    }
-  }
-  click (event) {
-    let s4 = event.target.value;
-    if (s4 != '') {
-      this.props.change(s4);
-      event.target.value = '';
-    }
-  }
-  render = () => {
-    return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
-            style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
-              fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
-    );
-  }
-};
-
-class Goal extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  handleEnter (event) {
-    let g = event.target.value;
-    if ( event.keyCode == 13 && g != '') {
-      this.props.change(g);
-      event.target.value = '';
-    }
-  }
-  click (event) {
-    let g = event.target.value;
-    if (g != '') {
-      this.props.change(g);
-      event.target.value = '';
-    }
-  }
-  render = () => {
-    return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
-            style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
-              fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
-    );
-  }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 class Sides1 extends React.Component {
   constructor(props) {
@@ -486,7 +316,6 @@ class Login extends React.Component {
         hidden2: false,
         name: name,
         startDisplay: 'inline',
-        messageDisplay: 'inline'
         });
       DES_ws.send('CC#$42'+name);
     }
@@ -522,6 +351,7 @@ class Messages extends React.Component {
 };
 
 let mouseHandler = mobservable.makeReactive({
+
     0: '#83f7d7',
     1: '#83f7d7',
     2: '#83f7d7',
@@ -548,19 +378,9 @@ let data = mobservable.makeReactive({
   chatMessage: '',
   chatArray: [],
   information: 'click ROLL to begin playing.',
-  resPrevious: '',
-  dd1: 0,
-  dd2: 0,
-  dd3: 0,
-  dd4: 0,
-  goal2: 20
+  resPrevious: ''
 });
 
-data.ddChange1 = x => { data.dd1 = x };
-data.ddChange2 = x => { data.dd2 = x };
-data.ddChange3 = x => { data.dd3 = x };
-data.ddChange4 = x => { data.dd4 = x };
-data.ddChangeGoal2 = x => { data.goal2 = x };
 class B2X extends React.Component {
   // shouldComponentUpdate = shouldPureComponentUpdate;
   constructor(props) {
@@ -622,7 +442,6 @@ class B2X extends React.Component {
         goal: '20',
         sty: {color: '#d5f765', width: 50, marginLeft: 30, padding: 10},
         startDisplay: 'none',
-        messageDisplay: 'none',
         impossibleDisplay: 'none',
         scoreDisplay: 'none',
         scoreDisplay2: 'none',
@@ -648,6 +467,7 @@ DES_ws.onopen = function(e) {
   console.log("DES_ws.onopen");
     }
 
+
 DES_ws.onmessage = function(event) {
   let gameArray = event.data.split(",");
   console.log(event);
@@ -661,7 +481,7 @@ DES_ws.onmessage = function(event) {
     return (x[4] + ' ' + str);
   }
   let d2 = event.data.substring(0,6);
-  // let d3 = event.data.substring(2,6);
+  let d3 = event.data.substring(2,6);
   let sendersGroup = gameArray[1]; 
   let sender = gameArray[2];
   let extra = gameArray[3];
@@ -694,11 +514,10 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "CZ#$42":                             // Solutions.
-            that.data.information = 'You must hide the solutions in order to resume play';
             let s = extra.split("<br />");
             that.setState({sol: s}); 
           break;
-          
+
           case "CA#$42":                             // Triggered by ROLL
               that.data.information = 'You must click SCORE! or IMPOSSIBLE to gain a point.';
               that.setState
@@ -1471,7 +1290,7 @@ DES_ws.onmessage = function(event) {
   }
 
   showSolutionsHandler = () => {
-      let name = this.state.name;
+    let name = this.state.name;
       let group = this.data.group;
       let a = this.state.d1;
       let b = this.state.d2;
@@ -1489,28 +1308,8 @@ DES_ws.onmessage = function(event) {
       });
   }
 
-  showSolutionsHandler_2 = () => {
-      let name = this.state.name;
-      let group = this.data.group;
-      let goal2 = this.data.goal2;
-      let a = this.data.dd1;
-      let b = this.data.dd2;
-      let c = this.data.dd3;
-      let d = this.data.dd4;
-      DES_ws.send(`CZ#$42,${group},${name},${a},${b},${c},${d},${goal2}`);
-      this.setState({
-        rollDisplay: 'none',
-        scoreDisplay: 'none',
-        impossibleDisplay: 'none',
-        scoreDisplay2: 'none',
-        showSolutionsButton: 'none',
-        hideSolutionsButton: 'inline',
-      });
-  }
-
   hideSolutionsHandler = () => {
     let _this = this;
-    this.data.information = 'Click ROLL to resume play';
     this.setState({
         message: 'Play forfeited for this round by opening Solutions',
         DS_t: 'Please wait for the next roll. You displayed solutions.',
@@ -1551,22 +1350,11 @@ DES_ws.onmessage = function(event) {
     style6 = (x,y) => {return {backgroundColor: x, display: y, paddingBottom: 0.9, 
               marginRight: 3, marginLeft: 10, fontSize: this.state.timeSize}};
 
+
   render = () => {
-    console.log(this);
     count += 1;
     console.log('The count is now ' + count + ' and the color is ' + this.mouse[15] );
     let information = this.data.information;
-    let dd1 = this.data.dd1;
-    let dd2 = this.data.dd2;
-    let dd3 = this.data.dd3;
-    let dd4 = this.data.dd4;
-    let goal2 = this.data.goal2;
-    let ddChange1 = this.data.ddChange1;
-    let ddChange2 = this.data.ddChange2;
-    let ddChange3 = this.data.ddChange3;
-    let ddChange4 = this.data.ddChange4;
-    let dataChange = this.data.dataChange;
-    let ddChangeGoal2 = this.data.ddChangeGoal2;
     let name = this.state.name;
     let group = this.data.group;
     let dynB = this.state.dynamicBg;
@@ -1580,7 +1368,6 @@ DES_ws.onmessage = function(event) {
     let timerDisplay = this.state.timerDisplay;
     let timerDisplay2 = this.state.timerDisplay2;
     let rollDisplay = this.state.rollDisplay;
-    let messageDisplay = this.state.messageDisplay;
     let numDisplay = this.state.numDisplay;
     let solutionsDisplay = this.state.solutionsDisplay;
     let rollnumsDisplay = this.state.rollnumsDisplay;
@@ -1635,7 +1422,7 @@ DES_ws.onmessage = function(event) {
     return (
    <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, 
       display: rightDisplay, width: '100%', height: '100%'}} >
-      <div style={{width: '35%', float: 'right', display: startDisplay }} >
+      <div style={{width: '35%', float: 'right'}} >
 
             <ChangeColor key='ChangeColor' changeC={this.changeColor}
               style={{width: 8}} />
@@ -1654,6 +1441,7 @@ DES_ws.onmessage = function(event) {
                 </div>
             </button>
             <br /> <br />
+
             <button  style={{backgroundColor: '#4c1616', color: '#f2f246', textAlign: 'center',
                 display: 'inlineBlock', paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 18}} >
                 Message Board <br />
@@ -1669,44 +1457,7 @@ DES_ws.onmessage = function(event) {
               Erase Messages
             </button>
             <Chat changeMessage={this.changeMessage} > </Chat>
-            <br /><br /> 
-            <h3 style={{textAlign:'center'}}>Get All Solutions</h3>
-          Current Numbers:
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
-              paddingTop: 1.8, paddingBottom: 0.4 }} > {dd1} </button> 
-
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
-              paddingTop: 1.8, paddingBottom: 0.4 }} > {dd2} </button> 
-
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
-              paddingTop: 1.8, paddingBottom: 0.4 }} > {dd3} </button> 
-
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
-              paddingTop: 1.8, paddingBottom: 0.4 }} > {dd4} </button> 
-            <br />
-            Current Goal:
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
-              paddingTop: 1.8, paddingBottom: 0.4 }} > {goal2} </button> 
-            <br /><br />
-            Put new number in a box, then click on the box or press 'Enter'. The number disappears and the result is shown above. Click "Show Solutions" when you are done.
-              <br />
-            New Numbers: 
-            <Number1 change={ddChange1} />
-            <Number2 change={ddChange2} />
-            <Number3 change={ddChange3} />
-            <Number4 change={ddChange4} />
-            <br/ >
-            New Goal:
-            <Goal change={ddChangeGoal2} />
-            <br/ >
-              Show Solutions
-
-        <button  onClick={this.showSolutionsHandler_2} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
-          Solutions
-        </button>
-
-
+            <div style={{paddingBottom: 200}} />
      </div>
 
         <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
@@ -1714,7 +1465,7 @@ DES_ws.onmessage = function(event) {
           group={group} hidden={this.state.hidden} info={this.state.info} >
         </Login>
 
-     <div style = {{ display: startDisplay, paddingTop: 3.8, width: '60%',
+     <div style = {{ display: startDisplay, paddingTop: 3.8, width: '65%',
               paddingBottom: 0.8, fontSize: 20, marginLeft: 5 }}>
           Current roll:
             <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
@@ -1813,9 +1564,9 @@ DES_ws.onmessage = function(event) {
             IMPOSSIBLE
           </button>
 
-          <div style={{width: '60%', backgroundColor: dynB,  padding: 10}} > </div>
+          <div style={{width: '100%', backgroundColor: dynB,  padding: 10}} > </div>
 
-       <div style={{width: '60%', backgroundColor: dynB,  padding: 10, display: numDisplay }} >
+       <div style={{width: '100%', backgroundColor: dynB,  padding: 10, display: numDisplay }} >
 
           <button onClick={this.handleB40} cow='red'
             onMouseEnter={() => {this.mouse[0] = '#f99094'}} onMouseLeave={() => {this.mouse[0] = '#83f7d8'}} 
@@ -1841,7 +1592,7 @@ DES_ws.onmessage = function(event) {
             {this.state.message4}
           </button>
 
-          <div style={{width: '60%',  padding: 10}} > </div>
+          <div style={{width: '100%',  padding: 10}} > </div>
 
           <button onClick={this.handleOp0} 
             onMouseEnter={() => {this.mouse[4] = '#f99094'}} onMouseLeave={() => {this.mouse[4] = '#83f7d8'}} 
@@ -1873,7 +1624,7 @@ DES_ws.onmessage = function(event) {
             Concat
           </button>
        </div>
-            <div style={{width: '60%',  padding: 10}} />
+            <div style={{width: '100%',  padding: 10}} />
 
           <span style={style3} >
             {this.state.mes0}
@@ -1895,7 +1646,7 @@ DES_ws.onmessage = function(event) {
             {this.state.res}
           </span>
 
-          <div style={{width: '00%',  padding: 10}} >  </div>
+          <div style={{width: 1200,  padding: 10}} >  </div>
 
         <div style={{display: rollDisplay}} >
           <button 
@@ -1917,7 +1668,7 @@ DES_ws.onmessage = function(event) {
           Hide Solutions
         </button>
 
-        <div style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05', width: '64%',
+        <div style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
           paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
               {
                     sol.map(function(line) {
@@ -1925,17 +1676,15 @@ DES_ws.onmessage = function(event) {
                     })
               }
         </div>
-        <br />
-
-        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
-          Hide Solutions
-        </button>
-        <br /><br />
 
         <button  onClick={this.showParamsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
           display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
           Create a New Group 
+        </button>
+
+        <button  onClick={this.hideParamsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
+          display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+          Hide This New Group Form
         </button>
 
         <div style={{  display: paramsDiv, width: '60%', float: 'left' }} >
