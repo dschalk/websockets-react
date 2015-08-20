@@ -541,6 +541,11 @@ let mouseHandler = mobservable.makeReactive({
     19: '#9fc972',
     20: '#9fc972',
     21: '#9fc972',
+    22: '#000000',
+    23: '#000000',
+    24: '#000000',
+    25: '#000000',
+    26: '#000000',
 });
 
 let data = mobservable.makeReactive({
@@ -561,6 +566,7 @@ data.ddChange2 = x => { data.dd2 = x };
 data.ddChange3 = x => { data.dd3 = x };
 data.ddChange4 = x => { data.dd4 = x };
 data.ddChangeGoal2 = x => { data.goal2 = x };
+
 class B2X extends React.Component {
   // shouldComponentUpdate = shouldPureComponentUpdate;
   constructor(props) {
@@ -1223,7 +1229,7 @@ DES_ws.onmessage = function(event) {
         DS_t: 'Round Over'  
         })
 
-  	  let z = scoreClicker === name;
+        let z = scoreClicker === name;
   		let z2 = interruptClicker === name && impossibleClicker !== name;
   		let z3 = interruptClicker === name && impossibleClicker === name;
 
@@ -1546,7 +1552,7 @@ DES_ws.onmessage = function(event) {
     }
 
     style5 = (x) => {return {backgroundColor: x, paddingTop: 1.3, paddingLeft: 12, paddingRight:12,
-              paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: this.state.timeSize}};
+              paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: this.state.timeSize }};
 
     style6 = (x,y) => {return {backgroundColor: x, display: y, paddingBottom: 0.9, 
               marginRight: 3, marginLeft: 10, fontSize: this.state.timeSize}};
@@ -1600,6 +1606,7 @@ DES_ws.onmessage = function(event) {
     let hideParamsButton = this.state.hideParamsButton;
     let sol = this.state.sol;
     let base = '#f7b16f';  
+    let base2 = '#000000';  
     let d1 = this.state.d1;
     let d2 = this.state.d2;
     let d3 = this.state.d3;
@@ -1628,6 +1635,11 @@ DES_ws.onmessage = function(event) {
     let cr19 = this.mouse[19];
     let cr20 = this.mouse[20];
     let cr21 = this.mouse[21];
+    let cr22 = this.mouse[22];
+    let cr23 = this.mouse[23];
+    let cr24 = this.mouse[24];
+    let cr25 = this.mouse[25];
+    let cr26 = this.mouse[26];
     let style1 = {backgroundColor: this.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize};
     let style2 = {backgroundColor: this.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize};
     let style3 =  {paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16}
@@ -1688,7 +1700,7 @@ DES_ws.onmessage = function(event) {
             <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {goal2} </button> 
             <br /><br />
-            Put new number in a box, then click on the box or press 'Enter'. The number disappears and the result is shown above. Click "Show Solutions" when you are done.
+            Put new number in a box, then click on the box or press 'Enter'. The number disappears and the result is shown above. Click "Solutions" when you are done.
               <br />
             New Numbers: 
             <Number1 change={ddChange1} />
@@ -1701,8 +1713,9 @@ DES_ws.onmessage = function(event) {
             <br/ >
               Show Solutions
 
-        <button  onClick={this.showSolutionsHandler_2} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+        <button  onClick={this.showSolutionsHandler_2} style={{backgroundColor: cr26, textAlign: 'left', color: '#fcca05',
+          display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: 'red' }} 
+            onMouseEnter={() => {this.mouse[26] = 'blue'}} onMouseLeave={() => {this.mouse[26] = '#000' }} >
           Solutions
         </button>
 
@@ -1905,15 +1918,17 @@ DES_ws.onmessage = function(event) {
              Roll
           </button>
         </div>
-        <br /> <br/>
+        <br /> <br /> <br /> <br />
 
-        <button  onClick={this.showSolutionsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+        <button  onClick={this.showSolutionsHandler} style={{backgroundColor: cr22, textAlign: 'left', color: '#fcca05', borderColor: 'red',
+          display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+            onMouseEnter={() => {this.mouse[22] = 'blue'}} onMouseLeave={() => {this.mouse[22] = '#000' }} >
           Solutions
         </button>
 
-        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: cr23, borderColor: 'red', borderWidth: 2, textAlign: 'left', color: '#fcca05',
+          display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+            onMouseEnter={() => {this.mouse[23] = 'blue'}} onMouseLeave={() => {this.mouse[23] = '#000' }} >
           Hide Solutions
         </button>
 
@@ -1927,14 +1942,16 @@ DES_ws.onmessage = function(event) {
         </div>
         <br />
 
-        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: cr23, textAlign: 'left', color: '#fcca05', borderColor: 'red',
+          display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+            onMouseEnter={() => {this.mouse[23] = 'blue'}} onMouseLeave={() => {this.mouse[23] = '#000' }} >
           Hide Solutions
         </button>
         <br /><br />
 
-        <button  onClick={this.showParamsHandler} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+        <button  onClick={this.showParamsHandler} style={{backgroundColor: cr24, textAlign: 'left', color: '#fcca05', borderColor: 'red',
+          display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+            onMouseEnter={() => {this.mouse[24] = 'blue'}} onMouseLeave={() => {this.mouse[24] = '#000' }} >
           Create a New Group 
         </button>
 
@@ -1961,8 +1978,9 @@ You can click 'Solutions' to see a computer-generated list of all the solutions.
         <SetGoal change={this.changeItem} />
         <br /> <br />
         Collapse Parameters Display: 
-        <button  onClick={this.hideParamsHandler.bind(this)} style={{backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-          display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} >
+        <button  onClick={this.hideParamsHandler.bind(this)} style={{backgroundColor: cr25, textAlign: 'left', color: '#fcca05',
+          display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: 'red' }} 
+            onMouseEnter={() => {this.mouse[25] = 'blue'}} onMouseLeave={() => {this.mouse[25] = '#000' }} >
           Shrink Parameters
         </button>
         </div>

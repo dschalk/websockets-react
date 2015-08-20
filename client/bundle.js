@@ -839,7 +839,12 @@
 	  15: '#f7b16f',
 	  19: '#9fc972',
 	  20: '#9fc972',
-	  21: '#9fc972'
+	  21: '#9fc972',
+	  22: '#000000',
+	  23: '#000000',
+	  24: '#000000',
+	  25: '#000000',
+	  26: '#000000'
 	});
 
 	var data = _mobservable2['default'].makeReactive({
@@ -1313,6 +1318,7 @@
 	      var hideParamsButton = _this18.state.hideParamsButton;
 	      var sol = _this18.state.sol;
 	      var base = '#f7b16f';
+	      var base2 = '#000000';
 	      var d1 = _this18.state.d1;
 	      var d2 = _this18.state.d2;
 	      var d3 = _this18.state.d3;
@@ -1341,6 +1347,11 @@
 	      var cr19 = _this18.mouse[19];
 	      var cr20 = _this18.mouse[20];
 	      var cr21 = _this18.mouse[21];
+	      var cr22 = _this18.mouse[22];
+	      var cr23 = _this18.mouse[23];
+	      var cr24 = _this18.mouse[24];
+	      var cr25 = _this18.mouse[25];
+	      var cr26 = _this18.mouse[26];
 	      var style1 = { backgroundColor: _this18.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
 	      var style2 = { backgroundColor: _this18.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
 	      var style3 = { paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16 };
@@ -1467,7 +1478,7 @@
 	          ),
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement('br', null),
-	          'Put new number in a box, then click on the box or press \'Enter\'. The number disappears and the result is shown above. Click "Show Solutions" when you are done.',
+	          'Put new number in a box, then click on the box or press \'Enter\'. The number disappears and the result is shown above. Click "Solutions" when you are done.',
 	          _react2['default'].createElement('br', null),
 	          'New Numbers:',
 	          _react2['default'].createElement(Number1, { change: ddChange1 }),
@@ -1481,8 +1492,13 @@
 	          'Show Solutions',
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.showSolutionsHandler_2, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	            { onClick: _this18.showSolutionsHandler_2, style: { backgroundColor: cr26, textAlign: 'left', color: '#fcca05',
+	                display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: 'red' },
+	              onMouseEnter: function () {
+	                _this18.mouse[26] = 'blue';
+	              }, onMouseLeave: function () {
+	                _this18.mouse[26] = '#000';
+	              } },
 	            'Solutions'
 	          )
 	        ),
@@ -1865,16 +1881,30 @@
 	          _react2['default'].createElement('br', null),
 	          ' ',
 	          _react2['default'].createElement('br', null),
+	          ' ',
+	          _react2['default'].createElement('br', null),
+	          ' ',
+	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.showSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	            { onClick: _this18.showSolutionsHandler, style: { backgroundColor: cr22, textAlign: 'left', color: '#fcca05', borderColor: 'red',
+	                display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	              onMouseEnter: function () {
+	                _this18.mouse[22] = 'blue';
+	              }, onMouseLeave: function () {
+	                _this18.mouse[22] = '#000';
+	              } },
 	            'Solutions'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.hideSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	            { onClick: _this18.hideSolutionsHandler, style: { backgroundColor: cr23, borderColor: 'red', borderWidth: 2, textAlign: 'left', color: '#fcca05',
+	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	              onMouseEnter: function () {
+	                _this18.mouse[23] = 'blue';
+	              }, onMouseLeave: function () {
+	                _this18.mouse[23] = '#000';
+	              } },
 	            'Hide Solutions'
 	          ),
 	          _react2['default'].createElement(
@@ -1892,16 +1922,26 @@
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.hideSolutionsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	            { onClick: _this18.hideSolutionsHandler, style: { backgroundColor: cr23, textAlign: 'left', color: '#fcca05', borderColor: 'red',
+	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	              onMouseEnter: function () {
+	                _this18.mouse[23] = 'blue';
+	              }, onMouseLeave: function () {
+	                _this18.mouse[23] = '#000';
+	              } },
 	            'Hide Solutions'
 	          ),
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.showParamsHandler, style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	            { onClick: _this18.showParamsHandler, style: { backgroundColor: cr24, textAlign: 'left', color: '#fcca05', borderColor: 'red',
+	                display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	              onMouseEnter: function () {
+	                _this18.mouse[24] = 'blue';
+	              }, onMouseLeave: function () {
+	                _this18.mouse[24] = '#000';
+	              } },
 	            'Create a New Group'
 	          ),
 	          _react2['default'].createElement(
@@ -1959,8 +1999,13 @@
 	            'Collapse Parameters Display:',
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.hideParamsHandler.bind(_this18), style: { backgroundColor: '#000038', textAlign: 'left', color: '#fcca05',
-	                  display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 } },
+	              { onClick: _this18.hideParamsHandler.bind(_this18), style: { backgroundColor: cr25, textAlign: 'left', color: '#fcca05',
+	                  display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: 'red' },
+	                onMouseEnter: function () {
+	                  _this18.mouse[25] = 'blue';
+	                }, onMouseLeave: function () {
+	                  _this18.mouse[25] = '#000';
+	                } },
 	              'Shrink Parameters'
 	            )
 	          )
