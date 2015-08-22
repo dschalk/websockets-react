@@ -82,15 +82,6 @@ class Chat extends React.Component {
   }
 };
 
-
-
-
-
-
-
-
-
-
 class Number1 extends React.Component {
   constructor(props) {
     super(props);
@@ -225,32 +216,6 @@ class Goal extends React.Component {
     );
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 class Sides1 extends React.Component {
   constructor(props) {
@@ -451,10 +416,10 @@ class Login extends React.Component {
     super(props);
   }
 
-  handleChange (event) {
+  handleChange = (event) => {
     this.props.change({name: event.target.value});
   }
-  handleEnter (event) {
+  handleEnter = (event) => {
     if (this.props.name == '') {
       this.props.change({
         info: ``
@@ -496,13 +461,13 @@ class Login extends React.Component {
     let name = this.props.name;
     return (
       <div>
-        <input autoFocus type="text" name={name} onChange={this.handleChange.bind(this)}
-          style={{backgroundColor: '#d8d17d'}}
-        onKeyDown={this.handleEnter.bind(this)} />
-        {this.props.name}
-        <button onClick={this.click.bind(this)} style={{backgroundColor: '#d8d17d', color: '#f00'}} >
-          Join
+        <button onClick={this.click} style={{backgroundColor: '#d8d17d', color: '#f00'}} >
+          Please enter a name:
         </button>
+        <input autoFocus type="text" name={name} onChange={this.handleChange}
+          style={{backgroundColor: '#d8d17d'}}
+        onKeyDown={this.handleEnter} />
+        {this.props.name}
       </div>
     );
   }
@@ -546,6 +511,13 @@ let mouseHandler = mobservable.makeReactive({
     24: '#000000',
     25: '#000000',
     26: '#000000',
+    220: 'red',
+    230: 'red',
+    240: 'red',
+    250: 'red',
+    260: 'red',
+    270: 'red',
+    27: '#000000',
 });
 
 let data = mobservable.makeReactive({
@@ -558,7 +530,9 @@ let data = mobservable.makeReactive({
   dd2: 0,
   dd3: 0,
   dd4: 0,
-  goal2: 20
+  goal2: 20,
+  rulesDisplay: 'none',
+  rulesDisplay2: 'inline'
 });
 
 data.ddChange1 = x => { data.dd1 = x };
@@ -566,6 +540,17 @@ data.ddChange2 = x => { data.dd2 = x };
 data.ddChange3 = x => { data.dd3 = x };
 data.ddChange4 = x => { data.dd4 = x };
 data.ddChangeGoal2 = x => { data.goal2 = x };
+data.handleRulesDisplay = () => {
+  data.rulesDisplay = 'inline';
+  data.rulesDisplay2 = 'none';
+};
+
+data.handleRulesDisplay2 = () => {
+  data.rulesDisplay2 = 'inline';
+  data.rulesDisplay = 'none';
+};
+
+
 
 class B2X extends React.Component {
   // shouldComponentUpdate = shouldPureComponentUpdate;
@@ -616,7 +601,7 @@ class B2X extends React.Component {
         interruptClicker: "a@F$intrup%$",
         scoreB: ["Greetings new player."],
         chatArray:[""],
-        info: '',
+        info:'',
         dynamicBg: '#000000',
         dynamicColor: '#d5f765',
         dynamicFont: 20,
@@ -996,6 +981,7 @@ DES_ws.onmessage = function(event) {
 
 			else if (z2) {
         	DES_ws.send(`CG#$42,${gr},${name},1`);
+        	DES_ws.send(`CG#$42,${gr},${interruptClicker},-1`);
           DES_ws.send(`CH#$42,${gr},${name},60 seconds expired. One point for ${impossibleClicker}, `);
       }
 
@@ -1640,6 +1626,11 @@ DES_ws.onmessage = function(event) {
     let cr24 = this.mouse[24];
     let cr25 = this.mouse[25];
     let cr26 = this.mouse[26];
+    let cr27 = this.mouse[27];
+    let rulesDisplay = this.data.rulesDisplay;
+    let rulesDisplay2 = this.data.rulesDisplay2;
+    let handleRulesDisplay = this.data.handleRulesDisplay;
+    let handleRulesDisplay2 = this.data.handleRulesDisplay2;
     let style1 = {backgroundColor: this.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize};
     let style2 = {backgroundColor: this.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize};
     let style3 =  {paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16}
@@ -1682,7 +1673,7 @@ DES_ws.onmessage = function(event) {
             </button>
             <Chat changeMessage={this.changeMessage} > </Chat>
             <br /><br /> 
-            <h3 style={{textAlign:'center'}}>Get All Solutions</h3>
+            <h2 >Get All Solutions</h2>
           Current Numbers:
             <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {dd1} </button> 
@@ -1714,14 +1705,13 @@ DES_ws.onmessage = function(event) {
               Show Solutions
 
         <button  onClick={this.showSolutionsHandler_2} style={{backgroundColor: cr26, textAlign: 'left', color: '#fcca05',
-          display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: 'red' }} 
-            onMouseEnter={() => {this.mouse[26] = 'blue'}} onMouseLeave={() => {this.mouse[26] = '#000' }} >
+          display: showSolutionsButton, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: this.mouse[260] }} 
+            onMouseEnter={() => {this.mouse[26] = 'blue'; this.mouse[260] = '#01afaf'}} onMouseLeave={() => {this.mouse[26] = '#000'; this.mouse[260] = 'red'}} >
           Solutions
         </button>
 
 
      </div>
-
         <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
           setGroup={this.setGroup} change={this.changeItem}
           group={group} hidden={this.state.hidden} info={this.state.info} >
@@ -1729,6 +1719,49 @@ DES_ws.onmessage = function(event) {
 
      <div style = {{ display: startDisplay, paddingTop: 3.8, width: '60%',
               paddingBottom: 0.8, fontSize: 20, marginLeft: 5 }}>
+
+
+
+
+
+
+
+              <div style={{display: rulesDisplay, color: '#e9eab6' }} >
+                <span style={{fontSize:26}} >Dedication:</span> This game is dedicated to Bloomington, Indiana's Templeton Elementary School and to the "K through 6" program's teachers, Risa Reinier and Kevin Gallagher, who nurture and sustain a wonderful community which will always be a home away from home for my son Alexander. -- David Schalk, August 22, 2015.<br /><br /> 
+                The table-top game of Score involves four dice and a one-minute 'hourglass'. The dice might include one twenty-sided, one twelve-sided, and two six-sided dice. Twelve and twenty-sided dice are completely symetrical and therefore roll nicely on the table. 
+                <br /><br />
+                After the dice are rolled, each player has the opportunity to call out "Score" or "Impossible". A player who calls "Score" must quickly show how to make the number "20" in two or three steps using addition, subtraction, multiplication, division, and/or concatenation. Success gains the player one point. Floundering and failing to quickly show a solution costs the player one point.
+                If a player calls "Impossible", the hourglass is turned over and all participants, including the player who called "Impossible", may call "Score" untill the hourglass runs out; that is, the players have one minute in which to find a solution. If the time runs out, the player who called "Impossible" gains one point. If someone calls "Score" before the time runs out and succeeds in quickly making the number "20", that player gains one point and the player who called "Impossible" loses two points. If the player who called "Impossible" subsequently calls "Score" and succeeds in quickly making the number "20", that player loses two points and gains one point for a net loss of one point. If a player calls "Impossible" and then calls "Score" but fails to quickly show a solution, the normal rules are superceded by the "Blocking Violation" rule. The normal rules would give the player one point because nobody found a solution within one minute and subtact one point for failure to quickly show a solution after calling "Score". The net result would be 1 - 1 = 0; that is, no change in score. That would be like calling "Impossible" and then taking it back.  But because the player called "Score" and thereby prevented other players from calling "Score" and possibly succeeding, the player committed a blocking violation. A blocking violation costs the player two points.
+                <br /><br />
+                The online Game of Score! is slightly different. After clicking "Score", a player has ten seconds in which to perform the first computation and then another ten seconds in which to perform a second computation. If the second computation uses the result of the first computation and results in the number "20", the player gains one point. Otherwise, if any computation is performed within the ten-second window of opportunity, the player gets another ten seconds in which to try to compute the number "20". Letting the time run out or computing anything other than "20" in the third computation costs the player one point.
+                <br /><br />
+                Players can join one of the three standard groups, or they can create a group of their own by clicking "Create a New Group" and entering whatever group name they choose. Players would need to coordinate through the chat window, email, or telephone so they can agree on a group name. As explained below, they can also agree on different sided dice and a goal other than "20". 
+                <br /><br />
+                Each group has its own scoreboard and chat area. A player who has not joined a group is automatically in group "solo". Players in "solo" do not share a scoreboard or chat message box. They play solitairre until they join a regular group.
+                <br /><br />
+                There is an area under the chat window where players can see all possible solutions for whatever four dice numbers and whatever goal they choose. Players cannot use the "Get All Solutions" area during competition, but once they hide the solutions and click ROLL, or wait for another group member to click ROLL, play resumes where it left off.
+                <br /><br />
+                A detailed explanation of computer code underlying the game can be found at <a href="https://www.fpcomplete.com/user/dschalk/Websockets%20Game%20of%20Score" target="_blank" style={{color: 'red'}} >Game Analysis</a>. The source code is available at <a href="https://github.com/dschalk/websockets-react" target="_blank" style={{color: 'red'}} >Game Source Code</a>
+                <br /><br /> <span style={{fontSize:26}} >Modifying The Game: </span>
+To modify the game, click "Create a New Group" and change the number of sides of whichever die you select. You can also change the goal to something other than the default number "20". Each player in a modified group must modify his or her own game interface in order to coordinate with other players. Modified games are fun for competition and also for solitairre experimentation.
+<br /><br />
+              </div>
+
+          <button  onClick={handleRulesDisplay} style={{backgroundColor: cr27, textAlign: 'left', color: '#fcca05', borderColor: this.mouse[270],
+            display: rulesDisplay2, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+            onMouseEnter={() => {this.mouse[27] = 'blue'; this.mouse[270]  = '#01afaf'}} 
+            onMouseLeave={() => {this.mouse[27] = '#000'; this.mouse[270]  = 'red'  }} >
+            Show Rules
+          </button>
+
+          <button  onClick={handleRulesDisplay2} style={{backgroundColor: cr27, textAlign: 'left', color: '#fcca05', borderColor: this.mouse[270],
+            display: rulesDisplay, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+            onMouseEnter={() => {this.mouse[27] = 'blue'; this.mouse[270]  = '#01afaf' }} 
+            onMouseLeave={() => {this.mouse[27] = '#000'; this.mouse[270]  = 'red'  }} >
+            Hide Rules
+        </button>
+        <br />
+
           Current roll:
             <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d1} </button> 
@@ -1920,15 +1953,17 @@ DES_ws.onmessage = function(event) {
         </div>
         <br /> <br /> <br /> <br />
 
-        <button  onClick={this.showSolutionsHandler} style={{backgroundColor: cr22, textAlign: 'left', color: '#fcca05', borderColor: 'red',
-          display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
-            onMouseEnter={() => {this.mouse[22] = 'blue'}} onMouseLeave={() => {this.mouse[22] = '#000' }} >
+        <button  onClick={this.showSolutionsHandler} style={{backgroundColor: cr22, textAlign: 'left', color: '#fcca05', borderColor: this.mouse[220],
+          display: showSolutionsButton, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+          onMouseEnter={() => {this.mouse[22] = 'blue'; this.mouse[220]  = '#01afaf' }} 
+          onMouseLeave={() => {this.mouse[22] = '#000'; this.mouse[220]  = 'red' }} >
           Solutions
         </button>
 
-        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: cr23, borderColor: 'red', borderWidth: 2, textAlign: 'left', color: '#fcca05',
-          display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
-            onMouseEnter={() => {this.mouse[23] = 'blue'}} onMouseLeave={() => {this.mouse[23] = '#000' }} >
+        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: cr23, borderColor: this.mouse[230], borderWidth: 2, textAlign: 'left', color: '#fcca05',
+          display: hideSolutionsButton, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+          onMouseEnter={() => {this.mouse[23] = 'blue'; this.mouse[230]  = '#01afaf' }} 
+          onMouseLeave={() => {this.mouse[23] = '#000'; this.mouse[230]  = 'red' }} >
           Hide Solutions
         </button>
 
@@ -1942,16 +1977,18 @@ DES_ws.onmessage = function(event) {
         </div>
         <br />
 
-        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: cr23, textAlign: 'left', color: '#fcca05', borderColor: 'red',
-          display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
-            onMouseEnter={() => {this.mouse[23] = 'blue'}} onMouseLeave={() => {this.mouse[23] = '#000' }} >
+        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: cr23, textAlign: 'left', color: '#fcca05', borderColor: this.mouse[230],
+          display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, borderRadius: 10, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+          onMouseEnter={() => {this.mouse[23] = 'blue'; this.mouse[230]  = '#01afaf' }} 
+          onMouseLeave={() => {this.mouse[23] = '#000'; this.mouse[230]  = 'red'  }} >
           Hide Solutions
         </button>
         <br /><br />
 
-        <button  onClick={this.showParamsHandler} style={{backgroundColor: cr24, textAlign: 'left', color: '#fcca05', borderColor: 'red',
-          display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
-            onMouseEnter={() => {this.mouse[24] = 'blue'}} onMouseLeave={() => {this.mouse[24] = '#000' }} >
+        <button  onClick={this.showParamsHandler} style={{backgroundColor: cr24, textAlign: 'left', color: '#fcca05', borderColor: this.mouse[240],
+          display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, borderRadius: 10, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+          onMouseEnter={() => {this.mouse[24] = 'blue'; this.mouse[240]  = '#01afaf' }} 
+          onMouseLeave={() => {this.mouse[24] = '#000'; this.mouse[240]  = 'red'  }} >
           Create a New Group 
         </button>
 
@@ -1979,9 +2016,10 @@ You can click 'Solutions' to see a computer-generated list of all the solutions.
         <br /> <br />
         Collapse Parameters Display: 
         <button  onClick={this.hideParamsHandler.bind(this)} style={{backgroundColor: cr25, textAlign: 'left', color: '#fcca05',
-          display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: 'red' }} 
-            onMouseEnter={() => {this.mouse[25] = 'blue'}} onMouseLeave={() => {this.mouse[25] = '#000' }} >
-          Shrink Parameters
+          display: hideParamsButton, paddingTop: 1.1, borderRadius: 10, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: this.mouse[250] }} 
+          onMouseEnter={() => {this.mouse[25] = 'blue'; this.mouse[250]  = '#01afaf' }} 
+          onMouseLeave={() => {this.mouse[25] = '#000'; this.mouse[250]  = 'red'  }} >
+          Hide New Group Parameters
         </button>
         </div>
      </div>

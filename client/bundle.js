@@ -724,21 +724,45 @@
 
 	    _get(Object.getPrototypeOf(Login.prototype), 'constructor', this).call(this, props);
 
+	    this.handleChange = function (event) {
+	      _this16.props.change({ name: event.target.value });
+	    };
+
+	    this.handleEnter = function (event) {
+	      if (_this16.props.name == '') {
+	        _this16.props.change({
+	          info: ''
+	        });
+	      } else {
+	        var ENTER = 13;
+	        if (event.keyCode == ENTER) {
+	          var _name = _this16.props.name;
+	          _this16.props.change({
+	            hidden: true,
+	            hidden2: false,
+	            name: _name,
+	            startDisplay: 'inline'
+	          });
+	          DES_ws.send('CC#$42' + _name);
+	        }
+	      }
+	    };
+
 	    this.click = function () {
 	      if (_this16.props.name == '') {
 	        _this16.props.change({
 	          info: 'Please enter a name.'
 	        });
 	      } else {
-	        var _name = _this16.props.name;
+	        var _name2 = _this16.props.name;
 	        _this16.props.change({
 	          hidden: true,
 	          hidden2: false,
-	          name: _name,
+	          name: _name2,
 	          startDisplay: 'inline',
 	          messageDisplay: 'inline'
 	        });
-	        DES_ws.send('CC#$42' + _name);
+	        DES_ws.send('CC#$42' + _name2);
 	      }
 	    };
 
@@ -750,46 +774,18 @@
 	      return _react2['default'].createElement(
 	        'div',
 	        null,
-	        _react2['default'].createElement('input', { autoFocus: true, type: 'text', name: name, onChange: _this16.handleChange.bind(_this16),
-	          style: { backgroundColor: '#d8d17d' },
-	          onKeyDown: _this16.handleEnter.bind(_this16) }),
-	        _this16.props.name,
 	        _react2['default'].createElement(
 	          'button',
-	          { onClick: _this16.click.bind(_this16), style: { backgroundColor: '#d8d17d', color: '#f00' } },
-	          'Join'
-	        )
+	          { onClick: _this16.click, style: { backgroundColor: '#d8d17d', color: '#f00' } },
+	          'Please enter a name:'
+	        ),
+	        _react2['default'].createElement('input', { autoFocus: true, type: 'text', name: name, onChange: _this16.handleChange,
+	          style: { backgroundColor: '#d8d17d' },
+	          onKeyDown: _this16.handleEnter }),
+	        _this16.props.name
 	      );
 	    };
 	  }
-
-	  _createClass(Login, [{
-	    key: 'handleChange',
-	    value: function handleChange(event) {
-	      this.props.change({ name: event.target.value });
-	    }
-	  }, {
-	    key: 'handleEnter',
-	    value: function handleEnter(event) {
-	      if (this.props.name == '') {
-	        this.props.change({
-	          info: ''
-	        });
-	      } else {
-	        var ENTER = 13;
-	        if (event.keyCode == ENTER) {
-	          var _name2 = this.props.name;
-	          this.props.change({
-	            hidden: true,
-	            hidden2: false,
-	            name: _name2,
-	            startDisplay: 'inline'
-	          });
-	          DES_ws.send('CC#$42' + _name2);
-	        }
-	      }
-	    }
-	  }]);
 
 	  return Login;
 	})(_react2['default'].Component);
@@ -844,7 +840,14 @@
 	  23: '#000000',
 	  24: '#000000',
 	  25: '#000000',
-	  26: '#000000'
+	  26: '#000000',
+	  220: 'red',
+	  230: 'red',
+	  240: 'red',
+	  250: 'red',
+	  260: 'red',
+	  270: 'red',
+	  27: '#000000'
 	});
 
 	var data = _mobservable2['default'].makeReactive({
@@ -857,7 +860,9 @@
 	  dd2: 0,
 	  dd3: 0,
 	  dd4: 0,
-	  goal2: 20
+	  goal2: 20,
+	  rulesDisplay: 'none',
+	  rulesDisplay2: 'inline'
 	});
 
 	data.ddChange1 = function (x) {
@@ -874,6 +879,15 @@
 	};
 	data.ddChangeGoal2 = function (x) {
 	  data.goal2 = x;
+	};
+	data.handleRulesDisplay = function () {
+	  data.rulesDisplay = 'inline';
+	  data.rulesDisplay2 = 'none';
+	};
+
+	data.handleRulesDisplay2 = function () {
+	  data.rulesDisplay2 = 'inline';
+	  data.rulesDisplay = 'none';
 	};
 
 	var B2X = (function (_React$Component17) {
@@ -1352,6 +1366,11 @@
 	      var cr24 = _this18.mouse[24];
 	      var cr25 = _this18.mouse[25];
 	      var cr26 = _this18.mouse[26];
+	      var cr27 = _this18.mouse[27];
+	      var rulesDisplay = _this18.data.rulesDisplay;
+	      var rulesDisplay2 = _this18.data.rulesDisplay2;
+	      var handleRulesDisplay = _this18.data.handleRulesDisplay;
+	      var handleRulesDisplay2 = _this18.data.handleRulesDisplay2;
 	      var style1 = { backgroundColor: _this18.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
 	      var style2 = { backgroundColor: _this18.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
 	      var style3 = { paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16 };
@@ -1429,8 +1448,8 @@
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
-	            'h3',
-	            { style: { textAlign: 'center' } },
+	            'h2',
+	            null,
 	            'Get All Solutions'
 	          ),
 	          'Current Numbers:',
@@ -1493,11 +1512,11 @@
 	          _react2['default'].createElement(
 	            'button',
 	            { onClick: _this18.showSolutionsHandler_2, style: { backgroundColor: cr26, textAlign: 'left', color: '#fcca05',
-	                display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: 'red' },
+	                display: showSolutionsButton, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: _this18.mouse[260] },
 	              onMouseEnter: function () {
-	                _this18.mouse[26] = 'blue';
+	                _this18.mouse[26] = 'blue';_this18.mouse[260] = '#01afaf';
 	              }, onMouseLeave: function () {
-	                _this18.mouse[26] = '#000';
+	                _this18.mouse[26] = '#000';_this18.mouse[260] = 'red';
 	              } },
 	            'Solutions'
 	          )
@@ -1509,6 +1528,84 @@
 	          'div',
 	          { style: { display: startDisplay, paddingTop: 3.8, width: '60%',
 	              paddingBottom: 0.8, fontSize: 20, marginLeft: 5 } },
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { display: rulesDisplay, color: '#e9eab6' } },
+	            _react2['default'].createElement(
+	              'span',
+	              { style: { fontSize: 26 } },
+	              'Dedication:'
+	            ),
+	            ' This game is dedicated to Bloomington, Indiana\'s Templeton Elementary School and to the "K through 6" program\'s teachers, Risa Reinier and Kevin Gallagher, who nurture and sustain a wonderful community which will always be a home away from home for my son Alexander. -- David Schalk, August 22, 2015.',
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement('br', null),
+	            'The table-top game of Score involves four dice and a one-minute \'hourglass\'. The dice might include one twenty-sided, one twelve-sided, and two six-sided dice. Twelve and twenty-sided dice are completely symetrical and therefore roll nicely on the table.',
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement('br', null),
+	            'After the dice are rolled, each player has the opportunity to call out "Score" or "Impossible". A player who calls "Score" must quickly show how to make the number "20" in two or three steps using addition, subtraction, multiplication, division, and/or concatenation. Success gains the player one point. Floundering and failing to quickly show a solution costs the player one point. If a player calls "Impossible", the hourglass is turned over and all participants, including the player who called "Impossible", may call "Score" untill the hourglass runs out; that is, the players have one minute in which to find a solution. If the time runs out, the player who called "Impossible" gains one point. If someone calls "Score" before the time runs out and succeeds in quickly making the number "20", that player gains one point and the player who called "Impossible" loses two points. If the player who called "Impossible" subsequently calls "Score" and succeeds in quickly making the number "20", that player loses two points and gains one point for a net loss of one point. If a player calls "Impossible" and then calls "Score" but fails to quickly show a solution, the normal rules are superceded by the "Blocking Violation" rule. The normal rules would give the player one point because nobody found a solution within one minute and subtact one point for failure to quickly show a solution after calling "Score". The net result would be 1 - 1 = 0; that is, no change in score. That would be like calling "Impossible" and then taking it back.  But because the player called "Score" and thereby prevented other players from calling "Score" and possibly succeeding, the player committed a blocking violation. A blocking violation costs the player two points.',
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement('br', null),
+	            'The online Game of Score! is slightly different. After clicking "Score", a player has ten seconds in which to perform the first computation and then another ten seconds in which to perform a second computation. If the second computation uses the result of the first computation and results in the number "20", the player gains one point. Otherwise, if any computation is performed within the ten-second window of opportunity, the player gets another ten seconds in which to try to compute the number "20". Letting the time run out or computing anything other than "20" in the third computation costs the player one point.',
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement('br', null),
+	            'Players can join one of the three standard groups, or they can create a group of their own by clicking "Create a New Group" and entering whatever group name they choose. Players would need to coordinate through the chat window, email, or telephone so they can agree on a group name. As explained below, they can also agree on different sided dice and a goal other than "20".',
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement('br', null),
+	            'Each group has its own scoreboard and chat area. A player who has not joined a group is automatically in group "solo". Players in "solo" do not share a scoreboard or chat message box. They play solitairre until they join a regular group.',
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement('br', null),
+	            'There is an area under the chat window where players can see all possible solutions for whatever four dice numbers and whatever goal they choose. Players cannot use the "Get All Solutions" area during competition, but once they hide the solutions and click ROLL, or wait for another group member to click ROLL, play resumes where it left off.',
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement('br', null),
+	            'A detailed explanation of computer code underlying the game can be found at ',
+	            _react2['default'].createElement(
+	              'a',
+	              { href: 'https://www.fpcomplete.com/user/dschalk/Websockets%20Game%20of%20Score', target: '_blank', style: { color: 'red' } },
+	              'Game Analysis'
+	            ),
+	            '. The source code is available at ',
+	            _react2['default'].createElement(
+	              'a',
+	              { href: 'https://github.com/dschalk/websockets-react', target: '_blank', style: { color: 'red' } },
+	              'Game Source Code'
+	            ),
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement('br', null),
+	            ' ',
+	            _react2['default'].createElement(
+	              'span',
+	              { style: { fontSize: 26 } },
+	              'Modifying The Game: '
+	            ),
+	            'To modify the game, click "Create a New Group" and change the number of sides of whichever die you select. You can also change the goal to something other than the default number "20". Each player in a modified group must modify his or her own game interface in order to coordinate with other players. Modified games are fun for competition and also for solitairre experimentation.',
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement('br', null)
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onClick: handleRulesDisplay, style: { backgroundColor: cr27, textAlign: 'left', color: '#fcca05', borderColor: _this18.mouse[270],
+	                display: rulesDisplay2, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	              onMouseEnter: function () {
+	                _this18.mouse[27] = 'blue';_this18.mouse[270] = '#01afaf';
+	              },
+	              onMouseLeave: function () {
+	                _this18.mouse[27] = '#000';_this18.mouse[270] = 'red';
+	              } },
+	            'Show Rules'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onClick: handleRulesDisplay2, style: { backgroundColor: cr27, textAlign: 'left', color: '#fcca05', borderColor: _this18.mouse[270],
+	                display: rulesDisplay, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	              onMouseEnter: function () {
+	                _this18.mouse[27] = 'blue';_this18.mouse[270] = '#01afaf';
+	              },
+	              onMouseLeave: function () {
+	                _this18.mouse[27] = '#000';_this18.mouse[270] = 'red';
+	              } },
+	            'Hide Rules'
+	          ),
+	          _react2['default'].createElement('br', null),
 	          'Current roll:',
 	          _react2['default'].createElement(
 	            'button',
@@ -1887,23 +1984,25 @@
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.showSolutionsHandler, style: { backgroundColor: cr22, textAlign: 'left', color: '#fcca05', borderColor: 'red',
-	                display: showSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	            { onClick: _this18.showSolutionsHandler, style: { backgroundColor: cr22, textAlign: 'left', color: '#fcca05', borderColor: _this18.mouse[220],
+	                display: showSolutionsButton, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
 	              onMouseEnter: function () {
-	                _this18.mouse[22] = 'blue';
-	              }, onMouseLeave: function () {
-	                _this18.mouse[22] = '#000';
+	                _this18.mouse[22] = 'blue';_this18.mouse[220] = '#01afaf';
+	              },
+	              onMouseLeave: function () {
+	                _this18.mouse[22] = '#000';_this18.mouse[220] = 'red';
 	              } },
 	            'Solutions'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.hideSolutionsHandler, style: { backgroundColor: cr23, borderColor: 'red', borderWidth: 2, textAlign: 'left', color: '#fcca05',
-	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	            { onClick: _this18.hideSolutionsHandler, style: { backgroundColor: cr23, borderColor: _this18.mouse[230], borderWidth: 2, textAlign: 'left', color: '#fcca05',
+	                display: hideSolutionsButton, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
 	              onMouseEnter: function () {
-	                _this18.mouse[23] = 'blue';
-	              }, onMouseLeave: function () {
-	                _this18.mouse[23] = '#000';
+	                _this18.mouse[23] = 'blue';_this18.mouse[230] = '#01afaf';
+	              },
+	              onMouseLeave: function () {
+	                _this18.mouse[23] = '#000';_this18.mouse[230] = 'red';
 	              } },
 	            'Hide Solutions'
 	          ),
@@ -1922,12 +2021,13 @@
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.hideSolutionsHandler, style: { backgroundColor: cr23, textAlign: 'left', color: '#fcca05', borderColor: 'red',
-	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	            { onClick: _this18.hideSolutionsHandler, style: { backgroundColor: cr23, textAlign: 'left', color: '#fcca05', borderColor: _this18.mouse[230],
+	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, borderRadius: 10, marginRight: 3, marginLeft: 12, fontSize: 20 },
 	              onMouseEnter: function () {
-	                _this18.mouse[23] = 'blue';
-	              }, onMouseLeave: function () {
-	                _this18.mouse[23] = '#000';
+	                _this18.mouse[23] = 'blue';_this18.mouse[230] = '#01afaf';
+	              },
+	              onMouseLeave: function () {
+	                _this18.mouse[23] = '#000';_this18.mouse[230] = 'red';
 	              } },
 	            'Hide Solutions'
 	          ),
@@ -1935,12 +2035,13 @@
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.showParamsHandler, style: { backgroundColor: cr24, textAlign: 'left', color: '#fcca05', borderColor: 'red',
-	                display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	            { onClick: _this18.showParamsHandler, style: { backgroundColor: cr24, textAlign: 'left', color: '#fcca05', borderColor: _this18.mouse[240],
+	                display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, borderRadius: 10, marginRight: 3, marginLeft: 12, fontSize: 20 },
 	              onMouseEnter: function () {
-	                _this18.mouse[24] = 'blue';
-	              }, onMouseLeave: function () {
-	                _this18.mouse[24] = '#000';
+	                _this18.mouse[24] = 'blue';_this18.mouse[240] = '#01afaf';
+	              },
+	              onMouseLeave: function () {
+	                _this18.mouse[24] = '#000';_this18.mouse[240] = 'red';
 	              } },
 	            'Create a New Group'
 	          ),
@@ -2000,13 +2101,14 @@
 	            _react2['default'].createElement(
 	              'button',
 	              { onClick: _this18.hideParamsHandler.bind(_this18), style: { backgroundColor: cr25, textAlign: 'left', color: '#fcca05',
-	                  display: hideParamsButton, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: 'red' },
+	                  display: hideParamsButton, paddingTop: 1.1, borderRadius: 10, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: _this18.mouse[250] },
 	                onMouseEnter: function () {
-	                  _this18.mouse[25] = 'blue';
-	                }, onMouseLeave: function () {
-	                  _this18.mouse[25] = '#000';
+	                  _this18.mouse[25] = 'blue';_this18.mouse[250] = '#01afaf';
+	                },
+	                onMouseLeave: function () {
+	                  _this18.mouse[25] = '#000';_this18.mouse[250] = 'red';
 	                } },
-	              'Shrink Parameters'
+	              'Hide New Group Parameters'
 	            )
 	          )
 	        ),
@@ -2444,6 +2546,7 @@
 	          DES_ws.send('CH#$42,' + gr + ',' + name + ',10 seconds expired. Deduct one point from ' + scoreClicker + ', ');
 	        } else if (z2) {
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
+	          DES_ws.send('CG#$42,' + gr + ',' + interruptClicker + ',-1');
 	          DES_ws.send('CH#$42,' + gr + ',' + name + ',60 seconds expired. One point for ' + impossibleClicker + ', ');
 	        } else if (z3) {
 	          DES_ws.send('CG#$42,' + gr + ',' + interruptClicker + ',-2');
