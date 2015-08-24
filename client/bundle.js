@@ -75,7 +75,8 @@
 
 	var _mobservable2 = _interopRequireDefault(_mobservable);
 
-	var reactMixin = __webpack_require__(159);
+	var objectAssign = __webpack_require__(159);
+	var reactMixin = __webpack_require__(160);
 	exports.B2 = B2;
 
 	var count = 0;
@@ -841,12 +842,33 @@
 	  24: '#000000',
 	  25: '#000000',
 	  26: '#000000',
-	  220: 'red',
-	  230: 'red',
-	  240: 'red',
-	  250: 'red',
-	  260: 'red',
-	  270: 'red',
+	  100: '01afaf',
+	  110: '01afaf',
+	  120: '01afaf',
+	  130: '01afaf',
+	  140: '01afaf',
+	  150: '01afaf',
+	  160: '01afaf',
+	  170: '01afaf',
+	  180: '01afaf',
+	  190: '01afaf',
+	  1000: '01afaf',
+	  1100: '01afaf',
+	  1200: '01afaf',
+	  1300: '01afaf',
+	  1400: '01afaf',
+	  220: 'darkred',
+	  230: 'darkred',
+	  240: 'darkred',
+	  250: 'darkred',
+	  260: 'darkred',
+	  270: 'darkred',
+	  style22: {},
+	  style23: {},
+	  style24: {},
+	  style25: {},
+	  style26: {},
+	  style27: {},
 	  27: '#000000'
 	});
 
@@ -1273,14 +1295,24 @@
 	      });
 	    };
 
+	    this.style4 = function (x, y) {
+	      return { backgroundColor: x, borderWidth: 2, borderColor: y, paddingTop: 1.3, paddingLeft: 12, paddingRight: 12,
+	        paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: _this18.state.timeSize };
+	    };
+
 	    this.style5 = function (x) {
-	      return { backgroundColor: x, paddingTop: 1.3, paddingLeft: 12, paddingRight: 12,
+	      return { backgroundColor: x, borderWidth: 2, borderColor: 'green', paddingTop: 1.3, paddingLeft: 12, paddingRight: 12,
 	        paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: _this18.state.timeSize };
 	    };
 
 	    this.style6 = function (x, y) {
 	      return { backgroundColor: x, display: y, paddingBottom: 0.9,
 	        marginRight: 3, marginLeft: 10, fontSize: _this18.state.timeSize };
+	    };
+
+	    this.style7 = function (x, y, z) {
+	      return { backgroundColor: x, textAlign: 'left', color: '#fcca05', borderColor: y,
+	        display: z, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 };
 	    };
 
 	    this.render = function () {
@@ -1362,11 +1394,18 @@
 	      var cr20 = _this18.mouse[20];
 	      var cr21 = _this18.mouse[21];
 	      var cr22 = _this18.mouse[22];
+	      var cr220 = _this18.mouse[220];
 	      var cr23 = _this18.mouse[23];
+	      var cr230 = _this18.mouse[230];
 	      var cr24 = _this18.mouse[24];
+	      var cr240 = _this18.mouse[240];
 	      var cr25 = _this18.mouse[25];
+	      var cr250 = _this18.mouse[250];
 	      var cr26 = _this18.mouse[26];
+	      var cr260 = _this18.mouse[260];
 	      var cr27 = _this18.mouse[27];
+	      var cr270 = _this18.mouse[270];
+	      var cr100 = _this18.mouse[100];
 	      var rulesDisplay = _this18.data.rulesDisplay;
 	      var rulesDisplay2 = _this18.data.rulesDisplay2;
 	      var handleRulesDisplay = _this18.data.handleRulesDisplay;
@@ -1374,6 +1413,18 @@
 	      var style1 = { backgroundColor: _this18.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
 	      var style2 = { backgroundColor: _this18.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
 	      var style3 = { paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16 };
+
+	      var style30 = { backgroundColor: _this18.mouse[22], textAlign: 'left', color: '#fcca05', borderColor: _this18.mouse[220],
+	        display: 'inline', borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 };
+
+	      var style31 = { textAlign: 'left', color: '#fcca05',
+	        display: 'inline', borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 };
+	      var style22 = _this18.mouse.style22;
+	      var style23 = _this18.mouse.style23;
+	      var style24 = _this18.mouse.style24;
+	      var style25 = _this18.mouse.style25;
+	      var style26 = _this18.mouse.style26;
+	      var style27 = _this18.mouse.style27;
 
 	      return _react2['default'].createElement(
 	        'div',
@@ -1455,7 +1506,7 @@
 	          'Current Numbers:',
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            dd1,
@@ -1463,7 +1514,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            dd2,
@@ -1471,7 +1522,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            dd3,
@@ -1479,7 +1530,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            dd4,
@@ -1489,7 +1540,7 @@
 	          'Current Goal:',
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            goal2,
@@ -1511,12 +1562,13 @@
 	          'Show Solutions',
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.showSolutionsHandler_2, style: { backgroundColor: cr26, textAlign: 'left', color: '#fcca05',
-	                display: showSolutionsButton, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: _this18.mouse[260] },
+	            { onClick: _this18.showSolutionsHandler_2,
+	              style: _this18.style7(cr26, cr260, showSolutionsButton),
 	              onMouseEnter: function () {
 	                _this18.mouse[26] = 'blue';_this18.mouse[260] = '#01afaf';
-	              }, onMouseLeave: function () {
-	                _this18.mouse[26] = '#000';_this18.mouse[260] = 'red';
+	              },
+	              onMouseLeave: function () {
+	                _this18.mouse[26] = '#000';_this18.mouse[260] = 'darkred';
 	              } },
 	            'Solutions'
 	          )
@@ -1560,7 +1612,7 @@
 	            'A detailed explanation of computer code underlying the game can be found at ',
 	            _react2['default'].createElement(
 	              'a',
-	              { href: 'https://www.fpcomplete.com/user/dschalk/Websockets%20Game%20of%20Score', target: '_blank', style: { color: 'red' } },
+	              { href: 'https://www.fpcomplete.com/user/dschalk/Websockets%20Game%20of%20Score', target: '_blank', style: { color: 'darkred' } },
 	              'Game Analysis'
 	            ),
 	            '. The source code is available at ',
@@ -1583,25 +1635,25 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: handleRulesDisplay, style: { backgroundColor: cr27, textAlign: 'left', color: '#fcca05', borderColor: _this18.mouse[270],
-	                display: rulesDisplay2, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	            { onClick: handleRulesDisplay,
+	              style: _this18.style7(cr27, cr270, rulesDisplay2),
 	              onMouseEnter: function () {
 	                _this18.mouse[27] = 'blue';_this18.mouse[270] = '#01afaf';
 	              },
 	              onMouseLeave: function () {
-	                _this18.mouse[27] = '#000';_this18.mouse[270] = 'red';
+	                _this18.mouse[27] = '#000';_this18.mouse[270] = 'darkred';
 	              } },
 	            'Show Rules'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: handleRulesDisplay2, style: { backgroundColor: cr27, textAlign: 'left', color: '#fcca05', borderColor: _this18.mouse[270],
-	                display: rulesDisplay, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	            { onClick: handleRulesDisplay2,
+	              style: _this18.style7(cr27, cr270, rulesDisplay),
 	              onMouseEnter: function () {
 	                _this18.mouse[27] = 'blue';_this18.mouse[270] = '#01afaf';
 	              },
 	              onMouseLeave: function () {
-	                _this18.mouse[27] = '#000';_this18.mouse[270] = 'red';
+	                _this18.mouse[27] = '#000';_this18.mouse[270] = 'darkred';
 	              } },
 	            'Hide Rules'
 	          ),
@@ -1609,7 +1661,7 @@
 	          'Current roll:',
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            d1,
@@ -1617,7 +1669,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            d2,
@@ -1625,7 +1677,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            d3,
@@ -1633,7 +1685,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            d4,
@@ -1682,7 +1734,7 @@
 	            { onClick: _this18.handleGroupA, style: { backgroundColor: cr15, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10 },
 	              onMouseEnter: function () {
-	                _this18.mouse[15] = '#f99094';
+	                _this18.mouse[15] = 'gold';
 	              }, onMouseLeave: function () {
 	                _this18.mouse[15] = base;
 	              } },
@@ -1691,7 +1743,7 @@
 	          _react2['default'].createElement(
 	            'button',
 	            { onMouseEnter: function () {
-	                _this18.mouse[11] = '#f99094';
+	                _this18.mouse[11] = 'gold';
 	              }, onMouseLeave: function () {
 	                _this18.mouse[11] = base;
 	              },
@@ -1704,7 +1756,7 @@
 	            { onClick: _this18.handleGroupC, style: { backgroundColor: cr12, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
 	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10 },
 	              onMouseEnter: function () {
-	                _this18.mouse[12] = '#f99094';
+	                _this18.mouse[12] = 'gold';
 	              }, onMouseLeave: function () {
 	                _this18.mouse[12] = base;
 	              } },
@@ -1751,7 +1803,7 @@
 	            { style: { display: rollnumsDisplay } },
 	            _react2['default'].createElement(
 	              'button',
-	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	              { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                  paddingTop: 1.8, paddingBottom: 0.4 } },
 	              ' ',
 	              d1,
@@ -1759,7 +1811,7 @@
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	              { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                  paddingTop: 1.8, paddingBottom: 0.4 } },
 	              ' ',
 	              d2,
@@ -1767,7 +1819,7 @@
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	              { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                  paddingTop: 1.8, paddingBottom: 0.4 } },
 	              ' ',
 	              d3,
@@ -1775,7 +1827,7 @@
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
+	              { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
 	                  paddingTop: 1.8, paddingBottom: 0.4 } },
 	              ' ',
 	              d4,
@@ -1786,7 +1838,7 @@
 	            'button',
 	            { onClick: _this18.handleScore,
 	              onMouseEnter: function () {
-	                _this18.mouse[9] = '#f99094';
+	                _this18.mouse[9] = 'gold';
 	              }, onMouseLeave: function () {
 	                _this18.mouse[9] = '#9fc972';
 	              },
@@ -1797,7 +1849,7 @@
 	            'button',
 	            { onClick: _this18.handleScore2,
 	              onMouseEnter: function () {
-	                _this18.mouse[19] = '#f99094';
+	                _this18.mouse[19] = 'gold';
 	              }, onMouseLeave: function () {
 	                _this18.mouse[19] = '#9fc972';
 	              },
@@ -1808,7 +1860,7 @@
 	            'button',
 	            { onClick: _this18.handleImpossible,
 	              onMouseEnter: function () {
-	                _this18.mouse[14] = '#f99094';
+	                _this18.mouse[14] = 'gold';
 	              }, onMouseLeave: function () {
 	                _this18.mouse[14] = '#9fc972';
 	              },
@@ -1825,20 +1877,21 @@
 	            { style: { width: '60%', backgroundColor: dynB, padding: 10, display: numDisplay } },
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.handleB40, cow: 'red',
+	              { onClick: _this18.handleB40, cow: 'darkred',
 	                onMouseEnter: function () {
-	                  _this18.mouse[0] = '#f99094';
-	                }, onMouseLeave: function () {
-	                  _this18.mouse[0] = '#83f7d8';
+	                  _this18.mouse[0] = 'blue';_this18.mouse[100] = '#01afaf';
 	                },
-	                style: _this18.style5(cr0) },
+	                onMouseLeave: function () {
+	                  _this18.mouse[0] = '#83f7d8';_this18.mouse[100] = '#E6E6CA';
+	                },
+	                style: _this18.style4(cr0, cr100) },
 	              _this18.state.message1
 	            ),
 	            _react2['default'].createElement(
 	              'button',
 	              { onClick: _this18.handleB41,
 	                onMouseEnter: function () {
-	                  _this18.mouse[1] = '#f99094';
+	                  _this18.mouse[1] = 'gold';
 	                }, onMouseLeave: function () {
 	                  _this18.mouse[1] = '#83f7d8';
 	                },
@@ -1849,7 +1902,7 @@
 	              'button',
 	              { onClick: _this18.handleB42,
 	                onMouseEnter: function () {
-	                  _this18.mouse[2] = '#f99094';
+	                  _this18.mouse[2] = 'gold';
 	                }, onMouseLeave: function () {
 	                  _this18.mouse[2] = '#83f7d8';
 	                },
@@ -1860,7 +1913,7 @@
 	              'button',
 	              { onClick: _this18.handleB43,
 	                onMouseEnter: function () {
-	                  _this18.mouse[3] = '#f99094';
+	                  _this18.mouse[3] = 'gold';
 	                }, onMouseLeave: function () {
 	                  _this18.mouse[3] = '#83f7d8';
 	                },
@@ -1876,7 +1929,7 @@
 	              'button',
 	              { onClick: _this18.handleOp0,
 	                onMouseEnter: function () {
-	                  _this18.mouse[4] = '#f99094';
+	                  _this18.mouse[4] = 'gold';
 	                }, onMouseLeave: function () {
 	                  _this18.mouse[4] = '#83f7d8';
 	                },
@@ -1887,7 +1940,7 @@
 	              'button',
 	              { onClick: _this18.handleOp1,
 	                onMouseEnter: function () {
-	                  _this18.mouse[5] = '#f99094';
+	                  _this18.mouse[5] = 'gold';
 	                }, onMouseLeave: function () {
 	                  _this18.mouse[5] = '#83f7d8';
 	                },
@@ -1898,7 +1951,7 @@
 	              'button',
 	              { onClick: _this18.handleOp2,
 	                onMouseEnter: function () {
-	                  _this18.mouse[6] = '#f99094';
+	                  _this18.mouse[6] = 'gold';
 	                }, onMouseLeave: function () {
 	                  _this18.mouse[6] = '#83f7d8';
 	                },
@@ -1909,7 +1962,7 @@
 	              'button',
 	              { onClick: _this18.handleOp3,
 	                onMouseEnter: function () {
-	                  _this18.mouse[7] = '#f99094';
+	                  _this18.mouse[7] = 'gold';
 	                }, onMouseLeave: function () {
 	                  _this18.mouse[7] = '#83f7d8';
 	                },
@@ -1920,7 +1973,7 @@
 	              'button',
 	              { onClick: _this18.handleOp4,
 	                onMouseEnter: function () {
-	                  _this18.mouse[8] = '#f99094';
+	                  _this18.mouse[8] = 'gold';
 	                }, onMouseLeave: function () {
 	                  _this18.mouse[8] = '#83f7d8';
 	                },
@@ -1966,7 +2019,7 @@
 	              'button',
 	              {
 	                onMouseEnter: function () {
-	                  _this18.mouse[13] = '#f99094';
+	                  _this18.mouse[13] = 'gold';
 	                }, onMouseLeave: function () {
 	                  _this18.mouse[13] = '#9fc972';
 	                },
@@ -1984,25 +2037,25 @@
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.showSolutionsHandler, style: { backgroundColor: cr22, textAlign: 'left', color: '#fcca05', borderColor: _this18.mouse[220],
-	                display: showSolutionsButton, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	            { onClick: _this18.showSolutionsHandler,
+	              style: _this18.style7(cr22, cr220, showSolutionsButton),
 	              onMouseEnter: function () {
 	                _this18.mouse[22] = 'blue';_this18.mouse[220] = '#01afaf';
 	              },
 	              onMouseLeave: function () {
-	                _this18.mouse[22] = '#000';_this18.mouse[220] = 'red';
+	                _this18.mouse[22] = '#000';_this18.mouse[220] = 'darkred';
 	              } },
 	            'Solutions'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.hideSolutionsHandler, style: { backgroundColor: cr23, borderColor: _this18.mouse[230], borderWidth: 2, textAlign: 'left', color: '#fcca05',
-	                display: hideSolutionsButton, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	            { onClick: _this18.hideSolutionsHandler,
+	              style: _this18.style7(cr23, cr230, hideSolutionsButton),
 	              onMouseEnter: function () {
 	                _this18.mouse[23] = 'blue';_this18.mouse[230] = '#01afaf';
 	              },
 	              onMouseLeave: function () {
-	                _this18.mouse[23] = '#000';_this18.mouse[230] = 'red';
+	                _this18.mouse[23] = '#000';_this18.mouse[230] = 'darkred';
 	              } },
 	            'Hide Solutions'
 	          ),
@@ -2021,13 +2074,13 @@
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.hideSolutionsHandler, style: { backgroundColor: cr23, textAlign: 'left', color: '#fcca05', borderColor: _this18.mouse[230],
-	                display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, borderRadius: 10, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	            { onClick: _this18.hideSolutionsHandler,
+	              style: _this18.style7(cr23, cr230, hideSolutionsButton),
 	              onMouseEnter: function () {
 	                _this18.mouse[23] = 'blue';_this18.mouse[230] = '#01afaf';
 	              },
 	              onMouseLeave: function () {
-	                _this18.mouse[23] = '#000';_this18.mouse[230] = 'red';
+	                _this18.mouse[23] = '#000';_this18.mouse[230] = 'darkred';
 	              } },
 	            'Hide Solutions'
 	          ),
@@ -2035,13 +2088,13 @@
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.showParamsHandler, style: { backgroundColor: cr24, textAlign: 'left', color: '#fcca05', borderColor: _this18.mouse[240],
-	                display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, borderRadius: 10, marginRight: 3, marginLeft: 12, fontSize: 20 },
+	            { onClick: _this18.showParamsHandler,
+	              style: _this18.style7(cr24, cr240, showParamsButton),
 	              onMouseEnter: function () {
 	                _this18.mouse[24] = 'blue';_this18.mouse[240] = '#01afaf';
 	              },
 	              onMouseLeave: function () {
-	                _this18.mouse[24] = '#000';_this18.mouse[240] = 'red';
+	                _this18.mouse[24] = '#000';_this18.mouse[240] = 'darkred';
 	              } },
 	            'Create a New Group'
 	          ),
@@ -2100,13 +2153,13 @@
 	            'Collapse Parameters Display:',
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.hideParamsHandler.bind(_this18), style: { backgroundColor: cr25, textAlign: 'left', color: '#fcca05',
-	                  display: hideParamsButton, paddingTop: 1.1, borderRadius: 10, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: _this18.mouse[250] },
+	              { onClick: _this18.hideParamsHandler.bind(_this18),
+	                style: _this18.style7(cr25, cr250, hideParamsButton),
 	                onMouseEnter: function () {
 	                  _this18.mouse[25] = 'blue';_this18.mouse[250] = '#01afaf';
 	                },
 	                onMouseLeave: function () {
-	                  _this18.mouse[25] = '#000';_this18.mouse[250] = 'red';
+	                  _this18.mouse[25] = '#000';_this18.mouse[250] = 'darkred';
 	                } },
 	              'Hide New Group Parameters'
 	            )
@@ -2231,7 +2284,7 @@
 	        case "CC#$42":
 	          // Not broadcast. Login message.
 	          if (extra === '%#8*&&^1#$%^') {
-	            that.setState({ info: 'You entered a name which is already taken' });
+	            that.setState({ info: 'You entedarkred a name which is already taken' });
 	            setTimeout(function () {
 	              document.location.reload(false);
 	            }, 2000);
@@ -2252,7 +2305,7 @@
 	          break;
 
 	        case "CA#$42":
-	          // Triggered by ROLL
+	          // Triggedarkred by ROLL
 	          that.data.information = 'You must click SCORE! or IMPOSSIBLE to gain a point.';
 	          that.setState({
 	            message1: extra,
@@ -2407,7 +2460,7 @@
 	          break;
 
 	        case "CY#$42":
-	          // Triggered by clicking "SCORE!".
+	          // Triggedarkred by clicking "SCORE!".
 	          that.data.information = '';
 	          that.setState({
 	            scoreClicker: extra,
@@ -2433,7 +2486,7 @@
 	          break;
 
 	        case "XY#$42":
-	          // Triggered by clicking "SCORE!" after "IMPOSSIBLE".
+	          // Triggedarkred by clicking "SCORE!" after "IMPOSSIBLE".
 	          that.setState({
 	            interruptClicker: extra,
 	            interrupt: true,
@@ -2451,7 +2504,7 @@
 	          break;
 
 	        case "DY#$42":
-	          // Triggered by clicking  "IMPOSSIBLE".
+	          // Triggedarkred by clicking  "IMPOSSIBLE".
 	          that.data.information = 'Click SCORE! if you want to show a solution and gain a point.';
 	          that.setState({
 	            impossibleClicker: extra,
@@ -2543,11 +2596,11 @@
 
 	        if (z) {
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
-	          DES_ws.send('CH#$42,' + gr + ',' + name + ',10 seconds expired. Deduct one point from ' + scoreClicker + ', ');
+	          DES_ws.send('CH#$42,' + gr + ',' + name + ',10 seconds expidarkred. Deduct one point from ' + scoreClicker + ', ');
 	        } else if (z2) {
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
 	          DES_ws.send('CG#$42,' + gr + ',' + interruptClicker + ',-1');
-	          DES_ws.send('CH#$42,' + gr + ',' + name + ',60 seconds expired. One point for ' + impossibleClicker + ', ');
+	          DES_ws.send('CH#$42,' + gr + ',' + name + ',60 seconds expidarkred. One point for ' + impossibleClicker + ', ');
 	        } else if (z3) {
 	          DES_ws.send('CG#$42,' + gr + ',' + interruptClicker + ',-2');
 	          DES_ws.send('CH#$42,' + gr + ',' + impossibleClicker + ',\n                      ' + impossibleClicker + ' forfeits two points for blocking with SCORE!,\n                      ' + impossibleClicker + ' clicked IMPOSSIBLE and blocked others from solving by clicking SCORE!\n       ');
@@ -23170,7 +23223,7 @@
 	                    return self.observe(listener, fire);
 	                };
 	                f.toString = function () {
-	                    return self.toString();
+	                    return "" + self.value;
 	                };
 	                _.markReactive(f);
 	                return f;
@@ -24202,10 +24255,55 @@
 
 /***/ },
 /* 159 */
+/***/ function(module, exports) {
+
+	/* eslint-disable no-unused-vars */
+	'use strict';
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+	function toObject(val) {
+		if (val === null || val === undefined) {
+			throw new TypeError('Object.assign cannot be called with null or undefined');
+		}
+
+		return Object(val);
+	}
+
+	module.exports = Object.assign || function (target, source) {
+		var from;
+		var to = toObject(target);
+		var symbols;
+
+		for (var s = 1; s < arguments.length; s++) {
+			from = Object(arguments[s]);
+
+			for (var key in from) {
+				if (hasOwnProperty.call(from, key)) {
+					to[key] = from[key];
+				}
+			}
+
+			if (Object.getOwnPropertySymbols) {
+				symbols = Object.getOwnPropertySymbols(from);
+				for (var i = 0; i < symbols.length; i++) {
+					if (propIsEnumerable.call(from, symbols[i])) {
+						to[symbols[i]] = from[symbols[i]];
+					}
+				}
+			}
+		}
+
+		return to;
+	};
+
+
+/***/ },
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mixin = __webpack_require__(160);
-	var assign = __webpack_require__(161);
+	var mixin = __webpack_require__(161);
+	var assign = __webpack_require__(162);
 
 	var mixinProto = mixin({
 	  // lifecycle stuff is as you'd expect
@@ -24358,7 +24456,7 @@
 
 
 /***/ },
-/* 160 */
+/* 161 */
 /***/ function(module, exports) {
 
 	var objToStr = function(x){ return Object.prototype.toString.call(x); };
@@ -24541,7 +24639,7 @@
 
 
 /***/ },
-/* 161 */
+/* 162 */
 /***/ function(module, exports) {
 
 	'use strict';

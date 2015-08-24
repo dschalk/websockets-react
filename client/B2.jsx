@@ -1,6 +1,7 @@
 'use strict'
 import React from'react';
 import mobservable from 'mobservable';
+var objectAssign = require('object-assign');
 let reactMixin = require('react-mixin');
 export {B2};
 let count = 0;
@@ -511,12 +512,33 @@ let mouseHandler = mobservable.makeReactive({
     24: '#000000',
     25: '#000000',
     26: '#000000',
-    220: 'red',
-    230: 'red',
-    240: 'red',
-    250: 'red',
-    260: 'red',
-    270: 'red',
+    100: '01afaf',
+    110: '01afaf',
+    120: '01afaf',
+    130: '01afaf',
+    140: '01afaf',
+    150: '01afaf',
+    160: '01afaf',
+    170: '01afaf',
+    180: '01afaf',
+    190: '01afaf',
+    1000: '01afaf',
+    1100: '01afaf',
+    1200: '01afaf',
+    1300: '01afaf',
+    1400: '01afaf',
+    220: 'darkred',
+    230: 'darkred',
+    240: 'darkred',
+    250: 'darkred',
+    260: 'darkred',
+    270: 'darkred',
+    style22: {},
+    style23: {},
+    style24: {},
+    style25: {},
+    style26: {},
+    style27: {},
     27: '#000000',
 });
 
@@ -670,7 +692,7 @@ DES_ws.onmessage = function(event) {
       switch (d2) {
           case "CC#$42":                         // Not broadcast. Login message.
             if (extra === '%#8*&&^1#$%^')  {
-              that.setState({info: `You entered a name which is already taken`})
+              that.setState({info: `You entedarkred a name which is already taken`})
               setTimeout( function () {
                 document.location.reload(false);
               },2000);
@@ -690,7 +712,7 @@ DES_ws.onmessage = function(event) {
             that.setState({sol: s}); 
           break;
           
-          case "CA#$42":                             // Triggered by ROLL
+          case "CA#$42":                             // Triggedarkred by ROLL
               that.data.information = 'You must click SCORE! or IMPOSSIBLE to gain a point.';
               that.setState
               ({
@@ -843,7 +865,7 @@ DES_ws.onmessage = function(event) {
             });
           break;
 
-          case "CY#$42": // Triggered by clicking "SCORE!".
+          case "CY#$42": // Triggedarkred by clicking "SCORE!".
             that.data.information = '';
             that.setState( {
               scoreClicker: extra,
@@ -868,7 +890,7 @@ DES_ws.onmessage = function(event) {
             }
           break;
 
-          case "XY#$42":              // Triggered by clicking "SCORE!" after "IMPOSSIBLE".
+          case "XY#$42":              // Triggedarkred by clicking "SCORE!" after "IMPOSSIBLE".
             that.setState({
               interruptClicker: extra,
               interrupt: true,
@@ -885,7 +907,7 @@ DES_ws.onmessage = function(event) {
             })
           break;
 
-          case "DY#$42":                               // Triggered by clicking  "IMPOSSIBLE".
+          case "DY#$42":                               // Triggedarkred by clicking  "IMPOSSIBLE".
             that.data.information = 'Click SCORE! if you want to show a solution and gain a point.';
             that.setState({
               impossibleClicker: extra,
@@ -976,13 +998,13 @@ DES_ws.onmessage = function(event) {
 
 			if (z) {
         	DES_ws.send(`CG#$42,${gr},${name},-1`);
-          DES_ws.send(`CH#$42,${gr},${name},10 seconds expired. Deduct one point from ${scoreClicker}, `);
+          DES_ws.send(`CH#$42,${gr},${name},10 seconds expidarkred. Deduct one point from ${scoreClicker}, `);
       }
 
 			else if (z2) {
         	DES_ws.send(`CG#$42,${gr},${name},1`);
         	DES_ws.send(`CG#$42,${gr},${interruptClicker},-1`);
-          DES_ws.send(`CH#$42,${gr},${name},60 seconds expired. One point for ${impossibleClicker}, `);
+          DES_ws.send(`CH#$42,${gr},${name},60 seconds expidarkred. One point for ${impossibleClicker}, `);
       }
 
       else if (z3) {
@@ -1537,11 +1559,18 @@ DES_ws.onmessage = function(event) {
       });
     }
 
-    style5 = (x) => {return {backgroundColor: x, paddingTop: 1.3, paddingLeft: 12, paddingRight:12,
+    style4 = (x,y) => {return {backgroundColor: x, borderWidth: 2, borderColor: y, paddingTop: 1.3, paddingLeft: 12, paddingRight:12,
+              paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: this.state.timeSize }};
+
+    style5 = (x) => {return {backgroundColor: x, borderWidth: 2, borderColor: 'green', paddingTop: 1.3, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: this.state.timeSize }};
 
     style6 = (x,y) => {return {backgroundColor: x, display: y, paddingBottom: 0.9, 
               marginRight: 3, marginLeft: 10, fontSize: this.state.timeSize}};
+
+    style7 = (x,y,z) => {return {backgroundColor: x, textAlign: 'left', color: '#fcca05', borderColor: y,
+          display: z, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}};
+
 
   render = () => {
     console.log(this);
@@ -1622,11 +1651,18 @@ DES_ws.onmessage = function(event) {
     let cr20 = this.mouse[20];
     let cr21 = this.mouse[21];
     let cr22 = this.mouse[22];
+    let cr220 = this.mouse[220];
     let cr23 = this.mouse[23];
+    let cr230 = this.mouse[230];
     let cr24 = this.mouse[24];
+    let cr240 = this.mouse[240];
     let cr25 = this.mouse[25];
+    let cr250 = this.mouse[250];
     let cr26 = this.mouse[26];
+    let cr260 = this.mouse[260];
     let cr27 = this.mouse[27];
+    let cr270 = this.mouse[270];
+    let cr100 = this.mouse[100];
     let rulesDisplay = this.data.rulesDisplay;
     let rulesDisplay2 = this.data.rulesDisplay2;
     let handleRulesDisplay = this.data.handleRulesDisplay;
@@ -1634,6 +1670,19 @@ DES_ws.onmessage = function(event) {
     let style1 = {backgroundColor: this.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize};
     let style2 = {backgroundColor: this.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize};
     let style3 =  {paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16}
+
+    let style30 = {backgroundColor: this.mouse[22], textAlign: 'left', color: '#fcca05', borderColor: this.mouse[220],
+          display: 'inline', borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20};
+
+    let style31 = {textAlign: 'left', color: '#fcca05',
+          display: 'inline', borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20};
+    let style22 = this.mouse.style22;
+    let style23 = this.mouse.style23;
+    let style24 = this.mouse.style24;
+    let style25 = this.mouse.style25;
+    let style26 = this.mouse.style26;
+    let style27 = this.mouse.style27;
+
 
     return (
    <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, 
@@ -1675,20 +1724,20 @@ DES_ws.onmessage = function(event) {
             <br /><br /> 
             <h2 >Get All Solutions</h2>
           Current Numbers:
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {dd1} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {dd2} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {dd3} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {dd4} </button> 
             <br />
             Current Goal:
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {goal2} </button> 
             <br /><br />
             Put new number in a box, then click on the box or press 'Enter'. The number disappears and the result is shown above. Click "Solutions" when you are done.
@@ -1704,12 +1753,12 @@ DES_ws.onmessage = function(event) {
             <br/ >
               Show Solutions
 
-        <button  onClick={this.showSolutionsHandler_2} style={{backgroundColor: cr26, textAlign: 'left', color: '#fcca05',
-          display: showSolutionsButton, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: this.mouse[260] }} 
-            onMouseEnter={() => {this.mouse[26] = 'blue'; this.mouse[260] = '#01afaf'}} onMouseLeave={() => {this.mouse[26] = '#000'; this.mouse[260] = 'red'}} >
+        <button  onClick={this.showSolutionsHandler_2}
+          style={this.style7(cr26,cr260,showSolutionsButton)}
+          onMouseEnter={() => {this.mouse[26] = 'blue'; this.mouse[260]  = '#01afaf' }}
+          onMouseLeave={() => {this.mouse[26] = '#000'; this.mouse[260]  = 'darkred' }} >
           Solutions
         </button>
-
 
      </div>
         <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
@@ -1719,12 +1768,6 @@ DES_ws.onmessage = function(event) {
 
      <div style = {{ display: startDisplay, paddingTop: 3.8, width: '60%',
               paddingBottom: 0.8, fontSize: 20, marginLeft: 5 }}>
-
-
-
-
-
-
 
               <div style={{display: rulesDisplay, color: '#e9eab6' }} >
                 <span style={{fontSize:26}} >Dedication:</span> This game is dedicated to Bloomington, Indiana's Templeton Elementary School and to the "K through 6" program's teachers, Risa Reinier and Kevin Gallagher, who nurture and sustain a wonderful community which will always be a home away from home for my son Alexander. -- David Schalk, August 22, 2015.<br /><br /> 
@@ -1741,38 +1784,38 @@ DES_ws.onmessage = function(event) {
                 <br /><br />
                 There is an area under the chat window where players can see all possible solutions for whatever four dice numbers and whatever goal they choose. Players cannot use the "Get All Solutions" area during competition, but once they hide the solutions and click ROLL, or wait for another group member to click ROLL, play resumes where it left off.
                 <br /><br />
-                A detailed explanation of computer code underlying the game can be found at <a href="https://www.fpcomplete.com/user/dschalk/Websockets%20Game%20of%20Score" target="_blank" style={{color: 'red'}} >Game Analysis</a>. The source code is available at <a href="https://github.com/dschalk/websockets-react" target="_blank" style={{color: 'red'}} >Game Source Code</a>
+                A detailed explanation of computer code underlying the game can be found at <a href="https://www.fpcomplete.com/user/dschalk/Websockets%20Game%20of%20Score" target="_blank" style={{color: 'darkred'}} >Game Analysis</a>. The source code is available at <a href="https://github.com/dschalk/websockets-react" target="_blank" style={{color: 'red'}} >Game Source Code</a>
                 <br /><br /> <span style={{fontSize:26}} >Modifying The Game: </span>
 To modify the game, click "Create a New Group" and change the number of sides of whichever die you select. You can also change the goal to something other than the default number "20". Each player in a modified group must modify his or her own game interface in order to coordinate with other players. Modified games are fun for competition and also for solitairre experimentation.
 <br /><br />
               </div>
 
-          <button  onClick={handleRulesDisplay} style={{backgroundColor: cr27, textAlign: 'left', color: '#fcca05', borderColor: this.mouse[270],
-            display: rulesDisplay2, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+          <button  onClick={handleRulesDisplay}
+          style={this.style7(cr27,cr270,rulesDisplay2)}
             onMouseEnter={() => {this.mouse[27] = 'blue'; this.mouse[270]  = '#01afaf'}} 
-            onMouseLeave={() => {this.mouse[27] = '#000'; this.mouse[270]  = 'red'  }} >
+            onMouseLeave={() => {this.mouse[27] = '#000'; this.mouse[270]  = 'darkred'  }} >
             Show Rules
           </button>
 
-          <button  onClick={handleRulesDisplay2} style={{backgroundColor: cr27, textAlign: 'left', color: '#fcca05', borderColor: this.mouse[270],
-            display: rulesDisplay, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+          <button  onClick={handleRulesDisplay2}
+          style={this.style7(cr27,cr270,rulesDisplay)}
             onMouseEnter={() => {this.mouse[27] = 'blue'; this.mouse[270]  = '#01afaf' }} 
-            onMouseLeave={() => {this.mouse[27] = '#000'; this.mouse[270]  = 'red'  }} >
+            onMouseLeave={() => {this.mouse[27] = '#000'; this.mouse[270]  = 'darkred'  }} >
             Hide Rules
         </button>
         <br />
 
           Current roll:
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d1} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d2} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d3} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d4} </button> 
 
             <div style={{marginLeft: 5}} >
@@ -1792,11 +1835,11 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
           <button onClick={this.handleGroupA} style={{backgroundColor: cr15, paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10,}}
-            onMouseEnter={() => {this.mouse[15] = '#f99094'}} onMouseLeave={() => {this.mouse[15] = base}} >
+            onMouseEnter={() => {this.mouse[15] = 'gold'}} onMouseLeave={() => {this.mouse[15] = base}} >
             GroupA
           </button>
 
-          <button onMouseEnter={() => {this.mouse[11] = '#f99094'}} onMouseLeave={() => {this.mouse[11] = base}} 
+          <button onMouseEnter={() => {this.mouse[11] = 'gold'}} onMouseLeave={() => {this.mouse[11] = base}} 
             onClick={this.handleGroupB} style={{backgroundColor: cr11, paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10,}} >
             GroupB
@@ -1804,7 +1847,7 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
           <button onClick={this.handleGroupC} style={{backgroundColor: cr12, paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10,}} 
-            onMouseEnter={() => {this.mouse[12] = '#f99094'}} onMouseLeave={() => {this.mouse[12] = base}} >
+            onMouseEnter={() => {this.mouse[12] = 'gold'}} onMouseLeave={() => {this.mouse[12] = base}} >
             GroupC
           </button>
 
@@ -1827,34 +1870,34 @@ To modify the game, click "Create a New Group" and change the number of sides of
           <div style={{width: '60%', backgroundColor: dynB,  padding: 10}} > </div>
 
           <div style={{ display: rollnumsDisplay }} > 
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d1} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d2} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d3} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d4} </button> 
 
           </div>
 
           <button onClick={this.handleScore}
-            onMouseEnter={() => {this.mouse[9] = '#f99094'}} onMouseLeave={() => {this.mouse[9] = '#9fc972'}} 
+            onMouseEnter={() => {this.mouse[9] = 'gold'}} onMouseLeave={() => {this.mouse[9] = '#9fc972'}} 
             style={this.style6(cr9,scoreDisplay)}>
             SCORE!
           </button>
 
           <button onClick={this.handleScore2}
-            onMouseEnter={() => {this.mouse[19] = '#f99094'}} onMouseLeave={() => {this.mouse[19] = '#9fc972'}} 
+            onMouseEnter={() => {this.mouse[19] = 'gold'}} onMouseLeave={() => {this.mouse[19] = '#9fc972'}} 
             style={this.style6(cr19,scoreDisplay2)}>
             SCORE!
           </button>
 
           <button onClick={this.handleImpossible}
-            onMouseEnter={() => {this.mouse[14] = '#f99094'}} onMouseLeave={() => {this.mouse[14] = '#9fc972'}} 
+            onMouseEnter={() => {this.mouse[14] = 'gold'}} onMouseLeave={() => {this.mouse[14] = '#9fc972'}} 
             style={this.style6(cr14,impossibleDisplay)}>
             IMPOSSIBLE
           </button>
@@ -1863,26 +1906,27 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
        <div style={{width: '60%', backgroundColor: dynB,  padding: 10, display: numDisplay }} >
 
-          <button onClick={this.handleB40} cow='red'
-            onMouseEnter={() => {this.mouse[0] = '#f99094'}} onMouseLeave={() => {this.mouse[0] = '#83f7d8'}} 
-            style={this.style5(cr0)} >
+          <button onClick={this.handleB40} cow='darkred'
+            onMouseEnter={() => {this.mouse[0] = 'blue'; this.mouse[100]  = '#01afaf' }} 
+            onMouseLeave={() => {this.mouse[0] = '#83f7d8'; this.mouse[100]  = '#E6E6CA' }} 
+            style={this.style4(cr0,cr100)} >
             {this.state.message1}
           </button>
 
           <button onClick={this.handleB41}
-            onMouseEnter={() => {this.mouse[1] = '#f99094'}} onMouseLeave={() => {this.mouse[1] = '#83f7d8'}} 
+            onMouseEnter={() => {this.mouse[1] = 'gold'}} onMouseLeave={() => {this.mouse[1] = '#83f7d8'}} 
             style={this.style5(cr1)} >
             {this.state.message2}
           </button>
 
           <button onClick={this.handleB42}
-            onMouseEnter={() => {this.mouse[2] = '#f99094'}} onMouseLeave={() => {this.mouse[2] = '#83f7d8'}} 
+            onMouseEnter={() => {this.mouse[2] = 'gold'}} onMouseLeave={() => {this.mouse[2] = '#83f7d8'}} 
             style={this.style5(cr2)} >
             {this.state.message3}
           </button>
 
           <button onClick={this.handleB43}
-            onMouseEnter={() => {this.mouse[3] = '#f99094'}} onMouseLeave={() => {this.mouse[3] = '#83f7d8'}} 
+            onMouseEnter={() => {this.mouse[3] = 'gold'}} onMouseLeave={() => {this.mouse[3] = '#83f7d8'}} 
             style={this.style5(cr3)} >
             {this.state.message4}
           </button>
@@ -1890,31 +1934,31 @@ To modify the game, click "Create a New Group" and change the number of sides of
           <div style={{width: '60%',  padding: 10}} > </div>
 
           <button onClick={this.handleOp0} 
-            onMouseEnter={() => {this.mouse[4] = '#f99094'}} onMouseLeave={() => {this.mouse[4] = '#83f7d8'}} 
+            onMouseEnter={() => {this.mouse[4] = 'gold'}} onMouseLeave={() => {this.mouse[4] = '#83f7d8'}} 
             style={this.style5(cr4)} >
             +
           </button>
 
           <button onClick={this.handleOp1}
-            onMouseEnter={() => {this.mouse[5] = '#f99094'}} onMouseLeave={() => {this.mouse[5] = '#83f7d8'}} 
+            onMouseEnter={() => {this.mouse[5] = 'gold'}} onMouseLeave={() => {this.mouse[5] = '#83f7d8'}} 
             style={this.style5(cr5)} >
             -
           </button>
 
           <button onClick={this.handleOp2}
-            onMouseEnter={() => {this.mouse[6] = '#f99094'}} onMouseLeave={() => {this.mouse[6] = '#83f7d8'}} 
+            onMouseEnter={() => {this.mouse[6] = 'gold'}} onMouseLeave={() => {this.mouse[6] = '#83f7d8'}} 
             style={this.style5(cr6)} >
             *
           </button>
 
           <button onClick={this.handleOp3}
-            onMouseEnter={() => {this.mouse[7] = '#f99094'}} onMouseLeave={() => {this.mouse[7] = '#83f7d8'}} 
+            onMouseEnter={() => {this.mouse[7] = 'gold'}} onMouseLeave={() => {this.mouse[7] = '#83f7d8'}} 
             style={this.style5(cr7)} >
             /
           </button>
 
           <button onClick={this.handleOp4}
-            onMouseEnter={() => {this.mouse[8] = '#f99094'}} onMouseLeave={() => {this.mouse[8] = '#83f7d8'}} 
+            onMouseEnter={() => {this.mouse[8] = 'gold'}} onMouseLeave={() => {this.mouse[8] = '#83f7d8'}} 
             style={this.style5(cr8)} >
             Concat
           </button>
@@ -1945,7 +1989,7 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
         <div style={{display: rollDisplay}} >
           <button 
-            onMouseEnter={() => {this.mouse[13] = '#f99094'}} onMouseLeave={() => {this.mouse[13] = '#9fc972'}} 
+            onMouseEnter={() => {this.mouse[13] = 'gold'}} onMouseLeave={() => {this.mouse[13] = '#9fc972'}} 
             style={this.style6(cr13,buttonDisplay)}
               onClick={this.buttonHandler} >
              Roll
@@ -1953,17 +1997,17 @@ To modify the game, click "Create a New Group" and change the number of sides of
         </div>
         <br /> <br /> <br /> <br />
 
-        <button  onClick={this.showSolutionsHandler} style={{backgroundColor: cr22, textAlign: 'left', color: '#fcca05', borderColor: this.mouse[220],
-          display: showSolutionsButton, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+        <button  onClick={this.showSolutionsHandler}
+          style={this.style7(cr22,cr220,showSolutionsButton)}
           onMouseEnter={() => {this.mouse[22] = 'blue'; this.mouse[220]  = '#01afaf' }} 
-          onMouseLeave={() => {this.mouse[22] = '#000'; this.mouse[220]  = 'red' }} >
+          onMouseLeave={() => {this.mouse[22] = '#000'; this.mouse[220]  = 'darkred' }} >
           Solutions
         </button>
 
-        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: cr23, borderColor: this.mouse[230], borderWidth: 2, textAlign: 'left', color: '#fcca05',
-          display: hideSolutionsButton, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+        <button  onClick={this.hideSolutionsHandler}
+          style={this.style7(cr23,cr230,hideSolutionsButton)}
           onMouseEnter={() => {this.mouse[23] = 'blue'; this.mouse[230]  = '#01afaf' }} 
-          onMouseLeave={() => {this.mouse[23] = '#000'; this.mouse[230]  = 'red' }} >
+          onMouseLeave={() => {this.mouse[23] = '#000'; this.mouse[230]  = 'darkred' }} >
           Hide Solutions
         </button>
 
@@ -1977,18 +2021,18 @@ To modify the game, click "Create a New Group" and change the number of sides of
         </div>
         <br />
 
-        <button  onClick={this.hideSolutionsHandler} style={{backgroundColor: cr23, textAlign: 'left', color: '#fcca05', borderColor: this.mouse[230],
-          display: hideSolutionsButton, paddingTop: 1.1, paddingBottom: 0.9, borderRadius: 10, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+        <button  onClick={this.hideSolutionsHandler}
+          style={this.style7(cr23,cr230,hideSolutionsButton)}
           onMouseEnter={() => {this.mouse[23] = 'blue'; this.mouse[230]  = '#01afaf' }} 
-          onMouseLeave={() => {this.mouse[23] = '#000'; this.mouse[230]  = 'red'  }} >
+          onMouseLeave={() => {this.mouse[23] = '#000'; this.mouse[230]  = 'darkred'  }} >
           Hide Solutions
         </button>
         <br /><br />
 
-        <button  onClick={this.showParamsHandler} style={{backgroundColor: cr24, textAlign: 'left', color: '#fcca05', borderColor: this.mouse[240],
-          display: showParamsButton, paddingTop: 1.1, paddingBottom: 0.9, borderRadius: 10, marginRight: 3, marginLeft: 12, fontSize: 20}} 
+        <button  onClick={this.showParamsHandler}
+          style={this.style7(cr24,cr240,showParamsButton)}
           onMouseEnter={() => {this.mouse[24] = 'blue'; this.mouse[240]  = '#01afaf' }} 
-          onMouseLeave={() => {this.mouse[24] = '#000'; this.mouse[240]  = 'red'  }} >
+          onMouseLeave={() => {this.mouse[24] = '#000'; this.mouse[240]  = 'darkred'  }} >
           Create a New Group 
         </button>
 
@@ -2015,10 +2059,10 @@ You can click 'Solutions' to see a computer-generated list of all the solutions.
         <SetGoal change={this.changeItem} />
         <br /> <br />
         Collapse Parameters Display: 
-        <button  onClick={this.hideParamsHandler.bind(this)} style={{backgroundColor: cr25, textAlign: 'left', color: '#fcca05',
-          display: hideParamsButton, paddingTop: 1.1, borderRadius: 10, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20, borderColor: this.mouse[250] }} 
+        <button  onClick={this.hideParamsHandler.bind(this)}
+          style={this.style7(cr25,cr250,hideParamsButton)}
           onMouseEnter={() => {this.mouse[25] = 'blue'; this.mouse[250]  = '#01afaf' }} 
-          onMouseLeave={() => {this.mouse[25] = '#000'; this.mouse[250]  = 'red'  }} >
+          onMouseLeave={() => {this.mouse[25] = '#000'; this.mouse[250]  = 'darkred'  }} >
           Hide New Group Parameters
         </button>
         </div>
