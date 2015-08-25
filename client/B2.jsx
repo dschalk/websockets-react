@@ -1,7 +1,6 @@
 'use strict'
 import React from'react';
 import mobservable from 'mobservable';
-var objectAssign = require('object-assign');
 let reactMixin = require('react-mixin');
 export {B2};
 let count = 0;
@@ -420,6 +419,7 @@ class Login extends React.Component {
   handleChange = (event) => {
     this.props.change({name: event.target.value});
   }
+
   handleEnter = (event) => {
     if (this.props.name == '') {
       this.props.change({
@@ -488,57 +488,71 @@ class Messages extends React.Component {
 };
 
 let mouseHandler = mobservable.makeReactive({
-    0: '#83f7d7',
-    1: '#83f7d7',
-    2: '#83f7d7',
-    3: '#83f7d7',
-    4: '#83f7d7',
-    5: '#83f7d7',
-    6: '#83f7d7',
-    7: '#83f7d7',
-    8: '#83f7d7',
-    9: '#9fc972',
+    2100: 'gold',
+    550: '#01afaf',
+    55010: 'blue',
+    5501: '#40E0D0',
+    551: '#01afaf',
+    55110: 'blue',
+    5511: '#40E0D0',
+    552: '#01afaf',
+    55210: 'blue',
+    5521: '#40E0D0',
+    3: '#01afaf',
+    310: 'blue',
+    31: '#40E0D0',
+    4: '#01afaf',
+    410: 'blue',
+    41: '#40E0D0',
+    5: '#01afaf',
+    510: 'blue',
+    51: '#40E0D0',
+    6: '#01afaf',
+    610: 'blue',
+    61: '#40E0D0',
+    7: '#01afaf',
+    710: 'blue',
+    71: '#40E0D0',
+    8: '#01afaf',
+    810: 'blue',
+    81: '#40E0D0',
+    559: '#01afaf',
+    55910: 'blue',
+    5591: '#40E0D0',
+    90: 'darkred',
     10: '#f7b16f',
     11: '#f7b16f',
     12: '#f7b16f',
-    13: '#9fc972',
-    14: '#9fc972',
+    13: '#000',
+    14: '#000',
     15: '#f7b16f',
-    19: '#9fc972',
+    19: '#000',
+    9: '#000',
     20: '#9fc972',
-    21: '#9fc972',
     22: '#000000',
     23: '#000000',
     24: '#000000',
     25: '#000000',
     26: '#000000',
-    100: '01afaf',
-    110: '01afaf',
-    120: '01afaf',
-    130: '01afaf',
-    140: '01afaf',
-    150: '01afaf',
-    160: '01afaf',
-    170: '01afaf',
-    180: '01afaf',
-    190: '01afaf',
-    1000: '01afaf',
-    1100: '01afaf',
-    1200: '01afaf',
-    1300: '01afaf',
-    1400: '01afaf',
+    120: '#01afaf',
+    130: 'darkred',
+    140: 'darkred',
+    150: '#01afaf',
+    160: '#01afaf',
+    170: '#01afaf',
+    180: '#01afaf',
+    190: 'darkred',
+    1000: '#01afaf',
+    1100: '#01afaf',
+    1200: '#01afaf',
+    1300: '#01afaf',
+    1400: '#01afaf',
     220: 'darkred',
     230: 'darkred',
     240: 'darkred',
     250: 'darkred',
     260: 'darkred',
     270: 'darkred',
-    style22: {},
-    style23: {},
-    style24: {},
-    style25: {},
-    style26: {},
-    style27: {},
     27: '#000000',
 });
 
@@ -553,8 +567,6 @@ let data = mobservable.makeReactive({
   dd3: 0,
   dd4: 0,
   goal2: 20,
-  rulesDisplay: 'none',
-  rulesDisplay2: 'inline'
 });
 
 data.ddChange1 = x => { data.dd1 = x };
@@ -562,17 +574,13 @@ data.ddChange2 = x => { data.dd2 = x };
 data.ddChange3 = x => { data.dd3 = x };
 data.ddChange4 = x => { data.dd4 = x };
 data.ddChangeGoal2 = x => { data.goal2 = x };
-data.handleRulesDisplay = () => {
-  data.rulesDisplay = 'inline';
-  data.rulesDisplay2 = 'none';
-};
 
-data.handleRulesDisplay2 = () => {
-  data.rulesDisplay2 = 'inline';
-  data.rulesDisplay = 'none';
-};
-
-
+let disp = mobservable.makeReactive({
+  rulesDisplayOn: 'none',
+  rulesDisplayOff: 'inline',
+  scoreDisplay: 'inline',
+  scoreDisplay2: 'none'
+});
 
 class B2X extends React.Component {
   // shouldComponentUpdate = shouldPureComponentUpdate;
@@ -580,6 +588,7 @@ class B2X extends React.Component {
     super(props);
     this.mouse = mouseHandler;
     this.data = data;
+    this.disp = disp;
     this.state = {
         d1: 0,
         d2: 0,
@@ -907,7 +916,7 @@ DES_ws.onmessage = function(event) {
             })
           break;
 
-          case "DY#$42":                               // Triggedarkred by clicking  "IMPOSSIBLE".
+          case "DY#$42":                               // Triggered by clicking  "IMPOSSIBLE".
             that.data.information = 'Click SCORE! if you want to show a solution and gain a point.';
             that.setState({
               impossibleClicker: extra,
@@ -998,13 +1007,13 @@ DES_ws.onmessage = function(event) {
 
 			if (z) {
         	DES_ws.send(`CG#$42,${gr},${name},-1`);
-          DES_ws.send(`CH#$42,${gr},${name},10 seconds expidarkred. Deduct one point from ${scoreClicker}, `);
+          DES_ws.send(`CH#$42,${gr},${name},10 seconds expired. Deduct one point from ${scoreClicker}, `);
       }
 
 			else if (z2) {
         	DES_ws.send(`CG#$42,${gr},${name},1`);
         	DES_ws.send(`CG#$42,${gr},${interruptClicker},-1`);
-          DES_ws.send(`CH#$42,${gr},${name},60 seconds expidarkred. One point for ${impossibleClicker}, `);
+          DES_ws.send(`CH#$42,${gr},${name},60 seconds expired. One point for ${impossibleClicker}, `);
       }
 
       else if (z3) {
@@ -1492,7 +1501,7 @@ DES_ws.onmessage = function(event) {
       let c = this.state.d3;
       let d = this.state.d4;
       let goal = this.state.goal;
-      DES_ws.send(`CZ#$42,${group},${name},${a},${b},${c},${d},${goal}`);
+      DES_ws.send(`CZ#$42,solo,${name},${a},${b},${c},${d},${goal}`);
       this.setState({
         rollDisplay: 'none',
         scoreDisplay: 'none',
@@ -1524,7 +1533,7 @@ DES_ws.onmessage = function(event) {
 
   hideSolutionsHandler = () => {
     let _this = this;
-    this.data.information = 'Click ROLL to resume play';
+    this.data.information = 'To resume play, click ROLL (or wait until another group member starts the next round).';
     this.setState({
         message: 'Play forfeited for this round by opening Solutions',
         DS_t: 'Please wait for the next roll. You displayed solutions.',
@@ -1559,8 +1568,10 @@ DES_ws.onmessage = function(event) {
       });
     }
 
-    style4 = (x,y) => {return {backgroundColor: x, borderWidth: 2, borderColor: y, paddingTop: 1.3, paddingLeft: 12, paddingRight:12,
-              paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: this.state.timeSize }};
+    style4 = (x,y,z) => {return {backgroundColor: x, borderColor: y, borderTopWidth: 3, borderLeftWidth: 3,  
+      borderBottomWidth: 2,  borderRightWidth: 2, color: z,
+      paddingTop: 1.3, paddingLeft: 12, paddingRight:12,
+              paddingBottom: 0.3, marginRight: 3, marginLeft: 10, fontSize: this.state.timeSize }};
 
     style5 = (x) => {return {backgroundColor: x, borderWidth: 2, borderColor: 'green', paddingTop: 1.3, paddingLeft: 12, paddingRight:12,
               paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: this.state.timeSize }};
@@ -1631,25 +1642,50 @@ DES_ws.onmessage = function(event) {
     let sides3 = this.state.sides3;
     let sides4 = this.state.sides4;
     let goal = this.state.goal;
+    let cr2100 = this.mouse[2100];
     let cr15 = this.mouse[15];
     let cr11 = this.mouse[11];
     let cr12 = this.mouse[12];
-    let cr0 = this.mouse[0];
-    let cr1 = this.mouse[1];
-    let cr2 = this.mouse[2];
+    let cr550 = this.mouse[550];
+    let cr5501 = this.mouse[5501];
+    let cr55010 = this.mouse[55010];
+    let cr551 = this.mouse[551];
+    let cr5511 = this.mouse[5511];
+    let cr55110 = this.mouse[55110];
+    let cr552 = this.mouse[552];
+    let cr5521 = this.mouse[5521];
+    let cr55210 = this.mouse[55210];
     let cr3 = this.mouse[3];
+    let cr31 = this.mouse[31];
+    let cr310 = this.mouse[310];
     let cr4 = this.mouse[4];
+    let cr41 = this.mouse[41];
+    let cr410 = this.mouse[410];
     let cr5 = this.mouse[5];
+    let cr51 = this.mouse[51];
+    let cr510 = this.mouse[510];
     let cr6 = this.mouse[6];
+    let cr61 = this.mouse[61];
+    let cr610 = this.mouse[610];
     let cr7 = this.mouse[7];
+    let cr71 = this.mouse[71];
+    let cr710 = this.mouse[710];
     let cr8 = this.mouse[8];
+    let cr81 = this.mouse[81];
+    let cr810 = this.mouse[810];
+    let cr559 = this.mouse[559];
+    let cr5591 = this.mouse[5591];
+    let cr55910 = this.mouse[55910];
+    let cr90 = this.mouse[90];
     let cr9 = this.mouse[9];
     let cr10 = this.mouse[10];
     let cr13 = this.mouse[13];
+    let cr130 = this.mouse[130];
     let cr14 = this.mouse[14];
+    let cr140 = this.mouse[140];
     let cr19 = this.mouse[19];
+    let cr190 = this.mouse[190];
     let cr20 = this.mouse[20];
-    let cr21 = this.mouse[21];
     let cr22 = this.mouse[22];
     let cr220 = this.mouse[220];
     let cr23 = this.mouse[23];
@@ -1663,32 +1699,16 @@ DES_ws.onmessage = function(event) {
     let cr27 = this.mouse[27];
     let cr270 = this.mouse[270];
     let cr100 = this.mouse[100];
-    let rulesDisplay = this.data.rulesDisplay;
-    let rulesDisplay2 = this.data.rulesDisplay2;
+    let rulesDisplayOn = this.disp.rulesDisplayOn;
+    let rulesDisplayOff = this.disp.rulesDisplayOff;
+    let toggleRules = this.disp.toggleRules
     let handleRulesDisplay = this.data.handleRulesDisplay;
     let handleRulesDisplay2 = this.data.handleRulesDisplay2;
-    let style1 = {backgroundColor: this.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize};
-    let style2 = {backgroundColor: this.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize};
-    let style3 =  {paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16}
-
-    let style30 = {backgroundColor: this.mouse[22], textAlign: 'left', color: '#fcca05', borderColor: this.mouse[220],
-          display: 'inline', borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20};
-
-    let style31 = {textAlign: 'left', color: '#fcca05',
-          display: 'inline', borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20};
-    let style22 = this.mouse.style22;
-    let style23 = this.mouse.style23;
-    let style24 = this.mouse.style24;
-    let style25 = this.mouse.style25;
-    let style26 = this.mouse.style26;
-    let style27 = this.mouse.style27;
-
-
+    let style3 =  {paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 18}
     return (
-   <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, 
-      display: rightDisplay, width: '100%', height: '100%'}} >
-      <div style={{width: '35%', float: 'right', display: startDisplay }} >
-
+      <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, 
+          display: rightDisplay, width: '100%', height: '100%'}} >
+        <div style={{width: '35%', float: 'right', display: startDisplay }} >
             <ChangeColor key='ChangeColor' changeC={this.changeColor}
               style={{width: 8}} />
             <ChangeBackground key='ChangeBackground' changeB={this.changeBackground}
@@ -1724,20 +1744,20 @@ DES_ws.onmessage = function(event) {
             <br /><br /> 
             <h2 >Get All Solutions</h2>
           Current Numbers:
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {dd1} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {dd2} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {dd3} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {dd4} </button> 
             <br />
             Current Goal:
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {goal2} </button> 
             <br /><br />
             Put new number in a box, then click on the box or press 'Enter'. The number disappears and the result is shown above. Click "Solutions" when you are done.
@@ -1751,16 +1771,15 @@ DES_ws.onmessage = function(event) {
             New Goal:
             <Goal change={ddChangeGoal2} />
             <br/ >
-              Show Solutions
-
+        Show Solutions
         <button  onClick={this.showSolutionsHandler_2}
           style={this.style7(cr26,cr260,showSolutionsButton)}
           onMouseEnter={() => {this.mouse[26] = 'blue'; this.mouse[260]  = '#01afaf' }}
           onMouseLeave={() => {this.mouse[26] = '#000'; this.mouse[260]  = 'darkred' }} >
           Solutions
         </button>
-
      </div>
+
         <Login key='Login' newPlayer={this.newPlayer.bind(this)} name={this.state.name}
           setGroup={this.setGroup} change={this.changeItem}
           group={group} hidden={this.state.hidden} info={this.state.info} >
@@ -1768,9 +1787,8 @@ DES_ws.onmessage = function(event) {
 
      <div style = {{ display: startDisplay, paddingTop: 3.8, width: '60%',
               paddingBottom: 0.8, fontSize: 20, marginLeft: 5 }}>
-
-              <div style={{display: rulesDisplay, color: '#e9eab6' }} >
-                <span style={{fontSize:26}} >Dedication:</span> This game is dedicated to Bloomington, Indiana's Templeton Elementary School and to the "K through 6" program's teachers, Risa Reinier and Kevin Gallagher, who nurture and sustain a wonderful community which will always be a home away from home for my son Alexander. -- David Schalk, August 22, 2015.<br /><br /> 
+          <div style={{display: rulesDisplayOn, color: '#e9eab6' }} >
+            <span style={{fontSize:26}} >Dedication:</span> This game is dedicated to Bloomington, Indiana's Templeton Elementary School and to the "K through 6" program's teachers, Risa Reinier and Kevin Gallagher, who nurture and sustain a wonderful community which will always be a home away from home for my son Alexander. -- David Schalk, August 22, 2015.<br /><br /> 
                 The table-top game of Score involves four dice and a one-minute 'hourglass'. The dice might include one twenty-sided, one twelve-sided, and two six-sided dice. Twelve and twenty-sided dice are completely symetrical and therefore roll nicely on the table. 
                 <br /><br />
                 After the dice are rolled, each player has the opportunity to call out "Score" or "Impossible". A player who calls "Score" must quickly show how to make the number "20" in two or three steps using addition, subtraction, multiplication, division, and/or concatenation. Success gains the player one point. Floundering and failing to quickly show a solution costs the player one point.
@@ -1790,32 +1808,37 @@ To modify the game, click "Create a New Group" and change the number of sides of
 <br /><br />
               </div>
 
-          <button  onClick={handleRulesDisplay}
-          style={this.style7(cr27,cr270,rulesDisplay2)}
+        <button  onClick = {() => {
+                  this.disp.rulesDisplayOff = 'none';
+                  this.disp.rulesDisplayOn = 'inline';
+          }} style={this.style7(cr27,cr270,rulesDisplayOff)}
             onMouseEnter={() => {this.mouse[27] = 'blue'; this.mouse[270]  = '#01afaf'}} 
             onMouseLeave={() => {this.mouse[27] = '#000'; this.mouse[270]  = 'darkred'  }} >
             Show Rules
           </button>
 
-          <button  onClick={handleRulesDisplay2}
-          style={this.style7(cr27,cr270,rulesDisplay)}
+        <button  onClick = {() => {
+                  this.disp.rulesDisplayOn = 'none';
+                  this.disp.rulesDisplayOff = 'inline';
+          }} style={this.style7(cr27,cr270,rulesDisplayOn)}
             onMouseEnter={() => {this.mouse[27] = 'blue'; this.mouse[270]  = '#01afaf' }} 
             onMouseLeave={() => {this.mouse[27] = '#000'; this.mouse[270]  = 'darkred'  }} >
             Hide Rules
         </button>
+
         <br />
 
           Current roll:
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d1} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d2} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d3} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d4} </button> 
 
             <div style={{marginLeft: 5}} >
@@ -1863,42 +1886,45 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
           <div style={{width: '60%', backgroundColor: dynB,  padding: 0}} > </div>
 
-          <button style={this.style6(cr21,timerDisplay)}>
+          <button style={this.style6(cr2100,timerDisplay)}>
               {this.state.DS_T}
           </button>
 
           <div style={{width: '60%', backgroundColor: dynB,  padding: 10}} > </div>
 
           <div style={{ display: rollnumsDisplay }} > 
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d1} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d2} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d3} </button> 
 
-            <button style={{backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24, 
+            <button style={{backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24, 
               paddingTop: 1.8, paddingBottom: 0.4 }} > {d4} </button> 
 
           </div>
 
           <button onClick={this.handleScore}
-            onMouseEnter={() => {this.mouse[9] = 'gold'}} onMouseLeave={() => {this.mouse[9] = '#9fc972'}} 
-            style={this.style6(cr9,scoreDisplay)}>
+          style={this.style7(cr9,cr90,scoreDisplay)}
+          onMouseEnter={() => {this.mouse[9] = 'blue'; this.mouse[90]  = '#01afaf' }}
+          onMouseLeave={() => {this.mouse[9] = '#000'; this.mouse[90]  = 'darkred' }} >
             SCORE!
           </button>
 
           <button onClick={this.handleScore2}
-            onMouseEnter={() => {this.mouse[19] = 'gold'}} onMouseLeave={() => {this.mouse[19] = '#9fc972'}} 
-            style={this.style6(cr19,scoreDisplay2)}>
+          style={this.style7(cr19,cr190,scoreDisplay2)}
+          onMouseEnter={() => {this.mouse[19] = 'blue'; this.mouse[190]  = '#01afaf' }}
+          onMouseLeave={() => {this.mouse[19] = '#000'; this.mouse[190]  = 'darkred' }} >
             SCORE!
           </button>
 
           <button onClick={this.handleImpossible}
-            onMouseEnter={() => {this.mouse[14] = 'gold'}} onMouseLeave={() => {this.mouse[14] = '#9fc972'}} 
-            style={this.style6(cr14,impossibleDisplay)}>
+          style={this.style7(cr14,cr140,impossibleDisplay)}
+          onMouseEnter={() => {this.mouse[14] = 'blue'; this.mouse[140]  = '#01afaf' }}
+          onMouseLeave={() => {this.mouse[14] = '#000'; this.mouse[140]  = 'darkred' }} >
             IMPOSSIBLE
           </button>
 
@@ -1906,60 +1932,68 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
        <div style={{width: '60%', backgroundColor: dynB,  padding: 10, display: numDisplay }} >
 
-          <button onClick={this.handleB40} cow='darkred'
-            onMouseEnter={() => {this.mouse[0] = 'blue'; this.mouse[100]  = '#01afaf' }} 
-            onMouseLeave={() => {this.mouse[0] = '#83f7d8'; this.mouse[100]  = '#E6E6CA' }} 
-            style={this.style4(cr0,cr100)} >
+          <button onClick={this.handleB40}
+            onMouseEnter={() => {this.mouse[551] = '#40E0D0'; this.mouse[5511]  = '#01afaf'; this.mouse[55110] = 'purple' }} 
+            onMouseLeave={() => {this.mouse[551] = '#01afaf'; this.mouse[5511]  = '#40E0D0'; this.mouse[55110] = 'blue' }} 
+            style={this.style4(cr551,cr5511,cr55110)} >
             {this.state.message1}
           </button>
 
           <button onClick={this.handleB41}
-            onMouseEnter={() => {this.mouse[1] = 'gold'}} onMouseLeave={() => {this.mouse[1] = '#83f7d8'}} 
-            style={this.style5(cr1)} >
+            onMouseEnter={() => {this.mouse[552] = '#40E0D0'; this.mouse[5521]  = '#01afaf'; this.mouse[55210] = 'purple' }} 
+            onMouseLeave={() => {this.mouse[552] = '#01afaf'; this.mouse[5521]  = '#40E0D0'; this.mouse[55210] = 'blue' }} 
+            style={this.style4(cr552,cr5521,cr55210)} >
             {this.state.message2}
           </button>
 
           <button onClick={this.handleB42}
-            onMouseEnter={() => {this.mouse[2] = 'gold'}} onMouseLeave={() => {this.mouse[2] = '#83f7d8'}} 
-            style={this.style5(cr2)} >
+            onMouseEnter={() => {this.mouse[3] = '#40E0D0'; this.mouse[31]  = '#01afaf'; this.mouse[310] = 'purple' }} 
+            onMouseLeave={() => {this.mouse[3] = '#01afaf'; this.mouse[31]  = '#40E0D0'; this.mouse[310] = 'blue' }} 
+            style={this.style4(cr3,cr31,cr310)} >
             {this.state.message3}
           </button>
 
           <button onClick={this.handleB43}
-            onMouseEnter={() => {this.mouse[3] = 'gold'}} onMouseLeave={() => {this.mouse[3] = '#83f7d8'}} 
-            style={this.style5(cr3)} >
+            onMouseEnter={() => {this.mouse[4] = '#40E0D0'; this.mouse[41]  = '#01afaf'; this.mouse[410] = 'purple' }} 
+            onMouseLeave={() => {this.mouse[4] = '#01afaf'; this.mouse[41]  = '#40E0D0'; this.mouse[410] = 'blue' }} 
+            style={this.style4(cr4,cr41,cr410)} >
             {this.state.message4}
           </button>
 
           <div style={{width: '60%',  padding: 10}} > </div>
 
-          <button onClick={this.handleOp0} 
-            onMouseEnter={() => {this.mouse[4] = 'gold'}} onMouseLeave={() => {this.mouse[4] = '#83f7d8'}} 
-            style={this.style5(cr4)} >
+          <button onClick={this.handleOp0}
+            onMouseEnter={() => {this.mouse[5] = '#40E0D0'; this.mouse[51]  = '#01afaf'; this.mouse[510] = 'purple' }} 
+            onMouseLeave={() => {this.mouse[5] = '#01afaf'; this.mouse[51]  = '#40E0D0'; this.mouse[510] = 'blue' }} 
+            style={this.style4(cr5,cr51,cr510)} >
             +
           </button>
 
           <button onClick={this.handleOp1}
-            onMouseEnter={() => {this.mouse[5] = 'gold'}} onMouseLeave={() => {this.mouse[5] = '#83f7d8'}} 
-            style={this.style5(cr5)} >
+            onMouseEnter={() => {this.mouse[6] = '#40E0D0'; this.mouse[61]  = '#01afaf'; this.mouse[610] = 'purple' }} 
+            onMouseLeave={() => {this.mouse[6] = '#01afaf'; this.mouse[61]  = '#40E0D0'; this.mouse[610] = 'blue' }} 
+            style={this.style4(cr6,cr61,cr610)} >
             -
           </button>
 
           <button onClick={this.handleOp2}
-            onMouseEnter={() => {this.mouse[6] = 'gold'}} onMouseLeave={() => {this.mouse[6] = '#83f7d8'}} 
-            style={this.style5(cr6)} >
+            onMouseEnter={() => {this.mouse[7] = '#40E0D0'; this.mouse[71]  = '#01afaf'; this.mouse[710] = 'purple' }} 
+            onMouseLeave={() => {this.mouse[7] = '#01afaf'; this.mouse[71]  = '#40E0D0'; this.mouse[710] = 'blue' }} 
+            style={this.style4(cr7,cr71,cr710)} >
             *
           </button>
 
           <button onClick={this.handleOp3}
-            onMouseEnter={() => {this.mouse[7] = 'gold'}} onMouseLeave={() => {this.mouse[7] = '#83f7d8'}} 
-            style={this.style5(cr7)} >
+            onMouseEnter={() => {this.mouse[8] = '#40E0D0'; this.mouse[81]  = '#01afaf'; this.mouse[810] = 'purple' }} 
+            onMouseLeave={() => {this.mouse[8] = '#01afaf'; this.mouse[81]  = '#40E0D0'; this.mouse[810] = 'blue' }} 
+            style={this.style4(cr8,cr81,cr810)} >
             /
           </button>
 
           <button onClick={this.handleOp4}
-            onMouseEnter={() => {this.mouse[8] = 'gold'}} onMouseLeave={() => {this.mouse[8] = '#83f7d8'}} 
-            style={this.style5(cr8)} >
+            onMouseEnter={() => {this.mouse[559] = '#40E0D0'; this.mouse[5591]  = '#01afaf'; this.mouse[55910] = 'purple' }} 
+            onMouseLeave={() => {this.mouse[559] = '#01afaf'; this.mouse[5591]  = '#40E0D0'; this.mouse[55910] = 'blue' }} 
+            style={this.style4(cr559,cr5591,cr55910)} >
             Concat
           </button>
        </div>
@@ -1989,8 +2023,9 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
         <div style={{display: rollDisplay}} >
           <button 
-            onMouseEnter={() => {this.mouse[13] = 'gold'}} onMouseLeave={() => {this.mouse[13] = '#9fc972'}} 
-            style={this.style6(cr13,buttonDisplay)}
+          style={this.style7(cr13,cr130,showSolutionsButton)}
+          onMouseEnter={() => {this.mouse[13] = 'blue'; this.mouse[130]  = '#01afaf' }} 
+          onMouseLeave={() => {this.mouse[13] = '#000'; this.mouse[130]  = 'darkred' }}
               onClick={this.buttonHandler} >
              Roll
           </button>

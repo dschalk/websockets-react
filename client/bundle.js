@@ -75,8 +75,7 @@
 
 	var _mobservable2 = _interopRequireDefault(_mobservable);
 
-	var objectAssign = __webpack_require__(159);
-	var reactMixin = __webpack_require__(160);
+	var reactMixin = __webpack_require__(159);
 	exports.B2 = B2;
 
 	var count = 0;
@@ -818,57 +817,71 @@
 	;
 
 	var mouseHandler = _mobservable2['default'].makeReactive({
-	  0: '#83f7d7',
-	  1: '#83f7d7',
-	  2: '#83f7d7',
-	  3: '#83f7d7',
-	  4: '#83f7d7',
-	  5: '#83f7d7',
-	  6: '#83f7d7',
-	  7: '#83f7d7',
-	  8: '#83f7d7',
-	  9: '#9fc972',
+	  2100: 'gold',
+	  550: '#01afaf',
+	  55010: 'blue',
+	  5501: '#40E0D0',
+	  551: '#01afaf',
+	  55110: 'blue',
+	  5511: '#40E0D0',
+	  552: '#01afaf',
+	  55210: 'blue',
+	  5521: '#40E0D0',
+	  3: '#01afaf',
+	  310: 'blue',
+	  31: '#40E0D0',
+	  4: '#01afaf',
+	  410: 'blue',
+	  41: '#40E0D0',
+	  5: '#01afaf',
+	  510: 'blue',
+	  51: '#40E0D0',
+	  6: '#01afaf',
+	  610: 'blue',
+	  61: '#40E0D0',
+	  7: '#01afaf',
+	  710: 'blue',
+	  71: '#40E0D0',
+	  8: '#01afaf',
+	  810: 'blue',
+	  81: '#40E0D0',
+	  559: '#01afaf',
+	  55910: 'blue',
+	  5591: '#40E0D0',
+	  90: 'darkred',
 	  10: '#f7b16f',
 	  11: '#f7b16f',
 	  12: '#f7b16f',
-	  13: '#9fc972',
-	  14: '#9fc972',
+	  13: '#000',
+	  14: '#000',
 	  15: '#f7b16f',
-	  19: '#9fc972',
+	  19: '#000',
+	  9: '#000',
 	  20: '#9fc972',
-	  21: '#9fc972',
 	  22: '#000000',
 	  23: '#000000',
 	  24: '#000000',
 	  25: '#000000',
 	  26: '#000000',
-	  100: '01afaf',
-	  110: '01afaf',
-	  120: '01afaf',
-	  130: '01afaf',
-	  140: '01afaf',
-	  150: '01afaf',
-	  160: '01afaf',
-	  170: '01afaf',
-	  180: '01afaf',
-	  190: '01afaf',
-	  1000: '01afaf',
-	  1100: '01afaf',
-	  1200: '01afaf',
-	  1300: '01afaf',
-	  1400: '01afaf',
+	  120: '#01afaf',
+	  130: 'darkred',
+	  140: 'darkred',
+	  150: '#01afaf',
+	  160: '#01afaf',
+	  170: '#01afaf',
+	  180: '#01afaf',
+	  190: 'darkred',
+	  1000: '#01afaf',
+	  1100: '#01afaf',
+	  1200: '#01afaf',
+	  1300: '#01afaf',
+	  1400: '#01afaf',
 	  220: 'darkred',
 	  230: 'darkred',
 	  240: 'darkred',
 	  250: 'darkred',
 	  260: 'darkred',
 	  270: 'darkred',
-	  style22: {},
-	  style23: {},
-	  style24: {},
-	  style25: {},
-	  style26: {},
-	  style27: {},
 	  27: '#000000'
 	});
 
@@ -882,9 +895,7 @@
 	  dd2: 0,
 	  dd3: 0,
 	  dd4: 0,
-	  goal2: 20,
-	  rulesDisplay: 'none',
-	  rulesDisplay2: 'inline'
+	  goal2: 20
 	});
 
 	data.ddChange1 = function (x) {
@@ -902,15 +913,13 @@
 	data.ddChangeGoal2 = function (x) {
 	  data.goal2 = x;
 	};
-	data.handleRulesDisplay = function () {
-	  data.rulesDisplay = 'inline';
-	  data.rulesDisplay2 = 'none';
-	};
 
-	data.handleRulesDisplay2 = function () {
-	  data.rulesDisplay2 = 'inline';
-	  data.rulesDisplay = 'none';
-	};
+	var disp = _mobservable2['default'].makeReactive({
+	  rulesDisplayOn: 'none',
+	  rulesDisplayOff: 'inline',
+	  scoreDisplay: 'inline',
+	  scoreDisplay2: 'none'
+	});
 
 	var B2X = (function (_React$Component17) {
 	  _inherits(B2X, _React$Component17);
@@ -1228,7 +1237,7 @@
 	      var c = _this18.state.d3;
 	      var d = _this18.state.d4;
 	      var goal = _this18.state.goal;
-	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d + ',' + goal);
+	      DES_ws.send('CZ#$42,solo,' + name + ',' + a + ',' + b + ',' + c + ',' + d + ',' + goal);
 	      _this18.setState({
 	        rollDisplay: 'none',
 	        scoreDisplay: 'none',
@@ -1260,7 +1269,7 @@
 
 	    this.hideSolutionsHandler = function () {
 	      var _this = _this18;
-	      _this18.data.information = 'Click ROLL to resume play';
+	      _this18.data.information = 'To resume play, click ROLL (or wait until another group member starts the next round).';
 	      _this18.setState({
 	        message: 'Play forfeited for this round by opening Solutions',
 	        DS_t: 'Please wait for the next roll. You displayed solutions.',
@@ -1295,9 +1304,11 @@
 	      });
 	    };
 
-	    this.style4 = function (x, y) {
-	      return { backgroundColor: x, borderWidth: 2, borderColor: y, paddingTop: 1.3, paddingLeft: 12, paddingRight: 12,
-	        paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: _this18.state.timeSize };
+	    this.style4 = function (x, y, z) {
+	      return { backgroundColor: x, borderColor: y, borderTopWidth: 3, borderLeftWidth: 3,
+	        borderBottomWidth: 2, borderRightWidth: 2, color: z,
+	        paddingTop: 1.3, paddingLeft: 12, paddingRight: 12,
+	        paddingBottom: 0.3, marginRight: 3, marginLeft: 10, fontSize: _this18.state.timeSize };
 	    };
 
 	    this.style5 = function (x) {
@@ -1374,25 +1385,50 @@
 	      var sides3 = _this18.state.sides3;
 	      var sides4 = _this18.state.sides4;
 	      var goal = _this18.state.goal;
+	      var cr2100 = _this18.mouse[2100];
 	      var cr15 = _this18.mouse[15];
 	      var cr11 = _this18.mouse[11];
 	      var cr12 = _this18.mouse[12];
-	      var cr0 = _this18.mouse[0];
-	      var cr1 = _this18.mouse[1];
-	      var cr2 = _this18.mouse[2];
+	      var cr550 = _this18.mouse[550];
+	      var cr5501 = _this18.mouse[5501];
+	      var cr55010 = _this18.mouse[55010];
+	      var cr551 = _this18.mouse[551];
+	      var cr5511 = _this18.mouse[5511];
+	      var cr55110 = _this18.mouse[55110];
+	      var cr552 = _this18.mouse[552];
+	      var cr5521 = _this18.mouse[5521];
+	      var cr55210 = _this18.mouse[55210];
 	      var cr3 = _this18.mouse[3];
+	      var cr31 = _this18.mouse[31];
+	      var cr310 = _this18.mouse[310];
 	      var cr4 = _this18.mouse[4];
+	      var cr41 = _this18.mouse[41];
+	      var cr410 = _this18.mouse[410];
 	      var cr5 = _this18.mouse[5];
+	      var cr51 = _this18.mouse[51];
+	      var cr510 = _this18.mouse[510];
 	      var cr6 = _this18.mouse[6];
+	      var cr61 = _this18.mouse[61];
+	      var cr610 = _this18.mouse[610];
 	      var cr7 = _this18.mouse[7];
+	      var cr71 = _this18.mouse[71];
+	      var cr710 = _this18.mouse[710];
 	      var cr8 = _this18.mouse[8];
+	      var cr81 = _this18.mouse[81];
+	      var cr810 = _this18.mouse[810];
+	      var cr559 = _this18.mouse[559];
+	      var cr5591 = _this18.mouse[5591];
+	      var cr55910 = _this18.mouse[55910];
+	      var cr90 = _this18.mouse[90];
 	      var cr9 = _this18.mouse[9];
 	      var cr10 = _this18.mouse[10];
 	      var cr13 = _this18.mouse[13];
+	      var cr130 = _this18.mouse[130];
 	      var cr14 = _this18.mouse[14];
+	      var cr140 = _this18.mouse[140];
 	      var cr19 = _this18.mouse[19];
+	      var cr190 = _this18.mouse[190];
 	      var cr20 = _this18.mouse[20];
-	      var cr21 = _this18.mouse[21];
 	      var cr22 = _this18.mouse[22];
 	      var cr220 = _this18.mouse[220];
 	      var cr23 = _this18.mouse[23];
@@ -1406,26 +1442,12 @@
 	      var cr27 = _this18.mouse[27];
 	      var cr270 = _this18.mouse[270];
 	      var cr100 = _this18.mouse[100];
-	      var rulesDisplay = _this18.data.rulesDisplay;
-	      var rulesDisplay2 = _this18.data.rulesDisplay2;
+	      var rulesDisplayOn = _this18.disp.rulesDisplayOn;
+	      var rulesDisplayOff = _this18.disp.rulesDisplayOff;
+	      var toggleRules = _this18.disp.toggleRules;
 	      var handleRulesDisplay = _this18.data.handleRulesDisplay;
 	      var handleRulesDisplay2 = _this18.data.handleRulesDisplay2;
-	      var style1 = { backgroundColor: _this18.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
-	      var style2 = { backgroundColor: _this18.mouse[15], display: scoreDisplay2, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: timeSize };
-	      var style3 = { paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 16 };
-
-	      var style30 = { backgroundColor: _this18.mouse[22], textAlign: 'left', color: '#fcca05', borderColor: _this18.mouse[220],
-	        display: 'inline', borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 };
-
-	      var style31 = { textAlign: 'left', color: '#fcca05',
-	        display: 'inline', borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 };
-	      var style22 = _this18.mouse.style22;
-	      var style23 = _this18.mouse.style23;
-	      var style24 = _this18.mouse.style24;
-	      var style25 = _this18.mouse.style25;
-	      var style26 = _this18.mouse.style26;
-	      var style27 = _this18.mouse.style27;
-
+	      var style3 = { paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 18 };
 	      return _react2['default'].createElement(
 	        'div',
 	        { style: { backgroundColor: dynB, color: dynC, fontSize: dynF,
@@ -1506,7 +1528,7 @@
 	          'Current Numbers:',
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            dd1,
@@ -1514,7 +1536,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            dd2,
@@ -1522,7 +1544,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            dd3,
@@ -1530,7 +1552,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            dd4,
@@ -1540,7 +1562,7 @@
 	          'Current Goal:',
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            goal2,
@@ -1582,7 +1604,7 @@
 	              paddingBottom: 0.8, fontSize: 20, marginLeft: 5 } },
 	          _react2['default'].createElement(
 	            'div',
-	            { style: { display: rulesDisplay, color: '#e9eab6' } },
+	            { style: { display: rulesDisplayOn, color: '#e9eab6' } },
 	            _react2['default'].createElement(
 	              'span',
 	              { style: { fontSize: 26 } },
@@ -1635,8 +1657,10 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: handleRulesDisplay,
-	              style: _this18.style7(cr27, cr270, rulesDisplay2),
+	            { onClick: function () {
+	                _this18.disp.rulesDisplayOff = 'none';
+	                _this18.disp.rulesDisplayOn = 'inline';
+	              }, style: _this18.style7(cr27, cr270, rulesDisplayOff),
 	              onMouseEnter: function () {
 	                _this18.mouse[27] = 'blue';_this18.mouse[270] = '#01afaf';
 	              },
@@ -1647,8 +1671,10 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: handleRulesDisplay2,
-	              style: _this18.style7(cr27, cr270, rulesDisplay),
+	            { onClick: function () {
+	                _this18.disp.rulesDisplayOn = 'none';
+	                _this18.disp.rulesDisplayOff = 'inline';
+	              }, style: _this18.style7(cr27, cr270, rulesDisplayOn),
 	              onMouseEnter: function () {
 	                _this18.mouse[27] = 'blue';_this18.mouse[270] = '#01afaf';
 	              },
@@ -1661,7 +1687,7 @@
 	          'Current roll:',
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            d1,
@@ -1669,7 +1695,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            d2,
@@ -1677,7 +1703,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            d3,
@@ -1685,7 +1711,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	            { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                paddingTop: 1.8, paddingBottom: 0.4 } },
 	            ' ',
 	            d4,
@@ -1790,7 +1816,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { style: _this18.style6(cr21, timerDisplay) },
+	            { style: _this18.style6(cr2100, timerDisplay) },
 	            _this18.state.DS_T
 	          ),
 	          _react2['default'].createElement(
@@ -1803,7 +1829,7 @@
 	            { style: { display: rollnumsDisplay } },
 	            _react2['default'].createElement(
 	              'button',
-	              { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                  paddingTop: 1.8, paddingBottom: 0.4 } },
 	              ' ',
 	              d1,
@@ -1811,7 +1837,7 @@
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                  paddingTop: 1.8, paddingBottom: 0.4 } },
 	              ' ',
 	              d2,
@@ -1819,7 +1845,7 @@
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                  paddingTop: 1.8, paddingBottom: 0.4 } },
 	              ' ',
 	              d3,
@@ -1827,7 +1853,7 @@
 	            ),
 	            _react2['default'].createElement(
 	              'button',
-	              { style: { backgroundColor: '#000', color: 'darkred', borderColor: 'lightBlue', fontSize: 24,
+	              { style: { backgroundColor: '#000', color: 'red', borderColor: 'lightBlue', fontSize: 24,
 	                  paddingTop: 1.8, paddingBottom: 0.4 } },
 	              ' ',
 	              d4,
@@ -1837,34 +1863,37 @@
 	          _react2['default'].createElement(
 	            'button',
 	            { onClick: _this18.handleScore,
+	              style: _this18.style7(cr9, cr90, scoreDisplay),
 	              onMouseEnter: function () {
-	                _this18.mouse[9] = 'gold';
-	              }, onMouseLeave: function () {
-	                _this18.mouse[9] = '#9fc972';
+	                _this18.mouse[9] = 'blue';_this18.mouse[90] = '#01afaf';
 	              },
-	              style: _this18.style6(cr9, scoreDisplay) },
+	              onMouseLeave: function () {
+	                _this18.mouse[9] = '#000';_this18.mouse[90] = 'darkred';
+	              } },
 	            'SCORE!'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
 	            { onClick: _this18.handleScore2,
+	              style: _this18.style7(cr19, cr190, scoreDisplay2),
 	              onMouseEnter: function () {
-	                _this18.mouse[19] = 'gold';
-	              }, onMouseLeave: function () {
-	                _this18.mouse[19] = '#9fc972';
+	                _this18.mouse[19] = 'blue';_this18.mouse[190] = '#01afaf';
 	              },
-	              style: _this18.style6(cr19, scoreDisplay2) },
+	              onMouseLeave: function () {
+	                _this18.mouse[19] = '#000';_this18.mouse[190] = 'darkred';
+	              } },
 	            'SCORE!'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
 	            { onClick: _this18.handleImpossible,
+	              style: _this18.style7(cr14, cr140, impossibleDisplay),
 	              onMouseEnter: function () {
-	                _this18.mouse[14] = 'gold';
-	              }, onMouseLeave: function () {
-	                _this18.mouse[14] = '#9fc972';
+	                _this18.mouse[14] = 'blue';_this18.mouse[140] = '#01afaf';
 	              },
-	              style: _this18.style6(cr14, impossibleDisplay) },
+	              onMouseLeave: function () {
+	                _this18.mouse[14] = '#000';_this18.mouse[140] = 'darkred';
+	              } },
 	            'IMPOSSIBLE'
 	          ),
 	          _react2['default'].createElement(
@@ -1877,47 +1906,50 @@
 	            { style: { width: '60%', backgroundColor: dynB, padding: 10, display: numDisplay } },
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: _this18.handleB40, cow: 'darkred',
+	              { onClick: _this18.handleB40,
 	                onMouseEnter: function () {
-	                  _this18.mouse[0] = 'blue';_this18.mouse[100] = '#01afaf';
+	                  _this18.mouse[551] = '#40E0D0';_this18.mouse[5511] = '#01afaf';_this18.mouse[55110] = 'purple';
 	                },
 	                onMouseLeave: function () {
-	                  _this18.mouse[0] = '#83f7d8';_this18.mouse[100] = '#E6E6CA';
+	                  _this18.mouse[551] = '#01afaf';_this18.mouse[5511] = '#40E0D0';_this18.mouse[55110] = 'blue';
 	                },
-	                style: _this18.style4(cr0, cr100) },
+	                style: _this18.style4(cr551, cr5511, cr55110) },
 	              _this18.state.message1
 	            ),
 	            _react2['default'].createElement(
 	              'button',
 	              { onClick: _this18.handleB41,
 	                onMouseEnter: function () {
-	                  _this18.mouse[1] = 'gold';
-	                }, onMouseLeave: function () {
-	                  _this18.mouse[1] = '#83f7d8';
+	                  _this18.mouse[552] = '#40E0D0';_this18.mouse[5521] = '#01afaf';_this18.mouse[55210] = 'purple';
 	                },
-	                style: _this18.style5(cr1) },
+	                onMouseLeave: function () {
+	                  _this18.mouse[552] = '#01afaf';_this18.mouse[5521] = '#40E0D0';_this18.mouse[55210] = 'blue';
+	                },
+	                style: _this18.style4(cr552, cr5521, cr55210) },
 	              _this18.state.message2
 	            ),
 	            _react2['default'].createElement(
 	              'button',
 	              { onClick: _this18.handleB42,
 	                onMouseEnter: function () {
-	                  _this18.mouse[2] = 'gold';
-	                }, onMouseLeave: function () {
-	                  _this18.mouse[2] = '#83f7d8';
+	                  _this18.mouse[3] = '#40E0D0';_this18.mouse[31] = '#01afaf';_this18.mouse[310] = 'purple';
 	                },
-	                style: _this18.style5(cr2) },
+	                onMouseLeave: function () {
+	                  _this18.mouse[3] = '#01afaf';_this18.mouse[31] = '#40E0D0';_this18.mouse[310] = 'blue';
+	                },
+	                style: _this18.style4(cr3, cr31, cr310) },
 	              _this18.state.message3
 	            ),
 	            _react2['default'].createElement(
 	              'button',
 	              { onClick: _this18.handleB43,
 	                onMouseEnter: function () {
-	                  _this18.mouse[3] = 'gold';
-	                }, onMouseLeave: function () {
-	                  _this18.mouse[3] = '#83f7d8';
+	                  _this18.mouse[4] = '#40E0D0';_this18.mouse[41] = '#01afaf';_this18.mouse[410] = 'purple';
 	                },
-	                style: _this18.style5(cr3) },
+	                onMouseLeave: function () {
+	                  _this18.mouse[4] = '#01afaf';_this18.mouse[41] = '#40E0D0';_this18.mouse[410] = 'blue';
+	                },
+	                style: _this18.style4(cr4, cr41, cr410) },
 	              _this18.state.message4
 	            ),
 	            _react2['default'].createElement(
@@ -1929,55 +1961,60 @@
 	              'button',
 	              { onClick: _this18.handleOp0,
 	                onMouseEnter: function () {
-	                  _this18.mouse[4] = 'gold';
-	                }, onMouseLeave: function () {
-	                  _this18.mouse[4] = '#83f7d8';
+	                  _this18.mouse[5] = '#40E0D0';_this18.mouse[51] = '#01afaf';_this18.mouse[510] = 'purple';
 	                },
-	                style: _this18.style5(cr4) },
+	                onMouseLeave: function () {
+	                  _this18.mouse[5] = '#01afaf';_this18.mouse[51] = '#40E0D0';_this18.mouse[510] = 'blue';
+	                },
+	                style: _this18.style4(cr5, cr51, cr510) },
 	              '+'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
 	              { onClick: _this18.handleOp1,
 	                onMouseEnter: function () {
-	                  _this18.mouse[5] = 'gold';
-	                }, onMouseLeave: function () {
-	                  _this18.mouse[5] = '#83f7d8';
+	                  _this18.mouse[6] = '#40E0D0';_this18.mouse[61] = '#01afaf';_this18.mouse[610] = 'purple';
 	                },
-	                style: _this18.style5(cr5) },
+	                onMouseLeave: function () {
+	                  _this18.mouse[6] = '#01afaf';_this18.mouse[61] = '#40E0D0';_this18.mouse[610] = 'blue';
+	                },
+	                style: _this18.style4(cr6, cr61, cr610) },
 	              '-'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
 	              { onClick: _this18.handleOp2,
 	                onMouseEnter: function () {
-	                  _this18.mouse[6] = 'gold';
-	                }, onMouseLeave: function () {
-	                  _this18.mouse[6] = '#83f7d8';
+	                  _this18.mouse[7] = '#40E0D0';_this18.mouse[71] = '#01afaf';_this18.mouse[710] = 'purple';
 	                },
-	                style: _this18.style5(cr6) },
+	                onMouseLeave: function () {
+	                  _this18.mouse[7] = '#01afaf';_this18.mouse[71] = '#40E0D0';_this18.mouse[710] = 'blue';
+	                },
+	                style: _this18.style4(cr7, cr71, cr710) },
 	              '*'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
 	              { onClick: _this18.handleOp3,
 	                onMouseEnter: function () {
-	                  _this18.mouse[7] = 'gold';
-	                }, onMouseLeave: function () {
-	                  _this18.mouse[7] = '#83f7d8';
+	                  _this18.mouse[8] = '#40E0D0';_this18.mouse[81] = '#01afaf';_this18.mouse[810] = 'purple';
 	                },
-	                style: _this18.style5(cr7) },
+	                onMouseLeave: function () {
+	                  _this18.mouse[8] = '#01afaf';_this18.mouse[81] = '#40E0D0';_this18.mouse[810] = 'blue';
+	                },
+	                style: _this18.style4(cr8, cr81, cr810) },
 	              '/'
 	            ),
 	            _react2['default'].createElement(
 	              'button',
 	              { onClick: _this18.handleOp4,
 	                onMouseEnter: function () {
-	                  _this18.mouse[8] = 'gold';
-	                }, onMouseLeave: function () {
-	                  _this18.mouse[8] = '#83f7d8';
+	                  _this18.mouse[559] = '#40E0D0';_this18.mouse[5591] = '#01afaf';_this18.mouse[55910] = 'purple';
 	                },
-	                style: _this18.style5(cr8) },
+	                onMouseLeave: function () {
+	                  _this18.mouse[559] = '#01afaf';_this18.mouse[5591] = '#40E0D0';_this18.mouse[55910] = 'blue';
+	                },
+	                style: _this18.style4(cr559, cr5591, cr55910) },
 	              'Concat'
 	            )
 	          ),
@@ -2018,12 +2055,13 @@
 	            _react2['default'].createElement(
 	              'button',
 	              {
+	                style: _this18.style7(cr13, cr130, showSolutionsButton),
 	                onMouseEnter: function () {
-	                  _this18.mouse[13] = 'gold';
-	                }, onMouseLeave: function () {
-	                  _this18.mouse[13] = '#9fc972';
+	                  _this18.mouse[13] = 'blue';_this18.mouse[130] = '#01afaf';
 	                },
-	                style: _this18.style6(cr13, buttonDisplay),
+	                onMouseLeave: function () {
+	                  _this18.mouse[13] = '#000';_this18.mouse[130] = 'darkred';
+	                },
 	                onClick: _this18.buttonHandler },
 	              'Roll'
 	            )
@@ -2171,6 +2209,7 @@
 
 	    this.mouse = mouseHandler;
 	    this.data = data;
+	    this.disp = disp;
 	    this.state = {
 	      d1: 0,
 	      d2: 0,
@@ -2504,7 +2543,7 @@
 	          break;
 
 	        case "DY#$42":
-	          // Triggedarkred by clicking  "IMPOSSIBLE".
+	          // Triggered by clicking  "IMPOSSIBLE".
 	          that.data.information = 'Click SCORE! if you want to show a solution and gain a point.';
 	          that.setState({
 	            impossibleClicker: extra,
@@ -2596,11 +2635,11 @@
 
 	        if (z) {
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
-	          DES_ws.send('CH#$42,' + gr + ',' + name + ',10 seconds expidarkred. Deduct one point from ' + scoreClicker + ', ');
+	          DES_ws.send('CH#$42,' + gr + ',' + name + ',10 seconds expired. Deduct one point from ' + scoreClicker + ', ');
 	        } else if (z2) {
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
 	          DES_ws.send('CG#$42,' + gr + ',' + interruptClicker + ',-1');
-	          DES_ws.send('CH#$42,' + gr + ',' + name + ',60 seconds expidarkred. One point for ' + impossibleClicker + ', ');
+	          DES_ws.send('CH#$42,' + gr + ',' + name + ',60 seconds expired. One point for ' + impossibleClicker + ', ');
 	        } else if (z3) {
 	          DES_ws.send('CG#$42,' + gr + ',' + interruptClicker + ',-2');
 	          DES_ws.send('CH#$42,' + gr + ',' + impossibleClicker + ',\n                      ' + impossibleClicker + ' forfeits two points for blocking with SCORE!,\n                      ' + impossibleClicker + ' clicked IMPOSSIBLE and blocked others from solving by clicking SCORE!\n       ');
@@ -24255,55 +24294,10 @@
 
 /***/ },
 /* 159 */
-/***/ function(module, exports) {
-
-	/* eslint-disable no-unused-vars */
-	'use strict';
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-	function toObject(val) {
-		if (val === null || val === undefined) {
-			throw new TypeError('Object.assign cannot be called with null or undefined');
-		}
-
-		return Object(val);
-	}
-
-	module.exports = Object.assign || function (target, source) {
-		var from;
-		var to = toObject(target);
-		var symbols;
-
-		for (var s = 1; s < arguments.length; s++) {
-			from = Object(arguments[s]);
-
-			for (var key in from) {
-				if (hasOwnProperty.call(from, key)) {
-					to[key] = from[key];
-				}
-			}
-
-			if (Object.getOwnPropertySymbols) {
-				symbols = Object.getOwnPropertySymbols(from);
-				for (var i = 0; i < symbols.length; i++) {
-					if (propIsEnumerable.call(from, symbols[i])) {
-						to[symbols[i]] = from[symbols[i]];
-					}
-				}
-			}
-		}
-
-		return to;
-	};
-
-
-/***/ },
-/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mixin = __webpack_require__(161);
-	var assign = __webpack_require__(162);
+	var mixin = __webpack_require__(160);
+	var assign = __webpack_require__(161);
 
 	var mixinProto = mixin({
 	  // lifecycle stuff is as you'd expect
@@ -24456,7 +24450,7 @@
 
 
 /***/ },
-/* 161 */
+/* 160 */
 /***/ function(module, exports) {
 
 	var objToStr = function(x){ return Object.prototype.toString.call(x); };
@@ -24639,7 +24633,7 @@
 
 
 /***/ },
-/* 162 */
+/* 161 */
 /***/ function(module, exports) {
 
 	'use strict';
