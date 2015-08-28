@@ -95,14 +95,14 @@
 	  _inherits(GroupNew, _React$Component);
 
 	  function GroupNew(props) {
-	    var _this2 = this;
+	    var _this = this;
 
 	    _classCallCheck(this, GroupNew);
 
 	    _get(Object.getPrototypeOf(GroupNew.prototype), 'constructor', this).call(this, props);
 
 	    this.render = function () {
-	      if (_this2.props.hidden2) {
+	      if (_this.props.hidden2) {
 	        return null;
 	      }
 	      return _react2['default'].createElement(
@@ -112,8 +112,8 @@
 	          'label',
 	          null,
 	          'Player defined group name:  ',
-	          _react2['default'].createElement('input', { type: 'text', id: 'cow', onKeyDown: _this2.handleEnter.bind(_this2),
-	            onClick: _this2.click.bind(_this2), style: { width: 90, backgroundColor: '#d8d17d', marginLeft: 10 } })
+	          _react2['default'].createElement('input', { type: 'text', id: 'cow', onKeyDown: _this.handleEnter.bind(_this),
+	            onClick: _this.click.bind(_this), style: { width: 90, backgroundColor: '#d8d17d', marginLeft: 10 } })
 	        )
 	      );
 	    };
@@ -152,7 +152,7 @@
 	  _inherits(Chat, _React$Component2);
 
 	  function Chat(props) {
-	    var _this3 = this;
+	    var _this2 = this;
 
 	    _classCallCheck(this, Chat);
 
@@ -166,7 +166,7 @@
 	        _react2['default'].createElement(
 	          'label',
 	          null,
-	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this3.handleEnter.bind(_this3), onClick: _this3.click.bind(_this3),
+	          _react2['default'].createElement('input', { type: 'text', onKeyDown: _this2.handleEnter.bind(_this2), onClick: _this2.click.bind(_this2),
 	            style: { width: 230, backgroundColor: '#d8d17d' } })
 	        )
 	      );
@@ -202,38 +202,38 @@
 	  _inherits(Number1, _React$Component3);
 
 	  function Number1(props) {
-	    var _this4 = this;
+	    var _this3 = this;
 
 	    _classCallCheck(this, Number1);
 
 	    _get(Object.getPrototypeOf(Number1.prototype), 'constructor', this).call(this, props);
 
+	    this.handleChange = function (event) {
+	      _this3.props.change(event.target.value);
+	    };
+
+	    this.handleEnter = function (event) {
+	      var s1 = event.target.value;
+	      if (event.keyCode == 13 && s1 != '') {
+	        _this3.props.change(s1);
+	        event.target.value = '';
+	      }
+	    };
+
+	    this.click = function (event) {
+	      var s1 = event.target.value;
+	      if (s1 != '') {
+	        _this3.props.change(s1);
+	        event.target.value = '';
+	      }
+	    };
+
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this4.handleEnter.bind(_this4), onClick: _this4.click.bind(_this4),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this3.handleEnter, onChange: _this3.handleChange, onClick: _this3.click,
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
 	  }
-
-	  _createClass(Number1, [{
-	    key: 'handleEnter',
-	    value: function handleEnter(event) {
-	      var s1 = event.target.value;
-	      if (event.keyCode == 13 && s1 != '') {
-	        this.props.change(s1);
-	        event.target.value = '';
-	      }
-	    }
-	  }, {
-	    key: 'click',
-	    value: function click(event) {
-	      var s1 = event.target.value;
-	      if (s1 != '') {
-	        this.props.change(s1);
-	        event.target.value = '';
-	      }
-	    }
-	  }]);
 
 	  return Number1;
 	})(_react2['default'].Component);
@@ -244,38 +244,38 @@
 	  _inherits(Number2, _React$Component4);
 
 	  function Number2(props) {
-	    var _this5 = this;
+	    var _this4 = this;
 
 	    _classCallCheck(this, Number2);
 
 	    _get(Object.getPrototypeOf(Number2.prototype), 'constructor', this).call(this, props);
 
+	    this.handleChange = function (event) {
+	      _this4.props.change(event.target.value);
+	    };
+
+	    this.handleEnter = function (event) {
+	      var s2 = event.target.value;
+	      if (event.keyCode == 13 && s2 != '') {
+	        _this4.props.change(s2);
+	        event.target.value = '';
+	      }
+	    };
+
+	    this.click = function (event) {
+	      var s2 = event.target.value;
+	      if (s2 != '') {
+	        _this4.props.change(s2);
+	        event.target.value = '';
+	      }
+	    };
+
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this5.handleEnter.bind(_this5), onClick: _this5.click.bind(_this5),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this4.handleEnter, onChange: _this4.handleChange, onClick: _this4.click,
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
 	  }
-
-	  _createClass(Number2, [{
-	    key: 'handleEnter',
-	    value: function handleEnter(event) {
-	      var s2 = event.target.value;
-	      if (event.keyCode == 13 && s2 != '') {
-	        this.props.change(s2);
-	        event.target.value = '';
-	      }
-	    }
-	  }, {
-	    key: 'click',
-	    value: function click(event) {
-	      var s2 = event.target.value;
-	      if (s2 != '') {
-	        this.props.change(s2);
-	        event.target.value = '';
-	      }
-	    }
-	  }]);
 
 	  return Number2;
 	})(_react2['default'].Component);
@@ -286,14 +286,18 @@
 	  _inherits(Number3, _React$Component5);
 
 	  function Number3(props) {
-	    var _this6 = this;
+	    var _this5 = this;
 
 	    _classCallCheck(this, Number3);
 
 	    _get(Object.getPrototypeOf(Number3.prototype), 'constructor', this).call(this, props);
 
+	    this.handleChange = function (event) {
+	      _this5.props.change(event.target.value);
+	    };
+
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this6.handleEnter.bind(_this6), onClick: _this6.click.bind(_this6),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this5.handleEnter.bind(_this5), onChange: _this5.handleChange, onClick: _this5.click.bind(_this5),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -328,14 +332,19 @@
 	  _inherits(Number4, _React$Component6);
 
 	  function Number4(props) {
-	    var _this7 = this;
+	    var _this6 = this;
 
 	    _classCallCheck(this, Number4);
 
 	    _get(Object.getPrototypeOf(Number4.prototype), 'constructor', this).call(this, props);
 
+	    this.handleChange = function (event) {
+
+	      _this6.props.change(event.target.value);
+	    };
+
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this7.handleEnter.bind(_this7), onClick: _this7.click.bind(_this7),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this6.handleEnter.bind(_this6), onChange: _this6.handleChange, onClick: _this6.click.bind(_this6),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -370,14 +379,14 @@
 	  _inherits(Goal, _React$Component7);
 
 	  function Goal(props) {
-	    var _this8 = this;
+	    var _this7 = this;
 
 	    _classCallCheck(this, Goal);
 
 	    _get(Object.getPrototypeOf(Goal.prototype), 'constructor', this).call(this, props);
 
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this8.handleEnter.bind(_this8), onClick: _this8.click.bind(_this8),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this7.handleEnter.bind(_this7), onClick: _this7.click.bind(_this7),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -412,14 +421,14 @@
 	  _inherits(Sides1, _React$Component8);
 
 	  function Sides1(props) {
-	    var _this9 = this;
+	    var _this8 = this;
 
 	    _classCallCheck(this, Sides1);
 
 	    _get(Object.getPrototypeOf(Sides1.prototype), 'constructor', this).call(this, props);
 
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this9.handleEnter.bind(_this9), onClick: _this9.click.bind(_this9),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this8.handleEnter.bind(_this8), onClick: _this8.click.bind(_this8),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -454,14 +463,14 @@
 	  _inherits(Sides2, _React$Component9);
 
 	  function Sides2(props) {
-	    var _this10 = this;
+	    var _this9 = this;
 
 	    _classCallCheck(this, Sides2);
 
 	    _get(Object.getPrototypeOf(Sides2.prototype), 'constructor', this).call(this, props);
 
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this10.handleEnter.bind(_this10), onClick: _this10.click.bind(_this10),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this9.handleEnter.bind(_this9), onClick: _this9.click.bind(_this9),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -496,14 +505,14 @@
 	  _inherits(Sides3, _React$Component10);
 
 	  function Sides3(props) {
-	    var _this11 = this;
+	    var _this10 = this;
 
 	    _classCallCheck(this, Sides3);
 
 	    _get(Object.getPrototypeOf(Sides3.prototype), 'constructor', this).call(this, props);
 
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this11.handleEnter.bind(_this11), onClick: _this11.click.bind(_this11),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this10.handleEnter.bind(_this10), onClick: _this10.click.bind(_this10),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -538,14 +547,14 @@
 	  _inherits(Sides4, _React$Component11);
 
 	  function Sides4(props) {
-	    var _this12 = this;
+	    var _this11 = this;
 
 	    _classCallCheck(this, Sides4);
 
 	    _get(Object.getPrototypeOf(Sides4.prototype), 'constructor', this).call(this, props);
 
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this12.handleEnter.bind(_this12), onClick: _this12.click.bind(_this12),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this11.handleEnter.bind(_this11), onClick: _this11.click.bind(_this11),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -580,14 +589,14 @@
 	  _inherits(SetGoal, _React$Component12);
 
 	  function SetGoal(props) {
-	    var _this13 = this;
+	    var _this12 = this;
 
 	    _classCallCheck(this, SetGoal);
 
 	    _get(Object.getPrototypeOf(SetGoal.prototype), 'constructor', this).call(this, props);
 
 	    this.render = function () {
-	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this13.handleEnter.bind(_this13), onClick: _this13.click.bind(_this13),
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this12.handleEnter.bind(_this12), onClick: _this12.click.bind(_this12),
 	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
 	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
 	    };
@@ -618,8 +627,50 @@
 
 	;
 
-	var ChangeColor = (function (_React$Component13) {
-	  _inherits(ChangeColor, _React$Component13);
+	var ChangeCountdown = (function (_React$Component13) {
+	  _inherits(ChangeCountdown, _React$Component13);
+
+	  function ChangeCountdown(props) {
+	    var _this13 = this;
+
+	    _classCallCheck(this, ChangeCountdown);
+
+	    _get(Object.getPrototypeOf(ChangeCountdown.prototype), 'constructor', this).call(this, props);
+
+	    this.handleChange = function (event) {
+	      data.COUNTDOWN = event.target.value;
+	    };
+
+	    this.handleEnter = function (event) {
+	      var cd = event.target.value;
+	      if (event.keyCode == 13 && cd != '') {
+	        data.COUNTDOWN = cd;
+	        event.target.value = '';
+	      }
+	    };
+
+	    this.click = function (event) {
+	      var cd = event.target.value;
+	      if (cd != '') {
+	        data.COUNTDOWN = cd;
+	        event.target.value = '';
+	      }
+	    };
+
+	    this.render = function () {
+	      return _react2['default'].createElement('input', { type: 'text', onKeyDown: _this13.handleEnter, onChange: _this13.handleChange, onClick: _this13.click,
+	        style: { paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000',
+	          fontSize: 22, backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' } });
+	    };
+	  }
+
+	  return ChangeCountdown;
+	})(_react2['default'].Component);
+
+	;
+
+	var ChangeColor = (function (_React$Component14) {
+	  _inherits(ChangeColor, _React$Component14);
 
 	  function ChangeColor(props) {
 	    var _this14 = this;
@@ -666,8 +717,8 @@
 
 	;
 
-	var ChangeBackground = (function (_React$Component14) {
-	  _inherits(ChangeBackground, _React$Component14);
+	var ChangeBackground = (function (_React$Component15) {
+	  _inherits(ChangeBackground, _React$Component15);
 
 	  function ChangeBackground(props) {
 	    var _this15 = this;
@@ -714,8 +765,8 @@
 
 	;
 
-	var Login = (function (_React$Component15) {
-	  _inherits(Login, _React$Component15);
+	var Login = (function (_React$Component16) {
+	  _inherits(Login, _React$Component16);
 
 	  function Login(props) {
 	    var _this16 = this;
@@ -729,6 +780,9 @@
 	    };
 
 	    this.handleEnter = function (event) {
+	      mouseHandler.Sbackground = mouseHandler.rSbackground;
+	      mouseHandler.Sborder = mouseHandler.rSborder;
+	      mouseHandler.Scolor = mouseHandler.rScolor;
 	      if (_this16.props.name == '') {
 	        _this16.props.change({
 	          info: ''
@@ -792,8 +846,8 @@
 
 	;
 
-	var Messages = (function (_React$Component16) {
-	  _inherits(Messages, _React$Component16);
+	var Messages = (function (_React$Component17) {
+	  _inherits(Messages, _React$Component17);
 
 	  function Messages(props) {
 	    var _this17 = this;
@@ -804,8 +858,9 @@
 
 	    this.render = function () {
 	      return _react2['default'].createElement(
-	        'div',
-	        { style: { fontSize: 22 } },
+	        'button',
+	        { style: { fontSize: 17, marginLeft: 7, backgroundColor: '#2C2106', color: '#F8EDD2',
+	            textAlign: 'left', borderColor: '#000', borderRadius: 12 } },
 	        _this17.props.information
 	      );
 	    };
@@ -816,7 +871,26 @@
 
 	;
 
-	var mouseHandler = _mobservable2['default'].makeReactive({
+	var mouseHandlerx = {
+	  Abackground: '#000',
+	  Aborder: 'green',
+	  Acolor: '#d5f765',
+	  Asize: 12,
+	  Bbackground: '#000',
+	  Bborder: 'green',
+	  Bcolor: '#d5f765',
+	  Bsize: 12,
+	  Cbackground: '#000',
+	  Cborder: 'green',
+	  Ccolor: '#d5f765',
+	  Csize: 12,
+	  Sbackground: '#000',
+	  Sborder: 'green',
+	  Scolor: '#d5f765',
+	  Ssize: 12,
+	  rSbackground: 'green',
+	  rSborder: 'lightgreen',
+	  rScolor: 'yellow',
 	  2100: 'gold',
 	  550: '#01afaf',
 	  55010: 'blue',
@@ -883,10 +957,14 @@
 	  260: 'darkred',
 	  270: 'darkred',
 	  27: '#000000'
-	});
+	};
+
+	var mouseHandler = _mobservable2['default'].makeReactive(mouseHandlerx);
 
 	var data = _mobservable2['default'].makeReactive({
 	  group: 'solo',
+	  timerSize: '18',
+	  groupBackup: 'solo',
 	  chatMessage: '',
 	  chatArray: [],
 	  information: 'click ROLL to begin playing.',
@@ -895,7 +973,8 @@
 	  dd2: 0,
 	  dd3: 0,
 	  dd4: 0,
-	  goal2: 20
+	  goal2: 20,
+	  COUNTDOWN: 10
 	});
 
 	data.ddChange1 = function (x) {
@@ -921,8 +1000,8 @@
 	  scoreDisplay2: 'none'
 	});
 
-	var B2X = (function (_React$Component17) {
-	  _inherits(B2X, _React$Component17);
+	var B2X = (function (_React$Component18) {
+	  _inherits(B2X, _React$Component18);
 
 	  // shouldComponentUpdate = shouldPureComponentUpdate;
 
@@ -1005,10 +1084,6 @@
 	      if (_this18.data.group !== 'GroupA') {
 	        var _name3 = _this18.state.name;
 	        var group = _this18.data.group;
-	        DES_ws.send('CO#$42,' + group + ',' + _name3 + ',GroupA');
-	        _this18.data.group = 'GroupA';
-	        _this18.data.chatMessage = '';
-	        _this18.data.chatArray = [];
 	      }
 	    };
 
@@ -1016,10 +1091,6 @@
 	      if (_this18.data.group !== 'GroupB') {
 	        var _name4 = _this18.state.name;
 	        var group = _this18.data.group;
-	        DES_ws.send('CO#$42,' + group + ',' + _name4 + ',GroupB');
-	        _this18.data.group = 'GroupB';
-	        _this18.data.chatMessage = '';
-	        _this18.data.chatArray = [];
 	      }
 	    };
 
@@ -1027,10 +1098,6 @@
 	      if (_this18.data.group !== 'GroupC') {
 	        var _name5 = _this18.state.name;
 	        var group = _this18.data.group;
-	        DES_ws.send('CO#$42,' + group + ',' + _name5 + ',GroupC');
-	        _this18.data.group = 'GroupC';
-	        _this18.data.chatMessage = '';
-	        _this18.data.chatArray = [];
 	      }
 	    };
 
@@ -1230,8 +1297,12 @@
 	    };
 
 	    this.showSolutionsHandler = function () {
+	      _this18.data.groupBackup = _this18.data.group;
+	      _this18.data.information = '';
+	      var playGroup = _this18.data.groupBackup;
+	      _this18.data.group = 'solo';
 	      var name = _this18.state.name;
-	      var group = _this18.data.group;
+	      DES_ws.send('DO#$42,' + playGroup + ',' + name + ',solo');
 	      var a = _this18.state.d1;
 	      var b = _this18.state.d2;
 	      var c = _this18.state.d3;
@@ -1244,35 +1315,45 @@
 	        impossibleDisplay: 'none',
 	        scoreDisplay2: 'none',
 	        showSolutionsButton: 'none',
-	        hideSolutionsButton: 'inline'
+	        hideSolutionsButton: 'inline',
+	        DS_T: '- pause -'
 	      });
 	    };
 
 	    this.showSolutionsHandler_2 = function () {
+	      _this18.data.information = '';
+	      _this18.data.groupBackup = _this18.data.group;
+	      var playGroup = _this18.data.groupBackup;
+	      _this18.data.group = 'solo';
 	      var name = _this18.state.name;
-	      var group = _this18.data.group;
+	      DES_ws.send('DO#$42,' + playGroup + ',' + name + ',solo');
 	      var goal2 = _this18.data.goal2;
 	      var a = _this18.data.dd1;
 	      var b = _this18.data.dd2;
 	      var c = _this18.data.dd3;
 	      var d = _this18.data.dd4;
-	      DES_ws.send('CZ#$42,' + group + ',' + name + ',' + a + ',' + b + ',' + c + ',' + d + ',' + goal2);
+	      DES_ws.send('CZ#$42,solo,' + name + ',' + a + ',' + b + ',' + c + ',' + d + ',' + goal2);
 	      _this18.setState({
 	        rollDisplay: 'none',
 	        scoreDisplay: 'none',
 	        impossibleDisplay: 'none',
 	        scoreDisplay2: 'none',
 	        showSolutionsButton: 'none',
-	        hideSolutionsButton: 'inline'
+	        hideSolutionsButton: 'inline',
+	        DS_T: '- pause -'
 	      });
 	    };
 
 	    this.hideSolutionsHandler = function () {
-	      var _this = _this18;
+	      _this18.data.group = _this18.data.groupBackup;
+	      _this18.data.timerSize = 18;
+	      var group = _this18.data.groupBackup;
+	      var name = _this18.state.name;
+	      DES_ws.send('DO#$42,' + group + ',' + name + ',' + group);
 	      _this18.data.information = 'To resume play, click ROLL (or wait until another group member starts the next round).';
 	      _this18.setState({
-	        message: 'Play forfeited for this round by opening Solutions',
-	        DS_t: 'Please wait for the next roll. You displayed solutions.',
+	        message: 'Solutions were displayed. Play can resume on the next round. ',
+	        DS_t: 'No play until the next round. Solutions were displayed.',
 	        showSolutionsButton: 'inline',
 	        hideSolutionsButton: 'none',
 	        rollDisplay: 'inline',
@@ -1326,10 +1407,51 @@
 	        display: z, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20 };
 	    };
 
+	    this.style8 = function (x, y, z) {
+	      return { backgroundColor: x, textAlign: 'left', borderColor: y,
+	        color: z, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 12 };
+	    };
+
+	    this.style9 = function (x, y, z) {
+	      return { backgroundColor: x, textAlign: 'left', borderColor: y, color: z,
+	        borderRadius: 6, paddingTop: 1.1, paddingBottom: 0.4, marginRight: 3,
+	        marginLeft: 18, fontSize: _this18.state.timeSize };
+	    };
+
 	    this.render = function () {
+	      var styleGroupA = _this18.mouse.styleGroupA;
+	      var styleGroupB = _this18.mouse.styleGroupB;
+	      var styleGroupC = _this18.mouse.styleGroupC;
+	      var styleGroupS = _this18.mouse.styleGroupS;
+	      var Abackground = '#000';
+	      var Aborder = 'green';
+	      var Acolor = '#d5f765';
+	      var Bbackground = '#000';
+	      var Bborder = 'green';
+	      var Bcolor = '#d5f765';
+	      var Cbackground = '#000';
+	      var Cborder = 'green';
+	      var Ccolor = '#d5f765';
+	      var Sbackground = '#000';
+	      var Sborder = 'green';
+	      var Scolor = '#d5f765';
+	      var rAbackground = 'green';
+	      var rAborder = 'lightgreen';
+	      var rAcolor = 'yellow';
+	      var rBbackground = 'green';
+	      var rBborder = 'lightgreen';
+	      var rBcolor = 'yellow';
+	      var rCbackground = 'green';
+	      var rCborder = 'lightgreen';
+	      var rCcolor = 'yellow';
+	      var rSbackground = 'green';
+	      var rSborder = 'lightgreen';
+	      var rScolor = 'yellow';
 	      console.log(_this18);
 	      count += 1;
 	      console.log('The count is now ' + count + ' and the color is ' + _this18.mouse[15]);
+	      var data = _this18.data;
+	      var timerSize = _this18.data.timerSize;
 	      var information = _this18.data.information;
 	      var dd1 = _this18.data.dd1;
 	      var dd2 = _this18.data.dd2;
@@ -1442,6 +1564,7 @@
 	      var cr27 = _this18.mouse[27];
 	      var cr270 = _this18.mouse[270];
 	      var cr100 = _this18.mouse[100];
+
 	      var rulesDisplayOn = _this18.disp.rulesDisplayOn;
 	      var rulesDisplayOff = _this18.disp.rulesDisplayOff;
 	      var toggleRules = _this18.disp.toggleRules;
@@ -1451,7 +1574,7 @@
 	      return _react2['default'].createElement(
 	        'div',
 	        { style: { backgroundColor: dynB, color: dynC, fontSize: dynF,
-	            display: rightDisplay, width: '100%', height: '100%' } },
+	            display: rightDisplay, width: '100%', height: '200%' } },
 	        _react2['default'].createElement(
 	          'div',
 	          { style: { width: '35%', float: 'right', display: startDisplay } },
@@ -1724,7 +1847,7 @@
 	            _react2['default'].createElement(
 	              'button',
 	              { style: { backgroundColor: '#000', color: '#f00', marginLeft: 5, borderColor: '#93b1f2' } },
-	              group,
+	              _this18.data.group,
 	              ' '
 	            ),
 	            'Sides:',
@@ -1757,40 +1880,148 @@
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.handleGroupA, style: { backgroundColor: cr15, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
-	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10 },
+	            { onClick: function () {
+	                _this18.data.group = 'GroupA';
+	                _this18.data.chatMessage = '';
+	                _this18.data.chatArray = [];
+	                _this18.mouse.Bbackground = Bbackground;
+	                _this18.mouse.Bborder = Bborder;
+	                _this18.mouse.Bcolor = Bcolor;
+	                _this18.mouse.Cbackground = Cbackground;
+	                _this18.mouse.Cborder = Cborder;
+	                _this18.mouse.Ccolor = Ccolor;
+	                _this18.mouse.Sbackground = Sbackground;
+	                _this18.mouse.Sborder = Sborder;
+	                _this18.mouse.Scolor = Scolor;
+	                DES_ws.send('CO#$42,' + group + ',' + name + ',GroupA');
+	              },
 	              onMouseEnter: function () {
-	                _this18.mouse[15] = 'gold';
-	              }, onMouseLeave: function () {
-	                _this18.mouse[15] = base;
-	              } },
+	                if (group !== 'GroupA') {
+	                  _this18.mouse.Abackground = rAbackground;
+	                  _this18.mouse.Aborder = rAborder;
+	                  _this18.mouse.Acolor = rAcolor;
+	                }
+	              },
+	              onMouseLeave: function () {
+	                if (group !== 'GroupA') {
+	                  _this18.mouse.Abackground = Abackground;
+	                  _this18.mouse.Aborder = Aborder;
+	                  _this18.mouse.Acolor = Acolor;
+	                }
+	              },
+	              style: _this18.style8(_this18.mouse.Abackground, _this18.mouse.Aborder, _this18.mouse.Acolor) },
 	            'GroupA'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onMouseEnter: function () {
-	                _this18.mouse[11] = 'gold';
-	              }, onMouseLeave: function () {
-	                _this18.mouse[11] = base;
+	            { onClick: function () {
+	                _this18.data.group = 'GroupB';
+	                _this18.data.chatMessage = '';
+	                _this18.data.chatArray = [];
+	                _this18.mouse.Abackground = Bbackground;
+	                _this18.mouse.Aborder = Bborder;
+	                _this18.mouse.Acolor = Bcolor;
+	                _this18.mouse.Cbackground = Cbackground;
+	                _this18.mouse.Cborder = Cborder;
+	                _this18.mouse.Ccolor = Ccolor;
+	                _this18.mouse.Sbackground = Sbackground;
+	                _this18.mouse.Sborder = Sborder;
+	                _this18.mouse.Scolor = Scolor;
+	                DES_ws.send('CO#$42,' + group + ',' + name + ',GroupB');
 	              },
-	              onClick: _this18.handleGroupB, style: { backgroundColor: cr11, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
-	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10 } },
+	              onMouseEnter: function () {
+	                if (group !== 'GroupB') {
+	                  _this18.mouse.Bbackground = rBbackground;
+	                  _this18.mouse.Bborder = rBborder;
+	                  _this18.mouse.Ncolor = rBcolor;
+	                }
+	              },
+	              onMouseLeave: function () {
+	                if (group !== 'GroupB') {
+	                  _this18.mouse.Bbackground = Bbackground;
+	                  _this18.mouse.Bborder = Bborder;
+	                  _this18.mouse.Bcolor = Bcolor;
+	                }
+	              },
+	              style: _this18.style8(_this18.mouse.Bbackground, _this18.mouse.Bborder, _this18.mouse.Bcolor) },
 	            'GroupB'
 	          ),
 	          _react2['default'].createElement(
 	            'button',
-	            { onClick: _this18.handleGroupC, style: { backgroundColor: cr12, paddingTop: 1.1, paddingLeft: 12, paddingRight: 12,
-	                paddingBottom: 0.9, marginRight: 3, marginLeft: 10 },
+	            { onClick: function () {
+	                _this18.data.group = 'GroupC';
+	                _this18.data.chatMessage = '';
+	                _this18.data.chatArray = [];
+	                _this18.mouse.Bbackground = Bbackground;
+	                _this18.mouse.Bborder = Bborder;
+	                _this18.mouse.Bcolor = Bcolor;
+	                _this18.mouse.Abackground = Abackground;
+	                _this18.mouse.Aborder = Aborder;
+	                _this18.mouse.Acolor = Acolor;
+	                _this18.mouse.Sbackground = Sbackground;
+	                _this18.mouse.Sborder = Sborder;
+	                _this18.mouse.Scolor = Scolor;
+	                DES_ws.send('CO#$42,' + group + ',' + name + ',GroupC');
+	              },
 	              onMouseEnter: function () {
-	                _this18.mouse[12] = 'gold';
-	              }, onMouseLeave: function () {
-	                _this18.mouse[12] = base;
-	              } },
+	                if (group !== 'GroupC') {
+	                  _this18.mouse.Cbackground = rCbackground;
+	                  _this18.mouse.Cborder = rCborder;
+	                  _this18.mouse.Ccolor = rCcolor;
+	                }
+	              },
+	              onMouseLeave: function () {
+	                if (group !== 'GroupC') {
+	                  _this18.mouse.Cbackground = Cbackground;
+	                  _this18.mouse.Cborder = Cborder;
+	                  _this18.mouse.Ccolor = Ccolor;
+	                }
+	              },
+	              style: _this18.style8(_this18.mouse.Cbackground, _this18.mouse.Cborder, _this18.mouse.Ccolor) },
 	            'GroupC'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { onClick: function () {
+	                _this18.data.group = 'solo';
+	                _this18.data.chatMessage = '';
+	                _this18.data.chatArray = [];
+	                _this18.mouse.Abackground = Abackground;
+	                _this18.mouse.Aborder = Aborder;
+	                _this18.mouse.Acolor = Acolor;
+	                _this18.mouse.Bbackground = Bbackground;
+	                _this18.mouse.Bborder = Bborder;
+	                _this18.mouse.Bcolor = Bcolor;
+	                _this18.mouse.Cbackground = Cbackground;
+	                _this18.mouse.Cborder = Cborder;
+	                _this18.mouse.Ccolor = Ccolor;
+	                DES_ws.send('CO#$42,' + group + ',' + name + ',GroupA');
+	              },
+	              onMouseEnter: function () {
+	                if (group !== 'solo') {
+	                  _this18.mouse.Sbackground = rSbackground;
+	                  _this18.mouse.Sborder = rSborder;
+	                  _this18.mouse.Scolor = rScolor;
+	                }
+	              },
+	              onMouseLeave: function () {
+	                if (group !== 'solo') {
+	                  _this18.mouse.Sbackground = Sbackground;
+	                  _this18.mouse.Sborder = Sborder;
+	                  _this18.mouse.Scolor = Scolor;
+	                }
+	              },
+	              style: _this18.style8(_this18.mouse.Sbackground, _this18.mouse.Sborder, _this18.mouse.Scolor) },
+	            'solo'
 	          ),
 	          _react2['default'].createElement('br', null),
 	          _react2['default'].createElement(GroupNew, { key: 'GroupNew', setGroup: _this18.setGroup, name: _this18.state.name }),
 	          _react2['default'].createElement('br', null),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { width: '60%' } },
+	            _react2['default'].createElement(Messages, { information: information })
+	          ),
 	          _react2['default'].createElement(
 	            'div',
 	            { style: { paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 20 } },
@@ -1808,16 +2039,14 @@
 	            ' ',
 	            _this18.state.str4
 	          ),
-	          _react2['default'].createElement(Messages, { information: information }),
 	          _react2['default'].createElement(
 	            'div',
-	            { style: { width: '60%', backgroundColor: dynB, padding: 0 } },
-	            ' '
-	          ),
-	          _react2['default'].createElement(
-	            'button',
-	            { style: _this18.style6(cr2100, timerDisplay) },
-	            _this18.state.DS_T
+	            { style: { width: '60%', backgroundColor: dynB, textAlign: 'left', padding: 0 } },
+	            _react2['default'].createElement(
+	              'button',
+	              { style: _this18.style9('#2C2106', '#000', '#F8EDD2') },
+	              _this18.state.DS_T
+	            )
 	          ),
 	          _react2['default'].createElement(
 	            'div',
@@ -2143,7 +2372,14 @@
 	            _react2['default'].createElement(
 	              'p',
 	              null,
-	              'In this section, you can choose the numbers of sides of each of the dice, and you can also select the goal. For example, you could select 6,6,6, and 6 for the dice and 10 for the goal. A roll of 1,1,2,3 would have a solution:',
+	              'In this section, you can change the number of seconds you have for each computation. If you don\'t change it, the time interval will stay at the default value of 10 seconds. ',
+	              _react2['default'].createElement('br', null),
+	              _react2['default'].createElement('br', null),
+	              _react2['default'].createElement(ChangeCountdown, null),
+	              _this18.data.COUNTDOWN,
+	              _react2['default'].createElement('br', null),
+	              _react2['default'].createElement('br', null),
+	              'You can also choose the numbers of sides of each of the dice, and you can also select the goal. For example, you could select 6,6,6, and 6 for the dice and 10 for the goal. A roll of 1,1,2,3 would have a solution:',
 	              _react2['default'].createElement('br', null),
 	              '1 + 1 = 2',
 	              _react2['default'].createElement('br', null),
@@ -2156,7 +2392,7 @@
 	            _react2['default'].createElement(
 	              'p',
 	              null,
-	              'Changing parameters does not change them for other group members. You can use the chat window to coordinate a change. If other group members don\'t know that you modified the parameters in your browser, they might be very surprised to see you get a point for computing, say, the number \'18\'.'
+	              'Changing parameters does not change them for other group members. You can use the chat window, email, telephone, or whatever to coordinate a change with other players. If other group members don\'t know that you modified the parameters in your browser, they might be very surprised to see you get a point for computing, say, the number \'18\'.'
 	            ),
 	            _react2['default'].createElement('br', null),
 	            'Sides:',
@@ -2246,7 +2482,7 @@
 	      hidden2: true,
 	      togDice: false,
 	      name: "",
-	      DS_T: "PAUSE",
+	      DS_T: "- pause -",
 	      N: 0,
 	      impossibleClicker: "a@F$Uy&imp",
 	      scoreClicker: "a@F$Uy&sc",
@@ -2323,7 +2559,7 @@
 	        case "CC#$42":
 	          // Not broadcast. Login message.
 	          if (extra === '%#8*&&^1#$%^') {
-	            that.setState({ info: 'You entedarkred a name which is already taken' });
+	            that.setState({ info: 'You entered a name which is already taken' });
 	            setTimeout(function () {
 	              document.location.reload(false);
 	            }, 2000);
@@ -2366,7 +2602,7 @@
 	            score: false,
 	            impossible: false,
 	            interrupt: false,
-	            DS_T: 'Click SCORE! to score points.',
+	            DS_T: '- pause -',
 	            numDisplay: 'inline',
 	            impossibleDisplay: 'inline',
 	            rollDisplay: 'inline',
@@ -2501,10 +2737,11 @@
 	        case "CY#$42":
 	          // Triggedarkred by clicking "SCORE!".
 	          that.data.information = '';
+	          that.data.timerSize = 35;
 	          that.setState({
 	            scoreClicker: extra,
 	            score: true,
-	            DS_T: 10,
+	            DS_T: that.data.COUNTDOWN,
 	            impossibleDisplay: 'none',
 	            solutionsDisplay: 'none',
 	            paramsDisplay: 'none',
@@ -2526,11 +2763,12 @@
 
 	        case "XY#$42":
 	          // Triggedarkred by clicking "SCORE!" after "IMPOSSIBLE".
+	          that.data.information = sender + ' clicked SCORE!.';
 	          that.setState({
 	            interruptClicker: extra,
 	            interrupt: true,
 	            message: '',
-	            DS_T: 10,
+	            DS_T: that.data.COUNTDOWN, // Default is set at 10 in data.
 	            scoreDisplay2: 'none',
 	            solutionsDisplay: 'none',
 	            paramsDisplay: 'none',
@@ -2597,6 +2835,7 @@
 	    setInterval(function () {
 	      var name = _this18.state.name;
 	      var gr = _this18.data.group;
+	      var COUNTDOWN = _this18.data.COUNTDOWN;
 	      var scoreClicker = _this18.state.scoreClicker;
 	      var impossibleClicker = _this18.state.impossibleClicker;
 	      var interruptClicker = _this18.state.interruptClicker;
@@ -2635,11 +2874,11 @@
 
 	        if (z) {
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
-	          DES_ws.send('CH#$42,' + gr + ',' + name + ',10 seconds expired. Deduct one point from ' + scoreClicker + ', ');
+	          DES_ws.send('CH#$42,' + gr + ',' + name + ',' + COUNTDOWN + ' seconds expired. ' + scoreClicker + ' loses one point.');
 	        } else if (z2) {
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
 	          DES_ws.send('CG#$42,' + gr + ',' + interruptClicker + ',-1');
-	          DES_ws.send('CH#$42,' + gr + ',' + name + ',60 seconds expired. One point for ' + impossibleClicker + ', ');
+	          DES_ws.send('CH#$42,' + gr + ',' + name + ',' + interruptClicker + ' did not show a solution; one was point deducted. One point for ' + impossibleClicker + ', ');
 	        } else if (z3) {
 	          DES_ws.send('CG#$42,' + gr + ',' + interruptClicker + ',-2');
 	          DES_ws.send('CH#$42,' + gr + ',' + impossibleClicker + ',\n                      ' + impossibleClicker + ' forfeits two points for blocking with SCORE!,\n                      ' + impossibleClicker + ' clicked IMPOSSIBLE and blocked others from solving by clicking SCORE!\n       ');
@@ -2702,6 +2941,7 @@
 	    value: function newNums(result, str, test, numbers) {
 	      var j = 0;
 	      var gr = this.data.group;
+	      var COUNTDOWN = this.data.COUNTDOWN;
 	      var ar = [];
 	      var clock = '';
 	      var name = this.state.name;
@@ -2723,7 +2963,7 @@
 	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',' + ar[2] + ',');
 	        this.mouse[2] = 'yellow';
 	        if (test2) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10,To score in this computation: Use the yellow background number.');
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',' + COUNTDOWN + ',To score in this computation: Use the yellow background number.');
 	        } else {
 	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!,Not competing.');
 	        }
@@ -2743,7 +2983,7 @@
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',1');
 	          DES_ws.send('CG#$42,' + gr + ',' + impossibleClicker + ',-2');
 	        } else if (test2) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',10, ');
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ',' + COUNTDOWN + ', ');
 	        } else {
 	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Did not click SCORE!, ');
 	        }
@@ -2775,7 +3015,7 @@
 	        }
 
 	        if (z && test2 && result !== goal) {
-	          DES_ws.send('CK#$42,' + gr + ',' + name + ',Deduct one point from ' + name + ',The result is not \'20\'');
+	          DES_ws.send('CK#$42,' + gr + ',' + name + ', ' + name + ' loses one point. The result is not \'20\'');
 	          DES_ws.send('CR#$42,' + gr + ',' + name + ',' + name);
 	          DES_ws.send('CG#$42,' + gr + ',' + name + ',-1');
 	        }
@@ -2822,6 +3062,18 @@
 
 	var B2 = _mobservable2['default'].reactiveComponent(B2X);
 	_react2['default'].render(_react2['default'].createElement(B2, { key: 'B2' }), document.getElementById('divSix'));
+
+	/*
+	    let Abackground = this.mouse.Abackground;
+	    let Aborder = this.mouse.Aborder;
+	    let Acolor = this.mouse.Acolor;
+	    let Bbackground = this.mouse.Bbackground;
+	    let Bborder = this.mouse.Bborder;
+	    let Bcolor = this.mouse.Bcolor;
+	    let Cbackground = this.mouse.Cbackground;
+	    let Cborder = this.mouse.Cborder;
+	    let Ccolor = this.mouse.Ccolor;
+	*/
 
 /***/ },
 /* 2 */

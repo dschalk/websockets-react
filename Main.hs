@@ -71,6 +71,13 @@ newGroup :: Text -> Text -> Client -> Client
 newGroup name group (a, b, c, d)   | name == a  = (a, 0, group, d)
                                    | otherwise = (a, b, c, d)
 
+newGroupKeepScore :: Text -> Text -> Client -> Client
+newGroupKeepScore name group (a, b, c, d)   | name == a  = (a, b, group, d)
+                                   | otherwise = (a, b, c, d)
+
+changeGroupKeepScore :: Text -> Text -> ServerState -> ServerState
+changeGroupKeepScore name group = map (newGroupKeepScore name group)
+
 changeGroup :: Text -> Text -> ServerState -> ServerState
 changeGroup name group = map (newGroup name group)
 
@@ -159,7 +166,7 @@ talk conn state (_, _, _, _) = forever $ do
     let extra = T.pack (msgArray !! 3)
     let extraNum = read (msgArray !! 3) :: Int
 
-    l <- initLogger
+    l <- initLogger     -- See XXXXX at the end of this file.
 
     if "CA#$42" `T.isPrefixOf` msg
         then
@@ -213,6 +220,23 @@ talk conn state (_, _, _, _) = forever $ do
                 broadcast msg subSt
                 broadcast ("CB#$42," `mappend` group `mappend` ","
                     `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState subSt))) subSt
+
+    else if "DO#$42" `T.isPrefixOf` msg
+        then
+            mask_ $ do
+                old <- atomically $ takeTMVar state
+                let new = changeGroupKeepScore sender extra old
+                atomically $ putTMVar state new
+                let subState1 = subState sender group new
+                let subState2 = subState sender extra new
+                let x = "CB#$42," `mappend` group `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState subState1))
+                let y = "CB#$42," `mappend` extra `mappend` "," `mappend` sender `mappend` "," `mappend` T.concat (intersperse "<br>" (textState subState2))
+                broadcast y subState2
+                if group /= "solo"
+                   then
+                   broadcast x subState1
+                   else
+                   return ()
 
     else if "CO#$42" `T.isPrefixOf` msg
         then

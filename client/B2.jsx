@@ -86,14 +86,19 @@ class Number1 extends React.Component {
   constructor(props) {
     super(props);
   }
-  handleEnter (event) {
+
+  handleChange = (event) => {
+    this.props.change(event.target.value);
+  }
+
+  handleEnter = (event) => {
     let s1 = event.target.value;
     if ( event.keyCode == 13 && s1 != '') {
       this.props.change(s1);
       event.target.value = '';
     }
   }
-  click (event) {
+  click = (event) => {
     let s1 = event.target.value;
     if (s1 != '') {
       this.props.change(s1);
@@ -102,7 +107,7 @@ class Number1 extends React.Component {
   }
   render = () => {
     return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          <input type="text" onKeyDown={this.handleEnter} onChange={this.handleChange} onClick={this.click}
             style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
               fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
     );
@@ -113,14 +118,19 @@ class Number2 extends React.Component {
   constructor(props) {
     super(props);
   }
-  handleEnter (event) {
+
+  handleChange = (event) => {
+    this.props.change(event.target.value);
+  }
+
+  handleEnter = (event) => {
     let s2 = event.target.value;
     if ( event.keyCode == 13 && s2 != '') {
       this.props.change(s2);
       event.target.value = '';
     }
   }
-  click (event) {
+  click = (event) => {
     let s2 = event.target.value;
     if (s2 != '') {
       this.props.change(s2);
@@ -129,7 +139,7 @@ class Number2 extends React.Component {
   }
   render = () => {
     return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          <input type="text" onKeyDown={this.handleEnter} onChange={this.handleChange} onClick={this.click}
             style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
               fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
     );
@@ -140,6 +150,11 @@ class Number3 extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  handleChange = (event) => {
+    this.props.change(event.target.value);
+  }
+
   handleEnter (event) {
     let s3 = event.target.value;
     if ( event.keyCode == 13 && s3 != '') {
@@ -156,7 +171,7 @@ class Number3 extends React.Component {
   }
   render = () => {
     return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          <input type="text" onKeyDown={this.handleEnter.bind(this)} onChange={this.handleChange} onClick={this.click.bind(this)}
             style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
               fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
     );
@@ -167,6 +182,11 @@ class Number4 extends React.Component {
   constructor(props) {
     super(props);
   }
+  handleChange = (event) => {
+
+    this.props.change(event.target.value);
+  }
+
   handleEnter (event) {
     let s4 = event.target.value;
     if ( event.keyCode == 13 && s4 != '') {
@@ -183,7 +203,7 @@ class Number4 extends React.Component {
   }
   render = () => {
     return (
-          <input type="text" onKeyDown={this.handleEnter.bind(this)} onClick={this.click.bind(this)}
+          <input type="text" onKeyDown={this.handleEnter.bind(this)} onChange={this.handleChange} onClick={this.click.bind(this)}
             style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
               fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
     );
@@ -352,6 +372,38 @@ class SetGoal extends React.Component {
   }
 };
 
+class ChangeCountdown extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  handleChange = (event) => {
+    data.COUNTDOWN = event.target.value;
+  }
+
+  handleEnter = (event) => {
+    let cd = event.target.value;
+    if ( event.keyCode == 13 && cd != '') {
+      data.COUNTDOWN = cd;
+      event.target.value = '';
+    }
+  }
+  click = (event) => {
+    let cd = event.target.value;
+    if (cd != '') {
+      data.COUNTDOWN = cd;
+      event.target.value = '';
+    }
+  }
+  render = () => {
+    return (
+          <input type="text" onKeyDown={this.handleEnter} onChange={this.handleChange} onClick={this.click}
+            style={{paddingTop: 1.1, paddingBottom: 0.9, paddingLeft: 1, paddingRight: 1, color: '#ff0000', 
+              fontSize: 22,  backgroundColor: '#d8d17d', marginLeft: 8, width: 25, textAlign: 'center' }} />
+    );
+  }
+};
+
 class ChangeColor extends React.Component {
   constructor(props) {
     super(props);
@@ -421,6 +473,9 @@ class Login extends React.Component {
   }
 
   handleEnter = (event) => {
+    mouseHandler.Sbackground = mouseHandler.rSbackground;
+    mouseHandler.Sborder  = mouseHandler.rSborder;
+    mouseHandler.Scolor = mouseHandler.rScolor;
     if (this.props.name == '') {
       this.props.change({
         info: ``
@@ -480,14 +535,34 @@ class Messages extends React.Component {
   }
   render = () => {
     return (
-      <div style={{fontSize: 22}}>
-        {this.props.information}
-      </div>
+        <button style={{fontSize: 17, marginLeft: 7, backgroundColor: '#2C2106', color: '#F8EDD2', 
+          textAlign: 'left', borderColor: '#000', borderRadius: 12 }}>
+                    {this.props.information}
+        </button>
     );
   }
 };
 
-let mouseHandler = mobservable.makeReactive({
+let mouseHandlerx = {
+    Abackground: '#000',
+    Aborder: 'green',
+    Acolor: '#d5f765',
+    Asize: 12,
+    Bbackground: '#000',
+    Bborder: 'green',
+    Bcolor: '#d5f765',
+    Bsize: 12,
+    Cbackground: '#000',
+    Cborder: 'green',
+    Ccolor: '#d5f765',
+    Csize: 12,
+    Sbackground: '#000',
+    Sborder: 'green',
+    Scolor: '#d5f765',
+    Ssize: 12,
+    rSbackground: 'green',
+    rSborder: 'lightgreen',
+    rScolor: 'yellow',
     2100: 'gold',
     550: '#01afaf',
     55010: 'blue',
@@ -554,10 +629,14 @@ let mouseHandler = mobservable.makeReactive({
     260: 'darkred',
     270: 'darkred',
     27: '#000000',
-});
+};
+
+let mouseHandler = mobservable.makeReactive(mouseHandlerx);
 
 let data = mobservable.makeReactive({
   group: 'solo',
+  timerSize: '18',
+  groupBackup: 'solo',
   chatMessage: '',
   chatArray: [],
   information: 'click ROLL to begin playing.',
@@ -567,6 +646,7 @@ let data = mobservable.makeReactive({
   dd3: 0,
   dd4: 0,
   goal2: 20,
+  COUNTDOWN: 10
 });
 
 data.ddChange1 = x => { data.dd1 = x };
@@ -625,7 +705,7 @@ class B2X extends React.Component {
         hidden2: true,
         togDice: false,
         name: "",
-        DS_T: "PAUSE",
+        DS_T: "- pause -",
         N: 0,
         impossibleClicker: "a@F$Uy&imp",
         scoreClicker: "a@F$Uy&sc",
@@ -678,7 +758,7 @@ DES_ws.onmessage = function(event) {
     let l = x.length;
     let str = '';
       for (let i=5; i<l; i+=1) {
-        str = str + ', ' +x[i];
+        str = str + ', ' + x[i];
       }
     return (x[4] + ' ' + str);
   }
@@ -701,7 +781,7 @@ DES_ws.onmessage = function(event) {
       switch (d2) {
           case "CC#$42":                         // Not broadcast. Login message.
             if (extra === '%#8*&&^1#$%^')  {
-              that.setState({info: `You entedarkred a name which is already taken`})
+              that.setState({info: `You entered a name which is already taken`})
               setTimeout( function () {
                 document.location.reload(false);
               },2000);
@@ -744,7 +824,7 @@ DES_ws.onmessage = function(event) {
                 score: false,
                 impossible: false,
                 interrupt: false,
-                DS_T: 'Click SCORE! to score points.',
+                DS_T: '- pause -',
                 numDisplay: 'inline',
                 impossibleDisplay: 'inline',
                 rollDisplay: 'inline',
@@ -876,10 +956,11 @@ DES_ws.onmessage = function(event) {
 
           case "CY#$42": // Triggedarkred by clicking "SCORE!".
             that.data.information = '';
+            that.data.timerSize = 35;
             that.setState( {
               scoreClicker: extra,
               score: true,
-              DS_T: 10,
+              DS_T: that.data.COUNTDOWN,
               impossibleDisplay: 'none',
               solutionsDisplay: 'none',
               paramsDisplay: 'none',
@@ -891,7 +972,7 @@ DES_ws.onmessage = function(event) {
               scoreDisplay: 'none',
               rollDisplay: 'none',
             } )
-            if (extra !== name) {      
+            if (extra !== name) {
 				that.setState({numDisplay: 'none'}) // Players can see calculations after wait.
                 setTimeout ( () => {
                   that.setState({solutionsDisplay: 'inline'});
@@ -900,11 +981,12 @@ DES_ws.onmessage = function(event) {
           break;
 
           case "XY#$42":              // Triggedarkred by clicking "SCORE!" after "IMPOSSIBLE".
+            that.data.information = sender + ' clicked SCORE!.';
             that.setState({
               interruptClicker: extra,
               interrupt: true,
               message: '',
-              DS_T: 10,
+              DS_T: that.data.COUNTDOWN,    // Default is set at 10 in data.
               scoreDisplay2: 'none',
               solutionsDisplay: 'none',
               paramsDisplay: 'none',
@@ -968,6 +1050,7 @@ DES_ws.onmessage = function(event) {
   setInterval( () => {
     let name = this.state.name;
     let gr = this.data.group;
+    let COUNTDOWN = this.data.COUNTDOWN;
     let scoreClicker = this.state.scoreClicker;
 		let impossibleClicker = this.state.impossibleClicker;
 		let interruptClicker = this.state.interruptClicker
@@ -1007,13 +1090,13 @@ DES_ws.onmessage = function(event) {
 
 			if (z) {
         	DES_ws.send(`CG#$42,${gr},${name},-1`);
-          DES_ws.send(`CH#$42,${gr},${name},10 seconds expired. Deduct one point from ${scoreClicker}, `);
+          DES_ws.send(`CH#$42,${gr},${name},${COUNTDOWN} seconds expired. ${scoreClicker} loses one point.`);
       }
 
 			else if (z2) {
         	DES_ws.send(`CG#$42,${gr},${name},1`);
         	DES_ws.send(`CG#$42,${gr},${interruptClicker},-1`);
-          DES_ws.send(`CH#$42,${gr},${name},60 seconds expired. One point for ${impossibleClicker}, `);
+          DES_ws.send(`CH#$42,${gr},${name},${interruptClicker} did not show a solution; one was point deducted. One point for ${impossibleClicker}, `);
       }
 
       else if (z3) {
@@ -1103,10 +1186,6 @@ DES_ws.onmessage = function(event) {
       if (this.data.group !== 'GroupA') {
       let name = this.state.name;
       let group = this.data.group;
-      DES_ws.send( `CO#$42,${group},${name},GroupA` );
-      this.data.group = 'GroupA';
-      this.data.chatMessage = '';
-      this.data.chatArray = [];
     }
   }
 
@@ -1114,10 +1193,6 @@ DES_ws.onmessage = function(event) {
       if (this.data.group !== 'GroupB') {
       let name = this.state.name;
       let group = this.data.group;
-      DES_ws.send( `CO#$42,${group},${name},GroupB` );
-      this.data.group = 'GroupB';
-      this.data.chatMessage = '';
-      this.data.chatArray = [];
     }
   }
 
@@ -1125,10 +1200,6 @@ DES_ws.onmessage = function(event) {
       if (this.data.group !== 'GroupC') {
       let name = this.state.name;
       let group = this.data.group;
-      DES_ws.send( `CO#$42,${group},${name},GroupC` );
-      this.data.group = 'GroupC';
-      this.data.chatMessage = '';
-      this.data.chatArray = [];
     }
   }
 
@@ -1178,6 +1249,7 @@ DES_ws.onmessage = function(event) {
   newNums (result,str,test,numbers) {
     let j = 0;
     let gr = this.data.group;
+    let COUNTDOWN = this.data.COUNTDOWN;
     let ar = [];
     let clock = '';
     let name = this.state.name;
@@ -1199,7 +1271,7 @@ DES_ws.onmessage = function(event) {
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},${ar[2]},`);
       this.mouse[2] = 'yellow';
       if (test2) {
-        DES_ws.send( `CK#$42,${gr},${name},10,To score in this computation: Use the yellow background number.` );
+        DES_ws.send( `CK#$42,${gr},${name},${COUNTDOWN},To score in this computation: Use the yellow background number.` );
       }
       else {
         DES_ws.send( `CK#$42,${gr},${name},Did not click SCORE!,Not competing.` );
@@ -1223,7 +1295,7 @@ DES_ws.onmessage = function(event) {
         DES_ws.send( `CG#$42,${gr},${impossibleClicker},-2` );
       }
       else if (test2) {
-        DES_ws.send( `CK#$42,${gr},${name},10, ` );
+        DES_ws.send( `CK#$42,${gr},${name},${COUNTDOWN}, ` );
       }
       else {
         DES_ws.send( `CK#$42,${gr},${name},Did not click SCORE!, ` );
@@ -1257,7 +1329,7 @@ DES_ws.onmessage = function(event) {
       }
 
 			if (z && test2 && result !== goal) {
-          DES_ws.send( `CK#$42,${gr},${name},Deduct one point from ${name},The result is not '20'` );
+          DES_ws.send( `CK#$42,${gr},${name}, ${name} loses one point. The result is not '20'` );
           DES_ws.send( `CR#$42,${gr},${name},${name}` );
           DES_ws.send( `CG#$42,${gr},${name},-1` );
       }
@@ -1494,8 +1566,12 @@ DES_ws.onmessage = function(event) {
   }
 
   showSolutionsHandler = () => {
+      this.data.groupBackup = this.data.group;
+      this.data.information = '';
+      let playGroup = this.data.groupBackup;
+      this.data.group = 'solo';
       let name = this.state.name;
-      let group = this.data.group;
+      DES_ws.send( `DO#$42,${playGroup},${name},solo` );
       let a = this.state.d1;
       let b = this.state.d2;
       let c = this.state.d3;
@@ -1509,18 +1585,23 @@ DES_ws.onmessage = function(event) {
         scoreDisplay2: 'none',
         showSolutionsButton: 'none',
         hideSolutionsButton: 'inline',
+        DS_T: '- pause -'
       });
   }
 
   showSolutionsHandler_2 = () => {
+      this.data.information = '';
+      this.data.groupBackup = this.data.group;
+      let playGroup = this.data.groupBackup;
+      this.data.group = 'solo';
       let name = this.state.name;
-      let group = this.data.group;
+      DES_ws.send( `DO#$42,${playGroup},${name},solo` );
       let goal2 = this.data.goal2;
       let a = this.data.dd1;
       let b = this.data.dd2;
       let c = this.data.dd3;
       let d = this.data.dd4;
-      DES_ws.send(`CZ#$42,${group},${name},${a},${b},${c},${d},${goal2}`);
+      DES_ws.send(`CZ#$42,solo,${name},${a},${b},${c},${d},${goal2}`);
       this.setState({
         rollDisplay: 'none',
         scoreDisplay: 'none',
@@ -1528,15 +1609,20 @@ DES_ws.onmessage = function(event) {
         scoreDisplay2: 'none',
         showSolutionsButton: 'none',
         hideSolutionsButton: 'inline',
+        DS_T: '- pause -',
       });
   }
 
   hideSolutionsHandler = () => {
-    let _this = this;
+    this.data.group = this.data.groupBackup;
+    this.data.timerSize = 18;
+    let group = this.data.groupBackup;
+    let name = this.state.name;
+    DES_ws.send( `DO#$42,${group},${name},${group}` );
     this.data.information = 'To resume play, click ROLL (or wait until another group member starts the next round).';
     this.setState({
-        message: 'Play forfeited for this round by opening Solutions',
-        DS_t: 'Please wait for the next roll. You displayed solutions.',
+        message: 'Solutions were displayed. Play can resume on the next round. ',
+        DS_t: 'No play until the next round. Solutions were displayed.',
         showSolutionsButton: 'inline',
         hideSolutionsButton: 'none',
         rollDisplay: 'inline',
@@ -1583,10 +1669,61 @@ DES_ws.onmessage = function(event) {
           display: z, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 20}};
 
 
+    style8 = (x,y,z) => {return {backgroundColor: x, textAlign: 'left', borderColor: y,
+          color: z, borderRadius: 10, paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 12, fontSize: 12}};
+
+
+
+    style9 = (x,y,z) => {return {backgroundColor: x, textAlign: 'left', borderColor: y, color: z, 
+      borderRadius: 6, paddingTop: 1.1, paddingBottom: 0.4, marginRight: 3, 
+      marginLeft: 18, fontSize: this.state.timeSize}};
+
+/*
+    let Abackground = this.mouse.Abackground;
+    let Aborder = this.mouse.Aborder;
+    let Acolor = this.mouse.Acolor;
+    let Bbackground = this.mouse.Bbackground;
+    let Bborder = this.mouse.Bborder;
+    let Bcolor = this.mouse.Bcolor;
+    let Cbackground = this.mouse.Cbackground;
+    let Cborder = this.mouse.Cborder;
+    let Ccolor = this.mouse.Ccolor;
+*/
+
   render = () => {
+    let styleGroupA = this.mouse.styleGroupA;
+    let styleGroupB = this.mouse.styleGroupB;
+    let styleGroupC = this.mouse.styleGroupC;
+    let styleGroupS = this.mouse.styleGroupS;
+    let Abackground = '#000';
+    let Aborder = 'green';
+    let Acolor = '#d5f765';
+    let Bbackground = '#000';
+    let Bborder = 'green';
+    let Bcolor = '#d5f765';
+    let Cbackground = '#000';
+    let Cborder = 'green';
+    let Ccolor = '#d5f765';
+    let Sbackground = '#000';
+    let Sborder = 'green';
+    let Scolor = '#d5f765';
+    let rAbackground = 'green';
+    let rAborder = 'lightgreen';
+    let rAcolor = 'yellow';
+    let rBbackground = 'green';
+    let rBborder = 'lightgreen';
+    let rBcolor = 'yellow';
+    let rCbackground = 'green';
+    let rCborder = 'lightgreen';
+    let rCcolor = 'yellow';
+    let rSbackground = 'green';
+    let rSborder = 'lightgreen';
+    let rScolor = 'yellow';
     console.log(this);
     count += 1;
     console.log('The count is now ' + count + ' and the color is ' + this.mouse[15] );
+    let data = this.data;
+    let timerSize = this.data.timerSize;
     let information = this.data.information;
     let dd1 = this.data.dd1;
     let dd2 = this.data.dd2;
@@ -1699,6 +1836,8 @@ DES_ws.onmessage = function(event) {
     let cr27 = this.mouse[27];
     let cr270 = this.mouse[270];
     let cr100 = this.mouse[100];
+
+
     let rulesDisplayOn = this.disp.rulesDisplayOn;
     let rulesDisplayOff = this.disp.rulesDisplayOff;
     let toggleRules = this.disp.toggleRules
@@ -1707,7 +1846,7 @@ DES_ws.onmessage = function(event) {
     let style3 =  {paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, marginLeft: 10, fontSize: 18}
     return (
       <div style={{backgroundColor: dynB, color: dynC, fontSize: dynF, 
-          display: rightDisplay, width: '100%', height: '100%'}} >
+          display: rightDisplay, width: '100%', height: '200%'}} >
         <div style={{width: '35%', float: 'right', display: startDisplay }} >
             <ChangeColor key='ChangeColor' changeC={this.changeColor}
               style={{width: 8}} />
@@ -1762,7 +1901,7 @@ DES_ws.onmessage = function(event) {
             <br /><br />
             Put new number in a box, then click on the box or press 'Enter'. The number disappears and the result is shown above. Click "Solutions" when you are done.
               <br />
-            New Numbers: 
+            New Numbers:
             <Number1 change={ddChange1} />
             <Number2 change={ddChange2} />
             <Number3 change={ddChange3} />
@@ -1845,7 +1984,7 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
               Group:
               <button style={{backgroundColor: '#000', color: '#f00', marginLeft: 5, borderColor: '#93b1f2'}}> 
-                {group} </button>
+                {this.data.group} </button>
               Sides:
               <button style={{backgroundColor: '#000', color: '#f00', marginLeft: 5, borderColor: '#93b1f2'}}> 
                 {sides1}, {sides2}, {sides3}, {sides4}  </button>
@@ -1856,39 +1995,167 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
           <div style={{marginLeft: 5}} > {this.state.info} </div>
 
-          <button onClick={this.handleGroupA} style={{backgroundColor: cr15, paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
-              paddingBottom: 0.9, marginRight: 3, marginLeft: 10,}}
-            onMouseEnter={() => {this.mouse[15] = 'gold'}} onMouseLeave={() => {this.mouse[15] = base}} >
+          <button onClick={() => {
+                  this.data.group = 'GroupA';
+                  this.data.chatMessage = '';
+                  this.data.chatArray = [];
+                  this.mouse.Bbackground = Bbackground;
+                  this.mouse.Bborder  = Bborder;
+                  this.mouse.Bcolor = Bcolor; 
+                  this.mouse.Cbackground = Cbackground;
+                  this.mouse.Cborder  = Cborder;
+                  this.mouse.Ccolor = Ccolor;
+                  this.mouse.Sbackground = Sbackground;
+                  this.mouse.Sborder  = Sborder;
+                  this.mouse.Scolor = Scolor;
+                  DES_ws.send( `CO#$42,${group},${name},GroupA` );
+          }}
+            onMouseEnter={() => {
+              if (group !== 'GroupA') {
+                  this.mouse.Abackground = rAbackground;
+                  this.mouse.Aborder  = rAborder;
+                  this.mouse.Acolor = rAcolor;
+                }
+              }
+            }
+            onMouseLeave={() => {
+              if (group !== 'GroupA') {
+                  this.mouse.Abackground = Abackground;
+                  this.mouse.Aborder  = Aborder;
+                  this.mouse.Acolor = Acolor; 
+                }
+              }
+            }
+              style={this.style8(this.mouse.Abackground,this.mouse.Aborder,this.mouse.Acolor)} >
             GroupA
           </button>
 
-          <button onMouseEnter={() => {this.mouse[11] = 'gold'}} onMouseLeave={() => {this.mouse[11] = base}} 
-            onClick={this.handleGroupB} style={{backgroundColor: cr11, paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
-              paddingBottom: 0.9, marginRight: 3, marginLeft: 10,}} >
+
+          <button onClick={() => {
+                  this.data.group = 'GroupB';
+                  this.data.chatMessage = '';
+                  this.data.chatArray = [];
+                  this.mouse.Abackground = Bbackground;
+                  this.mouse.Aborder  = Bborder;
+                  this.mouse.Acolor = Bcolor; 
+                  this.mouse.Cbackground = Cbackground;
+                  this.mouse.Cborder  = Cborder;
+                  this.mouse.Ccolor = Ccolor;
+                  this.mouse.Sbackground = Sbackground;
+                  this.mouse.Sborder  = Sborder;
+                  this.mouse.Scolor = Scolor;
+                  DES_ws.send( `CO#$42,${group},${name},GroupB` );
+          }}
+            onMouseEnter={() => {
+              if (group !== 'GroupB') {
+                  this.mouse.Bbackground = rBbackground;
+                  this.mouse.Bborder  = rBborder;
+                  this.mouse.Ncolor = rBcolor;
+                }
+              }
+            }
+            onMouseLeave={() => {
+              if (group !== 'GroupB') {
+                  this.mouse.Bbackground = Bbackground;
+                  this.mouse.Bborder  = Bborder;
+                  this.mouse.Bcolor = Bcolor; 
+                }
+              }
+            }
+              style={this.style8(this.mouse.Bbackground,this.mouse.Bborder,this.mouse.Bcolor)} >
             GroupB
           </button>
 
-          <button onClick={this.handleGroupC} style={{backgroundColor: cr12, paddingTop: 1.1, paddingLeft: 12, paddingRight:12,
-              paddingBottom: 0.9, marginRight: 3, marginLeft: 10,}} 
-            onMouseEnter={() => {this.mouse[12] = 'gold'}} onMouseLeave={() => {this.mouse[12] = base}} >
+
+
+          <button onClick={() => {
+                  this.data.group = 'GroupC';
+                  this.data.chatMessage = '';
+                  this.data.chatArray = [];
+                  this.mouse.Bbackground = Bbackground;
+                  this.mouse.Bborder  = Bborder;
+                  this.mouse.Bcolor = Bcolor; 
+                  this.mouse.Abackground = Abackground;
+                  this.mouse.Aborder  = Aborder;
+                  this.mouse.Acolor = Acolor;
+                  this.mouse.Sbackground = Sbackground;
+                  this.mouse.Sborder  = Sborder;
+                  this.mouse.Scolor = Scolor;
+                  DES_ws.send( `CO#$42,${group},${name},GroupC` );
+          }}
+            onMouseEnter={() => {
+              if (group !== 'GroupC') {
+                  this.mouse.Cbackground = rCbackground;
+                  this.mouse.Cborder  = rCborder;
+                  this.mouse.Ccolor = rCcolor;
+                }
+              }
+            }
+            onMouseLeave={() => {
+              if (group !== 'GroupC') {
+                  this.mouse.Cbackground = Cbackground;
+                  this.mouse.Cborder  = Cborder;
+                  this.mouse.Ccolor = Ccolor; 
+                }
+              }
+            }
+              style={this.style8(this.mouse.Cbackground,this.mouse.Cborder,this.mouse.Ccolor)} >
             GroupC
           </button>
 
+
+          <button onClick={() => {
+                  this.data.group = 'solo';
+                  this.data.chatMessage = '';
+                  this.data.chatArray = [];
+                  this.mouse.Abackground = Abackground;
+                  this.mouse.Aborder  = Aborder;
+                  this.mouse.Acolor = Acolor;
+                  this.mouse.Bbackground = Bbackground;
+                  this.mouse.Bborder  = Bborder;
+                  this.mouse.Bcolor = Bcolor; 
+                  this.mouse.Cbackground = Cbackground;
+                  this.mouse.Cborder  = Cborder;
+                  this.mouse.Ccolor = Ccolor;
+                  DES_ws.send( `CO#$42,${group},${name},GroupA` );
+          }}
+            onMouseEnter={() => {
+              if (group !== 'solo') {
+                  this.mouse.Sbackground = rSbackground;
+                  this.mouse.Sborder  = rSborder;
+                  this.mouse.Scolor = rScolor;
+                }
+              }
+            }
+            onMouseLeave={() => {
+              if (group !== 'solo') {
+                  this.mouse.Sbackground = Sbackground;
+                  this.mouse.Sborder  = Sborder;
+                  this.mouse.Scolor = Scolor; 
+                }
+              }
+            }
+              style={this.style8(this.mouse.Sbackground,this.mouse.Sborder,this.mouse.Scolor)} >
+            solo
+          </button>
+
           <br />
+
           <GroupNew key='GroupNew' setGroup={this.setGroup} name={this.state.name} />
           <br />
+          <div style={{width: '60%'}}>
+            <Messages information={information} />
+          </div>
 
           <div style={{paddingTop: 1.1, paddingBottom: 0.9, marginRight: 3, fontSize: 20}} >
              {this.state.str1} <br /> {this.state.str2} <br /> {this.state.str3} <br /> {this.state.str4}
           </div>
 
-          <Messages information={information} />
-
-          <div style={{width: '60%', backgroundColor: dynB,  padding: 0}} > </div>
-
-          <button style={this.style6(cr2100,timerDisplay)}>
+          <div style={{width: '60%', backgroundColor: dynB, textAlign: 'left',  padding: 0}} >
+            <button style={this.style9('#2C2106','#000','#F8EDD2')}>
               {this.state.DS_T}
-          </button>
+            </button>
+          </div>
 
           <div style={{width: '60%', backgroundColor: dynB,  padding: 10}} > </div>
 
@@ -2075,12 +2342,17 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
           <GroupNew key='GroupNew' setGroup={this.setGroup} name={this.state.name} />
 
-          <p>In this section, you can choose the numbers of sides of each of the dice, and you can also select the goal. For example, you could select 6,6,6, and 6 for the dice and 10 for the goal. A roll of 1,1,2,3 would have a solution:<br />
+          <p>In this section, you can change the number of seconds you have for each computation. If you don't change it, the time interval will stay at the default value of 10 seconds. <br /><br />
+        <ChangeCountdown>
+        </ChangeCountdown>
+          {this.data.COUNTDOWN}
+          <br /><br />
+            You can also choose the numbers of sides of each of the dice, and you can also select the goal. For example, you could select 6,6,6, and 6 for the dice and 10 for the goal. A roll of 1,1,2,3 would have a solution:<br />
             1 + 1 = 2<br />
             2 + 3 = 5<br />
             2 * 5 = 10<br />
 You can click 'Solutions' to see a computer-generated list of all the solutions.
-</p><p>Changing parameters does not change them for other group members. You can use the chat window to coordinate a change. If other group members don't know that you modified the parameters in your browser, they might be very surprised to see you get a point for computing, say, the number '18'.
+</p><p>Changing parameters does not change them for other group members. You can use the chat window, email, telephone, or whatever to coordinate a change with other players. If other group members don't know that you modified the parameters in your browser, they might be very surprised to see you get a point for computing, say, the number '18'.
 </p><br />
 
           Sides: 
