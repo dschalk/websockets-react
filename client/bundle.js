@@ -3013,7 +3013,7 @@
 	      if (j === 3) {
 	        DES_ws.send('FQ#$42,' + gr + ',' + name + ',' + str);
 	        DES_ws.send('CE#$42,' + gr + ',' + name + ',' + ar[0] + ',' + ar[1] + ',' + ar[2] + ',');
-	        this.mouse[2] = 'yellow';
+	        this.mouse[3] = 'yellow';
 	        if (test2) {
 	          DES_ws.send('CK#$42,' + gr + ',' + name + ',' + COUNTDOWN + ',To score in this computation: Use the yellow background number.');
 	        } else {
@@ -3114,18 +3114,6 @@
 
 	var B2 = _mobservable2['default'].reactiveComponent(B2X);
 	_react2['default'].render(_react2['default'].createElement(B2, { key: 'B2' }), document.getElementById('divSix'));
-
-	/*
-	    let Abackground = this.mouse.Abackground;
-	    let Aborder = this.mouse.Aborder;
-	    let Acolor = this.mouse.Acolor;
-	    let Bbackground = this.mouse.Bbackground;
-	    let Bborder = this.mouse.Bborder;
-	    let Bcolor = this.mouse.Bcolor;
-	    let Cbackground = this.mouse.Cbackground;
-	    let Cborder = this.mouse.Cborder;
-	    let Ccolor = this.mouse.Ccolor;
-	*/
 
 /***/ },
 /* 2 */

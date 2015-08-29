@@ -1342,7 +1342,7 @@ DES_ws.onmessage = function(event) {
     if (j === 3) {
       DES_ws.send(`FQ#$42,${gr},${name},${str}`);
       DES_ws.send(`CE#$42,${gr},${name},${ar[0]},${ar[1]},${ar[2]},`);
-      this.mouse[2] = 'yellow';
+      this.mouse[3] = 'yellow';
       if (test2) {
         DES_ws.send( `CK#$42,${gr},${name},${COUNTDOWN},To score in this computation: Use the yellow background number.` );
       }
@@ -1750,18 +1750,6 @@ DES_ws.onmessage = function(event) {
     style9 = (x,y,z) => {return {backgroundColor: x, textAlign: 'left', borderColor: y, color: z, 
       borderRadius: 6, paddingTop: 1.1, paddingBottom: 0.4, marginRight: 3, 
       marginLeft: 18, fontSize: this.state.timeSize}};
-
-/*
-    let Abackground = this.mouse.Abackground;
-    let Aborder = this.mouse.Aborder;
-    let Acolor = this.mouse.Acolor;
-    let Bbackground = this.mouse.Bbackground;
-    let Bborder = this.mouse.Bborder;
-    let Bcolor = this.mouse.Bcolor;
-    let Cbackground = this.mouse.Cbackground;
-    let Cborder = this.mouse.Cborder;
-    let Ccolor = this.mouse.Ccolor;
-*/
 
   render = () => {
     let groupWatch = this.data.groupWatch;
