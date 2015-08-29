@@ -140,10 +140,11 @@ application state pending = do
             | clientExists (getName client) clients ->
                 WS.sendTextData conn ("CC#$42,seven,seven,%#8*&&^1#$%^" :: Text)
             | otherwise -> flip finally disconnect $ do
+                    let name = getName client
                     st <- atomically $ takeTMVar state
                     let st2 = addClient client st
                     atomically $ putTMVar state st2
-                    WS.sendTextData conn $ T.pack "CC#$42"
+                    WS.sendTextData conn ("CC#$42,solo," `mappend` name `mappend` " ,solo" :: Text)
                     -- broadcast ("CB#$42, solo,0, solo, new player, solo") clients
                     talk conn state client
          where

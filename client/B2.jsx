@@ -646,7 +646,80 @@ let data = mobservable.makeReactive({
   dd3: 0,
   dd4: 0,
   goal2: 20,
-  COUNTDOWN: 10
+  COUNTDOWN: 10,
+  test: true,
+  groupWatch: function() {
+    if (this.group === 'GroupA' && this.test) {
+      mouseHandler.Abackground = 'green';
+      mouseHandler.Aborder = 'lawngreen';
+      mouseHandler.Acolor = 'yellow';
+      mouseHandler.Bbackground = '#000';
+      mouseHandler.Bborder = 'green';
+      mouseHandler.Bcolor = '#d5f765';
+      mouseHandler.Cbackground = '#000';
+      mouseHandler.Cborder = 'green';
+      mouseHandler.Ccolor = '#d5f765';
+      mouseHandler.Sbackground = '#000';
+      mouseHandler.Sborder = 'green';
+      mouseHandler.Scolor = '#d5f765';
+    }
+    else if (this.group === 'GroupB' && this.test) { 
+      mouseHandler.Bbackground = 'green';
+      mouseHandler.Bborder = 'lawngreen';
+      mouseHandler.Bcolor = 'yellow';
+      mouseHandler.Abackground = '#000';
+      mouseHandler.Aborder = 'green';
+      mouseHandler.Acolor = '#d5f765';
+      mouseHandler.Cbackground = '#000';
+      mouseHandler.Cborder = 'green';
+      mouseHandler.Ccolor = '#d5f765';
+      mouseHandler.Sbackground = '#000';
+      mouseHandler.Sborder = 'green';
+      mouseHandler.Scolor = '#d5f765';
+    }
+    else if (this.group === 'GroupC' && this.test) {
+      mouseHandler.Cbackground = 'green';
+      mouseHandler.Cborder = 'lawngreen';
+      mouseHandler.Ccolor = 'yellow';
+      mouseHandler.Abackground = '#000';
+      mouseHandler.Aborder = 'green';
+      mouseHandler.Acolor = '#d5f765';
+      mouseHandler.Bbackground = '#000';
+      mouseHandler.Bborder = 'green';
+      mouseHandler.Bcolor = '#d5f765';
+      mouseHandler.Sbackground = '#000';
+      mouseHandler.Sborder = 'green';
+      mouseHandler.Scolor = '#d5f765';
+    }
+    else if (this.group === 'solo' && this.test) {
+      mouseHandler.Sbackground = 'green';
+      mouseHandler.Sborder = 'lawngreen';
+      mouseHandler.Scolor = 'yellow';
+      mouseHandler.Abackground = '#000';
+      mouseHandler.Aborder = 'green';
+      mouseHandler.Acolor = '#d5f765';
+      mouseHandler.Bbackground = '#000';
+      mouseHandler.Bborder = 'green';
+      mouseHandler.Bcolor = '#d5f765';
+      mouseHandler.Cbackground = '#000';
+      mouseHandler.Cborder = 'green';
+      mouseHandler.Ccolor = '#d5f765';
+    }
+    else if (this.test) {
+      mouseHandler.Abackground = '#000';
+      mouseHandler.Aborder = 'green';
+      mouseHandler.Acolor = '#d5f765';
+      mouseHandler.Bbackground = '#000';
+      mouseHandler.Bborder = 'green';
+      mouseHandler.Bcolor = '#d5f765';
+      mouseHandler.Cbackground = '#000';
+      mouseHandler.Cborder = 'green';
+      mouseHandler.Ccolor = '#d5f765';
+      mouseHandler.Sbackground = '#000';
+      mouseHandler.Sborder = 'green';
+      mouseHandler.Scolor = '#d5f765';
+    }
+  }
 });
 
 data.ddChange1 = x => { data.dd1 = x };
@@ -705,8 +778,8 @@ class B2X extends React.Component {
         hidden2: true,
         togDice: false,
         name: "",
-        DS_T: "- pause -",
         N: 0,
+        DS_T: 'Click ROLL to begin playing. Otherwise, you can change game parameters in the "Create a New Group" section, or you can get all of the solutions to any roll you select in the "Get All Solutions." section',
         impossibleClicker: "a@F$Uy&imp",
         scoreClicker: "a@F$Uy&sc",
         interruptClicker: "a@F$intrup%$",
@@ -824,7 +897,7 @@ DES_ws.onmessage = function(event) {
                 score: false,
                 impossible: false,
                 interrupt: false,
-                DS_T: '- pause -',
+                DS_T: 'ready',
                 numDisplay: 'inline',
                 impossibleDisplay: 'inline',
                 rollDisplay: 'inline',
@@ -1067,7 +1140,7 @@ DES_ws.onmessage = function(event) {
 
     }
 
-    if ( this.state.DS_T*1 === 0 ) {
+    if ( this.state.DS_T === 0 ) {
       this.setState ({
             message1: 0,  // Wipes the old numbers.
             message2: 0,
@@ -1585,7 +1658,7 @@ DES_ws.onmessage = function(event) {
         scoreDisplay2: 'none',
         showSolutionsButton: 'none',
         hideSolutionsButton: 'inline',
-        DS_T: '- pause -'
+        DS_T: 'Group participation is temporarily suspended.'
       });
   }
 
@@ -1609,7 +1682,7 @@ DES_ws.onmessage = function(event) {
         scoreDisplay2: 'none',
         showSolutionsButton: 'none',
         hideSolutionsButton: 'inline',
-        DS_T: '- pause -',
+        DS_T: 'Group participation is temporarily suspended.'
       });
   }
 
@@ -1622,7 +1695,7 @@ DES_ws.onmessage = function(event) {
     this.data.information = 'To resume play, click ROLL (or wait until another group member starts the next round).';
     this.setState({
         message: 'Solutions were displayed. Play can resume on the next round. ',
-        DS_t: 'No play until the next round. Solutions were displayed.',
+        DS_T: 'Caution. Clicking ROLL could disrupt a current group session. You might want to send a message asking other group members if it is ok to click ROLL.',
         showSolutionsButton: 'inline',
         hideSolutionsButton: 'none',
         rollDisplay: 'inline',
@@ -1691,6 +1764,7 @@ DES_ws.onmessage = function(event) {
 */
 
   render = () => {
+    let groupWatch = this.data.groupWatch;
     let styleGroupA = this.mouse.styleGroupA;
     let styleGroupB = this.mouse.styleGroupB;
     let styleGroupC = this.mouse.styleGroupC;
@@ -1707,6 +1781,12 @@ DES_ws.onmessage = function(event) {
     let Sbackground = '#000';
     let Sborder = 'green';
     let Scolor = '#d5f765';
+    let Ubackground = '#000';
+    let Uborder = 'green';
+    let Ucolor = '#d5f765';
+    let Tbackground = '#000';
+    let Tborder = 'green';
+    let Tcolor = '#d5f765';
     let rAbackground = 'green';
     let rAborder = 'lightgreen';
     let rAcolor = 'yellow';
@@ -1997,21 +2077,14 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
           <button onClick={() => {
                   this.data.group = 'GroupA';
+                  this.data.test = true;
                   this.data.chatMessage = '';
                   this.data.chatArray = [];
-                  this.mouse.Bbackground = Bbackground;
-                  this.mouse.Bborder  = Bborder;
-                  this.mouse.Bcolor = Bcolor; 
-                  this.mouse.Cbackground = Cbackground;
-                  this.mouse.Cborder  = Cborder;
-                  this.mouse.Ccolor = Ccolor;
-                  this.mouse.Sbackground = Sbackground;
-                  this.mouse.Sborder  = Sborder;
-                  this.mouse.Scolor = Scolor;
                   DES_ws.send( `CO#$42,${group},${name},GroupA` );
           }}
             onMouseEnter={() => {
               if (group !== 'GroupA') {
+                  this.data.test = false;
                   this.mouse.Abackground = rAbackground;
                   this.mouse.Aborder  = rAborder;
                   this.mouse.Acolor = rAcolor;
@@ -2020,6 +2093,7 @@ To modify the game, click "Create a New Group" and change the number of sides of
             }
             onMouseLeave={() => {
               if (group !== 'GroupA') {
+                  this.data.test = true;
                   this.mouse.Abackground = Abackground;
                   this.mouse.Aborder  = Aborder;
                   this.mouse.Acolor = Acolor; 
@@ -2033,21 +2107,14 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
           <button onClick={() => {
                   this.data.group = 'GroupB';
+                  this.data.test = true;
                   this.data.chatMessage = '';
                   this.data.chatArray = [];
-                  this.mouse.Abackground = Bbackground;
-                  this.mouse.Aborder  = Bborder;
-                  this.mouse.Acolor = Bcolor; 
-                  this.mouse.Cbackground = Cbackground;
-                  this.mouse.Cborder  = Cborder;
-                  this.mouse.Ccolor = Ccolor;
-                  this.mouse.Sbackground = Sbackground;
-                  this.mouse.Sborder  = Sborder;
-                  this.mouse.Scolor = Scolor;
                   DES_ws.send( `CO#$42,${group},${name},GroupB` );
           }}
             onMouseEnter={() => {
               if (group !== 'GroupB') {
+                  this.data.test = false;
                   this.mouse.Bbackground = rBbackground;
                   this.mouse.Bborder  = rBborder;
                   this.mouse.Ncolor = rBcolor;
@@ -2056,6 +2123,7 @@ To modify the game, click "Create a New Group" and change the number of sides of
             }
             onMouseLeave={() => {
               if (group !== 'GroupB') {
+                  this.data.test = true;
                   this.mouse.Bbackground = Bbackground;
                   this.mouse.Bborder  = Bborder;
                   this.mouse.Bcolor = Bcolor; 
@@ -2070,21 +2138,14 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
           <button onClick={() => {
                   this.data.group = 'GroupC';
+                  this.data.test = true;
                   this.data.chatMessage = '';
                   this.data.chatArray = [];
-                  this.mouse.Bbackground = Bbackground;
-                  this.mouse.Bborder  = Bborder;
-                  this.mouse.Bcolor = Bcolor; 
-                  this.mouse.Abackground = Abackground;
-                  this.mouse.Aborder  = Aborder;
-                  this.mouse.Acolor = Acolor;
-                  this.mouse.Sbackground = Sbackground;
-                  this.mouse.Sborder  = Sborder;
-                  this.mouse.Scolor = Scolor;
                   DES_ws.send( `CO#$42,${group},${name},GroupC` );
           }}
             onMouseEnter={() => {
               if (group !== 'GroupC') {
+                  this.data.test = false;
                   this.mouse.Cbackground = rCbackground;
                   this.mouse.Cborder  = rCborder;
                   this.mouse.Ccolor = rCcolor;
@@ -2093,6 +2154,7 @@ To modify the game, click "Create a New Group" and change the number of sides of
             }
             onMouseLeave={() => {
               if (group !== 'GroupC') {
+                  this.data.test = true;
                   this.mouse.Cbackground = Cbackground;
                   this.mouse.Cborder  = Cborder;
                   this.mouse.Ccolor = Ccolor; 
@@ -2106,21 +2168,14 @@ To modify the game, click "Create a New Group" and change the number of sides of
 
           <button onClick={() => {
                   this.data.group = 'solo';
+                  this.data.test = true;
                   this.data.chatMessage = '';
                   this.data.chatArray = [];
-                  this.mouse.Abackground = Abackground;
-                  this.mouse.Aborder  = Aborder;
-                  this.mouse.Acolor = Acolor;
-                  this.mouse.Bbackground = Bbackground;
-                  this.mouse.Bborder  = Bborder;
-                  this.mouse.Bcolor = Bcolor; 
-                  this.mouse.Cbackground = Cbackground;
-                  this.mouse.Cborder  = Cborder;
-                  this.mouse.Ccolor = Ccolor;
                   DES_ws.send( `CO#$42,${group},${name},GroupA` );
           }}
             onMouseEnter={() => {
               if (group !== 'solo') {
+                  this.data.test = false;
                   this.mouse.Sbackground = rSbackground;
                   this.mouse.Sborder  = rSborder;
                   this.mouse.Scolor = rScolor;
@@ -2129,6 +2184,7 @@ To modify the game, click "Create a New Group" and change the number of sides of
             }
             onMouseLeave={() => {
               if (group !== 'solo') {
+                  this.data.test = true;
                   this.mouse.Sbackground = Sbackground;
                   this.mouse.Sborder  = Sborder;
                   this.mouse.Scolor = Scolor; 
