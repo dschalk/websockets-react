@@ -1,9 +1,16 @@
 'use strict'
-import React from'react';
 import mobservable from 'mobservable';
-let reactMixin = require('react-mixin');
+import React from 'react';
+import {render} from 'react-dom';
+var Monad = require('reactive-monads').Monad;
+var MonadObject = require('reactive-monads').MonadObject;
+var MonadArray = require('reactive-monads').MonadArray;
+import {observer} from 'mobservable-react';
 export {B2};
+
+let reactMixin = require('react-mixin');
 let count = 0;
+
 
 function createWebSocket(path) {
     let host = window.location.hostname;
@@ -543,7 +550,7 @@ class Messages extends React.Component {
   }
 };
 
-let mouseHandlerx = {
+let mouseHandler = {
     Abackground: '#000',
     Aborder: 'green',
     Acolor: '#d5f765',
@@ -631,9 +638,7 @@ let mouseHandlerx = {
     27: '#000000',
 };
 
-let mouseHandler = mobservable.makeReactive(mouseHandlerx);
-
-let data = mobservable.makeReactive({
+let data = mobservable.observable({
   group: 'solo',
   timerSize: '18',
   groupBackup: 'solo',
@@ -735,7 +740,7 @@ let disp = mobservable.makeReactive({
   scoreDisplay2: 'none'
 });
 
-class B2X extends React.Component {
+@observer class B2 extends React.Component {
   // shouldComponentUpdate = shouldPureComponentUpdate;
   constructor(props) {
     super(props);
@@ -2424,8 +2429,4 @@ You can click 'Solutions' to see a computer-generated list of all the solutions.
     )}
   };
 
-reactMixin(B2X.prototype, require('./node_modules/react/lib/AutoFocusMixin'));
-B2X.defaultProps = {key: 'B2X'};
-
-let B2 = mobservable.reactiveComponent(B2X);
-React.render(<B2 key='B2' />, document.getElementById('divSix'));
+render(<B2 key='B2' />, document.getElementById('divSix'));
