@@ -84,7 +84,6 @@
 	var MonadArray = __webpack_require__(162).MonadArray;
 	exports.B2 = B2;
 
-	var reactMixin = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-mixin\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	var count = 0;
 
 	function createWebSocket(path) {
