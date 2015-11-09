@@ -8,7 +8,6 @@ var MonadArray = require('reactive-monads').MonadArray;
 import {observer} from 'mobservable-react';
 export {B2};
 
-let reactMixin = require('react-mixin');
 let count = 0;
 
 
